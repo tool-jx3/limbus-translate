@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"github.com/tool-jx3/limbus-translate/internal/config"
 	"os"
 	"path/filepath"
 	"strings"
@@ -104,10 +105,8 @@ func TestPlanCommandPassesNameFields(t *testing.T) {
 	}
 	root := e2eRepo(t)
 	t.Chdir(root)
-	cfgPath := filepath.Join(root, "lct.yaml")
-	cfg := readFile(t, cfgPath)
-	if !strings.Contains(string(cfg), "names: { fields: [name,") {
-		t.Fatalf("lct.yaml has no names.fields line:\n%s", cfg)
+	if cfg, err := config.Load(root); err != nil || len(cfg.Names.Fields) == 0 {
+		t.Fatalf("lct.yaml names.fields = %v (%v), want some", cfg.Names.Fields, err)
 	}
 	mustLct(t, nil, "snapshot", "--from", fixture, "--token", testToken, "--created-at", testCreatedAt)
 	mustLct(t, nil, "bootstrap", "--upstream", filepath.Join(fixture, "upstream"))

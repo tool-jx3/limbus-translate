@@ -1720,6 +1720,11 @@ func TestPlanKeepsNameTableOfSameRawTag(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	stPath := filepath.Join(e.twRoot, ".meta", "same-text.json")
+	stBefore, err := os.ReadFile(stPath)
+	if err != nil {
+		t.Fatal(err)
+	}
 	key := at("Skills_A.json", "/dataList/0/name")
 	recs := e.records()
 	rec := recs[key]
@@ -1735,6 +1740,9 @@ func TestPlanKeepsNameTableOfSameRawTag(t *testing.T) {
 	}
 	if string(before) != string(after) {
 		t.Errorf("names.json changed within one raw tag:\n%s\n%s", before, after)
+	}
+	if stAfter, err := os.ReadFile(stPath); err != nil || string(stAfter) != string(stBefore) {
+		t.Errorf("same-text.json changed within one raw tag (%v):\n%s\n%s", err, stBefore, stAfter)
 	}
 	if second.NameTable.Built || second.NameTable.Names != first.NameTable.Names {
 		t.Errorf("NameTable = %+v, want kept with %d names", second.NameTable, first.NameTable.Names)
@@ -1815,5 +1823,92 @@ func TestPlanWritesSameTextIndex(t *testing.T) {
 	}
 	if sum.NameTable.SameTexts != 1 {
 		t.Errorf("SameTexts = %d, want 1", sum.NameTable.SameTexts)
+	}
+}
+
+// Each of the two files is kept or made on its own.
+func TestPlanKeepsOneOfTheTwoFilesAndRebuildsTheOther(t *testing.T) {
+	for _, tc := range []struct{ gone, kept string }{{"same-text.json", "names.json"}, {"names.json", "same-text.json"}} {
+		t.Run("without "+tc.gone, func(t *testing.T) {
+			e := newPlanEnv(t)
+			nameFixture(e)
+			e.runNames("", "name")
+			meta := filepath.Join(e.twRoot, ".meta")
+			before, err := os.ReadFile(filepath.Join(meta, tc.kept))
+			if err != nil {
+				t.Fatal(err)
+			}
+			if err := os.Remove(filepath.Join(meta, tc.gone)); err != nil {
+				t.Fatal(err)
+			}
+			sum := e.runNames("", "name")
+			after, err := os.ReadFile(filepath.Join(meta, tc.kept))
+			if err != nil || string(after) != string(before) {
+				t.Errorf("%s changed (%v):\n%s\n%s", tc.kept, err, before, after)
+			}
+			if _, err := os.Stat(filepath.Join(meta, tc.gone)); err != nil {
+				t.Errorf("%s was not made again: %v", tc.gone, err)
+			}
+			if !sum.NameTable.Built {
+				t.Error("Built = false, want true: one file was made")
+			}
+		})
+	}
+}
+
+// Only a record of the KR text there is now, made by a translation, counts.
+func TestPlanLeavesUnusableRecordsOutOfTheTableAndTheIndex(t *testing.T) {
+	e := newPlanEnv(t)
+	const long = "열 글자가 넘는 같은 문장입니다"
+	kr := map[string]string{
+		"Skills_A.json": dataList(
+			obj{"id": 1, "name": "좋은이름", "desc": long},
+			obj{"id": 2, "name": "낡은이름"},
+			obj{"id": 3, "name": "검토이름"},
+			obj{"id": 4, "name": "대체이름"},
+			obj{"id": 5, "name": "복사이름"},
+		),
+		"Skills_B.json": dataList(obj{"id": 1, "help": long, "tip": long, "note": long, "label": long}),
+	}
+	e.snapshot(kr)
+	name := func(i int) string { return at("Skills_A.json", fmt.Sprintf("/dataList/%d/name", i)) }
+	stale := paratranz(name(1), "낡은이름", "舊名")
+	stale.KRSha = units.KRSha("예전이름")
+	review := paratranz(name(2), "검토이름", "待審名")
+	review.Flags = []string{store.FlagNeedsReview}
+	fallback := paratranz(name(3), "대체이름", "代替名")
+	fallback.Origin = store.OriginFallback
+	cp := paratranz(name(4), "복사이름", "複製名")
+	cp.Origin = store.OriginCopy
+	sentence := func(field, zh string, edit func(*store.Record)) store.Record {
+		r := paratranz(at("Skills_B.json", "/dataList/0/"+field), long, zh)
+		if edit != nil {
+			edit(&r)
+		}
+		return r
+	}
+	e.seed([]store.Record{
+		paratranz(name(0), "좋은이름", "好名"), stale, review, fallback, cp,
+		paratranz(descKey("Skills_A.json", 0), long, "好句"),
+		sentence("help", "舊句", func(r *store.Record) { r.KRSha = units.KRSha("예전 문장") }),
+		sentence("tip", "待審句", func(r *store.Record) { r.Flags = []string{store.FlagNeedsReview} }),
+		sentence("note", "代替句", func(r *store.Record) { r.Origin = store.OriginFallback }),
+		sentence("label", "複製句", func(r *store.Record) { r.Origin = store.OriginCopy }),
+	}, nil)
+	e.runNames("", "name")
+
+	tab, err := existing.LoadTable(e.store())
+	if err != nil || tab == nil {
+		t.Fatalf("LoadTable = %v, %v", tab, err)
+	}
+	if len(tab.Names) != 1 || tab.Names[0].KR != "좋은이름" {
+		t.Errorf("names = %+v, want only 좋은이름", tab.Names)
+	}
+	idx, err := existing.LoadSameText(e.store())
+	if err != nil || idx == nil {
+		t.Fatalf("LoadSameText = %v, %v", idx, err)
+	}
+	if rs := idx.Texts[long]; len(rs) != 1 || rs[0].ZH != "好句" {
+		t.Errorf("Texts[long] = %+v, want only the usable 好句", rs)
 	}
 }

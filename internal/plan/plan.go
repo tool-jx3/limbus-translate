@@ -311,10 +311,10 @@ func (in Inputs) check() error {
 // again.
 //
 // The whole run is one store lock, and the store is written at its end: the
-// records, the queue, applied.json, the table and the index, then plan.json. The ids of the applied
-// files go in after the changes they made, so a file is never listed as
-// applied without them. Each file is replaced atomically, but not the four
-// together: a run that dies while writing them leaves a store to reset to its
+// records, the queue, applied.json, the table and the index, then plan.json.
+// The ids of the applied files go in after the changes they made, so a file
+// is never listed as applied without them. Each file is replaced atomically,
+// but not the six together: a run that dies while writing them leaves a store to reset to its
 // last commit (CI commits the tw worktree only after a plan that went
 // through).
 func Run(in Inputs) (*Summary, error) {
@@ -452,12 +452,12 @@ func (p *planner) writeNames(st *store.Store) error {
 	}
 	keepTable, keepIndex := table != nil && table.RawTag == tag, index != nil && index.RawTag == tag
 	if !keepTable || !keepIndex {
-		nameSources, texts, err := p.nameSources(!keepTable, !keepIndex)
+		sources, texts, err := p.collectSources(!keepTable, !keepIndex)
 		if err != nil {
 			return err
 		}
 		if !keepTable {
-			table = existing.Collect(tag, p.in.NameFields, nameSources)
+			table = existing.Collect(tag, p.in.NameFields, sources)
 			if err := existing.SaveTable(st, table); err != nil {
 				return err
 			}
@@ -476,22 +476,15 @@ func (p *planner) writeNames(st *store.Store) error {
 }
 
 // usableRecord returns the record of key when it is a translation of the KR
-// text there is now: made from it (kr_sha), not a copy or a fallback, and not
-// waiting for a person.
+// text there is now (see reusable).
 func (p *planner) usableRecord(key string) (store.Record, bool) {
 	rec, has := p.records[key]
-	if !has || rec.KRSha != p.cur[key].sha || slices.Contains(rec.Flags, store.FlagNeedsReview) {
-		return store.Record{}, false
-	}
-	if rec.Origin == store.OriginCopy || rec.Origin == store.OriginFallback {
-		return store.Record{}, false
-	}
-	return rec, true
+	return rec, has && reusable(rec, p.cur[key].sha)
 }
 
-// nameSources reads the units the table (names) and the index (texts) are
+// collectSources reads the units the table (names) and the index (texts) are
 // made of; it reads only for those asked for.
-func (p *planner) nameSources(names, texts bool) ([]existing.Source, []existing.TextUnit, error) {
+func (p *planner) collectSources(names, texts bool) ([]existing.Source, []existing.TextUnit, error) {
 	var srcs []existing.Source
 	var tus []existing.TextUnit
 	for _, f := range p.files {
@@ -517,11 +510,8 @@ func (p *planner) nameSources(names, texts bool) ([]existing.Source, []existing.
 				srcs = append(srcs, s)
 			}
 			if texts && utf8.RuneCountInString(u.KR) >= batch.ShortTextRunes {
-				tu := existing.TextUnit{
-					Key: key, File: f.name, KR: u.KR,
-					Speaker: batch.SpeakerOf(p.in.Rules, f.doc, u),
-					Group:   batch.SameTextGroup(batch.TextGroupOf(p.in.Rules, f.doc, u)),
-				}
+				g := batch.TextGroupOf(p.in.Rules, f.doc, u)
+				tu := existing.TextUnit{Key: key, File: f.name, KR: u.KR, Speaker: g.Speaker, Group: batch.SameTextGroup(g)}
 				if usable {
 					tu.ZH = rec.ZH
 				}
