@@ -42,6 +42,15 @@ describe('expandPreviewFile', () => {
     expect(one(null)).toBeNull()
   })
 
+  it('reads a preview written before the names were added: no names and no n are none', () => {
+    const older = wire([unit()])
+    delete older.names
+    delete older.units[0]!.n
+    const pf = expandPreviewFile(older, file(['ZH']))
+    expect(pf.names).toEqual([])
+    expect(pf.units[0]!.n).toEqual([])
+  })
+
   it('puts back an empty keep', () => {
     expect(one(unit())!.keep).toEqual({ ids: [], placeholders: [], tags: [], dante_wrapper: false })
     expect(Object.keys(one(unit())!.keep)).toEqual(['ids', 'placeholders', 'tags', 'dante_wrapper'])

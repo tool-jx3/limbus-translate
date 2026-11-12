@@ -703,7 +703,8 @@ export interface PreviewUnitWire {
   g: number[]
   t: number[]
   k: string[]
-  n: number[]
+  /** Absent in a preview written before the existing names: none. */
+  n?: number[]
   /** prev_zh is left out where pz is 1. */
   it: PreviewItem
   /** 1: the prev_zh is the zh of the unit in files/<path>. */
@@ -724,7 +725,8 @@ export interface PreviewFileWire {
   family: string
   glossary_check: string
   terms: Term[]
-  names: Omit<NameRef, 'units'>[]
+  /** Absent in a preview written before the existing names: none. */
+  names?: Omit<NameRef, 'units'>[]
   keywords: Record<string, string>
   /** Present when some unit has a record. */
   rd?: PreviewRecDefaults

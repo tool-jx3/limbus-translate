@@ -52,6 +52,17 @@ describe('rebuildBatch', () => {
     expect(terms.find((t) => t.check === 'off')?.kr).toBe('셋째')
   })
 
+  it('rebuilds a batch from a preview written before the names were added, with no names', () => {
+    const path = 'Other.json'
+    const file = json<FileData>(`files/${path}`)
+    const older = json<PreviewFileWire>(`preview/${path}`)
+    delete older.names
+    for (const u of older.units) if (u) delete u.n
+    const pf = expandPreviewFile(older, file)
+    const i = pf.units.findIndex((u) => u !== null)
+    expect(rebuildBatch(path, file, pf, shared, i).names).toEqual([])
+  })
+
   it('refuses a copy', () => {
     const c = expanded('StoryData/S001A.json')
     const i = c.units.findIndex((u) => u === null)

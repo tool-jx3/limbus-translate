@@ -44,7 +44,8 @@ function expandUnit(where: string, wire: PreviewUnitWire, fu: FileData['units'][
   if (wire.pz === 1) it.prev_zh = fu.zh
   const keep: Constraints = wire.keep ?? { ids: [], placeholders: [], tags: [], dante_wrapper: false }
   const st: PreviewState = { pending: false, needs_review: false, frozen: false, ...wire.st }
-  const out: PreviewUnit = { sp: wire.sp, g: wire.g, t: wire.t, k: wire.k, n: wire.n, it, keep, c: wire.c, st }
+  // A preview written before the existing names has no n.
+  const out: PreviewUnit = { sp: wire.sp, g: wire.g, t: wire.t, k: wire.k, n: wire.n ?? [], it, keep, c: wire.c, st }
   if (wire.m !== undefined) {
     if (wire.m.length !== 2) throw new DataError('format', `${where}: the methods ${JSON.stringify(wire.m)} are not two characters`)
     const em = method(where, wire.m[0])
@@ -76,7 +77,7 @@ export function expandPreviewFile(wire: PreviewFileWire, file: FileData): Previe
     family: wire.family,
     glossary_check: wire.glossary_check,
     terms: wire.terms,
-    names: wire.names,
+    names: wire.names ?? [], // absent in a preview written before the existing names
     keywords: wire.keywords,
     units: wire.units.map((u, i) => (u === null ? null : expandUnit(`${file.path} #${i}`, u, file.units[i] as FileData['units'][number], wire.rd))),
   }
