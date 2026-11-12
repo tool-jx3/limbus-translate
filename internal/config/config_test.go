@@ -181,3 +181,15 @@ func TestFindRootStopsOnOtherErrors(t *testing.T) {
 		t.Errorf("error = %v, want one naming %s", err, loop)
 	}
 }
+
+func TestLoadNames(t *testing.T) {
+	dir := t.TempDir()
+	writeConfig(t, dir, "lang_dir: zh-TW\nnames: { fields: [name, abName] }\n")
+	cfg, err := Load(dir)
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	if got := strings.Join(cfg.Names.Fields, ","); got != "name,abName" {
+		t.Errorf("Names.Fields = %q, want name,abName", got)
+	}
+}

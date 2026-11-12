@@ -26,6 +26,7 @@ type Config struct {
 	CDNTemplate string    `yaml:"cdn_template"`
 	Worktrees   Worktrees `yaml:"worktrees"`
 	Batch       Batch     `yaml:"batch"`
+	Names       Names     `yaml:"names"`
 	Font        Font      `yaml:"font"`
 	Bootstrap   Bootstrap `yaml:"bootstrap"`
 }
@@ -42,6 +43,12 @@ type Batch struct {
 	StoryMaxUnits int `yaml:"story_max_units"`
 	MaxAttempts   int `yaml:"max_attempts"`
 	LeaseMinutes  int `yaml:"lease_minutes"`
+}
+
+// Names lists the fields whose current translations make up the table of
+// existing names.
+type Names struct {
+	Fields []string `yaml:"fields"`
 }
 
 // Font pins the font file bundled into the language pack.
