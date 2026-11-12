@@ -4123,7 +4123,7 @@
     {
       "id": "battle_special_11116_4",
       "desc": "",
-      "dlg": "進入路線已確保。全員，激突！"
+      "dlg": "進入路線已確保。全員，交鋒！"
     },
     {
       "id": "battle_special_11116_5",
@@ -4238,11 +4238,11 @@
     {
       "id": "battle_special_10316_11",
       "desc": "",
-      "dlg": "楔，射出！"
+      "dlg": "楔，紛射！"
     },
     {
       "id": "battle_special_10216_6_link_1",
-      "dlg": "反應式射出。"
+      "dlg": "反應式紛射。"
     },
     {
       "id": "battle_special_10216_6_link_2",

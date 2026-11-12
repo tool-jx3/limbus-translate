@@ -37,7 +37,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "黎明的閃光",
+          "name": "黎明閃光",
           "desc": "[WhenUse] 若自身的 [DawnOfficeStigmaSOne] 不低於15，追加1枚 [SuperCoin] 作為本技能的第2枚硬幣",
           "coinlist": [
             {
@@ -69,7 +69,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "晚霞之劍",
+          "name": "霞光劍刃",
           "desc": "[WhenUse] 若自身的 [DawnOfficeStigmaSOne] 不低於15，適用以下效果\n- 追加1枚 [SuperCoin] 作為本技能的第3枚硬幣\n- 追加的硬幣命中時，觸發 [VibrationExplosion]。使目標減少1回 [Vibration] ",
           "coinlist": [
             {
@@ -108,7 +108,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "劃破黎明之劍",
+          "name": "撕裂黎明之劍",
           "desc": "[WhenUse] 自身每有10層 [DawnOfficeStigmaSOne] ，最終威力+1，造成的傷害+10%\n[DefeatDuel]\n- 造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
@@ -143,9 +143,9 @@
       "levelList": [
         {
           "level": 1,
-          "name": "破曉時分",
+          "name": "黎明時分",
           "desc": "[WhenUse] 每指定1名目標，造成的傷害+20% (最多60%)\n[DefeatDuel]\n- 造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂\n[EndSkill] 恢復相當於最大體力(所有目標的 [Combustion] 強度總和 x 2)%的體力 (最多30%)\n[EndSkill] 消耗自身所有的 [DawnOfficeStigmaSOne] 與 [Combustion] ",
-          "flavor": "煙霧戰爭諸多激烈戰場中的一處。在那裡，將某具決戰兵器僅剩的一對翅膀連同空間一併熔斷，宣告了黎明終結的技藝。\n\n「哈……差點就沒命了……」\n「喂。妳能……替我們解決掉那個怪物……嗎？」",
+          "flavor": "煙霾戰爭諸多激烈戰場中的一處。在那裡，將某具決戰兵器僅剩的一對翅膀連同空間一併熔斷，宣告了黎明終結的技藝。\n\n「哈……差點就沒命了……」\n「喂。妳能……替我們解決掉那個怪物……嗎？」",
           "coinlist": [
             {
               "coindescs": [
@@ -204,7 +204,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "陽炎",
+          "name": "海市蜃樓",
           "desc": "[DuelCounter]\n[SupportProtect] 專用技能\n[WhenUse] 使自身獲得5層 [DawnOfficeStigmaSOne] \n[WhenUse] 使所有友方單位的理智值提升6點",
           "coinlist": [
             {
@@ -307,7 +307,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "射出",
+          "name": "紛射",
           "desc": "[WhenUse] 使自身獲得8層 [DawnOfficeStigmaYOne] \n[WhenUse] 自身每有10層 [DawnOfficeStigmaYOne] ，最終威力+1\n[DefeatDuel]\n- 造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
@@ -358,7 +358,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "射出 - 正午",
+          "name": "紛射-正午",
           "desc": "[WideAreaRampage]\n[WhenUse] 每指定1名目標，造成的傷害+20% (最多60%)\n[DefeatDuel]\n- 造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂\n[BeforeAttack] 使所有目標 [Switch_Vibration] 為 [VibrationIgnition] \n[EndSkill] 恢復相當於最大體力(所有目標的 [Combustion] 強度總和)%的體力 (最多15%)\n[EndSkill] 恢復相當於最大體力(自身的 [Combustion] 強度)%的體力 (最多15%)\n[EndSkill] 消耗自身所有的 [DawnOfficeStigmaYOne] 與 [Combustion] ",
           "coinlist": [
             {
@@ -447,7 +447,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "連攜",
+          "name": "聯手",
           "desc": "[WhenUse] 自身每有1層 [DawnOfficeStigmaYOne] ，造成的傷害+2%；每有10層，最終威力+1 (最多3)",
           "coinlist": [
             {
@@ -505,7 +505,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "晚霞之劍",
+          "name": "霞光劍刃",
           "desc": "[WhenUse] 目標每有4級 [Combustion] 強度，最終威力+1 (最多3)",
           "coinlist": [
             {
@@ -570,7 +570,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "迴避",
+          "name": "閃避",
           "desc": "[WhenUse] 目標每有4級 [Combustion] 強度，最終威力+1 (最多3)\n<color=#ff6000><mark color=#ff000040><b><u>[OnSucceedEvade] 恢復相當於自身最大體力15%的體力</color></mark></b></u>",
           "coinlist": [
             {}
@@ -679,7 +679,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "展開楔形陣",
+          "name": "楔形陣展開",
           "desc": "攻擊目標數每比本技能的攻擊容量少1，造成的傷害+30%\n[WhenUse]\n- 使自身增加3回 [Breath] \n- 依自身以外<color=#ff6000><mark color=#ff000040><b><u>可行動的楔事務所所屬友方單位數量，增加等量的攻擊容量</color></mark></b></u> (最多2)\n[EndSkill]\n- 消耗25層 [WalpuTenComboWedge] \n- 下回合獲得(未使用的硬幣數 x 5)層 [WalpuTenComboWedge] \n- 下回合使自身以外的楔事務所所屬友方單位獲得1層 [PenetrateResultUp] ",
           "coinlist": [
             {
@@ -787,7 +787,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "衝撞",
+          "name": "交鋒",
           "desc": "[WhenUse] 自身的 [Breath] 強度與目標的 [Vibration] 強度總和每有4點，最終威力+1 (最多3)\n[WhenUse] 使自身獲得2級 [Breath] 強度\n[WhenUse] <color=#ff6000><mark color=#ff000040><b><u>[ComboSkill]：楔事務所 收尾人 帕梅拉</color></mark></b></u> (每回合最多1次)\n- 使自身獲得1層 [WalpuTenBattleFieldKnow] \n- 重複使用最後一枚硬幣 (每個技能最多1次)",
           "coinlist": [
             {
@@ -965,7 +965,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "衝撞",
+          "name": "交鋒",
           "desc": "[WhenUse] 自身的 [Breath] 強度與目標的 [Vibration] 強度總和每有4點，最終威力+1 (最多3)\n[WhenUse] 使自身獲得4級 [Breath] 強度\n[WhenUse] <color=#ff6000><mark color=#ff000040><b><u>[ComboSkill]：楔事務所 收尾人 帕梅莉</color></mark></b></u> (每回合最多1次)\n- 使自身獲得1層 [WalpuTenBattleFieldKnow] \n- 重複使用最後一枚硬幣 (每個技能最多1次)\n[WinDuel] 下回合使自身獲得1層 [PenetrateDamageUp] (每回合最多1次)\n[BeforeAttack] 自身每有1層 [WalpuTenBattleFieldKnow] ，最後一枚硬幣的最終威力+1 (最多2)",
           "coinlist": [
             {
@@ -1242,7 +1242,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "猛烈突進",
+          "name": "挺身而出",
           "desc": "[WhenUse] 目標每有6級 [Combustion] 強度，最終威力+1 (最多2)\n[BeforeAttack] 目標每有2級 [Combustion] 強度，造成的傷害+2% (最多30%)\n[EndSkill] 依第1枚硬幣重複使用的次數，減少等量的理智值",
           "coinlist": [
             {
@@ -1270,7 +1270,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "燃燒一擊",
+          "name": "爆炎一擊",
           "desc": "<color=#ff6000><mark color=#ff000040><b><u>可無視速度值與本技能拚點</color></mark></b></u>\n裝備本技能的回合中，<color=#ff6000><mark color=#ff000040><b><u>受到攻擊技能攻擊時，使自身獲得2層 [ResultReduction] </color></mark></b></u> (每個技能最多1次，每回合最多3次)\n[WhenUse] 主要目標每有4級 [Combustion] 強度，最終威力+2 (最多4)\n[BeforeAttack] 若自身理智值不低於20/40，造成的傷害+50%/+100%\n[DefeatDuel]\n- 造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂\n[EndSkill] 結束本回合",
           "coinlist": [
             {

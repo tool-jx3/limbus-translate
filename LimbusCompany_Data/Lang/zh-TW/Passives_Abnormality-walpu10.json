@@ -125,7 +125,7 @@
     {
       "id": 158702,
       "name": "不穩定的自我外殼",
-      "desc": "在「受擊時對攻擊者施加 [Combustion] 」的 [PhilipShield] 狀態，與「攻擊命中時對目標施加 [Combustion] 」的 [PhilipSword] 狀態之間反覆切換\n\n[PhilipReady] 為0時，使用「燃燒一擊」\n- 該回合結束後，下回合再次使自身獲得4層 [PhilipReady] "
+      "desc": "在「受擊時對攻擊者施加 [Combustion] 」的 [PhilipShield] 狀態，與「攻擊命中時對目標施加 [Combustion] 」的 [PhilipSword] 狀態之間反覆切換\n\n[PhilipReady] 為0時，使用「爆炎一擊」\n- 該回合結束後，下回合再次使自身獲得4層 [PhilipReady] "
     },
     {
       "id": 158703,

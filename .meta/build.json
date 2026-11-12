@@ -1,20 +1,17 @@
 {
   "raw_tag": "raw-20261112",
   "raw_token": "l20261112_5pAcdxbyP1RC08yIrdPw",
-  "rules_commit": "ebbb490ca56d41c7d99dcd8496ccaee19a55063e",
-  "built_at": "2026-11-11T11:39:32Z",
+  "rules_commit": "9a8e380f711686d3a4417a3a0e9c25d2a33c8632",
+  "built_at": "2026-11-12T14:50:27Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
     "paratranz": "user-unknown-0711/ParatranzUploader@1793285016"
   },
-  "model": "claude-opus-5-5",
-  "cost_usd": 22.6464382,
-  "stopped": "done",
   "notes_seen": 1058,
   "zips": {
-    "zh-TW_complete_raw-20261112.zip": "ef406440133771521b0b4443888f115ff6f1ce94756df6e30ab5f0d911a1846c",
-    "zh-TW_text_raw-20261112.zip": "5e340e88916161a3f6e676ca7d1a5a59958c1798950408107069b0d3244f6ba6"
+    "zh-TW_complete_raw-20261112.zip": "75015c85b8be27a4db06861d261577ccec1991368340930236534f6341922ce6",
+    "zh-TW_text_raw-20261112.zip": "f43c4db8056691a84962e1a934912426f97863a8212d7992a29b473229cd0979"
   },
   "report": {
     "origins": {
@@ -36,7 +33,7 @@
       "halfwidth-punct": 9,
       "kana": 7,
       "length-ratio": 2,
-      "term-missing": 662
+      "term-missing": 798
     },
     "missing_glyphs": [],
     "stand_in": 0,
@@ -119,24 +116,6 @@
           2
         ],
         "units": 163
-      },
-      {
-        "family": "enemy",
-        "field": "name",
-        "kr": "회피",
-        "zh": [
-          "閃避",
-          "迴避"
-        ],
-        "keys": [
-          "Skills.json|/dataList/1/levelList/0/name",
-          "Skills_Abnormality-walpu10.json|/dataList/16/levelList/0/name"
-        ],
-        "counts": [
-          55,
-          1
-        ],
-        "units": 56
       },
       {
         "family": "enemy",
@@ -476,416 +455,33 @@
           1
         ],
         "units": 11
+      },
+      {
+        "family": "story-main",
+        "field": "content",
+        "kr": "아니.",
+        "zh": [
+          "不。",
+          "不對。",
+          "不是。",
+          "否。"
+        ],
+        "keys": [
+          "StoryData/8D206B.json|/dataList/14/content",
+          "StoryData/S1002B.json|/dataList/113/content",
+          "StoryData/S1008B.json|/dataList/23/content",
+          "StoryData/S810B.json|/dataList/65/content"
+        ],
+        "counts": [
+          5,
+          3,
+          2,
+          1
+        ],
+        "units": 11
       }
     ],
-    "notes": [
-      {
-        "key": "BattleKeywords-walpu10.json|/dataList/1/desc",
-        "batch": "20261112T033735-c8a93f25",
-        "kr_sha": "6edad3b63566dd8e5aa29a0b19afb85e63d4c9a8816bad397e01bf1a40e6db09",
-        "model": "claude-opus-5-5",
-        "note": "도발치 譯「嘲諷值」，詞彙表未收，請確認官方譯名"
-      },
-      {
-        "key": "BattleKeywords-walpu10.json|/dataList/2/desc",
-        "batch": "20261112T033735-c8a93f25",
-        "kr_sha": "33d05b8cd262045c75ffa610ddd2dc61818bc4b428744e7e2d781e5ab3e50967",
-        "model": "claude-opus-5-5",
-        "note": "보호→守護、공격 위력 증가→強壯（依既有規則檔）；수비 위력 증가 譯「忍耐」，未能查到官方中文名，請確認"
-      },
-      {
-        "key": "BattleKeywords-walpu10.json|/dataList/4/desc",
-        "batch": "20261112T033735-c8a93f25",
-        "kr_sha": "3711dbfe9ad32f7f04df374b4708aa963a8280ee800d5b68a11706544af4885a",
-        "model": "claude-opus-5-5",
-        "note": "관통 피해량 증가 譯「突刺傷害強化」，比照既有「斬擊傷害強化」，請確認官方名稱"
-      },
-      {
-        "key": "BattleKeywords-walpu10.json|/dataList/6/desc",
-        "batch": "20261112T033735-c8a93f25",
-        "kr_sha": "09378c02ee57af0ff4fc53f016c102689dcba56e0badf1e716f37df65da16f89",
-        "model": "claude-opus-5-5",
-        "note": "파괴 불가 코인 譯「不可摧毀硬幣」，未能查到官方中文名，請確認"
-      },
-      {
-        "key": "BattleKeywords-walpu10.json|/dataList/12/desc",
-        "batch": "20261112T033735-c8a93f25",
-        "kr_sha": "1fc5cadb2c0b1acbb216496fec20b260d017a4abd9b15b114ad13791fa24d8fa",
-        "model": "claude-opus-5-5",
-        "note": "새벽 사무소 譯「黎明事務所」、선배 譯「前輩」，請確認既有譯名；KR 被動名稱沒有引號，為易讀加「」"
-      },
-      {
-        "key": "BattleKeywords-walpu10.json|/dataList/22/name",
-        "batch": "20261112T033735-c8a93f25",
-        "kr_sha": "dcf4a36ff7725e4939284261a011dd58b45e25ee3086b847a83e3526e6ab10ad",
-        "model": "claude-opus-5-5",
-        "note": "감정 단계 譯「情感等級」，請確認官方譯名"
-      },
-      {
-        "key": "BattleKeywords-walpu10.json|/dataList/23/name",
-        "batch": "20261112T034008-535e2fbd",
-        "kr_sha": "1158e774cdaefd79fce5fcf1b02164897e08f9a6a547f36d7060e42386e60ccb",
-        "model": "claude-opus-5-5",
-        "note": "감정 단계 譯「情感等級」，與前批一致，請確認官方譯名"
-      },
-      {
-        "key": "BattleKeywords-walpu10.json|/dataList/30/desc",
-        "batch": "20261112T034008-535e2fbd",
-        "kr_sha": "9029ec2136f61464d30d45ee5b985432990c5dbb26d92c20320e1f5db9186ac4",
-        "model": "claude-opus-5-5",
-        "note": "흐트러짐 피해량 依 EN「Stagger Threshold raised」、JP「混乱区間前進量」譯「混亂閾值前移量」"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/621/desc",
-        "batch": "20261112T034008-535e2fbd",
-        "kr_sha": "90f6473160584aced711d27c595f03548defa5f515734654954b884824239466",
-        "model": "claude-opus-5-5",
-        "note": "관통 피해량 증가 譯「突刺傷害強化」，比照既有「斬擊傷害強化」，請確認官方名稱"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/622/desc",
-        "batch": "20261112T034008-535e2fbd",
-        "kr_sha": "7ee971b35dc18efa2afcd46a72d3bf65ff7407d9f6e9f84860ff1945a2cd4d45",
-        "model": "claude-opus-5-5",
-        "note": "피해량 증가（Damage Up）譯「傷害提升」，未能查到官方中文名，請確認"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/625/desc",
-        "batch": "20261112T034102-fad32b92",
-        "kr_sha": "be3c7ccce3cfeb3fdc35d99a891bf8061b5f5f82b029bbd5ae9652099e98c047",
-        "model": "claude-opus-5-5",
-        "note": "관통 취약（Pierce Fragility）譯「突刺易損」，比照易損，請確認官方名稱"
-      },
-      {
-        "key": "StoryData/E100X.json|/dataList/34/content",
-        "batch": "20261112T034140-e53d6699",
-        "kr_sha": "7d345b5730caf7e951279fdeb10d9555119cefa61d536fa58be0b84e99e5ca3e",
-        "model": "claude-opus-5-5",
-        "note": "시나리오 譯「劇本」，詞彙表未收"
-      },
-      {
-        "key": "StoryData/E100X.json|/dataList/71/content",
-        "batch": "20261112T034140-e53d6699",
-        "kr_sha": "513f3b997e6f8c6fc4d974b9f8f6f57b0d6e0549c0e03eb104909ab9654b945c",
-        "model": "claude-opus-5-5",
-        "note": "불순물 譯「雜質」（EN Impuritas Civitatis）；역사의 층 譯「歷史層」，與 BattleKeywords-walpu10 的「指定司書 [歷史層]」一致"
-      },
-      {
-        "key": "StoryData/E100X.json|/dataList/104/content",
-        "batch": "20261112T034140-e53d6699",
-        "kr_sha": "8a9dc6a5a8d8bb289f2690ca64ce8cdfc4f7926c43850c0def1d26199d95cb7b",
-        "model": "claude-opus-5-5",
-        "note": "스티그마 공방 譯「聖痕工坊」（EN Stigma Workshop），詞彙表未收"
-      },
-      {
-        "key": "StoryData/E100X.json|/dataList/105/content",
-        "batch": "20261112T034140-e53d6699",
-        "kr_sha": "4e05804b9c794533464436d78afe49e5d01eeae90efa4552d4a94472aa4425bf",
-        "model": "claude-opus-5-5",
-        "note": "뱃지 콜렉숀：唐吉訶德把 collection 唸成西語腔（JP カレクシェン、EN colección），依 base.md 外語詞的規則寫 ruby"
-      },
-      {
-        "key": "StoryData/E100X.json|/dataList/119/content",
-        "batch": "20261112T034401-b788b447",
-        "kr_sha": "8c9692419d3b58366ca9f0b25e59c7b1ad130615b94fbc9408a29bd3a89bcbb2",
-        "model": "claude-opus-5-5",
-        "note": "츠바이 照 base.md 寫「Zwei」"
-      },
-      {
-        "key": "StoryData/E100X.json|/dataList/120/content",
-        "batch": "20261112T034401-b788b447",
-        "kr_sha": "7ad4f8d1eb48e90713ad7823abbe50ea1869890deac3eff9120cedbc2d75bae7",
-        "model": "claude-opus-5-5",
-        "note": "유나 譯「尤娜」，詞彙表未收"
-      },
-      {
-        "key": "StoryData/E100X.json|/dataList/124/content",
-        "batch": "20261112T034401-b788b447",
-        "kr_sha": "b4501f30146d398408363a9ae43aecb05b91771da588f670522a7ee7fa65467b",
-        "model": "claude-opus-5-5",
-        "note": "살바도르 譯「薩爾瓦多」，詞彙表未收"
-      },
-      {
-        "key": "StoryData/E101X.json|/dataList/19/content",
-        "batch": "20261112T034418-f029c637",
-        "kr_sha": "06c5da289bd3d88db4f6875d2a26e7873e07cdfa08c1cfd21af10a2bc3fabc5b",
-        "model": "claude-opus-5-5",
-        "note": "奧斯卡把良秀的縮略語「시. 대.」誤當人名，照抄同一組字、不加點"
-      },
-      {
-        "key": "StoryData/E101X.json|/dataList/22/content",
-        "batch": "20261112T034418-f029c637",
-        "kr_sha": "93c4c45cf51efff2444e90357d0417c509538c43fce58ddf79e8d03c1f6552d4",
-        "model": "claude-opus-5-5",
-        "note": "오스카 譯「奧斯卡」、파멜라 譯「帕梅拉」、파멜리 譯「帕梅莉」，詞彙表未收"
-      },
-      {
-        "key": "StoryData/E102X.json|/dataList/9/content",
-        "batch": "20261112T034447-8c9ae81d",
-        "kr_sha": "0a7ebdad7a7d625a6c87fad5725a4a03ebfae2e74978b5023dce2008880399cc",
-        "model": "claude-opus-5-5",
-        "note": "與 BattleKeywords-walpu10 的效果名「能與悲傷一同站起的道路」對應"
-      },
-      {
-        "key": "StoryData/E103X.json|/dataList/7/content",
-        "batch": "20261112T034506-2b0f21e9",
-        "kr_sha": "833bdc8c7c1d27449c6dc313c3edd35a7e7057076d13230d04bd8fc67f2ed0c9",
-        "model": "claude-opus-5-5",
-        "note": "KR「E. G. O」有空格，依 base.md 一律寫「E.G.O」"
-      },
-      {
-        "key": "EGOVoiceDig/Voice_EGO_HongLu_6.json|/dataList/34/dlg",
-        "batch": "20261112T034554-8e5b36d2",
-        "kr_sha": "81e9ce4530c05206a22b5289a31877c3193eba8315ce59e70438de7e4e37161d",
-        "model": "claude-opus-5-5",
-        "note": "닳아버린 긍지 與 BattleKeywords 的效果名「磨損的矜持」一致"
-      },
-      {
-        "key": "BattleSpeechBubbleDlg-walpu10.json|/dataList/33/dlg",
-        "batch": "20261112T034646-45147bf6",
-        "kr_sha": "e782796289f946193afadd758625f0c7b66f39591a3e2d4eaefc442353dffe9b",
-        "model": "claude-opus-5-5",
-        "note": "속도：台詞中一般的速度，不是戰鬥數值，不用「速度值」"
-      },
-      {
-        "key": "BattleSpeechBubbleDlg-walpu10.json|/dataList/50/dlg",
-        "batch": "20261112T034646-45147bf6",
-        "kr_sha": "4f817f163b0e639d6ffed2aa183bf9900df6d24dba683560cc0a7a40f4b41fe8",
-        "model": "claude-opus-5-5",
-        "note": "43～50 推定為帕梅拉與帕梅莉互相對話（雙方皆女性），第二人稱用「妳」"
-      },
-      {
-        "key": "BattleSpeechBubbleDlg.json|/dataList/827/dlg",
-        "batch": "20261112T034723-ad08bbbd",
-        "kr_sha": "7fdea7c3422a2fb44bf9e8089af7bd89b9f2c27aa9c08c17ba9656867287ee82",
-        "model": "claude-opus-5-5",
-        "note": "KR「합격(合撃)」以括號附漢字說明是「合擊」而非「合格」，中文直接寫「合擊」即可"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_DonQuixote_Wedge_10316.json|/dataList/0/dlg",
-        "batch": "20261112T034723-ad08bbbd",
-        "kr_sha": "d2c021b30e1f6374dea9fb244ebbc76aea2892f1e1aba907b545145ab172bb9f",
-        "model": "claude-opus-5-5",
-        "note": "綠字是楔事務所辛克萊的台詞，依 base.md 辛克萊對所有人用「您」"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_DonQuixote_Wedge_10316.json|/dataList/2/dlg",
-        "batch": "20261112T034808-4c191ca9",
-        "kr_sha": "60b3eb584e73c94f556a4ec84588602c8a68a3df3a34c736807a8d4cece21e10",
-        "model": "claude-opus-5-5",
-        "note": "KR 是食物接龍（탕수육→육개장→장봉뵈르→르…그롸탕→탕바오→오므롸이스→스뫼레브뢰），JP 也改寫成日文的接龍；中文依字尾接龍重寫：唐吉訶德的怪腔「오므롸이스」寫成音譯「歐姆萊斯」，辛克萊最後用丹麥開放式三明治（smørrebrød）的音譯讓唐吉訶德接不下去"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_DonQuixote_Wedge_10316.json|/dataList/13/dlg",
-        "batch": "20261112T034808-4c191ca9",
-        "kr_sha": "1ebd97b9a1314730076d86fed1948faa051e9e85643e7f3c0ee870072e11c9ee",
-        "model": "claude-opus-5-5",
-        "note": "KR 寫「싱클레이」，應為「싱클레어」的誤植，照常譯「辛克萊」"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_Outis_Wedge_11116.json|/dataList/6/dlg",
-        "batch": "20261112T034956-6c465aca",
-        "kr_sha": "71ce4659ff8427940af321bdf168866fd376a82d3bf5e0da8d54e1aae4e90155",
-        "model": "claude-opus-5-5",
-        "note": "손가락 依劇情慣用譯為「指」（蜘蛛巢各指），뒤틀림 譯「扭曲」，뒤틀림 탐정 譯「扭曲偵探」，詞彙表未收"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_Outis_Wedge_11116.json|/dataList/21/dlg",
-        "batch": "20261112T034956-6c465aca",
-        "kr_sha": "835377eb15215d8697cf423cceb5ca915e3a855b2c0a077665da800aa55ecdaf",
-        "model": "claude-opus-5-5",
-        "note": "8시의 서커스 譯「8點馬戲團」，詞彙表未收；KR 第一行句末無標點，照 KR"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_Sinclair_Wedge_11017.json|/dataList/0/dlg",
-        "batch": "20261112T035043-a35748bb",
-        "kr_sha": "26b5d03f6c7b403bdec0760eb9700a89fcf43c7782d575ee5b1c413dc4b36321",
-        "model": "claude-opus-5-5",
-        "note": "與 Voice_DonQuixote_Wedge_10316 的同一段對話用相同譯文"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_Sinclair_Wedge_11017.json|/dataList/2/dlg",
-        "batch": "20261112T035043-a35748bb",
-        "kr_sha": "e5e4da42faa587370f23a90bca94a560ed21ccd80cda0e41990c4501c10c61eb",
-        "model": "claude-opus-5-5",
-        "note": "KR 是食物接龍，中文依字尾接龍重寫，與 Voice_DonQuixote_Wedge_10316 的同一段一致"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_Sinclair_Wedge_11017.json|/dataList/22/dlg",
-        "batch": "20261112T035154-1e35a1f0",
-        "kr_sha": "b759ef9dc9cb02f2ff946090d4fe4776769ec9d6ed87f2f983e3f45321505975",
-        "model": "claude-opus-5-5",
-        "note": "黃字是唐吉訶德的台詞（同檔既有譯文以「吾」「汝」表現）；쐐기다운 依 Voice_DonQuixote_Wedge_10316 同句譯為「不愧為楔」"
-      },
-      {
-        "key": "StoryData/P11116.json|/dataList/16/content",
-        "batch": "20261112T035445-2b450180",
-        "kr_sha": "564d0ceb0da75ab581569d5118f4af2582d8efd4ae82c6775489219e12509d55",
-        "model": "claude-opus-5-5",
-        "note": "8시의 서커스：詞彙表與既有譯文都沒有，暫譯「八點馬戲團」（JP 8時のサーカス、EN the 8 o'clock Circus）"
-      },
-      {
-        "key": "Passive_Ego.json|/dataList/123/desc",
-        "batch": "20261112T035558-e72870f7",
-        "kr_sha": "c3cfe9668c5372a3f9f1497acd88ef26a7c5fcdb50a349a314fdef06b20f7e39",
-        "model": "claude-opus-5-5",
-        "note": "JP 把「涙で研ぎ澄まされた剣」包在 <noparse> 裡（名稱同關鍵字 [DespairKnightEGOSword]），KR 沒有，依規則未新增 <noparse>；若遊戲中會被讀成關鍵字需補上（125 的 desc、summary 同）"
-      },
-      {
-        "key": "Passives.json|/dataList/638/desc",
-        "batch": "20261112T035558-e72870f7",
-        "kr_sha": "61d704f4b1f2538242da682dc7aa7216f0552d0d51d5cd4078c70e51648059a1",
-        "model": "claude-opus-5-5",
-        "note": "새벽녘 依既有黎明事務所被動譯為「黎明時分」（格里高爾的技能）"
-      },
-      {
-        "key": "Skills_Ego_Personality-06.json|/dataList/15/levelList/0/name",
-        "batch": "20261112T035814-e8802710",
-        "kr_sha": "1e5e88fe295cdfe7ee170e3642de73a33d90fee1a433c3a139122960843dbde3",
-        "model": "claude-opus-5-5",
-        "note": "눈물로 벼려낸 검：依關鍵字 [DespairKnightEGOSword] 與 Egos.json 寫「以淚磨礪之劍」；既有羅佳人格名稱寫「淚鋒之劍」，兩者不一致，待人確認"
-      },
-      {
-        "key": "Skills_personality-03.json|/dataList/58/levelList/0/name",
-        "batch": "20261112T035953-17c079b5",
-        "kr_sha": "4414ea0ab16d2474f704d3adebc2c532ea13c7c7af71f66a054984b215b8c8e7",
-        "model": "claude-opus-5-5",
-        "note": "빈틈 없이 확실하게 꿰뚫어주지：唐吉訶德的技能名，依角色指引用「汝」"
-      },
-      {
-        "key": "Enemies-walpu10.json|/dataList/0/name",
-        "batch": "20261112T040339-98008681",
-        "kr_sha": "6faed56a45776acc5476912a39268cd8e9c7f4dfe9671b36758d658e44bb012e",
-        "model": "claude-opus-5-5",
-        "note": "살바도르、오스카、파멜리、파멜라：詞彙表與既有譯文都沒有，暫譯「薩爾瓦多」「奧斯卡」「帕梅莉」「帕梅拉」；유나、필립依既有譯文寫「尤娜」「菲利普」"
-      },
-      {
-        "key": "Enemies-walpu10.json|/dataList/7/name",
-        "batch": "20261112T040339-98008681",
-        "kr_sha": "7d985975e7c31b4d943c8b649518a4d56d5e1a819f48b91090a7b9f9184a527f",
-        "model": "claude-opus-5-5",
-        "note": "밀랍날개：依既有被動的「不穩定E.G.O::蠟翼」寫「蠟翼」"
-      },
-      {
-        "key": "Passives_Abnormality-walpu10.json|/dataList/0/desc",
-        "batch": "20261112T040339-98008681",
-        "kr_sha": "4e88115d2050b4a736bd8f57c207110086ff52a3d171830d9634773345d24c8a",
-        "model": "claude-opus-5-5",
-        "note": "여명의 섬광、연계：依既有黎明事務所被動寫「黎明閃光」「聯手」"
-      },
-      {
-        "key": "Passives_Abnormality-walpu10.json|/dataList/1/name",
-        "batch": "20261112T040339-98008681",
-        "kr_sha": "84c5011eaf128b31941bb5c23a9d87d47d0d20614d03c6e77be2624f964d49e8",
-        "model": "claude-opus-5-5",
-        "note": "스티그마 공방：暫定詞為「聖痕工坊」（StoryData/E100X 登記），但既有人格被動（晨炎[烙印工坊]、炎蝶[烙印工坊]、烙印工坊的義體）與劇情 P11216 都寫「烙印工坊」，此處沿用「烙印工坊」以求一致，請人決定統一譯名"
-      },
-      {
-        "key": "Passives_Abnormality-walpu10.json|/dataList/1/flavor",
-        "batch": "20261112T040339-98008681",
-        "kr_sha": "c1769bb349e66acb616cbd5b0c687a71591a28e977117ab1c266cbbf83f95469",
-        "model": "claude-opus-5-5",
-        "note": "與 Passives.json 既有「晨炎[烙印工坊]」的 flavor 同文，沿用既有譯文"
-      },
-      {
-        "key": "Passives_Abnormality-walpu10.json|/dataList/5/flavor",
-        "batch": "20261112T040339-98008681",
-        "kr_sha": "9a899d5dc0e0866a5bbab781265185e0d20aafff92566e00fbb438af58622e22",
-        "model": "claude-opus-5-5",
-        "note": "與 Passives.json 既有「炎蝶[烙印工坊]」的 flavor 同文，沿用既有譯文，換行依本檔 KR"
-      },
-      {
-        "key": "Passives_Abnormality-walpu10.json|/dataList/16/flavor",
-        "batch": "20261112T040613-dc076fdf",
-        "kr_sha": "b863116996cbec3d857b2a2e4c15b72a787a91bf86948f615d87586549bbb786",
-        "model": "claude-opus-5-5",
-        "note": "손가락：都市的組織 Fingers，寫「手指」；쥐：後巷的「老鼠」"
-      },
-      {
-        "key": "Skills_Abnormality-walpu10.json|/dataList/4/levelList/0/flavor",
-        "batch": "20261112T040613-dc076fdf",
-        "kr_sha": "097bad2f49b2e3008693f0b1cfd7b0def2c4da7c7dee956aed78993403567a89",
-        "model": "claude-opus-5-5",
-        "note": "연기전쟁：寫「煙霧戰爭」；날개：決戰兵器的翅膀（字面），寫「翅膀」；聽者依 EN「Lady」為女性，用「妳」"
-      },
-      {
-        "key": "Skills_Abnormality-walpu10.json|/dataList/22/levelList/0/desc",
-        "batch": "20261112T040755-8f3b61ed",
-        "kr_sha": "5a1dba045a9686304e63fe6c7c282b8e4e11f863c5ad337f47b1209cb9cb37cf",
-        "model": "claude-opus-5-5",
-        "note": "원호방어：KR 未用 [ID]，寫關鍵字名稱「掩護防禦 」"
-      },
-      {
-        "key": "UnitKeyword.json|/dataList/84/content",
-        "batch": "20261112T041035-241805e1",
-        "kr_sha": "d7b80f6c4181e91f976bedd02fc069cee17617dea89572d0b51e5ba6a041b165",
-        "model": "claude-opus-5-5",
-        "note": "불주먹 사무소：寫「火拳事務所」"
-      },
-      {
-        "key": "AbEvents-walpu10.json|/dataList/1/behaveDesc",
-        "batch": "20261112T041054-70c5dd04",
-        "kr_sha": "4a290e044030f198fdb56094ecdac29f5feea27f7f5606705cf05b535fcbf15d",
-        "model": "claude-opus-5-5",
-        "note": "쌍화차：韓國傳統藥草茶，寫「雙和茶」"
-      },
-      {
-        "key": "ActionEvents-walpu10.json|/dataList/1/desc",
-        "batch": "20261112T041148-9aad20e3",
-        "kr_sha": "a90e6ca32d7dbff3af27ef3f12ce49e1d224400aa758355c26e864632a56d0cd",
-        "model": "claude-opus-5-5",
-        "note": "의뢰인가：是「의뢰＋인가」（是委託嗎），不是「의뢰인」（委託人），不用「委託人」"
-      },
-      {
-        "key": "ScenarioModelCodes-AutoCreated.json|/dataList/751/name",
-        "batch": "20261112T041435-9a35c82a",
-        "kr_sha": "b14664ea78a4ac51e20788da4070f75fad0da4033cda1b00a95989989b492f3d",
-        "model": "claude-opus-5-5",
-        "note": "유나：人名，寫「尤娜」"
-      },
-      {
-        "key": "ScenarioModelCodes-AutoCreated.json|/dataList/752/name",
-        "batch": "20261112T041435-9a35c82a",
-        "kr_sha": "4564246268b0396257e309740d7407733bbf7377f8ab496d51e4e3010b123855",
-        "model": "claude-opus-5-5",
-        "note": "필립：人名，寫「菲利普」"
-      },
-      {
-        "key": "Walpu10EventText.json|/dataList/36/content",
-        "batch": "20261112T041451-7a4e648d",
-        "kr_sha": "611ed3159b890ab5fe83f4300773a72b96777b8f7f9f96503ff90ee36e9f4d4e",
-        "model": "claude-opus-5-5",
-        "note": "고독한 해결사：效果名，暫譯「孤獨的收尾人」"
-      },
-      {
-        "key": "Walpu10EventText.json|/dataList/58/content",
-        "batch": "20261112T041451-7a4e648d",
-        "kr_sha": "e18004a3b327f08e2c8da8520d43e29a508afa554cb129f448795fbdcfc94393",
-        "model": "claude-opus-5-5",
-        "note": "환상해석：E.G.O 的 Threadspinning，暫譯「幻想解析」，請確認既有譯名"
-      },
-      {
-        "key": "MainUIText-a1c10p1.json|/dataList/19/content",
-        "batch": "20261112T041551-dc75fa71",
-        "kr_sha": "a0e1c41d78280e536dd158e82aaa5d5f0a9cd9745d174ffd7791d58fd0a0c28f",
-        "model": "claude-opus-5-5",
-        "note": "이상[理想]：李箱名字的雙關貨幣（EN Yisang [Ideality]），暫寫「李箱[理想]」，請確認既有譯名"
-      },
-      {
-        "key": "MainUIText-a1c10p1.json|/dataList/24/content",
-        "batch": "20261112T041551-dc75fa71",
-        "kr_sha": "4351015c020b831f005a824724b3cabe4c565f31dcb89c4d8772d8c3dcbec696",
-        "model": "claude-opus-5-5",
-        "note": "이상[理想]：同 MainUIText-a1c10p1 19，暫寫「李箱[理想]」"
-      },
-      {
-        "key": "SynergyKeyword.json|/dataList/0/name",
-        "batch": "20261112T041643-4ae3aaf0",
-        "kr_sha": "7ae0464e45f26ddc85a5954cec581bcfca46bc7ce4babc30734fbbe342e56ede",
-        "model": "claude-opus-5-5",
-        "note": "SynergyKeyword.json 落在 unsorted 族群，可能需要在 routing.yaml 歸類"
-      }
-    ],
+    "notes": [],
     "new_translated": 1763,
     "shown": {
       "claude": 19833,
@@ -990,7 +586,9 @@
         "jp": 2
       }
     ],
-    "misaligned_files": 19
+    "misaligned_files": 19,
+    "name_diffs": [],
+    "term_diffs": []
   },
   "inconsistent_all": [
     {
@@ -1010,24 +608,6 @@
         2
       ],
       "units": 163
-    },
-    {
-      "family": "enemy",
-      "field": "name",
-      "kr": "회피",
-      "zh": [
-        "閃避",
-        "迴避"
-      ],
-      "keys": [
-        "Skills.json|/dataList/1/levelList/0/name",
-        "Skills_Abnormality-walpu10.json|/dataList/16/levelList/0/name"
-      ],
-      "counts": [
-        55,
-        1
-      ],
-      "units": 56
     },
     {
       "family": "enemy",
@@ -10400,6 +9980,7224 @@
       "keys": [
         "Skills_Abnormality-a1c7p1.json|/dataList/3/levelList/0/coinlist/3/coindescs/1/desc",
         "Skills_Abnormality-a1c7p3.json|/dataList/67/levelList/0/coinlist/3/coindescs/1/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 대상의 [Burst]만큼 [Laceration] 부여",
+      "zh": [
+        "[OnSucceedAttack] 使目標增加等同於其 [Burst] 強度的 [Laceration] 強度",
+        "[OnSucceedAttack] 根據目標帶有的 [Burst] 強度，使其增加相應的 [Laceration] 強度"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c6p2.json|/dataList/9/levelList/0/coinlist/2/coindescs/1/desc",
+        "Skills_Enemy-a1c6p2.json|/dataList/36/levelList/0/coinlist/2/coindescs/1/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 대상의 [Laceration]이 10이상이면, 피해량의 70%만큼 체력 회복",
+      "zh": [
+        "[OnSucceedAttack] 若目標的 [Laceration] 強度不低於10級，則使自身恢復本硬幣傷害量70%的體力",
+        "[OnSucceedAttack] 若目標的 [Laceration] 強度不低於10級，則使自身恢復本硬幣造成傷害70%的體力"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c6p2.json|/dataList/23/levelList/0/coinlist/3/coindescs/1/desc",
+        "Skills_Abnormality-a1c6p3.json|/dataList/57/levelList/0/coinlist/3/coindescs/1/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 대상의 [OminousTalisman] 3 소모",
+      "zh": [
+        "[OnSucceedAttack] 使目標消耗3層 [OminousTalisman]",
+        "[OnSucceedAttack] 消耗目標3層 [OminousTalisman]"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c8p2.json|/dataList/53/levelList/0/coinlist/1/coindescs/0/desc",
+        "Skills_Enemy-a1c8p2.json|/dataList/29/levelList/0/coinlist/1/coindescs/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 자신의 [Vibration] 횟수가 10 이상이면, [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소",
+      "zh": [
+        "[OnSucceedAttack] 若自身的 [Vibration] 回數不低於10回，則使目標 [VibrationExplosion] 並使目標的 [Vibration] 回數減少1回",
+        "[OnSucceedAttack] 若自身的 [Vibration] 回數不低於10回，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+      ],
+      "keys": [
+        "Skills_Enemy-tkt-re.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc",
+        "Skills_Enemy-tkt.json|/dataList/10/levelList/0/coinlist/1/coindescs/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 파열 10 부여",
+      "zh": [
+        "[OnSucceedAttack] 使目標增加10級破裂 強度 ",
+        "[OnSucceedAttack] 使目標增加10級破裂 強度"
+      ],
+      "keys": [
+        "Skills_Abnormality.json|/dataList/209/levelList/0/coinlist/0/coindescs/0/desc",
+        "Skills_Enemy91-4.json|/dataList/18/levelList/0/coinlist/0/coindescs/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 흐트러짐 상태가 되고, 다음 턴에 [Penetration] 상태가 됨",
+      "zh": [
+        "[OnSucceedAttack] 使目標陷入混亂並在下回合對其施加 [Penetration] ",
+        "[OnSucceedAttack] 使目標陷入混亂並在下回合對其施加 [Penetration]"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c7p3.json|/dataList/62/levelList/0/coinlist/1/coindescs/1/desc",
+        "Skills_Abnormality_Mirror6.json|/dataList/12/levelList/0/coinlist/1/coindescs/1/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[StartBattle] [SelfCharge] 1 얻음\n[WhenUse] 자신의 [SelfCharge]이 5 이상이면, 코인 위력 +1\n대상에게 [Paralysis]가 있다면 피해량 +30%\n[DefeatDuel] [SelfCharge] 2 소모",
+      "zh": [
+        "[StartBattle] 使自身獲得1層 [SelfCharge]\n[WhenUse] 若自身帶有的 [SelfCharge] 不低於5層，則使本技能的硬幣威力+1\n若目標帶有 [Paralysis]，則使本技能造成的傷害+30%\n[DefeatDuel] 消耗自身帶有的2層 [SelfCharge]",
+        "[StartBattle] 使自身獲得1層 [SelfCharge]\n[WhenUse] 若自身帶有的 [SelfCharge] 不低於5層，則使本技能的硬幣威力+1\n若目標帶有 [Paralysis]，則使本技能造成的傷害+30%\n[DefeatDuel] 消耗自身2層 [SelfCharge]"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p2.json|/dataList/10/levelList/0/desc",
+        "Skills_Abnormality_Refraction2_bokgak.json|/dataList/36/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[StartBattle] [SelfCharge] 1 얻음\n[WhenUse] 자신의 [SelfCharge]이 5 이상이면, 코인 위력 +1\n대상에게 [Paralysis]가 있다면 피해량 +30%\n[DefeatDuel] [SelfCharge] 3 소모",
+      "zh": [
+        "[StartBattle] 使自身獲得1層 [SelfCharge]\n[WhenUse] 若自身帶有的 [SelfCharge] 不低於5層，則使本技能的硬幣威力+1\n若目標帶有 [Paralysis]，則使本技能造成的傷害+30%\n[DefeatDuel] 消耗自身帶有的3層 [SelfCharge]",
+        "[StartBattle] 使自身獲得1層 [SelfCharge]\n[WhenUse] 若自身帶有的 [SelfCharge] 不低於5層，則使本技能的硬幣威力+1\n若目標帶有 [Paralysis]，則使本技能造成的傷害+30%\n[DefeatDuel] 消耗自身3層 [SelfCharge]"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p2.json|/dataList/11/levelList/0/desc",
+        "Skills_Abnormality_Refraction2_bokgak.json|/dataList/37/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[StartBattle] [SelfCharge] 2 얻음\n[WhenUse] 자신의 [SelfCharge]이 5 이상이면, 기본 위력 +2\n[DefeatDuel] [SelfCharge] 1 소모",
+      "zh": [
+        "[StartBattle] 使自身獲得2層 [SelfCharge]\n[WhenUse] 若自身帶有的 [SelfCharge] 層數不低於5層，則使本技能的基礎威力+2\n[DefeatDuel] 消耗自身帶有的1層 [SelfCharge]",
+        "[StartBattle] 使自身獲得2層 [SelfCharge]\n[WhenUse] 若自身的 [SelfCharge] 層數不低於5層，則使本技能的基礎威力+2\n[DefeatDuel] 消耗自身1層 [SelfCharge]"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p2.json|/dataList/7/levelList/0/desc",
+        "Skills_Abnormality_Refraction2_bokgak.json|/dataList/33/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[StartBattle] [SelfCharge] 2 얻음\n[WhenUse] 자신의 [SelfCharge]이 5 이상이면, 코인 위력 +1\n[DefeatDuel] [SelfCharge] 1 소모",
+      "zh": [
+        "[StartBattle] 使自身獲得2層 [SelfCharge]\n[WhenUse] 若自身帶有的 [SelfCharge] 不低於5層，則使本技能的硬幣威力+1\n[DefeatDuel] 消耗自身帶有的1層 [SelfCharge]",
+        "[StartBattle] 使自身獲得2層 [SelfCharge]\n[WhenUse] 若自身的 [SelfCharge] 層數不低於5層，則使本技能的硬幣威力+1\n[DefeatDuel] 消耗自身1層 [SelfCharge]"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p2.json|/dataList/8/levelList/0/desc",
+        "Skills_Abnormality_Refraction2_bokgak.json|/dataList/34/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[StartBattle] [SelfCharge] 3 얻음\n[WhenUse] 자신의 [SelfCharge]이 5 이상이면, 기본 위력 +2\n[DefeatDuel] [SelfCharge] 1 소모",
+      "zh": [
+        "[StartBattle] 使自身獲得3層 [SelfCharge]\n[WhenUse] 若自身帶有的 [SelfCharge] 不少於5層，則使本技能的基礎威力+2\n[DefeatDuel] 消耗自身帶有的1層 [SelfCharge]",
+        "[StartBattle] 使自身獲得3層 [SelfCharge]\n[WhenUse] 若自身的 [SelfCharge] 層數不低於5層，則使本技能的基礎威力+2\n[DefeatDuel] 消耗自身1層 [SelfCharge]"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p2.json|/dataList/9/levelList/0/desc",
+        "Skills_Abnormality_Refraction2_bokgak.json|/dataList/35/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[StartBattle] [Vibration] 횟수 4를 소모하여, 자신의 [TimeRentalTwo] 횟수 3 증가\n[StartBattle] 자신의 [Vibration] 횟수 2 증가",
+      "zh": [
+        "[StartBattle] 消耗4回 [Vibration] 並使自身獲得3回 [TimeRentalTwo]\n[StartBattle] 對自身施加2回 [Vibration]",
+        "[StartBattle] 消耗4回 [Vibration] 並使自身獲得3層 [TimeRentalTwo]\n[StartBattle] 對自身施加2回 [Vibration]"
+      ],
+      "keys": [
+        "Skills_Enemy-tkt.json|/dataList/23/levelList/0/desc",
+        "Skills_Enemy-tkt.json|/dataList/28/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WhenUse] 대상의 [Burst] 3당, 코인 위력 +1 (최대 2)\n[DefeatDuel] 체력 10 회복",
+      "zh": [
+        "[WhenUse] 目標每帶有3級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)\n[DefeatDuel] 使自身恢復10點體力值",
+        "[WhenUse] 目標每帶有3級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)\n[DefeatDuel] 使自身恢復10點體力"
+      ],
+      "keys": [
+        "Skills_Abnormality_Refraction1_bokgak.json|/dataList/105/levelList/0/desc",
+        "Skills_Enemy_Mirror7-extreme.json|/dataList/9/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WhenUse] 대상의 [Burst] 위력이 3이상이면, 기본 위력 +1",
+      "zh": [
+        "[WhenUse] 若目標的 [Burst] 強度不低於3級，則使本技能的基礎威力+1",
+        "[WhenUse] 若目標的 [Burst] 強度不低於3，則使本技能的基礎威力+1"
+      ],
+      "keys": [
+        "Skills_Enemy-a1c6p1.json|/dataList/7/levelList/0/desc",
+        "Skills_Enemy-a1c6p1.json|/dataList/15/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WhenUse] 대상의 [Burst]이 4 이상이면, 기본 위력 +2",
+      "zh": [
+        "[WhenUse] 若目標帶有的 [Burst] 強度不低於4級，則使本技能的基礎威力+2",
+        "[WhenUse] 若目標的 [Burst] 強度不低於4級，則使本技能的基礎威力+2"
+      ],
+      "keys": [
+        "Skills_Abnormality_Refraction1_bokgak.json|/dataList/103/levelList/0/desc",
+        "Skills_Enemy_Mirror7-extreme.json|/dataList/7/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WhenUse] 대상의 [Vibration]이 4 이상이면, 기본 위력 +2",
+      "zh": [
+        "[WhenUse] 若目標帶有的 [Vibration] 強度不低於4級，則使本技能的基礎威力+2",
+        "[WhenUse] 若目標的 [Vibration] 強度不低於4級，則使本技能的基礎威力+2"
+      ],
+      "keys": [
+        "Skills_Abnormality_Refraction1_bokgak.json|/dataList/99/levelList/0/desc",
+        "Skills_Enemy_Mirror7-extreme.json|/dataList/3/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WhenUse] 대상의 정신력 -15",
+      "zh": [
+        "[WhenUse] 使目標理智值-15點",
+        "[WhenUse] 使目標失去15點理智值"
+      ],
+      "keys": [
+        "Skills_Abnormality_Mirror7-extreme.json|/dataList/31/levelList/0/desc",
+        "Skills_Abnormality_Refraction.json|/dataList/0/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WhenUse] 대상의 정신력이 10이하라면, [AttackDown] 2 부여\n[WinDuel] [Vulnerable] 1 부여",
+      "zh": [
+        "[WhenUse] 若目標的理智值不高於10點，則對其施加2層 [AttackDown] \n[WinDuel] 對目標施加1層 [Vulnerable]",
+        "[WhenUse] 若目標的理智值不高於10點，則對其施加2層 [AttackDown]\n[WinDuel] 對目標施加1層 [Vulnerable]"
+      ],
+      "keys": [
+        "Skills_Enemy-a1c6p1.json|/dataList/54/levelList/0/desc",
+        "Skills_Enemy-a1c6p3.json|/dataList/1/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WhenUse] 자신의 속도가 공격자보다 높을수록 코인 위력 +1 (속도 차이 2 당 코인 위력 +1. 최대 3)",
+      "zh": [
+        "[WhenUse] 若自身的速度值高於攻擊者，則使本技能的硬幣威力+1(速度值每相差2點，使本技能的硬幣威力+1。最多+3)",
+        "[WhenUse] 若自身的速度值高於目標，則使本技能的硬幣威力+1(速度值每相差2點，使本技能的硬幣威力+1；最多+3)"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c7p1.json|/dataList/3/levelList/0/desc",
+        "Skills_Abnormality-a1c7p3.json|/dataList/67/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WinDuel] 다음 턴에 마비 3 부여",
+      "zh": [
+        "[WinDuel] 下回合對目標施加3層麻痺 ",
+        "[WinDuel] 下回合對目標施加3層 麻痺"
+      ],
+      "keys": [
+        "Skills.json|/dataList/9/levelList/0/desc",
+        "Skills.json|/dataList/9/levelList/1/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WinDuel] 자신에게 부여된 부정적 효과를 절반으로 감소시킴",
+      "zh": [
+        "[WinDuel] 使自身的負面狀態減半",
+        "[WinDuel] 使自身帶有的負面效果減半"
+      ],
+      "keys": [
+        "Skills_Abnormality_Refraction.json|/dataList/28/levelList/0/desc",
+        "Skills_Abnormality_Refraction1_bokgak.json|/dataList/142/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "공격 스킬 종료시, 각 대상에게 (크리티컬로 적중한 참격 코인 개수 x 10)만큼 참격 피해 (해당 피해로는 흐트러지지 않음)",
+      "zh": [
+        "自身在攻擊結束後，對各個攻擊對象造成(造成暴擊的斬擊硬幣數量×10)的斬擊傷害 (此被動造成的傷害無法使目標陷入混亂)",
+        "攻擊技能結束時，對所有目標造成(暴擊命中的硬幣數×10)點的斬擊傷害(本效果造成的傷害不會使目標陷入混亂)"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p1.json|/dataList/14/desc",
+        "Passives_Abnormality-a1c9p3.json|/dataList/62/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "메인 타겟의 화상 1당, 보호막에 입히는 피해량 15% 증가 (최대 300%)\n스킬 사용 시 대상의 공격 스킬이 참격 혹은 관통 속성이면, 합 위력 +1\n자신의 스킬 효과로 [VibrationExplosion]이 발동되었다면, 다음 턴 [AttackDmgUp] 2 얻음 (턴당 3회)\n자신의 스킬 효과로 크리티컬이 발동되었다면, 정신력 5 회복",
+      "zh": [
+        "主要目標每帶有1級燒傷強度，使自身對其護盾造成的傷害+15%(最多+300%)\n使用技能時，若目標使用的攻擊技能為斬擊或突刺技能，則使自身的拚點威力+1\n若自身的技能效果觸發 [VibrationExplosion]，則下回合使自身獲得2層 [AttackDmgUp] (每回合最多3次)\n若自身的技能效果觸發暴擊，使自身恢復5點理智值",
+        "主要目標每帶有1級燒傷 強度，使自身對護盾造成的傷害+15%(最多+300%)\n使用技能時，若目標的攻擊技能為斬擊技能或突刺技能，則使自身的拚點威力+1\n自身的技能效果觸發 [VibrationExplosion] 時，下回合使自身獲得2層 [AttackDmgUp] (每回合最多3次)\n自身的技能效果觸發暴擊時，使自身恢復5點理智值"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/38/desc",
+        "Passives_Abnormality-mr7.json|/dataList/10/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "본체 체력이 10% 남았을 때, 패턴이 변경됨.",
+      "zh": [
+        "現存體力不高於10%時，改變自身模式。",
+        "剩餘10%體力時，改變自身模式。"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c5p3.json|/dataList/5/desc",
+        "Passives_Abnormality-a1c5p3.json|/dataList/39/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "스킬 2회 피격 시 [ResentmentSpiderDaughter] 1 얻음, [GotACompliment] 1 감소 (피격 횟수는 누적됨)\n\n자신의 [ResentmentSpiderDaughter]이 최댓값이면 강력한 공격을 사용함\n\n턴 종료시 자신의 체력이 80%, 60%, 40% 미만이면, [ResentmentSpiderDaughter] 최댓값으로 얻음",
+      "zh": [
+        "每當自身被2個技能攻擊時，使自身獲得1層 [ResentmentSpiderDaughter] 並使自身減少1層 [GotACompliment] (受擊次數將累積計算)\n\n若自身的 [ResentmentSpiderDaughter] 層數為最大值，則使用強力攻擊\n\n回合結束時，若自身的現存體力低於80%、60%、40%，則使自身的 [ResentmentSpiderDaughter] 層數變為最大值",
+        "每當自身被技能攻擊2次時，使自身獲得1層 [ResentmentSpiderDaughter]，並使自身的 [GotACompliment] 減少1層(受擊次數將累積計算)\n\n若自身的 [ResentmentSpiderDaughter] 層數為最大值，則使用強力攻擊\n\n回合結束時，若自身的現存體力低於80%、60%、40%，則使自身的 [ResentmentSpiderDaughter] 層數變為最大值"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/27/desc",
+        "Passives_Abnormality-mr7.json|/dataList/23/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "스테이지 시작시 [HeatingWireOffSpider]를 가지고 시작함\n\n턴 시작 시 자신이 보유한 [GotACompliment]가 3 이상이면 해당 턴 동안 [HeatingWireOnSpider]으로 바뀌고, [Laceration]을 부여하는 스킬로 [Combustion]을 추가로 부여함\n\n턴 종료시 자신이 보유한 [GotACompliment]가 3 미만이면 [HeatingWireOnSpider]이 [HeatingWireOffSpider]로 전환됨",
+      "zh": [
+        "關卡開始時，使自身帶有 [HeatingWireOffSpider]\n\n回合開始時，若自身的 [GotACompliment] 層數不低於3層，則本回合使自身獲得 [HeatingWireOnSpider] 且使自身施加 [Laceration] 的技能額外施加 [Combustion]\n\n回合結束時，若自身 [GotACompliment] 的層數低於3層，則使自身的 [HeatingWireOnSpider] 轉變為 [HeatingWireOffSpider]",
+        "關卡開始時，使自身獲得 [HeatingWireOffSpider]\n\n回合開始時，若自身 [GotACompliment] 的層數不低於3層，則本回合內使自身獲得 [HeatingWireOnSpider]；使自身施加 [Laceration] 的攻擊技能額外施加 [Combustion]\n\n回合結束時，若自身 [GotACompliment] 的層數少於3，則使自身的 [HeatingWireOnSpider] 效果改為 [HeatingWireOffSpider]"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/24/desc",
+        "Passives_Abnormality-a1c9p3.json|/dataList/28/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "약지 아비 등장 시 자신의 정신력이 20미만이면, 정신력이 20이 됨",
+      "zh": [
+        "環指 父輩進入戰場時，若自身的理智值低於20點，則使其恢復至20點",
+        "環指 父輩登場時，若自身的理智值低於20點，則使其變為20點"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/17/desc",
+        "Passives_Abnormality-mr7.json|/dataList/36/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "자신의 [Breath]과 대상의 [Sinking]의 합 6당, 최종 위력 +1 (최대 2)\n[WhenUse] 자신의 [Breath] 횟수 2 증가\n[EndSkill] 정신력 3 감소",
+      "zh": [
+        "自身帶有的 [Breath] 強度與目標帶有的 [Sinking] 強度之和每有6級，則使本技能的最終威力+1(最多+2)\n[WhenUse] 使自身獲得2回 [Breath]\n[EndSkill] 使自身失去3點理智值",
+        "自身帶有的 [Breath] 強度與目標帶有的 [Sinking] 強度之和每有6級，則使本技能的最終威力+1 (最多+2)\n[WhenUse] 使自身獲得2回 [Breath]\n[EndSkill] 使自身失去3點理智值"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p2.json|/dataList/30/levelList/0/desc",
+        "Skills_Abnormality-a1c9p3.json|/dataList/73/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "자신의 잃은 체력 1%당 가하는 피해량 +2% (최대 100%)",
+      "zh": [
+        "自身每失去1%的體力，使自身造成的傷害+2%(最多+100%)",
+        "自身每失去1%體力，則使自身造成的傷害+2%(最多100%)"
+      ],
+      "keys": [
+        "Passives_Abnormality-cultivation.json|/dataList/6/desc",
+        "Passives_Enemy-a1c8p1.json|/dataList/18/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "적 처치 시, 본체 및 부위 체력을 200 회복.\n다음 턴에 [Agility] 1, [DefenseUp] 3, [AttackUp] 2 얻음.",
+      "zh": [
+        "擊殺敵方單位時，使自身本體與部位恢復200點體力。\n下回合使自身獲得1層 [Agility]、3層 [DefenseUp] 與2層 [AttackUp]。",
+        "擊殺敵方單位時，使自身本體與部位恢復200點體力，並在下回合使自身獲得1層 [Agility]、3層 [DefenseUp] 與2層 [AttackUp]。"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c6p2.json|/dataList/4/desc",
+        "Passives_Enemy-a1c6p3.json|/dataList/12/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "체력이 가장 낮은 대상 우선 공격\n[WhenUse] 대상의 현재 체력 비율이 70% 미만이면, 합 위력 +2",
+      "zh": [
+        "優先攻擊體力最低的目標\n[WhenUse] 若目標現存體力比例低於70%，則使本技能的拚點威力+2",
+        "優先指定體力最低的目標\n[WhenUse] 若目標現存體力低於70%，則使本技能的拚點威力+2"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c6p2.json|/dataList/17/levelList/0/desc",
+        "Skills_Abnormality-a1c6p3.json|/dataList/51/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "촛불이 꺼지고 촛불 체력이 전부 회복된 상태면, 모든 촛불이 켜지기전까지 내성이 올라감.\n모든 촛불이 켜져있을 때, 내성이 내려감.",
+      "zh": [
+        "若所有蠟燭都被熄滅且體力全滿，則在所有蠟燭再次被點燃之前獲得抗性提升。\n當所有蠟燭都被點燃時，抗性降低。",
+        "若所有蠟燭都被熄滅且體力全滿，則在所有蠟燭再次被點燃之前抗性提升。\n當所有蠟燭都被點燃時，抗性降低。"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c5p3.json|/dataList/0/desc",
+        "Passives_Abnormality-a1c5p3.json|/dataList/34/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "턴 종료 시, 자신의 정신력 5 감소",
+      "zh": [
+        "回合結束時，自身理智值減少5點",
+        "回合結束時，自身失去5點理智值"
+      ],
+      "keys": [
+        "Passives_Enemy-mr7-extreme.json|/dataList/7/desc",
+        "Passives_Enemy.json|/dataList/37/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "턴 종료 시점에 체력이 60% 이하가 되었거나 다음 턴에 강력한 공격('쾌도난마')을 이번 전투에서 두 번째로 사용할 예정이면, 다음 턴에 패턴이 변경됨\n- 해당 턴 시작 시, [Irritation] 1 얻음\n- 해당 턴 시작 시, [BulletPropellantSpecial] 18 얻고 즉시 장전\n· [BulletPropellantSpecial]을 전부 소모할 경우, 해당 효과가 [BulletPropellant]으로 변경되고 다음 턴에 엄격한 엄지 솔다토 2명을 소환하여 [BulletPropellantSpecial]을 보급받음\n- 흐트러짐 상태면, 흐트러짐 해제",
+      "zh": [
+        "若回合結束時現存體力不高於60%或下回合將使用本場戰鬥的第2次強力攻擊(「快刀亂麻 」)，則下回合改變自身模式\n- 該回合開始時，使自身獲得1層 [Irritation]\n- 該回合開始時，使自身獲得18發 [BulletPropellantSpecial] 並立刻裝填\n．若自身消耗了所有 [BulletPropellantSpecial]，則將其轉換為 [BulletPropellant] 並在下回合召喚2名嚴厲的拇指 士兵為自身補給 [BulletPropellantSpecial]\n- 若自身陷入混亂，則解除自身的混亂",
+        "回合結束且現存體力不高於60%或下回合將使用本場戰鬥的第2次強力攻擊(「快刀亂麻」)時，下回合改變自身模式\n- 該回合開始時，使自身獲得1層 [Irritation]\n- 該回合開始時，使自身獲得18發 [BulletPropellantSpecial] 並立刻裝填\n．若自身消耗了所有 [BulletPropellantSpecial]，則使其變更為 [BulletPropellant] 並在下回合召喚2名嚴厲的拇指 士兵為自身補給 [BulletPropellantSpecial]\n- 若自身陷入混亂，則解除自身的混亂"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c8p3.json|/dataList/6/desc",
+        "Passives_Abnormality-mr6.json|/dataList/5/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "턴 종료 시점에 체력이 80% 이하가 되었거나 4번째 턴 종료 시, 다음 턴에 패턴이 변경됨\n- 강력한 공격('쾌도난마')을 사용하며, 3번째 턴마다 반복함. 이 스킬을 사용하는 턴의 속도 최솟값, 최댓값 +10\n- 해당 턴 시작 시, [BattleSense] 25 얻음\n- 흐트러짐 상태면, 흐트러짐 해제",
+      "zh": [
+        "回合結束時現存體力不高於80%或第4回合結束時，下回合改變自身模式\n- 使用強力攻擊(「快刀亂麻 」)，每3回合重複該效果。使用該技能的回合自身最小與最大速度值+10\n- 該回合開始時，使自身獲得25層 [BattleSense]\n- 若自身陷入混亂，則解除自身的混亂",
+        "回合結束且現存體力不高於80%或第4回合結束時，下回合改變自身模式\n- 使用強力攻擊(「快刀亂麻」)，每3回合重複該技能。使用該技能的回合使自身的最小與最大速度值+10\n- 該回合開始時，使自身獲得25層 [BattleSense]\n- 若自身陷入混亂，則解除自身的混亂"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c8p3.json|/dataList/5/desc",
+        "Passives_Abnormality-mr6.json|/dataList/4/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "턴 종료 시점에 체력이 90% 이하가 되었거나 2번째 턴 종료 시, [BulletPropellant]을 장전하고 다음 턴에 패턴이 변경됨\n- 흐트러짐 상태면, 흐트러짐 해제",
+      "zh": [
+        "回合結束時現存體力不高於90%或第2回合結束時，使自身再次裝填 [BulletPropellant] 並在下回合改變自身模式\n- 若自身陷入混亂，則解除自身的混亂",
+        "回合結束且現存體力不高於90%或第2回合結束時，使自身裝填 [BulletPropellant] 並在下回合改變自身模式\n- 若自身陷入混亂，則解除自身的混亂"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c8p3.json|/dataList/4/desc",
+        "Passives_Abnormality-mr6.json|/dataList/3/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "턴 종료시 [HumanBoneTheRings]가 206이고 [HumanBloodTheRings]가 5면 각각 수치만큼 감소하고 [MineTheRings] 1 얻음\n\n턴 시작시 [MineTheRings]가 있으면, 이번 턴에 강력한 공격 사용\n\n강력한 공격 사용 전에 <color=#ff6000><mark=#ff000040><b><u>공격 스킬로 피격 시, [PlusCoinValueDown] 1, [ResultReduction] 1 얻음</u></b></mark></color> (스킬당 1회. 턴당 최대 3회)",
+      "zh": [
+        "回合結束時，若自身帶有206層的 [HumanBoneTheRings] 以及5層的 [HumanBloodTheRings]，則消耗所有層數並使自身獲得1層 [MineTheRings]\n\n回合開始時，若自身帶有 [MineTheRings]，則本回合將發動強力攻擊\n\n<color=#ff6000><mark=#ff000040><b><u>自身準備使用強力攻擊時，每被技能攻擊一次，則對自身施加1層 [PlusCoinValueDown] 以及1層 [ResultReduction]</u></b></mark></color>(每個技能最多1次；每回合最多3次)",
+        "回合結束時，若自身的 [HumanBoneTheRings] 層數為206層且自身的 [HumanBloodTheRings] 為5層，則將其全部消耗並使自身獲得1層 [MineTheRings]\n\n回合開始時，若自身帶有 [MineTheRings]，則本回合使用強力攻擊\n\n使用強力攻擊前，<color=#ff6000><mark=#ff000040><b><u>自身受到攻擊技能傷害時，對自身施加1層 [PlusCoinValueDown] 與1層 [ResultReduction]</u></b></mark></color>(每個技能最多1次，每回合最多3次)"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/4/desc",
+        "Passives_Abnormality-a1c9p3.json|/dataList/47/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "패닉 상태가 되면, 다음 턴 시작 시 패닉 상태를 해제하고, 정신력이 0으로 초기화 됨.",
+      "zh": [
+        "陷入恐慌時，下回合開始時解除恐慌，理智值恢復為0點",
+        "陷入恐慌時，下回合開始時解除恐慌，理智值恢復為0點。"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9116.json|/dataList/9/desc",
+        "Passives_Enemy-a1c5p2.json|/dataList/19/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "근접 전투",
+      "zh": [
+        "近身戰",
+        "近身格鬥"
+      ],
+      "keys": [
+        "Passives_Abnormality_Refraction5.json|/dataList/0/name",
+        "Skills_Abnormality-a1c8p3.json|/dataList/22/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "깨물기",
+      "zh": [
+        "啃咬",
+        "齧"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c6p2.json|/dataList/4/levelList/0/name",
+        "Skills_Abnormality_Refraction5.json|/dataList/7/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "끄그극",
+      "zh": [
+        "嘰咕咕",
+        "咕咕"
+      ],
+      "keys": [
+        "Skills_Abnormality-x1p1c1.json|/dataList/11/levelList/0/name",
+        "Skills_Abnormality.json|/dataList/128/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "만취 수행",
+      "zh": [
+        "泥醉修行",
+        "爛醉修行"
+      ],
+      "keys": [
+        "Passives_Abnormality-cultivation.json|/dataList/6/name",
+        "Passives_Enemy-a1c8p1.json|/dataList/18/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "머리 털기",
+      "zh": [
+        "梳理秀髮",
+        "梳理髮型"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9116.json|/dataList/9/name",
+        "Passives_Enemy-a1c5p2.json|/dataList/19/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "불신",
+      "zh": [
+        "猜忌",
+        "懷疑猜忌"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p1.json|/dataList/9/levelList/0/name",
+        "Skills_Abnormality.json|/dataList/4/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "살",
+      "zh": [
+        "肉",
+        "箭"
+      ],
+      "keys": [
+        "Enemies_Refraction2.json|/dataList/40/name",
+        "Skills_Abnormality-a1c7p2.json|/dataList/15/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "살점 뜯기",
+      "zh": [
+        "撕扯血肉",
+        "撕裂血肉"
+      ],
+      "keys": [
+        "Skills_Enemy-a1c8p1.json|/dataList/32/levelList/0/name",
+        "Skills_Enemy-a1c8p3.json|/dataList/6/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "신부",
+      "zh": [
+        "牧師",
+        "神父"
+      ],
+      "keys": [
+        "Enemies-a1c10p3.json|/dataList/4/name",
+        "Enemies-a1c7p3.json|/dataList/10/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "없어. 사탕.",
+      "zh": [
+        "沒有。糖果。",
+        "沒有，糖果。"
+      ],
+      "keys": [
+        "Skills_Abnormality_Mirror6.json|/dataList/36/levelList/0/name",
+        "Skills_fools.json|/dataList/1/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "원한",
+      "zh": [
+        "怨恨",
+        "仇怨"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/21/name",
+        "Passives_Abnormality-mr7.json|/dataList/18/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "육체 파동",
+      "zh": [
+        "血肉翻湧",
+        "脈衝轟炸"
+      ],
+      "keys": [
+        "Skills_Abnormality_Refraction.json|/dataList/39/levelList/0/name",
+        "Skills_Abnormality_Refraction1_bokgak.json|/dataList/151/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "이 손으로 대신…",
+      "zh": [
+        "以此手代為……",
+        "以這雙手代為……"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p2.json|/dataList/30/levelList/0/name",
+        "Skills_Abnormality-a1c9p3.json|/dataList/73/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "찢어베기",
+      "zh": [
+        "大卸八塊",
+        "撕裂"
+      ],
+      "keys": [
+        "Skills_Abnormality-exme.json|/dataList/2/levelList/0/name",
+        "Skills_Abnormality-pilgrimage.json|/dataList/7/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "파헤치고, 파헤치겠어요",
+      "zh": [
+        "剖開，再剖開",
+        "刨出來、刨出來"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p2.json|/dataList/31/levelList/0/name",
+        "Skills_Abnormality-a1c9p3.json|/dataList/74/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "혈찬의 시간",
+      "zh": [
+        "血宴時刻",
+        "血宴之時"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c7p3.json|/dataList/57/levelList/0/name",
+        "Skills_Abnormality_Mirror6.json|/dataList/7/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "휘두르기",
+      "zh": [
+        "揮臂橫掃",
+        "橫掃"
+      ],
+      "keys": [
+        "Skills_Abnormality.json|/dataList/122/levelList/0/name",
+        "Skills_Enemy.json|/dataList/50/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "events",
+      "field": "content",
+      "kr": "1회 전투에서 녹빛 여명 - 의문 - δ 처치",
+      "zh": [
+        "單次戰鬥中擊殺 綠色的黎明 - 疑問 - δ 單位",
+        "單次戰鬥中擊敗 綠色的黎明 - 疑問 - δ 單位"
+      ],
+      "keys": [
+        "DawnOfGreenEventText.json|/dataList/11/content",
+        "DawnOfGreenEventText.json|/dataList/19/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "events",
+      "field": "content",
+      "kr": "이미 사용된 쿠폰입니다.",
+      "zh": [
+        "兌換碼已被使用。",
+        "此兌換碼已被使用。"
+      ],
+      "keys": [
+        "CouponUIText.json|/dataList/7/content",
+        "CouponUIText.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "events",
+      "field": "content",
+      "kr": "제압 현황",
+      "zh": [
+        "鎮壓情況",
+        "鎮壓狀況"
+      ],
+      "keys": [
+        "Walpu4EventText.json|/dataList/4/content",
+        "Walpu8EventText.json|/dataList/51/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "…그래.",
+      "zh": [
+        "……是吧。",
+        "……記得。"
+      ],
+      "keys": [
+        "StoryData/P10310.json|/dataList/148/content",
+        "StoryData/P11210.json|/dataList/48/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "…그렇군요.",
+      "zh": [
+        "……這樣啊。",
+        "……明白了。"
+      ],
+      "keys": [
+        "StoryData/P11008.json|/dataList/32/content",
+        "StoryData/P11108.json|/dataList/46/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "…약해 빠진 놈.",
+      "zh": [
+        "……軟腳蝦。",
+        "……不堪一擊的傢伙。"
+      ],
+      "keys": [
+        "StoryData/P10916.json|/dataList/138/content",
+        "StoryData/P11216.json|/dataList/146/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "그래, 지금처럼.",
+      "zh": [
+        "沒錯，就像現在這樣。",
+        "沒錯，就像此時此刻。"
+      ],
+      "keys": [
+        "StoryData/P10812.json|/dataList/31/content",
+        "StoryData/P11114.json|/dataList/59/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "그래.",
+      "zh": [
+        "沒。",
+        "沒關係。"
+      ],
+      "keys": [
+        "StoryData/P10708.json|/dataList/28/content",
+        "StoryData/P11203.json|/dataList/12/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "그렇진 않을 거야.",
+      "zh": [
+        "不是那樣吧。",
+        "也不是那樣吧。"
+      ],
+      "keys": [
+        "StoryData/P11006.json|/dataList/5/content",
+        "StoryData/P11006.json|/dataList/7/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "끄악!",
+      "zh": [
+        "咕啊！",
+        "啊！"
+      ],
+      "keys": [
+        "StoryData/P10413.json|/dataList/20/content",
+        "StoryData/P10806.json|/dataList/28/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "네…",
+      "zh": [
+        "好的……",
+        "是……"
+      ],
+      "keys": [
+        "StoryData/P10210.json|/dataList/3/content",
+        "StoryData/P10714.json|/dataList/94/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "아, 넵!",
+      "zh": [
+        "啊，是！",
+        "啊，好的。"
+      ],
+      "keys": [
+        "StoryData/P10917.json|/dataList/25/content",
+        "StoryData/P11215.json|/dataList/11/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "어?",
+      "zh": [
+        "哈？",
+        "哦？"
+      ],
+      "keys": [
+        "StoryData/P10704.json|/dataList/22/content",
+        "StoryData/P11115.json|/dataList/131/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "어…",
+      "zh": [
+        "哦……",
+        "唔……"
+      ],
+      "keys": [
+        "StoryData/P10213.json|/dataList/41/content",
+        "StoryData/P10502.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "엇챠!",
+      "zh": [
+        "哎呀！",
+        "哈呀！"
+      ],
+      "keys": [
+        "StoryData/P10608.json|/dataList/22/content",
+        "StoryData/P11206.json|/dataList/34/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "오늘의 일기는, 여기까지!",
+      "zh": [
+        "今天的日記，到此為止！",
+        "今日的日記，到此為止！"
+      ],
+      "keys": [
+        "StoryData/P10307.json|/dataList/27/content",
+        "StoryData/P10312.json|/dataList/59/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "으으…",
+      "zh": [
+        "唔……",
+        "嗚嗚……"
+      ],
+      "keys": [
+        "StoryData/P10805.json|/dataList/21/content",
+        "StoryData/P10912.json|/dataList/45/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "으윽…",
+      "zh": [
+        "嗚唔……",
+        "唔……"
+      ],
+      "keys": [
+        "StoryData/P10612.json|/dataList/54/content",
+        "StoryData/P11205.json|/dataList/2/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "윽!",
+      "zh": [
+        "呃！",
+        "嗚！"
+      ],
+      "keys": [
+        "StoryData/P10504.json|/dataList/23/content",
+        "StoryData/P11213.json|/dataList/97/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "이건…",
+      "zh": [
+        "這是……",
+        "這個……"
+      ],
+      "keys": [
+        "StoryData/P10412.json|/dataList/66/content",
+        "StoryData/P10617.json|/dataList/124/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "죄송합니다…",
+      "zh": [
+        "非常抱歉……",
+        "抱歉……"
+      ],
+      "keys": [
+        "StoryData/P10716.json|/dataList/57/content",
+        "StoryData/P11215.json|/dataList/22/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "흥.",
+      "zh": [
+        "嗯。",
+        "哼。"
+      ],
+      "keys": [
+        "StoryData/P10406.json|/dataList/20/content",
+        "StoryData/P10412.json|/dataList/15/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "…뭐야?",
+      "zh": [
+        "……怎麼會？",
+        "……怎麼？"
+      ],
+      "keys": [
+        "PersonalityVoiceDlg/Voice_Faust_Ncorp_10204.json|/dataList/20/dlg",
+        "PersonalityVoiceDlg/Voice_Heathcliff_LEGO_10705.json|/dataList/13/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "…조준 중입니다.",
+      "zh": [
+        "……正在瞄準。",
+        "……瞄準中。"
+      ],
+      "keys": [
+        "BattleSpeechBubbleDlg.json|/dataList/361/dlg",
+        "PersonalityVoiceDlg/Voice_Faust_ShiAsso2_10213.json|/dataList/14/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "시험해 볼 기회구료.",
+      "zh": [
+        "是進行實驗的機會。",
+        "是試劍的好機會。"
+      ],
+      "keys": [
+        "PersonalityVoiceDlg/Voice_Yisang_LCE_10111.json|/dataList/12/dlg",
+        "PersonalityVoiceDlg/Voice_Yisang_LiuAssoc_10112.json|/dataList/11/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "으음…",
+      "zh": [
+        "唔呃……",
+        "唔……"
+      ],
+      "keys": [
+        "PersonalityVoiceDlg/Voice_Faust_Index_10214.json|/dataList/16/dlg",
+        "PersonalityVoiceDlg/Voice_Meursault_Rcorp_10506.json|/dataList/16/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "읍!",
+      "zh": [
+        "呃！",
+        "呃嗯！"
+      ],
+      "keys": [
+        "PersonalityVoiceDlg/Voice_Honglu_Kurokumo_10602.json|/dataList/16/dlg",
+        "PersonalityVoiceDlg/Voice_Outis_SwordGroup_11102.json|/dataList/16/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "이제 끝내지.",
+      "zh": [
+        "就此結束吧。",
+        "到此為止。"
+      ],
+      "keys": [
+        "PersonalityVoiceDlg/Voice_Outis_Blackwater_11112.json|/dataList/17/dlg",
+        "PersonalityVoiceDlg/Voice_Yisang_Dieci_10108.json|/dataList/17/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "적기를 기다리고 있습니다.",
+      "zh": [
+        "正在等待時機。",
+        "等待時機。"
+      ],
+      "keys": [
+        "BattleSpeechBubbleDlg.json|/dataList/362/dlg",
+        "PersonalityVoiceDlg/Voice_Faust_ShiAsso2_10213.json|/dataList/13/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "정화!",
+      "zh": [
+        "淨化！",
+        " 淨化！"
+      ],
+      "keys": [
+        "PersonalityVoiceDlg/Voice_Faust_Ncorp_10204.json|/dataList/14/dlg",
+        "PersonalityVoiceDlg/Voice_Rodion_Ncorp_10904.json|/dataList/14/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "제가 보태죠.",
+      "zh": [
+        "我來助一臂之力吧。",
+        "浮士德來幫忙吧。"
+      ],
+      "keys": [
+        "BattleSpeechBubbleDlg-walpu10.json|/dataList/11/dlg",
+        "BattleSpeechBubbleDlg.json|/dataList/709/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "제압 완료.",
+      "zh": [
+        "鎮壓結束。",
+        "鎮壓完畢。"
+      ],
+      "keys": [
+        "BattleSpeechBubbleDlg.json|/dataList/147/dlg",
+        "PersonalityVoiceDlg/Voice_Yisang_LCE_10111.json|/dataList/17/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "좀 많이!",
+      "zh": [
+        "太燙了！",
+        "更熱了吧！"
+      ],
+      "keys": [
+        "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/76/dlg",
+        "BattleSpeechBubbleDlg.json|/dataList/610/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "헛…",
+      "zh": [
+        "呃……",
+        "嚯……"
+      ],
+      "keys": [
+        "PersonalityVoiceDlg/Voice_Faust_Butler_10209.json|/dataList/16/dlg",
+        "PersonalityVoiceDlg/Voice_Gregor_Blackwater_11212.json|/dataList/16/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "흐드러지게.",
+      "zh": [
+        "花開絢爛。",
+        "綻放吧。"
+      ],
+      "keys": [
+        "PersonalityVoiceDlg/Voice_Faust_SwordGroup_10208.json|/dataList/15/dlg",
+        "PersonalityVoiceDlg/Voice_Yisang_LiuAssoc_10112.json|/dataList/15/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "dlg",
+      "kr": "흣…",
+      "zh": [
+        "呼……",
+        "唔……"
+      ],
+      "keys": [
+        "PersonalityVoiceDlg/Voice_Faust_LCE_10211.json|/dataList/16/dlg",
+        "PersonalityVoiceDlg/Voice_Sinclair_LEGO_11006.json|/dataList/16/dlg"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "keywords",
+      "field": "desc",
+      "kr": "전투 시작 시 현재 편성 순서가 가장 빠른 아군 3명이 호흡 위력 10 얻음",
+      "zh": [
+        "戰鬥開始時，使最先編入的3名友方單位增加10級呼吸法強度",
+        "戰鬥開始時，使最先編入的3名友方單位增加10級呼吸法 強度"
+      ],
+      "keys": [
+        "BattleKeywords_Refraction5.json|/dataList/18/desc",
+        "BuffAbilities.json|/dataList/51/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "keywords",
+      "field": "desc",
+      "kr": "합 위력이 수치만큼 감소 (최대 5)",
+      "zh": [
+        "拚點威力減少等同於本效果層數的數值。(最多5層)",
+        "拚點威力減少等同於本效果層數的數值(最多5層)"
+      ],
+      "keys": [
+        "BattleKeywords.json|/dataList/159/desc",
+        "BattleKeywords_Refraction2.json|/dataList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "keywords",
+      "field": "summary",
+      "kr": "공격 레벨 +{0}",
+      "zh": [
+        "攻擊等級 +{0}",
+        "攻擊等級 +{0} "
+      ],
+      "keys": [
+        "Bufs.json|/dataList/57/summary",
+        "Bufs.json|/dataList/162/summary"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "content",
+      "kr": "등장 확률 업",
+      "zh": [
+        "出現機率提升",
+        "出現機率上升"
+      ],
+      "keys": [
+        "MirrorDungeonUI_4.json|/dataList/207/content",
+        "MirrorDungeonUI_7.json|/dataList/54/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "content",
+      "kr": "부스러기 안에 보이는 거울 조각을 집어든다.",
+      "zh": [
+        "拾起在碎屑中發現的鏡子碎片。",
+        "撿起在碎屑中看到的鏡子碎片。"
+      ],
+      "keys": [
+        "MirrorDungeonUI_2.json|/dataList/20/content",
+        "MirrorDungeonUI_2.json|/dataList/73/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "content",
+      "kr": "선택하지 않음",
+      "zh": [
+        "拒絕飾品",
+        "未選中"
+      ],
+      "keys": [
+        "MirrorDungeonUI_2.json|/dataList/108/content",
+        "MirrorDungeonUI_5.json|/dataList/41/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "content",
+      "kr": "입장",
+      "zh": [
+        "完成",
+        "進入戰鬥"
+      ],
+      "keys": [
+        "MirrorDungeonUI_5.json|/dataList/22/content",
+        "MirrorDungeonUI_6.json|/dataList/92/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "content",
+      "kr": "참여 중",
+      "zh": [
+        "已參戰",
+        "參與中"
+      ],
+      "keys": [
+        "MirrorDungeonUI.json|/dataList/33/content",
+        "MirrorDungeonUI_3.json|/dataList/55/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "content",
+      "kr": "체력 단련",
+      "zh": [
+        "體力鍛鍊",
+        "體力訓練"
+      ],
+      "keys": [
+        "MirrorDungeonUI_2.json|/dataList/44/content",
+        "MirrorDungeonUI_2.json|/dataList/145/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "content",
+      "kr": "코스트 부족",
+      "zh": [
+        "經費\n不足",
+        "經費不足"
+      ],
+      "keys": [
+        "MirrorDungeonUI_2.json|/dataList/92/content",
+        "MirrorDungeonUI_5.json|/dataList/134/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "content",
+      "kr": "합성 불가",
+      "zh": [
+        "無法合成",
+        "不可合成"
+      ],
+      "keys": [
+        "MirrorDungeonUI_3.json|/dataList/50/content",
+        "MirrorDungeonUI_7.json|/dataList/27/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "desc",
+      "kr": "\"이곳은 주막인가...\"\n\n술집처럼 보이는 공간에서 사람들이 기분 좋은 듯 떠들고 있다.\n\n그 중에, 고성으로 서로 삿대질을 하는 모습도 보인다.\n\n\"아니, 아니! 자고로 검은 베어내는 물건! 베는 것이 옳은 검법이지.\"\n\n\"모르는 소리! 한 점에 힘을 집중해서 한 번에 찔러버리면 일격 필살 아닌가!\"\n\n\"...둘 다 틀렸어. 어설프게 베고 찔러보아야 적은 다시 일어나기 마련.\"\n\n\"칼자루나 검집으로 머리를 두드려 패면, 골이 어질거려 일어나지 못하게 된단 말이다!\"\n\n무언가 심오한 논의를 하는 것 같아, 잠시 멈추어 서서 듣고 있는데...\n\n그들이 그런 우리를 보고 말을 걸었다.\n\n\"그대들! 척 보아도 무인이군!\"\n\n\"답해보게. 가장 우수한 검격이 무엇인가!\"\n\n\"당연히 참격을 제일로 치겠지?\"\n\n무어라 답해야 할까.",
+      "zh": [
+        "「這裡是酒肆嗎……」\n\n在貌似是酒館的空間中，人們興高采烈地喧鬧著。\n\n在那之中，有幾人高聲爭論著什麼。\n\n「錯了，錯了！一直以來劍都是用來斬斷其他事物的！劈斬才是正確的劍法。」\n\n「你說什麼呢！如果能將力量集中於一點，一口氣刺入，不就能一擊必殺了嗎！」\n\n「……你們說的都不對。耍出半吊子的劈斬和刺擊，只會給敵人留下再起的餘地。」\n\n「直接用刀柄或者刀鞘往腦袋上敲，他們不就會頭昏腦脹起不來了嘛！」\n\n他們似乎在爭論某些深奧的事情，我們只是稍稍駐足聽了一會……\n\n他們看到我們，就朝我們搭話了。\n\n「你們！一眼看上去就知道你們是武者！」\n\n「回答我。最優秀的劍法是什麼！」\n\n「斬擊當然是最棒的吧？」\n\n該如何回答？",
+        "「這裡是酒肆嗎……」\n\n在貌似是酒館的空間中，人們興高采烈地喧鬧著。\n\n在那之中，有幾人高聲爭論著什麼。\n\n「錯了，錯了！一直以來劍都是用來斬斷其他事物的！劈斬才是正確的劍法。」\n\n「你說什麼呢！如果能將力量集中於一點，一口氣刺入，不就能一擊必殺了嗎！」\n\n「……你們說的都不對。耍出半吊子的劈斬和刺擊，只會給敵人留下再起的餘地。」\n\n「直接用刀柄或者刀鞘往腦袋上敲，他們不就會頭昏腦脹起不來了嘛！」\n\n他們似乎在爭論某些深奧的事情，我們只是稍稍駐足聽了一會……\n\n他們看到我們，就朝我們搭話了。\n\n「你們！一眼看上去就知道你們是武人！」\n\n「回答我。最優秀的劍法是什麼！」\n\n「斬擊當然是最棒的吧？」\n\n該如何回答？"
+      ],
+      "keys": [
+        "ActionEvents_Mirror4.json|/dataList/4/desc",
+        "ActionEvents_Ycgd.json|/dataList/2/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "desc",
+      "kr": "[Vibration] 위력 또는 [Vibration] 횟수 또는 특수 진동을 부여하는 공격 스킬(E.G.O 스킬 제외)로 적에게 피해를 입힐 때, 가하는 피해량 +10%.\n\n해당 스킬로 적에게 이번 턴 동안 처음으로 [VibrationExplosion]을 적용하였다면, 다음 턴에 [Vibration] 횟수 2 부여 (턴 당 1회).",
+      "zh": [
+        "增加 [Vibration] 強度、[Vibration] 回數或施加特殊震顫的攻擊技能(不包括E.G.O技能)對敵方單位造成的傷害+10%\n\n若該技能本回合首次使敵方單位 [VibrationExplosion] ，則下回合使其增加2回 [Vibration]  (每回合最多1次)",
+        "增加 [Vibration] 強度、[Vibration] 回數或施加特殊震顫的攻擊技能(不包括E.G.O技能)對敵方單位造成的傷害+10%\n\n若該技能本回合首次使敵方單位 [VibrationExplosion] ，則下回合使其增加2回 [Vibration] (每回合最多1次)"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/20/desc",
+        "EGOgift_StoryDungeon-tkt.json|/dataList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "desc",
+      "kr": "길을 막고 있는 자들이 눈에 띈다.\n책상에 마주 앉아 서로에게 고함을 치고 있다.\n\"이 풍부한 육즙을 봐! 줄줄 흘러내리면서 강조되는 살코기 결... 이게 참 치킨이지!\"\n\"틀렸다. 기름기 한톨 찾아볼 수 없는 담백한 이 맛. 이게 진짜 치킨이지.\"\n둘은 동시에 이쪽을 바라보며 말한다.\n\"거기 너! 둘 중 뭐가 더 맛있나!\"",
+      "zh": [
+        "幾個人擋住了前進的路線。\n他們坐在桌前，互相大聲爭吵著。\n「看這多肉的一塊！豐富的汁水正在順著那些甘美肉質的纖維流淌……這就是雞肉存在的意義！」\n「大錯特錯。這一塊有著純淨的口味，沒有一點油脂會玷汙你的舌尖。這才是真正的好貨。」\n兩個人同時轉身看了過來。\n「嘿，那邊的！告訴我們哪個更好！」",
+        "幾個人擋住了前進的路線。\n他們坐在桌前，互相大聲爭吵著。\n「看這多肉的一塊！豐富的汁水正在順著那些甘美肉質的纖維流淌……這就是雞肉存在的意義！」\n「大錯特錯。這一塊有著純淨的口味，沒有一點油脂會玷汙你的舌尖。這才是真正的好貨。」\n兩個人同時轉身看向了過來。\n「嘿，那邊的！告訴我們哪個更好！」"
+      ],
+      "keys": [
+        "ActionEvents.json|/dataList/36/desc",
+        "ActionEvents_Mirror4.json|/dataList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "desc",
+      "kr": "매 턴마다 처음으로 적에게 피해를 입힌 스킬에 적용.\n\n(피해량/3)만큼 [Laceration] 위력을 부여.",
+      "zh": [
+        "以下效果僅對每回合中首個對敵方單位造成傷害的技能生效。\n\n使目標增加(造成的傷害÷3)級 [Laceration] 強度。",
+        "每回合中，適用於首次使用技能對敵方單位造成傷害後。\n\n使其增加(造成的傷害÷3)級的 [Laceration] 強度。"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/3/desc",
+        "EGOgift_StoryDungeon.json|/dataList/36/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "desc",
+      "kr": "아군이 적에게 치명타 피해를 입힐 때, 보유한 ([Breath] 위력/3)만큼 추가 오만 피해를 입힘.\n\n검계 소속일 경우 효과가 강화되어, 보유한 ([Breath] 위력/2)만큼 추가 오만 피해를 입힘.",
+      "zh": [
+        "友方單位對敵方單位造成暴擊時，對目標額外造成(自身的 [Breath] 強度÷3)點傲慢傷害。\n\n若該友方單位屬於劍契組，則改為暴擊時對目標額外造成(自身的 [Breath] 強度÷2)點傲慢傷害。",
+        "友方單位對敵方單位造成暴擊時，對目標額外造成(自身的 [Breath] 強度/3)點傲慢傷害。\n\n若該友方單位屬於劍契組，則改為暴擊時對目標額外造成(自身的 [Breath] 強度/2)點傲慢傷害。"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/14/desc",
+        "EGOgift_MirrorDungeon-ycgd.json|/dataList/3/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "desc",
+      "kr": "턴 시작 시, 검계 소속 인격이 3인 이상일 때 발동 (출격 인원을 기준으로 함).\n\n아군이 가하는 참격 피해량 +50%\n\n검계 소속일 경우, [Breath] 상태일 때 치명타 발동 확률이 100%로 고정됨.\n\n검계 소속일 경우 효과가 강화되어 치명타로 가하는 피해량이 1.5배 증가",
+      "zh": [
+        "回合開始時，若屬於劍契組成員的友方單位不低於3名，則觸發該效果。(以參戰人員為基準)\n\n全體友方單位造成的斬擊傷害+50%\n\n屬於劍契組成員，且帶有 [Breath] 的友方單位暴擊機率固定為100%。\n\n屬於劍契組成員的友方單位暴擊倍率增加至1.5倍",
+        "回合開始時，若戰場上隸屬於劍契組的友方單位不低於3名，則觸發該效果。\n\n全體友方單位造成的斬擊傷害+50%。\n\n屬於劍契組，且帶有 [Breath] 的友方單位暴擊機率固定為100%。\n\n屬於劍契組的友方單位暴擊造成的傷害增加1.5倍"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/18/desc",
+        "EGOgift_MirrorDungeon-ycgd.json|/dataList/7/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "desc",
+      "kr": "턴 시작 시, 검계 소속 인격이 3인 이상일 때 발동 (출격 인원을 기준으로 함).\n\n아군이 턴 시작 시 참격 위력 증가 2 얻음, 가하는 참격 피해량 +35%.\n\n검계 소속 인격이 적에게 치명타 피해를 입힐 때, 보유한 [Breath] 위력만큼 추가 오만 피해를 입힘.",
+      "zh": [
+        "回合開始時，若屬於劍契組成員的友方單位不低於3名，則觸發該效果。(以參戰人員為基準)\n\n回合開始時，使全體友方單位獲得2層斬擊威力提升 並使其造成的斬擊傷害+35%。\n\n屬於劍契組成員的友方單位造成暴擊時，對目標額外造成(自身的 [Breath] 強度)點傲慢傷害。",
+        "回合開始時，若戰場上隸屬於劍契組的友方單位不低於3名，則觸發該效果。\n\n回合開始時，使全體友方單位獲得2層斬擊威力提升 並使其造成的斬擊傷害+35%。\n\n屬於劍契組的友方單位造成暴擊時，對目標額外造成(自身的 [Breath] 強度)點傲慢傷害。"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/17/desc",
+        "EGOgift_MirrorDungeon-ycgd.json|/dataList/6/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "description",
+      "kr": "<color=#f8c200>6층 입장 시, 인격 레벨 +{0}</color>",
+      "zh": [
+        "<color=#f8c200>進入第6層時，人格等級 +{0}</color>",
+        "<color=#f8c200>進入第6層時，使所有罪人的人格等級 +{0}</color>"
+      ],
+      "keys": [
+        "DungeonStartBuffs_MD6.json|/dataList/29/description",
+        "DungeonStartBuffs_MD7.json|/dataList/29/description"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "description",
+      "kr": "<color=#f8c200>기록 없는 테마팩 전투 ({4}층 이하)에서 {1} {2} 얻음</color>",
+      "zh": [
+        "<color=#f8c200>選擇未被記錄的主題卡包時(階層{4}及其以下)，在該卡包的遭遇戰中獲得{2}層{1}</color>",
+        "<color=#f8c200>選擇未被記錄的主題卡包時，在該卡包的遭遇戰中獲得{2}層{1}(僅限階層{4}及其以下)</color>"
+      ],
+      "keys": [
+        "DungeonStartBuffs_MD6.json|/dataList/13/description",
+        "DungeonStartBuffs_MD7.json|/dataList/13/description"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "message",
+      "kr": "고문을 막는다.",
+      "zh": [
+        "阻止拷問。",
+        "制止折磨。"
+      ],
+      "keys": [
+        "ActionEvents.json|/dataList/13/options/1/message",
+        "ActionEvents.json|/dataList/23/options/1/message"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "message",
+      "kr": "고문이 끝나길 기다린다.",
+      "zh": [
+        "等待拷問結束。",
+        "等待折磨結束。"
+      ],
+      "keys": [
+        "ActionEvents.json|/dataList/13/options/0/message",
+        "ActionEvents.json|/dataList/23/options/0/message"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "message",
+      "kr": "의식에 통과한 증표를 보여준다.",
+      "zh": [
+        "展示通過儀式的信物。",
+        "展示通過儀式的證明。"
+      ],
+      "keys": [
+        "ActionEvents.json|/dataList/21/options/0/message",
+        "ActionEvents.json|/dataList/24/options/0/message"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "message",
+      "kr": "의식을 치룬다.",
+      "zh": [
+        "進行儀式。",
+        "舉行儀式。"
+      ],
+      "keys": [
+        "ActionEvents.json|/dataList/18/options/0/message",
+        "ActionEvents.json|/dataList/20/options/0/message"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "message",
+      "kr": "제안을 받아들인다.",
+      "zh": [
+        "接受提案。",
+        "接受。"
+      ],
+      "keys": [
+        "ActionEvents-walpu8.json|/dataList/6/options/0/message",
+        "ActionEvents_Refraction2.json|/dataList/0/options/1/message"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "message",
+      "kr": "피를 지불하고 경품 추첨에 도전한다.",
+      "zh": [
+        "支付血液挑戰抽獎。",
+        "再次支付血液挑戰抽獎。"
+      ],
+      "keys": [
+        "ActionEvents-a1c7p3.json|/dataList/4/options/0/message",
+        "ActionEvents-a1c7p3.json|/dataList/5/options/0/message"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "message",
+      "kr": "화술로 승부한다.",
+      "zh": [
+        "說服。",
+        "用話術一決勝負。"
+      ],
+      "keys": [
+        "ActionEvents.json|/dataList/21/options/1/message",
+        "ActionEvents.json|/dataList/24/options/1/message"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "messageDesc",
+      "kr": "나태 · 색욕 유리 판정 성공 시, 진동 E.G.O GIFT 획득",
+      "zh": [
+        "怠惰、色慾優勢判定 成功後，獲得1件震顫E.G.O飾品",
+        "怠惰，色慾優勢判定 成功後，獲得1件震顫E.G.O飾品"
+      ],
+      "keys": [
+        "ActionEvents_Mirror4.json|/dataList/10/options/1/messageDesc",
+        "ActionEvents_tkt.json|/dataList/2/options/1/messageDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "messageDesc",
+      "kr": "선택 시 모든 아군 정신력 회복.",
+      "zh": [
+        "選擇後，全體友方單位恢復理智。",
+        "選擇後，全體友方單位恢復理智值。"
+      ],
+      "keys": [
+        "ActionEvents-walpu4.json|/dataList/0/options/1/messageDesc",
+        "ActionEvents_Refraction4.json|/dataList/1/options/0/messageDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "messageDesc",
+      "kr": "전투 승리 시, 화상 E.G.O GIFT 2종 획득",
+      "zh": [
+        "戰鬥勝利後，獲得2件燒傷E.G.O 飾品",
+        "戰鬥勝利後，獲得2件燒傷E.G.O飾品"
+      ],
+      "keys": [
+        "ActionEvents_Mirror.json|/dataList/5/options/2/messageDesc",
+        "ActionEvents_Mirror.json|/dataList/13/options/2/messageDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "name",
+      "kr": "유로지비 아지트",
+      "zh": [
+        "聖愚的據點",
+        "聖愚 據點"
+      ],
+      "keys": [
+        "ActionEvents_Mirror4.json|/dataList/11/name",
+        "ActionEvents_tkt.json|/dataList/3/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "result",
+      "kr": "\"도시에서는 흔한 일이야.\"\n\n수감자 중 누군가가 한숨 섞인 목소리로 말했다.\n\n\".......\"\n\n앵두는 어떻게 안되겠냐는 표정을 하고 서 있지만, 막상 뛰쳐나가지는 않는다.\n\n앞으로의 전투나, 결국 마주할 뒤틀린 김삿갓을 상대하려면...\n\n필요 이상의 전투는 지양하는 것이 좋겠지.\n\n찝찝한 마음을 뒤에 남기고, 우리는 소란 옆을 지나갔다.",
+      "zh": [
+        "「這在都市很常見吧。」\n\n某位罪人輕聲嘆氣，說道。\n\n……\n\n櫻桃雖然一臉懇切地站著，卻沒有衝過去。\n\n為了這之後的戰鬥，以及最終能夠面對扭曲的金笠……\n\n需要盡可能減少戰鬥。\n\n拋開苦澀的心情，我們徑直走過。",
+        "「這在都市很常見吧。」\n\n某位罪人輕聲嘆氣，說道。\n\n「……」\n\n櫻桃雖然一臉懇切地站著，卻沒有衝過去。\n\n為了這之後的戰鬥，以及最終能夠面對扭曲的金笠……\n\n需要盡可能減少戰鬥。\n\n拋開苦澀的心情，我們徑直走過。"
+      ],
+      "keys": [
+        "ActionEvents_Mirror4.json|/dataList/2/options/1/result/0",
+        "ActionEvents_Ycgd.json|/dataList/0/options/1/result/0"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "result",
+      "kr": "\"뭘 그렇게까지 해. 이런 건 요령이라고.\"\n\n수감자들은 그럴 필요없다는 듯 서로 둥글게 모이더니, 낙하하는 자를 받아냈다.\n\n\"가, 감사합니다...\"\n\n그 자는 감사하다는 듯, 자신이 가진 것을 일부를 건네주었다.\n\n...그마저도 느렸지만, 수감자들은 이미 익숙해진 듯 누구 하나 볼멘소리 없이 기다려주었다가 그 자를 환송했다.",
+      "zh": [
+        "「何必搞得那麼誇張。這種事是有訣竅的。」\n\n罪人們像是在說沒那個必要似的，彼此聚在一起圍成一圈，接住了掉下來的人。\n\n「謝、謝謝各位……」\n\n那人似乎是為了表達感謝，把身上的一部分物品遞了過來。\n\n……就連這個動作都慢吞吞的，但罪人們似乎早已習慣，沒有一個人抱怨，靜靜地等候著，最後目送那人離去。",
+        "「沒什麼好緊張的。這種事有訣竅。」\n\n罪人們彷彿在說沒那個必要，聚在一起圍成了圓，接住了掉下來的人。\n\n「感、感謝各位……」\n\n那人似乎是為了表達感謝，把身上的一部分物品遞了過來。\n\n……即使動作慢吞吞的，但罪人們似乎早已習慣，沒有一個人抱怨，只是靜靜地等候著，最後目送那人離去。"
+      ],
+      "keys": [
+        "ActionEvents-tktRe.json|/dataList/0/options/1/result/0",
+        "ActionEvents_Mirror6.json|/dataList/5/options/1/result/0"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "result",
+      "kr": "\"뭘 그렇게까지 해. 이런 건 요령이라고.\"\n\n수감자들은 그럴 필요없다는 듯 서로 둥글게 모이더니, 낙하하는 자를 받아냈다.\n\n\"가, 감사합니다...\"\n\n그 자는 감사하다는 듯, 자신이 가진 것을 일부를 건네주었다.\n\n다만, 무릎을 접질린 누군가도 있었던 것 같다...",
+      "zh": [
+        "「何必搞得那麼誇張。這種事是有訣竅的。」\n\n罪人們像是在說沒那個必要似的，彼此聚在一起圍成一圈，接住了掉下來的人。\n\n「謝、謝謝各位……」\n\n那人似乎是為了表達感謝，把身上的一部分物品遞了過來。\n\n不過，好像也有人扭傷了膝蓋……",
+        "「沒什麼好緊張的。這種事有訣竅。」\n\n罪人們彷彿在說沒那個必要，聚在一起圍成了圓，接住了掉下來的人。\n\n「感、感謝各位……」\n\n那人似乎是為了表達感謝，把身上的一部分物品遞了過來。\n\n不過，好像也有人扭傷了膝蓋……"
+      ],
+      "keys": [
+        "ActionEvents-tktRe.json|/dataList/0/options/1/result/1",
+        "ActionEvents_Mirror6.json|/dataList/5/options/1/result/1"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "result",
+      "kr": "\"안타깝다라...\"\n\n검을 찬 자가 팔짱을 낀 채로 한숨을 푹 쉰다.\n\n\"그래, 그리 생각할 수도 있겠지. 생각은 자유히 해야하는 법.\"\n\n\"그러나 별 생각이 없을 것이라면, 함부로 안타까움을 느끼는 것도 죄악일 수 있음은 알았으면 좋겠군.\"\n\n둘은 어딘가 어두운 표정을 지으며, 등을 돌려 어딘가로 걸어나갔다.",
+      "zh": [
+        "「可憐嗎……」\n\n腰間佩劍的人雙手叉腰，深深嘆了口氣。\n\n「是，也可以這麼想。思考本身是自由的。」\n\n「可我希望你明白，如果你對此沒有任何想法，僅僅是心懷浮而不實的憐憫，那也是一種罪惡。」\n\n兩人帶著陰沉的表情，背身走向遠處。",
+        "「可憐嗎……」\n\n腰間佩劍的人雙手叉腰，深深嘆了口氣。\n\n「是，也可以這麼想。思考本身是自由的。」\n\n「可我希望你明白，如果你對此沒有任何想法，僅僅是心懷虛浮的憐憫，那也是一種罪惡。」\n\n兩人帶著陰沉的表情，背身走向遠處。"
+      ],
+      "keys": [
+        "ActionEvents_Mirror4.json|/dataList/6/options/1/result/0",
+        "ActionEvents_Ycgd.json|/dataList/4/options/1/result/0"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "result",
+      "kr": "\"으음~ 맛있는 향기가 나는데, 어~디~서 나는 것인지 모르겠네?!\"\n\"...좀 더 그럴 듯한 연기는 안되나 보네요.\"\n수감자의 외침 덕인지, 격렬하게 춤을 추던 닭들이 동시에 멈춰섰다.\n서로의 등을 살펴보던 닭들은, 곧이어 양념이 새어나오는 진원지를 찾았다.\n\"끼에, 끼엡.\"\n\"기에.\"\n그들은 당황하지 않고 실과 바늘로 그것의 등(이라고 생각되는 곳)을 봉합했다.\n그 모습은 능숙하며 빈틈이 없었다.\n봉합이 끝나자, 그들은 조명 밖으로 총총총 사라져 갔다.\n남은 것은 그들이 쓰던 실과 바늘 뿐이었다.",
+      "zh": [
+        "「唔嗯～兄弟，啥味道這麼香啊！真想知道知道這香味～是從哪裡～來的啊～？！」\n「……我要是真的希望這表演能更逼真點就傻到家了。」\n罪人的聲音打斷了雞激情的舞步。\n它們互相檢查著對方的背部，隨後很快找到是誰灑了醬汁。\n「咳額……咳咳咳……」\n「嘎嘎。」\n它們並沒有就此慌亂，而是拿出針線縫好了它的背——抑或大概是它背的地方。\n它們彷彿習慣了這項手藝活。\n線一縫好，它們就迅速逃回了黑暗之中。\n留在地上的，只有用過的針與線。",
+        "「唔嗯～兄弟，啥味道這麼香啊！真想知道知道這香味～是從哪裡～來的啊～？！」\n「……我要是真的希望這表演能更逼真點就傻到家了。」\n罪人的聲音打斷了雞激情的舞步。\n它們互相檢查著對方的背部，隨後很快找到是誰灑了醬汁。\n「咳額……咳咳咳……」\n「嘎嘎。」\n它們並沒有就此慌亂，而是拿出針線縫好了它的背——或者說大概是它背的地方。\n它們彷彿習慣了這項手藝活。\n線一縫好，它們就迅速逃回了黑暗之中。\n留在地上的，只有用過的針與線。"
+      ],
+      "keys": [
+        "ActionEvents.json|/dataList/37/options/2/result/0",
+        "ActionEvents_Mirror4.json|/dataList/1/options/2/result/0"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "([Breath] 위력/3)만큼 추가 오만 피해",
+      "zh": [
+        "額外造成(自身的 [Breath] 強度÷3)點傲慢傷害",
+        "額外造成(自身的 [Breath] 強度/3)點傲慢傷害"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/14/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon-ycgd.json|/dataList/3/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "(피해량/2)만큼 추가 고정 피해를 입힘",
+      "zh": [
+        "額外受到(造成的傷害÷2)的固定傷害",
+        "使目標受到(造成的傷害÷2)的額外固定傷害"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/4/simpleDesc/0/simpleDesc",
+        "EGOgift_StoryDungeon.json|/dataList/37/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "[AttackDmgUp] 3 얻음",
+      "zh": [
+        "獲得3層 [AttackDmgUp] ",
+        "獲得3層 [AttackDmgUp]"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon.json|/dataList/17/simpleDesc/1/simpleDesc",
+        "EGOgift_MirrorDungeon.json|/dataList/136/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "[Burst] 위력 3, [Burst] 횟수 2 부여",
+      "zh": [
+        "增加3級 [Burst] 強度並施加2回 [Burst] ",
+        "使目標增加2級 [Burst] 強度與2回 [Burst] "
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon.json|/dataList/44/simpleDesc/1/simpleDesc",
+        "EGOgift_MirrorDungeon.json|/dataList/230/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "[Burst] 위력 4, [Burst] 횟수 3 부여",
+      "zh": [
+        "增加4級 [Burst] 強度並施加3回 [Burst] ",
+        "增加4級 [Burst] 強度並施加3回 [Burst]"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon.json|/dataList/87/simpleDesc/1/simpleDesc",
+        "EGOgift_MirrorDungeon.json|/dataList/116/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "[Charge] 횟수 4 증가",
+      "zh": [
+        "獲得4回 [Charge] ",
+        "獲得4回 [Charge]"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon.json|/dataList/78/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon.json|/dataList/142/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "[Laceration] 위력 5, [Laceration] 횟수 1 부여",
+      "zh": [
+        "增加5級 [Laceration] 強度並施加1回 [Laceration] ",
+        "增加5級 [Laceration] 強度並施加1回 [Laceration]"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon.json|/dataList/10/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon.json|/dataList/172/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "[Laceration] 횟수 2 추가로 부여",
+      "zh": [
+        "額外增加2回 [Laceration]",
+        "額外施加2回 [Laceration]"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/13/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon-ycgd.json|/dataList/2/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "[Vibration] 위력 2, [Vibration] 횟수 2 부여",
+      "zh": [
+        "增加2級 [Vibration] 強度與2回 [Vibration]",
+        "增加2級 [Vibration] 強度並施加2回 [Vibration] "
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/25/simpleDesc/0/simpleDesc",
+        "EGOgift_StoryDungeon-tkt.json|/dataList/5/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "[Vibration] 위력 3, [Vibration] 횟수 3 부여",
+      "zh": [
+        "增加3級 [Vibration] 強度與3回 [Vibration]",
+        "增加3級 [Vibration] 強度並施加3回 [Vibration] "
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/25/simpleDesc/1/simpleDesc",
+        "EGOgift_StoryDungeon-tkt.json|/dataList/5/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "[Vibration] 횟수 3 증가",
+      "zh": [
+        "對自身施加3回 [Vibration] ",
+        "施加3回 [Vibration] "
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/29/simpleDesc/2/simpleDesc",
+        "EGOgift_StoryDungeon-tkt.json|/dataList/9/simpleDesc/2/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "가하는 피해량 +(대상이 보유한 [Vibration] 위력)%, 피해를 입힐 때마다 [DefenseDown] 2 부여",
+      "zh": [
+        "造成的傷害+(目標的 [Vibration] 強度)%，造成傷害時施加2層 [DefenseDown]",
+        "造成的傷害+(目標的 [Vibration] 強度)%，造成傷害時施加2層 [DefenseDown] "
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/28/simpleDesc/1/simpleDesc",
+        "EGOgift_StoryDungeon-tkt.json|/dataList/8/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "가하는 피해량 20% 증가",
+      "zh": [
+        "造成的傷害+20%",
+        "造成的傷害增加20%"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon.json|/dataList/52/simpleDesc/2/simpleDesc",
+        "EGOgift_MirrorDungeon.json|/dataList/118/simpleDesc/2/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "다음 턴 시작 시 [Charge] 횟수 3 증가",
+      "zh": [
+        "下回合開始時獲得3層 [Charge]",
+        "下回合開始時獲得3回 [Charge] "
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon.json|/dataList/257/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon.json|/dataList/258/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "다음 턴에 [Vibration] 위력 3, [Vibration] 횟수 2 부여",
+      "zh": [
+        "下回合增加3級 [Vibration] 強度與2回 [Vibration]",
+        "下回合增加3級 [Vibration] 強度並施加2回 [Vibration]"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/21/simpleDesc/1/simpleDesc",
+        "EGOgift_StoryDungeon-tkt.json|/dataList/1/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "다음 턴에 [Vibration] 횟수 2 부여",
+      "zh": [
+        "下回合增加2回 [Vibration]",
+        "下回合施加2回 [Vibration]"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/20/simpleDesc/1/simpleDesc",
+        "EGOgift_StoryDungeon-tkt.json|/dataList/0/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "받는 피해량 20% 감소",
+      "zh": [
+        "受到的傷害-20%",
+        "受到的傷害減少20%"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon.json|/dataList/52/simpleDesc/1/simpleDesc",
+        "EGOgift_MirrorDungeon.json|/dataList/118/simpleDesc/3/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "방어 레벨 증가 얻음",
+      "zh": [
+        "獲得防禦等級提升 ",
+        "獲得防禦等級提升"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon.json|/dataList/347/simpleDesc/1/simpleDesc",
+        "EGOgift_MirrorDungeon_6.json|/dataList/2/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "색욕 위력 증가 얻음",
+      "zh": [
+        "獲得色慾威力提升 ",
+        "獲得色慾威力提升"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/44/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/57/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "스킬 3의 코인 위력 +2, 피해량 +(25 + 대상이 보유한 [Vibration] 위력과 [Vibration] 횟수의 합)%",
+      "zh": [
+        "3技能的硬幣威力+2、造成的傷害+(25+(目標的 [Vibration] 強度與 [Vibration] 回數之和))%",
+        "3技能的硬幣威力+2，造成的傷害+(25+目標的 [Vibration] 強度與 [Vibration] 回數之和)%"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/29/simpleDesc/1/simpleDesc",
+        "EGOgift_StoryDungeon-tkt.json|/dataList/9/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "참격 스킬 피해량 +20%",
+      "zh": [
+        "斬擊技能造成的傷害+20%",
+        "斬擊技能的傷害+20%"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon.json|/dataList/272/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon.json|/dataList/273/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "참격 위력 증가 1 얻음",
+      "zh": [
+        "獲得1層斬擊威力提升",
+        "獲得1層斬擊威力提升 "
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/12/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon-ycgd.json|/dataList/1/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "참격 위력 증가 2 얻음",
+      "zh": [
+        "獲得2層斬擊威力提升",
+        "獲得2層斬擊威力提升 "
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/12/simpleDesc/1/simpleDesc",
+        "EGOgift_MirrorDungeon-ycgd.json|/dataList/1/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "충전 역장 얻음",
+      "zh": [
+        "獲得充能力場",
+        "獲得充能力場 "
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-mowe-re.json|/dataList/1/simpleDesc/4/simpleDesc",
+        "EGOgift_MirrorDungeon-mowe.json|/dataList/3/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "합 위력 +2, 가하는 피해량 +(대상이 보유한 [Vibration] 위력)%",
+      "zh": [
+        "拚點威力+2、造成的傷害+(目標的 [Vibration] 強度)%",
+        "拚點威力+2，造成的傷害+(目標的 [Vibration] 強度)%"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/30/simpleDesc/1/simpleDesc",
+        "EGOgift_StoryDungeon-tkt.json|/dataList/10/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "합 위력 증가, 공격 레벨 증가 얻음",
+      "zh": [
+        "拚點威力增加、獲得攻擊等級提升",
+        "獲得拚點威力提升 與攻擊等級提升  "
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-mowe.json|/dataList/10/simpleDesc/1/simpleDesc",
+        "EGOgift_MirrorDungeon.json|/dataList/354/simpleDesc/1/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "합 위력+2, 가하는 피해량 +20%",
+      "zh": [
+        "拚點威力+2、造成的傷害+20%",
+        "拚點威力+2，造成的傷害+20%"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon-EventTheme.json|/dataList/25/simpleDesc/2/simpleDesc",
+        "EGOgift_StoryDungeon-tkt.json|/dataList/5/simpleDesc/2/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "simpleDesc",
+      "kr": "호흡 위력, 횟수 얻음",
+      "zh": [
+        "獲得呼吸法 強度與回數",
+        "獲得呼吸法強度與回數"
+      ],
+      "keys": [
+        "EGOgift_MirrorDungeon_6.json|/dataList/5/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon_7.json|/dataList/13/simpleDesc/0/simpleDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "subDesc",
+      "kr": "사용 안하는 텍스트",
+      "zh": [
+        "未使用的文字",
+        "用不到的文本"
+      ],
+      "keys": [
+        "ActionEvents-a1c7p3.json|/dataList/0/subDesc",
+        "ActionEvents_Refraction2.json|/dataList/0/subDesc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "railway",
+      "field": "content",
+      "kr": "2호선 진입 전",
+      "zh": [
+        "進入2號線前",
+        "進入2號線"
+      ],
+      "keys": [
+        "RailwayDungeonStationName1002.json|/dataList/0/nameList/0/content",
+        "RailwayDungeonStationName2.json|/dataList/0/nameList/0/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "railway",
+      "field": "content",
+      "kr": "버프 선택",
+      "zh": [
+        "選擇BUFF",
+        "選擇增益"
+      ],
+      "keys": [
+        "RailwayDungeonUI_2.json|/dataList/27/content",
+        "RailwayDungeonUI_5.json|/dataList/20/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "railway",
+      "field": "content",
+      "kr": "상세 정보",
+      "zh": [
+        "詳細情報",
+        "詳細資訊"
+      ],
+      "keys": [
+        "RailwayDungeonUI.json|/dataList/21/content",
+        "RailwayDungeonUI_5.json|/dataList/9/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "railway",
+      "field": "content",
+      "kr": "스테이지 재도전",
+      "zh": [
+        "再次挑戰關卡",
+        "重試關卡"
+      ],
+      "keys": [
+        "RailwayDungeonUI_2.json|/dataList/37/content",
+        "RailwayDungeonUI_4.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "railway",
+      "field": "content",
+      "kr": "제6역 - 선발",
+      "zh": [
+        "第6站 - 選拔",
+        "第6站 - 提撥"
+      ],
+      "keys": [
+        "RailwayDungeonStationName1-1.json|/dataList/0/nameList/6/content",
+        "RailwayDungeonStationName1001.json|/dataList/0/nameList/6/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "railway",
+      "field": "content",
+      "kr": "최종 누적 턴",
+      "zh": [
+        "總計回合數",
+        "最終累計回合"
+      ],
+      "keys": [
+        "RailwayDungeonUI.json|/dataList/2/content",
+        "RailwayDungeonUI_3.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "railway",
+      "field": "content",
+      "kr": "클리어 정보",
+      "zh": [
+        "通關訊息",
+        "通關資訊"
+      ],
+      "keys": [
+        "RailwayDungeonUI_5.json|/dataList/2/content",
+        "RailwayDungeonUI_5.json|/dataList/3/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "railway",
+      "field": "shortName",
+      "kr": "시착역",
+      "zh": [
+        "起點站",
+        "始發站"
+      ],
+      "keys": [
+        "RailwayDungeonStationName2.json|/dataList/0/nameList/1/shortName",
+        "RailwayDungeonStationName3.json|/dataList/0/nameList/1/shortName"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "<그, 그런가?>",
+      "zh": [
+        "<是、是這樣嗎？>",
+        "<是、是嗎？>"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/35/texts/9/text",
+        "RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/42/texts/1/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "<뫼르소, 괜찮아?>",
+      "zh": [
+        "<莫梭，沒事嗎？>",
+        "<莫梭，你沒事吧？>"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/107/texts/1/text",
+        "RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/100/texts/1/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "<이 아니고 내 시계 소리를 이해하고 있는 건가?!>",
+      "zh": [
+        "<不對，難道她能理解我的滴答聲嗎？！>",
+        "<不對……難道她能理解我的鐘聲嗎？！>"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json|/dataList/5/texts/2/text",
+        "RPGSystem/rpg-loc-dialogue-route-c.json|/dataList/2/texts/2/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "가지 않는다",
+      "zh": [
+        "不走",
+        "不離開"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-choice-floor-b1-b.json|/dataList/9/text",
+        "RPGSystem/rpg-loc-dialogue-choice-floor-b1.json|/dataList/12/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "간다",
+      "zh": [
+        "走",
+        "離開"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-choice-floor-b1-b.json|/dataList/8/text",
+        "RPGSystem/rpg-loc-dialogue-choice-floor-b1.json|/dataList/11/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "그런데… 다친 곳은 없어, 뫼르?",
+      "zh": [
+        "話說回來……有受傷嗎，小莫？",
+        "話說回來……你有受傷嗎，小莫？"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/21/texts/0/text",
+        "RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/22/texts/0/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "너희 남은 병들 있어? 아니면 남은 손바닥이라도 좋은데.",
+      "zh": [
+        "你們還有多餘的瓶子嗎？不然空著的手也行啦。",
+        "你們還有多餘的瓶子嗎？不然空著的手也可以啦。"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/5/texts/0/text",
+        "RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/65/texts/0/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "뭐, 뭐하시는 건데요.",
+      "zh": [
+        "妳、妳在做什麼啊？",
+        "妳、妳在做什麼啊。"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-floor-1-c2.json|/dataList/7/texts/8/text",
+        "RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/125/texts/8/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "아니? 이 매장에서 직원들은 충분해. 부족한 건 옷감이지.",
+      "zh": [
+        "不是啊？這個專櫃夠多員工了。缺少的是布料。",
+        "不是啊？這個專櫃已經夠多員工了。缺少的是布料。"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/13/texts/36/text",
+        "RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/12/texts/20/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "오오, 그렇군요… 당신의 목소리가 다시 울립니다…! 이자들은 정말 아무것도 모르는 이방인들이었군요. 그저 우리 브랜드의 가치에 이끌려서 온 고객들일 뿐… 이들을 다시 응대하겠습니다.",
+      "zh": [
+        "哦哦，原來如此……您的聲音又再次響起了……！這群人原來真的是什麼都不知道的異鄉人啊。只不過是被我們的品牌價值吸引而來的顧客而已……就由我來重新接待他們吧。",
+        "哦哦，原來如此……您的聲音又再次響起了……！這群人原來真的是什麼都不知道的異鄉人啊。只不過是被我等的品牌價值吸引而來的顧客而已……就由我來重新接待他們吧。"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/40/texts/4/text",
+        "RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/47/texts/4/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "으으음…",
+      "zh": [
+        "嗚嗚嗯……",
+        "唔唔嗯……"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/23/texts/1/text",
+        "RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/15/texts/0/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "자세히 보니 그건 우리가 영구히 보존하려는 황금송진과는 비슷하지만 어딘가 다른 궤적이군요…",
+      "zh": [
+        "仔細一看，那似乎與我們想永久保存的黃金松脂相似，卻又不太一樣的軌跡……",
+        "仔細一看，那似乎是與我等想永久保存的黃金松脂相似，卻又不太一樣的軌跡……"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/40/texts/1/text",
+        "RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/47/texts/1/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "rpg",
+      "field": "text",
+      "kr": "퀘스트 안내 화살표",
+      "zh": [
+        "任務導引的箭頭",
+        "任務引導的箭頭"
+      ],
+      "keys": [
+        "RPGSystem/rpg-loc-ui-common-a1c10p1.json|/dataList/122/text",
+        "RPGSystem/rpg-loc-ui-common-a1c10p2.json|/dataList/10/text"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "content",
+      "kr": "'경계심'이 10에 도달할 경우 플로어 매니저가 강력한 스킬을 사용합니다.\n경계심이 쌓이지 않도록 주의하거나 특정 스킬에 합을 패배하면 경계심을 제거할 수 있습니다.",
+      "zh": [
+        "「戒心」達到10時，樓層經理會使用強力技能。\n請注意不要讓戒心累積；與特定技能拚點失敗也能移除戒心。",
+        "「戒心」層數達到10層時，樓層經理將使用強力技能。\n請注意別讓戒心累積；此外，與特定技能拚點落敗也能移除戒心。"
+      ],
+      "keys": [
+        "BattleResultHint-a1c10p1.json|/dataList/6/content",
+        "BattleResultHint-a1c10p2.json|/dataList/14/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "content",
+      "kr": "'경청에 대한 감사'를 보유했다면 잠깐 동안 공격을 하지 않는 것도 방법입니다.",
+      "zh": [
+        "若帶有「感謝傾聽」，暫時不進行攻擊也是個辦法。",
+        "若帶有「感謝傾聽」，暫時不進行攻擊也是一種方法。"
+      ],
+      "keys": [
+        "BattleResultHint-a1c10p1.json|/dataList/7/content",
+        "BattleResultHint-a1c10p2.json|/dataList/15/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "content",
+      "kr": "<color=#ebcaa2>E.G.O 기프트 {reward} 획득!</color>",
+      "zh": [
+        "<color=#ebcaa2>獲得E.G.O飾品 {reward}！</color>",
+        "<color=#ebcaa2>獲得E.G.O飾品{reward}！</color>"
+      ],
+      "keys": [
+        "ChoiceEventEffect.json|/dataList/22/content",
+        "ChoiceEventEffect.json|/dataList/109/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "content",
+      "kr": "경험치",
+      "zh": [
+        "經驗值",
+        "經驗"
+      ],
+      "keys": [
+        "ProjectGS.json|/dataList/25/content",
+        "RewardDungeonUI.json|/dataList/20/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "content",
+      "kr": "바느질의 왕이 강력한 스킬을 사용하는 턴에 바늘이들이 생존해있다면 큰 피해를 받을 수 있습니다.",
+      "zh": [
+        "在裁縫之王使用強力技能的回合，若針靈們仍然存活，可能會受到大量傷害。",
+        "若在裁縫之王使用強力技能的回合中仍有針靈存活，可能會受到大量傷害。"
+      ],
+      "keys": [
+        "BattleResultHint-a1c10p1.json|/dataList/12/content",
+        "BattleResultHint-a1c10p2.json|/dataList/9/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "content",
+      "kr": "바늘못 수치가 높은 상태로 ‘피크스티치 일부러 눈에 띄게 박았냐고?! 그렇게 쳐박아주마!’ 스킬에 피격당하면 박제 상태가 되며 큰 피해를 받습니다.",
+      "zh": [
+        "在針釘數值高的狀態下被技能「你說我是故意把明線縫得這麼顯眼嗎？！那我就照樣把你縫個稀巴爛！」擊中，會進入標本狀態並受到大量傷害。",
+        "若在針釘層數較高的狀態下被技能「你說我是故意把明線縫得這麼顯眼嗎？！那我就照樣把你縫個稀巴爛！」擊中，將會陷入標本狀態並受到大量傷害。"
+      ],
+      "keys": [
+        "BattleResultHint-a1c10p1.json|/dataList/11/content",
+        "BattleResultHint-a1c10p2.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "content",
+      "kr": "수셰프가 아무도 처치하지 못한 턴에는 '배고픈 거예요'가 쌓입니다.\n수치가 3에 도달하면 또 다른 강력한 스킬을 사용하니, 한 번씩은 요리하도록 내버려 두는 것도 방법입니다.",
+      "zh": [
+        "副廚在沒有擊殺任何人的回合會累積「肚子餓了喔」。\n數值達到3時會使用另一個強力技能，所以偶爾讓她料理一下也是個辦法。",
+        "副廚在沒能擊殺任何目標的回合會累積「肚子餓了喔」。\n層數達到3層時，她將使用另一個強力技能，因此偶爾放任她料理一次也是一種方法。"
+      ],
+      "keys": [
+        "BattleResultHint-a1c10p1.json|/dataList/4/content",
+        "BattleResultHint-a1c10p2.json|/dataList/12/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "content",
+      "kr": "수셰프는 자신의 가죽 지갑도 재료로 삼기 때문에, 수감자만 지켜서는 요리를 막을 수 없습니다.",
+      "zh": [
+        "副廚也會把自己的皮夾當作食材，因此光是保護罪人是無法阻止她料理的。",
+        "副廚連自己的皮夾也會當成食材，因此只保護罪人是無法阻止她料理的。"
+      ],
+      "keys": [
+        "BattleResultHint-a1c10p1.json|/dataList/3/content",
+        "BattleResultHint-a1c10p2.json|/dataList/11/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "content",
+      "kr": "수셰프는 처치한 대상으로 '토막난 요리재료'를 얻고, 턴이 끝날 때 이를 먹어 '맛있는거 먹고 힘난다는거예요'를 쌓습니다.\n수치가 쌓일수록 강력한 스킬 '제 시그니쳐인 거예요'가 빨라지고 강해집니다.",
+      "zh": [
+        "副廚會從擊殺的目標身上獲得「切塊的食材」，並在回合結束時吃掉它們，累積「吃了好吃的東西就會變得有精神呢」。\n數值累積得越多，強力技能「這可是我的招牌刀法喔」就會越快發動、威力也越強。",
+        "副廚會從擊殺的目標身上獲得「切塊的食材」，並在回合結束時將其吃掉，累積「吃了好吃的東西就會變得有精神呢」。\n層數累積得越多，強力技能「這可是我的招牌刀法喔」就會越快發動，威力也越強。"
+      ],
+      "keys": [
+        "BattleResultHint-a1c10p1.json|/dataList/2/content",
+        "BattleResultHint-a1c10p2.json|/dataList/10/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "desc",
+      "kr": "맞은편에서 범상치 않아 보이는 외형의 K사 전투원들이 보인다. 동랑과 삼조도 이야기를 잘 마쳤는지 우리와 다시 합류했다.",
+      "zh": [
+        "我們發現另一側有異狀的K公司成員。東朗和三朝重新回到隊伍中；談話似乎進展順利。",
+        "我們發現另一側有異狀的K公司成員。東朗和三朝重新回到隊伍中，談話似乎進展順利。"
+      ],
+      "keys": [
+        "StageNode1-4.json|/dataList/40/desc",
+        "StageNode1-4.json|/dataList/41/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "title",
+      "kr": "꿈에 닿으려 했던 위대한 해결사에 대한 이야기",
+      "zh": [
+        "偉大的收尾人追求夢想的故事",
+        "關於偉大的收尾人追求夢想的故事"
+      ],
+      "keys": [
+        "StageNode-a1c7p3.json|/dataList/0/title",
+        "StoryTheaterMain.json|/dataList/12/title"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "title",
+      "kr": "마스터 치킨 셰프",
+      "zh": [
+        "鐵血雞廚",
+        "大師雞廚"
+      ],
+      "keys": [
+        "StageNode91-3.json|/dataList/6/title",
+        "StageNode91-3.json|/dataList/7/title"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "title",
+      "kr": "습격",
+      "zh": [
+        "突襲",
+        "襲擊"
+      ],
+      "keys": [
+        "StageNode1-4.json|/dataList/28/title",
+        "StageNode91-16.json|/dataList/3/title"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "stage",
+      "field": "title",
+      "kr": "환영 인사",
+      "zh": [
+        "熱情歡迎",
+        "熱烈歡迎"
+      ],
+      "keys": [
+        "StageNode-a1c6p1.json|/dataList/8/title",
+        "StageNode1-2.json|/dataList/12/title"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "<…가자.>",
+      "zh": [
+        "<……走吧。>",
+        "<……上吧。>"
+      ],
+      "keys": [
+        "StoryData/E063X.json|/dataList/161/content",
+        "StoryData/E407B.json|/dataList/79/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "<…어떡하지?>",
+      "zh": [
+        "<……該怎麼辦？>",
+        "<……怎麼做？>"
+      ],
+      "keys": [
+        "StoryData/PC06B.json|/dataList/31/content",
+        "StoryData/PC09B.json|/dataList/42/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "<…어떻게 생각해, 파우스트?>",
+      "zh": [
+        "<……妳怎麼想，浮士德。>",
+        "<……妳怎麼想呢，浮士德？>"
+      ],
+      "keys": [
+        "StoryData/PC07B.json|/dataList/76/content",
+        "StoryData/PC13B.json|/dataList/57/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "<그, 그만…>",
+      "zh": [
+        "<停、停下……>",
+        "<夠、夠了……>"
+      ],
+      "keys": [
+        "StoryData/E001X.json|/dataList/145/content",
+        "StoryData/E917B.json|/dataList/171/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "<다행이네…>",
+      "zh": [
+        "<很好……>",
+        "<太好了……>"
+      ],
+      "keys": [
+        "StoryData/E070X.json|/dataList/7/content",
+        "StoryData/E920B.json|/dataList/22/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "<아니…>",
+      "zh": [
+        "<不了……>",
+        "<不是……>"
+      ],
+      "keys": [
+        "StoryData/E091X.json|/dataList/69/content",
+        "StoryData/E702B.json|/dataList/111/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "…감사합니다.",
+      "zh": [
+        "……謝謝。",
+        "……謝謝您。"
+      ],
+      "keys": [
+        "StoryData/E904B.json|/dataList/40/content",
+        "StoryData/E915B.json|/dataList/34/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "…그런가.",
+      "zh": [
+        "……是嗎。",
+        "……這樣啊。"
+      ],
+      "keys": [
+        "StoryData/E914B.json|/dataList/65/content",
+        "StoryData/PC12B.json|/dataList/39/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "…그리고.",
+      "zh": [
+        "……還有，",
+        "……以及。"
+      ],
+      "keys": [
+        "StoryData/E041X.json|/dataList/79/content",
+        "StoryData/E519A.json|/dataList/136/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "…여기는.",
+      "zh": [
+        "……此處。",
+        "……這裡是。"
+      ],
+      "keys": [
+        "StoryData/E805B.json|/dataList/9/content",
+        "StoryData/E909B.json|/dataList/1/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "감사합니다. 그럼…",
+      "zh": [
+        "感謝大家。那麼……",
+        "謝謝各位。那麼……"
+      ],
+      "keys": [
+        "StoryData/E618B.json|/dataList/67/content",
+        "StoryData/E908B.json|/dataList/18/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "거기 적힌 걸 뒤틀린 자기 앞에서 읽어주면 된대요. 일종의… 암호 같은 거라고 하셨어요.",
+      "zh": [
+        "你可以在他面前讀出寫在上面的東西。他說那是一種……像密碼之類的東西。",
+        "聽說只要在扭曲後的他面前，把上面寫的東西念出來就行了。他說那是一種……像密碼之類的東西。"
+      ],
+      "keys": [
+        "StoryData/E714B.json|/dataList/77/content",
+        "StoryData/E923I.json|/dataList/32/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "그때.",
+      "zh": [
+        "就在這時。",
+        "就在那時。"
+      ],
+      "keys": [
+        "StoryData/E061X.json|/dataList/72/content",
+        "StoryData/E923B.json|/dataList/53/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "그러니…",
+      "zh": [
+        "所以……",
+        "但是……"
+      ],
+      "keys": [
+        "StoryData/E053X.json|/dataList/93/content",
+        "StoryData/E082X.json|/dataList/68/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "그럴 수가…",
+      "zh": [
+        "怎會如此……",
+        "怎麼會……"
+      ],
+      "keys": [
+        "StoryData/E402B.json|/dataList/8/content",
+        "StoryData/ES030A.json|/dataList/15/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "그럼.",
+      "zh": [
+        "就這樣。",
+        "那麼。"
+      ],
+      "keys": [
+        "StoryData/E509B.json|/dataList/71/content",
+        "StoryData/E914B.json|/dataList/117/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "그렇게.",
+      "zh": [
+        "於是乎……",
+        "於是乎。"
+      ],
+      "keys": [
+        "StoryData/E303A.json|/dataList/4/content",
+        "StoryData/E519A.json|/dataList/146/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "꿀꺽…",
+      "zh": [
+        "唔……",
+        "咕嚕……"
+      ],
+      "keys": [
+        "StoryData/E407B.json|/dataList/9/content",
+        "StoryData/ES290B.json|/dataList/134/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "나도, 에즈라도… 그 착각을 바로잡는 것에 제법 많은 시간을 쓰고 있지.",
+      "zh": [
+        "我也好，以斯拉也好……至今都花了不少時間在糾正那個誤解。",
+        "我也好，以斯拉也好……都還在花不少時間糾正那個錯覺。"
+      ],
+      "keys": [
+        "StoryData/E909B.json|/dataList/65/content",
+        "StoryData/E917B.json|/dataList/131/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "다만…",
+      "zh": [
+        "只不過……",
+        "但是……"
+      ],
+      "keys": [
+        "StoryData/E063X.json|/dataList/13/content",
+        "StoryData/E711B.json|/dataList/106/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "뭐… 뭐?",
+      "zh": [
+        "做……什麼？",
+        "什麼……什麼？"
+      ],
+      "keys": [
+        "StoryData/E304A.json|/dataList/25/content",
+        "StoryData/E610A.json|/dataList/20/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "아니, 그게 아니라…",
+      "zh": [
+        "不，我說的不是那個……",
+        "不是，我不是那意思……"
+      ],
+      "keys": [
+        "StoryData/E712B.json|/dataList/48/content",
+        "StoryData/E716B.json|/dataList/22/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "아무것도.",
+      "zh": [
+        "不做什麼。",
+        "什麼都沒有。"
+      ],
+      "keys": [
+        "StoryData/E728B.json|/dataList/40/content",
+        "StoryData/ES300A.json|/dataList/55/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "알겠습니다.",
+      "zh": [
+        "了解。",
+        "我知道了。"
+      ],
+      "keys": [
+        "StoryData/E511A.json|/dataList/18/content",
+        "StoryData/E721B.json|/dataList/80/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "어…?",
+      "zh": [
+        "咦……？",
+        "哦……？"
+      ],
+      "keys": [
+        "StoryData/E907B.json|/dataList/170/content",
+        "StoryData/E926A.json|/dataList/34/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "예에?!",
+      "zh": [
+        "啊啊？！",
+        "哈啊？！"
+      ],
+      "keys": [
+        "StoryData/E301A.json|/dataList/42/content",
+        "StoryData/E301A.json|/dataList/61/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "우리는…",
+      "zh": [
+        "我們......",
+        "我們……"
+      ],
+      "keys": [
+        "StoryData/E091X.json|/dataList/49/content",
+        "StoryData/E705B.json|/dataList/88/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "으음.",
+      "zh": [
+        "嗯。",
+        "唔嗯。"
+      ],
+      "keys": [
+        "StoryData/E501B.json|/dataList/53/content",
+        "StoryData/ES120B.json|/dataList/16/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "윽…",
+      "zh": [
+        "咕……",
+        "唔……"
+      ],
+      "keys": [
+        "StoryData/E808A.json|/dataList/0/content",
+        "StoryData/ES210B.json|/dataList/54/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "잠깐…",
+      "zh": [
+        "等下……",
+        "等一下……"
+      ],
+      "keys": [
+        "StoryData/E620B.json|/dataList/21/content",
+        "StoryData/E712B.json|/dataList/45/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "저건…?",
+      "zh": [
+        "那是……？",
+        "何況……？"
+      ],
+      "keys": [
+        "StoryData/ES050B.json|/dataList/31/content",
+        "StoryData/ES050B.json|/dataList/41/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "조금 전…",
+      "zh": [
+        "剛才……",
+        "不久前……"
+      ],
+      "keys": [
+        "StoryData/E627B.json|/dataList/55/content",
+        "StoryData/ES013B.json|/dataList/4/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "좋습니다.",
+      "zh": [
+        "很好。",
+        "好的。"
+      ],
+      "keys": [
+        "StoryData/E042X.json|/dataList/30/content",
+        "StoryData/E054X.json|/dataList/79/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "좋아요, 요시히데. 학교는 아니더라도, 비슷한 곳에 갈 수 있게 제가 도와드리죠.",
+      "zh": [
+        "好吧，<ruby=ヨシヒデ>良秀</ruby>。就算不是學校，我也會幫妳去個類似的地方。",
+        "好吧，<ruby=ヨシヒデ>良秀</ruby>。雖然不是學校，但我會幫妳去一個類似的地方。"
+      ],
+      "keys": [
+        "StoryData/E907B.json|/dataList/93/content",
+        "StoryData/E907B.json|/dataList/118/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "커헉…",
+      "zh": [
+        "啊……",
+        "咕啊……"
+      ],
+      "keys": [
+        "StoryData/E519A.json|/dataList/17/content",
+        "StoryData/E625I.json|/dataList/0/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "쿵!",
+      "zh": [
+        "轟！",
+        "砰！"
+      ],
+      "keys": [
+        "StoryData/E916B.json|/dataList/19/content",
+        "StoryData/ES012B.json|/dataList/0/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "하나… 둘…",
+      "zh": [
+        "ㄧ……二……",
+        "一……二……"
+      ],
+      "keys": [
+        "StoryData/E801B.json|/dataList/96/content",
+        "StoryData/PC09B.json|/dataList/35/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "허면…",
+      "zh": [
+        "即是說……",
+        "那麼……"
+      ],
+      "keys": [
+        "StoryData/E061X.json|/dataList/60/content",
+        "StoryData/E919A.json|/dataList/32/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "호오…",
+      "zh": [
+        "嚯……",
+        "哦……"
+      ],
+      "keys": [
+        "StoryData/E605B.json|/dataList/43/content",
+        "StoryData/ES250B.json|/dataList/13/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "흠… 흠…",
+      "zh": [
+        "哼……哼……",
+        "嗯……嗯……"
+      ],
+      "keys": [
+        "StoryData/E090X.json|/dataList/2/content",
+        "StoryData/E704A.json|/dataList/55/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-interlude",
+      "field": "place",
+      "kr": "로보토미 본사 중앙본부",
+      "zh": [
+        "腦葉公司本部 中央本部走廊",
+        "腦葉公司本部 中央本部"
+      ],
+      "keys": [
+        "StoryData/E081X.json|/dataList/0/place",
+        "StoryData/E082X.json|/dataList/0/place"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "3…",
+      "zh": [
+        "三……",
+        "3……"
+      ],
+      "keys": [
+        "StoryData/S930B.json|/dataList/39/content",
+        "StoryData/S931B.json|/dataList/83/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "<…음?>",
+      "zh": [
+        "<……嗯？>",
+        "<……啊？>"
+      ],
+      "keys": [
+        "StoryData/S609A.json|/dataList/18/content",
+        "StoryData/S702B.json|/dataList/63/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "<그게 무슨…>",
+      "zh": [
+        "<什麼意思……>",
+        "<那是什麼……>"
+      ],
+      "keys": [
+        "StoryData/8D104A.json|/dataList/99/content",
+        "StoryData/S001B.json|/dataList/57/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "<그래…>",
+      "zh": [
+        "<好吧……>",
+        "<好的……>"
+      ],
+      "keys": [
+        "StoryData/5D106B.json|/dataList/44/content",
+        "StoryData/S002B.json|/dataList/150/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "<그러고 보니…>",
+      "zh": [
+        "<這麼說來……>",
+        "<這麼一看……>"
+      ],
+      "keys": [
+        "StoryData/S301B.json|/dataList/55/content",
+        "StoryData/S712A.json|/dataList/0/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "<어…?>",
+      "zh": [
+        "<哦……？>",
+        "<嗯……？>"
+      ],
+      "keys": [
+        "StoryData/S1017B.json|/dataList/43/content",
+        "StoryData/S926B.json|/dataList/2/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "<왜…?>",
+      "zh": [
+        "<為什麼這麼說……？>",
+        "<為什麼……？>"
+      ],
+      "keys": [
+        "StoryData/S708B.json|/dataList/28/content",
+        "StoryData/S925B.json|/dataList/26/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "<이건…>",
+      "zh": [
+        "<這是……>",
+        "<這個……>"
+      ],
+      "keys": [
+        "StoryData/5D301A.json|/dataList/22/content",
+        "StoryData/8D102B.json|/dataList/57/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "… … …. …",
+      "zh": [
+        "… … …。 …",
+        "… … … 。…"
+      ],
+      "keys": [
+        "StoryData/S525B.json|/dataList/175/content",
+        "StoryData/S526A.json|/dataList/0/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…그건 기만이야, 마 퓌스.",
+      "zh": [
+        "……那是欺瞞喔，小甜心。",
+        "……那是欺瞞，小甜心。"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/17/content",
+        "StoryData/S1040B.json|/dataList/17/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…그래?",
+      "zh": [
+        "……是那樣嗎？",
+        "……是這樣嗎？"
+      ],
+      "keys": [
+        "StoryData/5D106B.json|/dataList/32/content",
+        "StoryData/S833A.json|/dataList/38/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…그런데도 그들과 함께 바깥에 나가고 싶어?",
+      "zh": [
+        "……即使如此，你還是想和他們一起出去嗎？",
+        "……即使如此，你還是想和他們一起到外面去？"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/12/content",
+        "StoryData/S1040B.json|/dataList/12/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…그렇네.",
+      "zh": [
+        "……還真是。",
+        "……真的耶。"
+      ],
+      "keys": [
+        "StoryData/S1002B.json|/dataList/83/content",
+        "StoryData/S1018B.json|/dataList/44/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…그렇진 않다.",
+      "zh": [
+        "……並沒有。",
+        "……並非如此。"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/6/content",
+        "StoryData/S1040B.json|/dataList/6/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…그만.",
+      "zh": [
+        "……夠了。",
+        "……停下。"
+      ],
+      "keys": [
+        "StoryData/7D108B.json|/dataList/103/content",
+        "StoryData/S736B.json|/dataList/21/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…나는 견디지 못했어, 단테.",
+      "zh": [
+        "……我沒能熬過去，但丁。",
+        "……我沒能熬過去喔，但丁。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/44/content",
+        "StoryData/S1041B.json|/dataList/44/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…뭐.",
+      "zh": [
+        "……什麼。",
+        "……幹嘛。"
+      ],
+      "keys": [
+        "StoryData/4D305B.json|/dataList/3/content",
+        "StoryData/S801B.json|/dataList/88/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…아니.",
+      "zh": [
+        "……不。",
+        "……沒有。"
+      ],
+      "keys": [
+        "StoryData/1D305B.json|/dataList/23/content",
+        "StoryData/S940B.json|/dataList/12/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…어?",
+      "zh": [
+        "……哦？",
+        "……嗯？"
+      ],
+      "keys": [
+        "StoryData/S1026B.json|/dataList/33/content",
+        "StoryData/S620B.json|/dataList/26/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…왜 살리지 않았지?",
+      "zh": [
+        "……為什麼沒有救他？",
+        "……你為什麼不救他？"
+      ],
+      "keys": [
+        "StoryData/8D209I.json|/dataList/17/content",
+        "StoryData/S811B.json|/dataList/35/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…이상.",
+      "zh": [
+        "……<ruby=李箱>異象</ruby>。",
+        "……以上。"
+      ],
+      "keys": [
+        "StoryData/S611B.json|/dataList/49/content",
+        "StoryData/S813B.json|/dataList/140/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "…좋아.",
+      "zh": [
+        "……很好。",
+        "……好。"
+      ],
+      "keys": [
+        "StoryData/S004A.json|/dataList/20/content",
+        "StoryData/S706B.json|/dataList/239/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "가라앉지 않고 떠있으려면",
+      "zh": [
+        "如果你要保持浮力",
+        "如果你要繼續漂流"
+      ],
+      "keys": [
+        "BgmLyrics/BgmLyrics_Rendezvous.json|/dataList/4/content",
+        "BgmLyrics/BgmLyrics_Rendezvous.json|/dataList/22/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "결국 견디는 대신, 선택을 할 수밖에 없었지.",
+      "zh": [
+        "最後，我不再忍耐，而是只能做出選擇。",
+        "結果，我沒有忍耐下去，而是只能做出選擇。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/47/content",
+        "StoryData/S1041B.json|/dataList/47/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "고민이 깊어 보이네, 단테.",
+      "zh": [
+        "你看起來很煩惱呢，但丁。",
+        "你看起來很苦惱呢，但丁。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/5/content",
+        "StoryData/S1041B.json|/dataList/5/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "괜찮다.",
+      "zh": [
+        "沒關係。",
+        "無妨。"
+      ],
+      "keys": [
+        "StoryData/7D111I2.json|/dataList/127/content",
+        "StoryData/S833A.json|/dataList/176/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그 모든 죄악감을, 죄책감을 품고… 생을 놓기로 다짐하며…",
+      "zh": [
+        "懷抱著所有的罪惡感與愧疚……下定決心放棄生命……",
+        "懷抱著所有的罪惡感與愧疚……下定決心放開生命……"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/52/content",
+        "StoryData/S1041B.json|/dataList/52/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그 아이를 희생시키지 않으면… 특이점을 붙잡을 수 없었거든.",
+      "zh": [
+        "因為如果不犧牲那個孩子……就無法抓住奇點。",
+        "因為如果不犧牲那孩子……就抓不住奇點。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/20/content",
+        "StoryData/S1041B.json|/dataList/20/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그 후에는…",
+      "zh": [
+        "在那之後……",
+        "之後……"
+      ],
+      "keys": [
+        "StoryData/7D112A.json|/dataList/98/content",
+        "StoryData/S632B.json|/dataList/17/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그건 말이지. 이미 이곳을 발견했기 때문도, 열쇠를 복사했기 때문도 아냐.",
+      "zh": [
+        "那個啊。既不是因為我已經找到了這裡，也不是因為我複製了鑰匙。",
+        "那個啊。既不是因為我已經找到了這裡，也不是因為我打了備用鑰匙。"
+      ],
+      "keys": [
+        "StoryData/3D308B.json|/dataList/7/content",
+        "StoryData/3D309I1.json|/dataList/7/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그래도…",
+      "zh": [
+        "就算這樣……",
+        "但是呢……"
+      ],
+      "keys": [
+        "StoryData/8D203B.json|/dataList/0/content",
+        "StoryData/S949A.json|/dataList/99/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그러나…",
+      "zh": [
+        "只可惜……",
+        "但是……"
+      ],
+      "keys": [
+        "StoryData/3D102A.json|/dataList/47/content",
+        "StoryData/S648B.json|/dataList/1/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그렇게 필사적으로 나를 떠나서, 어디로 가려는 거야?",
+      "zh": [
+        "你這麼拚命地離開我，是想去哪裡？",
+        "你這麼拚命地想離開我，到底要去哪裡？"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/0/content",
+        "StoryData/S1040B.json|/dataList/0/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그렇구나. 모든 이상은 연구에 진심이었나 봐.",
+      "zh": [
+        "我明白了。我想所有的李箱在最終都投身於研究。",
+        "這樣啊。看來所有的李箱對於研究都十分投入啊。"
+      ],
+      "keys": [
+        "StoryData/4D105B.json|/dataList/10/content",
+        "StoryData/4D305I.json|/dataList/53/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그렇구나…",
+      "zh": [
+        "這樣啊……",
+        "對了……"
+      ],
+      "keys": [
+        "StoryData/S904B.json|/dataList/60/content",
+        "StoryData/S943B.json|/dataList/165/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그렇기에…",
+      "zh": [
+        "因此……",
+        "所以……"
+      ],
+      "keys": [
+        "StoryData/7D101B.json|/dataList/91/content",
+        "StoryData/S833A.json|/dataList/203/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그렇기에… 이해가 되진 않는다, 여전히.",
+      "zh": [
+        "正因如此……我仍然無法理解。",
+        "正因如此……我無法理解，至今依然。"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/10/content",
+        "StoryData/S1040B.json|/dataList/10/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그렇지만 크로머는 아직도 의기양양한 채로, 사형선고라도 내리듯 손을 뻗어 싱클레어의 코트 안주머니를 뒤진다.",
+      "zh": [
+        "但是克羅默依舊得意洋洋，伸出手在辛克萊的外套口袋中摸索著，彷彿在宣佈死刑一般。",
+        "但是克羅默依舊得意洋洋，伸出手在辛克萊的外套內袋中摸索著，彷彿在宣布死刑一般。"
+      ],
+      "keys": [
+        "StoryData/3D308B.json|/dataList/1/content",
+        "StoryData/3D309I1.json|/dataList/1/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그리고 나는…",
+      "zh": [
+        "而我……",
+        "而且我……"
+      ],
+      "keys": [
+        "StoryData/5D106B.json|/dataList/131/content",
+        "StoryData/8D207A.json|/dataList/21/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그만…",
+      "zh": [
+        "拜託這傢伙停下來……",
+        "住口……"
+      ],
+      "keys": [
+        "StoryData/S702B.json|/dataList/125/content",
+        "StoryData/S942A.json|/dataList/17/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "그중에서 한 아이는… 사람의 모습을 했지만, ■■ ■■ ■…",
+      "zh": [
+        "其中一個孩子……雖然有著人的模樣，卻■■ ■■ ■……",
+        "其中一個孩子……雖然有著人的模樣，■■ ■■ ■……"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/16/content",
+        "StoryData/S1041B.json|/dataList/16/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "깨달았으니까.",
+      "zh": [
+        "因為我終於明白了。",
+        "凱瑟琳不愛我了。"
+      ],
+      "keys": [
+        "StoryData/S634A.json|/dataList/18/content",
+        "StoryData/S634A.json|/dataList/25/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "나 또한 마찬가지일 테니.",
+      "zh": [
+        "因為我也一樣吧。",
+        "畢竟我想必也是如此。"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/30/content",
+        "StoryData/S1040A.json|/dataList/1/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "나는 말이지, 벌어질 수많은 미래를 들여다보는 방법을 알고 있어.",
+      "zh": [
+        "我啊，可是知道某種能夠窺視無窮可能的未來的方法。",
+        "我啊，知道某種能夠窺視無窮可能的未來的方法。"
+      ],
+      "keys": [
+        "StoryData/3D308B.json|/dataList/9/content",
+        "StoryData/3D309I1.json|/dataList/9/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "나는 한동안 적막한 거실에 앉아 창틈으로 들이닥치는 태양광 속에 멍하게 있었다.",
+      "zh": [
+        "我在寂靜的客廳裡坐了好一陣子，在從窗縫湧入的陽光中發著呆。",
+        "有好一陣子，我坐在寂靜的客廳裡，在從窗縫湧入的陽光中出神。"
+      ],
+      "keys": [
+        "StoryData/S1025B.json|/dataList/12/content",
+        "StoryData/S1034A2.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "나는… 이 도시의 규칙 위에 새로운 규칙을 쌓아 올리기 위해 노력했어.",
+      "zh": [
+        "我……曾努力在這座都市的規則之上，再堆砌起新的規則。",
+        "我……曾努力在這座都市的規則之上，堆砌起新的規則。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/14/content",
+        "StoryData/S1041B.json|/dataList/14/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "나도… 너와 다르지 않았어, 단테.",
+      "zh": [
+        "我也……曾經和你沒什麼不同，但丁。",
+        "我也……跟你沒什麼不同喔，但丁。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/13/content",
+        "StoryData/S1041B.json|/dataList/13/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "나를 버리고, 희생해서 완수시키려 했어.",
+      "zh": [
+        "打算捨棄自己，用犧牲來完成它。",
+        "我想捨棄自己，用犧牲來讓它完成。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/50/content",
+        "StoryData/S1041B.json|/dataList/50/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "나를 이용해 프로젝트를 완성하고자 했어.",
+      "zh": [
+        "我打算利用自己來完成計畫。",
+        "我想利用自己來完成計畫。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/49/content",
+        "StoryData/S1041B.json|/dataList/49/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "나뿐만 아니라, 나를 따라왔던 동료들 모두가 그렇게 느끼고 있었을 거야.",
+      "zh": [
+        "不只是我，跟隨我的同伴們應該也都是這麼覺得的吧。",
+        "不只是我，追隨我的同伴們應該也都是這麼覺得的吧。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/24/content",
+        "StoryData/S1041B.json|/dataList/24/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "내가 말했지.",
+      "zh": [
+        "我說過。",
+        "我曾經說過。"
+      ],
+      "keys": [
+        "StoryData/5D205A.json|/dataList/5/content",
+        "StoryData/S217B.json|/dataList/43/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "너는 어떤 존재이기에, 그들을 이끌고 있는 걸까.",
+      "zh": [
+        "你是什麼樣的存在，才會帶領著他們呢。",
+        "你究竟是什麼樣的存在，才會帶領著他們呢。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/64/content",
+        "StoryData/S1041B.json|/dataList/64/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "너를 오매불망 기다리고 있었단다.",
+      "zh": [
+        "我們朝思暮想地等著你呢。",
+        "吾等朝思暮想地等著汝呢。"
+      ],
+      "keys": [
+        "StoryData/8D203A.json|/dataList/37/content",
+        "StoryData/S832B.json|/dataList/15/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "네!",
+      "zh": [
+        "是！",
+        "可以！"
+      ],
+      "keys": [
+        "StoryData/S927B.json|/dataList/86/content",
+        "StoryData/S942B.json|/dataList/72/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "네, 괜찮아요.",
+      "zh": [
+        "好了，沒問題了。",
+        "是的，我沒事哦。"
+      ],
+      "keys": [
+        "StoryData/S813B.json|/dataList/58/content",
+        "StoryData/S821B.json|/dataList/24/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "네…",
+      "zh": [
+        "嗯……",
+        "好……"
+      ],
+      "keys": [
+        "StoryData/S733B.json|/dataList/5/content",
+        "StoryData/S947B.json|/dataList/191/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "네가 나의 열쇠였기 때문이야.",
+      "zh": [
+        "而因為你就是我的鑰匙啊。",
+        "因為你就是我的鑰匙啊。"
+      ],
+      "keys": [
+        "StoryData/3D308B.json|/dataList/8/content",
+        "StoryData/3D309I1.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "눈은 엄청 빛나고 있는데, 그렇게 표독스럽게 말하니까 재밌잖아.",
+      "zh": [
+        "妳明明兩眼放光，言辭卻如此毒辣，這很有趣吧？",
+        "妳明明兩眼放光，言辭卻如此毒辣，這很有趣吧。"
+      ],
+      "keys": [
+        "StoryData/4D105B.json|/dataList/23/content",
+        "StoryData/S448B.json|/dataList/47/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "눈을 천천히 감고 나니…",
+      "zh": [
+        "慢慢閉上眼睛之後……",
+        "緩緩閉上眼睛後……"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/54/content",
+        "StoryData/S1041B.json|/dataList/54/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "단순히 규칙을 만드는 게 다가 아니야. 기존 규칙을 지키려는 이들과… 맞서야만 했으니…",
+      "zh": [
+        "不是單純制定規則就好了。因為還得和那些想守住既有規則的人……正面對抗……",
+        "不是單純制定規則就結束了。還必須……跟那些想守住既有規則的人們對抗……"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/23/content",
+        "StoryData/S1041B.json|/dataList/23/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "당신도 일기를 쓰네.",
+      "zh": [
+        "你也在寫日記呢。",
+        "你也在寫日記吧。"
+      ],
+      "keys": [
+        "StoryData/S648I.json|/dataList/11/content",
+        "StoryData/S648I2.json|/dataList/1/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "당신은 저들에게 바라보아질 뿐, 결코 이해받을 수 없어. 이해할 수도 없을 거고.",
+      "zh": [
+        "你只會被他們注視，永遠不會被理解。你也不可能理解他們。",
+        "你只會被他們凝視，永遠不會被理解。你也不可能理解他們。"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/18/content",
+        "StoryData/S1040B.json|/dataList/18/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "도망칠 수도, 숨 쉴 수도 없어, 뫼르소…!",
+      "zh": [
+        "我逃不了，也無法呼吸，莫梭……！",
+        "既逃不掉，也無法呼吸啊，莫梭……！"
+      ],
+      "keys": [
+        "StoryData/S1042B.json|/dataList/15/content",
+        "StoryData/S1061B.json|/dataList/4/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "동물도 사람이랑 똑같이 아픔을 느낀다는 걸 너도 안다면, 그런 말은 함부로 못 할 걸.",
+      "zh": [
+        "你要是知道動物和人一樣有痛覺，就不會隨便說這種話了。",
+        "你要是知道動物和人一樣有痛覺的話，就不會隨便說這種話了。"
+      ],
+      "keys": [
+        "StoryData/4D202B.json|/dataList/13/content",
+        "StoryData/4D304B.json|/dataList/16/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "또한…",
+      "zh": [
+        "再次……",
+        "另外……"
+      ],
+      "keys": [
+        "StoryData/7D112I2.json|/dataList/16/content",
+        "StoryData/S608B.json|/dataList/124/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "말해.",
+      "zh": [
+        "說。",
+        "說吧。"
+      ],
+      "keys": [
+        "StoryData/S735B.json|/dataList/14/content",
+        "StoryData/S830B.json|/dataList/52/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "몇 시간 전…",
+      "zh": [
+        "幾個小時前……",
+        "數小時前……"
+      ],
+      "keys": [
+        "StoryData/S801B.json|/dataList/45/content",
+        "StoryData/S808B.json|/dataList/27/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "뫼르소…! 내가… 내가 날 바라보고 있어, 바라보게 되어가고 있어…!",
+      "zh": [
+        "莫梭……！我……我在看著我自己，我漸漸變得會看著自己了……！",
+        "莫梭……！我……我正凝視著我自己，我漸漸變成在凝視自己的人了……！"
+      ],
+      "keys": [
+        "StoryData/S1042B.json|/dataList/12/content",
+        "StoryData/S1061B.json|/dataList/5/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "무슨 헛소리를…",
+      "zh": [
+        "你在開什麼玩……",
+        "你在說什麼鬼話……"
+      ],
+      "keys": [
+        "StoryData/7D111I3.json|/dataList/10/content",
+        "StoryData/S412B.json|/dataList/33/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "뭘 말이야?",
+      "zh": [
+        "還什麼？",
+        "你是指？"
+      ],
+      "keys": [
+        "StoryData/3D304B.json|/dataList/47/content",
+        "StoryData/S621A.json|/dataList/31/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "방금… 뭐라고 했어?",
+      "zh": [
+        "你剛剛……說什麼？",
+        "剛剛……你說什麼？"
+      ],
+      "keys": [
+        "StoryData/8D206B.json|/dataList/29/content",
+        "StoryData/S808B.json|/dataList/76/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "비어버린 자리. 허공을 감도는 따뜻한 한기. 태양.",
+      "zh": [
+        "空下來的位置。在虛空中縈繞的溫暖寒意。太陽。",
+        "空下來的位子。縈繞在虛空中的溫暖寒意。太陽。"
+      ],
+      "keys": [
+        "StoryData/S1025B.json|/dataList/13/content",
+        "StoryData/S1034A2.json|/dataList/9/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "사실 낯설어 보여도 뫼르소와 잔느도 나와 다르지 않을 거야.",
+      "zh": [
+        "其實雖然看起來很陌生，但莫梭和簡應該也和我沒有什麼不同。",
+        "其實，雖然看起來陌生，但莫梭和簡應該也跟我沒什麼不同吧。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/59/content",
+        "StoryData/S1041B.json|/dataList/59/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "삶을 향한… 절규였지.",
+      "zh": [
+        "是對生的……吶喊。",
+        "那是對生命的……吶喊。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/56/content",
+        "StoryData/S1041B.json|/dataList/56/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "세상에서 잊혀지고, 밀려나서 숨이 멎지 않도록.",
+      "zh": [
+        "為了不被世界遺忘，不因被推離而斷了氣息。",
+        "為了不被世界遺忘、不被推擠到一旁而窒息。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/62/content",
+        "StoryData/S1041B.json|/dataList/62/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "실패하면 돌아갈 곳도 없는데…",
+      "zh": [
+        "要是失敗了，也沒有能回去的地方……",
+        "失敗的話，連可以回去的地方都沒有……"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/27/content",
+        "StoryData/S1041B.json|/dataList/27/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "싱클레어, 내가 왜 지하실 열쇠를 순순히 돌려줬는지 알아?",
+      "zh": [
+        "辛克萊，知道為什麼我老實地將地下室的鑰匙還給你了嗎？",
+        "辛克萊，知道為什麼我老實地將地下室的鑰匙還給你嗎？"
+      ],
+      "keys": [
+        "StoryData/3D308B.json|/dataList/6/content",
+        "StoryData/3D309I1.json|/dataList/6/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "아니면, 두려운 거니? 지금부터 이어질 선택의 순간이.",
+      "zh": [
+        "還是說，你在害怕？害怕接下來即將到來的抉擇時刻。",
+        "還是說，你在害怕？害怕接下來接踵而至的抉擇時刻。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/7/content",
+        "StoryData/S1041B.json|/dataList/7/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "아니이…",
+      "zh": [
+        "所以說……",
+        "不是啦……"
+      ],
+      "keys": [
+        "StoryData/S919B.json|/dataList/2/content",
+        "StoryData/S947B.json|/dataList/221/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "안 돼…! 뫼르소…! 아들!!!",
+      "zh": [
+        "不行……！莫梭……！我的兒子！！！",
+        "不行……！莫梭……！兒子！！！"
+      ],
+      "keys": [
+        "StoryData/S1042B.json|/dataList/17/content",
+        "StoryData/S1061B.json|/dataList/1/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "알아.",
+      "zh": [
+        "我明白。",
+        "我知道。"
+      ],
+      "keys": [
+        "StoryData/7D109B.json|/dataList/11/content",
+        "StoryData/S513B.json|/dataList/50/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "어…?",
+      "zh": [
+        "嗯……？",
+        "哦……？"
+      ],
+      "keys": [
+        "StoryData/3D306B.json|/dataList/7/content",
+        "StoryData/S927B.json|/dataList/70/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "어디에도 받아들여지지 않는 이들이 답답함에 절규하는 거지.",
+      "zh": [
+        "都是不被任何地方接納的人，在煩悶中吶喊罷了。",
+        "是那些無處被接納的人們，因苦悶而吶喊啊。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/60/content",
+        "StoryData/S1041B.json|/dataList/60/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "어때, 단테 네가 하는 생각들이랑… 비슷하지 않아?",
+      "zh": [
+        "怎麼樣，但丁，跟你在想的那些事……很像吧？",
+        "怎麼樣，但丁，跟你的想法……不是很像嗎？"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/31/content",
+        "StoryData/S1041B.json|/dataList/31/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "어떠한 가능성도 있는 그대로 비추고 싶었소.",
+      "zh": [
+        "我只是想毫無模糊地，如實地映照出所有可能性。",
+        "我只是想如實地映照出所有可能性。"
+      ],
+      "keys": [
+        "StoryData/4D105B.json|/dataList/17/content",
+        "StoryData/S448B.json|/dataList/41/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "어떻게…",
+      "zh": [
+        "所以你怎麼能……",
+        "為什麼……"
+      ],
+      "keys": [
+        "StoryData/5D304I3.json|/dataList/1/content",
+        "StoryData/S633B.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "언제 죽을지 모른다.",
+      "zh": [
+        "不知道何時會死。",
+        "不知道什麼時候會死。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/25/content",
+        "StoryData/S1041B.json|/dataList/25/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "엄청난 두려움이 찾아왔어. 그건… 이때껏 내가 느껴온 그 어떤 절망과도 다른 것이었어.",
+      "zh": [
+        "巨大的恐懼向我襲來。那……和我至今感受過的任何絕望都不一樣。",
+        "一股巨大的恐懼襲來。那……和我至今感受過的任何絕望都不一樣。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/55/content",
+        "StoryData/S1041B.json|/dataList/55/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "왜냐하면…",
+      "zh": [
+        "要說為什麼……",
+        "那是因為……"
+      ],
+      "keys": [
+        "StoryData/S635A.json|/dataList/14/content",
+        "StoryData/S635I.json|/dataList/15/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "우리는…",
+      "zh": [
+        "我們是……",
+        "我們……"
+      ],
+      "keys": [
+        "StoryData/S207A.json|/dataList/2/content",
+        "StoryData/S931B.json|/dataList/16/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "우리는… 그곳으로 내려가야 해.",
+      "zh": [
+        "我們……得下去那個地方。",
+        "我們必須……下去地下室。"
+      ],
+      "keys": [
+        "StoryData/S619A.json|/dataList/81/content",
+        "StoryData/S620B.json|/dataList/31/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "우리의 둘도 없는 진귀한 보물, 이 속세에 남아있지 말고 때가 되면 다시 떠나 그 가치를 다하거라.",
+      "zh": [
+        "我們珍貴的寶玉，可不能一直停留在這俗世，時機到了就再次啟程，彰顯你的價值吧。",
+        "我們珍貴的寶玉，可不能一直停留在這俗世，時機到了就再次啟程，顯現你的價值吧。"
+      ],
+      "keys": [
+        "StoryData/S801B.json|/dataList/37/content",
+        "StoryData/S806B.json|/dataList/195/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "으응…",
+      "zh": [
+        "唔嗯……",
+        "嗯……"
+      ],
+      "keys": [
+        "StoryData/S608B.json|/dataList/54/content",
+        "StoryData/S923B.json|/dataList/19/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "윽, 크윽…",
+      "zh": [
+        "唔，咳……",
+        "唔、咕唔……"
+      ],
+      "keys": [
+        "StoryData/S318A.json|/dataList/22/content",
+        "StoryData/S927B.json|/dataList/138/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "이 망망대해 같은 세상에서… 우리는 하찮은 의미 하나라도 찾고자 수많은 노력을 해왔어.",
+      "zh": [
+        "在這片汪洋大海般的世界裡……我們為了找到哪怕一點微不足道的意義，付出過無數的努力。",
+        "在這宛如茫茫大海的世界裡……我們為了找到哪怕一個微不足道的意義，付出了無數的努力。"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/3/content",
+        "StoryData/S1040B.json|/dataList/3/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "이 모든 것에 무슨 가치가 있는 걸까?",
+      "zh": [
+        "這一切究竟有什麼價值？",
+        "這一切究竟有什麼價值呢？"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/30/content",
+        "StoryData/S1041B.json|/dataList/30/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "이게 더 편하고 이쁘자나!",
+      "zh": [
+        "這樣比較好唸又可愛！",
+        "這樣比較好念又可愛！"
+      ],
+      "keys": [
+        "StoryData/S901B.json|/dataList/10/content",
+        "StoryData/S931B.json|/dataList/32/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "이게 정말 되는 건지 믿음은 점점 옅어졌지.",
+      "zh": [
+        "對這件事是否真的能成功的信心，也漸漸變得淡薄了。",
+        "這件事是否真能成功，那份信念也漸漸淡薄了。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/28/content",
+        "StoryData/S1041B.json|/dataList/28/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "이렇게 제 몫을 하는 사내가 되어 무탈한 모습으로 돌아오니, 그것만으로도 더 이상 바랄 게 없습니다…",
+      "zh": [
+        "能好好地完成使命並平安地回來，光是這樣我就別無所求了……",
+        "能好好地完成使命並平安地回來，光是這樣，我就別無所求了……"
+      ],
+      "keys": [
+        "StoryData/S801B.json|/dataList/29/content",
+        "StoryData/S806B.json|/dataList/186/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "이상하네.",
+      "zh": [
+        "真奇怪。",
+        "真奇怪呢。"
+      ],
+      "keys": [
+        "StoryData/S635A.json|/dataList/7/content",
+        "StoryData/S821B.json|/dataList/108/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "자, 그럼.",
+      "zh": [
+        "那麼，第二件事。",
+        "那麼，告辭。"
+      ],
+      "keys": [
+        "StoryData/S303B.json|/dataList/16/content",
+        "StoryData/S526A.json|/dataList/91/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "자신의 앞에 무엇이 있는지도 모른 채, 지나간 기억에, 지나칠 타인에, 곧 변해버릴 의미에 모든 것을 절실하게 걸고, 자신을 남김없이 소진한다.",
+      "zh": [
+        "他們不知道自己面前有什麼，就把一切懇切地押在逝去的記憶、終將擦身而過的他人、轉眼就會改變的意義上，將自己消耗殆盡。",
+        "他們連自己前方有什麼都不知道，就將一切殷切地押在逝去的記憶、終將擦身而過的他人、即將改變的意義上，把自己消耗殆盡。"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/8/content",
+        "StoryData/S1040B.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "저들에게서… 무언가 의미라도 찾은 거야?",
+      "zh": [
+        "你從他們身上……找到了什麼意義嗎？",
+        "你在他們身上……找到了什麼意義嗎？"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/5/content",
+        "StoryData/S1040B.json|/dataList/5/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "저들은 그저… 계속 나아가는 자들일 뿐이다.",
+      "zh": [
+        "他們只是……不斷前進的人罷了。",
+        "他們只不過是……不斷前進的人罷了。"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/7/content",
+        "StoryData/S1040B.json|/dataList/7/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "저들은 당신을 못 박는 지옥일 뿐이니까!",
+      "zh": [
+        "因為他們不過是把你釘死的地獄罷了！",
+        "因為他們只是把你釘死的地獄啊！"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/19/content",
+        "StoryData/S1040B.json|/dataList/19/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "저들은… 영웅이 되지 못하는 자들이다. 세상을 바꿀 수 없는 나와 똑같이 이 세상에… 던져진 자들이다.",
+      "zh": [
+        "他們……是成不了英雄的人。和無法改變世界的我一樣，是被……拋進這個世界的人。",
+        "他們……是成不了英雄的人。和無法改變世界的我一樣，都是被……拋進這個世界的人。"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/9/content",
+        "StoryData/S1040B.json|/dataList/9/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "저자는…",
+      "zh": [
+        "那個人是……",
+        "那傢伙……"
+      ],
+      "keys": [
+        "StoryData/S407B.json|/dataList/10/content",
+        "StoryData/S939B.json|/dataList/97/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "죄종들이군요.",
+      "zh": [
+        "那些是罪種。",
+        "是罪種們。"
+      ],
+      "keys": [
+        "StoryData/S219B.json|/dataList/50/content",
+        "StoryData/S622B.json|/dataList/21/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "지금.",
+      "zh": [
+        "是當下。",
+        "就是現在。"
+      ],
+      "keys": [
+        "StoryData/S1042B.json|/dataList/64/content",
+        "StoryData/S503B.json|/dataList/24/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "지금까지 쏟아온 노력이 물거품이 될지 모른다.",
+      "zh": [
+        "至今傾注的努力，或許都會化為泡影。",
+        "至今傾注的努力，也許會化為泡影。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/26/content",
+        "StoryData/S1041B.json|/dataList/26/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "칵…",
+      "zh": [
+        "喀……",
+        "咕……"
+      ],
+      "keys": [
+        "StoryData/8D105B.json|/dataList/56/content",
+        "StoryData/S532A.json|/dataList/49/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "쿵!",
+      "zh": [
+        "轟！",
+        "嗵！"
+      ],
+      "keys": [
+        "StoryData/2D306I.json|/dataList/0/content",
+        "StoryData/5D304A.json|/dataList/21/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "판단을 멈추고… 행동해. 그게, 너를 지키는…",
+      "zh": [
+        "停止判斷……行動吧。那才是，保護你的……",
+        "停止判斷……去行動。那才是，保護你的……"
+      ],
+      "keys": [
+        "StoryData/S1042B.json|/dataList/36/content",
+        "StoryData/S1061B.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "하지만 어디에도 없었어. 의미 같은 건, 어디에도 존재하지 않았으니까.",
+      "zh": [
+        "可是哪裡都沒有。因為意義這種東西，根本不存在於任何地方。",
+        "但是哪裡都沒有。因為所謂的意義，根本不存在於任何地方。"
+      ],
+      "keys": [
+        "StoryData/S1039I.json|/dataList/4/content",
+        "StoryData/S1040B.json|/dataList/4/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "하지만… 그런다고 바뀌겠니? 여전히 구리고 엉망일걸.",
+      "zh": [
+        "但……妳覺得那又能改變什麼嗎？這個世界依舊汙濁不堪。",
+        "但……你覺得那能造成任何改變嗎？這個世界依舊充斥著汙穢。"
+      ],
+      "keys": [
+        "StoryData/4D204B.json|/dataList/16/content",
+        "StoryData/4D304B.json|/dataList/19/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "한 아이가 죽었는데도, 그 죄책감으로조차 나아가지 못하는 우리는, 등을 떠밀리는 나는…",
+      "zh": [
+        "明明有一個孩子死了，就連懷著那份愧疚都無法前進的我們，被人從背後推著走的我……",
+        "明明有一個孩子死了，我們卻連帶著那份愧疚前進都做不到，而被人推著背往前走的我……"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/46/content",
+        "StoryData/S1041B.json|/dataList/46/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "후후, 매번 너에게 이야기를 해줄 때면 헷갈리고 마는 것 같아, 어디서부터… 어디까지 말해줘도 될지 말이야.",
+      "zh": [
+        "呵呵，每次跟你說故事的時候，我好像總會搞不清楚呢，該從哪裡……說到哪裡才好。",
+        "呵呵，每次跟你說這些的時候，我好像總會搞混呢，不知道該從哪裡……說到哪裡才好。"
+      ],
+      "keys": [
+        "StoryData/S1039I2.json|/dataList/18/content",
+        "StoryData/S1041B.json|/dataList/18/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "훗.",
+      "zh": [
+        "呵。",
+        "呼。"
+      ],
+      "keys": [
+        "StoryData/5D304A.json|/dataList/83/content",
+        "StoryData/S1004B.json|/dataList/333/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "흐음.",
+      "zh": [
+        "呼嗯。",
+        "唔嗯。"
+      ],
+      "keys": [
+        "StoryData/5D304A.json|/dataList/48/content",
+        "StoryData/S1044B.json|/dataList/135/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "content",
+      "kr": "흠.",
+      "zh": [
+        "哼。",
+        "呼嗯。"
+      ],
+      "keys": [
+        "StoryData/S606B.json|/dataList/79/content",
+        "StoryData/S912B.json|/dataList/134/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "desc",
+      "kr": "어떠한 색도 없이 불타오르는 구인회와 함께 모든 것이 사라졌다. 산산조각 속에서 이상이 택한 것은 정지, 즉 무관심이었다. ",
+      "zh": [
+        "未染上一絲顏色，與燃燒的九人會一同消逝。在支離破碎的碎片中，李箱選擇了停止，即漠不關心。",
+        "未染上一絲顏色，與燃燒的九人會一同消逝。在支離破碎的碎片中，李箱選擇了停止，即漠不關心"
+      ],
+      "keys": [
+        "DungeonNode1-4.json|/dataList/0/stageList/34/desc",
+        "DungeonNode1-4.json|/dataList/0/stageList/35/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "place",
+      "kr": "소란스러워 지는 구인회",
+      "zh": [
+        "變得嘈雜的九人會",
+        "變得嘈雜起來的九人會"
+      ],
+      "keys": [
+        "StoryData/4D202B.json|/dataList/0/place",
+        "StoryData/4D304B.json|/dataList/15/place"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "teller",
+      "kr": "추락하는 주민",
+      "zh": [
+        "墜落的鎮民",
+        "墜落的居民"
+      ],
+      "keys": [
+        "StoryData/5D301A.json|/dataList/30/teller",
+        "StoryData/8D105B.json|/dataList/94/teller"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "title",
+      "kr": "설원 갈림길",
+      "zh": [
+        "雪原岔道",
+        "雪原十字路口"
+      ],
+      "keys": [
+        "DungeonNode1-2.json|/dataList/0/stageList/24/title",
+        "DungeonNode1-2.json|/dataList/0/stageList/35/title"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "story-main",
+      "field": "title",
+      "kr": "수감자",
+      "zh": [
+        "罪人們",
+        "罪人"
+      ],
+      "keys": [
+        "StoryData/S504B.json|/dataList/29/title",
+        "StoryData/S530B.json|/dataList/28/title"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "{0}장",
+      "zh": [
+        "{0}張",
+        "{0}章"
+      ],
+      "keys": [
+        "MainUIText.json|/dataList/41/content",
+        "SelectLoadingCgUi.json|/dataList/7/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "◆ 구매 즉시 패스 레벨 10 상승\n◆ 인격 특수 강화 티켓 V\n◆ 림버스 패키지 특별 배너 2종",
+      "zh": [
+        "◆ 購買後立即提升10級通行證等級\n◆ 人格等級直升券V\n◆ 邊獄組合包特別橫幅×2",
+        "◆ 購買後立即提升10級通行證等級\n◆ 人格等級直升券V\n◆ 巴士通行證組合包特別橫幅×2"
+      ],
+      "keys": [
+        "BattlePass-a1c7.json|/dataList/1/content",
+        "BattlePass.json|/dataList/63/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "◆ 시즌 6 림버스 패스\n◆ 구매 즉시 패스 레벨 10 상승\n◆ 인격 특수 강화 티켓 V\n◆ 림버스 패키지 특별 배너",
+      "zh": [
+        "◆ 第6賽季巴士通行證\n◆ 購買後立即提升10級通行證等級\n◆ 人格等級直升券V\n◆ 邊獄組合包特別橫幅",
+        "◆ 第6賽季巴士通行證\n◆ 購買後立即提升10級通行證等級\n◆ 人格等級直升券V\n◆ 巴士通行證組合包特別橫幅"
+      ],
+      "keys": [
+        "BattlePass-a1c8.json|/dataList/0/content",
+        "BattlePass.json|/dataList/62/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "공격 유형과 속성",
+      "zh": [
+        "攻擊類型及屬性",
+        "攻擊類型和屬性"
+      ],
+      "keys": [
+        "TutorialDesc.json|/dataList/39/content",
+        "TutorialRenewalDesc.json|/dataList/52/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "관리자",
+      "zh": [
+        "經理介紹",
+        "經理"
+      ],
+      "keys": [
+        "TutorialMainUIText.json|/dataList/196/content",
+        "UserInfo_Friends.json|/dataList/9/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "모든 캐시 삭제",
+      "zh": [
+        "清除所有快取",
+        "清除所有凱茜"
+      ],
+      "keys": [
+        "LoginUIText.json|/dataList/13/content",
+        "StoryUIText.json|/dataList/0/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "모든 캐시를 삭제하시겠습니까?",
+      "zh": [
+        "要清除所有快取嗎？",
+        "要清除所有凱茜嗎？"
+      ],
+      "keys": [
+        "LoginUIText.json|/dataList/35/content",
+        "StoryUIText.json|/dataList/1/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "범례",
+      "zh": [
+        "圖例",
+        "類型"
+      ],
+      "keys": [
+        "BattleUIText.json|/dataList/66/content",
+        "MainUIText.json|/dataList/62/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "보유 중",
+      "zh": [
+        "已擁有",
+        "已持有"
+      ],
+      "keys": [
+        "LobbyBGMUI.json|/dataList/18/content",
+        "UI_Mission_NewReturnUserEvent.json|/dataList/40/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "분실물 보관소에서 보상을 수령하기 위해서는 최초 1회에 한하여 일정량의 엔케팔린 모듈을 지불해야 합니다. 이후에 얻게 되는 보상은 별도의 추가 엔케팔린 모듈 소모 없이 언제든지 획득할 수 있습니다.",
+      "zh": [
+        "為了領取失物招領處中的獎勵，最初需要支付一定數量的腦啡肽模組。後續領取獎勵無需額外消耗腦啡肽模組，並且可以隨時獲取已獲得的獎勵。",
+        "第一次透過失物招領處領取獎勵時，需要使用特定數量的腦啡肽模組。而之後再領取獎勵將不再需要消耗腦啡肽模組。"
+      ],
+      "keys": [
+        "TutorialMainUIText.json|/dataList/437/content",
+        "TutorialMainUIText.json|/dataList/604/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "상대방의 친구 상한이 가득찼습니다.",
+      "zh": [
+        "該玩家的好友列表已滿。",
+        "對方的好友列表已滿。"
+      ],
+      "keys": [
+        "UserInfo_Friends.json|/dataList/25/content",
+        "UserInfo_Friends.json|/dataList/30/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "상세 정보",
+      "zh": [
+        "詳情",
+        "更多情報"
+      ],
+      "keys": [
+        "BattleUIText.json|/dataList/25/content",
+        "BattleUIText.json|/dataList/143/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "서포트 패시브",
+      "zh": [
+        "支援被動技能",
+        "支援被動"
+      ],
+      "keys": [
+        "MainUIText.json|/dataList/107/content",
+        "TutorialRenewalDesc.json|/dataList/83/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "설정 초기화",
+      "zh": [
+        "重置設定",
+        "恢復預設值"
+      ],
+      "keys": [
+        "UserInfo_Friends.json|/dataList/45/content",
+        "kr_settings-ui-donttranslate.json|/dataList/28/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "속도가 같거나 느린 경우",
+      "zh": [
+        "罪人速度值相等或更低時",
+        "當速度值相同時或較低的場合"
+      ],
+      "keys": [
+        "TutorialDesc_Ab.json|/dataList/24/content",
+        "TutorialRenewalDesc.json|/dataList/175/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "속도가 빠른 경우",
+      "zh": [
+        "罪人速度值更高時",
+        "友方速度值較高的場合"
+      ],
+      "keys": [
+        "TutorialDesc_Ab.json|/dataList/22/content",
+        "TutorialRenewalDesc.json|/dataList/167/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "수비 스킬 - 가드",
+      "zh": [
+        "守備技能：防禦",
+        "守備技能 - 防禦"
+      ],
+      "keys": [
+        "TutorialDesc.json|/dataList/47/content",
+        "TutorialRenewalDesc.json|/dataList/90/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "수비 스킬 - 반격",
+      "zh": [
+        "守備技能：反擊",
+        "守備技能 - 反擊"
+      ],
+      "keys": [
+        "TutorialDesc.json|/dataList/51/content",
+        "TutorialRenewalDesc.json|/dataList/94/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "수비 스킬 - 회피",
+      "zh": [
+        "守備技能：閃避",
+        "守備技能 - 迴避"
+      ],
+      "keys": [
+        "TutorialDesc.json|/dataList/55/content",
+        "TutorialRenewalDesc.json|/dataList/92/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "시작점",
+      "zh": [
+        "起始點",
+        "開始"
+      ],
+      "keys": [
+        "BattleUIText.json|/dataList/56/content",
+        "StoryDungeonUI.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "앞으로의 전투는 여러 개의 웨이브로 구성되어 있습니다.",
+      "zh": [
+        "我們在此遭遇的是多波次的戰鬥。",
+        "今後的戰鬥將會由多個波次組成。"
+      ],
+      "keys": [
+        "TutorialDesc0-4.json|/dataList/11/content",
+        "TutorialDesc0-4.json|/dataList/39/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "역을 선택하여 입장합니다.",
+      "zh": [
+        "選擇站點並進入戰鬥。",
+        "選擇站點進入關卡。"
+      ],
+      "keys": [
+        "TutorialMainUIText.json|/dataList/400/content",
+        "TutorialMainUIText.json|/dataList/574/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "연동된 계정",
+      "zh": [
+        "已綁定帳號",
+        "關聯帳號"
+      ],
+      "keys": [
+        "MainUIText.json|/dataList/426/content",
+        "kr_settings-ui-donttranslate.json|/dataList/52/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "이름",
+      "zh": [
+        "名稱",
+        "名字"
+      ],
+      "keys": [
+        "MainUIText.json|/dataList/182/content",
+        "UserInfo_Friends.json|/dataList/7/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "이벤트 배너 획득 조건을 확인할 수 있습니다.",
+      "zh": [
+        "能夠確認活動橫幅的獲取條件。",
+        "可以在此確認活動橫幅的獲取條件。"
+      ],
+      "keys": [
+        "TutorialMainUIText.json|/dataList/265/content",
+        "TutorialMainUIText.json|/dataList/432/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "이어서 진행할 경우 등장하는 적의 체력이 유지되며, 남은 체력 비율이 역 위쪽에 표시됩니다.",
+      "zh": [
+        "繼續進行戰鬥時，不會刷新敵方單位的現存體力，並將在站點上方顯示現存體力的比例條。",
+        "如果選擇繼續，敵人當前的生命值將被保留。其剩餘生命值將以百分比形式顯示在站點上方。"
+      ],
+      "keys": [
+        "TutorialMainUIText.json|/dataList/415/content",
+        "TutorialMainUIText.json|/dataList/588/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "이용 약관",
+      "zh": [
+        "服務條款",
+        "用戶協議"
+      ],
+      "keys": [
+        "LoginUIText.json|/dataList/8/content",
+        "UserAgreements.json|/dataList/1/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "인격과 E.G.O 편성을 완료하였다면 확인 버튼을 통해 거울 던전 스테이지로 입장할 수 있습니다.",
+      "zh": [
+        "完成初始人格設定後，按「確認」能夠進入鏡像迷宮。",
+        "完成人格與E.G.O設定後，按「確認」即可進入鏡像迷宮。"
+      ],
+      "keys": [
+        "TutorialMainUIText.json|/dataList/349/content",
+        "TutorialMainUIText.json|/dataList/503/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "입장 시, 보유한 인격과 E.G.O를 선택하여 편성합니다.",
+      "zh": [
+        "進入關卡時，您可以選擇所擁有的人格與E.G.O來組建隊伍。",
+        "入場時，可以選擇所擁有的人格與E.G.O來進行組建隊伍。"
+      ],
+      "keys": [
+        "TutorialMainUIText.json|/dataList/396/content",
+        "TutorialMainUIText.json|/dataList/570/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "적용 중",
+      "zh": [
+        "投影中",
+        "應用中"
+      ],
+      "keys": [
+        "SkinUI.json|/dataList/13/content",
+        "StoryVoiceSettingUI.json|/dataList/11/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "전투 이후 남은 E.G.O 자원은 다음 역에서 사용할 수 있습니다.",
+      "zh": [
+        "通關本場戰鬥後剩餘的罪孽碎片在下一站依舊能夠使用。",
+        "戰鬥後剩餘的罪孽碎片可在下一站中使用。"
+      ],
+      "keys": [
+        "TutorialMainUIText.json|/dataList/407/content",
+        "TutorialMainUIText.json|/dataList/584/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "전투 참가 가능 수",
+      "zh": [
+        "可參戰人數",
+        "戰鬥參與人數"
+      ],
+      "keys": [
+        "MainUIText.json|/dataList/377/content",
+        "TutorialMainUIText.json|/dataList/130/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "전투 화면 내 정보량 조절 설정",
+      "zh": [
+        "戰鬥畫面資訊量設定",
+        "戰鬥介面資訊量設定"
+      ],
+      "keys": [
+        "TutorialNewUpperSkillInfoUI.json|/dataList/0/content",
+        "TutorialRenewalDesc.json|/dataList/100/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "정신 소모량",
+      "zh": [
+        "理智值消耗",
+        "理智消耗量"
+      ],
+      "keys": [
+        "MainUIText.json|/dataList/100/content",
+        "TutorialMainUIText.json|/dataList/69/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "주요 이야기",
+      "zh": [
+        "主線劇情",
+        "故事位置"
+      ],
+      "keys": [
+        "TutorialMainUIText.json|/dataList/92/content",
+        "TutorialMainUIText.json|/dataList/97/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "최근 접속일",
+      "zh": [
+        "最後登入：",
+        "最後登入"
+      ],
+      "keys": [
+        "UserInfo_Friends.json|/dataList/8/content",
+        "UserInfo_Friends.json|/dataList/38/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "추출 이력",
+      "zh": [
+        "提取紀錄",
+        "提取歷史"
+      ],
+      "keys": [
+        "MainUIText.json|/dataList/75/content",
+        "TutorialMainUIText.json|/dataList/179/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "추출 종류",
+      "zh": [
+        "類型",
+        "提取類型"
+      ],
+      "keys": [
+        "MainUIText.json|/dataList/214/content",
+        "TutorialMainUIText.json|/dataList/171/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "츠바이",
+      "zh": [
+        "Zwei協會",
+        "Zwei"
+      ],
+      "keys": [
+        "FormationNameEtcFilter.json|/dataList/8/content",
+        "IntroductionPreset.json|/dataList/309/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "필요",
+      "zh": [
+        "需求",
+        "需要"
+      ],
+      "keys": [
+        "BattleUIText.json|/dataList/10/content",
+        "BattleUIText.json|/dataList/51/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "현재 계정",
+      "zh": [
+        "當前帳戶",
+        "當前帳號"
+      ],
+      "keys": [
+        "IntegrateAccountUI.json|/dataList/10/content",
+        "MainUIText.json|/dataList/425/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "환상체 도감에는 부위마다 정보가 기록되어있습니다.\n처음 만난 환상체의 도감은 미완성 상태입니다.\n미완성 상태의 도감은 환상체를 상대하면서 점차 완성됩니다.\n환상체는 여러 번 조우하고 전투할수록 관찰 단계가 증가합니다.\n관찰 단계가 높아질수록 환상체에게 입히는 피해량이 증가합니다.",
+      "zh": [
+        "異想體圖鑑中記錄了各個部位的情報。\n最初遭遇異想體時，其圖鑑還處於未完成狀態。\n未完成的圖鑑會在與異想體的每次戰鬥中逐步完善。\n重複遭遇異想體並與之戰鬥，觀察等級也會隨之上升。\n觀察等級越高，對異想體造成的傷害越高。",
+        "異想體圖鑑中記錄了各個部位的情報。\n最初遭遇異想體時，其圖鑑還處於未完成狀態。\n未完成的圖鑑會在與異想體的戰鬥中逐步完善。\n重複遭遇異想體並與之戰鬥，觀察等級也會隨之上升。\n觀察等級越高，對異想體造成的傷害越高。"
+      ],
+      "keys": [
+        "TutorialDesc.json|/dataList/74/content",
+        "TutorialPopUpDesc.json|/dataList/24/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "회사",
+      "zh": [
+        "公司",
+        "助戰"
+      ],
+      "keys": [
+        "TutorialMainUIText.json|/dataList/211/content",
+        "UserInfo_Friends.json|/dataList/10/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ui",
+      "field": "content",
+      "kr": "획득 조건이 어려울수록 더욱 특별한 배너를 얻게 됩니다.",
+      "zh": [
+        "獲取條件越為苛刻，所能獲得的裝飾橫幅越為特別。",
+        "獲取條件越苛刻，獲得的橫幅越特別。"
+      ],
+      "keys": [
+        "TutorialMainUIText.json|/dataList/266/content",
+        "TutorialMainUIText.json|/dataList/600/content"
       ],
       "counts": [
         1,
