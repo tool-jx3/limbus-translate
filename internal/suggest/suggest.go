@@ -84,6 +84,18 @@ const maxTitleText = 40
 // suggestion quotes; the evidence has the whole note.
 const maxNoteTitle = 120
 
+// The notes of the rows of a term-new suggestion that are not the unit that
+// registered the term: another rendering of it, and an old unit that holds
+// its KR.
+const (
+	noteConflict   = "衝突"
+	noteOldExample = "舊譯例句"
+)
+
+// maxMergedExamples is how many old units of a provisional term a name
+// suggestion it is merged into keeps ahead of its own rows.
+const maxMergedExamples = 2
+
 // Suggestion is one thing the rules could learn.
 type Suggestion struct {
 	// ID is the same each time the same thing is found (see the kinds).
@@ -397,7 +409,7 @@ func (c *collector) fromProvisional(terms []store.ProvisionalTerm) {
 	}
 	for _, t := range terms {
 		if _, ok := c.byID[KindNewTerm+"/"+t.KR]; ok && t.Conflict {
-			c.add(KindNewTerm, t.KR, "", Evidence{Key: t.Key, KR: t.KR, ZH: t.ZH, Note: "衝突"})
+			c.add(KindNewTerm, t.KR, "", Evidence{Key: t.Key, KR: t.KR, ZH: t.ZH, Note: noteConflict})
 		}
 	}
 }
@@ -411,7 +423,7 @@ func (c *collector) addTermExamples(diffs []build.TermDiff) {
 		}
 		rows := make([]Evidence, len(d.Examples))
 		for i, ex := range d.Examples {
-			rows[i] = Evidence{Key: ex.Key, KR: ex.KR, ZH: ex.ZH, Note: "舊譯例句"}
+			rows[i] = Evidence{Key: ex.Key, KR: ex.KR, ZH: ex.ZH, Note: noteOldExample}
 		}
 		c.add(KindNewTerm, d.KR, "", rows...)
 	}
@@ -419,20 +431,52 @@ func (c *collector) addTermExamples(diffs []build.TermDiff) {
 
 // mergeTermNewIntoName folds the term-new suggestion of a KR that has a name
 // suggestion too into the name suggestion: the name is what a person decides
-// on, and the provisional term is part of its evidence.
+// on, and the provisional term is part of its evidence. A name may have rows
+// enough of its own to fill the evidence, so the rows that say what the term
+// is come first (see termRowsFirst), then those of the name, then the rest of
+// the term's, up to MaxEvidence.
 func (c *collector) mergeTermNewIntoName() {
 	for id, s := range c.byID {
 		if s.Kind != KindNewTerm {
 			continue
 		}
 		kr := strings.TrimPrefix(id, KindNewTerm+"/")
-		if _, ok := c.byID[existing.SuggestionID(kr)]; !ok {
+		name, ok := c.byID[existing.SuggestionID(kr)]
+		if !ok {
 			continue
 		}
-		c.add(KindName, kr, "", s.Evidence...)
+		first, rest := termRowsFirst(s.Evidence)
+		own := name.Evidence
+		name.Evidence = nil
+		c.add(KindName, kr, "", first...)
+		c.add(KindName, kr, "", own...)
+		c.add(KindName, kr, "", rest...)
 		delete(c.byID, id)
 		delete(c.units, id)
 	}
+}
+
+// termRowsFirst splits the rows of a term-new suggestion into those that a
+// name suggestion it is merged into puts before its own: the units that
+// registered the term, how it differs from the old translations and the
+// first maxMergedExamples old units; and the rest (the conflicting renderings
+// and the other old units). Both keep their order.
+func termRowsFirst(rows []Evidence) (first, rest []Evidence) {
+	examples := 0
+	for _, e := range rows {
+		switch {
+		case e.Note == noteConflict:
+			rest = append(rest, e)
+		case e.Note == noteOldExample && examples == maxMergedExamples:
+			rest = append(rest, e)
+		default:
+			if e.Note == noteOldExample {
+				examples++
+			}
+			first = append(first, e)
+		}
+	}
+	return first, rest
 }
 
 // knowsSpeaker reports whether the guides say who the speaker model is: the

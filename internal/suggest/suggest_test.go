@@ -991,14 +991,73 @@ func TestSuggestMergesTermNewIntoName(t *testing.T) {
 	if s == nil {
 		t.Fatal("no name/노을빛 검")
 	}
+	// The term's rows come first (TestSuggestMergeKeepsTheTermRows), and the
+	// name's own rows and title are kept.
 	reg := Evidence{Key: "F.json|/dataList/9/name", KR: "노을빛 검", ZH: "夕照之劍", Note: "b0"}
-	if !slices.Contains(s.Evidence, reg) {
-		t.Errorf("evidence lacks the registration row: %+v", s.Evidence)
+	if len(s.Evidence) == 0 || s.Evidence[0] != reg {
+		t.Errorf("evidence does not start with the registration row: %+v", s.Evidence)
 	}
 	if len(s.Evidence) > MaxEvidence {
 		t.Errorf("%d rows", len(s.Evidence))
 	}
-	if s.Evidence[0].Count != 5 || s.Title != "與既有譯名不同：노을빛 검（既有 暮色之劍，這次 2 個單位不同）" {
+	if !slices.Contains(s.Evidence, Evidence{KR: "노을빛 검", ZH: "暮色之劍", Count: 5}) || s.Title != "與既有譯名不同：노을빛 검（既有 暮色之劍，這次 2 個單位不同）" {
 		t.Errorf("the name suggestion changed: %+v", s)
+	}
+}
+
+// A name with many units of its own keeps the rows of the provisional term
+// merged into it: the registration, how it differs from the old translations
+// and two of their examples come first, then the rows of the name up to the
+// cap, then the rest of the term's rows while there is room.
+func TestSuggestMergeKeepsTheTermRows(t *testing.T) {
+	in := nameFixture()
+	d := &in.Build.Report.NameDiffs[0]
+	for i := 0; i < 20; i++ {
+		d.Units = append(d.Units, build.NameDiffUnit{Key: fmt.Sprintf("c.json|/dataList/%d/name", i), ZH: "x", Kind: build.NameDiffField})
+	}
+	in.Provisional = []store.ProvisionalTerm{
+		{KR: "노을빛 검", ZH: "夕照之劍", Key: "F.json|/dataList/9/name", Batch: "b0", Old: &store.OldUse{Existing: "暮色之劍", Units: 5, With: 0}},
+		{KR: "노을빛 검", ZH: "斜陽劍", Key: "G.json|/dataList/1/name", Batch: "b1", Conflict: true},
+	}
+	var examples []existing.OldExample
+	for i := 0; i < 3; i++ {
+		examples = append(examples, existing.OldExample{Key: fmt.Sprintf("o.json|/dataList/%d/desc", i), KR: "노을빛 검 예문", ZH: "暮色之劍的例句"})
+	}
+	in.Build.Report.TermDiffs = []build.TermDiff{{KR: "노을빛 검", ZH: "夕照之劍", Existing: "暮色之劍", OldUnits: 5, Examples: examples}}
+	s := find(run(t, in), "name/노을빛 검")
+	if s == nil {
+		t.Fatal("no name/노을빛 검")
+	}
+	example := func(i int) Evidence {
+		return Evidence{Key: examples[i].Key, KR: examples[i].KR, ZH: examples[i].ZH, Note: "舊譯例句"}
+	}
+	want := []Evidence{
+		{Key: "F.json|/dataList/9/name", KR: "노을빛 검", ZH: "夕照之劍", Note: "b0"},
+		{KR: "노을빛 검", ZH: "暮色之劍", Count: 5, Note: "與舊譯不同：舊譯 5 個單位，含暫定譯法 0 個"},
+		example(0), example(1),
+		{KR: "노을빛 검", ZH: "暮色之劍", Count: 5},
+		{KR: "노을빛 검", ZH: "晚霞劍", Count: 2},
+		{Key: "a.json|/dataList/0/name", KR: "노을빛 검", ZH: "夕照之劍", Note: "譯者說明"},
+		{Key: "b.json|/dataList/1/desc", KR: "노을빛 검", ZH: "含夕照之劍的句子"},
+		{Key: "c.json|/dataList/0/name", KR: "노을빛 검", ZH: "x"},
+		{Key: "c.json|/dataList/1/name", KR: "노을빛 검", ZH: "x"},
+	}
+	if !reflect.DeepEqual(s.Evidence, want) {
+		t.Errorf("evidence =\n%+v\nwant\n%+v", s.Evidence, want)
+	}
+
+	// With room left, the rest of the term's rows follow the name's.
+	in = nameFixture()
+	in.Provisional = []store.ProvisionalTerm{
+		{KR: "노을빛 검", ZH: "夕照之劍", Key: "F.json|/dataList/9/name", Batch: "b0", Old: &store.OldUse{Existing: "暮色之劍", Units: 5, With: 0}},
+		{KR: "노을빛 검", ZH: "斜陽劍", Key: "G.json|/dataList/1/name", Batch: "b1", Conflict: true},
+	}
+	in.Build.Report.TermDiffs = []build.TermDiff{{KR: "노을빛 검", ZH: "夕照之劍", Existing: "暮色之劍", OldUnits: 5, Examples: examples}}
+	s = find(run(t, in), "name/노을빛 검")
+	want = append(want[:8:8],
+		Evidence{Key: "G.json|/dataList/1/name", KR: "노을빛 검", ZH: "斜陽劍", Note: "衝突"},
+		example(2))
+	if !reflect.DeepEqual(s.Evidence, want) {
+		t.Errorf("with room: evidence =\n%+v\nwant\n%+v", s.Evidence, want)
 	}
 }
