@@ -2,11 +2,12 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/tool-jx3/limbus-translate/internal/config"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/tool-jx3/limbus-translate/internal/config"
 )
 
 // planOut is the part of "plan --json" the tests look at.
@@ -105,8 +106,12 @@ func TestPlanCommandPassesNameFields(t *testing.T) {
 	}
 	root := e2eRepo(t)
 	t.Chdir(root)
-	if cfg, err := config.Load(root); err != nil || len(cfg.Names.Fields) == 0 {
-		t.Fatalf("lct.yaml names.fields = %v (%v), want some", cfg.Names.Fields, err)
+	cfg, err := config.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(cfg.Names.Fields) == 0 {
+		t.Fatal("lct.yaml has no names.fields")
 	}
 	mustLct(t, nil, "snapshot", "--from", fixture, "--token", testToken, "--created-at", testCreatedAt)
 	mustLct(t, nil, "bootstrap", "--upstream", filepath.Join(fixture, "upstream"))

@@ -314,9 +314,9 @@ func (in Inputs) check() error {
 // records, the queue, applied.json, the table and the index, then plan.json.
 // The ids of the applied files go in after the changes they made, so a file
 // is never listed as applied without them. Each file is replaced atomically,
-// but not the six together: a run that dies while writing them leaves a store to reset to its
-// last commit (CI commits the tw worktree only after a plan that went
-// through).
+// but not the six together: a run that dies while writing them leaves a
+// store to reset to its last commit (CI commits the tw worktree only after a
+// plan that went through).
 func Run(in Inputs) (*Summary, error) {
 	if err := in.check(); err != nil {
 		return nil, err
