@@ -1,0 +1,35 @@
+package main
+
+import (
+	"encoding/json"
+	"os"
+
+	"github.com/tool-jx3/limbus-translate/internal/batch"
+	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/validate"
+)
+
+func main() {
+	src, err := pack.OpenRaw(os.Args[1])
+	if err != nil {
+		panic(err)
+	}
+	recs, err := store.Open(os.Args[2]).LoadRecords()
+	if err != nil {
+		panic(err)
+	}
+	names, err := batch.KeywordNames(src.KR, recs)
+	if err != nil {
+		panic(err)
+	}
+	type row struct{ Key, Origin, Batch, From, To string }
+	var out []row
+	for k, r := range recs {
+		n := validate.NormalizeKeywordSpace(r.ZH, names)
+		if n != r.ZH {
+			out = append(out, row{k, r.Origin, r.Batch, r.ZH, n})
+		}
+	}
+	json.NewEncoder(os.Stdout).Encode(out)
+}
