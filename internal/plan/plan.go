@@ -476,10 +476,10 @@ func (p *planner) writeNames(st *store.Store) error {
 }
 
 // usableRecord returns the record of key when it is a translation of the KR
-// text there is now (see reusable).
+// text there is now (see existing.UsableSHA).
 func (p *planner) usableRecord(key string) (store.Record, bool) {
 	rec, has := p.records[key]
-	return rec, has && reusable(rec, p.cur[key].sha)
+	return rec, has && existing.UsableSHA(rec, p.cur[key].sha)
 }
 
 // collectSources reads the units the table (names) and the index (texts) are
@@ -1045,18 +1045,6 @@ type source struct {
 	rec  store.Record
 }
 
-// reusable reports whether rec, the record of a unit whose KR text has sha,
-// may serve another unit: it is a translation of that text that nobody has
-// to look at.
-func reusable(rec store.Record, sha string) bool {
-	switch rec.Origin {
-	case store.OriginParatranz, store.OriginClaude, store.OriginHuman:
-	default:
-		return false
-	}
-	return rec.KRSha == sha && !slices.Contains(rec.Flags, store.FlagNeedsReview)
-}
-
 // deletedRequest is the pending item of a deleted unit that holds what a
 // person asked for (carriesRequest), which a unit of its text takes over (see
 // reuse).
@@ -1121,7 +1109,7 @@ func (p *planner) reuse(queued map[string]bool) error {
 			}
 			key := units.Key(f.name, u.Pointer)
 			rec, has := p.records[key]
-			if _, pending := p.pending[key]; !has || pending || queued[key] || !reusable(rec, p.cur[key].sha) {
+			if _, pending := p.pending[key]; !has || pending || queued[key] || !existing.UsableSHA(rec, p.cur[key].sha) {
 				continue
 			}
 			g := batch.TextGroupOf(p.in.Rules, f.doc, u)
@@ -1132,7 +1120,7 @@ func (p *planner) reuse(queued map[string]bool) error {
 	oldUnits := map[string]map[string]units.Unit{} // file -> pointer -> unit
 	for _, d := range p.deleted {
 		asked := d.Pending != nil && carriesRequest(*d.Pending)
-		if !want[d.KR] || !asked && (d.Record == nil || !reusable(*d.Record, units.KRSha(d.KR))) {
+		if !want[d.KR] || !asked && (d.Record == nil || !existing.Usable(*d.Record, d.KR)) {
 			continue
 		}
 		doc, err := p.oldKR.Doc(d.File)

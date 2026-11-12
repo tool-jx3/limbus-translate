@@ -148,16 +148,23 @@ func (g SameGroup) rendering(zhOf func(string) (string, bool)) (SameRendering, b
 }
 
 // Usable reports whether rec, the record of a unit whose KR text is kr, may
-// serve as the translation of that unit: it was made by a translation
-// (paratranz, claude or human, not a copy or a fallback), from kr itself, and
-// nobody has to look at it (no needs_review flag).
+// serve as the translation of that text: see UsableSHA.
 func Usable(rec store.Record, kr string) bool {
+	return UsableSHA(rec, units.KRSha(kr))
+}
+
+// UsableSHA reports whether rec, the record of a unit whose KR text has the
+// sha krSha (units.KRSha), may serve as the translation of that text, for the
+// unit itself or for another unit of the same text: it was made by a
+// translation (paratranz, claude or human, not a copy or a fallback), from
+// that text, and nobody has to look at it (no needs_review flag).
+func UsableSHA(rec store.Record, krSha string) bool {
 	switch rec.Origin {
 	case store.OriginParatranz, store.OriginClaude, store.OriginHuman:
 	default:
 		return false
 	}
-	return rec.KRSha == units.KRSha(kr) && !slices.Contains(rec.Flags, store.FlagNeedsReview)
+	return rec.KRSha == krSha && !slices.Contains(rec.Flags, store.FlagNeedsReview)
 }
 
 // SameTextRef renders rs as one line each: "<file>（<speaker>）：<zh>", or

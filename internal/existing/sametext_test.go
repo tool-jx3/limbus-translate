@@ -136,11 +136,12 @@ func TestSameTextForReadsCurrentTranslations(t *testing.T) {
 func TestUsable(t *testing.T) {
 	const kr = "같은 문장입니다"
 	ok := store.Record{Key: fkey("1"), KRSha: units.KRSha(kr), ZH: "同一句", Origin: store.OriginClaude}
+	sha := units.KRSha(kr)
 	for _, origin := range []string{store.OriginParatranz, store.OriginClaude, store.OriginHuman} {
 		r := ok
 		r.Origin = origin
-		if !Usable(r, kr) {
-			t.Errorf("origin %s: not usable", origin)
+		if !Usable(r, kr) || !UsableSHA(r, sha) {
+			t.Errorf("origin %s: not usable (Usable %v, UsableSHA %v)", origin, Usable(r, kr), UsableSHA(r, sha))
 		}
 	}
 	for name, edit := range map[string]func(*store.Record){
@@ -151,8 +152,8 @@ func TestUsable(t *testing.T) {
 	} {
 		r := ok
 		edit(&r)
-		if Usable(r, kr) {
-			t.Errorf("%s: usable", name)
+		if Usable(r, kr) || UsableSHA(r, sha) {
+			t.Errorf("%s: usable (Usable %v, UsableSHA %v)", name, Usable(r, kr), UsableSHA(r, sha))
 		}
 	}
 }

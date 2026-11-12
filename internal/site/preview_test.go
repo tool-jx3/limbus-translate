@@ -281,6 +281,9 @@ func newPvWorld(t *testing.T, frozen ...string) pvWorld {
 		ruleRec(rec(rulesFile, 2, "第三", store.OriginClaude), "", "raw-20261001"),
 		// The units the same-text index names besides Other.json #1, which are
 		// not in the pack: one of its own group, one of the story said by faust.
+		// The batch reads their records (existing.Usable), so they need records
+		// made from 새 문장; story #6, which the index named before it held only
+		// keys, has a copy record of 1234, which would not be usable.
 		pvRec(other, at(other, 9), "새 문장", "自己組的譯文", store.OriginClaude),
 		pvRec(story, at(story, 9), "새 문장", "新的一句", store.OriginClaude),
 	} {

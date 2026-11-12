@@ -593,12 +593,13 @@ func inOtherGroup(s *existing.SameText, kr, group string) bool {
 
 // sameTextRef puts into the refs of u, a unit of group, the renderings of its
 // KR in other groups: the translations their units have now in recs, when
-// those are usable (existing.Usable). So a translation submitted earlier in
+// those are usable (existing.UsableSHA). So a translation submitted earlier in
 // this update counts. It adds nothing when no other group has one.
 func sameTextRef(s *existing.SameText, u *BatchUnit, group string, recs map[string]store.Record) {
+	sha := units.KRSha(u.KR)
 	rs := s.For(u.KR, group, func(key string) (string, bool) {
 		rec, ok := recs[key]
-		return rec.ZH, ok && existing.Usable(rec, u.KR)
+		return rec.ZH, ok && existing.UsableSHA(rec, sha)
 	})
 	if len(rs) == 0 {
 		return

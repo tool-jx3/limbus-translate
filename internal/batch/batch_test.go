@@ -4993,8 +4993,8 @@ func TestBatchReadsRecordsForSameTextOnlyWhenIndexed(t *testing.T) {
 		bad := filepath.Join(twRoot, ".meta", "units", "Broken.json.jsonl")
 		writeFile(t, bad, "not json\n")
 		_, err := Next(env, NextOptions{})
-		if indexed && err == nil {
-			t.Error("indexed: Next did not read the records")
+		if indexed && (err == nil || !strings.Contains(err.Error(), "Broken.json.jsonl")) {
+			t.Errorf("indexed: Next = %v, want the error of the broken record file: it reads the records", err)
 		}
 		if !indexed && err != nil {
 			t.Errorf("not indexed: Next = %v, want the batch without reading the records", err)
