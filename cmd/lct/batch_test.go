@@ -1129,8 +1129,10 @@ func TestBaseEnvLoadsNames(t *testing.T) {
 	}); err != nil {
 		t.Fatal(err)
 	}
+	// Two groups, neither the unit's own, so the unit gets both lines.
 	if err := existing.SaveSameText(st, existing.CollectSameText("raw-20261029", []existing.TextUnit{
-		{Key: "Other.json|/dataList/0/content", Group: "other|content|", File: "Other.json", KR: "뫼르소가 말했다", ZH: "穆爾索說了"},
+		{Key: "Other.json|/dataList/0/content", Group: "x|content|", File: "Other.json", KR: "뫼르소가 말했다", ZH: "穆爾索說了"},
+		{Key: "More.json|/dataList/0/content", Group: "y|content|", File: "More.json", KR: "뫼르소가 말했다", ZH: "穆爾索開口了"},
 	})); err != nil {
 		t.Fatal(err)
 	}
@@ -1148,6 +1150,15 @@ func TestBaseEnvLoadsNames(t *testing.T) {
 	}
 	if len(b.Names) != 1 || b.Names[0].KR != "뫼르소가 말했다" || b.Names[0].ZH != "穆爾索說了" || b.Names[0].Count != 2 {
 		t.Errorf("names = %+v, want the name of the table", b.Names)
+	}
+	var said *batch.BatchUnit
+	for i := range b.Units {
+		if b.Units[i].KR == "뫼르소가 말했다" {
+			said = &b.Units[i]
+		}
+	}
+	if said == nil || said.Refs[batch.RefSameText] != "Other.json：穆爾索說了\nMore.json：穆爾索開口了" {
+		t.Errorf("unit = %+v, want refs.same_text with the two groups' lines", said)
 	}
 	if !strings.Contains(string(data), `"names": [`) {
 		t.Errorf("the batch file lacks names:\n%s", data)

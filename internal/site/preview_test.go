@@ -19,6 +19,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/batch"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -313,9 +314,25 @@ func newPvWorld(t *testing.T, frozen ...string) pvWorld {
 	if err != nil {
 		t.Fatal(err)
 	}
+	// 출혈 is the whole text of a name unit (Bufs.json #0) and 새 문장 is
+	// mentioned in a content unit (Other.json #1); the latter has a
+	// translation in another group as well.
+	nameRef := func(kr, jp, en string, rs ...existing.Rendering) existing.Name {
+		return existing.Name{KR: kr, Variants: []existing.Variant{{JP: jp, EN: en, Renderings: rs}}}
+	}
+	table := &existing.Table{RawTag: "raw-20261029", Fields: []string{"name"}, Names: []existing.Name{
+		nameRef("새 문장", "新しい文", "New sentence", existing.Rendering{ZH: "新句子", Units: 3}, existing.Rendering{ZH: "全新的句子", Units: 1}),
+		nameRef("출혈", "出血", "Bleed", existing.Rendering{ZH: "流血", Units: 5}),
+	}}
+	sameText := existing.CollectSameText("raw-20261029", []existing.TextUnit{
+		{Key: units.Key(other, at(other, 1)), Group: "other|content|", File: other, KR: "새 문장", ZH: "自己組的譯文"},
+		{Key: units.Key(story, at(story, 6)), Group: "story-main|content|faust", File: story, Speaker: "faust", KR: "새 문장", ZH: "新的一句"},
+	})
 	env := batch.Env{
 		Store: st, Src: src, Rules: r, RawTag: "raw-20261029", RulesCommit: pvRulesCommit,
-		Now: time.Date(2026, 11, 1, 3, 4, 5, 0, time.UTC),
+		Now:      time.Date(2026, 11, 1, 3, 4, 5, 0, time.UTC),
+		Names:    existing.NewIndex(table, r, nil),
+		SameText: sameText,
 	}
 	pv, err := batch.NewPreviewer(env, frozen)
 	if err != nil {
@@ -368,6 +385,11 @@ func rebuildBatch(t *testing.T, file File, pf PreviewFile, shared PreviewShared,
 	}
 	for _, id := range pu.K {
 		b.Keywords[id] = pf.Keywords[id]
+	}
+	for _, n := range pu.N {
+		ref := pf.Names[n]
+		ref.Units = []string{key}
+		b.Names = append(b.Names, ref)
 	}
 	ex := expandPreviewUnit(t, file, pf, i)
 	bu := batch.BatchUnit{
@@ -804,6 +826,7 @@ type pvGoldUnit struct {
 	G    []string          `json:"g"`
 	T    []rules.Term      `json:"t"`
 	K    []string          `json:"k"`
+	N    []batch.NameRef   `json:"n"`
 	It   PreviewItem       `json:"it"`
 	EM   string            `json:"em,omitempty"`
 	JM   string            `json:"jm,omitempty"`
@@ -873,7 +896,11 @@ func goldenPreviewFile(t *testing.T, pv *batch.Previewer, file File) pvGoldFile 
 		out.Family, out.GlossaryCheck = b.Family, b.GlossaryCheck
 		maps.Copy(out.Keywords, b.Keywords)
 		bu := p.Batch.Units[0]
-		g := &pvGoldUnit{SP: bu.Speaker, G: nonNil(slices.Clone(b.Guides)), T: []rules.Term{}, K: nonNil(slices.Sorted(maps.Keys(b.Keywords))), C: [][]any{}}
+		g := &pvGoldUnit{SP: bu.Speaker, G: nonNil(slices.Clone(b.Guides)), T: []rules.Term{}, K: nonNil(slices.Sorted(maps.Keys(b.Keywords))), N: []batch.NameRef{}, C: [][]any{}}
+		for _, ref := range b.Names {
+			ref.Units = nil
+			g.N = append(g.N, ref)
+		}
 		for _, term := range b.Glossary {
 			term.Units = nil
 			g.T = append(g.T, term)
@@ -1096,5 +1123,32 @@ func TestPreviewFixtureFormsAndCheckOff(t *testing.T) {
 	}
 	if c := third.Check; c == nil || c.Verdict != "accept" || slices.ContainsFunc(c.Issues, func(is validate.Issue) bool { return is.Code == validate.CodeTermMissing }) {
 		t.Errorf("check = %+v, want accepted without term-missing (the record 第三 lacks 三號)", c)
+	}
+}
+
+// The names and the same-text reference of a batch reach the preview: a name
+// hit by a whole unit, a name mentioned in a text, and the translation in
+// another group (not the unit's own).
+func TestExportPreviewCarriesNames(t *testing.T) {
+	w := newPvWorld(t, "Frozen.json")
+	out := t.TempDir()
+	if _, err := Export(w.In, Meta{}, out); err != nil {
+		t.Fatal(err)
+	}
+	var bufs, other PreviewFile
+	readJSON(t, out, "preview/Bufs.json", &bufs)
+	readJSON(t, out, "preview/Other.json", &other)
+	if len(bufs.Names) != 1 || bufs.Names[0].KR != "출혈" || bufs.Names[0].Units != nil || !slices.Equal(bufs.Units[1].N, []int{0}) {
+		t.Errorf("Bufs.json: names %+v, n %v, want 출혈 for the name unit 1 without units", bufs.Names, bufs.Units[1].N)
+	}
+	if len(bufs.Units[0].N) != 0 || len(bufs.Units[3].N) != 0 {
+		t.Errorf("Bufs.json units 0 and 3: n %v %v, want none", bufs.Units[0].N, bufs.Units[3].N)
+	}
+	if len(other.Names) != 1 || other.Names[0].KR != "새 문장" || !slices.Equal(other.Units[1].N, []int{0}) {
+		t.Errorf("Other.json: names %+v, n %v", other.Names, other.Units[1].N)
+	}
+	ref := other.Units[1].It.Refs["same_text"]
+	if !strings.Contains(ref, "新的一句") || strings.Contains(ref, "自己組的譯文") {
+		t.Errorf("Other.json unit 1: same_text %q, want the other group's translation only", ref)
 	}
 }

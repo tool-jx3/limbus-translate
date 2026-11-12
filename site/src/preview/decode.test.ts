@@ -9,11 +9,12 @@ const file = (zhs: string[]): FileData => ({
   units: zhs.map((zh, i) => ({ p: `/dataList/${i}/content`, f: 'content', kr: `kr ${i}`, zh })) as unknown as FileData['units'],
 })
 
-const unit = (over: Partial<PreviewUnitWire> = {}): PreviewUnitWire => ({ sp: '', g: [], t: [], k: [], it: { reason: 'new' }, c: [], ...over })
+const unit = (over: Partial<PreviewUnitWire> = {}): PreviewUnitWire => ({ sp: '', g: [], t: [], k: [], n: [], it: { reason: 'new' }, c: [], ...over })
 
 const wire = (units: (PreviewUnitWire | null)[], rd?: PreviewFileWire['rd']): PreviewFileWire => ({
   family: 'other',
   glossary_check: '',
+  names: [],
   terms: [],
   keywords: {},
   ...(rd ? { rd } : {}),
@@ -159,13 +160,13 @@ describe('expandPreviewFile against the golden files of Go', () => {
     it(`${path} expands to the golden file`, () => {
       const got = expandPreviewFile(fixture<PreviewFileWire>(`preview/${path}`), fixture<FileData>(`files/${path}`))
       // The golden file names what the compact one numbers: the guides by path and the
-      // glossary entries by content, as the batches of the Previewer have them.
+      // glossary entries and names by content, as the batches of the Previewer have them.
       const guides = fixture<PreviewShared>('preview.json').guides
-      const { terms, ...rest } = got
+      const { terms, names, ...rest } = got
       const named = {
         ...rest,
         units: got.units.map((u) =>
-          u && { ...u, g: u.g.map((n) => guides[n]?.path), t: u.t.map((n) => terms[n]) },
+          u && { ...u, g: u.g.map((n) => guides[n]?.path), t: u.t.map((n) => terms[n]), n: u.n.map((n) => names[n]) },
         ),
       }
       expect(named).toEqual(fixture<unknown>(`expanded/${path}`))

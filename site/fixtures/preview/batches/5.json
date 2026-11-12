@@ -11,7 +11,24 @@
   ],
   "glossary": [],
   "keywords": {},
-  "names": [],
+  "names": [
+    {
+      "kr": "새 문장",
+      "zh": "新句子",
+      "count": 3,
+      "others": [
+        {
+          "zh": "全新的句子",
+          "units": 1
+        }
+      ],
+      "jp": "新しい文",
+      "en": "New sentence",
+      "units": [
+        "Other.json|/dataList/1/content"
+      ]
+    }
+  ],
   "units": [
     {
       "key": "Other.json|/dataList/1/content",
@@ -23,6 +40,9 @@
       "en": {
         "value": "New sentence",
         "method": "pointer"
+      },
+      "refs": {
+        "same_text": "StoryData/S001A.json（faust）：新的一句"
       },
       "keep": {
         "ids": [],

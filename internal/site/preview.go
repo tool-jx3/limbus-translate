@@ -57,14 +57,19 @@ type PreviewShared struct {
 // GlossaryCheck, File: path, Files: [path], Guides, Glossary, Keywords, Units:
 // [one unit], Context}: Guides are the paths of the numbers in Unit.G;
 // Glossary is Terms[t] for each t of Unit.T, with Units set to [the key of
-// the unit] (an empty list is []); Keywords is the names of Unit.K, taken from
-// Keywords ({} when none); Units and Context are never null.
+// the unit] (an empty list is []); Names is Names[n] for each n of Unit.N, with
+// Units set to [the key of the unit] ([] when none); Keywords is the names of
+// Unit.K, taken from Keywords ({} when none); Units and Context are never
+// null.
 type PreviewFile struct {
 	Family        string `json:"family"`
 	GlossaryCheck string `json:"glossary_check"`
 	// Terms are the glossary entries of the batches of the file, each once,
 	// without their Units.
 	Terms []rules.Term `json:"terms"`
+	// Names are the existing names of the batches of the file, each once,
+	// without their Units.
+	Names []batch.NameRef `json:"names"`
 	// Keywords are the names of the keywords the batches of the file name.
 	Keywords map[string]string `json:"keywords"`
 	// RD are the values most records of the file have; a record leaves out
@@ -135,9 +140,12 @@ type PreviewUnit struct {
 	// G, T and K are the guides (numbers in PreviewShared.Guides), the
 	// glossary entries (numbers in PreviewFile.Terms) and the keyword ids of
 	// the batch, in its order (K sorted).
-	G  []int       `json:"g"`
-	T  []int       `json:"t"`
-	K  []string    `json:"k"`
+	G []int    `json:"g"`
+	T []int    `json:"t"`
+	K []string `json:"k"`
+	// N are the existing names of the batch (numbers in PreviewFile.Names),
+	// in its order.
+	N  []int       `json:"n"`
 	It PreviewItem `json:"it"`
 	// PZ is 1 where It.PrevZH is the ZH of the unit in files/<path>, and then
 	// It.PrevZH is left out.
@@ -192,6 +200,7 @@ func buildPreviewFile(file File, pvs []*batch.UnitPreview, guides *guideTable) (
 	out := PreviewFile{
 		Family:   file.Family,
 		Terms:    []rules.Term{},
+		Names:    []batch.NameRef{},
 		Keywords: map[string]string{},
 		Units:    make([]*PreviewUnit, len(file.Units)),
 	}
@@ -201,6 +210,7 @@ func buildPreviewFile(file File, pvs []*batch.UnitPreview, guides *guideTable) (
 		byPointer[u.P] = i
 	}
 	termAt := map[string]int{}
+	nameAt := map[string]int{}
 	var origins, rulesOf, sinces []string // of the records of the file
 	for i, pv := range pvs {
 		if pv == nil {
@@ -224,6 +234,7 @@ func buildPreviewFile(file File, pvs []*batch.UnitPreview, guides *guideTable) (
 			SP: bu.Speaker,
 			G:  []int{},
 			T:  []int{},
+			N:  []int{},
 			K:  []string{},
 			It: PreviewItem{Reason: bu.Reason, PrevKR: bu.PrevKR, PrevZH: bu.PrevZH, Draft: bu.Draft, Hint: bu.Hint, Refs: bu.Refs},
 			C:  [][]any{},
@@ -261,6 +272,20 @@ func buildPreviewFile(file File, pvs []*batch.UnitPreview, guides *guideTable) (
 				out.Terms = append(out.Terms, t)
 			}
 			u.T = append(u.T, n)
+		}
+		for _, ref := range b.Names {
+			ref.Units = nil
+			enc, err := json.Marshal(ref)
+			if err != nil {
+				return PreviewFile{}, fmt.Errorf("site: preview %s: %w", file.Path, err)
+			}
+			n, ok := nameAt[string(enc)]
+			if !ok {
+				n = len(out.Names)
+				nameAt[string(enc)] = n
+				out.Names = append(out.Names, ref)
+			}
+			u.N = append(u.N, n)
 		}
 		for id, name := range b.Keywords {
 			out.Keywords[id] = name

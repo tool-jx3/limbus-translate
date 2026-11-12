@@ -2,7 +2,7 @@
 // `batch next`) would write for one unit, from data/files/<path>,
 // data/preview/<path> and data/preview.json. The text must equal Go's
 // byte for byte; the contract test reads site/fixtures/preview/.
-import type { BatchJSON, BatchUnit, ContextLine, FileData, PreviewFile, PreviewShared, Term } from '../types'
+import type { BatchJSON, BatchUnit, ContextLine, FileData, NameRef, PreviewFile, PreviewShared, Term } from '../types'
 
 /**
  * The paths of the maps Go writes with their keys sorted (Batch.Keywords,
@@ -88,6 +88,11 @@ export function rebuildBatch(path: string, file: FileData, pf: PreviewFile, shar
     if (!t) throw new Error(`${path}: no term ${n}`)
     return { ...t, units: [key] }
   })
+  const names = pu.n.map((n): NameRef => {
+    const r = pf.names[n]
+    if (!r) throw new Error(`${path}: no name ${n}`)
+    return { ...r, units: [key] }
+  })
   const keywords: Record<string, string> = {}
   for (const id of pu.k) {
     const name = pf.keywords[id]
@@ -137,7 +142,7 @@ export function rebuildBatch(path: string, file: FileData, pf: PreviewFile, shar
   })
   batch.glossary = glossary
   batch.keywords = goMap(keywords)
-  batch.names = []
+  batch.names = names
   batch.units = [unit as BatchUnit]
   batch.context = context
   return batch as BatchJSON

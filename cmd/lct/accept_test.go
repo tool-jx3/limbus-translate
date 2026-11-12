@@ -506,7 +506,7 @@ func TestAcceptDeclinesANewTerm(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if got, err := activeProvisional(s.root, st, r); err != nil || len(got) != 1 || got[0].KR != "우레" {
+	if _, got, err := activeProvisionalRecords(s.root, st, r); err != nil || len(got) != 1 || got[0].KR != "우레" {
 		t.Fatalf("before: active = %+v, %v", got, err)
 	}
 
@@ -518,7 +518,7 @@ func TestAcceptDeclinesANewTerm(t *testing.T) {
 	if declined := readOptional(t, s.root, "rules/declined.yaml"); !strings.Contains(declined, `- id: "`+id+`"`) {
 		t.Errorf("declined.yaml lacks %s:\n%s", id, declined)
 	}
-	if got, err := activeProvisional(s.root, st, r); err != nil || len(got) != 0 {
+	if _, got, err := activeProvisionalRecords(s.root, st, r); err != nil || len(got) != 0 {
 		t.Errorf("after: active = %+v, %v; want none", got, err)
 	}
 	var sug suggestOut

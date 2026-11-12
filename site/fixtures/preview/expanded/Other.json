@@ -20,6 +20,7 @@
         }
       ],
       "k": [],
+      "n": [],
       "it": {
         "reason": "requeue",
         "prev_zh": "<b>粗體</b> & 威力"
@@ -60,8 +61,27 @@
       ],
       "t": [],
       "k": [],
+      "n": [
+        {
+          "kr": "새 문장",
+          "zh": "新句子",
+          "count": 3,
+          "others": [
+            {
+              "zh": "全新的句子",
+              "units": 1
+            }
+          ],
+          "jp": "新しい文",
+          "en": "New sentence",
+          "units": null
+        }
+      ],
       "it": {
-        "reason": "new"
+        "reason": "new",
+        "refs": {
+          "same_text": "StoryData/S001A.json（faust）：新的一句"
+        }
       },
       "em": "pointer",
       "keep": {
@@ -85,6 +105,7 @@
       ],
       "t": [],
       "k": [],
+      "n": [],
       "it": {
         "reason": "structural-fail"
       },
@@ -112,6 +133,7 @@
       ],
       "t": [],
       "k": [],
+      "n": [],
       "it": {
         "reason": "new"
       },

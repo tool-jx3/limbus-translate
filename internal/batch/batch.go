@@ -152,9 +152,9 @@ type nameUse struct {
 // nameRefs makes the names of a batch from the uses, in batch order: one
 // NameRef for each of the first maxNameVariants variants of a name. When more
 // than MaxNames come out, those that stand for a whole unit are kept first,
-// then the mentioned ones, each class longest KR first (by runes), then by KR
-// and variant. A name that is exact for one unit and mentioned in another
-// counts as exact.
+// then the mentioned ones, each class longest KR first (by runes), then by KR.
+// A name whose variants do not all fit ends the list. A name that is exact
+// for one unit and mentioned in another counts as exact.
 func nameRefs(uses []nameUse) []NameRef {
 	type entry struct {
 		name  *existing.Name
@@ -189,6 +189,7 @@ func nameRefs(uses []nameUse) []NameRef {
 	})
 	refs := []NameRef{}
 	for _, e := range order {
+		var mine []NameRef
 		for _, v := range e.name.Variants[:min(len(e.name.Variants), maxNameVariants)] {
 			if len(v.Renderings) == 0 {
 				continue
@@ -197,11 +198,15 @@ func nameRefs(uses []nameUse) []NameRef {
 			if len(v.Renderings) > 1 {
 				ref.Others = v.Renderings[1:]
 			}
-			refs = append(refs, ref)
+			mine = append(mine, ref)
 		}
-	}
-	if len(refs) > MaxNames {
-		refs = refs[:MaxNames]
+		// A name is kept with all its variants or not at all, so that the
+		// translator never sees a name without the variants that tell its
+		// meanings apart.
+		if len(refs)+len(mine) > MaxNames {
+			break
+		}
+		refs = append(refs, mine...)
 	}
 	return refs
 }

@@ -4807,7 +4807,7 @@ func TestBatchNamesCapKeepsExactFirst(t *testing.T) {
 // that of the unit of A.json (other|content|, without a speaker).
 func sameTextOf(kr string) *existing.SameText {
 	return existing.CollectSameText(testTag, []existing.TextUnit{
-		{Key: "A.json|/dataList/0/content", Group: "other|content|", File: "A.json", KR: kr},
+		{Key: "A.json|/dataList/0/content", Group: "other|content|", File: "A.json", KR: kr, ZH: "自己組的譯文"},
 		{Key: "B.json|/dataList/0/content", Group: "other|content|philip", File: "B.json", Speaker: "philip", KR: kr, ZH: "同一句話"},
 	})
 }
@@ -4817,13 +4817,17 @@ func TestBatchSameTextRef(t *testing.T) {
 	env := newEnv(t, map[string]string{"A.json": oneLine(t, kr)}, nil, nil)
 	seed(t, env, items("A.json", 0, 1)...)
 	env.SameText = sameTextOf(kr)
-	want := existing.SameTextRef(env.SameText.For(kr, "x"))
-	if want == "" {
-		t.Fatal("fixture: the index has no rendering")
+	want := existing.SameTextRef(env.SameText.For(kr, "other|content|"))
+	if want == "" || !strings.Contains(want, "同一句話") {
+		t.Fatalf("fixture: the other group's rendering is not in %q", want)
 	}
 	b := mustNext(t, env, NextOptions{})
-	if got := b.Units[0].Refs[RefSameText]; got != want {
+	got := b.Units[0].Refs[RefSameText]
+	if got != want {
 		t.Errorf("Refs[same_text] = %q, want %q", got, want)
+	}
+	if strings.Contains(got, "自己組的譯文") {
+		t.Errorf("Refs[same_text] = %q holds the unit's own group", got)
 	}
 }
 
@@ -4851,5 +4855,61 @@ func TestNextWithoutNameTable(t *testing.T) {
 	data, err := json.Marshal(b)
 	if err != nil || !strings.Contains(string(data), `"names":[]`) {
 		t.Errorf("JSON = %s, %v, want names: []", data, err)
+	}
+}
+
+// manyMentions makes n distinct names of the given rune count (up to five)
+// that are no part of one another, and the names as one text.
+func manyMentions(n, runes, base int, rs ...[]existing.Rendering) ([]existing.Name, []string) {
+	var names []existing.Name
+	var words []string
+	for i := 0; i < n; i++ {
+		r := []rune{rune(base + i)}
+		for j := 1; j < runes; j++ {
+			r = append(r, rune(0xB100+j*0x100))
+		}
+		names = append(names, nameEntry(string(r), rs...))
+		words = append(words, string(r))
+	}
+	return names, words
+}
+
+// The cap cuts by whole names: a name whose variants do not all fit is left
+// out, not kept with its first variants.
+func TestBatchNamesCapDropsWholeNames(t *testing.T) {
+	one := []existing.Rendering{{ZH: "譯", Units: 1}}
+	names, words := manyMentions(38, 5, 0xB000, one)
+	last, lastWords := manyMentions(1, 3, 0xC000, one, one, one) // three variants, the shortest KR
+	names, words = append(names, last...), append(words, lastWords...)
+	env := namesEnv(t, map[string]string{"Desc.json": `{"dataList":[{"id":0,"desc":` + q(t, strings.Join(words, " ")) + `}]}`}, names...)
+	b := mustNext(t, env, NextOptions{})
+	if len(b.Names) != 38 {
+		t.Fatalf("%d names, want the 38 that fit without the three-variant one: %v", len(b.Names), nameKRs(b))
+	}
+	if slices.Contains(nameKRs(b), last[0].KR) {
+		t.Errorf("a variant of %q is kept", last[0].KR)
+	}
+}
+
+// A name that is the whole text of one unit and is mentioned in another counts
+// as exact, so it is kept ahead of longer names that are only mentioned.
+func TestBatchNamesExactAndMentionedCountsAsExact(t *testing.T) {
+	one := []existing.Rendering{{ZH: "譯", Units: 1}}
+	names, words := manyMentions(MaxNames, 5, 0xB000, one)
+	names = append(names, nameEntry("가나", one))
+	text := strings.Join(words, " ") + " '가나'"
+	env := namesEnv(t, map[string]string{
+		"Skill.json": `{"dataList":[{"id":0,"name":"가나"}]}`,
+		"Desc.json":  `{"dataList":[{"id":0,"desc":` + q(t, text) + `}]}`,
+	}, names...)
+	b := mustNext(t, env, NextOptions{MaxUnits: 100})
+	if len(b.Names) != MaxNames {
+		t.Fatalf("%d names, want %d", len(b.Names), MaxNames)
+	}
+	if b.Names[0].KR != "가나" {
+		t.Fatalf("first name %q, want 가나 (exact comes first): %v", b.Names[0].KR, nameKRs(b))
+	}
+	if want := []string{"Desc.json|/dataList/0/desc", "Skill.json|/dataList/0/name"}; !slices.Equal(b.Names[0].Units, want) && !slices.Equal(b.Names[0].Units, []string{want[1], want[0]}) {
+		t.Errorf("Units = %v, want the keys of both units", b.Names[0].Units)
 	}
 }

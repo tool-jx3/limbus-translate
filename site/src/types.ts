@@ -583,6 +583,8 @@ export interface PreviewUnit {
   t: number[]
   /** Keyword ids, sorted. */
   k: string[]
+  /** Existing names: numbers in PreviewFile.names. */
+  n: number[]
   it: PreviewItem
   /** The methods of the aligned EN and JP strings. */
   em?: string
@@ -602,8 +604,22 @@ export interface PreviewFile {
   family: string
   glossary_check: string
   terms: Term[]
+  /** The existing names of the batches of the file, each once; their units are null. */
+  names: Omit<NameRef, 'units'>[]
   keywords: Record<string, string>
   units: (PreviewUnit | null)[]
+}
+
+/** An existing name a batch's units use (batch.NameRef). */
+export interface NameRef {
+  kr: string
+  zh: string
+  count: number
+  others?: { zh: string; units: number }[]
+  jp?: string
+  en?: string
+  /** The keys of the units of the batch the name is for. */
+  units: string[]
 }
 
 export interface BatchUnit {
@@ -640,8 +656,7 @@ export interface BatchJSON {
   guides: string[]
   glossary: Term[]
   keywords: Record<string, string>
-  /** The existing names the units use; the preview never carries any. */
-  names: never[]
+  names: NameRef[]
   units: BatchUnit[]
   context: ContextLine[]
 }
@@ -688,6 +703,7 @@ export interface PreviewUnitWire {
   g: number[]
   t: number[]
   k: string[]
+  n: number[]
   /** prev_zh is left out where pz is 1. */
   it: PreviewItem
   /** 1: the prev_zh is the zh of the unit in files/<path>. */
@@ -708,6 +724,7 @@ export interface PreviewFileWire {
   family: string
   glossary_check: string
   terms: Term[]
+  names: Omit<NameRef, 'units'>[]
   keywords: Record<string, string>
   /** Present when some unit has a record. */
   rd?: PreviewRecDefaults
