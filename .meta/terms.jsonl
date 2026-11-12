@@ -1,0 +1,13 @@
+{"kr":"기본 공격 스킬","zh":"基本攻擊技能","key":"BattleKeywords-walpu10.json|/dataList/0/desc","batch":"20261112T033735-c8a93f25","raw_tag":"raw-20261112","time":"2026-11-12T03:40:04Z"}
+{"kr":"도발치","zh":"嘲諷值","key":"BattleKeywords-walpu10.json|/dataList/1/desc","batch":"20261112T033735-c8a93f25","raw_tag":"raw-20261112","time":"2026-11-12T03:40:04Z"}
+{"kr":"쐐기 사무소","zh":"楔事務所","key":"BattleKeywords-walpu10.json|/dataList/4/name","batch":"20261112T033735-c8a93f25","raw_tag":"raw-20261112","time":"2026-11-12T03:40:04Z"}
+{"kr":"파괴 불가 코인","zh":"不可摧毀硬幣","key":"BattleKeywords-walpu10.json|/dataList/6/desc","batch":"20261112T033735-c8a93f25","raw_tag":"raw-20261112","time":"2026-11-12T03:40:04Z"}
+{"kr":"새벽 사무소","zh":"黎明事務所","key":"BattleKeywords-walpu10.json|/dataList/12/desc","batch":"20261112T033735-c8a93f25","raw_tag":"raw-20261112","time":"2026-11-12T03:40:04Z"}
+{"kr":"타오르는 일격","zh":"燃燒一擊","key":"BattleKeywords-walpu10.json|/dataList/16/name","batch":"20261112T033735-c8a93f25","raw_tag":"raw-20261112","time":"2026-11-12T03:40:04Z"}
+{"kr":"감정 0단계","zh":"情感等級0","key":"BattleKeywords-walpu10.json|/dataList/22/name","batch":"20261112T033735-c8a93f25","raw_tag":"raw-20261112","time":"2026-11-12T03:40:04Z"}
+{"kr":"지정 사서","zh":"指定司書","key":"BattleKeywords-walpu10.json|/dataList/23/desc","batch":"20261112T034008-535e2fbd","raw_tag":"raw-20261112","time":"2026-11-12T03:40:58Z"}
+{"kr":"시나리오","zh":"劇本","key":"StoryData/E100X.json|/dataList/34/content","batch":"20261112T034140-e53d6699","raw_tag":"raw-20261112","time":"2026-11-12T03:43:57Z"}
+{"kr":"역사의 층","zh":"歷史層","key":"StoryData/E100X.json|/dataList/71/content","batch":"20261112T034140-e53d6699","raw_tag":"raw-20261112","time":"2026-11-12T03:43:57Z"}
+{"kr":"접대","zh":"接待","key":"StoryData/E100X.json|/dataList/77/content","batch":"20261112T034140-e53d6699","raw_tag":"raw-20261112","time":"2026-11-12T03:43:57Z"}
+{"kr":"스티그마 공방","zh":"聖痕工坊","key":"StoryData/E100X.json|/dataList/104/content","batch":"20261112T034140-e53d6699","raw_tag":"raw-20261112","time":"2026-11-12T03:43:57Z"}
+{"kr":"유나 선배","zh":"尤娜前輩","key":"StoryData/E100X.json|/dataList/120/content","batch":"20261112T034401-b788b447","raw_tag":"raw-20261112","time":"2026-11-12T03:44:13Z"}

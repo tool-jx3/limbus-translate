@@ -146,3 +146,4 @@
 {"key":"SkillTag.json|/dataList/72/name","kr_sha":"3bb866e5ff42dd5aa9eb0e9a996fb82b4694db8c7243a62d6f0549b370222bfc","zh":"[正面]","origin":"paratranz","since":"raw-20261029","rules":"563a0bf5b2d7ab2426f09b1eb3566a5beec92bf0"}
 {"key":"SkillTag.json|/dataList/73/id","kr_sha":"2ddc130c5bea6c930cf6ebf7dbe3145060221615d7ccd8c0219b6e655485ab06","zh":"CoinTail","origin":"copy","since":"raw-20261029","rules":"563a0bf5b2d7ab2426f09b1eb3566a5beec92bf0"}
 {"key":"SkillTag.json|/dataList/73/name","kr_sha":"753a398a65a635225a1dff0fec6e916e0259a5d218bc4253e17a963f2d86d7c2","zh":"[反面]","origin":"paratranz","since":"raw-20261029","rules":"563a0bf5b2d7ab2426f09b1eb3566a5beec92bf0"}
+{"key":"SkillTag.json|/dataList/74/id","kr_sha":"66c82ea583717d0e8308d7b072b4e91dfa17e3de507b11abca60591695dbc790","zh":"OnBattleEnd","origin":"copy","since":"raw-20261112","rules":"ebbb490ca56d41c7d99dcd8496ccaee19a55063e"}

@@ -180,3 +180,4 @@
 {"key":"StoryTheaterUIText.json|/dataList/89/id","kr_sha":"df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c","zh":"B","origin":"copy","since":"raw-20261029","rules":"563a0bf5b2d7ab2426f09b1eb3566a5beec92bf0"}
 {"key":"StoryTheaterUIText.json|/dataList/90/content","kr_sha":"6b23c0d5f35d1b11f9b683f0b0a617355deb11277d91ae091d399c655b87940d","zh":"C","origin":"copy","since":"raw-20261029","rules":"563a0bf5b2d7ab2426f09b1eb3566a5beec92bf0"}
 {"key":"StoryTheaterUIText.json|/dataList/90/id","kr_sha":"6b23c0d5f35d1b11f9b683f0b0a617355deb11277d91ae091d399c655b87940d","zh":"C","origin":"copy","since":"raw-20261029","rules":"563a0bf5b2d7ab2426f09b1eb3566a5beec92bf0"}
+{"key":"StoryTheaterUIText.json|/dataList/91/id","kr_sha":"df89e4e9fd5412d25c7ae92b177d8aed502aa7d8e138267ab719e94873108478","zh":"OtherStoryOpenCondition_9022","origin":"copy","since":"raw-20261112","rules":"ebbb490ca56d41c7d99dcd8496ccaee19a55063e"}
