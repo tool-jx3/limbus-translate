@@ -277,8 +277,9 @@ func openSiteSources(ctx *cli.Context, cmd string) (siteSources, error) {
 // the build record and plan of the tw worktree (nil when there is none; a
 // plan of another snapshot is no plan), the adjustments, the field rules, the
 // frozen patterns, the notes, the pending list, the declined and accepted
-// entries, the provisional terms and the index of the existing names. r are the rules the caller loaded (the
-// glossary decides which provisional terms count); they are not read again.
+// entries, the provisional terms and the index of the existing names. r are
+// the rules the caller loaded (the glossary decides which provisional terms
+// count); they are not read again.
 // cmd names the command in the errors.
 func loadReviewInputs(ctx *cli.Context, cmd string, r *rules.Rules) (site.ReviewInputs, error) {
 	cfg := ctx.Config
@@ -332,11 +333,7 @@ func loadReviewInputs(ctx *cli.Context, cmd string, r *rules.Rules) (site.Review
 	if err != nil {
 		return in, err
 	}
-	declined := make(map[string]bool, len(in.Declined))
-	for _, d := range in.Declined {
-		declined[d.ID] = true
-	}
-	in.Names = existing.NewIndex(table, r, declined)
+	in.Names = existing.NewIndex(table, r, idSet(in.Declined))
 	return in, nil
 }
 

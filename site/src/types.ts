@@ -180,7 +180,7 @@ export interface SuggestionItem {
   en?: string
   variants?: Variant[]
   jpen_class?: JPENClass
-  /** A provisional term (kind "term-new") only: the term the card is about. */
+  /** A provisional term (kind "term-new", or "name" when one is merged into it) only: the term the card is about. */
   term?: TermRef
   evidence: Evidence[]
   /** How many of the units of the item are in the pending list. */

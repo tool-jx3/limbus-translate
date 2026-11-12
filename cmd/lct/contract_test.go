@@ -5178,10 +5178,16 @@ func TestTranslatePendingExplainsTermsDiffer(t *testing.T) {
 // The suggestions of kind name (name/<kr>) are handled by the skills that
 // work on the suggestions.
 func TestNameSuggestionIsHandledBySkills(t *testing.T) {
-	for _, skill := range []string{"rules-review", "review-page", "term-decision"} {
+	for skill, wants := range map[string][]string{
+		"rules-review":  {"name/", "rules/rewrite/", "rules/declined.yaml"},
+		"review-page":   {"name/", "rules/rewrite/", "rules/declined.yaml", "term-new/<kr>` 再列出"},
+		"term-decision": {"name/", "已併進 `name/<kr>`"},
+	} {
 		_, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", skill, "SKILL.md"))
-		if !strings.Contains(content, "name/") {
-			t.Errorf("%s/SKILL.md does not mention name/<kr>", skill)
+		for _, want := range wants {
+			if !strings.Contains(content, want) {
+				t.Errorf("%s/SKILL.md does not mention %q", skill, want)
+			}
 		}
 	}
 }

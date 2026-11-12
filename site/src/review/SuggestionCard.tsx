@@ -134,7 +134,7 @@ function Evidence({ item }: { item: SuggestionItem }) {
   )
 }
 
-/** The evidence of a provisional term: where it was registered, the other renderings, and the units that hit it. */
+/** The evidence of a provisional term (or of a name it is merged into): where it was registered, the other renderings, and the units that hit it. */
 function TermNewEvidence({ item }: { item: SuggestionItem }) {
   const krMark = item.term ? termMark(item.term.kr) : undefined
   const zhMark = item.term ? termMark(item.term.zh) : undefined
@@ -142,12 +142,13 @@ function TermNewEvidence({ item }: { item: SuggestionItem }) {
     <ul class="rv-evidence">
       {item.evidence.map((e, k) => {
         const hit = e.note === '有用' || e.note === '未用'
-        const label = k === 0 ? '登記的句子' : e.note === '衝突' ? '衝突的譯法' : hit ? '命中的句子' : ''
+        const label = k === 0 && item.kind === 'term-new' ? '登記的句子' : e.note === '衝突' ? '衝突的譯法' : hit ? '命中的句子' : ''
         return (
           <li key={k} class="rv-tev">
             <div class="rv-tev-head">
               {label && <span class="rv-tev-label">{label}</span>}
               {e.key !== undefined && <UnitLink unitKey={e.key} />}
+              {e.count !== undefined && <span class="rv-times">{e.count} 次</span>}
               {hit && <span class={e.note === '有用' ? 'rv-use' : 'rv-use is-unused'}>{e.note}</span>}
             </div>
             {!hit && e.note !== undefined && <p class="rv-note-text">{e.note}</p>}
@@ -181,7 +182,7 @@ export function SuggestionCard({ item, target, jpen = false }: { item: Suggestio
         <IdCopy id={item.id} source={source} />
       </div>
       <ConfirmedLine confirmed={item.declined} verb={item.kind === 'term-new' ? '已否決' : '已確認'} />
-      {inconsistent ? <Inconsistent item={item} jpen={jpen} /> : item.kind === 'term-new' ? <TermNewEvidence item={item} /> : <Evidence item={item} />}
+      {inconsistent ? <Inconsistent item={item} jpen={jpen} /> : item.kind === 'term-new' || (item.kind === 'name' && item.term) ? <TermNewEvidence item={item} /> : <Evidence item={item} />}
     </article>
   )
 }

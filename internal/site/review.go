@@ -49,8 +49,9 @@ type ReviewInputs struct {
 	// Declined, as a suggestion of any kind is.
 	Provisional []store.ProvisionalTerm
 	// Names is the index of the existing names (existing.NewIndex), built
-	// with the declined ids; nil without a table. The units whose name
-	// differs from the existing translations get a name-differs warning.
+	// with the declined ids. The units whose name differs from the existing
+	// translations get a name-differs warning. A nil index and an index of an
+	// empty table (no names.json) both give none.
 	Names *existing.Index
 }
 
@@ -104,8 +105,9 @@ type SuggestionItem struct {
 	// JPENClass says whether JP and EN tell the variants apart: JPENSame,
 	// JPENExplained or JPENPartial; inconsistent groups only.
 	JPENClass string `json:"jpen_class,omitempty"`
-	// Term is the term of a provisional term's suggestion (term-new): its KR
-	// and the rendering the batches carry, not a conflict's.
+	// Term is the term of a provisional term's suggestion (term-new, or the
+	// name/<kr> one it is merged into): its KR and the rendering the batches
+	// carry, not a conflict's.
 	Term     *TermRef           `json:"term,omitempty"`
 	Evidence []suggest.Evidence `json:"evidence"`
 	Pending  int                `json:"pending"`
@@ -421,7 +423,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			if rec.Origin == store.OriginClaude && rv.Names.IsName(ku.Field, ku.KR) {
 				// As the build does: the notes made from this KR text, the JP and
 				// EN text aligned to the unit.
-				if named := rv.Names.Differs(ku.Field, ku.KR, rec.ZH, noteTexts(notesOnKey[key], ku.KR), alignedValue(jp), alignedValue(en)); named != nil {
+				if named := rv.Names.Differs(ku.Field, ku.KR, rec.ZH, build.NoteText(notesOnKey[key], ku.KR), alignedValue(jp), alignedValue(en)); named != nil {
 					issues = append(issues, *named)
 				}
 			}
@@ -817,20 +819,6 @@ func placeNotes(notes []store.Note, us []placedUnit) []placedNote {
 		res[i] = s.placedNote
 	}
 	return res
-}
-
-// noteTexts joins the notes of one unit that were made from the KR text kr,
-// by newlines in the order they were added; notes of another KR text are left
-// out (the rule of the build).
-func noteTexts(notes []store.Note, kr string) string {
-	sha := units.KRSha(kr)
-	var texts []string
-	for _, n := range notes {
-		if n.KRSha == sha {
-			texts = append(texts, n.Note)
-		}
-	}
-	return strings.Join(texts, "\n")
 }
 
 // alignedValue is the text aligned to a unit, "" without an alignment.

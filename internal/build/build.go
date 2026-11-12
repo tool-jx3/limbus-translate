@@ -683,11 +683,15 @@ func (b *builder) nameIssue(u units.Unit, key string, rec store.Record, en, jp *
 // text it has now: those notes of key, joined by newlines in the order they
 // were added. Notes made from an earlier KR text are left out.
 func (b *builder) noteOn(u units.Unit, key string) string {
-	notes := b.notes[key]
-	if len(notes) == 0 {
-		return ""
-	}
-	sha := units.KRSha(u.KR)
+	return NoteText(b.notes[key], u.KR)
+}
+
+// NoteText is what the translator noted on a unit when translating the KR
+// text kr: those of notes (the notes of one unit) made from kr, joined by
+// newlines in the order they were added. The review page uses it too, so that
+// it lists the name-differs warnings the build counts.
+func NoteText(notes []store.Note, kr string) string {
+	sha := units.KRSha(kr)
 	var texts []string
 	for _, n := range notes {
 		if n.KRSha == sha {

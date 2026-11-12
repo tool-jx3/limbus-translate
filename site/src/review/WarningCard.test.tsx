@@ -261,3 +261,36 @@ describe('SuggestionCard, a provisional term', () => {
     expect(el.textContent).toContain('已確認（2026-11-05）：可以')
   })
 })
+
+describe('SuggestionCard, a name with a provisional term', () => {
+  const item: SuggestionItem = {
+    id: 'name/우레',
+    kind: 'name',
+    title: '與既有譯名不同：우레',
+    pending: 0,
+    term: { kr: '우레', zh: '雷鳴' },
+    evidence: [
+      { kr: '우레', zh: '雷聲', count: 4 },
+      { key: 'a.json|/1', kr: '우레', zh: '雷鳴', note: 'batch-7' },
+      { key: 'c.json|/3', kr: '우레가 쳤다', zh: '雷鳴響起', note: '有用' },
+      { key: 'd.json|/4', kr: '우레 소리', zh: '打雷聲', note: '未用' },
+    ],
+  }
+
+  it('shows the hits with their labels and marks the term', () => {
+    const el = mount(<SuggestionCard item={item} target={false} />)
+    const rows = el.querySelectorAll('.rv-tev')
+    expect(rows).toHaveLength(4)
+    expect(rows[0]!.textContent).toContain('4 次')
+    expect(rows[0]!.textContent).not.toContain('登記的句子')
+    expect(rows[2]!.textContent).toContain('命中的句子')
+    expect(rows[2]!.querySelector('.rv-use')?.textContent).toBe('有用')
+    expect([...rows[2]!.querySelectorAll('mark')].map((m) => m.textContent)).toEqual(['우레', '雷鳴'])
+  })
+
+  it('keeps the plain evidence of a name without a term', () => {
+    const { term: _t, ...bare } = item
+    const el = mount(<SuggestionCard item={bare} target={false} />)
+    expect(el.querySelectorAll('.rv-tev')).toHaveLength(0)
+  })
+})

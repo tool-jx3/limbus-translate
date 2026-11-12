@@ -1714,7 +1714,7 @@ func TestReviewWarnsNameDiffers(t *testing.T) {
 	}
 }
 
-func TestReviewNameDiffersHonoursNotesAndOrigin(t *testing.T) {
+func TestReviewNameDiffersHonoursNotesAndNeedsATable(t *testing.T) {
 	in, files := nameDiffInputs(t)
 	// A note of the current KR text that writes the KR name excuses the unit;
 	// one made from another KR text does not.
@@ -1744,7 +1744,7 @@ func TestReviewNameDiffersHonoursNotesAndOrigin(t *testing.T) {
 // A provisional term whose KR is also a name suggestion keeps its term and
 // its hits on the merged name/<kr> suggestion.
 func TestReviewNameSuggestionKeepsTheProvisionalTerm(t *testing.T) {
-	in, files := newTermInputs(t, [3]string{"자판기 하나", "販賣機一", store.OriginClaude})
+	in, files := newTermInputs(t, [3]string{"자판기 하나", "販賣機一", store.OriginClaude}, [3]string{"자판기 둘", "販賣機二", store.OriginClaude})
 	in.Review.Provisional = []store.ProvisionalTerm{{KR: "자판기", ZH: "販賣機", Key: nthKey(0), Batch: "b1", RawTag: "t1"}}
 	in.Review.Names = existing.NewIndex(&existing.Table{RawTag: "t1", Fields: []string{"content"}, Names: []existing.Name{{
 		KR: "자판기", Variants: []existing.Variant{{EN: "vending", Renderings: []existing.Rendering{{ZH: "自動販賣機", Units: 4}}}},
@@ -1760,6 +1760,15 @@ func TestReviewNameSuggestionKeepsTheProvisionalTerm(t *testing.T) {
 	s := findSuggestion(t, r, "name/자판기")
 	if s.Term == nil || *s.Term != (TermRef{KR: "자판기", ZH: "販賣機"}) {
 		t.Errorf("term = %+v, want 자판기 → 販賣機", s.Term)
+	}
+	hit := false
+	for _, e := range s.Evidence {
+		if e.Key == nthKey(1) && (e.Note == "有用" || e.Note == "未用") {
+			hit = true
+		}
+	}
+	if !hit {
+		t.Errorf("evidence = %+v, want the unit the term hits appended", s.Evidence)
 	}
 	for _, o := range r.Suggestions {
 		if o.ID == "term-new/자판기" {

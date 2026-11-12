@@ -2871,3 +2871,20 @@ func TestReportSplitsInconsistent(t *testing.T) {
 		t.Errorf("old record: %q", sec)
 	}
 }
+
+func TestNoteTextJoinsTheNotesOfTheCurrentKR(t *testing.T) {
+	notes := []store.Note{
+		{Key: "a|/x", KRSha: units.KRSha("현재"), Note: "첫째"},
+		{Key: "a|/x", KRSha: units.KRSha("예전"), Note: "옛 것"},
+		{Key: "a|/x", KRSha: units.KRSha("현재"), Note: "둘째"},
+	}
+	if got := NoteText(notes, "현재"); got != "첫째\n둘째" {
+		t.Errorf("NoteText = %q, want the two notes of the current KR joined by a newline", got)
+	}
+	if got := NoteText(notes, "없음"); got != "" {
+		t.Errorf("NoteText of another KR = %q, want empty", got)
+	}
+	if got := NoteText(nil, "현재"); got != "" {
+		t.Errorf("NoteText of no notes = %q, want empty", got)
+	}
+}
