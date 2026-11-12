@@ -4706,6 +4706,57 @@ func TestBatchNamesExactName(t *testing.T) {
 	}
 }
 
+// variantJPs are the JP of the names of b, in order.
+func variantJPs(b *Batch) []string {
+	var out []string
+	for _, n := range b.Names {
+		out = append(out, n.JP)
+	}
+	return out
+}
+
+// A name-field unit is shown the variants its JP or EN points at, though
+// more variants come before them; another unit of the name is shown the
+// first ones only.
+func TestBatchNamesExactNameShowsTheMatchingVariant(t *testing.T) {
+	const file = "Skill.json"
+	name := nameEntry("노을빛 검",
+		[]existing.Rendering{{ZH: "甲", Units: 4}}, []existing.Rendering{{ZH: "乙", Units: 3}},
+		[]existing.Rendering{{ZH: "丙", Units: 2}}, []existing.Rendering{{ZH: "丁", Units: 1}})
+	for _, tc := range []struct {
+		jp   string
+		want []string
+	}{
+		{"jp3", []string{"jp0", "jp1", "jp2", "jp3"}},
+		{"jp1", []string{"jp0", "jp1", "jp2"}},
+		{"他の名前", []string{"jp0", "jp1", "jp2"}},
+	} {
+		env := newEnv(t, map[string]string{file: `{"dataList":[{"id":0,"name":"노을빛 검"}]}`}, nil,
+			map[string]string{file: `{"dataList":[{"id":0,"name":` + q(t, tc.jp) + `}]}`})
+		env.Names = existing.NewIndex(&existing.Table{RawTag: testTag, Fields: []string{"name"}, Names: []existing.Name{name}}, env.Rules, nil)
+		seed(t, env, store.PendingItem{Key: file + "|/dataList/0/name", Reason: "new"})
+		if got := variantJPs(mustNext(t, env, NextOptions{})); !slices.Equal(got, tc.want) {
+			t.Errorf("JP %q: variants %v, want %v", tc.jp, got, tc.want)
+		}
+	}
+}
+
+// A variant whose renderings are those of one shown before it is left out:
+// the translator would read the same renderings twice.
+func TestBatchNamesSkipsVariantsWithTheSameRenderings(t *testing.T) {
+	env := namesEnv(t,
+		map[string]string{"Skill.json": `{"dataList":[{"id":0,"name":"출혈"}]}`},
+		nameEntry("출혈",
+			[]existing.Rendering{{ZH: "流血", Units: 3}, {ZH: "出血", Units: 1}},
+			[]existing.Rendering{{ZH: "流血", Units: 2}},
+			[]existing.Rendering{{ZH: "流血", Units: 3}, {ZH: "出血", Units: 1}}),
+	)
+	b := mustNext(t, env, NextOptions{})
+	if got := variantJPs(b); !slices.Equal(got, []string{"jp0", "jp1"}) {
+		t.Errorf("variants %v, want jp0 and jp1 (jp2 repeats jp0)", got)
+	}
+}
+
 func TestBatchNamesMentions(t *testing.T) {
 	names := []existing.Name{
 		nameEntry("노을빛 검", []existing.Rendering{{ZH: "霞光劍刃", Units: 2}}),
@@ -4879,7 +4930,9 @@ func manyMentions(n, runes, base int, rs ...[]existing.Rendering) ([]existing.Na
 func TestBatchNamesCapDropsWholeNames(t *testing.T) {
 	one := []existing.Rendering{{ZH: "譯", Units: 1}}
 	names, words := manyMentions(38, 5, 0xB000, one)
-	last, lastWords := manyMentions(1, 3, 0xC000, one, one, one) // three variants, the shortest KR
+	// Three variants rendered three ways (alike ones would be one), the
+	// shortest KR.
+	last, lastWords := manyMentions(1, 3, 0xC000, one, []existing.Rendering{{ZH: "譯二", Units: 1}}, []existing.Rendering{{ZH: "譯三", Units: 1}})
 	names, words = append(names, last...), append(words, lastWords...)
 	env := namesEnv(t, map[string]string{"Desc.json": `{"dataList":[{"id":0,"desc":` + q(t, strings.Join(words, " ")) + `}]}`}, names...)
 	b := mustNext(t, env, NextOptions{})

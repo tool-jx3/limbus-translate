@@ -142,24 +142,30 @@ type NameRef struct {
 }
 
 // nameUse is a name a unit of a batch uses: exact when the whole KR of the
-// unit is the name (in a name field), else mentioned in its text.
+// unit is the name (in a name field), else mentioned in its text. jp and en
+// are the JP and EN text aligned to an exact unit, "" when none.
 type nameUse struct {
-	name  *existing.Name
-	exact bool
-	key   string
+	name   *existing.Name
+	exact  bool
+	key    string
+	jp, en string
 }
 
 // nameRefs makes the names of a batch from the uses, in batch order: one
-// NameRef for each of the first maxNameVariants variants of a name. When more
-// than MaxNames come out, those that stand for a whole unit are kept first,
-// then the mentioned ones, each class longest KR first (by runes), then by KR.
-// A name whose variants do not all fit ends the list. A name that is exact
-// for one unit and mentioned in another counts as exact.
+// NameRef for each of the first maxNameVariants variants of a name and for
+// each later one that the JP or EN of a unit that is the whole name points at
+// (existing.Variant.Matches, as name-differs judges it), leaving out a variant
+// whose renderings are those of one before it. When more than MaxNames come
+// out, those that stand for a whole unit are kept first, then the mentioned
+// ones, each class longest KR first (by runes), then by KR. A name whose
+// variants do not all fit ends the list. A name that is exact for one unit
+// and mentioned in another counts as exact.
 func nameRefs(uses []nameUse) []NameRef {
 	type entry struct {
 		name  *existing.Name
 		exact bool
 		keys  []string
+		texts [][2]string // the JP and EN of the units that are the whole name
 	}
 	var order []*entry
 	byKR := map[string]*entry{}
@@ -173,6 +179,9 @@ func nameRefs(uses []nameUse) []NameRef {
 		e.exact = e.exact || u.exact
 		if !slices.Contains(e.keys, u.key) {
 			e.keys = append(e.keys, u.key)
+		}
+		if text := [2]string{strings.TrimSpace(u.jp), strings.TrimSpace(u.en)}; u.exact && !slices.Contains(e.texts, text) {
+			e.texts = append(e.texts, text)
 		}
 	}
 	slices.SortStableFunc(order, func(a, b *entry) int {
@@ -190,13 +199,21 @@ func nameRefs(uses []nameUse) []NameRef {
 	refs := []NameRef{}
 	for _, e := range order {
 		var mine []NameRef
-		for _, v := range e.name.Variants[:min(len(e.name.Variants), maxNameVariants)] {
+		for i, v := range e.name.Variants {
 			if len(v.Renderings) == 0 {
+				continue
+			}
+			if i >= maxNameVariants && !slices.ContainsFunc(e.texts, func(t [2]string) bool { return v.Matches(t[0], t[1]) }) {
 				continue
 			}
 			ref := NameRef{KR: e.name.KR, ZH: v.Renderings[0].ZH, Count: v.Renderings[0].Units, JP: v.JP, EN: v.EN, Units: e.keys}
 			if len(v.Renderings) > 1 {
 				ref.Others = v.Renderings[1:]
+			}
+			// Spellings of one name that the translation renders alike are
+			// one entry; the first stands for them.
+			if slices.ContainsFunc(mine, func(m NameRef) bool { return m.ZH == ref.ZH && slices.Equal(m.Others, ref.Others) }) {
+				continue
 			}
 			mine = append(mine, ref)
 		}

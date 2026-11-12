@@ -506,10 +506,17 @@ func assemble(
 				refs[RefSameText] = existing.SameTextRef(same)
 			}
 			if env.Names.IsName(u.Field, u.KR) {
-				uses = append(uses, nameUse{env.Names.Lookup(u.KR), true, item.Key})
+				use := nameUse{name: env.Names.Lookup(u.KR), exact: true, key: item.Key}
+				if jp != nil {
+					use.jp = jp.Value
+				}
+				if en != nil {
+					use.en = en.Value
+				}
+				uses = append(uses, use)
 			} else {
 				for _, n := range env.Names.Mentions(u.KR, env.NameBoost) {
-					uses = append(uses, nameUse{n, false, item.Key})
+					uses = append(uses, nameUse{name: n, key: item.Key})
 				}
 			}
 			b.Units = append(b.Units, BatchUnit{
