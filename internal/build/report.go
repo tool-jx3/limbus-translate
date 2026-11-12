@@ -124,10 +124,12 @@ type Info struct {
 	Zips   map[string]string `json:"zips"`
 	Report Report            `json:"report"`
 	// InconsistentAll are the groups of Report.Inconsistent and the ones
-	// after them, the biggest 500 in the same order; never nil. The report
+	// after them, in the same order: the biggest 500, and after them every
+	// other group with units of this update (New > 0); never nil. The report
 	// shows twenty, while lct suggest leaves out the groups that are declined
-	// or in a rules PR, and takes the next ones from here. A build.json of an
-	// older lct has no such list.
+	// or in a rules PR, and takes the next ones from here; the report and the
+	// review issue list every group with new units from here. A build.json of
+	// an older lct has no such list.
 	InconsistentAll []Inconsistency `json:"inconsistent_all"`
 }
 

@@ -1,6 +1,8 @@
 package suggest
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -8,15 +10,20 @@ import (
 	"slices"
 	"strings"
 	"testing"
+	"time"
+
+	"golang.org/x/image/font/gofont/goregular"
 
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
+	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
 const (
@@ -699,6 +706,74 @@ func TestSuggestReadsEveryInconsistentGroup(t *testing.T) {
 	in.Build.InconsistentAll = []build.Inconsistency{} // a build that found none
 	if got := count(run(t, in)); got != 0 {
 		t.Errorf("%d inconsistent suggestions from a build that found none, want 0", got)
+	}
+}
+
+// A build with more groups than its record keeps still keeps a small group
+// with units of this update, and lct suggest makes it a suggestion.
+func TestSuggestGetsTheNewGroupOfABigBuild(t *testing.T) {
+	const tag = "raw-20261112"
+	var entries []string
+	recs := map[string]store.Record{}
+	add := func(kr, zh string, isNew bool) {
+		n := len(entries)
+		entries = append(entries, fmt.Sprintf(`{"id":%d,"content":%q}`, n, kr))
+		key := fmt.Sprintf("A.json|/dataList/%d/content", n)
+		r := store.Record{Key: key, KRSha: units.KRSha(kr), ZH: zh, Origin: store.OriginClaude, Since: tag}
+		if isNew {
+			r.Written = tag
+		}
+		recs[key] = r
+	}
+	for i := range 503 {
+		add(fmt.Sprintf("가%d", i), "甲", false)
+		add(fmt.Sprintf("가%d", i), "乙", false)
+	}
+	add("하", "丙", false) // as small as the others, last by KR
+	add("하", "丁", true)
+
+	dir := t.TempDir()
+	raw := filepath.Join(dir, "raw")
+	for lang, files := range map[string]map[string]string{
+		"kr": {"KR_A.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}, "en": nil, "jp": nil,
+	} {
+		writeFile(t, raw, lang+"/.keep", "")
+		for name, text := range files {
+			writeFile(t, raw, lang+"/"+name, text)
+		}
+	}
+	src, err := pack.OpenRaw(raw)
+	if err != nil {
+		t.Fatal(err)
+	}
+	fr, err := fields.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	tw := filepath.Join(dir, "tw")
+	if err := store.Open(tw).SaveRecords(recs); err != nil {
+		t.Fatal(err)
+	}
+	font := filepath.Join(dir, "font.ttf")
+	writeFile(t, dir, "font.ttf", string(goregular.TTF))
+	writeFile(t, dir, "OFL.txt", "OFL text\n")
+	writeFile(t, dir, "LICENSE-CONTENT", "content license\n")
+	sum := sha256.Sum256(goregular.TTF)
+	opt := build.Options{
+		TWRoot: tw, OutDir: filepath.Join(dir, "out"), LangDir: "zh-TW",
+		FontPath: font, FontSHA256: hex.EncodeToString(sum[:]), LicensePath: filepath.Join(dir, "LICENSE-CONTENT"),
+		RawTag: tag, RawToken: "token", RulesCommit: "0123abc", BuiltAt: time.Date(2026, 11, 12, 0, 0, 0, 0, time.UTC),
+	}
+	if _, err := build.Run(opt, src, fr); err != nil {
+		t.Fatal(err)
+	}
+	info, err := build.ReadInfo(tw)
+	if err != nil {
+		t.Fatal(err)
+	}
+	id := itemid.Inconsistent("", "content", "하")
+	if s := find(run(t, Inputs{RawTag: tag, Rules: testRules(), Build: &info}), id); s == nil {
+		t.Errorf("no suggestion %s for the new group past the biggest 500", id)
 	}
 }
 

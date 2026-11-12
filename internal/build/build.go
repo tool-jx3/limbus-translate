@@ -108,7 +108,8 @@ const (
 	// differently the report keeps, the biggest first.
 	maxInconsistent = 20
 	// maxInconsistentAll is how many of them the build record keeps
-	// (Info.InconsistentAll), in the same order.
+	// (Info.InconsistentAll), in the same order, besides those with units of
+	// this update, which it keeps all.
 	maxInconsistentAll = 500
 	// maxRenderings is how many different translations of one text a group
 	// of Inconsistent lists.
@@ -295,7 +296,8 @@ type builder struct {
 	families   map[string]string // the family of each file, once asked
 	misaligned []FileMisaligned  // every file that has units without EN or JP
 	// inconsistentAll are the groups of Report.Inconsistent and those after
-	// them, up to maxInconsistentAll; see Info.InconsistentAll.
+	// them, up to maxInconsistentAll, and every later one with units of this
+	// update; see Info.InconsistentAll.
 	inconsistentAll []Inconsistency
 	// provisional are the provisional terms in force, which cover glossary
 	// terms in the checks as they do at submission (batch.ValidateTermsIn).
@@ -916,7 +918,15 @@ func (b *builder) finish() {
 		)
 	})
 	b.rep.Inconsistent = append(b.rep.Inconsistent, groups[:min(len(groups), maxInconsistent)]...)
-	b.inconsistentAll = append([]Inconsistency{}, groups[:min(len(groups), maxInconsistentAll)]...)
+	// The groups with units of this update are listed in the report and the
+	// review issue however small they are, so none of them is cut.
+	kept := min(len(groups), maxInconsistentAll)
+	b.inconsistentAll = append([]Inconsistency{}, groups[:kept]...)
+	for _, g := range groups[kept:] {
+		if g.New > 0 {
+			b.inconsistentAll = append(b.inconsistentAll, g)
+		}
+	}
 
 	slices.SortFunc(b.misaligned, func(x, y FileMisaligned) int {
 		return cmp.Or(

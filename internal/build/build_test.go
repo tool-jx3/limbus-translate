@@ -1811,6 +1811,62 @@ func TestInfoInconsistentAllIsBounded(t *testing.T) {
 	}
 }
 
+// A group with units of this update stays in the build record however small
+// it is: the report's 含這次新譯, the review issue and lct suggest take those
+// groups from there, so one past the biggest 500 must not be lost.
+func TestInfoInconsistentAllKeepsEveryNewGroup(t *testing.T) {
+	var entries []string
+	var recs []store.Record
+	add := func(kr, zh string, isNew bool) {
+		n := len(entries)
+		entries = append(entries, `{"id":`+strconv.Itoa(n)+`,"content":"`+kr+`"}`)
+		r := rec("A.json", "/dataList/"+strconv.Itoa(n)+"/content", kr, zh)
+		if isNew {
+			r = written(r)
+		}
+		recs = append(recs, r)
+	}
+	for i := range maxInconsistentAll + 3 {
+		kr := "가" + strconv.Itoa(i)
+		add(kr, "甲", false)
+		add(kr, "乙", false)
+	}
+	// As small as the others and last by KR: after the 500 biggest.
+	add("하", "丙", false)
+	add("하", "丁", true)
+	e := newEnv(t, map[string]string{"A.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}, nil)
+	e.save(recs...)
+	rep := e.run()
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if n := len(info.InconsistentAll); n != maxInconsistentAll+1 {
+		t.Fatalf("InconsistentAll has %d groups, want the %d biggest and the new one", n, maxInconsistentAll)
+	}
+	if !reflect.DeepEqual(info.InconsistentAll[:20], rep.Inconsistent) {
+		t.Errorf("the first groups of the record are not those of the report")
+	}
+	for _, g := range info.InconsistentAll[:maxInconsistentAll] {
+		if g.New != 0 {
+			t.Fatalf("group %+v among the biggest, want only old ones", g)
+		}
+	}
+	if g := info.InconsistentAll[maxInconsistentAll]; g.KR != "하" || g.New != 1 {
+		t.Fatalf("last group = %+v, want the new group of 하", g)
+	}
+
+	sec := section(t, string(Markdown(e.opt, info, nil, nil)), "### 同一 KR 不同譯法")
+	i, j := strings.Index(sec, "#### 含這次新譯（1 組）"), strings.Index(sec, "#### 只有舊譯")
+	if i < 0 || j < i || !strings.Contains(sec[i:j], "`하`") {
+		t.Errorf("the report does not list the new group:\n%s", sec)
+	}
+	items := sectionOfKind(ReviewItems(info, nil, nil), KindInconsistentNew)
+	if items == nil || len(items.Items) != 1 || !strings.HasPrefix(items.Items[0], "`"+itemid.Inconsistent("", "content", "하")+"`") {
+		t.Errorf("inconsistent_new = %+v, want the group of 하", items)
+	}
+}
+
 // The counts the notes need: how many units show a stand-in and how many
 // units the translator did for this snapshot.
 func TestBuildCountsStandInsAndNewTranslations(t *testing.T) {
