@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** 翻譯前把既有譯文用過的名稱與同句譯文帶給譯者，送出時只警告與既有譯名不同的名稱、把與舊譯不同的暫定詞記下但不生效，翻譯後在建置報告、審核 issue 與建議（`name/<kr>`）列出與既有譯名不同的新譯，由人決定。
+**Goal:** 翻譯前把既有譯文用過的名稱與同句譯文帶給譯者，送出時只警告與既有譯名不同的名稱、把與舊譯不同的暫定詞記下但不生效，翻譯後在建置報告、審核 issue 與建議（`name/<kr>`）列出與既有譯名不同的新譯，由人決定；網站多一個只供查看的「既有譯名」頁。
 
 **Architecture:** 新套件 `internal/existing` 放名稱表、同句索引、舊譯比對與 `name-differs` 判斷，全是純函式加 `.meta` 讀寫；`lct plan` 每個 raw tag 產生一次 `.meta/names.json` 與 `.meta/same-text.json`；批次（`batch.Next`）、送出（`batch.Submit`）、建置（`build.Run`）、建議（`suggest.Run`）與審核頁（`site.BuildReview`）各自讀表並在使用時套用詞彙表排除。「這次翻譯的單位」以紀錄新增的 `written`（Submit 寫下時的 raw tag）判斷。
 
@@ -59,6 +59,8 @@
   - `internal/suggest/suggest.go`：種類 `name`
   - `internal/site/review.go`、`cmd/lct/site.go`：審核頁的 `name-differs`
   - `site/src/review/names.ts`
+  - `internal/site/names.go`（新增）、`internal/site/export.go`、`internal/site/file.go`：匯出 `names.json`
+  - `site/src/glossary/NamesView.tsx`、`site/src/glossary/names.ts`（新增）、`site/src/route.ts`、`site/src/data.ts`、`site/src/types.ts`、`site/src/app/App.tsx`、`site/src/app/Header.tsx`、`site/src/glossary/GlossaryView.tsx`：「既有譯名」頁
   - `.claude/skills/{translate-pending,review,rules-review,review-page,term-decision}/SKILL.md`
   - `cmd/lct/contract_test.go`、`README.md`
 
@@ -663,7 +665,94 @@ review skill：「流程」第 1 步的種類清單中、`new_family` 之後加�
 
 ---
 
-### Task 12: 以 raw-20261112 的資料重演驗收，補文件
+### Task 12: 網站資料匯出既有譯名表
+
+**Files:**
+- Create: `internal/site/names.go`、`internal/site/names_test.go`
+- Modify: `internal/site/file.go`（`Inputs.Names`）、`internal/site/export.go`（`Export` 寫 `names.json`，文件註解的檔案清單）、`cmd/lct/site.go`
+- Test: `internal/site/export_test.go`（輸出檔清單）、`cmd/lct/site_test.go`
+
+**Interfaces:**
+- Consumes: Task 2 `Table`、`LoadTable`、`SuggestionID`；Task 10 `KindName`（審核資料裡的建議 id）
+- Produces:
+  - `site.Inputs.Names *existing.Table`（nil＝沒有表）
+  - `data/names.json`：
+    ```go
+    type NamesData struct {
+        RawTag string    `json:"raw_tag"` // the raw tag the table was made for; "" when there is none
+        Fields []string  `json:"fields"`
+        Names  []NameRow `json:"names"`   // the order of the table (by KR)
+    }
+    type NameRow struct {
+        KR       string             `json:"kr"`
+        Units    int                `json:"units"`              // every unit of every variant
+        Variants []existing.Variant `json:"variants"`
+        Glossary bool               `json:"glossary,omitempty"` // the glossary has an entry of KR (any status): the entry wins
+        Declined bool               `json:"declined,omitempty"` // name/<kr> is in rules/declined.yaml
+        Review   bool               `json:"review,omitempty"`   // name/<kr> is an unconfirmed suggestion of the review data
+    }
+    ```
+
+做法：
+- 匯出整張表（不套用詞彙表排除），以旗標標出詞彙表已有、已不採用、審核頁有 `name/<kr>` 建議的名稱；`Review` 依同一次匯出的審核資料（`BuildReview` 的建議，沒有被確認的）判斷
+- 沒有表時照樣寫 `names.json`：`raw_tag` 空、`names` 是 `[]`，網頁據此說明「還沒有既有譯名表」
+- `lct site` 讀 tw 的 `.meta/names.json` 放進 `Inputs.Names`；`site.Export` 輸出的檔案清單（測試裡列舉的）加上 `names.json`
+- 網頁 fixture（`site/` 測試讀的匯出資料）若由 Go 測試產生，一併產生 `names.json`
+
+- [ ] **Step 1: 寫失敗的測試**
+  - `TestExportNames`：表有 `노을빛 검`（2 個變體，共 4 個單位）與 `격돌`；詞彙表有 `격돌`；`rules/declined.yaml` 有 `name/아지랑이`（表中也有）；審核資料有未確認的 `name/노을빛 검` → `names.json` 的 `노을빛 검` 是 `Units == 4`、`Review == true`，`격돌` 是 `Glossary == true`，`아지랑이` 是 `Declined == true`
+  - `TestExportNamesWithoutTable`：`Inputs.Names` 為 nil → `{"raw_tag":"","fields":[],"names":[]}`
+  - `TestExportFiles`（既有）：輸出清單含 `names.json`
+  - `TestSiteCommandExportsNames`（cmd/lct）：tw 有 `.meta/names.json`，`lct site --out …` 後 `names.json` 有它的名稱
+- [ ] **Step 2: 跑測試，確認失敗**
+  Run: `go test ./internal/site/ ./cmd/lct/ -run 'ExportNames|ExportFiles|ExportsNames'`
+  Expected: FAIL
+- [ ] **Step 3: 實作**
+- [ ] **Step 4: 跑測試，確認通過**
+  Run: `go vet ./... && go test ./...`
+  Expected: PASS
+- [ ] **Step 5: Commit**：`site：匯出既有譯名表`
+
+---
+
+### Task 13: 網頁「既有譯名」頁
+
+**Files:**
+- Create: `site/src/glossary/NamesView.tsx`、`site/src/glossary/NamesView.test.tsx`、`site/src/glossary/names.ts`（篩選與排序的純函式）、`site/src/glossary/names.test.ts`
+- Modify: `site/src/route.ts`（新 route 與 href）、`site/src/route.test.ts`、`site/src/types.ts`（`NamesData` 型別）、`site/src/data.ts`（`loadNames`）、`site/src/app/App.tsx`（接上 route）、`site/src/app/Header.tsx`（「詞彙」連結在這一頁也標為目前頁）、`site/src/glossary/GlossaryView.tsx`（連到這一頁）、`site/src/styles.css`
+
+**Interfaces:**
+- Consumes: Task 12 `data/names.json` 的格式；既有 `fileHref(path, ptr)`、`reviewHref('suggestions', { id })`、`glossaryHref({ q })`、`useLoad`、`Notice`
+- Produces:
+  - Route `{ kind: 'names'; q: string; only: NamesOnly; sort: NamesSort }`，hash `#/n?q=…&only=…&sort=…`（預設值不寫進 hash）；`namesHref(f)`
+  - `type NamesOnly = '' | 'multi' | 'review' | 'glossary' | 'declined'`：全部、有多種譯法（任一變體有 2 種以上譯法，或有 2 個以上變體）、這次有不同的新譯（`review`）、詞彙表已有、已不採用
+  - `type NamesSort = 'units' | 'kr'`：單位數多的在前（同數依 KR）、依 KR
+  - `filterNames(rows, q, only)`、`sortNames(rows, sort)`（`names.ts`）。搜尋比對 KR、各變體的 JP、EN 與每個譯法，不分大小寫
+
+頁面（只看，沒有任何決定或複製按鈕）：
+- 標題「既有譯名」，說明一行：「`lct plan` 在 `<raw_tag>` 更新翻譯之前，從現行譯文的名稱欄位（`<fields>`）整理的譯名。翻譯時帶給譯者參考；詞彙表有的條目以詞彙表為準。」`raw_tag` 空時改為「還沒有既有譯名表：下一次 `lct plan` 會產生。」
+- 工具列：搜尋框、「只看」下拉、「排序」下拉、條數（`N 條（共 M 條）`），版面照「詞彙」頁的 `rv-tools`
+- 表格每列一個名稱：KR；每個變體一小段，寫 JP、EN、主要譯法與單位數、其他譯法與單位數、例子（每個 key 連到檔案頁該單位）；狀態標記：「詞彙表已有」（連到 `glossaryHref({ q: kr })`）、「已不採用」、「這次有不同的新譯」（連到 `reviewHref('suggestions', { id: 'name/' + kr })`）
+- 名稱很多（上千條）：先只畫前 200 列，下方「再顯示 200 條」按鈕（裁定：比照現有長清單的做法；若專案已有虛擬捲動元件可用在表格就改用它）
+- 「詞彙」頁的說明下面加一行連結：「既有譯名表（名稱欄位的既有譯法）→」
+
+- [ ] **Step 1: 寫失敗的測試**
+  - `route.test.ts`：`parseHash('#/n?q=%EA%B2%80&only=multi&sort=kr')` → `{ kind: 'names', q: '검', only: 'multi', sort: 'kr' }`；`namesHref({})` 是 `#/n`；未知的 `only`、`sort` 回預設
+  - `names.test.ts`：`filterNames` 依 KR、JP、EN（不分大小寫）、譯法搜尋；`multi`、`review`、`glossary`、`declined` 各篩對；`sortNames('units')` 多的在前、同數依 KR
+  - `NamesView.test.tsx`：載入 fixture 後顯示名稱、變體的 JP/EN、主要譯法與單位數；例子是檔案頁連結；有 `review` 的列有連到審核頁 `id=name%2F…` 的連結；`raw_tag` 空時顯示「還沒有既有譯名表」；超過 200 條時有「再顯示」按鈕
+  - `GlossaryView.test.tsx`：有連到 `#/n` 的連結
+- [ ] **Step 2: 跑測試，確認失敗**
+  Run: `cd site && npm test`
+  Expected: FAIL
+- [ ] **Step 3: 實作**
+- [ ] **Step 4: 跑測試，確認通過**
+  Run: `cd site && npm ci && npm test && npm run build && npm run typecheck`
+  Expected: PASS
+- [ ] **Step 5: Commit**：`site：既有譯名頁`
+
+---
+
+### Task 14: 以 raw-20261112 的資料重演驗收，補文件
 
 **Files:**
 - Modify: `README.md`（`lct batch submit` 詞彙檢查那一點之後加「既有譯名表」一點）
@@ -687,9 +776,11 @@ review skill：「流程」第 1 步的種類清單中、`new_family` 之後加�
   Expected: `changed: true` 的 8 個（`불주먹 사무소`、`스티그마 공방`、`기본 공격 스킬`、`파괴 불가 코인`、`도발치`、`연기전쟁`、`눈물로 벼려낸 검`、`타오르는 일격`）被標出，其餘 18 個不被標出（含 `8시의 서커스`：暫定 `八點馬戲團` 與舊譯相同，它的問題是新譯裡出現一處 `8點馬戲團`，不是暫定詞與舊譯不同）。spec 寫「9 個／17 個」把 `8시의 서커스` 算在 9 個裡；這是 spec 的計數，記為裁定。結果與預期不符的逐一說明原因
 - [ ] **Step 3: 報告**：同一支程式另做一份 store：`522cc08` 的紀錄，其中「與 `5deb6c9` 相比新增或改過的 origin claude 紀錄」設 `Written: "raw-20261112"`；放進 Step 1 的 `names.json`；`terms.jsonl` 依 Step 2 的結果補上 `old`。在一個重設到 `522cc08` 的本地 tw 分支上寫入這些狀態（只在 scratch clone），`bin/lct build`，讀 `.meta/reports/raw-20261112.md` 與 `bin/lct review --json`
   Expected: 報告有「與既有譯名不同的新譯」，23 個 KR 中列出幾個、漏了幾個，漏的逐一說明原因；「同一 KR 不同譯法」的「含這次新譯」組數（對照 spec 說的 78 項混在一起）；`name_differs`、`inconsistent_new` 兩節的項數
-- [ ] **Step 4: README**：在第 111 行（詞彙檢查與暫定詞）之後加一點：
-  > - 既有譯名表：`lct plan` 在每次更新（每個 raw tag）第一次執行時，從現行譯文的名稱欄位（`lct.yaml` 的 `names.fields`）整理既有譯名，寫進 `tw` 的 `.meta/names.json`，並把在不同族群、欄位或說話者出現的同一句譯文整理到 `.meta/same-text.json`；同一個 raw tag 之後的 plan 沿用，不重算。批次把單位用到的名稱放進 `names`、同句的其他譯文放進 `refs.same_text`，只是參考。送出時名稱欄位的譯法與既有譯名不同（JP 或 EN 對得上、`note` 沒寫出 KR）只警告 `name-differs`；暫定詞與名稱表或舊譯不同時照樣記下但不生效，送出結果附舊譯例句。建置報告與審核 issue 列出「與既有譯名不同的新譯」，`lct suggest` 提出 `name/<kr>`：人決定統一就加詞彙條目（以既有譯名為準）與改寫檔，決定保留就寫進 `rules/declined.yaml`。詞彙表的條目永遠優先於名稱表
-- [ ] **Step 5: 跑全部檢查**
+- [ ] **Step 4: 網頁**：在 Step 3 的 tw 上執行 `bin/lct site --out <repo 內的目錄>`，再 `cd site && npm run build`，用 Playwright 開 `#/n`：截圖（deviceScaleFactor 1，只給自己看）確認名稱、變體、狀態標記、連結正常，記下 `names.json` 的大小與頁面載入時間；搜尋 `노을빛 검` 與「只看：這次有不同的新譯」各截一張
+  Expected: 頁面載入、搜尋與篩選正常；`names.json` 太大（例如超過 5 MB）時在結果檔記下，交給最後的審查決定要不要拆檔
+- [ ] **Step 5: README**：在第 111 行（詞彙檢查與暫定詞）之後加一點：
+  > - 既有譯名表：`lct plan` 在每次更新（每個 raw tag）第一次執行時，從現行譯文的名稱欄位（`lct.yaml` 的 `names.fields`）整理既有譯名，寫進 `tw` 的 `.meta/names.json`，並把在不同族群、欄位或說話者出現的同一句譯文整理到 `.meta/same-text.json`；同一個 raw tag 之後的 plan 沿用，不重算。批次把單位用到的名稱放進 `names`、同句的其他譯文放進 `refs.same_text`，只是參考。送出時名稱欄位的譯法與既有譯名不同（JP 或 EN 對得上、`note` 沒寫出 KR）只警告 `name-differs`；暫定詞與名稱表或舊譯不同時照樣記下但不生效，送出結果附舊譯例句。建置報告與審核 issue 列出「與既有譯名不同的新譯」，`lct suggest` 提出 `name/<kr>`：人決定統一就加詞彙條目（以既有譯名為準）與改寫檔，決定保留就寫進 `rules/declined.yaml`。詞彙表的條目永遠優先於名稱表。網站的「詞彙」頁連到「既有譯名」頁，可以查這份表（只看，決定在審核頁做）
+- [ ] **Step 6: 跑全部檢查**
   Run: `go vet ./... && go test ./...`，`cd site && npm ci && npm test && npm run build && npm run typecheck`
   Expected: PASS
-- [ ] **Step 6: Commit**：`README：既有譯名表`（重演的程式與結果不進版控；結果檔路徑與摘要寫進 ledger 與最後的回報）
+- [ ] **Step 7: Commit**：`README：既有譯名表`（重演的程式與結果不進版控；結果檔路徑與摘要寫進 ledger 與最後的回報）
