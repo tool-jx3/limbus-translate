@@ -21,6 +21,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
@@ -91,6 +92,13 @@ type Options struct {
 	// counted, and a declined term-new/<kr> is no provisional term in force
 	// (batch.ActiveProvisional). nil is empty.
 	Declined, Accepted map[string]bool
+	// Names is the table of existing names (existing.NewIndex). With it and
+	// with Rules, a record of origin claude that names an existing name
+	// otherwise warns name-differs, and the report lists the translations of
+	// this raw tag that differ from the existing names (Report.NameDiffs) and
+	// the provisional terms of this raw tag that differ from the old
+	// translations (Report.TermDiffs). With nil nothing is compared with them.
+	Names *existing.Index
 }
 
 const (
@@ -108,6 +116,10 @@ const (
 	// maxMisaligned is how many files the report lists as misaligned, the
 	// worst first.
 	maxMisaligned = 20
+	// maxNameRenderings is how many existing renderings a NameDiff lists.
+	maxNameRenderings = 5
+	// maxTermKeys is how many units of this update a TermDiff lists.
+	maxTermKeys = 20
 )
 
 // Report counts what a build did.
@@ -176,6 +188,62 @@ type Report struct {
 	// MisalignedFiles counts the misaligned files, those past the 20 of
 	// Misaligned included. A build.json of an older lct has 0.
 	MisalignedFiles int `json:"misaligned_files"`
+	// NameDiffs lists, by KR, the existing names that translations written
+	// for this raw tag render otherwise: in a name field (a name-differs
+	// warning that is not accepted) or where a text mentions the name. A
+	// declined name is not listed. TermDiffs lists, by KR, the provisional
+	// terms registered at this raw tag that differ from the existing names or
+	// the old translations and are not declined. Both are never nil, though a
+	// build.json of an older lct has neither (see Options.Names).
+	NameDiffs []NameDiff `json:"name_diffs"`
+	TermDiffs []TermDiff `json:"term_diffs"`
+}
+
+// NameDiff is an existing name that translations of this raw tag render
+// otherwise. Existing holds the renderings of all its variants, the units of
+// one rendering summed, the most units first and then by ZH, at most five;
+// Units are the units, by key.
+type NameDiff struct {
+	KR       string               `json:"kr"`
+	Existing []existing.Rendering `json:"existing"`
+	Units    []NameDiffUnit       `json:"units"`
+}
+
+// NameDiffUnit is a unit of a NameDiff: its translation, the notes of the
+// translator on it (joined by newlines) and how it renders the name
+// otherwise, NameDiffField or NameDiffMention.
+type NameDiffUnit struct {
+	Key  string `json:"key"`
+	ZH   string `json:"zh"`
+	Note string `json:"note,omitempty"`
+	Kind string `json:"kind"`
+}
+
+// The kinds of a NameDiffUnit: a name field that warns name-differs (the
+// code of the warning, existing.CodeNameDiffers), and a text that mentions
+// the name and has none of its renderings.
+const (
+	NameDiffField   = "name-differs"
+	NameDiffMention = "mention"
+)
+
+// TermDiff is a provisional term, KR -> ZH, registered at this raw tag that
+// differs from the existing name or the old translations, so it is not in
+// force. Existing is the main rendering of KR in the table of existing names,
+// or else the one the term was stored with (store.OldUse); OldUnits counts
+// the old units (existing.IsOld) whose KR holds the term and OldWith those of
+// them whose translation holds ZH, as this build finds them; Examples are up
+// to three of those units (existing.OldTally.Use). Keys are the units of this
+// update whose KR holds the term and whose translation holds ZH, by key, at
+// most 20.
+type TermDiff struct {
+	KR       string                `json:"kr"`
+	ZH       string                `json:"zh"`
+	Existing string                `json:"existing,omitempty"`
+	OldUnits int                   `json:"old_units"`
+	OldWith  int                   `json:"old_with"`
+	Examples []existing.OldExample `json:"examples"`
+	Keys     []string              `json:"keys"`
 }
 
 // FileMisaligned says how many units of the KR file have no EN, and no JP,
@@ -190,16 +258,21 @@ type FileMisaligned struct {
 // field, that do not all have the same translation. ZH holds the different
 // translations in the order the units are met (at most 10), Keys[i] is the
 // first unit that has ZH[i] and Counts[i] how many units have it. Units counts
-// the units of the group, those of a translation past the tenth included. A
-// build.json of an older lct has no Counts.
+// the units of the group, those of a translation past the tenth included. New
+// counts the units of the group translated for this raw tag
+// (store.Record.TranslatedIn) and NewKeys are their keys, sorted; both are
+// left out when there are none. A build.json of an older lct has no Counts
+// and no New.
 type Inconsistency struct {
-	Family string   `json:"family"`
-	Field  string   `json:"field"`
-	KR     string   `json:"kr"`
-	ZH     []string `json:"zh"`
-	Keys   []string `json:"keys"`
-	Counts []int    `json:"counts,omitempty"`
-	Units  int      `json:"units"`
+	Family  string   `json:"family"`
+	Field   string   `json:"field"`
+	KR      string   `json:"kr"`
+	ZH      []string `json:"zh"`
+	Keys    []string `json:"keys"`
+	Counts  []int    `json:"counts,omitempty"`
+	Units   int      `json:"units"`
+	New     int      `json:"new,omitempty"`
+	NewKeys []string `json:"new_keys,omitempty"`
 }
 
 // builder is the state of one Run.
@@ -225,6 +298,24 @@ type builder struct {
 	// provisional are the provisional terms in force, which cover glossary
 	// terms in the checks as they do at submission (batch.ValidateTermsIn).
 	provisional []rules.Term
+	// notes are the notes of the translator on each unit, by key, joined by
+	// newlines.
+	notes map[string]string
+	// nameDiffs are the entries of Report.NameDiffs, by KR; termDiffs the
+	// provisional terms of Report.TermDiffs, by KR, and tally counts the old
+	// units that hold them. All three stay empty without Options.Names.
+	nameDiffs map[string]*NameDiff
+	termDiffs []*termDiff
+	tally     *existing.OldTally
+}
+
+// termDiff is a provisional term of Report.TermDiffs while the units are
+// met: its record, the term to look for (its KR as a word) and the units of
+// this update that use its rendering.
+type termDiff struct {
+	p    store.ProvisionalTerm
+	term rules.Term
+	keys []string
 }
 
 // Run builds the language pack for src (the raw KR, EN and JP packs) from the
@@ -310,7 +401,7 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	if err != nil {
 		return nil, err
 	}
-	notes, seen, err := newNotes(st)
+	notes, seen, byKey, err := newNotes(st)
 	if err != nil {
 		return nil, err
 	}
@@ -322,11 +413,13 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 		rep: &Report{
 			Origins: map[string]int{}, Warnings: map[string]int{}, FrozenFallback: []string{}, MissingGlyphs: []rune{},
 			WarningSamples: map[string][]string{}, Inconsistent: []Inconsistency{}, Notes: notes,
-			Shown: map[string]int{}, Misaligned: []FileMisaligned{},
+			Shown: map[string]int{}, Misaligned: []FileMisaligned{}, NameDiffs: []NameDiff{}, TermDiffs: []TermDiff{},
 		},
-		warnKeys: map[string][]string{},
-		renders:  map[renderKey]*rendering{},
-		families: map[string]string{},
+		warnKeys:  map[string][]string{},
+		renders:   map[renderKey]*rendering{},
+		families:  map[string]string{},
+		notes:     byKey,
+		nameDiffs: map[string]*NameDiff{},
 	}
 	for _, it := range pending {
 		b.queued[it.Key] = true
@@ -337,6 +430,14 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 			return nil, err
 		}
 		b.provisional = batch.ActiveProvisional(all, opt.Rules, opt.Declined)
+		if b.comparing() {
+			b.termDiffs = differingTerms(all, opt.Rules, opt.RawTag, opt.Declined)
+			terms := make([]rules.Term, len(b.termDiffs))
+			for i, d := range b.termDiffs {
+				terms[i] = d.term
+			}
+			b.tally = existing.NewOldTally(terms)
+		}
 	}
 
 	tree := newTree(opt.TWRoot)
@@ -499,6 +600,13 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
 	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File, ScriptOK: b.scriptOK(u.File), Terms: b.terms(u.File, u.KR)})
+	named, err := b.nameIssue(u, key, rec, al)
+	if err != nil {
+		return "", "", err
+	}
+	if named != nil {
+		issues = append(issues, *named)
+	}
 	// Every used record counts its warnings, whether or not its text is
 	// written, so that Origins, NeedsReview and Warnings cover the same records.
 	for _, is := range issues {
@@ -511,15 +619,19 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 			if keys := b.warnKeys[is.Code]; len(keys) == 0 || keys[len(keys)-1] != key {
 				b.warnKeys[is.Code] = append(keys, key)
 			}
+			if is.Code == existing.CodeNameDiffers && rec.TranslatedIn(b.opt.RawTag) {
+				b.addNameDiff(b.opt.Names.Lookup(u.KR), NameDiffUnit{Key: key, ZH: rec.ZH, Note: b.notes[key], Kind: NameDiffField})
+			}
 		}
 	}
+	b.compareWithExisting(u, key, rec)
 	if !validate.HasHard(issues) {
 		b.countUsed(rec, true)
 		if rec.Origin == store.OriginFallback {
 			b.rep.StandIn++ // the stand-in text is the record's text
 			return rec.ZH, ShownStandIn, nil
 		}
-		b.addRendering(u, key, rec.ZH)
+		b.addRendering(u, key, rec.ZH, rec.TranslatedIn(b.opt.RawTag))
 		return rec.ZH, rec.Origin, nil
 	}
 	b.rep.StandIn++
@@ -554,16 +666,144 @@ func standIn(u units.Unit, en *align.LangAligned) string {
 	return u.KR
 }
 
+// comparing reports whether the build compares the translations with the
+// existing names and the old translations (see Options.Names).
+func (b *builder) comparing() bool {
+	return b.opt.Names != nil && b.opt.Rules != nil
+}
+
+// nameIssue is the name-differs warning of rec, the record of unit u (key),
+// or nil: only a record of origin claude of a name field is checked, against
+// the variant of the name that the JP or EN text of the unit points at (see
+// existing.Index.Differs).
+func (b *builder) nameIssue(u units.Unit, key string, rec store.Record, al *align.FileAligner) (*validate.Issue, error) {
+	if !b.comparing() || rec.Origin != store.OriginClaude || !b.opt.Names.IsName(u.Field, u.KR) {
+		return nil, nil
+	}
+	en, jp, err := al.Get(u.Pointer)
+	if err != nil {
+		return nil, err
+	}
+	return b.opt.Names.Differs(u.Field, u.KR, rec.ZH, b.notes[key], alignedText(jp), alignedText(en)), nil
+}
+
+// alignedText is the text of a, or "" when nothing is aligned.
+func alignedText(a *align.LangAligned) string {
+	if a == nil {
+		return ""
+	}
+	return a.Value
+}
+
+// compareWithExisting weighs rec, the record of unit u (key) and not a copy,
+// against the existing translations. An old record counts in the tally of the
+// provisional terms of Report.TermDiffs. A record of this raw tag adds u to
+// the NameDiff of each name its KR mentions, other than the name a name field
+// is, that is not declined and whose renderings its text all lacks, and to the
+// TermDiff of each term its KR holds and whose rendering its text uses.
+func (b *builder) compareWithExisting(u units.Unit, key string, rec store.Record) {
+	if !b.comparing() {
+		return
+	}
+	if existing.IsOld(rec, b.opt.RawTag) {
+		if len(b.termDiffs) > 0 {
+			b.tally.Add(key, u.KR, rec.ZH)
+		}
+		return
+	}
+	if !rec.TranslatedIn(b.opt.RawTag) {
+		return
+	}
+	ix := b.opt.Names
+	var exact *existing.Name // the name a name field is, warned of by nameIssue
+	if ix.IsName(u.Field, u.KR) {
+		exact = ix.Lookup(u.KR)
+	}
+	for _, n := range ix.Mentions(u.KR, nil) {
+		if n == exact || ix.Declined(n.KR) || n.Has(rec.ZH) {
+			continue
+		}
+		b.addNameDiff(n, NameDiffUnit{Key: key, ZH: rec.ZH, Note: b.notes[key], Kind: NameDiffMention})
+	}
+	if len(b.termDiffs) > 0 {
+		plain, text := validate.MatchText(u.KR), validate.MatchText(rec.ZH)
+		for _, d := range b.termDiffs {
+			if d.term.OccursIn(plain) && strings.Contains(text, d.term.ZH) {
+				d.keys = append(d.keys, key)
+			}
+		}
+	}
+}
+
+// addNameDiff lists unit under the existing name n. A unit is listed once
+// under a name.
+func (b *builder) addNameDiff(n *existing.Name, unit NameDiffUnit) {
+	d, ok := b.nameDiffs[n.KR]
+	if !ok {
+		d = &NameDiff{KR: n.KR, Existing: renderingsOf(n)}
+		b.nameDiffs[n.KR] = d
+	}
+	if last := len(d.Units) - 1; last >= 0 && d.Units[last].Key == unit.Key {
+		return
+	}
+	d.Units = append(d.Units, unit)
+}
+
+// renderingsOf returns the renderings of every variant of n, the units of one
+// rendering summed, the most units first and then by ZH, at most
+// maxNameRenderings; never nil.
+func renderingsOf(n *existing.Name) []existing.Rendering {
+	byZH := map[string]int{}
+	for _, v := range n.Variants {
+		for _, r := range v.Renderings {
+			byZH[r.ZH] += r.Units
+		}
+	}
+	out := make([]existing.Rendering, 0, len(byZH))
+	for zh, count := range byZH {
+		out = append(out, existing.Rendering{ZH: zh, Units: count})
+	}
+	slices.SortFunc(out, func(x, y existing.Rendering) int {
+		return cmp.Or(cmp.Compare(y.Units, x.Units), cmp.Compare(x.ZH, y.ZH))
+	})
+	return out[:min(len(out), maxNameRenderings)]
+}
+
+// differingTerms returns the provisional terms registered at rawTag that
+// differ from the existing names or the old translations, sorted by KR. As in
+// batch.ActiveProvisional, of the records of one KR the first that is not a
+// conflict decides: it must have Old and be one of batch.ProvisionalKRs, and
+// its suggestion "term-new/<kr>" must not be declined.
+func differingTerms(all []store.ProvisionalTerm, r *rules.Rules, rawTag string, declined map[string]bool) []*termDiff {
+	listed := batch.ProvisionalKRs(all, r)
+	seen := map[string]bool{}
+	var out []*termDiff
+	for _, p := range all {
+		if p.Conflict || seen[p.KR] {
+			continue
+		}
+		seen[p.KR] = true
+		if p.Old == nil || p.RawTag != rawTag || !listed[p.KR] || declined["term-new/"+p.KR] {
+			continue
+		}
+		out = append(out, &termDiff{p: p, term: rules.Term{KR: p.KR, ZH: p.ZH, Match: rules.MatchWord}})
+	}
+	slices.SortFunc(out, func(x, y *termDiff) int { return cmp.Compare(x.p.KR, y.p.KR) })
+	return out
+}
+
 // renderKey is what makes two units the same text to translate: the family
 // and the field they are in, and the KR text.
 type renderKey struct{ family, field, kr string }
 
 // rendering is what the units of one renderKey were translated to: the
 // translations in the order they were met, at most maxRenderings, each with
-// its first unit and the number of units that show it.
+// its first unit and the number of units that show it. newKeys are the units
+// translated for this raw tag, in the order they were met.
 type rendering struct {
 	units    int
 	variants []variant
+	newKeys  []string
 }
 
 type variant struct {
@@ -572,8 +812,9 @@ type variant struct {
 }
 
 // addRendering notes that unit u (key) shows zh, the translation of a person,
-// of the translator or of Paratranz.
-func (b *builder) addRendering(u units.Unit, key, zh string) {
+// of the translator or of Paratranz; isNew says it was translated for this raw
+// tag.
+func (b *builder) addRendering(u units.Unit, key, zh string, isNew bool) {
 	k := renderKey{b.familyOf(u.File), u.Field, u.KR}
 	g, ok := b.renders[k]
 	if !ok {
@@ -581,6 +822,9 @@ func (b *builder) addRendering(u units.Unit, key, zh string) {
 		b.renders[k] = g
 	}
 	g.units++
+	if isNew {
+		g.newKeys = append(g.newKeys, key)
+	}
 	for i := range g.variants {
 		if g.variants[i].zh == zh {
 			g.variants[i].units++
@@ -622,8 +866,8 @@ func (b *builder) familyOf(file string) string {
 
 // finish completes the report with what it can only know once every unit has
 // been met: the samples of each warning, the texts with different
-// translations, the worst misaligned files, and the records written for this
-// raw tag.
+// translations, the worst misaligned files, the records written for this raw
+// tag, and the translations that differ from the existing ones.
 func (b *builder) finish() {
 	for code, keys := range b.warnKeys {
 		slices.Sort(keys)
@@ -638,9 +882,12 @@ func (b *builder) finish() {
 		if b.opt.Declined[itemid.Inconsistent(k.family, k.field, k.kr)] {
 			continue
 		}
-		inc := Inconsistency{Family: k.family, Field: k.field, KR: k.kr, Units: g.units}
+		inc := Inconsistency{Family: k.family, Field: k.field, KR: k.kr, Units: g.units, New: len(g.newKeys)}
 		for _, v := range g.variants {
 			inc.ZH, inc.Keys, inc.Counts = append(inc.ZH, v.zh), append(inc.Keys, v.key), append(inc.Counts, v.units)
+		}
+		if inc.New > 0 {
+			inc.NewKeys = slices.Sorted(slices.Values(g.newKeys))
 		}
 		groups = append(groups, inc)
 	}
@@ -669,24 +916,53 @@ func (b *builder) finish() {
 			b.rep.NewTranslated++
 		}
 	}
+
+	for _, d := range b.nameDiffs {
+		slices.SortFunc(d.Units, func(x, y NameDiffUnit) int { return cmp.Compare(x.Key, y.Key) })
+		b.rep.NameDiffs = append(b.rep.NameDiffs, *d)
+	}
+	slices.SortFunc(b.rep.NameDiffs, func(x, y NameDiff) int { return cmp.Compare(x.KR, y.KR) })
+	for _, d := range b.termDiffs {
+		use, examples, _ := b.tally.Use(b.opt.Names, d.p.KR, d.p.ZH)
+		if use.Existing == "" {
+			use.Existing = d.p.Old.Existing
+		}
+		if examples == nil {
+			examples = []existing.OldExample{}
+		}
+		keys := slices.Sorted(slices.Values(d.keys))
+		b.rep.TermDiffs = append(b.rep.TermDiffs, TermDiff{
+			KR: d.p.KR, ZH: d.p.ZH, Existing: use.Existing, OldUnits: use.Units, OldWith: use.With,
+			Examples: examples, Keys: append([]string{}, keys[:min(len(keys), maxTermKeys)]...),
+		})
+	}
 }
 
-// newNotes returns the notes added since the previous build, and the number of
-// notes there are in all. The previous build counted the notes it reported in
-// .meta/build.json; a count above the number of notes (the file was replaced)
-// starts over from the first note.
-func newNotes(st *store.Store) (notes []store.Note, seen int, err error) {
+// newNotes returns the notes added since the previous build, the number of
+// notes there are in all, and every note of each unit, by key, joined by
+// newlines in the order they were added. The previous build counted the notes
+// it reported in .meta/build.json; a count above the number of notes (the file
+// was replaced) starts over from the first note.
+func newNotes(st *store.Store) (notes []store.Note, seen int, byKey map[string]string, err error) {
 	var prev Info
 	if _, err := st.ReadMetaJSON(infoName, &prev); err != nil {
-		return nil, 0, err
+		return nil, 0, nil, err
 	}
 	all, err := st.LoadNotes()
 	if err != nil {
-		return nil, 0, err
+		return nil, 0, nil, err
 	}
 	from := prev.NotesSeen
 	if from < 0 || from > len(all) {
 		from = 0
 	}
-	return append([]store.Note{}, all[from:]...), len(all), nil
+	byKey = map[string]string{}
+	for _, n := range all {
+		if joined, ok := byKey[n.Key]; ok {
+			byKey[n.Key] = joined + "\n" + n.Note
+		} else {
+			byKey[n.Key] = n.Note
+		}
+	}
+	return append([]store.Note{}, all[from:]...), len(all), byKey, nil
 }

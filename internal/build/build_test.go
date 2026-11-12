@@ -25,6 +25,7 @@ import (
 	"golang.org/x/image/font/sfnt"
 
 	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
@@ -2352,5 +2353,321 @@ func TestBuildAcceptsTermMissingByRendering(t *testing.T) {
 	}
 	if rep := run("牧師", "神父", "神職者"); rep.Warnings["term-missing"] != 0 {
 		t.Errorf("all accepted: Warnings = %v, want none", rep.Warnings)
+	}
+}
+
+// existingNames is an index of one existing name, 노을빛 검: 霞光劍刃 in 12
+// units and 霞光之劍 in one where JP says 茜さす剣, 霞光劍刃 in two and 夕霞劍
+// in one where EN says Dusk Blade.
+func existingNames(declined map[string]bool) *existing.Index {
+	return existing.NewIndex(&existing.Table{RawTag: "raw-20261001", Fields: []string{"name"}, Names: []existing.Name{{
+		KR: "노을빛 검",
+		Variants: []existing.Variant{
+			{JP: "茜さす剣", Renderings: []existing.Rendering{{ZH: "霞光劍刃", Units: 12}, {ZH: "霞光之劍", Units: 1}}},
+			{EN: "Dusk Blade", Renderings: []existing.Rendering{{ZH: "霞光劍刃", Units: 2}, {ZH: "夕霞劍", Units: 1}}},
+		},
+	}}}, routingRules(), declined)
+}
+
+// wantNameExisting are the renderings of existingNames, summed over the
+// variants.
+var wantNameExisting = []existing.Rendering{{ZH: "霞光劍刃", Units: 14}, {ZH: "夕霞劍", Units: 1}, {ZH: "霞光之劍", Units: 1}}
+
+// written is r as Submit writes it at the raw tag of the build.
+func written(r store.Record) store.Record {
+	r.Written = testTag
+	return r
+}
+
+// nameEnv is an environment of Skills.json (kr), whose JP says 茜さす剣 where
+// kr says 노을빛 검, with the routing rules, existingNames and recs. declined
+// is the declined list.
+func nameEnv(t *testing.T, kr string, declined map[string]bool, recs ...store.Record) *testEnv {
+	t.Helper()
+	e := newEnv(t, map[string]string{"Skills.json": kr}, nil)
+	e.withJP(map[string]string{"Skills.json": strings.ReplaceAll(kr, "노을빛 검", "茜さす剣")})
+	e.opt.Rules = routingRules()
+	e.opt.Declined = declined
+	e.opt.Names = existingNames(declined)
+	e.save(recs...)
+	return e
+}
+
+// A record of origin claude whose name field renders an existing name
+// otherwise than the variant its JP points at warns name-differs, whenever it
+// was written. One written for this raw tag is listed too, with the notes of
+// the translator and every rendering the name has.
+func TestBuildListsNameDiffers(t *testing.T) {
+	const doc = `{"dataList":[{"id":1,"name":"노을빛 검"},{"id":2,"name":"노을빛 검"},{"id":3,"name":"노을빛 검"},{"id":4,"name":"노을빛 검"}]}`
+	paratranz := rec("Skills.json", "/dataList/3/name", "노을빛 검", "晚霞之劍")
+	paratranz.Origin = store.OriginParatranz
+	recs := []store.Record{
+		written(rec("Skills.json", "/dataList/0/name", "노을빛 검", "晚霞之劍")),
+		rec("Skills.json", "/dataList/1/name", "노을빛 검", "晚霞之劍"), // an older translation: it warns but is not listed
+		written(rec("Skills.json", "/dataList/2/name", "노을빛 검", "霞光劍刃")),
+		paratranz, // not the translator's: not checked
+	}
+	e := nameEnv(t, doc, nil, recs...)
+	if _, err := store.Open(e.opt.TWRoot).AppendNotes([]store.Note{
+		{Key: recs[0].Key, Batch: "b1", KRSha: units.KRSha("노을빛 검"), Model: "m", Note: "依技能演出"},
+		{Key: recs[0].Key, Batch: "b2", KRSha: units.KRSha("노을빛 검"), Model: "m", Note: "第二則"},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	rep := e.run()
+	if rep.Warnings[existing.CodeNameDiffers] != 2 || !slices.Equal(rep.WarningSamples[existing.CodeNameDiffers], []string{recs[0].Key, recs[1].Key}) {
+		t.Errorf("Warnings = %v, samples %v; want two name-differs, of %s and %s", rep.Warnings, rep.WarningSamples, recs[0].Key, recs[1].Key)
+	}
+	want := []NameDiff{{
+		KR: "노을빛 검", Existing: wantNameExisting,
+		Units: []NameDiffUnit{{Key: recs[0].Key, ZH: "晚霞之劍", Note: "依技能演出\n第二則", Kind: NameDiffField}},
+	}}
+	if !reflect.DeepEqual(rep.NameDiffs, want) {
+		t.Errorf("NameDiffs = %+v, want %+v", rep.NameDiffs, want)
+	}
+}
+
+// NameDiff.Existing sums the renderings of every variant and keeps the five
+// with the most units.
+func TestBuildNameDiffExistingIsBounded(t *testing.T) {
+	const doc = `{"dataList":[{"id":1,"name":"노을빛 검"}]}`
+	e := nameEnv(t, doc, nil, written(rec("Skills.json", "/dataList/0/name", "노을빛 검", "晚霞之劍")))
+	e.opt.Names = existing.NewIndex(&existing.Table{RawTag: "raw-20261001", Fields: []string{"name"}, Names: []existing.Name{{
+		KR: "노을빛 검",
+		Variants: []existing.Variant{
+			{JP: "茜さす剣", Renderings: []existing.Rendering{{ZH: "甲", Units: 4}, {ZH: "乙", Units: 2}, {ZH: "丙", Units: 1}}},
+			{EN: "Dusk Blade", Renderings: []existing.Rendering{{ZH: "丁", Units: 3}, {ZH: "乙", Units: 2}, {ZH: "戊", Units: 1}, {ZH: "己", Units: 1}}},
+		},
+	}}}, e.opt.Rules, nil)
+	rep := e.run()
+	// 乙 sorts before 甲, 丙 before 己 and 己 before 戊.
+	want := []existing.Rendering{{ZH: "乙", Units: 4}, {ZH: "甲", Units: 4}, {ZH: "丁", Units: 3}, {ZH: "丙", Units: 1}, {ZH: "己", Units: 1}}
+	if len(rep.NameDiffs) != 1 || !reflect.DeepEqual(rep.NameDiffs[0].Existing, want) {
+		t.Errorf("NameDiffs = %+v, want one with the renderings %+v", rep.NameDiffs, want)
+	}
+}
+
+// An accepted name-differs warning is neither counted nor listed.
+func TestBuildNameDifferAccepted(t *testing.T) {
+	const doc = `{"dataList":[{"id":1,"name":"노을빛 검"}]}`
+	r := written(rec("Skills.json", "/dataList/0/name", "노을빛 검", "晚霞之劍"))
+	if rep := nameEnv(t, doc, nil, r).run(); rep.Warnings[existing.CodeNameDiffers] != 1 || len(rep.NameDiffs) != 1 {
+		t.Fatalf("Warnings = %v, NameDiffs = %+v; want the warning listed without an accepted list", rep.Warnings, rep.NameDiffs)
+	}
+	e := nameEnv(t, doc, nil, r)
+	e.opt.Accepted = map[string]bool{itemid.UnitWarning(existing.CodeNameDiffers, "노을빛 검", "霞光劍刃", "노을빛 검", "晚霞之劍"): true}
+	rep := e.run()
+	if rep.Warnings[existing.CodeNameDiffers] != 0 || len(rep.NameDiffs) != 0 {
+		t.Errorf("Warnings = %v, NameDiffs = %+v; want neither: the warning was accepted", rep.Warnings, rep.NameDiffs)
+	}
+}
+
+// mentionsKR has three units of desc that mention 노을빛 검 and one of name
+// that is the name.
+const mentionsKR = `{"dataList":[{"id":1,"desc":"노을빛 검 발동"},{"id":2,"desc":"노을빛 검 발동!"},{"id":3,"desc":"노을빛 검 발동."},{"id":4,"name":"노을빛 검"}]}`
+
+// mentionsRecords are records of mentionsKR: a translation of this raw tag
+// that renders the name in no existing way, one that does, an older one that
+// does not, and a name of this raw tag that differs.
+func mentionsRecords() []store.Record {
+	return []store.Record{
+		written(rec("Skills.json", "/dataList/0/desc", "노을빛 검 발동", "發動晚霞之劍")),
+		written(rec("Skills.json", "/dataList/1/desc", "노을빛 검 발동!", "發動霞光之劍！")),
+		rec("Skills.json", "/dataList/2/desc", "노을빛 검 발동.", "發動晚霞之劍。"),
+		written(rec("Skills.json", "/dataList/3/name", "노을빛 검", "晚霞之劍")),
+	}
+}
+
+// A translation of this raw tag whose KR mentions an existing name and whose
+// text has none of its renderings is listed, without a warning; one that has
+// a rendering, an older one, and a name field that is the name itself are
+// not listed as mentions.
+func TestBuildListsMentions(t *testing.T) {
+	recs := mentionsRecords()
+	rep := nameEnv(t, mentionsKR, nil, recs...).run()
+	want := []NameDiff{{
+		KR: "노을빛 검", Existing: wantNameExisting,
+		Units: []NameDiffUnit{
+			{Key: recs[0].Key, ZH: "發動晚霞之劍", Kind: NameDiffMention},
+			{Key: recs[3].Key, ZH: "晚霞之劍", Kind: NameDiffField},
+		},
+	}}
+	if !reflect.DeepEqual(rep.NameDiffs, want) {
+		t.Errorf("NameDiffs = %+v, want %+v", rep.NameDiffs, want)
+	}
+	if rep.Warnings[existing.CodeNameDiffers] != 1 {
+		t.Errorf("Warnings = %v, want one name-differs: a mention does not warn", rep.Warnings)
+	}
+}
+
+// A declined name neither warns nor is listed.
+func TestBuildSkipsDeclinedNames(t *testing.T) {
+	rep := nameEnv(t, mentionsKR, map[string]bool{existing.SuggestionID("노을빛 검"): true}, mentionsRecords()...).run()
+	if rep.Warnings[existing.CodeNameDiffers] != 0 || len(rep.NameDiffs) != 0 {
+		t.Errorf("Warnings = %v, NameDiffs = %+v; want neither: the name was declined", rep.Warnings, rep.NameDiffs)
+	}
+}
+
+// A provisional term of this raw tag that differs from the old translations
+// is listed with the old units counted again, three of them as examples, and
+// the units of this update that use its rendering. Terms of another raw tag,
+// declined, in force, or decided by an earlier record are not listed.
+func TestBuildListsTermDiffs(t *testing.T) {
+	var entries, krs []string
+	var recs []store.Record
+	add := func(kr, zh string, isNew bool) {
+		i := strconv.Itoa(len(entries))
+		entries = append(entries, `{"id":`+i+`,"desc":"`+kr+`"}`)
+		krs = append(krs, kr)
+		r := rec("Bufs.json", "/dataList/"+i+"/desc", kr, zh)
+		if isNew {
+			r = written(r)
+		}
+		recs = append(recs, r)
+	}
+	for i := range 6 {
+		n := strconv.Itoa(i + 1)
+		add("도발치 "+n+" 증가", "挑釁值增加"+n, false)
+	}
+	add("도발치 7 증가", "嘲諷值增加7", true)
+	add("도발치를 얻는다", "獲得嘲諷值", true)
+	add("도발치 감소", "挑釁值減少", true)   // this update, but not the provisional rendering
+	add("큰도발치 감소", "大嘲諷值減少", true) // 도발치 is no word of its own here
+
+	run := func(names *existing.Index) *Report {
+		e := newEnv(t, map[string]string{"Bufs.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}, nil)
+		e.opt.Rules = routingRules()
+		e.opt.Declined = map[string]bool{"term-new/회피치": true}
+		e.opt.Names = names
+		e.save(recs...)
+		old := &store.OldUse{Existing: "挑釁值", Units: 95}
+		if _, err := store.Open(e.opt.TWRoot).AppendTerms([]store.ProvisionalTerm{
+			{KR: "방어치", ZH: "格擋值", Key: recs[0].Key, Batch: "b1", RawTag: testTag, Conflict: true, Old: old}, // a conflict decides nothing
+			{KR: "도발치", ZH: "嘲諷值", Key: recs[6].Key, Batch: "b1", RawTag: testTag, Old: old},
+			{KR: "도발치", ZH: "挑撥值", Key: recs[7].Key, Batch: "b2", RawTag: testTag, Conflict: true},
+			{KR: "방어치", ZH: "防禦值", Key: recs[0].Key, Batch: "b1", RawTag: testTag},                  // in force
+			{KR: "방어치", ZH: "守備值", Key: recs[0].Key, Batch: "b1", RawTag: testTag, Old: old},        // the first record decided
+			{KR: "회피치", ZH: "迴避值", Key: recs[0].Key, Batch: "b1", RawTag: testTag, Old: old},        // declined
+			{KR: "속도치", ZH: "速度值", Key: recs[0].Key, Batch: "b0", RawTag: "raw-20261001", Old: old}, // of an earlier update
+		}); err != nil {
+			t.Fatal(err)
+		}
+		return e.run()
+	}
+
+	var examples []existing.OldExample // the first three old units by key
+	for i, r := range recs[:3] {
+		examples = append(examples, existing.OldExample{Key: r.Key, KR: krs[i], ZH: r.ZH})
+	}
+	want := []TermDiff{{
+		KR: "도발치", ZH: "嘲諷值", Existing: "挑釁值", OldUnits: 6, OldWith: 0,
+		Examples: examples, Keys: []string{recs[6].Key, recs[7].Key},
+	}}
+	// Without the name in the table, Existing is the one the term was stored with.
+	if rep := run(existing.NewIndex(nil, routingRules(), nil)); !reflect.DeepEqual(rep.TermDiffs, want) {
+		t.Errorf("TermDiffs = %+v, want %+v", rep.TermDiffs, want)
+	}
+
+	// With it, the table says.
+	names := existing.NewIndex(&existing.Table{RawTag: "raw-20261001", Fields: []string{"name"}, Names: []existing.Name{
+		{KR: "도발치", Variants: []existing.Variant{{Renderings: []existing.Rendering{{ZH: "挑戰值", Units: 4}}}}},
+	}}, routingRules(), nil)
+	want[0].Existing = "挑戰值"
+	if rep := run(names); !reflect.DeepEqual(rep.TermDiffs, want) {
+		t.Errorf("with the name in the table: TermDiffs = %+v, want %+v", rep.TermDiffs, want)
+	}
+}
+
+// A group of inconsistent renderings counts its units translated for this
+// raw tag; a group of older translations only has none.
+func TestBuildMarksNewInconsistency(t *testing.T) {
+	e := newEnv(t, map[string]string{
+		"A.json": `{"dataList":[{"id":1,"content":"가"},{"id":2,"content":"가"},{"id":3,"content":"가"},{"id":4,"content":"가"},{"id":5,"content":"나"},{"id":6,"content":"나"}]}`,
+	}, nil)
+	e.opt.Rules = routingRules()
+	recs := []store.Record{
+		rec("A.json", "/dataList/0/content", "가", "甲"),
+		rec("A.json", "/dataList/1/content", "가", "甲"),
+		rec("A.json", "/dataList/2/content", "가", "甲"),
+		written(rec("A.json", "/dataList/3/content", "가", "乙")),
+		rec("A.json", "/dataList/4/content", "나", "丙"),
+		rec("A.json", "/dataList/5/content", "나", "丁"),
+	}
+	e.save(recs...)
+	rep := e.run()
+	want := []Inconsistency{
+		{
+			Family: "alpha", Field: "content", KR: "가", ZH: []string{"甲", "乙"}, Keys: []string{recs[0].Key, recs[3].Key},
+			Counts: []int{3, 1}, Units: 4, New: 1, NewKeys: []string{recs[3].Key},
+		},
+		{
+			Family: "alpha", Field: "content", KR: "나", ZH: []string{"丙", "丁"}, Keys: []string{recs[4].Key, recs[5].Key},
+			Counts: []int{1, 1}, Units: 2,
+		},
+	}
+	if !reflect.DeepEqual(rep.Inconsistent, want) {
+		t.Errorf("Inconsistent = %+v, want %+v", rep.Inconsistent, want)
+	}
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(info.InconsistentAll, want) {
+		t.Errorf("InconsistentAll = %+v, want %+v", info.InconsistentAll, want)
+	}
+	// A group without new units says nothing of them.
+	all := jsonKeys(t, filepath.Join(e.opt.TWRoot, ".meta", "build.json"))["inconsistent_all"].([]any)
+	if g := all[1].(map[string]any); g["new"] != nil || g["new_keys"] != nil {
+		t.Errorf("the group of older translations = %v, want no new nor new_keys", g)
+	}
+}
+
+// A build.json of an older lct, without name_diffs, term_diffs and new, is
+// read.
+func TestInfoWithoutNameDiffsDecodes(t *testing.T) {
+	dir := t.TempDir()
+	mustMkdirWrite(t, filepath.Join(dir, ".meta", "build.json"), `{
+  "raw_tag": "raw-20261001", "raw_token": "t", "rules_commit": "abc", "built_at": "2026-10-01T00:00:00Z", "notes_seen": 0, "zips": {},
+  "report": {"origins": {}, "pending": 0, "warnings": {}, "inconsistent": [{"family": "a", "field": "content", "kr": "가", "zh": ["甲", "乙"], "keys": ["k1", "k2"], "units": 2}]},
+  "inconsistent_all": [{"family": "a", "field": "content", "kr": "가", "zh": ["甲", "乙"], "keys": ["k1", "k2"], "units": 2}]
+}`)
+	info, err := ReadInfo(dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(info.Report.NameDiffs) != 0 || len(info.Report.TermDiffs) != 0 || info.Report.Inconsistent[0].New != 0 || info.InconsistentAll[0].NewKeys != nil {
+		t.Errorf("Info = %+v, want no differences and no new units", info)
+	}
+}
+
+// Without the existing names nothing is compared with them: there is no
+// name-differs warning, no difference is listed, and the rest of the report
+// is what it is with them.
+func TestBuildWithoutNames(t *testing.T) {
+	recs := mentionsRecords()
+	with := nameEnv(t, mentionsKR, nil, recs...).run()
+	e := nameEnv(t, mentionsKR, nil, recs...)
+	e.opt.Names = nil
+	rep := e.run()
+	if rep.NameDiffs == nil || len(rep.NameDiffs) != 0 || rep.TermDiffs == nil || len(rep.TermDiffs) != 0 {
+		t.Errorf("NameDiffs = %#v, TermDiffs = %#v; want both empty and not nil", rep.NameDiffs, rep.TermDiffs)
+	}
+	if len(with.NameDiffs) == 0 || with.Warnings[existing.CodeNameDiffers] == 0 {
+		t.Fatalf("with the names: NameDiffs = %+v, Warnings = %v; want both", with.NameDiffs, with.Warnings)
+	}
+	with.NameDiffs, with.TermDiffs = []NameDiff{}, []TermDiff{}
+	delete(with.Warnings, existing.CodeNameDiffers)
+	delete(with.WarningSamples, existing.CodeNameDiffers)
+	if !reflect.DeepEqual(rep, with) {
+		t.Errorf("report without the names = %+v, want %+v", rep, with)
+	}
+	b, err := os.ReadFile(filepath.Join(e.opt.TWRoot, ".meta", "build.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, w := range []string{`"name_diffs": []`, `"term_diffs": []`} {
+		if !strings.Contains(string(b), w) {
+			t.Errorf("build.json lacks %s", w)
+		}
 	}
 }

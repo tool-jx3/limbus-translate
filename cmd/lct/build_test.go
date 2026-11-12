@@ -19,6 +19,7 @@ import (
 	"golang.org/x/image/font/gofont/goregular"
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -592,5 +593,53 @@ func TestBuildAfterPublishLeavesTWAlone(t *testing.T) {
 		if report, err := os.ReadFile(got.ReportPath); err != nil || strings.Contains(string(report), "...tw") || strings.Contains(string(report), head) {
 			t.Errorf("round %d: the archived report holds the state of tw (%v)", round, err)
 		}
+	}
+}
+
+// lct build compares the translations with the table of existing names of
+// the tw store and leaves out the names declined in rules/declined.yaml.
+func TestBuildCommandComparesWithExistingNames(t *testing.T) {
+	root := buildRepo(t)
+	t.Setenv(sourceDateEpoch, "")
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	recs, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	const key = "Bufs.json|/dataList/0/name"
+	r, ok := recs[key]
+	if !ok {
+		t.Fatalf("the fixture has no record of %s", key)
+	}
+	r.Origin, r.ZH, r.Written = store.OriginClaude, "撕裂", "raw-20261029"
+	recs[key] = r
+	if err := st.SaveRecords(recs); err != nil {
+		t.Fatal(err)
+	}
+	if err := existing.SaveTable(st, &existing.Table{RawTag: "raw-20261029", Fields: []string{"name"}, Names: []existing.Name{{
+		KR: "열상", Variants: []existing.Variant{{JP: "裂傷", EN: "Laceration", Renderings: []existing.Rendering{{ZH: "流血", Units: 3}}}},
+	}}}); err != nil {
+		t.Fatal(err)
+	}
+
+	got, err := runBuildJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := []build.NameDiff{{
+		KR: "열상", Existing: []existing.Rendering{{ZH: "流血", Units: 3}},
+		Units: []build.NameDiffUnit{{Key: key, ZH: "撕裂", Kind: build.NameDiffField}},
+	}}
+	if !reflect.DeepEqual(got.Report.NameDiffs, want) || got.Report.Warnings[existing.CodeNameDiffers] != 1 {
+		t.Errorf("NameDiffs = %+v, Warnings = %v; want %+v and one name-differs", got.Report.NameDiffs, got.Report.Warnings, want)
+	}
+
+	writeTestFile(t, root, "rules/declined.yaml", "- id: \"name/열상\"\n  reason: 依語境\n  date: 2026-11-12\n")
+	got, err = runBuildJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(got.Report.NameDiffs) != 0 || got.Report.Warnings[existing.CodeNameDiffers] != 0 {
+		t.Errorf("declined: NameDiffs = %+v, Warnings = %v; want neither", got.Report.NameDiffs, got.Report.Warnings)
 	}
 }

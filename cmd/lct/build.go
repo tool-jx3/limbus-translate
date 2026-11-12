@@ -13,6 +13,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
@@ -154,6 +155,13 @@ func runBuild(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
+	declinedSet := idSet(declined)
+	// The table of existing names that lct plan made for the snapshot; none
+	// is an empty table.
+	table, err := existing.LoadTable(store.Open(twRoot))
+	if err != nil {
+		return err
+	}
 	opt := build.Options{
 		TWRoot:       twRoot,
 		OutDir:       filepath.Join(ctx.Root, buildOutDir),
@@ -170,8 +178,9 @@ func runBuild(ctx *cli.Context, args []string) error {
 		Rules:        r,
 		RepoURL:      repoURL(),
 		PrevTWCommit: prevTW,
-		Declined:     idSet(declined),
+		Declined:     declinedSet,
 		Accepted:     idSet(accepted),
+		Names:        existing.NewIndex(table, r, declinedSet),
 	}
 	rep, err := build.Run(opt, set, fr)
 	if errors.Is(err, build.ErrFontChecksum) {
