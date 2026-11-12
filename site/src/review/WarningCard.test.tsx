@@ -288,6 +288,23 @@ describe('SuggestionCard, a name with a provisional term', () => {
     expect([...rows[2]!.querySelectorAll('mark')].map((m) => m.textContent)).toEqual(['우레', '雷鳴'])
   })
 
+  it('labels the registration row, which lct suggest puts first when it merges the term', () => {
+    const merged: SuggestionItem = {
+      ...item,
+      evidence: [
+        { key: 'a.json|/1', kr: '우레', zh: '雷鳴', note: 'batch-7' },
+        { kr: '우레', zh: '雷聲', count: 4, note: '與舊譯不同：舊譯 4 個單位，含暫定譯法 0 個' },
+        { kr: '우레', zh: '雷聲', count: 4 },
+        { key: 'e.json|/5', kr: '우레', zh: '雷鳴', note: '譯者說明' },
+      ],
+    }
+    const rows = mount(<SuggestionCard item={merged} target={false} />).querySelectorAll('.rv-tev')
+    expect(rows).toHaveLength(4)
+    expect(rows[0]!.textContent).toContain('登記的句子')
+    expect(rows[0]!.textContent).toContain('batch-7')
+    for (const r of [...rows].slice(1)) expect(r.textContent).not.toContain('登記的句子')
+  })
+
   it('keeps the plain evidence of a name without a term', () => {
     const { term: _t, ...bare } = item
     const el = mount(<SuggestionCard item={bare} target={false} />)

@@ -138,11 +138,17 @@ function Evidence({ item }: { item: SuggestionItem }) {
 function TermNewEvidence({ item }: { item: SuggestionItem }) {
   const krMark = item.term ? termMark(item.term.kr) : undefined
   const zhMark = item.term ? termMark(item.term.zh) : undefined
+  // The unit that registered the term is the first row of a term-new, and of a
+  // name it is merged into (lct suggest puts the term's rows first there; a
+  // row of the name's own comes first in older data, and is not labelled).
+  const first = item.evidence[0]
+  const registered =
+    item.kind === 'term-new' || (first?.key !== undefined && item.term !== undefined && first.kr === item.term.kr && first.zh === item.term.zh)
   return (
     <ul class="rv-evidence">
       {item.evidence.map((e, k) => {
         const hit = e.note === '有用' || e.note === '未用'
-        const label = k === 0 && item.kind === 'term-new' ? '登記的句子' : e.note === '衝突' ? '衝突的譯法' : hit ? '命中的句子' : ''
+        const label = k === 0 && registered ? '登記的句子' : e.note === '衝突' ? '衝突的譯法' : hit ? '命中的句子' : ''
         return (
           <li key={k} class="rv-tev">
             <div class="rv-tev-head">
