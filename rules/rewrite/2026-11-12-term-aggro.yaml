@@ -1,0 +1,7 @@
+# 2026-11-12 更新的暫定詞「도발치」：舊譯 95 處全部寫 挑釁值（paratranz 88、claude 7），含關鍵字名稱本身 BattleKeywords.json|/dataList/226/name；沒有舊譯寫 嘲諷值。依舊譯
+# 這次新譯 2 個單位寫成 嘲諷值，改為詞彙表的譯名。
+reason: '「도발치」寫「挑釁值」（詞彙表）'
+files: ['BattleKeywords-walpu10.json', 'Bufs-walpu10.json']
+pattern: '嘲諷值'
+replace: '挑釁值'
+kr_pattern: '도발치'

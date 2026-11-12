@@ -1,0 +1,7 @@
+# 2026-11-12 更新的暫定詞「기본 공격 스킬」：舊譯 293 處：271 處寫 基礎攻擊技能（paratranz 為主），8 處 基本攻擊技能（皆 paratranz，EGOgift_MirrorDungeon 等），11 處省作 基礎技能，3 處未譯出；依「以過去的翻譯為主」取多數 基礎攻擊技能。新譯 17 單位全寫暫定的 基本攻擊技能
+# 這次新譯 17 個單位寫成 基本攻擊技能，改為詞彙表的譯名。
+reason: '「기본 공격 스킬」寫「基礎攻擊技能」（詞彙表）'
+files: ['BattleKeywords-walpu10.json', 'BattleKeywords.json', 'Bufs-walpu10.json', 'Bufs.json', 'EGOgift_walpu10.json']
+pattern: '基本攻擊技能'
+replace: '基礎攻擊技能'
+kr_pattern: '기본 공격 스킬'

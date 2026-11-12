@@ -1,0 +1,7 @@
+# 2026-11-12 更新的暫定詞「8시의 서커스」：沒有舊譯（4 單位全為這次新譯）；新譯 3 處寫 八點馬戲團（StoryData/P11116 三處），1 處語音 Voice_Outis_Wedge_11116 寫 8點馬戲團。取新譯多數、與暫定一致的 八點馬戲團
+# 這次新譯 1 個單位寫成 8點馬戲團，改為詞彙表的譯名。
+reason: '「8시의 서커스」寫「八點馬戲團」（詞彙表）'
+files: ['PersonalityVoiceDlg/Voice_Outis_Wedge_11116.json']
+pattern: '8點馬戲團'
+replace: '八點馬戲團'
+kr_pattern: '8시의 서커스'

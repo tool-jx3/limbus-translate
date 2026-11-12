@@ -1,0 +1,7 @@
+# 2026-11-12 更新的暫定詞「눈물로 벼려낸 검」：舊譯沒有「以淚磨礪之劍」：16 個舊單位中 15 處（paratranz 13、claude 2）寫 淚鋒之劍（E.G.O 飾品、人格名「腦葉公司E.G.O::淚鋒之劍」、技能名），另 1 處是羅佳語音台詞，按字面寫「用妳的眼淚所磨出的劍」。「以淚磨礪之劍」只出現在這次新譯的 12 個單位，暫定的「以淚水磨利的劍」只在 2 個新單位。依「以過去的翻譯為主」定為 淚鋒之劍，新譯 14 單位都要改
+# 這次新譯 14 個單位寫成 以淚水磨利的劍、以淚磨礪之劍，改為詞彙表的譯名。
+reason: '「눈물로 벼려낸 검」寫「淚鋒之劍」（詞彙表）'
+files: ['ActionEvents-walpu10.json', 'BattleKeywords.json', 'Bufs.json', 'EGOgift_walpu10.json', 'Egos.json', 'Passive_Ego.json', 'Skills_Ego_Personality-06.json']
+pattern: '以淚水磨利的劍|以淚磨礪之劍'
+replace: '淚鋒之劍'
+kr_pattern: '눈물로 벼려낸 검'

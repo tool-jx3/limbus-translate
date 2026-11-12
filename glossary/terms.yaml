@@ -5601,3 +5601,250 @@
   evidence: { kr_lines: 6, approved: 5, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
   sources: ["game:EGOgift_MirrorDungeon.json#/dataList/37/name"]
+
+# 2026-11-12 更新（raw-20261112）的暫定詞，使用者決定：已有舊譯的以舊譯為準，與舊譯一致或沒有舊譯的照暫定譯名採用
+# （changed：暫定譯名改為舊譯；這次新譯中寫法不同的單位以 rules/rewrite/2026-11-12-term-*.yaml 改正）
+
+- kr: 기본 공격 스킬
+  jp: 基本攻撃スキル
+  en: Base Attack Skill
+  zh: 基礎攻擊技能
+  status: approved
+  match: word
+  category: [combat]
+  notes: 2026-11-12 更新暫定詞；舊譯 271/293 處用 基礎攻擊技能（8 處 基本攻擊技能、11 處省作 基礎技能）；JP 基本攻撃スキル、EN Base Attack Skill；暫定譯名「基本攻擊技能」改為舊譯
+
+- kr: 도발치
+  jp: 挑発値
+  en: Aggro
+  zh: 挑釁值
+  status: approved
+  match: word
+  category: [combat]
+  notes: "2026-11-12 更新暫定詞；舊譯 95/95 處用 挑釁值（關鍵字 BattleKeywords.json#/dataList/226/name）；JP 挑発値、EN Aggro；暫定譯名「嘲諷值」改為舊譯"
+
+- kr: 쐐기 사무소
+  jp: 楔事務所
+  en: Wedge Office
+  zh: 楔事務所
+  status: approved
+  match: word
+  category: [city]
+  notes: 2026-11-12 更新暫定詞；收尾人事務所之一（第十次瓦爾普吉斯之夜等），新譯 252 處皆用 楔事務所，無舊譯
+
+- kr: 파괴 불가 코인
+  jp: 破壊不能コイン
+  en: Unbreakable Coin
+  zh: 無法被破壞的硬幣
+  status: approved
+  match: word
+  category: [combat]
+  notes: 2026-11-12 更新暫定詞；舊譯 94/101 處用 無法被破壞的硬幣（6 處 不可破壞的硬幣、1 處 無法破壞硬幣）；JP 破壊不能コイン、EN Unbreakable Coin；暫定譯名「不可摧毀硬幣」改為舊譯
+
+- kr: 새벽 사무소
+  jp: 夜明事務所
+  en: Dawn Office
+  zh: 黎明事務所
+  status: approved
+  match: word
+  category: [city]
+  notes: 2026-11-12 更新暫定詞；舊譯 175/175 單位用 黎明事務所；新譯 53/53 一致。收尾人事務所之一
+
+- kr: 타오르는 일격
+  jp: 燃えたぎる一撃
+  en: Blazing Strike
+  zh: 爆炎一擊
+  status: approved
+  match: word
+  category: [combat]
+  notes: 2026-11-12 更新暫定詞；舊譯 13/13 處用 爆炎一擊（含「다시 타오르는 일격」復燃的爆炎一擊）；辛克萊與菲利普的同名技能；JP 燃えたぎる一撃、EN Blazing Strike；暫定譯名「燃燒一擊」改為舊譯
+
+- kr: 감정 0단계
+  jp: 感情レベル0
+  en: Emotion Level 0
+  zh: 情感等級0
+  status: approved
+  match: word
+  category: [buff]
+  notes: 2026-11-12 更新暫定詞；沒有舊譯；新譯 2/2 用 情感等級0，同系列 감정 1～3단계 與說明裡的 감정 단계 也都寫 情感等級
+
+- kr: 지정 사서
+  jp: 指定司書
+  en: Patron Librarian
+  zh: 指定司書
+  status: approved
+  match: word
+  category: [general, buff]
+  notes: 2026-11-12 更新暫定詞；新譯 15/15 用 指定司書；舊譯 P11213 的 지정사서（沒空格）也寫 指定司書。KR 另有沒空格的寫法 지정사서
+
+- kr: 시나리오
+  jp: シナリオ
+  en: scenario
+  zh: 劇本
+  status: approved
+  match: word
+  check: "off"
+  category: [general]
+  notes: 2026-11-12 更新暫定詞；舊譯 17/18 處用 劇本（另 1 處「최선의 시나리오」一般語意寫 情況）；一般用語，語境不合可不用
+
+- kr: 역사의 층
+  jp: 歴史の階
+  en: Floor of History
+  zh: 歷史層
+  status: approved
+  match: word
+  category: [city]
+  notes: 2026-11-12 更新暫定詞；舊譯 12/12 單位用 歷史層（paratranz，含 歷史層司書、歷史層助理司書）；新譯 20/20 一致
+
+- kr: 접대
+  jp: 接待
+  en: reception
+  zh: 接待
+  status: approved
+  match: word
+  check: "off"
+  category: [general]
+  notes: 2026-11-12 更新暫定詞；舊譯 10/11 單位用 接待（另 1 處一般動詞寫 招待；「식사 접대」被動名寫 就餐邀請，不算）；新譯 46/46 用 接待
+
+- kr: 스티그마 공방
+  jp: スティグマ工房
+  en: Stigma Workshop
+  zh: 烙印工坊
+  status: approved
+  category: [city]
+  notes: 2026-11-12 更新暫定詞；舊譯 21/21 單位用 烙印工坊；「스티그마」單獨出現也寫 烙印（P11216）；「스티그마 공방제」寫 烙印工坊製，所以比對詞中詞；暫定譯名「聖痕工坊」改為舊譯
+
+- kr: 유나 선배
+  jp: ユナ先輩
+  zh: 尤娜前輩
+  status: approved
+  match: word
+  check: "off"
+  category: [general]
+  notes: 2026-11-12 更新暫定詞；沒有舊譯；新譯 1/1 用 尤娜前輩。人名加敬稱，人名部分依「유나」條目
+
+- kr: 8시의 서커스
+  jp: 8時のサーカス
+  en: "8 o'clock Circus"
+  zh: 八點馬戲團
+  status: approved
+  match: word
+  category: [city]
+  notes: 2026-11-12 更新暫定詞；組織名（奧提斯 楔事務所劇情），新譯 3/4 處用 八點馬戲團（1 處 8點馬戲團），無舊譯
+
+- kr: 살바도르
+  jp: サルヴァドール
+  en: Salvador
+  zh: 薩爾瓦多
+  status: approved
+  match: word
+  category: [general]
+  notes: 2026-11-12 更新暫定詞；沒有舊譯；新譯 5/5 用 薩爾瓦多。黎明事務所的收尾人
+
+- kr: 오스카
+  jp: オスカー
+  en: Oscar
+  zh: 奧斯卡
+  status: approved
+  match: word
+  category: [general]
+  notes: 2026-11-12 更新暫定詞；楔事務所代表（第十次瓦爾普吉斯之夜），新譯 3 處皆用 奧斯卡，無舊譯
+
+- kr: 파멜리
+  jp: パメリ
+  en: Pameli
+  zh: 帕梅莉
+  status: approved
+  match: word
+  category: [general]
+  notes: 2026-11-12 更新暫定詞；楔事務所收尾人（第十次瓦爾普吉斯之夜），新譯 8 處皆用 帕梅莉，無舊譯
+
+- kr: 파멜라
+  jp: パメラ
+  en: Pamela
+  zh: 帕梅拉
+  status: approved
+  match: word
+  category: [general]
+  notes: 2026-11-12 更新暫定詞；楔事務所收尾人（第十次瓦爾普吉斯之夜），新譯 8 處皆用 帕梅拉，無舊譯
+
+- kr: 메인 타겟
+  jp: メインターゲット
+  en: main target
+  zh: 主要目標
+  status: approved
+  match: word
+  category: [combat]
+  notes: 2026-11-12 更新暫定詞；舊譯 427/449 單位用 主要目標（另 22 單位省略為 目標 等）；新譯 11/11 用 主要目標。已有長條目「이 코인은 메인 타겟에게만 적중함」
+
+- kr: 연기전쟁
+  jp: 煙戦争
+  en: Smoke War
+  zh: 煙霾戰爭
+  status: approved
+  match: word
+  category: [city]
+  notes: 2026-11-12 更新暫定詞；舊譯 42/42 處用 煙霾戰爭，同既有條目「연기 전쟁」（有空格）；JP 煙戦争、EN Smoke War；暫定譯名「煙霧戰爭」改為舊譯
+
+- kr: 불주먹 사무소
+  jp: 炎拳事務所
+  en: Firefist Office
+  zh: 炎拳事務所
+  status: approved
+  match: word
+  category: [city]
+  notes: 2026-11-12 更新暫定詞；舊譯 63/63 單位用 炎拳事務所（paratranz）；「불주먹」單獨出現也寫 炎拳（Skills_personality-12）。收尾人事務所之一；暫定譯名「火拳事務所」改為舊譯
+
+- kr: 쌍화차
+  jp: 双和(サンファ)茶
+  en: Ssanghwa-cha
+  zh: 雙和茶
+  status: approved
+  match: word
+  category: [general]
+  notes: 2026-11-12 更新暫定詞；舊譯 14/14 處用 雙和茶（黎明事務所劇情、語音）；JP 双和(サンファ)茶、EN Ssanghwa-cha
+
+- kr: 눈물로 벼려낸 검
+  jp: 涙で研ぎ澄まされた剣
+  en: The Sword Sharpened with Tears
+  zh: 淚鋒之劍
+  status: approved
+  match: word
+  category: [ego]
+  notes: "2026-11-12 更新暫定詞；舊譯 15/16 處用 淚鋒之劍（E.G.O 飾品、人格「腦葉公司E.G.O::淚鋒之劍 羅佳」、技能名；另 1 處語音台詞照字面）；JP 涙で研ぎ澄まされた剣、EN (The) Sword Sharpened with Tears；暫定譯名「以淚水磨利的劍」改為舊譯"
+
+- kr: 유나
+  jp: ユナ
+  en: Yuna
+  zh: 尤娜
+  status: approved
+  match: word
+  category: [general]
+  notes: 2026-11-12 更新暫定詞；舊譯人名 1/1 用 尤娜（paratranz）；新譯 6/6 一致。黎明事務所的收尾人。用 word 避免誤中「이유나」
+
+- kr: 필립
+  jp: フィリップ
+  en: Philip
+  zh: 菲利普
+  status: approved
+  match: word
+  category: [general]
+  notes: 2026-11-12 更新暫定詞；舊譯 7/7 單位用 菲利普（paratranz）；新譯 18/18 一致。黎明事務所的收尾人
+
+- kr: 고독한 해결사
+  jp: 孤独なフィクサー
+  en: The Lone Fixer
+  zh: 孤獨的收尾人
+  status: approved
+  match: word
+  category: [buff]
+  notes: 2026-11-12 更新暫定詞；舊譯被動名 1/1 用 孤獨的收尾人（paratranz）；新譯 4/4 一致。RPG 電影片名裡的「孤獨收尾人」不算
+- kr: 지정사서
+  jp: 指定司書
+  en: Patron Librarian
+  zh: 指定司書
+  status: approved
+  match: word
+  category: [general, buff]
+  notes: 2026-11-12 更新暫定詞「지정 사서」的不空格寫法；新譯 11 處、舊譯 P11213 1 處都用 指定司書
+

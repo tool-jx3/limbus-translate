@@ -1,0 +1,7 @@
+# 2026-11-12 更新的暫定詞「타오르는 일격」：舊譯 13 處：12 處寫 爆炎一擊（黎明事務所 辛克萊的技能，paratranz 11、claude 1），1 處是較長的技能名「다시 타오르는 일격」→ 復燃的爆炎一擊（同樣含 爆炎一擊）。新譯 7 處（第十次瓦爾普吉斯之夜 菲利普的技能，KR/JP/EN 同名 Blazing Strike）全寫暫定的 燃燒一擊。依舊譯
+# 這次新譯 7 個單位寫成 燃燒一擊，改為詞彙表的譯名。
+reason: '「타오르는 일격」寫「爆炎一擊」（詞彙表）'
+files: ['BattleKeywords-walpu10.json', 'Bufs-walpu10.json', 'Passives_Abnormality-walpu10.json', 'Skills_Abnormality-walpu10.json', 'Walpu10EventText.json']
+pattern: '燃燒一擊'
+replace: '爆炎一擊'
+kr_pattern: '타오르는 일격'

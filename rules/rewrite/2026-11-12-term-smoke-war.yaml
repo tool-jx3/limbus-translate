@@ -1,0 +1,7 @@
+# 2026-11-12 更新的暫定詞「연기전쟁」：舊譯 42 處全部寫 煙霾戰爭（paratranz 36、claude 6）；詞彙表已有 연기 전쟁（有空格）→ 煙霾戰爭（Paratranz 詞彙表）。新譯 2 處：1 處 煙霾戰爭、1 處 煙霧戰爭。依舊譯
+# 這次新譯 1 個單位寫成 煙霧戰爭，改為詞彙表的譯名。
+reason: '「연기전쟁」寫「煙霾戰爭」（詞彙表）'
+files: ['Skills_Abnormality-walpu10.json']
+pattern: '煙霧戰爭'
+replace: '煙霾戰爭'
+kr_pattern: '연기전쟁'

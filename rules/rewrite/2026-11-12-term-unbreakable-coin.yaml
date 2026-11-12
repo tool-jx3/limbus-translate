@@ -1,0 +1,7 @@
+# 2026-11-12 更新的暫定詞「파괴 불가 코인」：舊譯 101 處：94 處寫 無法被破壞的硬幣（paratranz 78、claude 16），6 處 不可破壞的硬幣（BossRaid、exme），1 處 無法破壞硬幣；沒有任何舊譯寫暫定的 不可摧毀硬幣。依舊譯多數
+# 這次新譯 4 個單位寫成 不可摧毀硬幣，改為詞彙表的譯名。
+reason: '「파괴 불가 코인」寫「無法被破壞的硬幣」（詞彙表）'
+files: ['BattleKeywords-walpu10.json', 'BattleKeywords.json', 'Bufs-walpu10.json', 'Bufs.json']
+pattern: '不可摧毀硬幣'
+replace: '無法被破壞的硬幣'
+kr_pattern: '파괴 불가 코인'
