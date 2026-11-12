@@ -58,15 +58,25 @@ const (
 // Record is the stored state of one translated unit: one line of a
 // .meta/units/<file>.jsonl file. Key is "<file>|<JSON pointer>".
 type Record struct {
-	Key    string   `json:"key"`
-	KRSha  string   `json:"kr_sha"` // sha256 of the KR text the translation was made from
-	ZH     string   `json:"zh"`
-	Origin string   `json:"origin"` // one of the Origin constants
-	Since  string   `json:"since"`  // raw tag the record was written for
-	Rules  string   `json:"rules,omitempty"`
-	Model  string   `json:"model,omitempty"`
-	Batch  string   `json:"batch,omitempty"`
-	Flags  []string `json:"flags,omitempty"`
+	Key    string `json:"key"`
+	KRSha  string `json:"kr_sha"` // sha256 of the KR text the translation was made from
+	ZH     string `json:"zh"`
+	Origin string `json:"origin"` // one of the Origin constants
+	Since  string `json:"since"`  // raw tag the record was written for
+	// Written is the raw tag at which Submit wrote this origin claude
+	// translation. It is empty for records of an older lct and of other
+	// origins.
+	Written string   `json:"written,omitempty"`
+	Rules   string   `json:"rules,omitempty"`
+	Model   string   `json:"model,omitempty"`
+	Batch   string   `json:"batch,omitempty"`
+	Flags   []string `json:"flags,omitempty"`
+}
+
+// TranslatedIn reports whether Submit wrote the record's translation at the
+// raw tag rawTag.
+func (r Record) TranslatedIn(rawTag string) bool {
+	return rawTag != "" && r.Origin == OriginClaude && r.Written == rawTag
 }
 
 // PendingItem is a unit waiting to be translated: one line of

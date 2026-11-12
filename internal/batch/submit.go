@@ -524,15 +524,16 @@ func (s *submission) since(key string) string {
 // made by the submitter's model in this batch.
 func (s *submission) claudeRecord(key, kr, zh string) store.Record {
 	return store.Record{
-		Key:    key,
-		KRSha:  units.KRSha(kr),
-		ZH:     zh,
-		Origin: store.OriginClaude,
-		Since:  s.since(key),
-		Rules:  s.env.RulesCommit,
-		Model:  s.model,
-		Batch:  s.batch.ID,
-		Flags:  withoutFlag(s.records[key].Flags, store.FlagNeedsReview),
+		Key:     key,
+		KRSha:   units.KRSha(kr),
+		ZH:      zh,
+		Origin:  store.OriginClaude,
+		Since:   s.since(key),
+		Written: s.env.RawTag,
+		Rules:   s.env.RulesCommit,
+		Model:   s.model,
+		Batch:   s.batch.ID,
+		Flags:   withoutFlag(s.records[key].Flags, store.FlagNeedsReview),
 	}
 }
 

@@ -1265,14 +1265,15 @@ func TestSubmitAcceptReject(t *testing.T) {
 		t.Fatal("no record for the accepted unit")
 	}
 	want := store.Record{
-		Key:    key("Other.json", 0),
-		KRSha:  units.KRSha("[Bleed] 위력 5 부여"),
-		ZH:     "賦予5級 [Bleed] 威力", // normalized
-		Origin: store.OriginClaude,
-		Since:  testTag,
-		Rules:  "0123abc+dirty",
-		Model:  "test-model",
-		Batch:  b.ID,
+		Key:     key("Other.json", 0),
+		KRSha:   units.KRSha("[Bleed] 위력 5 부여"),
+		ZH:      "賦予5級 [Bleed] 威力", // normalized
+		Origin:  store.OriginClaude,
+		Written: testTag,
+		Since:   testTag,
+		Rules:   "0123abc+dirty",
+		Model:   "test-model",
+		Batch:   b.ID,
 	}
 	if !reflect.DeepEqual(rec, want) {
 		t.Errorf("record = %+v, want %+v", rec, want)
@@ -2448,7 +2449,7 @@ func TestSubmitReusesForPendingTwins(t *testing.T) {
 		}
 		want := store.Record{
 			Key: k, KRSha: units.KRSha(twinText), ZH: "同一句話", Origin: store.OriginClaude,
-			Since: since, Rules: "0123abc", Model: "test-model", Batch: b.ID,
+			Since: since, Written: testTag, Rules: "0123abc", Model: "test-model", Batch: b.ID,
 		}
 		if !reflect.DeepEqual(recs[k], want) {
 			t.Errorf("record of %s = %+v, want %+v", k, recs[k], want)
@@ -4586,5 +4587,39 @@ func TestSubmitProvisionalTermOnlyWarns(t *testing.T) {
 	if len(res.Accepted) != 1 || len(res.Rejected) != 0 || len(res.Warnings) != 1 ||
 		!hasCode(res.Warnings[0].Issues, validate.CodeTermMissing) || validate.HasHard(res.Warnings[0].Issues) {
 		t.Errorf("result = %+v, want accepted with a term-missing warning", res)
+	}
+}
+
+// A record Submit writes remembers the raw tag it was written at, while Since
+// stays what the unit had; the twins filled in from it are written then too.
+func TestSubmitRecordsWritten(t *testing.T) {
+	kr := map[string]string{"A.json": oneLine(t, twinText), "B.json": oneLine(t, twinText)}
+	env := newEnv(t, kr, nil, nil)
+	env.RulesCommit = "0123abc"
+	env.RawTag = "raw-new"
+	a, b := key("A.json", 0), key("B.json", 0)
+	old := store.Record{Key: a, KRSha: units.KRSha(twinText), ZH: "舊譯", Origin: store.OriginClaude, Since: "raw-old", Written: "raw-old"}
+	if err := env.Store.SaveRecords(map[string]store.Record{a: old}); err != nil {
+		t.Fatal(err)
+	}
+	seed(t, env, store.PendingItem{Key: a, Reason: "requeue", PrevZH: "舊譯", Hint: "改一下"}, store.PendingItem{Key: b, Reason: "new"})
+
+	batch := mustNext(t, env, NextOptions{MaxUnits: 1})
+	if batch == nil || batch.File != "A.json" {
+		t.Fatalf("batch = %+v, want A.json's line", batch)
+	}
+	res, err := Submit(env, batch, []OutUnit{{Key: a, ZH: "同一句話"}}, "test-model", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !slices.Equal(res.Reused, []string{b}) {
+		t.Fatalf("reused = %v, want the twin %s", res.Reused, b)
+	}
+	recs := records(t, env)
+	if got := recs[a]; got.Since != "raw-old" || got.Written != "raw-new" {
+		t.Errorf("requeued record: since %q, written %q, want raw-old and raw-new", got.Since, got.Written)
+	}
+	if got := recs[b]; got.Written != "raw-new" {
+		t.Errorf("twin record written %q, want raw-new", got.Written)
 	}
 }

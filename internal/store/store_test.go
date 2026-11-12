@@ -1238,3 +1238,57 @@ func TestSaveRemovesStaleTemps(t *testing.T) {
 		t.Errorf("LoadRecords = %d records, err %v", len(got), err)
 	}
 }
+
+func TestRecordWrittenRoundTrip(t *testing.T) {
+	root := t.TempDir()
+	s := Open(root)
+	with := Record{Key: "A.json|/dataList/0/name", KRSha: "c1", ZH: "名稱", Origin: OriginClaude, Since: "raw-1", Written: "raw-20261112"}
+	without := Record{Key: "A.json|/dataList/1/name", KRSha: "c2", ZH: "其他", Origin: OriginClaude, Since: "raw-1"}
+	want := map[string]Record{with.Key: with, without.Key: without}
+	if err := s.SaveRecords(want); err != nil {
+		t.Fatal(err)
+	}
+	got, err := s.LoadRecords()
+	if err != nil || !reflect.DeepEqual(got, want) {
+		t.Fatalf("round trip = %+v, %v, want %+v", got, err, want)
+	}
+	lines := strings.Split(strings.TrimSpace(readFile(t, filepath.Join(root, ".meta", "units", "A.json.jsonl"))), "\n")
+	if len(lines) != 2 || !strings.Contains(lines[0], `"written":"raw-20261112"`) || strings.Contains(lines[1], `"written"`) {
+		t.Errorf("lines = %q, want written only on the first", lines)
+	}
+}
+
+func TestRecordWithoutWrittenLoads(t *testing.T) {
+	root := t.TempDir()
+	dir := filepath.Join(root, ".meta", "units")
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	line := `{"key":"A.json|/x","kr_sha":"k","zh":"z","origin":"claude","since":"s"}` + "\n"
+	if err := os.WriteFile(filepath.Join(dir, "A.json.jsonl"), []byte(line), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	recs, err := Open(root).LoadRecords()
+	if err != nil || recs["A.json|/x"].Written != "" || recs["A.json|/x"].ZH != "z" {
+		t.Errorf("LoadRecords = %+v, %v, want the record with no Written", recs, err)
+	}
+}
+
+func TestRecordTranslatedIn(t *testing.T) {
+	cases := []struct {
+		name string
+		rec  Record
+		tag  string
+		want bool
+	}{
+		{"claude written at tag", Record{Origin: OriginClaude, Written: "raw-1"}, "raw-1", true},
+		{"empty tag", Record{Origin: OriginClaude, Written: ""}, "", false},
+		{"another tag", Record{Origin: OriginClaude, Written: "raw-0"}, "raw-1", false},
+		{"paratranz origin", Record{Origin: OriginParatranz, Written: "raw-1"}, "raw-1", false},
+	}
+	for _, c := range cases {
+		if got := c.rec.TranslatedIn(c.tag); got != c.want {
+			t.Errorf("%s: TranslatedIn(%q) = %v, want %v", c.name, c.tag, got, c.want)
+		}
+	}
+}

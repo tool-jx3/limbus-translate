@@ -1066,7 +1066,7 @@ func (p *planner) reuse(queued map[string]bool) error {
 		}
 		p.records[key] = store.Record{
 			Key: key, KRSha: ref.sha, ZH: s.rec.ZH, Origin: s.rec.Origin, Model: s.rec.Model,
-			Since: p.sum.RawTag, Rules: p.in.RulesCommit, Batch: BatchReuse + s.key,
+			Since: p.sum.RawTag, Written: s.rec.Written, Rules: p.in.RulesCommit, Batch: BatchReuse + s.key,
 		}
 		delete(p.pending, key)
 		p.sum.Reused++

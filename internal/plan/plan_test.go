@@ -1610,3 +1610,25 @@ func TestPlanStaleRecordQueuesKRChanged(t *testing.T) {
 
 	e.again()
 }
+
+// A translation reused for another unit keeps the raw tag it was written at.
+func TestReuseKeepsWritten(t *testing.T) {
+	e := newPlanEnv(t)
+	const kr = "적을 공격합니다 아주 길게 같은 문장"
+	a, b := descKey("Skills_A.json", 0), descKey("Skills_B.json", 0)
+	e.snapshot(map[string]string{"Skills_A.json": dataList(obj{"id": 1, "desc": kr})})
+	src := translated(a, kr, "攻擊敵人，非常長")
+	src.Origin, src.Written = store.OriginClaude, "raw-a"
+	e.seed([]store.Record{src}, nil)
+	e.snapshot(map[string]string{
+		"Skills_A.json": dataList(obj{"id": 1, "desc": kr}),
+		"Skills_B.json": dataList(obj{"id": 1, "desc": kr}),
+	})
+
+	if sum := e.run(tag1); sum.Reused != 1 {
+		t.Fatalf("Reused = %d, want 1", sum.Reused)
+	}
+	if got := e.records()[b]; got.Batch != "reuse:"+a || got.Written != "raw-a" {
+		t.Errorf("reused record = %+v, want it reused from %s with Written raw-a", got, a)
+	}
+}

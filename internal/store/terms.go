@@ -23,6 +23,18 @@ type ProvisionalTerm struct {
 	RawTag   string `json:"raw_tag"`
 	Time     string `json:"time"`
 	Conflict bool   `json:"conflict,omitempty"`
+	// Old, when set, records that at registration the term differed from the
+	// existing name or the old translation: it is noted but has no effect.
+	Old *OldUse `json:"old,omitempty"`
+}
+
+// OldUse describes how a term compares with an existing name: Existing is the
+// existing rendering, Units the number of units that use it and With how many
+// of those use it together with the term's KR.
+type OldUse struct {
+	Existing string `json:"existing,omitempty"`
+	Units    int    `json:"units"`
+	With     int    `json:"with"`
 }
 
 func (s *Store) termsPath() string { return filepath.Join(s.metaDir(), termsName) }
