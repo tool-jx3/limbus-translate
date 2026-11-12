@@ -4647,6 +4647,7 @@ func nameEntry(kr string, variants ...[]existing.Rendering) existing.Name {
 func namesEnv(t *testing.T, kr map[string]string, names ...existing.Name) Env {
 	t.Helper()
 	env := newEnv(t, kr, nil, nil)
+	env.MaxNames = testMaxNames
 	env.Names = existing.NewIndex(&existing.Table{RawTag: testTag, Fields: []string{"name"}, Names: names}, env.Rules, nil)
 	for file, text := range kr {
 		field := "desc"
@@ -4862,8 +4863,8 @@ func TestBatchNamesCapKeepsExactFirst(t *testing.T) {
 		t.Fatalf("units = %v, want all 3 in one batch", keysOf(b))
 	}
 	got := nameKRs(b)
-	if len(got) != MaxNames {
-		t.Fatalf("%d names, want %d", len(got), MaxNames)
+	if len(got) != testMaxNames {
+		t.Fatalf("%d names, want %d", len(got), testMaxNames)
 	}
 	if !slices.Contains(got, "가나") || !slices.Contains(got, "다라") {
 		t.Errorf("names %v lack an exact name", got)
@@ -4879,8 +4880,8 @@ func TestBatchNamesCapKeepsExactFirst(t *testing.T) {
 			short++
 		}
 	}
-	if short != MaxNames-2-10 {
-		t.Errorf("%d three-rune mentions kept, want %d", short, MaxNames-12)
+	if short != testMaxNames-2-10 {
+		t.Errorf("%d three-rune mentions kept, want %d", short, testMaxNames-12)
 	}
 }
 
@@ -5018,6 +5019,35 @@ func TestNextWithoutNameTable(t *testing.T) {
 	}
 }
 
+// testMaxNames is the cap the names tests run with, whatever the default is.
+const testMaxNames = 40
+
+// The cap of names comes from Env.MaxNames; 0 means DefaultMaxNames, below 0 is
+// an error.
+func TestBatchNamesCapFromEnv(t *testing.T) {
+	one := []existing.Rendering{{ZH: "譯", Units: 1}}
+	names, words := manyMentions(100, 5, 0xB000, one)
+	kr := map[string]string{"Desc.json": `{"dataList":[{"id":0,"desc":` + q(t, strings.Join(words, " ")) + `}]}`}
+	for _, c := range []struct{ set, want int }{{5, 5}, {0, DefaultMaxNames}} {
+		env := namesEnv(t, kr, names...)
+		env.MaxNames = c.set
+		if b := mustNext(t, env, NextOptions{}); len(b.Names) != c.want {
+			t.Errorf("MaxNames %d: %d names, want %d", c.set, len(b.Names), c.want)
+		}
+	}
+	if DefaultMaxNames != 80 {
+		t.Errorf("DefaultMaxNames = %d, want 80", DefaultMaxNames)
+	}
+	env := namesEnv(t, kr, names...)
+	env.MaxNames = -1
+	if _, err := Next(env, NextOptions{}); err == nil {
+		t.Error("Next with a negative MaxNames: want an error")
+	}
+	if _, err := NewPreviewer(env, nil); err == nil {
+		t.Error("NewPreviewer with a negative MaxNames: want an error")
+	}
+}
+
 // manyMentions makes n distinct names of the given rune count (up to five)
 // that are no part of one another, and the names as one text.
 func manyMentions(n, runes, base int, rs ...[]existing.Rendering) ([]existing.Name, []string) {
@@ -5057,7 +5087,7 @@ func TestBatchNamesCapDropsWholeNames(t *testing.T) {
 // as exact, so it is kept ahead of longer names that are only mentioned.
 func TestBatchNamesExactAndMentionedCountsAsExact(t *testing.T) {
 	one := []existing.Rendering{{ZH: "譯", Units: 1}}
-	names, words := manyMentions(MaxNames, 5, 0xB000, one)
+	names, words := manyMentions(testMaxNames, 5, 0xB000, one)
 	names = append(names, nameEntry("가나", one))
 	text := strings.Join(words, " ") + " '가나'"
 	env := namesEnv(t, map[string]string{
@@ -5065,8 +5095,8 @@ func TestBatchNamesExactAndMentionedCountsAsExact(t *testing.T) {
 		"Desc.json":  `{"dataList":[{"id":0,"desc":` + q(t, text) + `}]}`,
 	}, names...)
 	b := mustNext(t, env, NextOptions{MaxUnits: 100})
-	if len(b.Names) != MaxNames {
-		t.Fatalf("%d names, want %d", len(b.Names), MaxNames)
+	if len(b.Names) != testMaxNames {
+		t.Fatalf("%d names, want %d", len(b.Names), testMaxNames)
 	}
 	if b.Names[0].KR != "가나" {
 		t.Fatalf("first name %q, want 가나 (exact comes first): %v", b.Names[0].KR, nameKRs(b))

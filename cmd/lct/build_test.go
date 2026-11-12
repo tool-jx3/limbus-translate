@@ -643,3 +643,18 @@ func TestBuildCommandComparesWithExistingNames(t *testing.T) {
 		t.Errorf("declined: NameDiffs = %+v, Warnings = %v; want neither", got.Report.NameDiffs, got.Report.Warnings)
 	}
 }
+
+// build.max_inconsistent of lct.yaml reaches the build: a negative value is
+// refused by build.Run, so it is read and passed on.
+func TestBuildCommandUsesMaxInconsistentOfConfig(t *testing.T) {
+	root := buildRepo(t)
+	t.Setenv(sourceDateEpoch, "")
+	cfg, err := os.ReadFile(filepath.Join(root, "lct.yaml"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, root, "lct.yaml", string(cfg)+"build: { max_inconsistent: -1 }\n")
+	if _, err := runBuildJSON(t, root); err == nil {
+		t.Fatal("build with max_inconsistent -1: want an error")
+	}
+}

@@ -544,7 +544,7 @@ func assemble(
 		}
 	}
 	b.Glossary = glossaryFor(env.Rules, env.Provisional, texts)
-	b.Names = nameRefs(uses)
+	b.Names = nameRefs(uses, env.maxNames())
 
 	b.Keywords = map[string]string{}
 	if !needRecords && len(same) == 0 {

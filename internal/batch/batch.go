@@ -35,7 +35,9 @@ const (
 	DefaultMaxUnits      = 40
 	DefaultStoryMaxUnits = 120
 	DefaultMaxAttempts   = 3
-	DefaultLeaseTTL      = 120 * time.Minute
+	// DefaultMaxNames is the value lct.yaml ships with for Env.MaxNames.
+	DefaultMaxNames = 80
+	DefaultLeaseTTL = 120 * time.Minute
 )
 
 // contextElements is the most dataList elements (lines of a story, groups of
@@ -68,6 +70,8 @@ type Env struct {
 	// Next puts those a batch's units contain into its glossary, and Submit
 	// holds the translations to them like to glossary terms.
 	Provisional []rules.Term
+	// MaxNames is the most NameRefs of a batch; 0 means DefaultMaxNames.
+	MaxNames int
 	// Names indexes the existing names (see existing.Table): Next puts those
 	// the units of a batch use into its names. Nil means none.
 	Names *existing.Index
@@ -112,7 +116,7 @@ type Batch struct {
 	// this translation gives them.
 	Keywords map[string]string `json:"keywords"`
 	// Names are existing renderings of the names the units use, at most
-	// MaxNames; never nil.
+	// Env.MaxNames; never nil.
 	Names []NameRef   `json:"names"`
 	Units []BatchUnit `json:"units"`
 	// Context are translated lines around the units of a story batch.
@@ -122,7 +126,6 @@ type Batch struct {
 // Limits of Batch.Names, and the name of the reference with the renderings of
 // the same sentence in other groups (see Env.SameText).
 const (
-	MaxNames        = 40
 	maxNameVariants = 3
 	RefSameText     = "same_text"
 )
@@ -159,12 +162,12 @@ type nameUse struct {
 // (existing.Variant.Matches, as name-differs judges it). Variants with the
 // same renderings in the same order, whatever their counts, are one NameRef,
 // in the place of the first of them: the one those JP and EN point at best
-// (existing.Variant.MatchRank), else the first. When more than MaxNames come
+// (existing.Variant.MatchRank), else the first. When more than limit come
 // out, those that stand for a whole unit are kept first, then the mentioned
 // ones, each class longest KR first (by runes), then by KR. A name whose
 // variants do not all fit ends the list. A name that is exact for one unit
 // and mentioned in another counts as exact.
-func nameRefs(uses []nameUse) []NameRef {
+func nameRefs(uses []nameUse, limit int) []NameRef {
 	type entry struct {
 		name  *existing.Name
 		exact bool
@@ -234,7 +237,7 @@ func nameRefs(uses []nameUse) []NameRef {
 		// A name is kept with all its variants or not at all, so that the
 		// translator never sees a name without the variants that tell its
 		// meanings apart.
-		if len(refs)+len(mine) > MaxNames {
+		if len(refs)+len(mine) > limit {
 			break
 		}
 		refs = append(refs, mine...)
@@ -328,8 +331,18 @@ func (e Env) check() error {
 		return errors.New("batch: no rules")
 	case e.Src.KR == nil:
 		return errors.New("batch: no KR pack")
+	case e.MaxNames < 0:
+		return errors.New("batch: MaxNames must not be negative")
 	}
 	return nil
+}
+
+// maxNames is MaxNames with the default for 0.
+func (e Env) maxNames() int {
+	if e.MaxNames == 0 {
+		return DefaultMaxNames
+	}
+	return e.MaxNames
 }
 
 func (e Env) now() time.Time {

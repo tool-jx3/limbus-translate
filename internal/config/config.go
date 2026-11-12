@@ -26,6 +26,7 @@ type Config struct {
 	CDNTemplate string    `yaml:"cdn_template"`
 	Worktrees   Worktrees `yaml:"worktrees"`
 	Batch       Batch     `yaml:"batch"`
+	Build       Build     `yaml:"build"`
 	Names       Names     `yaml:"names"`
 	Font        Font      `yaml:"font"`
 	Bootstrap   Bootstrap `yaml:"bootstrap"`
@@ -41,8 +42,16 @@ type Worktrees struct {
 type Batch struct {
 	MaxUnits      int `yaml:"max_units"`
 	StoryMaxUnits int `yaml:"story_max_units"`
+	MaxNames      int `yaml:"max_names"`
 	MaxAttempts   int `yaml:"max_attempts"`
 	LeaseMinutes  int `yaml:"lease_minutes"`
+}
+
+// Build holds the limits applied when building the language pack.
+type Build struct {
+	// MaxInconsistent is how many "same KR, different renderings" groups the
+	// build record keeps, besides those with units of the update.
+	MaxInconsistent int `yaml:"max_inconsistent"`
 }
 
 // Names lists the fields whose current translations make up the table of

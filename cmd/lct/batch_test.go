@@ -1200,3 +1200,13 @@ func TestDifferingTermIsStillSuggested(t *testing.T) {
 		t.Errorf("records = %+v, terms = %+v, %v; want the record listed, no term in force", records, terms, err)
 	}
 }
+
+// batch.max_names of lct.yaml reaches the batch: a negative value is refused by
+// Next, so it is read and passed on.
+func TestBatchNextUsesMaxNamesOfConfig(t *testing.T) {
+	root, _ := batchRepo(t)
+	writeTestFile(t, root, "lct.yaml", strings.Replace(batchYAML, "story_max_units: 120,", "story_max_units: 120, max_names: -1,", 1))
+	if _, _, err := runNextJSON(t, root); err == nil {
+		t.Fatal("batch next with max_names -1: want an error")
+	}
+}

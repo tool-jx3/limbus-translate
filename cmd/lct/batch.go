@@ -183,6 +183,7 @@ func baseEnv(ctx *cli.Context, command string, st *store.Store, set *pack.Set) (
 		Names:        existing.NewIndex(table, r, declined),
 		NameBoost:    boost,
 		SameText:     sameText,
+		MaxNames:     cfg.Batch.MaxNames,
 		Now:          batchNow(),
 	}, nil
 }

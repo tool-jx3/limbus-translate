@@ -2,7 +2,8 @@ lang_dir: zh-TW
 frozen: []
 cdn_template: https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip
 worktrees: { raw: .work/raw, tw: .work/tw }
-batch: { max_units: 40, story_max_units: 120, max_attempts: 3, lease_minutes: 120 }
+batch: { max_units: 40, story_max_units: 120, max_names: 80, max_attempts: 3, lease_minutes: 120 }
+build: { max_inconsistent: 1000 }
 names: { fields: [name, abName, displayName, nickName] }
 # Sarasa Gothic TC Bold：be5invis/Sarasa-Gothic v1.0.43 release 的 SarasaGothicTC-TTF-1.0.43.7z 內的 SarasaGothicTC-Bold.ttf
 font: { path: assets/fonts/SarasaGothicTC-Bold.ttf, version: "1.0.43", sha256: "cddc7ff155199b59656c750f881f696ebd1b3a0baf053ec8333b712f8429c20a" }

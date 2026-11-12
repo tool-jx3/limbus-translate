@@ -27,7 +27,7 @@ func TestLoadDefaults(t *testing.T) {
 	if cfg.Worktrees.Raw != ".work/raw" || cfg.Worktrees.TW != ".work/tw" {
 		t.Errorf("Worktrees = %+v, want raw=.work/raw tw=.work/tw", cfg.Worktrees)
 	}
-	wantBatch := Batch{MaxUnits: 40, StoryMaxUnits: 120, MaxAttempts: 3, LeaseMinutes: 120}
+	wantBatch := Batch{MaxUnits: 40, StoryMaxUnits: 120, MaxNames: 80, MaxAttempts: 3, LeaseMinutes: 120}
 	if cfg.Batch != wantBatch {
 		t.Errorf("Batch = %+v, want %+v", cfg.Batch, wantBatch)
 	}
@@ -191,5 +191,25 @@ func TestLoadNames(t *testing.T) {
 	}
 	if got := strings.Join(cfg.Names.Fields, ","); got != "name,abName" {
 		t.Errorf("Names.Fields = %q, want name,abName", got)
+	}
+}
+
+func TestLoadBatchAndBuildLimits(t *testing.T) {
+	dir := t.TempDir()
+	writeConfig(t, dir, "lang_dir: zh-TW\nbatch: { max_units: 7, max_names: 9 }\nbuild: { max_inconsistent: 11 }\n")
+	cfg, err := Load(dir)
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	if cfg.Batch.MaxNames != 9 || cfg.Build.MaxInconsistent != 11 {
+		t.Errorf("MaxNames = %d, MaxInconsistent = %d, want 9 and 11", cfg.Batch.MaxNames, cfg.Build.MaxInconsistent)
+	}
+
+	repo, err := Load(filepath.Join("..", ".."))
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	if repo.Batch.MaxNames != 80 || repo.Build.MaxInconsistent != 1000 {
+		t.Errorf("lct.yaml: MaxNames = %d, MaxInconsistent = %d, want 80 and 1000", repo.Batch.MaxNames, repo.Build.MaxInconsistent)
 	}
 }

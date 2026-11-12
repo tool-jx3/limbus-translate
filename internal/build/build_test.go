@@ -1790,12 +1790,13 @@ func TestInfoInconsistentAllIsBounded(t *testing.T) {
 	}
 	e := newEnv(t, map[string]string{"A.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}, nil)
 	e.save(recs...)
+	e.opt.MaxInconsistent = testMaxInconsistent
 	rep := e.run()
 	info, err := ReadInfo(e.opt.TWRoot)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(rep.Inconsistent) != 20 || len(info.InconsistentAll) != 500 || !reflect.DeepEqual(info.InconsistentAll[:20], rep.Inconsistent) {
+	if len(rep.Inconsistent) != 20 || len(info.InconsistentAll) != testMaxInconsistent || !reflect.DeepEqual(info.InconsistentAll[:20], rep.Inconsistent) {
 		t.Errorf("%d groups in the report and %d in the record, want 20 and 500, the same first", len(rep.Inconsistent), len(info.InconsistentAll))
 	}
 
@@ -1814,6 +1815,9 @@ func TestInfoInconsistentAllIsBounded(t *testing.T) {
 // A group with units of this update stays in the build record however small
 // it is: the report's 含這次新譯, the review issue and lct suggest take those
 // groups from there, so one past the biggest 500 must not be lost.
+// testMaxInconsistent is the cap the tests run with, whatever the default is.
+const testMaxInconsistent = 500
+
 func TestInfoInconsistentAllKeepsEveryNewGroup(t *testing.T) {
 	var entries []string
 	var recs []store.Record
@@ -1826,7 +1830,7 @@ func TestInfoInconsistentAllKeepsEveryNewGroup(t *testing.T) {
 		}
 		recs = append(recs, r)
 	}
-	for i := range maxInconsistentAll + 3 {
+	for i := range testMaxInconsistent + 3 {
 		kr := "가" + strconv.Itoa(i)
 		add(kr, "甲", false)
 		add(kr, "乙", false)
@@ -1836,23 +1840,24 @@ func TestInfoInconsistentAllKeepsEveryNewGroup(t *testing.T) {
 	add("하", "丁", true)
 	e := newEnv(t, map[string]string{"A.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}, nil)
 	e.save(recs...)
+	e.opt.MaxInconsistent = testMaxInconsistent
 	rep := e.run()
 	info, err := ReadInfo(e.opt.TWRoot)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if n := len(info.InconsistentAll); n != maxInconsistentAll+1 {
-		t.Fatalf("InconsistentAll has %d groups, want the %d biggest and the new one", n, maxInconsistentAll)
+	if n := len(info.InconsistentAll); n != testMaxInconsistent+1 {
+		t.Fatalf("InconsistentAll has %d groups, want the %d biggest and the new one", n, testMaxInconsistent)
 	}
 	if !reflect.DeepEqual(info.InconsistentAll[:20], rep.Inconsistent) {
 		t.Errorf("the first groups of the record are not those of the report")
 	}
-	for _, g := range info.InconsistentAll[:maxInconsistentAll] {
+	for _, g := range info.InconsistentAll[:testMaxInconsistent] {
 		if g.New != 0 {
 			t.Fatalf("group %+v among the biggest, want only old ones", g)
 		}
 	}
-	if g := info.InconsistentAll[maxInconsistentAll]; g.KR != "하" || g.New != 1 {
+	if g := info.InconsistentAll[testMaxInconsistent]; g.KR != "하" || g.New != 1 {
 		t.Fatalf("last group = %+v, want the new group of 하", g)
 	}
 
@@ -2942,5 +2947,55 @@ func TestNoteTextJoinsTheNotesOfTheCurrentKR(t *testing.T) {
 	}
 	if got := NoteText(nil, "현재"); got != "" {
 		t.Errorf("NoteText of no notes = %q, want empty", got)
+	}
+}
+
+// Options.MaxInconsistent caps the old groups of Info.InconsistentAll; 0 means
+// DefaultMaxInconsistent, below 0 is an error. A group with units of this update
+// is kept whatever the cap.
+func TestBuildKeepsMaxInconsistentGroups(t *testing.T) {
+	if DefaultMaxInconsistent != 1000 {
+		t.Errorf("DefaultMaxInconsistent = %d, want 1000", DefaultMaxInconsistent)
+	}
+	var entries []string
+	var recs []store.Record
+	add := func(kr, zh string, isNew bool) {
+		n := len(entries)
+		entries = append(entries, `{"id":`+strconv.Itoa(n)+`,"content":"`+kr+`"}`)
+		r := rec("A.json", "/dataList/"+strconv.Itoa(n)+"/content", kr, zh)
+		if isNew {
+			r = written(r)
+		}
+		recs = append(recs, r)
+	}
+	for i := range 4 {
+		kr := "가" + strconv.Itoa(i)
+		add(kr, "甲", false)
+		add(kr, "乙", false)
+	}
+	add("하", "丙", false)
+	add("하", "丁", true)
+	kr := map[string]string{"A.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}
+	for _, c := range []struct{ max, want int }{{3, 4}, {0, 5}} {
+		e := newEnv(t, kr, nil)
+		e.save(recs...)
+		e.opt.MaxInconsistent = c.max
+		e.run()
+		info, err := ReadInfo(e.opt.TWRoot)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if n := len(info.InconsistentAll); n != c.want {
+			t.Errorf("MaxInconsistent %d: %d groups, want %d", c.max, n, c.want)
+		}
+		if last := info.InconsistentAll[len(info.InconsistentAll)-1]; last.KR != "하" || last.New != 1 {
+			t.Errorf("MaxInconsistent %d: last group = %+v, want the new group of 하", c.max, last)
+		}
+	}
+	e := newEnv(t, kr, nil)
+	e.save(recs...)
+	e.opt.MaxInconsistent = -1
+	if _, err := Run(e.opt, e.src, e.fr); err == nil {
+		t.Error("Run with a negative MaxInconsistent: want an error")
 	}
 }

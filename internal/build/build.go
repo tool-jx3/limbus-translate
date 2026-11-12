@@ -73,6 +73,10 @@ type Options struct {
 	// Frozen lists the files (see config.MatchAny) whose records are used
 	// although KR changed since they were made.
 	Frozen []string
+	// MaxInconsistent is how many groups of Info.InconsistentAll the build
+	// record keeps besides those with units of this update, which it keeps all;
+	// 0 means DefaultMaxInconsistent.
+	MaxInconsistent int
 	// Rules gives the family of a file (guides/routing.yaml), which groups the
 	// units whose different translations of one text the report lists. With
 	// nil every file is of one family.
@@ -107,10 +111,9 @@ const (
 	// maxInconsistent is how many groups of units that translate one text
 	// differently the report keeps, the biggest first.
 	maxInconsistent = 20
-	// maxInconsistentAll is how many of them the build record keeps
-	// (Info.InconsistentAll), in the same order, besides those with units of
-	// this update, which it keeps all.
-	maxInconsistentAll = 500
+	// DefaultMaxInconsistent is the value lct.yaml ships with for
+	// Options.MaxInconsistent.
+	DefaultMaxInconsistent = 1000
 	// maxRenderings is how many different translations of one text a group
 	// of Inconsistent lists.
 	maxRenderings = 10
@@ -296,7 +299,7 @@ type builder struct {
 	families   map[string]string // the family of each file, once asked
 	misaligned []FileMisaligned  // every file that has units without EN or JP
 	// inconsistentAll are the groups of Report.Inconsistent and those after
-	// them, up to maxInconsistentAll, and every later one with units of this
+	// them, up to Options.MaxInconsistent, and every later one with units of this
 	// update; see Info.InconsistentAll.
 	inconsistentAll []Inconsistency
 	// provisional are the provisional terms in force, which cover glossary
@@ -379,6 +382,9 @@ func checkOptions(opt Options) error {
 		if o.value == "" || o.value == "." || strings.ContainsAny(o.value, `/\`) || !filepath.IsLocal(o.value) {
 			return fmt.Errorf("build: option %s = %q is not a plain name", o.name, o.value)
 		}
+	}
+	if opt.MaxInconsistent < 0 {
+		return fmt.Errorf("build: option MaxInconsistent = %d is negative", opt.MaxInconsistent)
 	}
 	if opt.BuiltAt.IsZero() || opt.BuiltAt.Year() < minBuiltYear {
 		return fmt.Errorf("build: option BuiltAt = %v is not set or is before %d, which zip files cannot store", opt.BuiltAt, minBuiltYear)
@@ -920,7 +926,8 @@ func (b *builder) finish() {
 	b.rep.Inconsistent = append(b.rep.Inconsistent, groups[:min(len(groups), maxInconsistent)]...)
 	// The groups with units of this update are listed in the report and the
 	// review issue however small they are, so none of them is cut.
-	kept := min(len(groups), maxInconsistentAll)
+	limit := cmp.Or(b.opt.MaxInconsistent, DefaultMaxInconsistent)
+	kept := min(len(groups), limit)
 	b.inconsistentAll = append([]Inconsistency{}, groups[:kept]...)
 	for _, g := range groups[kept:] {
 		if g.New > 0 {
