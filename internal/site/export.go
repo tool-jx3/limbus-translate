@@ -107,10 +107,11 @@ type Result struct {
 // search/{kr,jp,en,zh}.json, and review/{suggestions,warnings,notes,todo}.json
 // and review/scope.json (Review.Scope), empty lists without in.Review, and
 // glossary/index.json with glossary/<a>-<b>.json for each entry of the
-// glossary (writeGlossary), names.json (the table of existing names), and with in.Preview preview.json and
-// preview/<path> for each file (see PreviewFile). The
-// corpus holds the units of every file in the order of the index, but not the
-// copies (identifiers and texts that are the same in every language). meta supplies what Export cannot know: RawTag,
+// glossary (writeGlossary), names.json (the table of existing names, empty
+// without in.Names), and with in.Preview preview.json and preview/<path> for
+// each file (see PreviewFile). The corpus holds the units of every file in the
+// order of the index, but not the copies (identifiers and texts that are the
+// same in every language). meta supplies what Export cannot know: RawTag,
 // RulesCommit, TWCommit and Release. The output depends on in alone, so the
 // same inputs give the same bytes.
 //

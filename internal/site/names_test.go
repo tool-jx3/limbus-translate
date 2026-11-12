@@ -26,6 +26,9 @@ func TestExportNames(t *testing.T) {
 	in.Rules.Glossary = append(in.Rules.Glossary, rules.Term{KR: "격돌", ZH: "衝突", Status: rules.StatusCandidate})
 	in.Review.Declined = []suggest.Declined{{ID: existing.SuggestionID("아지랑이"), Reason: "x", Date: "2026-11-12"}}
 	in.Review.Build.Report.NameDiffs = []build.NameDiff{{
+		KR: "아지랑이", Existing: []existing.Rendering{{ZH: "遊絲", Units: 3}},
+		Units: []build.NameDiffUnit{{Key: k(rvA, 1), ZH: "二", Kind: build.NameDiffField}},
+	}, {
 		KR: "노을빛 검", Existing: []existing.Rendering{{ZH: "暮光劍", Units: 2}},
 		Units: []build.NameDiffUnit{{Key: k(rvA, 0), ZH: "一", Kind: build.NameDiffField}},
 	}}

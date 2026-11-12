@@ -54,7 +54,7 @@ func buildNames(t *existing.Table, glossary []rules.Term, declined []suggest.Dec
 	}
 	for _, n := range t.Names {
 		id := existing.SuggestionID(n.KR)
-		row := NameRow{KR: n.KR, Variants: n.Variants, Glossary: inGlossary[n.KR], Declined: isDeclined[id], Review: inReview[id]}
+		row := NameRow{KR: n.KR, Variants: n.Variants, Glossary: inGlossary[strings.TrimSpace(n.KR)], Declined: isDeclined[id], Review: inReview[id]}
 		if row.Variants == nil {
 			row.Variants = []existing.Variant{}
 		}
