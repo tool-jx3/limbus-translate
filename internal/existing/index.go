@@ -1,6 +1,7 @@
 package existing
 
 import (
+	"math/bits"
 	"slices"
 	"sort"
 	"strings"
@@ -21,10 +22,16 @@ type entry struct {
 // Index looks up the names of a Table. Every method returns the zero value
 // on a nil receiver.
 type Index struct {
-	rawTag   string
-	fields   []string
-	byKR     map[string]*Name
-	order    []entry // longest plain KR first (by runes), then by KR
+	rawTag string
+	fields []string
+	byKR   map[string]*Name
+	order  []entry // longest plain KR first (by runes), then by KR
+	// byFirst holds, for each rune, the entries of order whose plain KR
+	// starts with it, by their place in order: with thousands of names, a
+	// text can hold only those that start with one of its runes. anyFirst
+	// are those that start with no valid rune (see candidates).
+	byFirst  map[rune][]int
+	anyFirst []int
 	declined map[string]bool
 }
 
@@ -61,7 +68,46 @@ func NewIndex(t *Table, r *rules.Rules, declined map[string]bool) *Index {
 		}
 		return a.n.KR < b.n.KR
 	})
+	ix.byFirst = map[rune][]int{}
+	for i, e := range ix.order {
+		if r, _ := utf8.DecodeRuneInString(e.plain); r != utf8.RuneError {
+			ix.byFirst[r] = append(ix.byFirst[r], i)
+		} else {
+			ix.anyFirst = append(ix.anyFirst, i)
+		}
+	}
 	return ix
+}
+
+// candidates returns the places in order of the entries that may occur in
+// plain, in that order: those whose plain KR starts with a rune of plain.
+// Where a KR starts with a valid rune, a hit of it starts at that rune of
+// plain; a KR that starts with invalid UTF-8 or with U+FFFD, which a byte
+// search may find inside or across the runes of plain, is a candidate in
+// every text.
+func (ix *Index) candidates(plain string) []int {
+	// A bit for each entry of order, so that the candidates come out in its
+	// order without a sort. An entry is in one list, so a list whose first
+	// entry is marked is marked already.
+	marks := make([]uint64, (len(ix.order)+63)/64)
+	mark := func(list []int) {
+		for _, i := range list {
+			marks[i/64] |= 1 << (i % 64)
+		}
+	}
+	mark(ix.anyFirst)
+	for _, r := range plain {
+		if list := ix.byFirst[r]; len(list) > 0 && marks[list[0]/64]&(1<<(list[0]%64)) == 0 {
+			mark(list)
+		}
+	}
+	var out []int
+	for w, m := range marks {
+		for ; m != 0; m &= m - 1 {
+			out = append(out, w*64+bits.TrailingZeros64(m))
+		}
+	}
+	return out
 }
 
 // RawTag is the raw tag the table was built at.
@@ -111,7 +157,8 @@ func (ix *Index) Mentions(kr string, always map[string]bool) []*Name {
 	set := rules.NewRuneSet(plain)
 	var hits []entry
 	var terms []rules.Term
-	for _, e := range ix.order {
+	for _, i := range ix.candidates(plain) {
+		e := ix.order[i]
 		if !set.MayStartTerm(e.plain) {
 			continue
 		}
