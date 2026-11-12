@@ -110,7 +110,7 @@ func TestExportWritesSpecLayout(t *testing.T) {
 
 	want := []string{
 		"files/Skills.json", "files/StoryData/S10.json", "files/StoryData/S2.json",
-		"glossary/index.json", "gold.json", "index.json", "meta.json",
+		"glossary/index.json", "gold.json", "index.json", "meta.json", "names.json",
 		"review/notes.json", "review/scope.json", "review/suggestions.json", "review/todo.json", "review/warnings.json",
 		"search/en.json", "search/jp.json", "search/keys.json", "search/kr.json", "search/zh.json",
 	}
@@ -347,8 +347,8 @@ func TestExportClearsOutDir(t *testing.T) {
 			t.Errorf("%s is still there (%v)", rel, err)
 		}
 	}
-	if got := len(listFiles(t, out)); got != 17 {
-		t.Errorf("%d files, want the 17 of the layout", got)
+	if got := len(listFiles(t, out)); got != 18 {
+		t.Errorf("%d files, want the 18 of the layout", got)
 	}
 }
 

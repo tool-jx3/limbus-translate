@@ -11,6 +11,7 @@ import (
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
 	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/history"
@@ -617,5 +618,41 @@ func TestSiteCommandWritesGold(t *testing.T) {
 	}
 	if len(g.Units) != 1 || g.Units[0].Key != key || g.Units[0].KR != us[0].KR || !g.Units[0].Stale || g.PerFamily != 1 || g.Report == nil {
 		t.Errorf("gold.json = %s", b)
+	}
+}
+
+// data/names.json is the table of .meta/names.json of the tw worktree, and
+// has no names without one.
+func TestSiteCommandExportsNames(t *testing.T) {
+	root := siteRepo(t)
+	if _, err := runSiteJSON(t, root, "--out", "work/site"); err != nil {
+		t.Fatal(err)
+	}
+	b, err := os.ReadFile(filepath.Join(root, "work", "site", "names.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := strings.TrimSpace(string(b)); got != `{"raw_tag":"","fields":[],"names":[]}` {
+		t.Errorf("names.json without a table = %s", got)
+	}
+
+	table := &existing.Table{RawTag: "raw-20261029", Fields: []string{"name"}, Names: []existing.Name{{
+		KR: "노을빛 검", Variants: []existing.Variant{{Renderings: []existing.Rendering{{ZH: "暮光劍", Units: 2}}, Examples: []string{"k"}}},
+	}}}
+	if err := existing.SaveTable(store.Open(filepath.Join(root, ".work", "tw")), table); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := runSiteJSON(t, root, "--out", "work/site"); err != nil {
+		t.Fatal(err)
+	}
+	var got site.NamesData
+	if b, err = os.ReadFile(filepath.Join(root, "work", "site", "names.json")); err != nil {
+		t.Fatal(err)
+	}
+	if err := json.Unmarshal(b, &got); err != nil {
+		t.Fatal(err)
+	}
+	if got.RawTag != "raw-20261029" || len(got.Names) != 1 || got.Names[0].KR != "노을빛 검" || got.Names[0].Units != 2 {
+		t.Errorf("names.json = %s", b)
 	}
 }

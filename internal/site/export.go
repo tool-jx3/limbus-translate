@@ -13,6 +13,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/suggest"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
@@ -106,7 +107,7 @@ type Result struct {
 // search/{kr,jp,en,zh}.json, and review/{suggestions,warnings,notes,todo}.json
 // and review/scope.json (Review.Scope), empty lists without in.Review, and
 // glossary/index.json with glossary/<a>-<b>.json for each entry of the
-// glossary (writeGlossary), and with in.Preview preview.json and
+// glossary (writeGlossary), names.json (the table of existing names), and with in.Preview preview.json and
 // preview/<path> for each file (see PreviewFile). The
 // corpus holds the units of every file in the order of the index, but not the
 // copies (identifiers and texts that are the same in every language). meta supplies what Export cannot know: RawTag,
@@ -236,6 +237,9 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		if err := w.writeJSON("search/"+lang+".json", texts); err != nil {
 			return Result{}, err
 		}
+	}
+	if err := w.writeJSON("names.json", buildNames(in.Names, in.Rules.Glossary, declinedOf(in.Review), rev.Suggestions)); err != nil {
+		return Result{}, err
 	}
 	if err := w.writeJSON("gold.json", buildGold(in.Gold, goldUnits, in.Records)); err != nil {
 		return Result{}, err
@@ -468,4 +472,12 @@ func indexFamily(r *rules.Rules, id string, n int) IndexFamily {
 		}
 	}
 	return f
+}
+
+// declinedOf returns the declined entries of rv, none for a nil rv.
+func declinedOf(rv *ReviewInputs) []suggest.Declined {
+	if rv == nil {
+		return nil
+	}
+	return rv.Declined
 }

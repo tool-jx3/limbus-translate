@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -41,6 +42,9 @@ type Inputs struct {
 	Preview *PreviewInputs
 	// Gold is the gold sample (rules/gold.yaml); nil when there is none.
 	Gold *gold.Sample
+	// Names is the table of existing names (.meta/names.json); nil when there
+	// is none. Export writes it to names.json.
+	Names *existing.Table
 }
 
 // Unit is one string of a file in the four languages. JP and EN are nil, and

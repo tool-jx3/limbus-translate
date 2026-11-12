@@ -53,6 +53,9 @@ type ReviewInputs struct {
 	// translations get a name-differs warning. A nil index and an index of an
 	// empty table (no names.json) both give none.
 	Names *existing.Index
+	// Table is the table Names was built from; nil when there is none.
+	// Export does not read it: `lct site` hands it on as Inputs.Names.
+	Table *existing.Table
 }
 
 // Confirmed says that a person confirmed an item, and why (suggest.Confirmed,
