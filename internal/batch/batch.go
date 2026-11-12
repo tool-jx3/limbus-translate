@@ -19,6 +19,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/names"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
@@ -67,6 +68,16 @@ type Env struct {
 	// Next puts those a batch's units contain into its glossary, and Submit
 	// holds the translations to them like to glossary terms.
 	Provisional []rules.Term
+	// Names indexes the existing names (see existing.Table): Next puts those
+	// the units of a batch use into its names. Nil means none.
+	Names *existing.Index
+	// NameBoost holds the KR of the provisional terms that differ from an
+	// existing name: a batch brings their entry of the table even where the
+	// name is short and unquoted (see existing.Index.Mentions).
+	NameBoost map[string]bool
+	// SameText holds the renderings of the same KR sentence in other groups:
+	// Next puts them into refs.same_text. Nil means none.
+	SameText *existing.SameText
 	// Scripts, if set, remembers rules.ScriptRenderings by file, which Judge
 	// would otherwise work out for every unit; the preview, which judges many
 	// units of one file, sets it. Nil means no cache. See rules.ScriptCache.
@@ -98,9 +109,101 @@ type Batch struct {
 	// Keywords maps the [ID]s of the units, without brackets, to the name
 	// this translation gives them.
 	Keywords map[string]string `json:"keywords"`
-	Units    []BatchUnit       `json:"units"`
+	// Names are existing renderings of the names the units use, at most
+	// MaxNames; never nil.
+	Names []NameRef   `json:"names"`
+	Units []BatchUnit `json:"units"`
 	// Context are translated lines around the units of a story batch.
 	Context []ContextLine `json:"context"`
+}
+
+// Limits of Batch.Names, and the name of the reference with the renderings of
+// the same sentence in other groups.
+const (
+	MaxNames        = 40
+	maxNameVariants = 3
+	RefSameText     = "same_text"
+)
+
+// NameRef is an existing name a batch's units use, in one of the ways the
+// JP and EN packs spell it.
+type NameRef struct {
+	KR string `json:"kr"`
+	// ZH is the main rendering of the variant and Count the units that have
+	// it; Others are the other renderings.
+	ZH     string               `json:"zh"`
+	Count  int                  `json:"count"`
+	Others []existing.Rendering `json:"others,omitempty"`
+	JP     string               `json:"jp,omitempty"`
+	EN     string               `json:"en,omitempty"`
+	// Units are the keys of the units of the batch the name is for, in the
+	// order of the batch.
+	Units []string `json:"units"`
+}
+
+// nameUse is a name a unit of a batch uses: exact when the whole KR of the
+// unit is the name (in a name field), else mentioned in its text.
+type nameUse struct {
+	name  *existing.Name
+	exact bool
+	key   string
+}
+
+// nameRefs makes the names of a batch from the uses, in batch order: one
+// NameRef for each of the first maxNameVariants variants of a name. When more
+// than MaxNames come out, those that stand for a whole unit are kept first,
+// then the mentioned ones, each class longest KR first (by runes), then by KR
+// and variant. A name that is exact for one unit and mentioned in another
+// counts as exact.
+func nameRefs(uses []nameUse) []NameRef {
+	type entry struct {
+		name  *existing.Name
+		exact bool
+		keys  []string
+	}
+	var order []*entry
+	byKR := map[string]*entry{}
+	for _, u := range uses {
+		e := byKR[u.name.KR]
+		if e == nil {
+			e = &entry{name: u.name}
+			byKR[u.name.KR] = e
+			order = append(order, e)
+		}
+		e.exact = e.exact || u.exact
+		if !slices.Contains(e.keys, u.key) {
+			e.keys = append(e.keys, u.key)
+		}
+	}
+	slices.SortStableFunc(order, func(a, b *entry) int {
+		if a.exact != b.exact {
+			if a.exact {
+				return -1
+			}
+			return 1
+		}
+		if x, y := utf8.RuneCountInString(a.name.KR), utf8.RuneCountInString(b.name.KR); x != y {
+			return y - x
+		}
+		return strings.Compare(a.name.KR, b.name.KR)
+	})
+	refs := []NameRef{}
+	for _, e := range order {
+		for _, v := range e.name.Variants[:min(len(e.name.Variants), maxNameVariants)] {
+			if len(v.Renderings) == 0 {
+				continue
+			}
+			ref := NameRef{KR: e.name.KR, ZH: v.Renderings[0].ZH, Count: v.Renderings[0].Units, JP: v.JP, EN: v.EN, Units: e.keys}
+			if len(v.Renderings) > 1 {
+				ref.Others = v.Renderings[1:]
+			}
+			refs = append(refs, ref)
+		}
+	}
+	if len(refs) > MaxNames {
+		refs = refs[:MaxNames]
+	}
+	return refs
 }
 
 // BatchUnit is one string to translate.

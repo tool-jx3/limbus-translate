@@ -21,6 +21,7 @@ import (
 	"time"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -4628,5 +4629,227 @@ func TestSameTextGroup(t *testing.T) {
 	g := TextGroup{Family: "f", Field: "content", Speaker: "philip", KR: "x"}
 	if got := SameTextGroup(g); got != "f|content|philip" {
 		t.Errorf("SameTextGroup = %q, want f|content|philip", got)
+	}
+}
+
+// nameEntry makes a table name with one variant per list of renderings (ZH,
+// units pairs), the variants numbered by their JP.
+func nameEntry(kr string, variants ...[]existing.Rendering) existing.Name {
+	n := existing.Name{KR: kr}
+	for i, rs := range variants {
+		n.Variants = append(n.Variants, existing.Variant{JP: fmt.Sprintf("jp%d", i), Renderings: rs})
+	}
+	return n
+}
+
+// namesEnv is newEnv with the files of kr, the name table and the index over
+// it; every file's units are pending.
+func namesEnv(t *testing.T, kr map[string]string, names ...existing.Name) Env {
+	t.Helper()
+	env := newEnv(t, kr, nil, nil)
+	env.Names = existing.NewIndex(&existing.Table{RawTag: testTag, Fields: []string{"name"}, Names: names}, env.Rules, nil)
+	for file, text := range kr {
+		field := "desc"
+		if strings.Contains(text, `"name"`) {
+			field = "name"
+		}
+		var add []store.PendingItem
+		for i := 0; i < strings.Count(text, `"id"`); i++ {
+			add = append(add, store.PendingItem{Key: fmt.Sprintf("%s|/dataList/%d/%s", file, i, field), Reason: "new"})
+		}
+		seed(t, env, append(pendingOf(t, env), add...)...)
+	}
+	return env
+}
+
+// pendingOf returns the pending items already seeded.
+func pendingOf(t *testing.T, env Env) []store.PendingItem {
+	t.Helper()
+	list, err := env.Store.LoadPending()
+	if err != nil {
+		t.Fatal(err)
+	}
+	return list
+}
+
+func nameKRs(b *Batch) []string {
+	var out []string
+	for _, n := range b.Names {
+		out = append(out, n.KR)
+	}
+	return out
+}
+
+func TestBatchNamesExactName(t *testing.T) {
+	env := namesEnv(t,
+		map[string]string{"Skill.json": `{"dataList":[{"id":0,"name":"노을빛 검"}]}`},
+		nameEntry("노을빛 검",
+			[]existing.Rendering{{ZH: "霞光劍刃", Units: 2}, {ZH: "晚霞之劍", Units: 1}},
+			[]existing.Rendering{{ZH: "落日劍", Units: 1}}),
+	)
+	b := mustNext(t, env, NextOptions{})
+	if len(b.Names) != 2 {
+		t.Fatalf("Names = %+v, want 2 (one per variant)", b.Names)
+	}
+	first := b.Names[0]
+	if first.KR != "노을빛 검" || first.ZH != "霞光劍刃" || first.Count != 2 || first.JP != "jp0" ||
+		!slices.Equal(first.Others, []existing.Rendering{{ZH: "晚霞之劍", Units: 1}}) {
+		t.Errorf("first name = %+v", first)
+	}
+	if b.Names[1].ZH != "落日劍" || b.Names[1].Others != nil {
+		t.Errorf("second name = %+v", b.Names[1])
+	}
+	for _, n := range b.Names {
+		if !slices.Equal(n.Units, []string{"Skill.json|/dataList/0/name"}) {
+			t.Errorf("Units of %+v, want the key of the unit", n)
+		}
+	}
+}
+
+func TestBatchNamesMentions(t *testing.T) {
+	names := []existing.Name{
+		nameEntry("노을빛 검", []existing.Rendering{{ZH: "霞光劍刃", Units: 2}}),
+		nameEntry("회피", []existing.Rendering{{ZH: "閃避", Units: 3}}),
+	}
+	for _, tc := range []struct {
+		kr   string
+		want []string
+	}{
+		{"노을빛 검 회피", []string{"노을빛 검"}},
+		{"노을빛 검 '회피'", []string{"노을빛 검", "회피"}},
+	} {
+		env := namesEnv(t, map[string]string{"Desc.json": `{"dataList":[{"id":0,"desc":` + q(t, tc.kr) + `}]}`}, names...)
+		b := mustNext(t, env, NextOptions{})
+		if got := nameKRs(b); !slices.Equal(got, tc.want) {
+			t.Errorf("KR %q: names %v, want %v", tc.kr, got, tc.want)
+		}
+	}
+}
+
+func TestBatchNamesBoost(t *testing.T) {
+	env := namesEnv(t, map[string]string{"Desc.json": `{"dataList":[{"id":0,"desc":"개화한다"}]}`},
+		nameEntry("개화", []existing.Rendering{{ZH: "綻放", Units: 2}}))
+	if b := mustNext(t, env, NextOptions{}); len(b.Names) != 0 {
+		t.Fatalf("without a boost: names %v, want none", nameKRs(b))
+	}
+	env = namesEnv(t, map[string]string{"Desc.json": `{"dataList":[{"id":0,"desc":"개화한다"}]}`},
+		nameEntry("개화", []existing.Rendering{{ZH: "綻放", Units: 2}}))
+	env.NameBoost = map[string]bool{"개화": true}
+	if b := mustNext(t, env, NextOptions{}); !slices.Equal(nameKRs(b), []string{"개화"}) {
+		t.Errorf("with a boost: names %v, want 개화", nameKRs(b))
+	}
+}
+
+func TestBatchNamesGlossaryExcluded(t *testing.T) {
+	kr := map[string]string{"Desc.json": `{"dataList":[{"id":0,"desc":"노을빛 검 휘두르기"}]}`}
+	env := namesEnv(t, kr, nameEntry("노을빛 검", []existing.Rendering{{ZH: "霞光劍刃", Units: 2}}))
+	env.Rules = testRulesWith(t, "- kr: 노을빛 검\n  zh: 霞光之劍\n  status: approved\n")
+	env.Names = existing.NewIndex(&existing.Table{RawTag: testTag, Fields: []string{"name"},
+		Names: []existing.Name{nameEntry("노을빛 검", []existing.Rendering{{ZH: "霞光劍刃", Units: 2}})}}, env.Rules, nil)
+	if b := mustNext(t, env, NextOptions{}); len(b.Names) != 0 {
+		t.Errorf("names %v, want none for a glossary term", nameKRs(b))
+	}
+}
+
+func TestBatchNamesCapKeepsExactFirst(t *testing.T) {
+	rs := []existing.Rendering{{ZH: "譯", Units: 1}}
+	var names []existing.Name
+	var words []string
+	// 10 mentions of five runes and 35 of three, none inside another.
+	mention := func(i, n int) string {
+		r := []rune{rune(0xB000 + i)}
+		for j := 1; j < n; j++ {
+			r = append(r, rune(0xB100+j*0x100))
+		}
+		return string(r)
+	}
+	for i := 0; i < 10; i++ {
+		w := mention(i, 5)
+		names, words = append(names, nameEntry(w, rs)), append(words, w)
+	}
+	for i := 0; i < 35; i++ {
+		w := mention(0x400+i, 3)
+		names, words = append(names, nameEntry(w, rs)), append(words, w)
+	}
+	names = append(names, nameEntry("가나", rs), nameEntry("다라", rs))
+	env := namesEnv(t, map[string]string{
+		"Skill.json": `{"dataList":[{"id":0,"name":"가나"},{"id":1,"name":"다라"}]}`,
+		"Desc.json":  `{"dataList":[{"id":0,"desc":` + q(t, strings.Join(words, " ")) + `}]}`,
+	}, names...)
+	b := mustNext(t, env, NextOptions{MaxUnits: 100})
+	if len(b.Units) != 3 {
+		t.Fatalf("units = %v, want all 3 in one batch", keysOf(b))
+	}
+	got := nameKRs(b)
+	if len(got) != MaxNames {
+		t.Fatalf("%d names, want %d", len(got), MaxNames)
+	}
+	if !slices.Contains(got, "가나") || !slices.Contains(got, "다라") {
+		t.Errorf("names %v lack an exact name", got)
+	}
+	for _, w := range words[:10] {
+		if !slices.Contains(got, w) {
+			t.Errorf("the longer mention %q is cut", w)
+		}
+	}
+	short := 0
+	for _, n := range got {
+		if len([]rune(n)) == 3 {
+			short++
+		}
+	}
+	if short != MaxNames-2-10 {
+		t.Errorf("%d three-rune mentions kept, want %d", short, MaxNames-12)
+	}
+}
+
+// sameTextOf is an index in which kr has a translation in another group than
+// that of the unit of A.json (other|content|, without a speaker).
+func sameTextOf(kr string) *existing.SameText {
+	return existing.CollectSameText(testTag, []existing.TextUnit{
+		{Key: "A.json|/dataList/0/content", Group: "other|content|", File: "A.json", KR: kr},
+		{Key: "B.json|/dataList/0/content", Group: "other|content|philip", File: "B.json", Speaker: "philip", KR: kr, ZH: "同一句話"},
+	})
+}
+
+func TestBatchSameTextRef(t *testing.T) {
+	const kr = "같은 문장입니다"
+	env := newEnv(t, map[string]string{"A.json": oneLine(t, kr)}, nil, nil)
+	seed(t, env, items("A.json", 0, 1)...)
+	env.SameText = sameTextOf(kr)
+	want := existing.SameTextRef(env.SameText.For(kr, "x"))
+	if want == "" {
+		t.Fatal("fixture: the index has no rendering")
+	}
+	b := mustNext(t, env, NextOptions{})
+	if got := b.Units[0].Refs[RefSameText]; got != want {
+		t.Errorf("Refs[same_text] = %q, want %q", got, want)
+	}
+}
+
+func TestBatchSameTextRefKeepsOtherRefs(t *testing.T) {
+	const kr = "같은 문장입니다"
+	env := newEnv(t, map[string]string{"A.json": oneLine(t, kr)}, nil, nil)
+	seed(t, env, store.PendingItem{Key: key("A.json", 0), Reason: "new", Refs: map[string]string{"llc": "舊"}})
+	env.SameText = sameTextOf(kr)
+	b := mustNext(t, env, NextOptions{})
+	if r := b.Units[0].Refs; r["llc"] != "舊" || r[RefSameText] == "" {
+		t.Errorf("Refs = %v, want llc and same_text", r)
+	}
+}
+
+func TestNextWithoutNameTable(t *testing.T) {
+	env := newEnv(t, map[string]string{"A.json": oneLine(t, "노을빛 검")}, nil, nil)
+	seed(t, env, items("A.json", 0, 1)...)
+	b := mustNext(t, env, NextOptions{})
+	if b.Names == nil || len(b.Names) != 0 {
+		t.Errorf("Names = %#v, want an empty list", b.Names)
+	}
+	if _, ok := b.Units[0].Refs[RefSameText]; ok {
+		t.Errorf("Refs = %v, want no same_text", b.Units[0].Refs)
+	}
+	data, err := json.Marshal(b)
+	if err != nil || !strings.Contains(string(data), `"names":[]`) {
+		t.Errorf("JSON = %s, %v, want names: []", data, err)
 	}
 }

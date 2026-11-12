@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/names"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -472,10 +473,12 @@ func assemble(
 		ID:            id,
 		Family:        family,
 		File:          parts[0].fd.file,
+		Names:         []NameRef{},
 		Units:         []BatchUnit{},
 		Context:       []ContextLine{},
 	}
 	var texts []unitText
+	var uses []nameUse
 	needRecords := story
 	for _, p := range parts {
 		fd := p.fd
@@ -495,6 +498,20 @@ func assemble(
 			if err != nil {
 				return nil, err
 			}
+			refs := cleanRefs(item.Refs)
+			if same := env.SameText.For(u.KR, SameTextGroup(TextGroupOf(env.Rules, fd.doc, u))); len(same) > 0 {
+				if refs == nil {
+					refs = map[string]string{}
+				}
+				refs[RefSameText] = existing.SameTextRef(same)
+			}
+			if env.Names.IsName(u.Field, u.KR) {
+				uses = append(uses, nameUse{env.Names.Lookup(u.KR), true, item.Key})
+			} else {
+				for _, n := range env.Names.Mentions(u.KR, env.NameBoost) {
+					uses = append(uses, nameUse{n, false, item.Key})
+				}
+			}
 			b.Units = append(b.Units, BatchUnit{
 				Key:     item.Key,
 				File:    fd.file,
@@ -508,7 +525,7 @@ func assemble(
 				Hint:    item.Hint,
 				EN:      en,
 				JP:      jp,
-				Refs:    cleanRefs(item.Refs),
+				Refs:    refs,
 				Keep:    constraints(u.KR),
 			})
 			texts = append(texts, unitText{fd.file, u.KR, item.Key})
@@ -522,6 +539,7 @@ func assemble(
 		}
 	}
 	b.Glossary = glossaryFor(env.Rules, env.Provisional, texts)
+	b.Names = nameRefs(uses)
 
 	b.Keywords = map[string]string{}
 	if !needRecords {

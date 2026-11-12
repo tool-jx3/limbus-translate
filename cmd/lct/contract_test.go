@@ -5134,3 +5134,33 @@ func TestGlossaryCheckHardIsExplained(t *testing.T) {
 		}
 	})
 }
+
+// The batch carries the existing names and the same-text references; the
+// schema declares them and the shared prompt explains them.
+func TestNamesAreExplainedToTheTranslator(t *testing.T) {
+	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
+	for _, want := range []string{"`names`", "`name-differs`", "`same_text`", "順序表示優先"} {
+		if !strings.Contains(prompt, want) {
+			t.Errorf("prompts/translate.md does not say %q", want)
+		}
+	}
+	_, content := readRepoFile(t, filepath.Join(repoRoot, "schemas", "batch.schema.json"))
+	var schema struct {
+		Required   []string `json:"required"`
+		Properties map[string]struct {
+			Type string `json:"type"`
+		} `json:"properties"`
+	}
+	if err := json.Unmarshal([]byte(content), &schema); err != nil {
+		t.Fatalf("schemas/batch.schema.json does not parse: %v", err)
+	}
+	if names, ok := schema.Properties["names"]; !ok || names.Type != "array" {
+		t.Errorf("schemas/batch.schema.json: properties.names = %+v (declared %v), want an array", names, ok)
+	}
+	if !slices.Contains(schema.Required, "names") {
+		t.Error("schemas/batch.schema.json: names is not required")
+	}
+	if !strings.Contains(content, "same_text") {
+		t.Error("schemas/batch.schema.json does not describe refs.same_text")
+	}
+}

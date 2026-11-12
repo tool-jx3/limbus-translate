@@ -18,6 +18,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/bootstrap"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -148,9 +149,29 @@ func baseEnv(ctx *cli.Context, command string, st *store.Store, set *pack.Set) (
 	if _, err := st.ReadMetaJSON(bootstrap.ForeignNamesFile, &foreign); err != nil {
 		return batch.Env{}, err
 	}
-	provisional, err := activeProvisional(ctx.Root, st, r)
+	all, err := st.LoadTerms()
 	if err != nil {
 		return batch.Env{}, err
+	}
+	declined, err := declinedIDs(ctx.Root)
+	if err != nil {
+		return batch.Env{}, err
+	}
+	table, err := existing.LoadTable(st)
+	if err != nil {
+		return batch.Env{}, err
+	}
+	sameText, err := existing.LoadSameText(st)
+	if err != nil {
+		return batch.Env{}, err
+	}
+	// A provisional term that differs from an existing name brings the name's
+	// entry to the batches that contain it (spec 1b).
+	boost := map[string]bool{}
+	for _, p := range all {
+		if p.Old != nil && p.Old.Existing != "" {
+			boost[p.KR] = true
+		}
 	}
 	return batch.Env{
 		Store:        st,
@@ -158,9 +179,25 @@ func baseEnv(ctx *cli.Context, command string, st *store.Store, set *pack.Set) (
 		Rules:        r,
 		RawTag:       src.Tag,
 		ForeignNames: foreign,
-		Provisional:  provisional,
+		Provisional:  batch.ActiveProvisional(all, r, declined),
+		Names:        existing.NewIndex(table, r, declined),
+		NameBoost:    boost,
+		SameText:     sameText,
 		Now:          batchNow(),
 	}, nil
+}
+
+// declinedIDs reads the declined list of root as a set of ids.
+func declinedIDs(root string) (map[string]bool, error) {
+	list, err := suggest.LoadDeclined(root)
+	if err != nil {
+		return nil, err
+	}
+	declined := make(map[string]bool, len(list))
+	for _, d := range list {
+		declined[d.ID] = true
+	}
+	return declined, nil
 }
 
 // activeProvisional reads the provisional terms of the store and the declined
@@ -183,13 +220,9 @@ func activeProvisionalRecords(root string, st *store.Store, r *rules.Rules) ([]s
 	if err != nil {
 		return nil, nil, err
 	}
-	list, err := suggest.LoadDeclined(root)
+	declined, err := declinedIDs(root)
 	if err != nil {
 		return nil, nil, err
-	}
-	declined := make(map[string]bool, len(list))
-	for _, d := range list {
-		declined[d.ID] = true
 	}
 	terms := batch.ActiveProvisional(all, r, declined)
 	listed := map[string]bool{}

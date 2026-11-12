@@ -4,7 +4,7 @@
   "description": "work/batches/<id>.json, written by `lct batch next`: the units to translate and everything a translator needs. The translation goes to work/batches/<id>.out.json (see batch-out.schema.json).",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "family", "file", "files", "guides", "glossary", "keywords", "units", "context"],
+  "required": ["id", "family", "file", "files", "guides", "glossary", "keywords", "names", "units", "context"],
   "properties": {
     "id": {
       "description": "Batch id: the UTC time (yyyymmddThhmmss) and the first 8 hex digits of the sha256 of the first unit's key, with -2, -3... appended when that id was already in use.",
@@ -109,6 +109,40 @@
       "type": "object",
       "additionalProperties": { "type": "string" }
     },
+    "names": {
+      "description": "Existing renderings of the names the units use (skills, personas, E.G.O, effects: the name fields), at most 40. Not rules: use zh where the unit means the same thing (match the unit's jp, en and field against the item's), or follow the context and say so in the unit's note. One item for each (kr, variant); several items of one kr are the ways the JP and EN packs spell it.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kr", "zh", "count", "units"],
+        "properties": {
+          "kr": { "type": "string" },
+          "zh": { "description": "The rendering most units of this variant use.", "type": "string" },
+          "count": { "description": "The number of units that have zh.", "type": "integer" },
+          "others": {
+            "description": "The other renderings of this variant and the units that have each.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["zh", "units"],
+              "properties": {
+                "zh": { "type": "string" },
+                "units": { "type": "integer" }
+              }
+            }
+          },
+          "jp": { "description": "The name in the Japanese pack, in those units.", "type": "string" },
+          "en": { "description": "The name in the English pack, in those units.", "type": "string" },
+          "units": {
+            "description": "The keys of the units of this batch the name is for, in batch order.",
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
     "units": {
       "type": "array",
       "minItems": 1,
@@ -157,7 +191,7 @@
             }
           },
           "refs": {
-            "description": "Other translations (llc: simplified Chinese, ltm: traditional Chinese) to look at. They are references, not answers.",
+            "description": "Other translations (llc: simplified Chinese, ltm: traditional Chinese, same_text: the translations of the same KR sentence in other files, one line each as file (speaker): text) to look at. They are references, not answers.",
             "type": "object",
             "additionalProperties": { "type": "string" }
           },

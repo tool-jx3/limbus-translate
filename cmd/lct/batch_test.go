@@ -14,6 +14,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/bootstrap"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
@@ -1114,5 +1115,41 @@ func TestSubmitReportMentionsTermsOnlyWhenRegistered(t *testing.T) {
 	skipped := submitReport{Batch: "b1", SubmitResult: batch.SubmitResult{TermsSkipped: []batch.SkippedTerm{{Key: "k", KR: "우", ZH: "雷", Reason: "r"}}}}.String()
 	if !strings.Contains(skipped, "0 provisional terms kept") || !strings.Contains(skipped, "term skipped") {
 		t.Errorf("report = %q, want the count and the skipped term", skipped)
+	}
+}
+
+// The name table and the same-text index of the tw store go into the batch.
+func TestBaseEnvLoadsNames(t *testing.T) {
+	root, st := batchRepo(t)
+	if err := existing.SaveTable(st, &existing.Table{
+		RawTag: "raw-20261029", Fields: []string{"content"},
+		Names: []existing.Name{{KR: "뫼르소가 말했다", Variants: []existing.Variant{{
+			JP: "ムルソーは言った", Renderings: []existing.Rendering{{ZH: "穆爾索說了", Units: 2}},
+		}}}},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	if err := existing.SaveSameText(st, existing.CollectSameText("raw-20261029", []existing.TextUnit{
+		{Key: "Other.json|/dataList/0/content", Group: "other|content|", File: "Other.json", KR: "뫼르소가 말했다", ZH: "穆爾索說了"},
+	})); err != nil {
+		t.Fatal(err)
+	}
+	got, raw, err := runNextJSON(t, root)
+	if err != nil || got.Batch == nil {
+		t.Fatalf("next = %s, %v", raw, err)
+	}
+	data, err := os.ReadFile(got.Path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var b batch.Batch
+	if err := json.Unmarshal(data, &b); err != nil {
+		t.Fatal(err)
+	}
+	if len(b.Names) != 1 || b.Names[0].KR != "뫼르소가 말했다" || b.Names[0].ZH != "穆爾索說了" || b.Names[0].Count != 2 {
+		t.Errorf("names = %+v, want the name of the table", b.Names)
+	}
+	if !strings.Contains(string(data), `"names": [`) {
+		t.Errorf("the batch file lacks names:\n%s", data)
 	}
 }

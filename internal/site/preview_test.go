@@ -356,7 +356,7 @@ func rebuildBatch(t *testing.T, file File, pf PreviewFile, shared PreviewShared,
 	b := &batch.Batch{
 		ID: batch.PreviewID, Family: pf.Family, GlossaryCheck: pf.GlossaryCheck,
 		File: file.Path, Files: []string{file.Path},
-		Guides: []string{}, Glossary: []rules.Term{}, Keywords: map[string]string{}, Context: []batch.ContextLine{},
+		Guides: []string{}, Glossary: []rules.Term{}, Keywords: map[string]string{}, Names: []batch.NameRef{}, Context: []batch.ContextLine{},
 	}
 	for _, g := range pu.G {
 		b.Guides = append(b.Guides, shared.Guides[g].Path)
