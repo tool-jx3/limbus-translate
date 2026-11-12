@@ -54,7 +54,7 @@ function Variant({ v }: { v: NameVariant }) {
       {v.examples.length > 0 && (
         <div class="nm-example">
           {v.examples.map((k, i) => (
-            <a key={k} href={keyHref(k)}>
+            <a key={k} href={keyHref(k)} aria-label={k.replace('|', ' ')} title={k.replace('|', ' ')}>
               {i + 1}
             </a>
           ))}
@@ -92,7 +92,10 @@ export function NamesView({ route }: { route: NamesRoute }) {
   const loaded = useLoad('names', loadNames)
   const data = loaded?.status === 'ready' ? loaded.data : undefined
   const shown = useMemo(() => (data ? sortNames(filterNames(data.names, route.q, route.only), route.sort) : []), [data, route.q, route.only, route.sort])
-  const [limit, setLimit] = useState(PAGE)
+  // The limit belongs to the filters it was raised under: a change of them starts over at the first page.
+  const filterKey = `${route.q}\n${route.only}\n${route.sort}`
+  const [raised, setRaised] = useState({ key: filterKey, limit: PAGE })
+  const limit = raised.key === filterKey ? raised.limit : PAGE
   return (
     <div class="glossary names">
       <h1>既有譯名</h1>
@@ -165,7 +168,7 @@ export function NamesView({ route }: { route: NamesRoute }) {
                 </table>
               </div>
               {limit < shown.length && (
-                <button type="button" class="rv-more" onClick={() => setLimit(limit + PAGE)}>
+                <button type="button" class="rv-more" onClick={() => setRaised({ key: filterKey, limit: limit + PAGE })}>
                   再顯示 {Math.min(PAGE, shown.length - limit)} 條（共 {shown.length}）
                 </button>
               )}

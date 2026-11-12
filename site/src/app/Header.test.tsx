@@ -32,3 +32,10 @@ describe('Header 基準 link', () => {
     expect(mount({ kind: 'gold' }).querySelector('a.gold-link')?.getAttribute('aria-current')).toBe('page')
   })
 })
+
+describe('Header 詞彙 link', () => {
+  it('is the current page on the existing names page', () => {
+    expect(mount({ kind: 'names', q: '', only: '', sort: 'units' }).querySelector('a.glossary-link')?.getAttribute('aria-current')).toBe('page')
+    expect(mount({ kind: 'home' }).querySelector('a.glossary-link')?.hasAttribute('aria-current')).toBe(false)
+  })
+})

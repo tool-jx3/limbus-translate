@@ -70,6 +70,9 @@ describe('NamesView', () => {
     const el = await mount()
     const link = rows(el)[0]!.querySelector<HTMLAnchorElement>('.nm-example a')!
     expect(link.getAttribute('href')).toBe(fileHref('Skills_personality-02.json', '/dataList/0/name'))
+    expect(link.getAttribute('aria-label')).toBe('Skills_personality-02.json /dataList/0/name')
+    expect(link.title).toBe('Skills_personality-02.json /dataList/0/name')
+    expect(link.textContent).toBe('1')
   })
 
   it('marks the glossary, declined and review names, with the links', async () => {
@@ -134,5 +137,16 @@ describe('NamesView', () => {
     const el = await mount(route(), { 'names.json': { ...base, names: manyRows(200) } })
     expect(rows(el)).toHaveLength(200)
     expect(el.querySelector('button.rv-more')).toBeNull()
+  })
+
+  it('goes back to the first page when the filter changes', async () => {
+    const docs = { 'names.json': { ...base, names: manyRows(450) } }
+    const container = await mount(route(), docs)
+    await act(() => container.querySelector<HTMLButtonElement>('button.rv-more')!.click())
+    expect(rows(container)).toHaveLength(400)
+    await act(() => {
+      render(<NamesView route={route({ sort: 'kr' })} />, container)
+    })
+    await vi.waitFor(() => expect(rows(container)).toHaveLength(200))
   })
 })
