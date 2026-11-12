@@ -87,7 +87,7 @@ func Collect(rawTag string, fields []string, units []Source) *Table {
 		if utf8.RuneCountInString(kr) < 2 {
 			continue
 		}
-		zh := strings.TrimSpace(validate.StripTags(u.ZH))
+		zh := Plain(u.ZH)
 		if zh == "" || zh == kr || names.HasHangul(zh) {
 			continue
 		}
@@ -196,3 +196,7 @@ func (n *Name) Has(zh string) bool {
 	}
 	return false
 }
+
+// Plain is the form a rendering is stored and compared in: the text as a term
+// is looked for in it (see validate.MatchText), trimmed.
+func Plain(zh string) string { return strings.TrimSpace(validate.MatchText(zh)) }

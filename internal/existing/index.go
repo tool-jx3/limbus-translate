@@ -4,11 +4,19 @@ import (
 	"slices"
 	"sort"
 	"strings"
+	"unicode"
 	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
+
+// entry is a name with its KR in the form Mentions looks for.
+type entry struct {
+	n     *Name
+	plain string // Plain(n.KR)
+	runes int
+}
 
 // Index looks up the names of a Table. Every method returns the zero value
 // on a nil receiver.
@@ -16,7 +24,7 @@ type Index struct {
 	rawTag   string
 	fields   []string
 	byKR     map[string]*Name
-	order    []*Name // longest KR first (by runes), then by KR
+	order    []entry // longest plain KR first (by runes), then by KR
 	declined map[string]bool
 }
 
@@ -28,7 +36,7 @@ func NewIndex(t *Table, r *rules.Rules, declined map[string]bool) *Index {
 	if t == nil {
 		return ix
 	}
-	ix.rawTag, ix.fields = t.RawTag, t.Fields
+	ix.rawTag, ix.fields = t.RawTag, slices.Clone(t.Fields)
 	inGlossary := map[string]bool{}
 	if r != nil {
 		for _, g := range r.Glossary {
@@ -42,14 +50,16 @@ func NewIndex(t *Table, r *rules.Rules, declined map[string]bool) *Index {
 			continue
 		}
 		ix.byKR[kr] = n
-		ix.order = append(ix.order, n)
+		if p := Plain(kr); p != "" {
+			ix.order = append(ix.order, entry{n, p, utf8.RuneCountInString(p)})
+		}
 	}
 	sort.Slice(ix.order, func(i, j int) bool {
 		a, b := ix.order[i], ix.order[j]
-		if x, y := utf8.RuneCountInString(a.KR), utf8.RuneCountInString(b.KR); x != y {
-			return x > y
+		if a.runes != b.runes {
+			return a.runes > b.runes
 		}
-		return a.KR < b.KR
+		return a.n.KR < b.n.KR
 	})
 	return ix
 }
@@ -67,7 +77,7 @@ func (ix *Index) Fields() []string {
 	if ix == nil {
 		return nil
 	}
-	return ix.fields
+	return slices.Clone(ix.fields)
 }
 
 // Lookup returns the name whose KR is kr, trimmed, or nil.
@@ -99,21 +109,21 @@ func (ix *Index) Mentions(kr string, always map[string]bool) []*Name {
 	}
 	plain := validate.MatchText(kr)
 	set := rules.NewRuneSet(plain)
-	var hits []*Name
+	var hits []entry
 	var terms []rules.Term
-	for _, n := range ix.order {
-		if !set.MayStartTerm(n.KR) {
+	for _, e := range ix.order {
+		if !set.MayStartTerm(e.plain) {
 			continue
 		}
-		term := rules.Term{KR: n.KR, Match: rules.MatchWord}
+		term := rules.Term{KR: e.plain, Match: rules.MatchWord}
 		if !term.OccursIn(plain) {
 			continue
 		}
-		if utf8.RuneCountInString(n.KR) < 3 && !strings.ContainsAny(n.KR, " \t　") &&
-			!quoted(plain, n.KR) && !always[n.KR] {
+		if e.runes < 3 && !strings.ContainsFunc(e.plain, unicode.IsSpace) &&
+			!quoted(plain, e.plain) && !always[e.n.KR] && !always[e.plain] {
 			continue
 		}
-		hits = append(hits, n)
+		hits = append(hits, e)
 		terms = append(terms, term)
 	}
 	if len(hits) == 0 {
@@ -123,10 +133,10 @@ func (ix *Index) Mentions(kr string, always map[string]bool) []*Name {
 	for _, t := range rules.DropCovered(plain, terms) {
 		kept[t.KR] = true
 	}
-	out := hits[:0]
-	for _, n := range hits {
-		if kept[n.KR] {
-			out = append(out, n)
+	var out []*Name
+	for _, e := range hits {
+		if kept[e.plain] {
+			out = append(out, e.n)
 		}
 	}
 	return out

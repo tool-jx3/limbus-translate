@@ -29,7 +29,7 @@ func TestIndexExcludesGlossary(t *testing.T) {
 	if ix.Lookup("격돌") != nil {
 		t.Error("glossary name found")
 	}
-	if got := krs(ix.Mentions("격돌 노을빛 검", nil)); !reflect.DeepEqual(got, []string{"노을빛 검"}) {
+	if got := krs(ix.Mentions("격돌 노을빛 검", map[string]bool{"격돌": true})); !reflect.DeepEqual(got, []string{"노을빛 검"}) {
 		t.Errorf("Mentions = %v", got)
 	}
 	if ix.Lookup(" 노을빛 검 ") == nil {
@@ -94,5 +94,32 @@ func TestIsName(t *testing.T) {
 	ix := NewIndex(tableOf("노을빛 검"), &rules.Rules{}, nil)
 	if !ix.IsName("name", "노을빛 검") || ix.IsName("desc", "노을빛 검") || ix.IsName("name", "없음") {
 		t.Error("IsName wrong")
+	}
+}
+
+func TestMentionsTaggedKR(t *testing.T) {
+	ix := NewIndex(tableOf("<b>노을빛 검</b>"), &rules.Rules{}, nil)
+	if got := krs(ix.Mentions("노을빛 검으로 벤다", nil)); !reflect.DeepEqual(got, []string{"<b>노을빛 검</b>"}) {
+		t.Errorf("Mentions = %v", got)
+	}
+	if ix.Lookup("<b>노을빛 검</b>") == nil {
+		t.Error("Lookup by raw KR failed")
+	}
+}
+
+func TestMentionsNoBreakSpace(t *testing.T) {
+	kr := "가르\u00a0검"
+	ix := NewIndex(tableOf(kr), &rules.Rules{}, nil)
+	if got := krs(ix.Mentions("그 "+kr+" 발동", nil)); !reflect.DeepEqual(got, []string{kr}) {
+		t.Errorf("Mentions = %v", got)
+	}
+}
+
+func TestFieldsIsACopy(t *testing.T) {
+	tbl := tableOf("노을빛 검")
+	ix := NewIndex(tbl, &rules.Rules{}, nil)
+	ix.Fields()[0] = "changed"
+	if tbl.Fields[0] != "name" || ix.Fields()[0] != "name" {
+		t.Error("Fields exposes the table")
 	}
 }

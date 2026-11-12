@@ -35,6 +35,11 @@ func TestCollectGroupsVariantsByJPEN(t *testing.T) {
 	if want := []string{"k1", "k2", "k3"}; !reflect.DeepEqual(v.Examples, want) {
 		t.Errorf("Examples = %v, want %v", v.Examples, want)
 	}
+	v2 := tbl.Names[0].Variants[1]
+	if v2.JP != "夕焼け" || v2.EN != "Sunset" || !reflect.DeepEqual(v2.Renderings, []Rendering{{"夕陽", 1}}) ||
+		!reflect.DeepEqual(v2.Examples, []string{"k5"}) {
+		t.Errorf("second variant = %+v", v2)
+	}
 	if v.JP != "茜さす剣" || v.EN != "Glow Blade" {
 		t.Errorf("variant = %+v", v)
 	}
@@ -125,5 +130,17 @@ func TestNameHas(t *testing.T) {
 		if got := n.Has(zh); got != want {
 			t.Errorf("Has(%q) = %v, want %v", zh, got, want)
 		}
+	}
+}
+
+func TestCollectAndHasAgreeOnTags(t *testing.T) {
+	zh := "霞光<br>劍刃"
+	tbl := Collect("r", nameFields, []Source{src("a", "노을빛 검", zh, "", "")})
+	n := tbl.Names[0]
+	if got := n.Variants[0].Renderings[0].ZH; got != Plain(zh) {
+		t.Errorf("stored %q, want %q", got, Plain(zh))
+	}
+	if !n.Has(zh) {
+		t.Error("Has does not find the rendering it was built from")
 	}
 }
