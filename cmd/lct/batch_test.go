@@ -1206,7 +1206,7 @@ func TestDifferingTermIsStillSuggested(t *testing.T) {
 func TestBatchNextUsesMaxNamesOfConfig(t *testing.T) {
 	root, _ := batchRepo(t)
 	writeTestFile(t, root, "lct.yaml", strings.Replace(batchYAML, "story_max_units: 120,", "story_max_units: 120, max_names: -1,", 1))
-	if _, _, err := runNextJSON(t, root); err == nil {
-		t.Fatal("batch next with max_names -1: want an error")
+	if _, _, err := runNextJSON(t, root); err == nil || !strings.Contains(err.Error(), "MaxNames") {
+		t.Fatalf("batch next with max_names -1: err = %v, want one that mentions MaxNames", err)
 	}
 }

@@ -926,7 +926,8 @@ func (b *builder) finish() {
 	b.rep.Inconsistent = append(b.rep.Inconsistent, groups[:min(len(groups), maxInconsistent)]...)
 	// The groups with units of this update are listed in the report and the
 	// review issue however small they are, so none of them is cut.
-	limit := cmp.Or(b.opt.MaxInconsistent, DefaultMaxInconsistent)
+	// The report's own groups always come first, so a small cap never cuts them.
+	limit := max(cmp.Or(b.opt.MaxInconsistent, DefaultMaxInconsistent), maxInconsistent)
 	kept := min(len(groups), limit)
 	b.inconsistentAll = append([]Inconsistency{}, groups[:kept]...)
 	for _, g := range groups[kept:] {

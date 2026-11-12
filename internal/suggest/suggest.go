@@ -262,8 +262,8 @@ func (c *collector) add(kind, rest, title string, evidence ...Evidence) {
 // fromBuild makes the suggestions of the build record: the groups of units
 // that one text is translated differently in, and the notes of the translator.
 // The groups are those of info.InconsistentAll, which has more than the
-// twenty of the report (the biggest 500 and every group with units of this
-// update), or, in a build.json of an older lct that lacks the list, those of
+// twenty of the report (the biggest build.max_inconsistent of lct.yaml and
+// every group with units of this update), or, in a build.json of an older lct that lacks the list, those of
 // the report.
 func (c *collector) fromBuild(info build.Info) {
 	groups := info.InconsistentAll

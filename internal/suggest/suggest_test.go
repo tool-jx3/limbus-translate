@@ -725,7 +725,7 @@ func TestSuggestGetsTheNewGroupOfABigBuild(t *testing.T) {
 		}
 		recs[key] = r
 	}
-	for i := range 503 {
+	for i := range 23 { // more than the report's twenty, so the cap below cuts
 		add(fmt.Sprintf("가%d", i), "甲", false)
 		add(fmt.Sprintf("가%d", i), "乙", false)
 	}
@@ -763,6 +763,7 @@ func TestSuggestGetsTheNewGroupOfABigBuild(t *testing.T) {
 		TWRoot: tw, OutDir: filepath.Join(dir, "out"), LangDir: "zh-TW",
 		FontPath: font, FontSHA256: hex.EncodeToString(sum[:]), LicensePath: filepath.Join(dir, "LICENSE-CONTENT"),
 		RawTag: tag, RawToken: "token", RulesCommit: "0123abc", BuiltAt: time.Date(2026, 11, 12, 0, 0, 0, 0, time.UTC),
+		MaxInconsistent: 3,
 	}
 	if _, err := build.Run(opt, src, fr); err != nil {
 		t.Fatal(err)
@@ -771,9 +772,12 @@ func TestSuggestGetsTheNewGroupOfABigBuild(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	if len(info.InconsistentAll) != 21 {
+		t.Fatalf("%d groups in the record, want the biggest 20 and the new one", len(info.InconsistentAll))
+	}
 	id := itemid.Inconsistent("", "content", "하")
 	if s := find(run(t, Inputs{RawTag: tag, Rules: testRules(), Build: &info}), id); s == nil {
-		t.Errorf("no suggestion %s for the new group past the biggest 500", id)
+		t.Errorf("no suggestion %s for the new group past the cap", id)
 	}
 }
 

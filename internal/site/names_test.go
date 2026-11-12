@@ -51,6 +51,25 @@ func TestExportNames(t *testing.T) {
 	}
 }
 
+// A names.json of an older lct may hold a KR with no letter ("..."); the page
+// leaves it out like Collect and NewIndex do.
+func TestExportNamesLeavesOutLetterlessKR(t *testing.T) {
+	in := exportInputs(t)
+	in.Names = &existing.Table{RawTag: "t1", Names: []existing.Name{
+		{KR: "...", Variants: []existing.Variant{{Renderings: []existing.Rendering{{ZH: "……", Units: 5}}}}},
+		{KR: "격돌", Variants: []existing.Variant{{Renderings: []existing.Rendering{{ZH: "格鬥", Units: 1}}}}},
+	}}
+	out := filepath.Join(t.TempDir(), "data")
+	if _, err := Export(in, Meta{RawTag: "t1"}, out); err != nil {
+		t.Fatal(err)
+	}
+	var got NamesData
+	readJSON(t, out, "names.json", &got)
+	if len(got.Names) != 1 || got.Names[0].KR != "격돌" {
+		t.Errorf("names = %+v, want only 격돌", got.Names)
+	}
+}
+
 func TestExportNamesWithoutTable(t *testing.T) {
 	in := exportInputs(t)
 	out := filepath.Join(t.TempDir(), "data")

@@ -1812,12 +1812,12 @@ func TestInfoInconsistentAllIsBounded(t *testing.T) {
 	}
 }
 
-// A group with units of this update stays in the build record however small
-// it is: the report's 含這次新譯, the review issue and lct suggest take those
-// groups from there, so one past the biggest 500 must not be lost.
 // testMaxInconsistent is the cap the tests run with, whatever the default is.
 const testMaxInconsistent = 500
 
+// A group with units of this update stays in the build record however small
+// it is: the report's 含這次新譯, the review issue and lct suggest take those
+// groups from there, so one past the biggest 500 must not be lost.
 func TestInfoInconsistentAllKeepsEveryNewGroup(t *testing.T) {
 	var entries []string
 	var recs []store.Record
@@ -2950,8 +2950,8 @@ func TestNoteTextJoinsTheNotesOfTheCurrentKR(t *testing.T) {
 	}
 }
 
-// Options.MaxInconsistent caps the old groups of Info.InconsistentAll; 0 means
-// DefaultMaxInconsistent, below 0 is an error. A group with units of this update
+// Options.MaxInconsistent caps the old groups of Info.InconsistentAll, but not
+// below the report's twenty; 0 means DefaultMaxInconsistent, below 0 is an error. A group with units of this update
 // is kept whatever the cap.
 func TestBuildKeepsMaxInconsistentGroups(t *testing.T) {
 	if DefaultMaxInconsistent != 1000 {
@@ -2968,7 +2968,7 @@ func TestBuildKeepsMaxInconsistentGroups(t *testing.T) {
 		}
 		recs = append(recs, r)
 	}
-	for i := range 4 {
+	for i := range 24 { // past the report's twenty, which no cap cuts
 		kr := "가" + strconv.Itoa(i)
 		add(kr, "甲", false)
 		add(kr, "乙", false)
@@ -2976,7 +2976,7 @@ func TestBuildKeepsMaxInconsistentGroups(t *testing.T) {
 	add("하", "丙", false)
 	add("하", "丁", true)
 	kr := map[string]string{"A.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}
-	for _, c := range []struct{ max, want int }{{3, 4}, {0, 5}} {
+	for _, c := range []struct{ max, want int }{{3, 21}, {0, 25}} {
 		e := newEnv(t, kr, nil)
 		e.save(recs...)
 		e.opt.MaxInconsistent = c.max
@@ -2997,5 +2997,33 @@ func TestBuildKeepsMaxInconsistentGroups(t *testing.T) {
 	e.opt.MaxInconsistent = -1
 	if _, err := Run(e.opt, e.src, e.fr); err == nil {
 		t.Error("Run with a negative MaxInconsistent: want an error")
+	}
+}
+
+// A cap below the twenty groups of the report does not shorten them:
+// InconsistentAll still starts with the groups of Report.Inconsistent.
+func TestInfoInconsistentAllKeepsTheReportGroupsUnderASmallCap(t *testing.T) {
+	var entries []string
+	var recs []store.Record
+	for i := range 25 {
+		kr := "가" + strconv.Itoa(i)
+		for _, zh := range []string{"甲", "乙"} {
+			n := len(entries)
+			entries = append(entries, `{"id":`+strconv.Itoa(n)+`,"content":"`+kr+`"}`)
+			recs = append(recs, rec("A.json", "/dataList/"+strconv.Itoa(n)+"/content", kr, zh))
+		}
+	}
+	e := newEnv(t, map[string]string{"A.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}, nil)
+	e.save(recs...)
+	e.opt.MaxInconsistent = 3
+	rep := e.run()
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(rep.Inconsistent) != 20 || len(info.InconsistentAll) < 20 ||
+		!reflect.DeepEqual(info.InconsistentAll[:20], rep.Inconsistent) {
+		t.Errorf("%d groups in the report and %d in the record, want 20 and at least 20, the same first",
+			len(rep.Inconsistent), len(info.InconsistentAll))
 	}
 }

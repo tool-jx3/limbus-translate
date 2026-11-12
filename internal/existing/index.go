@@ -55,7 +55,7 @@ func NewIndex(t *Table, r *rules.Rules, declined map[string]bool) *Index {
 	for i := range t.Names {
 		n := &t.Names[i]
 		kr := strings.TrimSpace(n.KR)
-		if kr == "" || inGlossary[kr] || !hasLetter(kr) {
+		if kr == "" || inGlossary[kr] || !HasLetter(kr) {
 			continue
 		}
 		ix.byKR[kr] = n

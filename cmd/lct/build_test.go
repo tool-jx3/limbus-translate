@@ -654,7 +654,7 @@ func TestBuildCommandUsesMaxInconsistentOfConfig(t *testing.T) {
 		t.Fatal(err)
 	}
 	writeTestFile(t, root, "lct.yaml", string(cfg)+"build: { max_inconsistent: -1 }\n")
-	if _, err := runBuildJSON(t, root); err == nil {
-		t.Fatal("build with max_inconsistent -1: want an error")
+	if _, err := runBuildJSON(t, root); err == nil || !strings.Contains(err.Error(), "MaxInconsistent") {
+		t.Fatalf("build with max_inconsistent -1: err = %v, want one that mentions MaxInconsistent", err)
 	}
 }

@@ -53,6 +53,9 @@ func buildNames(t *existing.Table, glossary []rules.Term, declined []suggest.Dec
 		}
 	}
 	for _, n := range t.Names {
+		if !existing.HasLetter(n.KR) { // an older names.json may still hold one
+			continue
+		}
 		id := existing.SuggestionID(n.KR)
 		row := NameRow{KR: n.KR, Variants: n.Variants, Glossary: inGlossary[strings.TrimSpace(n.KR)], Declined: isDeclined[id], Review: inReview[id]}
 		if row.Variants == nil {

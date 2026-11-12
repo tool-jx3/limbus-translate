@@ -110,7 +110,7 @@
       "additionalProperties": { "type": "string" }
     },
     "names": {
-      "description": "Existing renderings of the names the units use (skills, personas, E.G.O, effects: the name fields), at most 40. Not rules: use zh where the unit means the same thing (match the unit's jp, en and field against the item's), or follow the context and say so in the unit's note. One item for each (kr, variant); several items of one kr are the ways the JP and EN packs spell it.",
+      "description": "Existing renderings of the names the units use (skills, personas, E.G.O, effects: the name fields), capped by batch.max_names in lct.yaml. Not rules: use zh where the unit means the same thing (match the unit's jp, en and field against the item's), or follow the context and say so in the unit's note. One item for each (kr, variant); several items of one kr are the ways the JP and EN packs spell it.",
       "type": "array",
       "items": {
         "type": "object",
