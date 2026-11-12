@@ -4955,6 +4955,12 @@ func TestSubmitWarnsNameDiffers(t *testing.T) {
 // update, and a pending unit (id 5) that holds it too.
 func tauntEnv(t *testing.T) (Env, *Batch) {
 	t.Helper()
+	return tauntEnvWith(t, nil)
+}
+
+// tauntEnvWith is tauntEnv with more KR files.
+func tauntEnvWith(t *testing.T, more map[string]string) (Env, *Batch) {
+	t.Helper()
 	const kr = "도발치가 쌓였다"
 	text := func(i int) string {
 		if i == 5 {
@@ -4962,7 +4968,11 @@ func tauntEnv(t *testing.T) (Env, *Batch) {
 		}
 		return kr
 	}
-	env := newEnv(t, map[string]string{"Other.json": dataList(t, 6, "", text)}, nil, nil)
+	files := map[string]string{"Other.json": dataList(t, 6, "", text)}
+	for f, c := range more {
+		files[f] = c
+	}
+	env := newEnv(t, files, nil, nil)
 	recs := map[string]store.Record{}
 	for i := 0; i < 5; i++ {
 		recs[key("Other.json", i)] = store.Record{Key: key("Other.json", i), KRSha: units.KRSha(kr), ZH: "挑釁值累積了", Origin: store.OriginParatranz, Since: testTag}
@@ -4999,22 +5009,6 @@ func TestSubmitMarksDifferingTerm(t *testing.T) {
 	}
 }
 
-func TestDifferingTermNotInForce(t *testing.T) {
-	r := testRules(t)
-	all := []store.ProvisionalTerm{
-		{KR: "도발치", ZH: "嘲諷值", Old: &store.OldUse{Units: 5}},
-		{KR: "도발치", ZH: "挑釁值", Conflict: true},
-		{KR: "번개", ZH: "閃電"},
-	}
-	if got := ActiveProvisional(all, r, nil); len(got) != 1 || got[0].KR != "번개" {
-		t.Errorf("ActiveProvisional = %+v, want only 번개", got)
-	}
-	got := ProvisionalKRs(all, r)
-	if !got["도발치"] || !got["번개"] || len(got) != 2 {
-		t.Errorf("ProvisionalKRs = %v, want 도발치 and 번개", got)
-	}
-}
-
 func TestSubmitWithoutNewTermsDoesNotScan(t *testing.T) {
 	env, b := tauntEnv(t)
 	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 5), ZH: "獲得嘲諷值"}}, "test-model", 3)
@@ -5027,5 +5021,129 @@ func TestSubmitWithoutNewTermsDoesNotScan(t *testing.T) {
 	data, _ := json.Marshal(res)
 	if !strings.Contains(string(data), `"terms_differ":[]`) {
 		t.Errorf("result = %s, want terms_differ []", data)
+	}
+}
+
+// A KR file that cannot be parsed shows whether Submit scanned the KR files.
+const brokenKR = "{"
+
+func TestSubmitWithoutNewKRDoesNotScan(t *testing.T) {
+	broken := map[string]string{"Broken.json": brokenKR}
+	t.Run("no terms", func(t *testing.T) {
+		env, b := tauntEnvWith(t, broken)
+		if _, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 5), ZH: "獲得嘲諷值"}}, "test-model", 3); err != nil {
+			t.Fatalf("Submit: %v", err)
+		}
+	})
+	for _, zh := range []string{"嘲諷值", "挑釁值"} {
+		t.Run("stored KR "+zh, func(t *testing.T) {
+			env, b := tauntEnvWith(t, broken)
+			if _, err := env.Store.AppendTerms([]store.ProvisionalTerm{{KR: "도발치", ZH: "嘲諷值", Key: "x|/a", Batch: "b0", RawTag: testTag, Time: "2026-11-05T00:00:00Z"}}); err != nil {
+				t.Fatal(err)
+			}
+			out := []OutUnit{{Key: key("Other.json", 5), ZH: "獲得嘲諷值挑釁值", Terms: []NewTerm{{KR: "도발치", ZH: zh}}}}
+			res, err := Submit(env, b, out, "test-model", 3)
+			if err != nil {
+				t.Fatalf("Submit: %v", err)
+			}
+			terms, _ := env.Store.LoadTerms()
+			if zh == "嘲諷值" && (res.Terms != 0 || len(terms) != 1) {
+				t.Errorf("same rendering: res.Terms = %d, terms = %+v, want it not stored again", res.Terms, terms)
+			}
+			if zh == "挑釁值" && (res.Terms != 1 || len(terms) != 2 || !terms[1].Conflict || terms[1].Old != nil) {
+				t.Errorf("other rendering: res.Terms = %d, terms = %+v, want a conflict without Old", res.Terms, terms)
+			}
+			if len(res.TermsDiffer) != 0 {
+				t.Errorf("TermsDiffer = %+v, want none", res.TermsDiffer)
+			}
+		})
+	}
+	t.Run("new KR scans", func(t *testing.T) {
+		env, b := tauntEnvWith(t, broken)
+		out := []OutUnit{{Key: key("Other.json", 5), ZH: "獲得嘲諷值", Terms: []NewTerm{{KR: "도발치", ZH: "嘲諷值"}}}}
+		if _, err := Submit(env, b, out, "test-model", 3); err == nil {
+			t.Error("Submit succeeded, want the parse error of Broken.json")
+		}
+	})
+}
+
+func TestSubmitDoesNotCompareAGlossaryKR(t *testing.T) {
+	env, b := tauntEnvWith(t, map[string]string{"Broken.json": brokenKR})
+	env.Rules = testRulesWith(t, "- kr: 도발치\n  zh: 挑釁\n  status: candidate\n")
+	out := []OutUnit{{Key: key("Other.json", 5), ZH: "獲得嘲諷值", Terms: []NewTerm{{KR: "도발치", ZH: "嘲諷值"}}}}
+	res, err := Submit(env, b, out, "test-model", 3)
+	if err != nil {
+		t.Fatalf("Submit: %v (a glossary KR must not trigger a scan)", err)
+	}
+	terms, _ := env.Store.LoadTerms()
+	if res.Terms != 1 || len(res.TermsDiffer) != 0 || len(terms) != 1 || terms[0].Old != nil {
+		t.Errorf("result = %+v, terms = %+v, want the term stored as before, without Old", res, terms)
+	}
+}
+
+func TestDifferingTermNotInForce(t *testing.T) {
+	env, b := tauntEnv(t)
+	r := env.Rules
+	out := []OutUnit{{Key: key("Other.json", 5), ZH: "獲得嘲諷值", Terms: []NewTerm{{KR: "도발치", ZH: "嘲諷值"}}}}
+	if res, err := Submit(env, b, out, "test-model", 3); err != nil || len(res.TermsDiffer) != 1 {
+		t.Fatalf("first submit: %+v, %v", res, err)
+	}
+	all, _ := env.Store.LoadTerms()
+	if got := ActiveProvisional(all, r, nil); len(got) != 0 {
+		t.Errorf("ActiveProvisional = %+v, want none", got)
+	}
+	if got := ProvisionalKRs(all, r); !got["도발치"] || len(got) != 1 {
+		t.Errorf("ProvisionalKRs = %v, want 도발치", got)
+	}
+
+	// A later batch registers another rendering of the same KR.
+	seed(t, env, items("Other.json", 4, 5)...)
+	b2 := mustNext(t, env, NextOptions{})
+	out2 := []OutUnit{{Key: key("Other.json", 4), ZH: "挑釁值累積了", Terms: []NewTerm{{KR: "도발치", ZH: "挑釁值"}}}}
+	res, err := Submit(env, b2, out2, "test-model", 3)
+	if err != nil || res.Terms != 1 || len(res.TermsDiffer) != 0 {
+		t.Fatalf("second submit: %+v, %v, want a stored term that is not listed as differing", res, err)
+	}
+	all, _ = env.Store.LoadTerms()
+	if len(all) != 2 || !all[1].Conflict || all[1].Old != nil || all[1].ZH != "挑釁值" {
+		t.Fatalf("terms = %+v, want the second a conflict without Old", all)
+	}
+	if got := ActiveProvisional(all, r, nil); len(got) != 0 {
+		t.Errorf("ActiveProvisional = %+v, want none: the first record decides and it differs", got)
+	}
+	if got := ProvisionalKRs(all, r); !got["도발치"] {
+		t.Errorf("ProvisionalKRs = %v, want 도발치", got)
+	}
+}
+
+// Only a record of the current KR text that was made before this update is an
+// old unit.
+func TestSubmitCountsOnlyOldUnits(t *testing.T) {
+	env, b := tauntEnv(t)
+	recs, err := env.Store.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	r1 := recs[key("Other.json", 1)]
+	r1.KRSha = units.KRSha("다른 문장")
+	recs[key("Other.json", 1)] = r1
+	r2 := recs[key("Other.json", 2)]
+	r2.Origin, r2.Written = store.OriginClaude, testTag
+	recs[key("Other.json", 2)] = r2
+	if err := env.Store.SaveRecords(recs); err != nil {
+		t.Fatal(err)
+	}
+	out := []OutUnit{{Key: key("Other.json", 5), ZH: "獲得嘲諷值", Terms: []NewTerm{{KR: "도발치", ZH: "嘲諷值"}}}}
+	res, err := Submit(env, b, out, "test-model", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Units 0, 3 and 4 are old; 1 (another KR text) and 2 (written now) are not.
+	if len(res.TermsDiffer) != 0 {
+		t.Errorf("TermsDiffer = %+v, want none: only 3 old units are below the minimum", res.TermsDiffer)
+	}
+	terms, _ := env.Store.LoadTerms()
+	if len(terms) != 1 || terms[0].Old != nil {
+		t.Errorf("terms = %+v, want one without Old", terms)
 	}
 }

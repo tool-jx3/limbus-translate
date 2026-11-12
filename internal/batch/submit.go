@@ -311,7 +311,8 @@ func (s *submission) collectTerms(key, kr, zh string, terms []NewTerm) {
 
 // keepTerms stores the terms collected as provisional terms. The first
 // rendering of a KR word stands; another rendering of it is stored flagged as
-// a conflict; one already stored is not stored again. A first rendering that
+// a conflict; one already stored is not stored again. A KR with a glossary
+// entry is stored as it is, without a comparison. A first rendering that
 // differs from the existing name or from the old translations (see
 // existing.OldTally) is stored with Old, so that it is not in force, and
 // listed in the result.
@@ -329,11 +330,16 @@ func (s *submission) keepTerms() (int, error) {
 	}
 	// Only a KR without any record is compared, and the old translations are
 	// scanned once for all of them, and not at all when there is none.
+	// A KR the glossary has an entry for (in any status) is not compared.
+	inGlossary := map[string]bool{}
+	for _, g := range s.env.Rules.Glossary {
+		inGlossary[g.KR] = true
+	}
 	var fresh []termCandidate
 	seenNew := map[[2]string]bool{}
 	for _, c := range s.terms {
 		id := [2]string{c.KR, c.ZH}
-		if len(renderings[c.KR]) == 0 && !seenNew[id] {
+		if len(renderings[c.KR]) == 0 && !inGlossary[c.KR] && !seenNew[id] {
 			seenNew[id] = true
 			fresh = append(fresh, c)
 		}
@@ -355,7 +361,7 @@ func (s *submission) keepTerms() (int, error) {
 		p := store.ProvisionalTerm{
 			KR: c.KR, ZH: c.ZH, Key: c.key, Batch: s.batch.ID, RawTag: s.env.RawTag, Time: now, Conflict: len(have) > 0,
 		}
-		if len(have) == 0 {
+		if len(have) == 0 && !inGlossary[c.KR] {
 			use, examples, differs := tally.Use(s.env.Names, c.KR, c.ZH)
 			if differs {
 				p.Old = &use

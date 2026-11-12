@@ -165,10 +165,11 @@ func runSuggest(ctx *cli.Context, args []string) error {
 	}
 	twRoot := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.TW))
 	in := suggest.Inputs{RawTag: src.Tag, Rules: r, Adjustments: adjustments}
-	// The provisional terms in force are those the batches carry (one rule,
-	// batch.ActiveProvisional); suggest lists them for a person to decide on.
-	// A declined one comes too and is excluded below, as any declined
-	// suggestion is.
+	// The KR listed are decided by batch.ProvisionalKRs: the terms in force
+	// (batch.ActiveProvisional) and those not in force because they differ
+	// from the old translations (Old) or were declined. suggest lists them for
+	// a person to decide on. A declined one comes too and is excluded below,
+	// as any declined suggestion is.
 	if in.Provisional, _, err = activeProvisionalRecords(ctx.Root, st, r); err != nil {
 		return err
 	}
