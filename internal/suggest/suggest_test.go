@@ -1061,3 +1061,46 @@ func TestSuggestMergeKeepsTheTermRows(t *testing.T) {
 		t.Errorf("with room: evidence =\n%+v\nwant\n%+v", s.Evidence, want)
 	}
 }
+
+// A provisional term with many conflicting renderings keeps room for two of
+// the old units that its TermDiff has; without a TermDiff the conflicts fill
+// the evidence.
+func TestSuggestTermNewKeepsRoomForOldExamples(t *testing.T) {
+	in := fixture()
+	in.Provisional = []store.ProvisionalTerm{{
+		KR: "임시어", ZH: "暫定詞", Key: "F.json|/dataList/9/name", Batch: "b0",
+		Old: &store.OldUse{Existing: "舊譯詞", Units: 7, With: 2},
+	}}
+	for i := 0; i < 9; i++ {
+		in.Provisional = append(in.Provisional, store.ProvisionalTerm{
+			KR: "임시어", ZH: fmt.Sprintf("衝突%d", i), Key: fmt.Sprintf("G.json|/dataList/%d/name", i), Batch: "b1", Conflict: true,
+		})
+	}
+	var examples []existing.OldExample
+	for i := 0; i < 3; i++ {
+		examples = append(examples, existing.OldExample{Key: fmt.Sprintf("o.json|/dataList/%d/desc", i), KR: "임시어 예문", ZH: "舊譯詞的例句"})
+	}
+	in.Build.Report.TermDiffs = []build.TermDiff{{KR: "임시어", ZH: "暫定詞", Existing: "舊譯詞", OldUnits: 7, OldWith: 2, Examples: examples}}
+	notes := func(s *Suggestion) []string {
+		var out []string
+		for _, e := range s.Evidence {
+			out = append(out, e.Note)
+		}
+		return out
+	}
+	s := find(run(t, in), "term-new/임시어")
+	if s == nil {
+		t.Fatal("no term-new/임시어")
+	}
+	want := []string{"b0", "與舊譯不同：舊譯 7 個單位，含暫定譯法 2 個", "衝突", "衝突", "衝突", "衝突", "衝突", "衝突", "舊譯例句", "舊譯例句"}
+	if got := notes(s); !slices.Equal(got, want) {
+		t.Errorf("notes = %q, want %q", got, want)
+	}
+
+	in.Build.Report.TermDiffs = nil
+	s = find(run(t, in), "term-new/임시어")
+	want = []string{"b0", "與舊譯不同：舊譯 7 個單位，含暫定譯法 2 個", "衝突", "衝突", "衝突", "衝突", "衝突", "衝突", "衝突", "衝突"}
+	if got := notes(s); !slices.Equal(got, want) {
+		t.Errorf("without a TermDiff: notes = %q, want %q", got, want)
+	}
+}

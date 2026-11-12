@@ -92,9 +92,10 @@ const (
 	noteOldExample = "舊譯例句"
 )
 
-// maxMergedExamples is how many old units of a provisional term a name
-// suggestion it is merged into keeps ahead of its own rows.
-const maxMergedExamples = 2
+// keptExamples is how many old units of a provisional term (TermDiff.Examples)
+// its evidence keeps room for: the conflicting renderings leave room for them,
+// and a name suggestion it is merged into keeps them ahead of its own rows.
+const keptExamples = 2
 
 // Suggestion is one thing the rules could learn.
 type Suggestion struct {
@@ -177,10 +178,12 @@ func Run(in Inputs) ([]Suggestion, error) {
 		c.fromPlan(in.Plan, in.Rules, in.Adjustments)
 	}
 	c.fromGlossary(in.Rules.Glossary)
-	c.fromProvisional(in.Provisional)
+	var termDiffs []build.TermDiff
 	if in.RawTag != "" && in.Build != nil && in.Build.RawTag == in.RawTag {
-		c.addTermExamples(in.Build.Report.TermDiffs)
+		termDiffs = in.Build.Report.TermDiffs
 	}
+	c.fromProvisional(in.Provisional, termDiffs)
+	c.addTermExamples(termDiffs)
 	c.mergeTermNewIntoName()
 
 	out := make([]Suggestion, 0, len(c.byID))
@@ -388,9 +391,15 @@ func (c *collector) fromGlossary(terms []rules.Term) {
 // fromProvisional makes the suggestion of every KR of the provisional terms.
 // The record of a KR that is no conflict is the term the batches use: the
 // title says its rendering, and the evidence is the unit that registered it
-// (its batch in Note) and then each conflicting rendering. A KR that has only
-// conflicts is not suggested; there is no term to decide on.
-func (c *collector) fromProvisional(terms []store.ProvisionalTerm) {
+// (its batch in Note) and then each conflicting rendering, leaving room for
+// up to keptExamples of the old units its TermDiff of diffs has, which
+// addTermExamples adds. A KR that has only conflicts is not suggested; there
+// is no term to decide on.
+func (c *collector) fromProvisional(terms []store.ProvisionalTerm, diffs []build.TermDiff) {
+	room := map[string]int{} // the rows left for the old units of a KR
+	for _, d := range diffs {
+		room[d.KR] = max(room[d.KR], min(len(d.Examples), keptExamples))
+	}
 	seen := map[string]bool{}
 	for _, t := range terms {
 		if t.Conflict || t.KR == "" {
@@ -408,7 +417,7 @@ func (c *collector) fromProvisional(terms []store.ProvisionalTerm) {
 		c.add(KindNewTerm, t.KR, title, rows...)
 	}
 	for _, t := range terms {
-		if _, ok := c.byID[KindNewTerm+"/"+t.KR]; ok && t.Conflict {
+		if s, ok := c.byID[KindNewTerm+"/"+t.KR]; ok && t.Conflict && len(s.Evidence) < MaxEvidence-room[t.KR] {
 			c.add(KindNewTerm, t.KR, "", Evidence{Key: t.Key, KR: t.KR, ZH: t.ZH, Note: noteConflict})
 		}
 	}
@@ -459,7 +468,7 @@ func (c *collector) mergeTermNewIntoName() {
 // termRowsFirst splits the rows of a term-new suggestion into those that a
 // name suggestion it is merged into puts before its own: the units that
 // registered the term, how it differs from the old translations and the
-// first maxMergedExamples old units; and the rest (the conflicting renderings
+// first keptExamples old units; and the rest (the conflicting renderings
 // and the other old units). Both keep their order.
 func termRowsFirst(rows []Evidence) (first, rest []Evidence) {
 	examples := 0
@@ -467,7 +476,7 @@ func termRowsFirst(rows []Evidence) (first, rest []Evidence) {
 		switch {
 		case e.Note == noteConflict:
 			rest = append(rest, e)
-		case e.Note == noteOldExample && examples == maxMergedExamples:
+		case e.Note == noteOldExample && examples == keptExamples:
 			rest = append(rest, e)
 		default:
 			if e.Note == noteOldExample {
