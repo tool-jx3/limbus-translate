@@ -617,25 +617,46 @@ func checkNewTerms(hits []rules.Term, provisional []rules.Term, file, kr, zh str
 	return validate.Check(kr, zh, validate.Context{Terms: terms, File: file, ScriptOK: scriptOK})
 }
 
-// ActiveProvisional returns the provisional terms in force, in the order of
-// their first record. Of the records of one KR the first one that is not a
-// conflict counts; the later records of that KR are ignored. A KR does not
-// take effect when it has fewer than two characters, when the glossary has an
-// entry with the same KR (in any status), or when its suggestion
-// "term-new/<kr>" is in declined. The terms hit only where their KR stands as
-// a word.
-func ActiveProvisional(all []store.ProvisionalTerm, r *rules.Rules, declined map[string]bool) []rules.Term {
+// ProvisionalKRs returns the KR of the provisional terms that are listed for a
+// person to decide on: those with at least two characters, with no glossary
+// entry of that KR (in any status) and with a record that is not a conflict.
+// Whether the term differs from the old translations (Old) or was declined
+// does not matter here; ActiveProvisional narrows these to the terms in force.
+func ProvisionalKRs(all []store.ProvisionalTerm, r *rules.Rules) map[string]bool {
 	inGlossary := map[string]bool{}
 	for _, t := range r.Glossary {
 		inGlossary[t.KR] = true
 	}
+	out := map[string]bool{}
+	for _, p := range all {
+		if !p.Conflict && utf8.RuneCountInString(p.KR) >= 2 && !inGlossary[p.KR] {
+			out[p.KR] = true
+		}
+	}
+	return out
+}
+
+// ActiveProvisional returns the provisional terms in force, in the order of
+// their first record. Of the records of one KR the first one that is not a
+// conflict decides; the later records of that KR are ignored. The KR takes
+// effect when it is one of ProvisionalKRs (at least two characters, no
+// glossary entry in any status), when that record has no Old (the term does
+// not differ from the existing names or the old translations, see
+// existing.OldTally) and when its suggestion "term-new/<kr>" is not in
+// declined. A term that differs is stored but not in force. The terms hit only
+// where their KR stands as a word.
+func ActiveProvisional(all []store.ProvisionalTerm, r *rules.Rules, declined map[string]bool) []rules.Term {
+	listed := ProvisionalKRs(all, r)
 	var out []rules.Term
 	seen := map[string]bool{}
 	for _, p := range all {
-		if p.Conflict || seen[p.KR] || utf8.RuneCountInString(p.KR) < 2 || inGlossary[p.KR] || declined["term-new/"+p.KR] {
+		if p.Conflict || seen[p.KR] || !listed[p.KR] {
 			continue
 		}
 		seen[p.KR] = true
+		if p.Old != nil || declined["term-new/"+p.KR] {
+			continue
+		}
 		out = append(out, rules.Term{KR: p.KR, ZH: p.ZH, Status: rules.StatusApproved, Match: rules.MatchWord, Provisional: true})
 	}
 	return out

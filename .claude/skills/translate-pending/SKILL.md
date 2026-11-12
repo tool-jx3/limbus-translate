@@ -41,6 +41,8 @@ allowed-tools:
 
 `batch submit` 的結果有 `accepted`、`rejected`（`[{key, errors: [{code, severity, class, message}]}]`）、`warnings`、`needs_review`、`released`，另有 `terms`（新記下的暫定詞數）與 `terms_skipped`（略過的登記與理由，不影響單位，不必處理）。
 
+`terms_differ` 是與既有譯名或舊譯不同的暫定詞（`existing` 是名稱表的既有譯名，`old_units` 是 KR 含這個詞的舊譯單位數，`old_with` 是其中含暫定譯法的，`examples` 是舊譯例句）：已記下但沒有生效，之後的批次不會帶它。已收下的單位不必重送；同一批次還沒送出的單位、之後的批次，依例句與批次的 `names` 用舊譯的寫法。
+
 - **要修正的單位**：在 `rejected` 中、不在 `needs_review` 中，而且 `errors` 裡沒有任何一個 `code` 是協定錯誤碼：`lease-lost`、`not-in-batch`、`duplicate-key`、`kr-missing`、`kr-changed`、`needs-review`
 - 其他被退回的單位不再處理：`needs_review` 中的已用完嘗試次數，`lct` 已寫入替代文字；含協定錯誤碼的不能重送
 - **修正方式**：依 `errors` 的 `message` 修正（`severity` 為 `hard` 的一定要改）。保留整個 `work/batches/<id>.out.json`，只就地修改要修正的單位的條目，其他條目與 `note` 都不動，再執行 `bin/lct batch submit <id> --json` 送出整個檔案。用同一個 `<id>`：這些單位的租約仍屬於這個批次。已收下的單位重送不會有影響；不處理的單位會再被退回，不必理會。重複到沒有要修正的單位為止

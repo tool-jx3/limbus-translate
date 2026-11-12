@@ -15,6 +15,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/bootstrap"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/existing"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
@@ -1162,5 +1163,28 @@ func TestBaseEnvLoadsNames(t *testing.T) {
 	}
 	if !strings.Contains(string(data), `"names": [`) {
 		t.Errorf("the batch file lacks names:\n%s", data)
+	}
+}
+
+// A provisional term that differs from the old translations is not in force,
+// but a person still decides on it: it stays a term-new suggestion.
+func TestDifferingTermIsStillSuggested(t *testing.T) {
+	root, _ := suggestRepo(t)
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	if _, err := st.AppendTerms([]store.ProvisionalTerm{
+		{KR: "도발치", ZH: "嘲諷值", Key: "a.json|/dataList/0/name", Batch: "b1", RawTag: suggestRawTag, Time: "2026-11-05T00:00:00Z", Old: &store.OldUse{Units: 6}},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	if out := suggestJSON(t, "--kind", "term-new"); !slices.Equal(out.ids(), []string{"term-new/도발치"}) {
+		t.Errorf("term-new = %v, want term-new/도발치", out.ids())
+	}
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	records, terms, err := activeProvisionalRecords(root, st, r)
+	if err != nil || len(records) != 1 || len(terms) != 0 {
+		t.Errorf("records = %+v, terms = %+v, %v; want the record listed, no term in force", records, terms, err)
 	}
 }

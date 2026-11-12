@@ -5164,3 +5164,13 @@ func TestNamesAreExplainedToTheTranslator(t *testing.T) {
 		t.Error("schemas/batch.schema.json does not describe refs.same_text")
 	}
 }
+
+// A provisional term that differs from the existing names or the old
+// translations is not in force; the translator is told so by the
+// translate-pending skill.
+func TestTranslatePendingExplainsTermsDiffer(t *testing.T) {
+	_, skill := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", "translate-pending", "SKILL.md"))
+	if !strings.Contains(skill, "terms_differ") {
+		t.Error("translate-pending/SKILL.md does not explain terms_differ (a differing provisional term is stored but not in force)")
+	}
+}

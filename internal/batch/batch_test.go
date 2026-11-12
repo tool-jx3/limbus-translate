@@ -1983,7 +1983,7 @@ func TestResultJSONShape(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if want := `{"accepted":[],"reused":[],"rejected":[],"warnings":[],"needs_review":[],"released":[],"notes":0,"terms":0,"terms_skipped":[]}`; string(data) != want {
+	if want := `{"accepted":[],"reused":[],"rejected":[],"warnings":[],"needs_review":[],"released":[],"notes":0,"terms":0,"terms_skipped":[],"terms_differ":[]}`; string(data) != want {
 		t.Errorf("result JSON = %s, want %s", data, want)
 	}
 
@@ -4948,5 +4948,84 @@ func TestSubmitWarnsNameDiffers(t *testing.T) {
 				t.Errorf("warnings = %+v, want name-differs: %v", res.Warnings, tc.warn)
 			}
 		})
+	}
+}
+
+// tauntEnv has five old units that hold 도발치, translated 挑釁值 before this
+// update, and a pending unit (id 5) that holds it too.
+func tauntEnv(t *testing.T) (Env, *Batch) {
+	t.Helper()
+	const kr = "도발치가 쌓였다"
+	text := func(i int) string {
+		if i == 5 {
+			return "도발치 획득"
+		}
+		return kr
+	}
+	env := newEnv(t, map[string]string{"Other.json": dataList(t, 6, "", text)}, nil, nil)
+	recs := map[string]store.Record{}
+	for i := 0; i < 5; i++ {
+		recs[key("Other.json", i)] = store.Record{Key: key("Other.json", i), KRSha: units.KRSha(kr), ZH: "挑釁值累積了", Origin: store.OriginParatranz, Since: testTag}
+	}
+	if err := env.Store.SaveRecords(recs); err != nil {
+		t.Fatal(err)
+	}
+	seed(t, env, items("Other.json", 5, 6)...)
+	return env, mustNext(t, env, NextOptions{})
+}
+
+func TestSubmitMarksDifferingTerm(t *testing.T) {
+	env, b := tauntEnv(t)
+	out := []OutUnit{{Key: key("Other.json", 5), ZH: "獲得嘲諷值", Terms: []NewTerm{{KR: "도발치", ZH: "嘲諷值"}}}}
+	res, err := Submit(env, b, out, "test-model", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if res.Terms != 1 || len(res.TermsDiffer) != 1 {
+		t.Fatalf("result = %+v, want 1 term, 1 differing", res)
+	}
+	d := res.TermsDiffer[0]
+	if d.KR != "도발치" || d.ZH != "嘲諷值" || d.Key != key("Other.json", 5) || d.OldUnits != 5 || d.OldWith != 0 || d.Existing != "" || len(d.Examples) != 3 {
+		t.Errorf("differing = %+v", d)
+	}
+	for i, ex := range d.Examples {
+		if ex.Key != key("Other.json", i) || ex.ZH != "挑釁值累積了" {
+			t.Errorf("example %d = %+v", i, ex)
+		}
+	}
+	terms, _ := env.Store.LoadTerms()
+	if len(terms) != 1 || terms[0].Old == nil || terms[0].Old.Units != 5 || terms[0].Old.With != 0 {
+		t.Errorf("terms = %+v, want one with old 5/0", terms)
+	}
+}
+
+func TestDifferingTermNotInForce(t *testing.T) {
+	r := testRules(t)
+	all := []store.ProvisionalTerm{
+		{KR: "도발치", ZH: "嘲諷值", Old: &store.OldUse{Units: 5}},
+		{KR: "도발치", ZH: "挑釁值", Conflict: true},
+		{KR: "번개", ZH: "閃電"},
+	}
+	if got := ActiveProvisional(all, r, nil); len(got) != 1 || got[0].KR != "번개" {
+		t.Errorf("ActiveProvisional = %+v, want only 번개", got)
+	}
+	got := ProvisionalKRs(all, r)
+	if !got["도발치"] || !got["번개"] || len(got) != 2 {
+		t.Errorf("ProvisionalKRs = %v, want 도발치 and 번개", got)
+	}
+}
+
+func TestSubmitWithoutNewTermsDoesNotScan(t *testing.T) {
+	env, b := tauntEnv(t)
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 5), ZH: "獲得嘲諷值"}}, "test-model", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if res.TermsDiffer == nil || len(res.TermsDiffer) != 0 {
+		t.Errorf("TermsDiffer = %#v, want []", res.TermsDiffer)
+	}
+	data, _ := json.Marshal(res)
+	if !strings.Contains(string(data), `"terms_differ":[]`) {
+		t.Errorf("result = %s, want terms_differ []", data)
 	}
 }

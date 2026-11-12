@@ -8,6 +8,7 @@ import (
 	"time"
 	"unicode/utf8"
 
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -68,6 +69,24 @@ type SubmitResult struct {
 	Terms int `json:"terms"`
 	// TermsSkipped are the terms of accepted units that were not kept.
 	TermsSkipped []SkippedTerm `json:"terms_skipped"`
+	// TermsDiffer are the new terms that differ from the existing names or
+	// the translations made before this update: they are stored but not in
+	// force. Never nil.
+	TermsDiffer []DifferingTerm `json:"terms_differ"`
+}
+
+// DifferingTerm is a provisional term that was stored but does not take
+// effect, because it differs from the existing name or from most of the old
+// translations of units that hold its KR. Examples are up to three of those
+// old units.
+type DifferingTerm struct {
+	KR       string                `json:"kr"`
+	ZH       string                `json:"zh"`
+	Key      string                `json:"key"` // the unit that registered it
+	Existing string                `json:"existing,omitempty"`
+	OldUnits int                   `json:"old_units"`
+	OldWith  int                   `json:"old_with"`
+	Examples []existing.OldExample `json:"examples"`
 }
 
 // Rejection is a unit with the issues found in it. It is written as
@@ -159,7 +178,7 @@ func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*S
 	}
 
 	res := &SubmitResult{
-		Accepted: []string{}, Reused: []string{}, Rejected: []Rejection{}, Warnings: []Rejection{}, NeedsReview: []string{}, Released: []string{}, TermsSkipped: []SkippedTerm{},
+		Accepted: []string{}, Reused: []string{}, Rejected: []Rejection{}, Warnings: []Rejection{}, NeedsReview: []string{}, Released: []string{}, TermsSkipped: []SkippedTerm{}, TermsDiffer: []DifferingTerm{},
 	}
 	err := env.Store.WithLock(func() error {
 		records, err := env.Store.LoadRecords()
@@ -292,7 +311,10 @@ func (s *submission) collectTerms(key, kr, zh string, terms []NewTerm) {
 
 // keepTerms stores the terms collected as provisional terms. The first
 // rendering of a KR word stands; another rendering of it is stored flagged as
-// a conflict; one already stored is not stored again.
+// a conflict; one already stored is not stored again. A first rendering that
+// differs from the existing name or from the old translations (see
+// existing.OldTally) is stored with Old, so that it is not in force, and
+// listed in the result.
 func (s *submission) keepTerms() (int, error) {
 	if len(s.terms) == 0 {
 		return 0, nil
@@ -305,6 +327,23 @@ func (s *submission) keepTerms() (int, error) {
 	for _, t := range stored {
 		renderings[t.KR] = append(renderings[t.KR], t.ZH)
 	}
+	// Only a KR without any record is compared, and the old translations are
+	// scanned once for all of them, and not at all when there is none.
+	var fresh []termCandidate
+	seenNew := map[[2]string]bool{}
+	for _, c := range s.terms {
+		id := [2]string{c.KR, c.ZH}
+		if len(renderings[c.KR]) == 0 && !seenNew[id] {
+			seenNew[id] = true
+			fresh = append(fresh, c)
+		}
+	}
+	var tally *existing.OldTally
+	if len(fresh) > 0 {
+		if tally, err = s.tallyOld(fresh); err != nil {
+			return 0, err
+		}
+	}
 	now := s.env.now().UTC().Format(time.RFC3339)
 	var add []store.ProvisionalTerm
 	for _, c := range s.terms {
@@ -313,11 +352,54 @@ func (s *submission) keepTerms() (int, error) {
 			continue
 		}
 		renderings[c.KR] = append(have, c.ZH)
-		add = append(add, store.ProvisionalTerm{
+		p := store.ProvisionalTerm{
 			KR: c.KR, ZH: c.ZH, Key: c.key, Batch: s.batch.ID, RawTag: s.env.RawTag, Time: now, Conflict: len(have) > 0,
-		})
+		}
+		if len(have) == 0 {
+			use, examples, differs := tally.Use(s.env.Names, c.KR, c.ZH)
+			if differs {
+				p.Old = &use
+				s.res.TermsDiffer = append(s.res.TermsDiffer, DifferingTerm{
+					KR: c.KR, ZH: c.ZH, Key: c.key, Existing: use.Existing,
+					OldUnits: use.Units, OldWith: use.With, Examples: nonNilExamples(examples),
+				})
+			}
+		}
+		add = append(add, p)
 	}
 	return s.env.Store.AppendTerms(add)
+}
+
+// tallyOld counts the old units of the KR source that hold the KR of the
+// candidates: those with a record whose translation was made from this KR
+// text before the update of the raw tag.
+func (s *submission) tallyOld(cands []termCandidate) (*existing.OldTally, error) {
+	terms := make([]rules.Term, len(cands))
+	for i, c := range cands {
+		terms[i] = rules.Term{KR: c.KR, ZH: c.ZH}
+	}
+	tally := existing.NewOldTally(terms)
+	for _, file := range s.env.Src.KR.Files() {
+		doc, err := s.env.Src.KR.Doc(file)
+		if err != nil {
+			return nil, err
+		}
+		for _, u := range units.Extract(file, doc) {
+			key := units.Key(u.File, u.Pointer)
+			rec, ok := s.records[key]
+			if ok && rec.KRSha == units.KRSha(u.KR) && existing.IsOld(rec, s.env.RawTag) {
+				tally.Add(key, u.KR, rec.ZH)
+			}
+		}
+	}
+	return tally, nil
+}
+
+func nonNilExamples(e []existing.OldExample) []existing.OldExample {
+	if e == nil {
+		return []existing.OldExample{}
+	}
+	return e
 }
 
 func (s *submission) reject(key string, issues ...validate.Issue) {
