@@ -93,6 +93,7 @@ func runPlan(ctx *cli.Context, args []string) error {
 		Frozen:      cfg.Frozen,
 		Fields:      fr,
 		Rules:       r,
+		NameFields:  cfg.Names.Fields,
 		TmpDir:      os.TempDir(),
 	})
 	if err != nil {

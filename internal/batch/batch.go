@@ -560,6 +560,12 @@ func TextGroupOf(r *rules.Rules, doc *jsonx.Node, u units.Unit) TextGroup {
 	return TextGroup{Family: r.Family(u.File), Field: u.Field, Speaker: SpeakerOf(r, doc, u), KR: u.KR}
 }
 
+// SameTextGroup names the group of g without its text, as the same-text
+// index keys its renderings: family, field and speaker joined by "|".
+func SameTextGroup(g TextGroup) string {
+	return g.Family + "|" + g.Field + "|" + g.Speaker
+}
+
 // FileBound reports whether the text of g is shorter than ShortTextRunes
 // runes, so that only units of one file share a translation.
 func (g TextGroup) FileBound() bool {

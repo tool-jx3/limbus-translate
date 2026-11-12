@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/tool-jx3/limbus-translate/internal/batch"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
@@ -1652,5 +1653,167 @@ func TestReuseWithoutWritten(t *testing.T) {
 	}
 	if got := e.records()[b]; got.Batch != "reuse:"+a || got.Written != "" {
 		t.Errorf("reused record = %+v, want it reused from %s with Written empty", got, a)
+	}
+}
+
+// runNames plans like run, with fields as the name fields.
+func (e *planEnv) runNames(buildRawTag string, fields ...string) *Summary {
+	e.t.Helper()
+	in := e.inputs(buildRawTag)
+	in.NameFields = fields
+	sum, err := Run(in)
+	if err != nil {
+		e.t.Fatal(err)
+	}
+	return sum
+}
+
+func paratranz(key, kr, zh string) store.Record {
+	r := translated(key, kr, zh)
+	r.Origin = store.OriginParatranz
+	return r
+}
+
+func nameFixture(e *planEnv) string {
+	e.t.Helper()
+	tag := e.snapshotLangs(
+		map[string]string{"Skills_A.json": dataList(obj{"id": 1, "name": "이름하나"}, obj{"id": 2, "desc": "설명입니다 설명입니다"})},
+		map[string]string{"Skills_A.json": dataList(obj{"id": 1, "name": "Name One"}, obj{"id": 2, "desc": "Desc"})},
+		map[string]string{"Skills_A.json": dataList(obj{"id": 1, "name": "名前一"}, obj{"id": 2, "desc": "説明"})},
+	)
+	e.seed([]store.Record{
+		paratranz(at("Skills_A.json", "/dataList/0/name"), "이름하나", "名稱一"),
+		paratranz(descKey("Skills_A.json", 1), "설명입니다 설명입니다", "說明"),
+	}, nil)
+	return tag
+}
+
+func TestPlanWritesNameTable(t *testing.T) {
+	e := newPlanEnv(t)
+	tag := nameFixture(e)
+	sum := e.runNames("", "name")
+	tab, err := existing.LoadTable(e.store())
+	if err != nil || tab == nil {
+		t.Fatalf("LoadTable = %v, %v", tab, err)
+	}
+	if tab.RawTag != tag || len(tab.Names) != 1 || tab.Names[0].KR != "이름하나" {
+		t.Fatalf("table = %+v, want one name 이름하나 of %s", tab, tag)
+	}
+	v := tab.Names[0].Variants[0]
+	if v.JP != "名前一" || v.EN != "Name One" || v.Renderings[0].ZH != "名稱一" {
+		t.Errorf("variant = %+v, want JP 名前一, EN Name One, ZH 名稱一", v)
+	}
+	if n := sum.NameTable; !n.Built || n.RawTag != tag || n.Names != 1 {
+		t.Errorf("NameTable = %+v, want built, 1 name", n)
+	}
+	if !strings.Contains(sum.String(), "name table "+tag+": built, 1 names, 0 same texts") {
+		t.Errorf("String() lacks the name table line:\n%s", sum.String())
+	}
+}
+
+func TestPlanKeepsNameTableOfSameRawTag(t *testing.T) {
+	e := newPlanEnv(t)
+	nameFixture(e)
+	first := e.runNames("", "name")
+	path := filepath.Join(e.twRoot, ".meta", "names.json")
+	before, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	key := at("Skills_A.json", "/dataList/0/name")
+	recs := e.records()
+	rec := recs[key]
+	rec.ZH = "別名"
+	recs[key] = rec
+	if err := e.store().SaveRecords(recs); err != nil {
+		t.Fatal(err)
+	}
+	second := e.runNames("", "name")
+	after, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(before) != string(after) {
+		t.Errorf("names.json changed within one raw tag:\n%s\n%s", before, after)
+	}
+	if second.NameTable.Built || second.NameTable.Names != first.NameTable.Names {
+		t.Errorf("NameTable = %+v, want kept with %d names", second.NameTable, first.NameTable.Names)
+	}
+	if !strings.Contains(second.String(), "name table "+second.RawTag+": kept, 1 names") {
+		t.Errorf("String() lacks the kept line:\n%s", second.String())
+	}
+}
+
+func TestPlanRebuildsNameTableForNewRawTag(t *testing.T) {
+	e := newPlanEnv(t)
+	nameFixture(e)
+	e.runNames("", "name")
+	tag2 := e.snapshot(map[string]string{"Skills_A.json": dataList(obj{"id": 1, "name": "이름하나"}, obj{"id": 2, "desc": "설명입니다 설명입니다"})})
+	sum := e.runNames("", "name")
+	tab, err := existing.LoadTable(e.store())
+	if err != nil || tab == nil {
+		t.Fatalf("LoadTable = %v, %v", tab, err)
+	}
+	if tab.RawTag != tag2 || !sum.NameTable.Built {
+		t.Errorf("table raw tag = %s, built = %v, want %s rebuilt", tab.RawTag, sum.NameTable.Built, tag2)
+	}
+}
+
+func TestPlanWritesNamesWhenMissingForPlannedRawTag(t *testing.T) {
+	e := newPlanEnv(t)
+	nameFixture(e)
+	e.runNames("", "name")
+	for _, f := range []string{"names.json", "same-text.json"} {
+		if err := os.Remove(filepath.Join(e.twRoot, ".meta", f)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	recs, pending := e.records(), e.pending()
+	e.runNames("", "name")
+	for _, f := range []string{"names.json", "same-text.json"} {
+		if _, err := os.Stat(filepath.Join(e.twRoot, ".meta", f)); err != nil {
+			t.Errorf("%s was not written again: %v", f, err)
+		}
+	}
+	if !reflect.DeepEqual(e.records(), recs) || !reflect.DeepEqual(e.pending(), pending) {
+		t.Error("writing the missing files changed the records or the queue")
+	}
+}
+
+func TestPlanWritesSameTextIndex(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		long  = "열 글자가 넘는 같은 문장입니다" // 10 runes or more
+		nine  = "아홉글자짜리문장이"         // 9 runes
+		alone = "한 군데에만 있는 긴 문장입니다"
+	)
+	tag := e.snapshot(map[string]string{
+		"Skills_A.json": dataList(obj{"id": 1, "desc": long}, obj{"id": 2, "desc": nine}, obj{"id": 3, "desc": alone}),
+		"Skills_B.json": dataList(obj{"id": 1, "help": long}, obj{"id": 2, "help": nine}),
+	})
+	e.seed([]store.Record{
+		translated(descKey("Skills_A.json", 0), long, "超過十個字的相同句子"),
+		translated(descKey("Skills_A.json", 1), nine, "九字"),
+		translated(descKey("Skills_A.json", 2), alone, "只有一處"),
+	}, nil)
+	sum := e.runNames("")
+	idx, err := existing.LoadSameText(e.store())
+	if err != nil || idx == nil {
+		t.Fatalf("LoadSameText = %v, %v", idx, err)
+	}
+	if idx.RawTag != tag {
+		t.Errorf("RawTag = %s, want %s", idx.RawTag, tag)
+	}
+	// The sentence is in two groups (desc and help); only one has a translation.
+	if rs := idx.Texts[long]; len(rs) != 1 || rs[0].Group != "skill|desc|" || rs[0].ZH != "超過十個字的相同句子" {
+		t.Errorf("Texts[long] = %+v, want the translation of the desc group", rs)
+	}
+	for _, kr := range []string{nine, alone} {
+		if rs, ok := idx.Texts[kr]; ok {
+			t.Errorf("%q is in the index: %+v", kr, rs)
+		}
+	}
+	if sum.NameTable.SameTexts != 1 {
+		t.Errorf("SameTexts = %d, want 1", sum.NameTable.SameTexts)
 	}
 }

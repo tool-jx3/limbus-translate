@@ -15,7 +15,12 @@ type planOut struct {
 	Changes    struct {
 		Unchanged, Changed, New, Deleted int
 	} `json:"changes"`
-	Pending int `json:"pending"`
+	Pending   int `json:"pending"`
+	NameTable struct {
+		RawTag string `json:"raw_tag"`
+		Built  bool   `json:"built"`
+		Names  int    `json:"names"`
+	} `json:"name_table"`
 }
 
 // runPlanCLI runs "lct --json plan" in the working directory and returns what
@@ -89,5 +94,26 @@ func TestPlanCommandUserErrors(t *testing.T) {
 		if code != 1 {
 			t.Errorf("lct %s: exit code %d, want 1 (no snapshot, or bad arguments)\nstdout:\n%s\nstderr:\n%s", strings.Join(args, " "), code, stdout, stderr)
 		}
+	}
+}
+
+func TestPlanCommandPassesNameFields(t *testing.T) {
+	fixture, err := filepath.Abs(e2eFixture)
+	if err != nil {
+		t.Fatal(err)
+	}
+	root := e2eRepo(t)
+	t.Chdir(root)
+	cfgPath := filepath.Join(root, "lct.yaml")
+	cfg := readFile(t, cfgPath)
+	if !strings.Contains(string(cfg), "names: { fields: [name,") {
+		t.Fatalf("lct.yaml has no names.fields line:\n%s", cfg)
+	}
+	mustLct(t, nil, "snapshot", "--from", fixture, "--token", testToken, "--created-at", testCreatedAt)
+	mustLct(t, nil, "bootstrap", "--upstream", filepath.Join(fixture, "upstream"))
+
+	out := runPlanCLI(t, root)
+	if !out.NameTable.Built || out.NameTable.Names <= 0 {
+		t.Errorf("name_table = %+v, want built with names", out.NameTable)
 	}
 }

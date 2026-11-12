@@ -4623,3 +4623,10 @@ func TestSubmitRecordsWritten(t *testing.T) {
 		t.Errorf("twin record written %q, want raw-new", got.Written)
 	}
 }
+
+func TestSameTextGroup(t *testing.T) {
+	g := TextGroup{Family: "f", Field: "content", Speaker: "philip", KR: "x"}
+	if got := SameTextGroup(g); got != "f|content|philip" {
+		t.Errorf("SameTextGroup = %q, want f|content|philip", got)
+	}
+}

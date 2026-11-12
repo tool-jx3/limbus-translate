@@ -641,6 +641,8 @@ func checkPhase2FirstPlan(t *testing.T, sum plan.Summary, rules string) {
 		// S1: the place and 5 lines; S3: 1 line; Bufs: the name; Passives: 2
 		// names and 2 descs; the lyrics: 2 lines.
 		Pending: 14,
+		// Nothing is translated yet, so there is no name and no sentence to share.
+		NameTable: plan.NameTableSummary{RawTag: phase2Raw1, Built: true},
 	}
 	if !reflect.DeepEqual(sum, want) {
 		t.Errorf("first plan = %+v\nwant %+v", sum, want)
@@ -687,6 +689,8 @@ func checkPhase2SecondPlan(t *testing.T, sum plan.Summary, rules string) {
 		NewSpeakers:           []string{},
 		FieldChanges:          []fields.Change{},
 		NewFilesDefaultFamily: []string{},
+		// The names the first translation gave, made for the new raw tag.
+		NameTable: plan.NameTableSummary{RawTag: phase2Raw2, Built: true, Names: 3},
 		// The narrator line, the reworded line and the requeued last line of
 		// S1, the second line of S2, the name (requeued) and the desc of Bufs.
 		Pending: 6,

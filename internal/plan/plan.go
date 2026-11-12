@@ -9,11 +9,13 @@ import (
 	"sort"
 	"strings"
 	"time"
+	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
@@ -74,6 +76,10 @@ type Inputs struct {
 	Frozen []string
 	Fields *fields.Rules
 	Rules  *rules.Rules
+	// NameFields are the fields whose translations make up the table of
+	// existing names (names.fields of lct.yaml). With none, the table has no
+	// entries but is written all the same.
+	NameFields []string
 	// TmpDir is where the KR pack of the previous snapshot is exported for
 	// the time of the run; "" is the system's temporary directory.
 	TmpDir string
@@ -118,6 +124,19 @@ type Summary struct {
 	// Pending counts the pending units a batch can take now: in KR, not
 	// leased and not waiting for a person.
 	Pending int `json:"pending"`
+	// NameTable says what became of the table of existing names and the
+	// same-text index of the raw tag.
+	NameTable NameTableSummary `json:"name_table"`
+}
+
+// NameTableSummary reports .meta/names.json and .meta/same-text.json, which
+// are made once for each raw tag. Built is true when this run made either
+// of them; the counts are those of the files that stand.
+type NameTableSummary struct {
+	RawTag    string `json:"raw_tag"`
+	Built     bool   `json:"built"`
+	Names     int    `json:"names"`
+	SameTexts int    `json:"same_texts"`
 }
 
 // AdjustmentSummary says what became of the adjustments of rules/adjustments.
@@ -198,7 +217,13 @@ func (s *Summary) String() string {
 	for _, c := range s.FieldChanges {
 		fmt.Fprintf(&b, "field rule: %s\n", c)
 	}
-	fmt.Fprintf(&b, "pending: %d", s.Pending)
+	fmt.Fprintf(&b, "pending: %d\n", s.Pending)
+	n := s.NameTable
+	state := "kept"
+	if n.Built {
+		state = "built"
+	}
+	fmt.Fprintf(&b, "name table %s: %s, %d names, %d same texts", n.RawTag, state, n.Names, n.SameTexts)
 	return b.String()
 }
 
@@ -279,8 +304,14 @@ func (in Inputs) check() error {
 // translation; a request leaves out frozen files and copies too (see
 // requeue.Apply).
 //
+// The table of existing names (.meta/names.json) and the same-text index
+// (.meta/same-text.json) are made from the records this run leaves, once for
+// each raw tag: a file of the raw tag being planned stays as it is, so a
+// translation made within the update does not change it; any other is made
+// again.
+//
 // The whole run is one store lock, and the store is written at its end: the
-// records, the queue, applied.json, then plan.json. The ids of the applied
+// records, the queue, applied.json, the table and the index, then plan.json. The ids of the applied
 // files go in after the changes they made, so a file is never listed as
 // applied without them. Each file is replaced atomically, but not the four
 // together: a run that dies while writing them leaves a store to reset to its
@@ -391,6 +422,9 @@ func Run(in Inputs) (*Summary, error) {
 		if err := st.SaveApplied(applied); err != nil {
 			return err
 		}
+		if err := p.writeNames(st); err != nil {
+			return err
+		}
 		if err := st.WriteMetaJSON(File, p.sum); err != nil {
 			return err
 		}
@@ -401,6 +435,101 @@ func Run(in Inputs) (*Summary, error) {
 		return nil, err
 	}
 	return sum, nil
+}
+
+// writeNames makes the table of existing names and the same-text index of the
+// raw tag, each unless the store has one of the raw tag already, and sets
+// Summary.NameTable.
+func (p *planner) writeNames(st *store.Store) error {
+	tag := p.sum.RawTag
+	table, err := existing.LoadTable(st)
+	if err != nil {
+		return err
+	}
+	index, err := existing.LoadSameText(st)
+	if err != nil {
+		return err
+	}
+	keepTable, keepIndex := table != nil && table.RawTag == tag, index != nil && index.RawTag == tag
+	if !keepTable || !keepIndex {
+		nameSources, texts, err := p.nameSources(!keepTable, !keepIndex)
+		if err != nil {
+			return err
+		}
+		if !keepTable {
+			table = existing.Collect(tag, p.in.NameFields, nameSources)
+			if err := existing.SaveTable(st, table); err != nil {
+				return err
+			}
+		}
+		if !keepIndex {
+			index = existing.CollectSameText(tag, texts)
+			if err := existing.SaveSameText(st, index); err != nil {
+				return err
+			}
+		}
+	}
+	p.sum.NameTable = NameTableSummary{
+		RawTag: tag, Built: !keepTable || !keepIndex, Names: len(table.Names), SameTexts: len(index.Texts),
+	}
+	return nil
+}
+
+// usableRecord returns the record of key when it is a translation of the KR
+// text there is now: made from it (kr_sha), not a copy or a fallback, and not
+// waiting for a person.
+func (p *planner) usableRecord(key string) (store.Record, bool) {
+	rec, has := p.records[key]
+	if !has || rec.KRSha != p.cur[key].sha || slices.Contains(rec.Flags, store.FlagNeedsReview) {
+		return store.Record{}, false
+	}
+	if rec.Origin == store.OriginCopy || rec.Origin == store.OriginFallback {
+		return store.Record{}, false
+	}
+	return rec, true
+}
+
+// nameSources reads the units the table (names) and the index (texts) are
+// made of; it reads only for those asked for.
+func (p *planner) nameSources(names, texts bool) ([]existing.Source, []existing.TextUnit, error) {
+	var srcs []existing.Source
+	var tus []existing.TextUnit
+	for _, f := range p.files {
+		var al *align.FileAligner
+		for _, u := range f.units {
+			key := units.Key(f.name, u.Pointer)
+			rec, usable := p.usableRecord(key)
+			if names && usable && slices.Contains(p.in.NameFields, u.Field) {
+				if al == nil {
+					al = align.NewFileAligner(f.name, f.doc, p.in.Src.EN, p.in.Src.JP)
+				}
+				en, jp, err := al.Get(u.Pointer)
+				if err != nil {
+					return nil, nil, fmt.Errorf("plan: %w", err)
+				}
+				s := existing.Source{Key: key, Field: u.Field, KR: u.KR, ZH: rec.ZH, Origin: rec.Origin}
+				if jp != nil {
+					s.JP = jp.Value
+				}
+				if en != nil {
+					s.EN = en.Value
+				}
+				srcs = append(srcs, s)
+			}
+			if texts && utf8.RuneCountInString(u.KR) >= batch.ShortTextRunes {
+				tu := existing.TextUnit{
+					Key: key, File: f.name, KR: u.KR,
+					Speaker: batch.SpeakerOf(p.in.Rules, f.doc, u),
+					Group:   batch.SameTextGroup(batch.TextGroupOf(p.in.Rules, f.doc, u)),
+				}
+				if usable {
+					tu.ZH = rec.ZH
+				}
+				tus = append(tus, tu)
+			}
+		}
+	}
+	return srcs, tus, nil
 }
 
 // learnFieldChanges learns the field rules from the packs (as lct fields
