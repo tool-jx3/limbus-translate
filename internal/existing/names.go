@@ -7,6 +7,7 @@ import (
 	"slices"
 	"sort"
 	"strings"
+	"unicode"
 	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/names"
@@ -54,9 +55,10 @@ type Source struct{ Key, Field, KR, ZH, Origin, JP, EN string }
 
 // Collect builds the table of the units whose Field is one of fields. Units
 // copied, fallen back or without an origin are skipped, and so are those
-// whose KR is shorter than two runes or whose translation is empty once its
-// tags are gone, equals the KR or still holds Hangul. The result does not
-// depend on the order of units.
+// whose KR is shorter than two runes or holds no letter once its tags are
+// gone (punctuation such as "..." is no name), or whose translation is empty
+// once its tags are gone, equals the KR or still holds Hangul. The result
+// does not depend on the order of units.
 func Collect(rawTag string, fields []string, units []Source) *Table {
 	sorted := slices.Clone(units)
 	sort.SliceStable(sorted, func(i, j int) bool { return sorted[i].Key < sorted[j].Key })
@@ -84,7 +86,7 @@ func Collect(rawTag string, fields []string, units []Source) *Table {
 			continue
 		}
 		kr := strings.TrimSpace(u.KR)
-		if utf8.RuneCountInString(kr) < 2 {
+		if utf8.RuneCountInString(kr) < 2 || !strings.ContainsFunc(Plain(kr), unicode.IsLetter) {
 			continue
 		}
 		zh := Plain(u.ZH)

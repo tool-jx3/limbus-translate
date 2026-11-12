@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math/rand"
 	"reflect"
+	"slices"
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -73,6 +74,25 @@ func TestCollectSkips(t *testing.T) {
 	}
 	if tbl := Collect("r", nameFields, bad); len(tbl.Names) != 0 {
 		t.Errorf("Names = %+v, want none", tbl.Names)
+	}
+}
+
+// A KR without a letter is no name: "..." would be found in nearly every
+// line with an ellipsis. One letter among the punctuation is enough.
+func TestCollectSkipsKRWithoutALetter(t *testing.T) {
+	tbl := Collect("r", nameFields, []Source{
+		src("1", "...", "……", "", ""),
+		src("2", "!?", "！？", "", ""),
+		src("3", "<b>--</b>", "——", "", ""),
+		src("4", "1234", "一二三四", "", ""),
+		src("5", "...검", "……劍", "", ""),
+	})
+	var got []string
+	for _, n := range tbl.Names {
+		got = append(got, n.KR)
+	}
+	if want := []string{"...검"}; !slices.Equal(got, want) {
+		t.Errorf("names %q, want %q", got, want)
 	}
 }
 
