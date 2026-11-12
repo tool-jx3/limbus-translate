@@ -4913,3 +4913,40 @@ func TestBatchNamesExactAndMentionedCountsAsExact(t *testing.T) {
 		t.Errorf("Units = %v, want the keys of both units", b.Names[0].Units)
 	}
 }
+
+// A name-field unit whose JP matches a known variant but whose translation is
+// none of the existing renderings gets a name-differs warning, unless the
+// note writes the KR name.
+func TestSubmitWarnsNameDiffers(t *testing.T) {
+	for _, tc := range []struct {
+		name, zh, note string
+		warn           bool
+	}{
+		{"another rendering", "晚霞之劍", "", true},
+		{"the existing rendering", "霞光劍刃", "", false},
+		{"note writes the KR name", "晚霞之劍", "노을빛 검：此處是劇情描寫", false},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			file := "Names.json"
+			env := newEnv(t,
+				map[string]string{file: `{"dataList":[{"id":0,"name":"노을빛 검"}]}`}, nil,
+				map[string]string{file: `{"dataList":[{"id":0,"name":"茜さす剣"}]}`})
+			env.Names = existing.NewIndex(&existing.Table{RawTag: testTag, Fields: []string{"name"}, Names: []existing.Name{{
+				KR:       "노을빛 검",
+				Variants: []existing.Variant{{JP: "茜さす剣", Renderings: []existing.Rendering{{ZH: "霞光劍刃", Units: 2}}}},
+			}}}, env.Rules, nil)
+			k := fmt.Sprintf("%s|/dataList/0/name", file)
+			seed(t, env, store.PendingItem{Key: k, Reason: "new"})
+			b := mustNext(t, env, NextOptions{})
+
+			res, err := Submit(env, b, []OutUnit{{Key: k, ZH: tc.zh, Note: tc.note}}, "test-model", 3)
+			if err != nil || len(res.Accepted) != 1 || len(res.Rejected) != 0 {
+				t.Fatalf("Submit = %+v, %v, want accepted", res, err)
+			}
+			got := len(res.Warnings) == 1 && hasCode(res.Warnings[0].Issues, "name-differs")
+			if got != tc.warn {
+				t.Errorf("warnings = %+v, want name-differs: %v", res.Warnings, tc.warn)
+			}
+		})
+	}
+}

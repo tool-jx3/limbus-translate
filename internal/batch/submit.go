@@ -447,6 +447,23 @@ func (s *submission) unit(o OutUnit) error {
 		return nil
 	}
 
+	if s.env.Names != nil {
+		var jp, en string
+		if a, err := fd.aligned(langJP, pointer); err != nil {
+			return err
+		} else if a != nil {
+			jp = a.Value
+		}
+		if a, err := fd.aligned(langEN, pointer); err != nil {
+			return err
+		} else if a != nil {
+			en = a.Value
+		}
+		if is := s.env.Names.Differs(fd.units[pos].Field, kr, zh, o.Note, jp, en); is != nil {
+			issues = append(issues, *is)
+		}
+	}
+
 	s.records[o.Key] = s.claudeRecord(o.Key, kr, zh)
 	s.removed[i] = true
 	s.res.Accepted = append(s.res.Accepted, o.Key)
