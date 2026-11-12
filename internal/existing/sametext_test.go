@@ -102,11 +102,15 @@ func TestCollectSameTextIsDeterministic(t *testing.T) {
 		unit("1", "g1", "x", "A"), unit("2", "g2", "x", "B"), unit("3", "g1", "x", "B"),
 		unit("4", "g3", "y", "C"), unit("5", "g2", "y", "D"), unit("6", "g3", "x", "A"),
 	}
+	rng := rand.New(rand.NewSource(1))
 	var first []byte
 	for i := 0; i < 20; i++ {
 		u := append([]TextUnit(nil), units...)
-		rand.Shuffle(len(u), func(a, b int) { u[a], u[b] = u[b], u[a] })
-		b, _ := json.Marshal(CollectSameText("r", u))
+		rng.Shuffle(len(u), func(a, b int) { u[a], u[b] = u[b], u[a] })
+		b, err := json.Marshal(CollectSameText("r", u))
+		if err != nil {
+			t.Fatal(err)
+		}
 		if first == nil {
 			first = b
 		} else if string(first) != string(b) {
