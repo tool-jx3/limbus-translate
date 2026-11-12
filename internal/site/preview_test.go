@@ -324,6 +324,8 @@ func newPvWorld(t *testing.T, frozen ...string) pvWorld {
 		nameRef("새 문장", "新しい文", "New sentence", existing.Rendering{ZH: "新句子", Units: 3}, existing.Rendering{ZH: "全新的句子", Units: 1}),
 		nameRef("출혈", "出血", "Bleed", existing.Rendering{ZH: "流血", Units: 5}),
 	}}
+	// A second spelling of 출혈 that no pack has: no jp, en or others.
+	table.Names[1].Variants = append(table.Names[1].Variants, existing.Variant{Renderings: []existing.Rendering{{ZH: "出血", Units: 1}}})
 	sameText := existing.CollectSameText("raw-20261029", []existing.TextUnit{
 		{Key: units.Key(other, at(other, 1)), Group: "other|content|", File: other, KR: "새 문장", ZH: "自己組的譯文"},
 		{Key: units.Key(story, at(story, 6)), Group: "story-main|content|faust", File: story, Speaker: "faust", KR: "새 문장", ZH: "新的一句"},
@@ -814,13 +816,14 @@ var pvCases = []struct {
 	{"Frozen.json", "/dataList/0/content", "frozen file, glossary_check warn"},
 	{"Rules.json", "/dataList/0/content", "EN aligned by id, JP by sequence; a record like the file's other records; a glossary entry with several jp and en forms"},
 	{"Rules.json", "/dataList/2/content", "a record with no rules commit and another since than the file's others; a check: off entry the record lacks, with no term-missing"},
+	{"Bufs.json", "/dataList/0/name", "a name unit: two name refs, the second with no jp, en or others"},
 }
 
 // pvGoldUnit is a unit of preview/<path> as the viewer works on it, with every
 // default put back (PreviewUnit of site/src/types.ts). The fields the compact
-// format keeps as they are (sp, g, t, k, c, nt) are those of the compact unit;
-// the others are made from the UnitPreview of the Previewer, never from the
-// compact unit, so a decoder that puts a default back wrong is caught.
+// format numbers (g, t, n) are named here by content, and all the fields are
+// made from the UnitPreview of the Previewer, never from the compact unit, so a
+// decoder that puts a default back wrong is caught.
 type pvGoldUnit struct {
 	SP   string            `json:"sp"`
 	G    []string          `json:"g"`
@@ -1138,8 +1141,10 @@ func TestExportPreviewCarriesNames(t *testing.T) {
 	var bufs, other PreviewFile
 	readJSON(t, out, "preview/Bufs.json", &bufs)
 	readJSON(t, out, "preview/Other.json", &other)
-	if len(bufs.Names) != 1 || bufs.Names[0].KR != "출혈" || bufs.Names[0].Units != nil || !slices.Equal(bufs.Units[1].N, []int{0}) {
-		t.Errorf("Bufs.json: names %+v, n %v, want 출혈 for the name unit 1 without units", bufs.Names, bufs.Units[1].N)
+	if len(bufs.Names) != 2 || bufs.Names[0].KR != "출혈" || bufs.Names[0].Units != nil ||
+		bufs.Names[1].ZH != "出血" || bufs.Names[1].JP != "" || bufs.Names[1].EN != "" || bufs.Names[1].Others != nil ||
+		!slices.Equal(bufs.Units[1].N, []int{0, 1}) {
+		t.Errorf("Bufs.json: names %+v, n %v, want both 출혈 refs for the name unit 1 without units", bufs.Names, bufs.Units[1].N)
 	}
 	if len(bufs.Units[0].N) != 0 || len(bufs.Units[3].N) != 0 {
 		t.Errorf("Bufs.json units 0 and 3: n %v %v, want none", bufs.Units[0].N, bufs.Units[3].N)

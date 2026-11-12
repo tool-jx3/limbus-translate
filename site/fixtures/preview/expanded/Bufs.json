@@ -44,6 +44,12 @@
           "jp": "出血",
           "en": "Bleed",
           "units": null
+        },
+        {
+          "kr": "출혈",
+          "zh": "出血",
+          "count": 1,
+          "units": null
         }
       ],
       "it": {

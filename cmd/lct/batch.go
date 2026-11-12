@@ -201,14 +201,14 @@ func declinedIDs(root string) (map[string]bool, error) {
 }
 
 // activeProvisionalRecords reads the provisional terms of the store and the
-// declined list of root and returns the records of the suggestions
-// "term-new/<kr>" and the terms in force (see batch.ActiveProvisional): every record, conflicts included and in
-// the order of the file, of a KR that is in force or that only a person's
-// decline keeps out. lct suggest and the review page list those KR and treat
-// the declined ones as they treat any declined suggestion (lct suggest leaves
-// them out, the review page flags them). Which KR count is decided by
-// batch.ActiveProvisional alone, so the batches and the suggestions never
-// disagree.
+// declined list of root. It returns the terms in force (see
+// batch.ActiveProvisional) and the records of the suggestions "term-new/<kr>":
+// every record, conflicts included and in the order of the file, of a KR that
+// is in force or that only a person's decline keeps out. lct suggest and the
+// review page list those KR and treat the declined ones as they treat any
+// declined suggestion (lct suggest leaves them out, the review page flags
+// them). Which KR count is decided by batch.ActiveProvisional alone, so the
+// batches and the suggestions never disagree.
 func activeProvisionalRecords(root string, st *store.Store, r *rules.Rules) ([]store.ProvisionalTerm, []rules.Term, error) {
 	all, err := st.LoadTerms()
 	if err != nil {

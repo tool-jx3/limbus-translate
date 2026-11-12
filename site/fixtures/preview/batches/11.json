@@ -1,0 +1,52 @@
+{
+  "id": "preview",
+  "family": "other",
+  "file": "Bufs.json",
+  "files": [
+    "Bufs.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md"
+  ],
+  "glossary": [],
+  "keywords": {},
+  "names": [
+    {
+      "kr": "출혈",
+      "zh": "流血",
+      "count": 5,
+      "jp": "出血",
+      "en": "Bleed",
+      "units": [
+        "Bufs.json|/dataList/0/name"
+      ]
+    },
+    {
+      "kr": "출혈",
+      "zh": "出血",
+      "count": 1,
+      "units": [
+        "Bufs.json|/dataList/0/name"
+      ]
+    }
+  ],
+  "units": [
+    {
+      "key": "Bufs.json|/dataList/0/name",
+      "file": "Bufs.json",
+      "field": "name",
+      "speaker": "",
+      "kr": "출혈",
+      "reason": "requeue",
+      "prev_zh": "流血",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": []
+}
