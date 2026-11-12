@@ -42,6 +42,21 @@ func TestIndexExcludesGlossary(t *testing.T) {
 	}
 }
 
+// A table written before Collect left out the names without a letter still
+// has them; the index leaves them out, as Collect now does.
+func TestIndexExcludesNamesWithoutALetter(t *testing.T) {
+	ix := NewIndex(tableOf("...", "<b>!?</b>", "노을빛 검", "...검"), &rules.Rules{}, nil)
+	if ix.Lookup("...") != nil || ix.Lookup("<b>!?</b>") != nil || ix.IsName("name", "...") {
+		t.Error("a name without a letter is found")
+	}
+	if ix.Lookup("...검") == nil {
+		t.Error("a name with a letter among the punctuation is not found")
+	}
+	if got := krs(ix.Mentions("그래서... 노을빛 검으로 '!?' 벤다", map[string]bool{"...": true, "<b>!?</b>": true})); !reflect.DeepEqual(got, []string{"노을빛 검"}) {
+		t.Errorf("Mentions = %v, want only 노을빛 검", got)
+	}
+}
+
 func TestIndexDeclined(t *testing.T) {
 	ix := NewIndex(tableOf("노을빛 검"), &rules.Rules{}, map[string]bool{"name/노을빛 검": true})
 	if !ix.Declined("노을빛 검") || ix.Declined("다른") {

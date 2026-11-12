@@ -36,8 +36,10 @@ type Index struct {
 }
 
 // NewIndex indexes t, leaving out each name that the glossary has an entry
-// for, of any status. A nil t gives an empty index. declined holds the ids
-// (see SuggestionID) of the suggestions that were declined.
+// for, of any status, and each name without a letter (see Collect), which a
+// table written by an older lct may still hold. A nil t gives an empty index.
+// declined holds the ids (see SuggestionID) of the suggestions that were
+// declined.
 func NewIndex(t *Table, r *rules.Rules, declined map[string]bool) *Index {
 	ix := &Index{byKR: map[string]*Name{}, declined: declined}
 	if t == nil {
@@ -53,7 +55,7 @@ func NewIndex(t *Table, r *rules.Rules, declined map[string]bool) *Index {
 	for i := range t.Names {
 		n := &t.Names[i]
 		kr := strings.TrimSpace(n.KR)
-		if kr == "" || inGlossary[kr] {
+		if kr == "" || inGlossary[kr] || !hasLetter(kr) {
 			continue
 		}
 		ix.byKR[kr] = n

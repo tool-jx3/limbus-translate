@@ -86,7 +86,7 @@ func Collect(rawTag string, fields []string, units []Source) *Table {
 			continue
 		}
 		kr := strings.TrimSpace(u.KR)
-		if utf8.RuneCountInString(kr) < 2 || !strings.ContainsFunc(Plain(kr), unicode.IsLetter) {
+		if utf8.RuneCountInString(kr) < 2 || !hasLetter(kr) {
 			continue
 		}
 		zh := Plain(u.ZH)
@@ -198,6 +198,10 @@ func (n *Name) Has(zh string) bool {
 	}
 	return false
 }
+
+// hasLetter reports whether kr holds a letter once its tags are gone: a KR
+// that is only punctuation, such as "...", is no name.
+func hasLetter(kr string) bool { return strings.ContainsFunc(Plain(kr), unicode.IsLetter) }
 
 // Plain is the form a rendering is stored and compared in: the text as a term
 // is looked for in it (see validate.MatchText), trimmed.
