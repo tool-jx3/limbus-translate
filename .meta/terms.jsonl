@@ -16,3 +16,11 @@
 {"kr":"오스카","zh":"奧斯卡","key":"Enemies-walpu10.json|/dataList/3/name","batch":"20261112T040339-98008681","raw_tag":"raw-20261112","time":"2026-11-12T04:05:48Z"}
 {"kr":"파멜리","zh":"帕梅莉","key":"Enemies-walpu10.json|/dataList/4/name","batch":"20261112T040339-98008681","raw_tag":"raw-20261112","time":"2026-11-12T04:05:48Z"}
 {"kr":"파멜라","zh":"帕梅拉","key":"Enemies-walpu10.json|/dataList/5/name","batch":"20261112T040339-98008681","raw_tag":"raw-20261112","time":"2026-11-12T04:05:48Z"}
+{"kr":"메인 타겟","zh":"主要目標","key":"Passives_Abnormality-walpu10.json|/dataList/15/desc","batch":"20261112T040613-dc076fdf","raw_tag":"raw-20261112","time":"2026-11-12T04:07:51Z"}
+{"kr":"연기전쟁","zh":"煙霧戰爭","key":"Skills_Abnormality-walpu10.json|/dataList/4/levelList/0/flavor","batch":"20261112T040613-dc076fdf","raw_tag":"raw-20261112","time":"2026-11-12T04:07:51Z"}
+{"kr":"불주먹 사무소","zh":"火拳事務所","key":"UnitKeyword.json|/dataList/84/content","batch":"20261112T041035-241805e1","raw_tag":"raw-20261112","time":"2026-11-12T04:10:50Z"}
+{"kr":"쌍화차","zh":"雙和茶","key":"AbEvents-walpu10.json|/dataList/1/behaveDesc","batch":"20261112T041054-70c5dd04","raw_tag":"raw-20261112","time":"2026-11-12T04:11:44Z"}
+{"kr":"눈물로 벼려낸 검","zh":"以淚水磨利的劍","key":"ActionEvents-walpu10.json|/dataList/2/options/2/message","batch":"20261112T041148-9aad20e3","raw_tag":"raw-20261112","time":"2026-11-12T04:13:43Z"}
+{"kr":"유나","zh":"尤娜","key":"ScenarioModelCodes-AutoCreated.json|/dataList/751/name","batch":"20261112T041435-9a35c82a","raw_tag":"raw-20261112","time":"2026-11-12T04:14:47Z"}
+{"kr":"필립","zh":"菲利普","key":"ScenarioModelCodes-AutoCreated.json|/dataList/752/name","batch":"20261112T041435-9a35c82a","raw_tag":"raw-20261112","time":"2026-11-12T04:14:47Z"}
+{"kr":"고독한 해결사","zh":"孤獨的收尾人","key":"Walpu10EventText.json|/dataList/36/content","batch":"20261112T041451-7a4e648d","raw_tag":"raw-20261112","time":"2026-11-12T04:15:34Z"}

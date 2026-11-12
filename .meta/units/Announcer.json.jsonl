@@ -55,3 +55,4 @@
 {"key":"Announcer.json|/dataList/54/name","kr_sha":"9aaa2de27408d94361213da55e6cb68c1e45d5bb23180bf5b26b82f9bab4fefe","zh":"簡","origin":"paratranz","since":"raw-20261029","rules":"563a0bf5b2d7ab2426f09b1eb3566a5beec92bf0"}
 {"key":"Announcer.json|/dataList/55/name","kr_sha":"a6bffbdb7e99e74cfd7e82872fd54706ab334e7b8e8075569d430d77f8a73eff","zh":"莫梭","origin":"paratranz","since":"raw-20261029","rules":"563a0bf5b2d7ab2426f09b1eb3566a5beec92bf0"}
 {"key":"Announcer.json|/dataList/56/name","kr_sha":"d06092e6359b46bf074cfe9b9933bef77fdcf1e1788017715f57c3ceac62599d","zh":"普依","origin":"paratranz","since":"raw-20261029","rules":"563a0bf5b2d7ab2426f09b1eb3566a5beec92bf0"}
+{"key":"Announcer.json|/dataList/57/name","kr_sha":"531f79ed8cd4c61bb7405a10c9278ca9a99e28b8c8602b0c4a751e27b5982c83","zh":"Hokma","origin":"claude","since":"raw-20261112","rules":"ebbb490ca56d41c7d99dcd8496ccaee19a55063e","model":"claude-opus-5-5","batch":"20261112T041551-dc75fa71"}
