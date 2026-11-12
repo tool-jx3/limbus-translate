@@ -784,3 +784,71 @@ review skill：「流程」第 1 步的種類清單中、`new_family` 之後加�
   Run: `go vet ./... && go test ./...`，`cd site && npm ci && npm test && npm run build && npm run typecheck`
   Expected: PASS
 - [ ] **Step 7: Commit**：`README：既有譯名表`（重演的程式與結果不進版控；結果檔路徑與摘要寫進 ledger 與最後的回報）
+
+---
+
+## 追加（使用者 2026-11-12 決定）
+
+最終審查與重演之後，使用者要求再做三項，做完才合併：同一次更新裡新翻的句子也能成為後面批次的同句參考；每批名稱上限改由 `lct.yaml` 設定並放大到 80；建置紀錄保留的「同一 KR 不同譯法」組數上限改由 `lct.yaml` 設定並放大到 1000。
+
+### Task 15: 同句參考在切批次時讀當下的譯文
+
+**Files:**
+- Modify: `internal/existing/sametext.go`、`internal/existing/sametext_test.go`、`internal/plan/plan.go`（`collectSources`、同句部分）、`internal/batch/next.go`（`assemble`）、`internal/batch/batch.go`（說明）、`internal/plan/plan_test.go`、`internal/batch/batch_test.go`、`cmd/lct/batch_test.go`
+
+**Interfaces:**
+- Produces（取代 Task 3 的格式；尚未部署，不需相容舊檔）：
+  ```go
+  type SameText struct {
+      RawTag string                 `json:"raw_tag"`
+      Texts  map[string][]SameGroup `json:"texts"` // KR text → its groups, by Group
+  }
+  type SameGroup struct {
+      Group   string   `json:"group"`
+      Speaker string   `json:"speaker,omitempty"`
+      Keys    []string `json:"keys"` // the group's units with this KR, by key, at most MaxSameKeys
+  }
+  const MaxSameKeys = 20
+  type TextUnit struct{ Key, Group, Speaker, KR string }
+  func CollectSameText(rawTag string, units []TextUnit) *SameText // KR in ≥2 groups, whether translated or not
+  func (s *SameText) For(kr, group string, zhOf func(key string) (zh string, ok bool)) []SameRendering
+  func Usable(rec store.Record, kr string) bool // origin paratranz/claude/human, KRSha == units.KRSha(kr), no needs_review flag
+  ```
+- `For`：只看 `Group != group` 的組；每組取 `zhOf` 有譯文的 key 中最多的譯法（同數取 key 較小者先出現的），`File` 是用這個譯法、key 最小的單位的檔，`Speaker` 是組的；不同的 `ZH` 依組的順序取前 `MaxSameText` 個。`SameRendering`、`SameTextRef` 不變
+- plan：同句部分只傳 `TextUnit`（不再傳譯文）；仍每個 raw tag 只算一次
+- 批次：`assemble` 在有單位的 KR 出現在索引時才載入紀錄（沿用 `records()` 的延遲載入），`zhOf` = 該 key 有紀錄且 `existing.Usable(rec, kr)` 時的 `rec.ZH`；同一批自己的單位不當參考（它們還沒有譯文）
+- 這樣同一次翻譯中，先送出的譯文在之後切的批次就會成為同句參考
+
+- [ ] **Step 1: 寫失敗的測試**
+  - `TestCollectSameTextKeepsUntranslatedGroups`：一句在兩個組都沒有譯文 → 仍收；只在一個組 → 不收；每組最多 `MaxSameKeys` 個 key、依 key 排序
+  - `TestSameTextForReadsCurrentTranslations`：`zhOf` 給的譯法決定結果；某組沒有任何 key 有譯文 → 該組不出現；同組多數決與同數規則；自己的組不出現；最多 2 種
+  - `TestUsable`：copy、fallback、KRSha 不符、needs_review → false
+  - `TestBatchSameTextSeesTranslationsOfThisUpdate`（batch）：A 組單位先送出收下後，再切 B 組同句單位的批次 → `refs.same_text` 有 A 的新譯文；送出前切 → 沒有
+  - plan 與 cmd/lct 的既有同句測試改成新格式
+- [ ] **Step 2–4**：RED → 實作 → `go vet ./... && go test ./...`、網站檢查（預覽 fixture 若改變就重產，Go/TS 重建須一致）
+- [ ] **Step 5: Commit**：`existing、batch：同句參考在切批次時讀當下的譯文`
+
+### Task 16: 名稱上限與不一致組上限移到 lct.yaml
+
+**Files:**
+- Modify: `internal/config/config.go`、`internal/config/config_test.go`、`lct.yaml`、`internal/batch/batch.go`（`MaxNames` → `DefaultMaxNames`、`Env.MaxNames`）、`internal/batch/next.go`、`cmd/lct/batch.go`（`baseEnv`）、`internal/build/build.go`（`maxInconsistentAll` → `Options.MaxInconsistent` 與 `DefaultMaxInconsistent`）、`cmd/lct/build.go`、相關測試與文件（`internal/build/report.go` 的 `Info.InconsistentAll` 說明、README 若提到 500）
+
+**Interfaces:**
+- `config.Batch.MaxNames int` `yaml:"max_names"`；`config.Config.Build Build` `yaml:"build"`；`config.Build struct { MaxInconsistent int `yaml:"max_inconsistent"` }`
+- `lct.yaml`：`batch:` 那一行加 `max_names: 80`；新增一行 `build: { max_inconsistent: 1000 }`
+- `batch.DefaultMaxNames = 80`、`batch.Env.MaxNames int`（0 用預設，負數是錯誤）；`build.DefaultMaxInconsistent = 1000`、`build.Options.MaxInconsistent int`（0 用預設，負數是錯誤）。含這次新譯的組仍全部保留（Task 1 最終修正的規則不變）
+
+- [ ] **Step 1: 寫失敗的測試**
+  - `TestLoadBatchAndBuildLimits`（config）：讀到 `max_names`、`max_inconsistent`
+  - `TestBatchNamesCapFromEnv`：`Env.MaxNames: 5` 時最多 5 項（整個名稱計）；0 時用 80
+  - `TestBuildKeepsMaxInconsistentGroups`：`Options.MaxInconsistent: 3`，5 個舊組 → 保留 3 個；含新譯的第 5 個仍保留；0 時用 1000
+  - cmd/lct：`lct batch next`、`lct build` 用到 `lct.yaml` 的值（可用小值的測試 repo 驗證）
+- [ ] **Step 2–4**：RED → 實作 → `go vet ./... && go test ./...`
+- [ ] **Step 5: Commit**：`config：每批名稱上限與不一致組上限移到 lct.yaml`
+
+### Task 17: 以實際資料複驗
+
+- 在 scratch clone 以新的 `bin/lct` 重跑 Task 14 的 Step 3（522cc08 的紀錄加 `written`、Step 1 的名稱表），確認報告「含這次新譯」是 13 組，`inconsistent_new` 的項數，建置紀錄的組數（915 組應全收）與 `build.json` 大小
+- 重新產生同句索引（Task 15 的格式），記下大小與句數；以 522cc08 的紀錄模擬「同一次更新的後面批次」：對這次 1,262 個單位，用其他單位的現行譯文（不含自己）算 `For`，記下有 `same_text` 的單位數（對照舊做法的 11 個），抽看 3 例
+- 重量 `lct site` 的時間（Task 最終修正的 `Mentions` 加速後）
+- 結果寫回 scratchpad 的 `existing-names-replay.md`（追加一節），不進版控
