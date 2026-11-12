@@ -89,8 +89,10 @@ func (t *OldTally) Add(key, kr, zh string) {
 // rendering as Existing. differs is whether the term differs from the old
 // translations: with a name in the table, when zh is none of its renderings;
 // without, when at least MinOldUnits old units hold kr and fewer than half of
-// them hold zh. examples are up to three old units that hold kr, those whose
-// translation does not hold zh first, each group in key order.
+// them hold zh. A name whose suggestion was declined (Index.Declined) counts
+// as none: a person chose to keep renderings other than the existing one, so
+// the old units decide. examples are up to three old units that hold kr,
+// those whose translation does not hold zh first, each group in key order.
 func (t *OldTally) Use(ix *Index, kr, zh string) (use store.OldUse, examples []OldExample, differs bool) {
 	var o *oldTerm
 	for _, c := range t.terms {
@@ -102,7 +104,7 @@ func (t *OldTally) Use(ix *Index, kr, zh string) (use store.OldUse, examples []O
 	if o != nil {
 		use.Units, use.With = o.units, o.with
 	}
-	if name := ix.Lookup(kr); name != nil {
+	if name := ix.Lookup(kr); name != nil && !ix.Declined(kr) {
 		if len(name.Variants) > 0 && len(name.Variants[0].Renderings) > 0 {
 			use.Existing = name.Variants[0].Renderings[0].ZH
 		}

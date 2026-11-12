@@ -72,6 +72,27 @@ func TestOldTallyUsesNameTable(t *testing.T) {
 	}
 }
 
+// A name whose suggestion was declined does not decide: a person kept the
+// new rendering, so the term is weighed against the old translations as one
+// the table lacks.
+func TestOldTallyIgnoresADeclinedName(t *testing.T) {
+	ix := NewIndex(&Table{RawTag: "raw1", Fields: []string{"name"}, Names: []Name{
+		{KR: "격돌", Variants: []Variant{{Renderings: []Rendering{{"交鋒", 3}}}}},
+	}}, nil, map[string]bool{SuggestionID("격돌"): true})
+	few := NewOldTally([]rules.Term{provisional("격돌", "衝突")})
+	few.Add("F.json|/0", "격돌", "交鋒")
+	if use, _, differs := few.Use(ix, "격돌", "衝突"); differs || use.Existing != "" || use.Units != 1 {
+		t.Errorf("one old unit: use = %+v, differs = %v, want no difference and no Existing", use, differs)
+	}
+	many := NewOldTally([]rules.Term{provisional("격돌", "衝突")})
+	for i := range MinOldUnits {
+		many.Add(fmt.Sprintf("F.json|/%d", i), "격돌", "交鋒")
+	}
+	if use, _, differs := many.Use(ix, "격돌", "衝突"); !differs || use.Existing != "" || use.Units != MinOldUnits || use.With != 0 {
+		t.Errorf("%d old units without it: use = %+v, differs = %v, want a difference by the tally", MinOldUnits, use, differs)
+	}
+}
+
 func TestOldTallyWordMatch(t *testing.T) {
 	tally := NewOldTally([]rules.Term{provisional("불주먹 사무소", "火拳事務所")})
 	tally.Add("F.json|/0", "큰불주먹 사무소", "大火拳事務所")
