@@ -1310,6 +1310,196 @@
           ]
         }
       ]
+    },
+    {
+      "id": 2061111,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "以淚磨礪之劍",
+          "abName": "絕望騎士",
+          "desc": "[CantChangeTarget]\n[SupportAlly]\n自身每帶有1層 [DespairKnightEGOSword]，使造成的傷害+20%\n[BeforeAttack] 自身每帶有20層 [DespairKnightEGOMind]，使造成的傷害+1%\n[BeforeAttack] 若目標為敵方單位，則攻擊容量+2\n[BeforeAttack] 使自身獲得3回 [Breath]\n[BeforeAttack] 使自身獲得6回 [Charge]\n[BeforeAttack] 若自身的 [DespairKnightEGOMind] 為999層，則將其全部消耗，並於下回合使自身獲得1層 [CriticalDamageUp]\n\n[EndSkill] 使自身獲得1層 [DespairKnightEGOSword]\n[EndSkill] 使自身獲得100層 [DespairKnightEGOMind]\n\n[EndSkill] 若目標為友方單位，則\n- 若目標為 [PersonalityBreath] 或 [PersonalityCharge]，則使其獲得2層 [AttackDmgUp]\n- 使其增加5級 [Breath] 強度\n- 使目標獲得3回 [Breath]\n- 使目標獲得6回 [Charge]\n- 使其獲得等同於自身體力上限20%的護盾\n- 使其獲得 [DespairKnightEGOProtect]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "以淚磨礪之劍",
+          "abName": "絕望騎士",
+          "desc": "[CantChangeTarget]\n[SupportAlly]\n自身每帶有1層 [DespairKnightEGOSword]，使造成的傷害+<style=\"highlight\">30</style>%\n<style=\"highlight\">本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+30% (若是集中遭遇戰，則以部位判定)</style>\n[BeforeAttack] 自身每帶有20層 [DespairKnightEGOMind]，使造成的傷害+1%\n[BeforeAttack] 若目標為敵方單位，則攻擊容量+2\n[BeforeAttack] 使自身獲得3回 [Breath]\n[BeforeAttack] 使自身獲得6回 [Charge]\n[BeforeAttack] 若自身的 [DespairKnightEGOMind] 為999層，則將其全部消耗，並於下回合使自身獲得1層 [CriticalDamageUp]\n\n[EndSkill] 使自身獲得1層 [DespairKnightEGOSword]\n[EndSkill] 使自身獲得100層 [DespairKnightEGOMind]\n\n[EndSkill] 若目標為友方單位，則\n- 若目標為 [PersonalityBreath] 或 [PersonalityCharge]，則使其獲得2層 [AttackDmgUp]\n- 使其增加5級 [Breath] 強度\n- 使目標獲得3回 [Breath]\n- 使目標獲得6回 [Charge]\n- 使其獲得等同於自身體力上限20%的護盾\n- 使其獲得 [DespairKnightEGOProtect]\n<style=\"highlight\">- 使自身與目標恢復15點理智值</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "以淚磨礪之劍",
+          "abName": "絕望騎士",
+          "desc": "[CantChangeTarget]\n[SupportAlly]\n自身每帶有1層 [DespairKnightEGOSword]，使造成的傷害+<style=\"highlight\">50</style>%\n本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+<style=\"highlight\">50</style>% (若是集中遭遇戰，則以部位判定)\n[BeforeAttack] 自身每帶有20層 [DespairKnightEGOMind]，使造成的傷害+1%\n[BeforeAttack] 若目標為敵方單位，則攻擊容量+2\n[BeforeAttack] 使自身獲得3回 [Breath]\n[BeforeAttack] 使自身獲得6回 [Charge]\n[BeforeAttack] 若自身的 [DespairKnightEGOMind] 為999層，則將其全部消耗，並於下回合使自身獲得1層 [CriticalDamageUp]\n\n[EndSkill] 使自身獲得1層 [DespairKnightEGOSword]\n[EndSkill] 使自身獲得100層 [DespairKnightEGOMind]\n\n[EndSkill] 若目標為友方單位，則\n- 若目標為 [PersonalityBreath] 或 [PersonalityCharge]，則使其獲得2層 [AttackDmgUp]\n- 使其增加5級 [Breath] 強度\n- 使目標獲得3回 [Breath]\n- 使目標獲得6回 [Charge]\n- 使其獲得等同於自身體力上限20%的護盾\n- 使其獲得 [DespairKnightEGOProtect]\n- 使自身與目標恢復15點理智值\n<style=\"highlight\">- 隨機移除1個目標帶有的可解除負面效果</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">使本硬幣暴擊時造成的傷害+30%</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2061121,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "以淚磨礪之劍",
+          "abName": "絕望騎士",
+          "desc": "[CantIdentify]\n隨機指定目標\n自身每帶有1層 [DespairKnightEGOSword]，使最終威力+2\n[BeforeAttack] 自身每帶有10層 [DespairKnightEGOMind]，使造成的傷害+1%\n[BeforeAttack] 使自身獲得3回 [Breath]\n[BeforeAttack] 使自身獲得6回 [Charge]\n[BeforeAttack] 每有1枚被破壞的硬幣，使基礎威力-3 (最多9)\n\n[EndSkill] 使自身恢復(自身的 [DespairKnightEGOSword] 層數×5)點理智值，並使該效果消失\n[EndSkill] 使自身的 [DespairKnightEGOMind] 消失",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "以淚磨礪之劍",
+          "abName": "絕望騎士",
+          "desc": "[CantIdentify]\n隨機指定目標\n自身每帶有1層 [DespairKnightEGOSword]，使最終威力+2\n<style=\"highlight\">本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+30% (若是集中遭遇戰，則以部位判定)</style>\n[BeforeAttack] 自身每帶有10層 [DespairKnightEGOMind]，使造成的傷害+1%\n[BeforeAttack] 使自身獲得3回 [Breath]\n[BeforeAttack] 使自身獲得6回 [Charge]\n[BeforeAttack] 每有1枚被破壞的硬幣，使基礎威力-3 (最多9)\n\n[EndSkill] 使自身恢復(自身的 [DespairKnightEGOSword] 層數×5)點理智值，並使該效果消失\n[EndSkill] 使自身的 [DespairKnightEGOMind] 消失",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 下回合使自身獲得1層 [PenetrateResultUp] (每回合最多1次)</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 下回合使自身獲得1層 [PenetrateDamageUp] (每回合最多1次)</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 下回合使自身獲得1層 [IndigoDamageUp] (每回合最多1次)</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "以淚磨礪之劍",
+          "abName": "絕望騎士",
+          "desc": "[CantIdentify]\n隨機指定目標\n<style=\"highlight\">若自身的 [DespairKnightEGOMind] 為999層，則最終威力+3</style>\n自身每帶有1層 [DespairKnightEGOSword]，使最終威力+<style=\"highlight\">3</style>\n本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+<style=\"highlight\">50</style>% (若是集中遭遇戰，則以部位判定)\n<style=\"highlight\">每有1名處於陣亡狀態的友方單位，使造成的傷害+10%</style>\n[BeforeAttack] 自身每帶有10層 [DespairKnightEGOMind]，使造成的傷害+1%\n[BeforeAttack] 使自身獲得3回 [Breath]\n[BeforeAttack] 使自身獲得6回 [Charge]\n[BeforeAttack] 每有1枚被破壞的硬幣，使基礎威力-3 (最多9)\n\n[EndSkill] 使自身恢復(自身的 [DespairKnightEGOSword] 層數×5)點理智值，並使該效果消失\n[EndSkill] 使自身的 [DespairKnightEGOMind] 消失",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [PenetrateResultUp] (每回合最多1次)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [PenetrateDamageUp] (每回合最多1次)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">使本硬幣暴擊時造成的傷害+30%</style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 下回合對目標施加1層 [PenetrateTakeDamageUp]</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [IndigoDamageUp] (每回合最多1次)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

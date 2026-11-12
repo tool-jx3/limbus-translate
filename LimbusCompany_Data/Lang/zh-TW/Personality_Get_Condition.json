@@ -1439,6 +1439,30 @@
     {
       "id": "10617_getCondition_gacksung",
       "content": "高級訂製服::漆黑派 3F 廣播室 鴻璐 人格同步階段3 完成"
+    },
+    {
+      "id": "11116_getCondition_normal",
+      "content": "獲得楔事務所 代表 奧提斯時"
+    },
+    {
+      "id": "11116_getCondition_gacksung",
+      "content": "楔事務所 代表 奧提斯 人格同步階段3 完成"
+    },
+    {
+      "id": "10316_getCondition_normal",
+      "content": "獲得楔事務所 收尾人 唐吉訶德時"
+    },
+    {
+      "id": "10316_getCondition_gacksung",
+      "content": "楔事務所 收尾人 唐吉訶德 人格同步階段3 完成"
+    },
+    {
+      "id": "11017_getCondition_normal",
+      "content": "獲得楔事務所 收尾人 辛克萊時"
+    },
+    {
+      "id": "11017_getCondition_gacksung",
+      "content": "楔事務所 收尾人 辛克萊 人格同步階段3 完成"
     }
   ]
 }

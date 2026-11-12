@@ -331,6 +331,14 @@
     {
       "id": "UnitKeyword_LE_KHAKI",
       "content": "卡其派"
+    },
+    {
+      "id": "UnitKeyword_WEDGE",
+      "content": "楔事務所"
+    },
+    {
+      "id": "UnitKeyword_FIREPUNCH_OFFICE",
+      "content": "火拳事務所"
     }
   ]
 }

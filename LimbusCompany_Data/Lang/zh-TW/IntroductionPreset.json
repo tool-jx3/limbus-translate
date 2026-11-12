@@ -2163,6 +2163,30 @@
     {
       "id": "introduce_sentence_271",
       "content": "要仔細{0}才行哦？"
+    },
+    {
+      "id": "introduce_word_272",
+      "content": "楔"
+    },
+    {
+      "id": "introduce_sentence_272",
+      "content": "展開{0}形陣！"
+    },
+    {
+      "id": "introduce_word_273",
+      "content": "保險更新"
+    },
+    {
+      "id": "introduce_sentence_273",
+      "content": "這次要{0}的事，你沒忘記吧？"
+    },
+    {
+      "id": "introduce_word_274",
+      "content": "誓言"
+    },
+    {
+      "id": "introduce_sentence_274",
+      "content": "以未能遵守的{0}磨利的這把劍……"
     }
   ]
 }

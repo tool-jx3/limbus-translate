@@ -1,0 +1,34 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_walpu10_start_90008_1",
+      "dlg": "別緊張，像平常那樣做就一定能贏！",
+      "isHide": true
+    },
+    {
+      "id": "announcer_walpu10_battle_win_90008_1",
+      "dlg": "我們贏了！這樣算是幫上一點忙了嗎？",
+      "isHide": true
+    },
+    {
+      "id": "announcer_walpu10_ally_dead_90008_1",
+      "dlg": "別怪罪誰了。大家都已經盡力了。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_walpu10_ally_dead_90008_2",
+      "dlg": "大家別動搖！越是這種時候，越要打起精神。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_walpu10_killenemy_90008_1",
+      "dlg": "贏下來只是時間問題了！",
+      "isHide": true
+    },
+    {
+      "id": "announcer_walpu10_killenemy_90008_2",
+      "dlg": "很好，進行得很順利！再集中一點吧。",
+      "isHide": true
+    }
+  ]
+}

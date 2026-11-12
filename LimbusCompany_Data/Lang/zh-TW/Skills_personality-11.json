@@ -3209,6 +3209,450 @@
           ]
         }
       ]
+    },
+    {
+      "id": 1111601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "快速突刺",
+          "desc": "[WhenUse] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "快速突刺",
+          "desc": "<style=\"highlight\">[WhenUse] 若自身的 [Breath] 強度與目標的 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1</style>\n[WhenUse] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加1回 [Vibration]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "快速突刺",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度與目標的 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1\n<style=\"highlight\">[WhenUse] 若自身的 [WedgeOffice] 為3層，則最終威力+1</style>\n[WhenUse] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加1回 [Vibration]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1111602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "閃光之槍",
+          "desc": "[StartBattle] 使包括自身在內所有屬於楔事務所[TabExplain]的友方人格獲得1層 [PenetrateDamageUp] (每回合最多1次)\n[WhenUse] 若本行動槽中未選擇的技能為「快速突刺」，則將其捨棄\n[WhenUse] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度與1回 [Vibration]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "閃光之槍",
+          "desc": "[StartBattle] 使包括自身在內所有屬於楔事務所[TabExplain]的友方人格獲得1層 [PenetrateDamageUp] (每回合最多1次)\n[WhenUse] 若本行動槽中未選擇的技能為「快速突刺」，則將其捨棄\n<style=\"highlight\">[WhenUse] 若自身的 [Breath] 強度與目標的 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1</style>\n<style=\"highlight\">[WhenUse] 自身每帶有1層 [WedgeOffice]，使最終威力+1 (最多+3)</style>\n[WhenUse] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度與1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "閃光之槍",
+          "desc": "[StartBattle] 使包括自身在內所有屬於楔事務所[TabExplain]的友方人格獲得1層 [PenetrateDamageUp] (每回合最多1次)\n[WhenUse] 若本行動槽中未選擇的技能為「快速突刺」，則將其捨棄\n[WhenUse] 自身的 [Breath] 強度與目標的 [Vibration] 強度之和每有6<style=\"highlight\">級，使本技能的硬幣威力+1 (最多+2)</style>\n[WhenUse] 自身每帶有1層 [WedgeOffice]，使最終威力+1 (最多+3)\n[WhenUse] 使自身獲得<style=\"highlight\">3</style>回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度與1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1111603,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "貫穿",
+          "desc": "[WhenUse] 自身的 [Breath] 強度與目標的 [Vibration] 強度之和每有4級，使本技能的最終威力+1 (最多+3)\n[WhenUse] 使自身獲得2級 [Breath] 強度\n[WhenUse] 使自身獲得3回 [Breath]\n\n[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- [WhenUse] 使自身獲得1層 [ComboWedgeDawn] (每個技能最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若目標處於 [Switch_Vibration] 或 [FusionVibration] 狀態，則使本硬幣造成的傷害+50%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標未處於 [Switch_Vibration] 狀態，則使目標 [Switch_Vibration] 為 [VibrationCollapse]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+30%\n- [OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "貫穿",
+          "desc": "<style=\"highlight\">[WhenUse] 造成的傷害+(目標的 [Vibration] 強度 × [Vibration] 回數)% (最多100%)</style>\n<style=\"highlight\">[WhenUse] 暴擊時造成的傷害+(自身的 [Breath] 強度 × [Breath] 回數)% (最多100%)</style>\n[WhenUse] 自身的 [Breath] 強度與目標的 [Vibration] 強度之和每有4級，使本技能的最終威力+1 (最多+<style=\"highlight\">5</style>)\n<style=\"highlight\">[WhenUse] 若自身的 [WedgeOffice] 為3層，則拚點威力+6</style>\n[WhenUse] 使自身獲得2級 [Breath] 強度\n[WhenUse] 使自身獲得3回 [Breath]\n\n[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- [WhenUse] 使自身獲得1層 [ComboWedgeDawn] (每個技能最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "若目標處於 [Switch_Vibration] 或 [FusionVibration] 狀態，則使本硬幣造成的傷害+50%<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標未帶有 [Switch_Vibration]，則使目標 [Switch_Vibration] 為 [VibrationCollapse]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 對目標施加2層 [PenetrateTakeDamageUp] (每回合最多1次)</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+30%\n- [OnSucceedAttack] 使目標增加2回 [Vibration]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1111604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "調整呼吸",
+          "desc": "[StartBattle] 使自身獲得1層 [SupportProtect] (每回合最多2次)\n[OnSucceedEvade]\n- 使自身獲得2級 [Breath] 強度 (每回合最多3次)\n- 下回合使自身獲得2層 [Agility] (每回合最多1次)",
+          "coinlist": [
+            {}
+          ]
+        },
+        {
+          "level": 4,
+          "name": "調整呼吸",
+          "desc": "[StartBattle] 使自身獲得1層 [SupportProtect] (每回合最多2次)\n<style=\"highlight\">[WhenUse] 自身每帶有3級 [Breath] 強度，使本技能的硬幣威力+1 (最多+2)</style>\n[OnSucceedEvade]\n- 使自身獲得2級 [Breath] 強度 (每回合最多3次)\n- 下回合使自身獲得2層 [Agility] (每回合最多1次)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1111605,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "楔形陣展開",
+          "desc": "[CantDuel]\n[WhenUse] 若自身的 [Breath] 強度不低於8級，則使本技能的硬幣威力+1\n[WhenUse] 若目標的 [Vibration] 強度不低於8級，則使本技能的最終威力+1\n[WhenUse] 使自身獲得3回 [Breath]\n[EndSkill]\n- 消耗自身的25層 [ComboWedge]\n- 下回合使除自身以外屬於楔事務所[TabExplain]的友方人格獲得1層 [PenetrateResultUp]\n- 使自身獲得1層 [ComboWedgeDawn]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                },
+                {
+                  "desc": "[ComboSkill]：楔事務所[TabExplain] 收尾人 唐吉訶德\n- 造成的傷害+30%\n- 最後一枚硬幣命中時，觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[ComboSkill]：楔事務所[TabExplain] 收尾人 辛克萊\n- 造成的傷害+30%\n- 最後一枚硬幣命中時，觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+30%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1111606,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "……全員，準備交鋒。",
+          "desc": "[WhenUse] 自身每帶有8級 [Breath] 強度，使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 目標每帶有8級 [Vibration] 強度，使本技能的最終威力+1 (最多+2)\n[WhenUse]\n- 使自身獲得3回 [Breath]\n- 依除自身以外可行動且屬於楔事務所[TabExplain]的友方人格數量，使攻擊容量增加相應數值 (最多+2)\n[WhenUse] 本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+30% (若是集中遭遇戰，則以部位判定)\n[EndSkill]\n- 消耗自身所有的 [ComboWedgeDawn]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] [FusionVibration] 為 [VibrationCollapse]"
+                },
+                {
+                  "desc": "[ComboSkill]：黎明事務所[TabExplain] 收尾人 浮士德\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加3級 [Combustion] 強度\n- [OnSucceedAttack] [Switch_Vibration] 為 [VibrationIgnition]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[ComboSkill]：楔事務所[TabExplain] 收尾人 唐吉訶德\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[ComboSkill]：楔事務所[TabExplain] 收尾人 辛克萊\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Combustion] 強度\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回\n- [OnSucceedAttack] 觸發目標的 [Combustion]。使目標的 [Combustion] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1111608,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "黎明之後貫穿而來的楔",
+          "desc": "[WhenUse] 自身每帶有8級 [Breath] 強度，使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 目標每帶有8級 [Vibration] 強度，使本技能的最終威力+1 (最多+2)\n[WhenUse]\n- 使自身獲得3回 [Breath]\n- 依除自身以外可行動且屬於楔事務所[TabExplain]的友方人格數量，使攻擊容量增加相應數值 (最多+2)\n[WhenUse] 本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+30% (若是集中遭遇戰，則以部位判定)\n[WinDuel] [FusionVibration] 為 [VibrationCollapse]\n[EndSkill]\n- 消耗自身所有的 [ComboWedgeDawn]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                },
+                {
+                  "desc": "[ComboSkill]：黎明事務所[TabExplain] 收尾人 浮士德\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加3級 [Combustion] 強度\n- [OnSucceedAttack] [Switch_Vibration] 為 [VibrationIgnition]"
+                },
+                {
+                  "desc": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Combustion] 強度\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回\n- [OnSucceedAttack] 觸發目標的 [Combustion]。使目標的 [Combustion] 回數減少1回"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[ComboSkill]：楔事務所[TabExplain] 收尾人 唐吉訶德\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[ComboSkill]：楔事務所[TabExplain] 收尾人 辛克萊\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+100%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1111607,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "退下吧",
+          "desc": "[DuelCounter]\n[SupportProtect] 專用技能\n[WhenUse] 自身每失去20%體力，使拚點威力+1 (最多+4)\n[WhenUse]\n- 使接受 [SupportProtect] 的友方單位與自身恢復5點理智值\n- 使自身獲得體力上限15%的護盾 (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

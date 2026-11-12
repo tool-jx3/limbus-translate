@@ -1,0 +1,22 @@
+{
+  "dataList": [
+    {
+      "id": 1123,
+      "panicName": "黎明事務所",
+      "lowMoraleDescription": "對擁有 [Combustion] 的敵人造成的傷害-5%\n對擁有 [Vibration] 的敵人造成的混亂傷害+5%",
+      "panicDescription": "對擁有 [Combustion] 的敵人造成的傷害-10%\n對擁有 [Vibration] 的敵人造成的混亂傷害+10%"
+    },
+    {
+      "id": 1124,
+      "panicName": "楔事務所",
+      "lowMoraleDescription": "暴擊時造成的傷害-5%\n對擁有 [Vibration] 的敵人造成的混亂傷害+5%",
+      "panicDescription": "暴擊時造成的傷害-10%\n對擁有 [Vibration] 的敵人造成的混亂傷害+10%"
+    },
+    {
+      "id": 1125,
+      "panicName": "蠟翼",
+      "lowMoraleDescription": "使自身獲得1層 [Vulnerable] \n對擁有 [Combustion] 的敵人造成的傷害+10%",
+      "panicDescription": "使自身獲得1層 [Vulnerable] \n對擁有 [Combustion] 的敵人造成的傷害+25%"
+    }
+  ]
+}

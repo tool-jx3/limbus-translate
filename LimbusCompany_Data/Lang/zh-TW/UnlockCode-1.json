@@ -225,6 +225,11 @@
       "openCondition": "通關主線劇情第10章",
       "openConditionNumber": "通關10-7",
       "relatedChapterText": "Canto X"
+    },
+    {
+      "id": 9129,
+      "openCondition": "通關第10屆瓦爾普吉斯之夜",
+      "relatedChapterText": "第10屆瓦爾普吉斯之夜"
     }
   ]
 }

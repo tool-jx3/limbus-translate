@@ -1,0 +1,280 @@
+{
+  "dataList": [
+    {
+      "id": "Walpu10_reward_event_desc",
+      "content": "請在第10屆瓦爾普吉斯之夜的簡單、困難難度戰鬥中完成任務。\n\n完成任務即可獲得各種獎勵。"
+    },
+    {
+      "id": "Walpu10_reward_normal_tab",
+      "content": "簡單難度"
+    },
+    {
+      "id": "Walpu10_reward_hard_tab",
+      "content": "困難難度"
+    },
+    {
+      "id": "missionConditionTitle_10159",
+      "content": "在1次戰鬥中擊殺所有黎明事務所收尾人，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_hidden_10159",
+      "content": "在1次戰鬥中擊殺所有???，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_10160",
+      "content": "在1次戰鬥中擊殺所有楔事務所收尾人，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_hidden_10160",
+      "content": "在1次戰鬥中擊殺所有???，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_10161",
+      "content": "黎明事務所 / 楔事務所 接待成功"
+    },
+    {
+      "id": "missionConditionTitle_hidden_10161",
+      "content": "??? 接待成功"
+    },
+    {
+      "id": "missionConditionTitle_10162",
+      "content": "在1次戰鬥中，不確定的悲傷情緒從未達到上限5，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_hidden_10162",
+      "content": "在1次戰鬥中，???從未達到上限5，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_10163",
+      "content": "擁有指定司書增益的友方單位在1次戰鬥中拚點勝利不低於10次，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_10164",
+      "content": "擁有指定司書增益的友方單位在1次戰鬥中擊殺不低於2名敵人，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_10165",
+      "content": "在情感等級達到2級的狀態下接待成功"
+    },
+    {
+      "id": "missionConditionTitle_10166",
+      "content": "在楔事務所收尾人們的連攜技能發動未達5次的情況下接待成功"
+    },
+    {
+      "id": "missionConditionTitle_10167",
+      "content": "在1次戰鬥中，以1個攻擊技能(包含E.G.O技能、反擊技能)對1名敵人造成不低於300的傷害，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_10168",
+      "content": "在所有友方單位存活的狀態下接待成功"
+    },
+    {
+      "id": "missionConditionTitle_10169",
+      "content": "在所有友方單位的理智值皆未達到-45的狀態下接待成功"
+    },
+    {
+      "id": "missionConditionTitle_10170",
+      "content": "在友方單位陷入混亂未達5次的情況下接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20080",
+      "content": "在1次戰鬥中擊殺所有黎明事務所收尾人，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_hidden_20080",
+      "content": "在1次戰鬥中擊殺所有???，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20081",
+      "content": "在1次戰鬥中擊殺所有楔事務所收尾人，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_hidden_20081",
+      "content": "在1次戰鬥中擊殺所有???，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20082",
+      "content": "黎明事務所 / 楔事務所 接待成功"
+    },
+    {
+      "id": "missionConditionTitle_hidden_20082",
+      "content": "??? 接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20083",
+      "content": "在1次戰鬥中，不確定的悲傷情緒從未達到上限5，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_hidden_20083",
+      "content": "在1次戰鬥中，???從未達到上限5，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20084",
+      "content": "擁有指定司書增益的友方單位在1次戰鬥中拚點勝利不低於10次，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20085",
+      "content": "擁有指定司書增益的友方單位在1次戰鬥中擊殺不低於3名敵人，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20086",
+      "content": "友方單位在1次戰鬥中與菲利普的燃燒一擊技能拚點，勝利至少1次，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_hidden_20086",
+      "content": "友方單位在1次戰鬥中與???的???技能拚點，勝利至少1次，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20087",
+      "content": "在情感等級達到3級的狀態下接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20088",
+      "content": "在1次戰鬥中，以1個攻擊技能(包含E.G.O技能、反擊技能)對1名敵人造成不低於300的傷害，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20089",
+      "content": "在楔事務所收尾人們的連攜技能發動未達3次的情況下接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20090",
+      "content": "在1次戰鬥中，於1回合內同時擊殺帕梅莉、帕梅拉，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_hidden_20090",
+      "content": "在1次戰鬥中，於1回合內同時擊殺???、???，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20091",
+      "content": "在1次戰鬥中擊殺受到孤獨的收尾人效果影響的尤娜，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_hidden_20091",
+      "content": "在1次戰鬥中擊殺受到???效果影響的???，並接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20092",
+      "content": "在所有友方單位存活的狀態下接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20093",
+      "content": "在所有友方單位的理智值皆未達到-45的狀態下接待成功"
+    },
+    {
+      "id": "missionConditionTitle_20094",
+      "content": "完成簡單及困難難度的全部任務"
+    },
+    {
+      "id": "walpu_battle_3_wave",
+      "content": "歷史層"
+    },
+    {
+      "id": "walpu_battle_name_10574",
+      "content": "黎明事務所 / 楔事務所"
+    },
+    {
+      "id": "walpu_battle_name_10575",
+      "content": "黎明事務所 / 楔事務所"
+    },
+    {
+      "id": "walpu_battle_name_10576",
+      "content": "黎明事務所 / 楔事務所"
+    },
+    {
+      "id": "walpu_battle_name_10577",
+      "content": "黎明事務所 / 楔事務所"
+    },
+    {
+      "id": "walpu_battle_result_win_3",
+      "content": "{0} 接待完成"
+    },
+    {
+      "id": "walpu_battle_result_lose_3",
+      "content": "{0} 接待失敗"
+    },
+    {
+      "id": "mainui_battleresult_win_lor_stage_type_3",
+      "content": "接待完成"
+    },
+    {
+      "id": "mainui_battleresult_defeat_lor_stage_type_3",
+      "content": "接待失敗"
+    },
+    {
+      "id": "Walpu10_normal_stage_name",
+      "content": "寄送邀請函"
+    },
+    {
+      "id": "Walpu10_hard_stage_name",
+      "content": "寄送邀請函"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_01_title",
+      "content": "第10屆瓦爾普吉斯之夜"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_01_title_01",
+      "content": "第10屆瓦爾普吉斯之夜"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_01_desc_01",
+      "content": "[第10屆瓦爾普吉斯之夜]不受主線劇情進度限制，皆會開放。可透過玻璃窗或駕駛座的活動橫幅進入。"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_02_title_01",
+      "content": "活動期間"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_02_desc_01",
+      "content": "顯示第10屆瓦爾普吉斯之夜的活動期間。活動期間內，可進行簡單難度、困難難度的戰鬥來執行任務，並領取已完成任務的獎勵。"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_03_title_01",
+      "content": "簡單難度戰鬥"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_03_desc_01",
+      "content": "點擊門即可進入簡單難度戰鬥。進入戰鬥時會消耗腦啡肽模組。在簡單難度戰鬥中，等級低於65的人格會提升至65級。此外，人格的同步等級、E.G.O的幻想解析等級低於3級時，會提升至3級。"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_03_title_02",
+      "content": "困難難度戰鬥"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_03_desc_02",
+      "content": "通過簡單難度將解鎖困難難度。在困難難度下，人格的等級、同步進度與E.G.O異想解析進度將保持不變。"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_04_title_01",
+      "content": "指定司書 [歷史層]"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_04_desc_01",
+      "content": "戰鬥編隊中，編隊順序第1位的罪人會獲得「指定司書 [歷史層]」效果。獲得該效果的罪人在戰鬥中的行動次數會增加，並獲得有益效果。"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_05_title_01",
+      "content": "任務列表"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_05_desc_01",
+      "content": "透過[任務列表]介面，能夠查看需要完成的任務，以及任務獎勵。"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_06_desc_01",
+      "content": "[任務列表]介面將顯示獎勵領取期。"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_06_desc_02",
+      "content": "能夠分別確認簡單及困難任務。"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_06_desc_03",
+      "content": "完成任務可在[任務列表]領取多樣化獎勵。"
+    },
+    {
+      "id": "tutorial_mainui_walpu10_07_desc_01",
+      "content": "活動結束後，仍可透過駕駛座與放映室 - [其他故事]再次體驗「第10屆瓦爾普吉斯之夜」的戰鬥，或欣賞劇情。"
+    }
+  ]
+}

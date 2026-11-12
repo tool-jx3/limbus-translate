@@ -637,6 +637,24 @@
       "name": "內出血（l'hémorragie interne）",
       "desc": "[AlwaysUseEGOPassive]\n若自身的 [BulletHole] 為5發，則使用「空洞」E.G.O技能(覺醒、侵蝕)時不消耗罪孽碎片\n\n回合開始時，獲得1發 [BulletHole]\n\n[WhenUseEGOPassive]\n回合開始時，獲得1層 [BlackWingHole]\n\n每當自身累計消耗或失去3發 [Bullet] 時，恢復5點理智值，並在下回合獲得1層 [ResultEnhancement] (包含特殊 [Bullet]；每回合最多計算9發 [Bullet])",
       "flavor": "他人的視線釘進我體內，鑿出空洞，讓一切傾瀉而出。傾瀉而出之物化為子彈，再度射向你，貫穿出空洞。"
+    },
+    {
+      "id": 2061111,
+      "name": "絕望之中",
+      "desc": "自身高於1.5的物理抗性調整為1.5 (混亂狀態除外)\n若自身處於混亂狀態，則使自身受到的傷害-30% (包括強制混亂)\n\n若自身的 [DespairKnightEGOMind] 為999，則使用「以淚磨礪之劍」E.G.O技能(覺醒、侵蝕)時不消耗罪孽碎片\n\n使自身獲得等同於包括自身在內的友方單位所受傷害的 [DespairKnightEGOMind] (包括護盾受到的傷害)\n友方單位陣亡時，使自身獲得1層 [DespairKnightEGOSword] (每回合最多1次)\n帶有 [DespairKnightEGOProtect] 的友方單位陣亡時，使自身獲得1層 [DespairKnightEGOSword] (每回合最多1次)\n\n每有2名處於陣亡狀態的友方單位，使自身攻擊等級+1、防禦等級-1 (最多5)",
+      "summary": "強化抗性，受到的傷害減少。"
+    },
+    {
+      "id": 50001,
+      "name": "魔法阿爾卡那",
+      "desc": "若魔法少女人格或魔法少女E.G.O的出戰人數不低於一定數量，則觸發以下效果 (人格與E.G.O可合併計算)\n(2) 使友方魔法少女人格或魔法少女E.G.O的技能造成的傷害+10%",
+      "summary": "(2) 魔法少女人格、E.G.O的技能造成的傷害+10%"
+    },
+    {
+      "id": 50002,
+      "name": "魔法阿爾卡那",
+      "desc": "(3) 使所有友方單位的減算硬幣技能造成的傷害+10%\n以「以淚磨礪之劍」E.G.O技能對作為主要目標的敵方單位攻擊結束時，對其施加1層 [DespairKnightEGOAlly] (每回合最多1次)",
+      "summary": "(3) 所有友方單位的減算硬幣技能造成的傷害+10%，「以淚磨礪之劍」攻擊結束時，施加1層 [DespairKnightEGOAlly]"
     }
   ]
 }

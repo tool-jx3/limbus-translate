@@ -3187,6 +3187,393 @@
           ]
         }
       ]
+    },
+    {
+      "id": 1101701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "交鋒",
+          "desc": "[WhenUse] 使自身獲得1級 [Breath] 強度\n[ComboSkill]：與<noparse>楔事務所</noparse> 收尾人 唐吉訶德的技能共鳴時，觸發以下效果 (每回合最多1次)\n- [WhenUse] 拚點威力+1\n- [WhenUse] 使自身獲得1層 [BattleFieldKnow]\n- [WhenUse] 重複使用最後一枚硬幣1次",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 對目標施加1層 [WedgeMarkYellow]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "交鋒",
+          "desc": "<style=\"highlight\">[WhenUse] 自身的 [Breath] 強度與目標的 [Vibration] 強度之和每有4級，使本技能的最終威力+1 (最多+2)</style>\n[WhenUse] 使自身獲得<style=\"highlight\">2</style>級 [Breath] 強度\n[ComboSkill]：與<noparse>楔事務所</noparse> 收尾人 唐吉訶德的技能共鳴時，觸發以下效果 (每回合最多1次)\n- [WhenUse] 拚點威力+<style=\"highlight\">2</style>\n- [WhenUse] 使自身獲得1層 [BattleFieldKnow]\n- [WhenUse] 重複使用最後一枚硬幣1次",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得<style=\"highlight\">2</style>級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 對目標施加1層 [WedgeMarkYellow]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "交鋒",
+          "desc": "[WhenUse] 自身的 [Breath] 強度與目標的 [Vibration] 強度之和每有4級，使本技能的最終威力+1 (最多+<style=\"highlight\">3</style>)\n[WhenUse] 使自身獲得2級 [Breath] 強度\n[ComboSkill]：與<noparse>楔事務所</noparse> 收尾人 唐吉訶德的技能共鳴時，觸發以下效果 (每回合最多1次)\n- [WhenUse] 拚點威力+2\n- [WhenUse] 使自身獲得1層 [BattleFieldKnow]\n- [WhenUse] 重複使用最後一枚硬幣1次",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 對目標施加1層 [WedgeMarkYellow]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1101702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "乘勢追擊",
+          "desc": "[WhenUse] 使自身獲得2級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {}
+          ]
+        },
+        {
+          "level": 2,
+          "name": "乘勢追擊",
+          "desc": "<style=\"highlight\">[WhenUse] 若自身的 [Breath] 強度與目標的 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1</style>\n[WhenUse] 使自身獲得<style=\"highlight\">3</style>級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得<style=\"highlight\">2</style>級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">自身每帶有1層 [BattleFieldKnow]，使造成的傷害+5% (最多15%)</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "乘勢追擊",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度與目標的 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 使自身獲得3級 [Breath] 強度<style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "自身每帶有1層 [BattleFieldKnow]，使造成的傷害+5% (最多<style=\"highlight\">20%</style>)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1101703,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "長槍橫掃",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度與目標的 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 使自身獲得2級 [Breath] 強度\n[ComboSkill]：與<noparse>楔事務所</noparse> 收尾人 唐吉訶德的技能共鳴時，觸發以下效果 (每回合最多1次)\n- [WhenUse] 拚點威力+1\n- [WhenUse] 使自身獲得1層 [BattleFieldKnow]\n- [WhenUse] 造成的傷害+20%",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "自身每帶有1層 [BattleFieldKnow]，使造成的傷害+10% (最多40%)"
+                },
+                {
+                  "desc": "若目標處於 [Switch_Vibration] 或 [FusionVibration] 狀態，則造成的傷害+20%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標未處於 [Switch_Vibration] 狀態，則使目標 [Switch_Vibration] 為 [VibrationCollapse]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "長槍橫掃",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度與目標的 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 使自身獲得2級 [Breath] 強度\n[ComboSkill]：與<noparse>楔事務所</noparse> 收尾人 唐吉訶德的技能共鳴時，觸發以下效果 (每回合最多1次)\n- [WhenUse] 拚點威力+<style=\"highlight\">3</style>\n- [WhenUse] 使自身獲得1層 [BattleFieldKnow]\n- [WhenUse] 造成的傷害+<style=\"highlight\">30%</style>",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "自身每帶有1層 [BattleFieldKnow]，使造成的傷害+10% (最多40%)"
+                },
+                {
+                  "desc": "若目標處於 [Switch_Vibration] 或 [FusionVibration] 狀態，則造成的傷害+<style=\"highlight\">30%</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標未處於 [Switch_Vibration] 狀態，則使目標 [Switch_Vibration] 為 [VibrationCollapse]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1101704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "調整呼吸",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度不低於6級，則使本技能的硬幣威力+1\n[OnSucceedEvade] 使自身獲得1級 [Breath] 強度 (每回合最多3次)\n[OnBattleEnd] 若本回合未透過技能效果獲得 [BattleFieldKnow]，則使自身獲得1層 [BattleFieldKnow] (每回合最多1次)",
+          "coinlist": [
+            {}
+          ]
+        },
+        {
+          "level": 3,
+          "name": "調整呼吸",
+          "desc": "<style=\"highlight\">[StartBattle] 若目標的 [WedgeMarkYellow] 不低於4層，則改為以「迅速確實地貫穿你」發動 (每回合最多1次，此效果在單方面攻擊時也會觸發)</style>\n[WhenUse] 若自身的 [Breath] 強度不低於6級，則使本技能的硬幣威力+1\n[OnSucceedEvade] 使自身獲得<style=\"highlight\">2</style>級 [Breath] 強度 (每回合最多3次)\n[OnBattleEnd] 若本回合未透過技能效果獲得 [BattleFieldKnow]，則使自身獲得1層 [BattleFieldKnow] (每回合最多1次)",
+          "coinlist": [
+            {}
+          ]
+        },
+        {
+          "level": 4,
+          "name": "調整呼吸",
+          "desc": "[StartBattle] 若目標的 [WedgeMarkYellow] 不低於4層，則改為以「迅速確實地貫穿你」發動 (每回合最多1次，此效果在單方面攻擊時也會觸發)\n[WhenUse] 若自身的 [Breath] 強度不低於6級，則使本技能的硬幣威力+1\n[OnSucceedEvade] 使自身獲得2級 [Breath] 強度 (每回合最多3次)\n<style=\"highlight\">[OnSucceedEvade] 下回合使自身獲得1層 [Agility] (每回合最多1次)</style>\n[OnBattleEnd] 若本回合未透過技能效果獲得 [BattleFieldKnow]，則使自身獲得1層 [BattleFieldKnow] (每回合最多1次)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1101705,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "迅速確實地貫穿你",
+          "desc": "本技能即使代替守備技能發動，也視為攻擊技能，不受守備威力變更效果影響，而適用攻擊威力變更效果\n目標每帶有2層 [WedgeMarkYellow]，使本技能的拚點威力+1 (最多+4)\n[WhenUse] 若自身的 [Breath] 強度與目標的 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 使自身獲得2級 [Breath] 強度\n[ComboSkill]：與<noparse>楔事務所</noparse> 收尾人 唐吉訶德的技能共鳴時，觸發以下效果 (每回合最多1次)\n- [WhenUse] 拚點威力+1\n- [WhenUse] 使自身獲得1層 [BattleFieldKnow]\n- [WhenUse] 造成的傷害+20%\n[EndSkill] 使目標的 [WedgeMarkYellow] 全部消失\n[EndSkill] 使友方<noparse>楔事務所</noparse> 代表 奧提斯人格的 [ComboWedge] 增加3層",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "自身每帶有1層 [BattleFieldKnow]，使造成的傷害+10% (最多40%)",
+                  "summary": "依 [BattleFieldKnow] 層數提升造成的傷害"
+                },
+                {
+                  "desc": "若目標處於 [Switch_Vibration] 或 [FusionVibration] 狀態，則造成的傷害+30%",
+                  "summary": "造成的傷害+30%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 重複使用本硬幣1次 (每個技能最多1次)"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 若目標未處於 [Switch_Vibration] 狀態，則 [Switch_Vibration] 為 [VibrationCollapse]",
+                  "summary": "[ReUseOnSucceedAttack] [Switch_Vibration] 為 [VibrationCollapse]"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkYellow] 層數×4)%的突刺傷害 (最多32%)",
+                  "summary": "[ReUseOnSucceedAttack] 依目標的 [WedgeMarkYellow] 層數造成突刺傷害"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 觸發2次 [VibrationExplosion]。使目標的 [Vibration] 回數減少2回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "迅速確實地貫穿你",
+          "desc": "本技能即使代替守備技能發動，也視為攻擊技能，不受守備威力變更效果影響，而適用攻擊威力變更效果\n目標每帶有2層 [WedgeMarkYellow]，使本技能的拚點威力+1 (最多+4)\n[WhenUse] 若自身的 [Breath] 強度與目標的 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 使自身獲得2級 [Breath] 強度\n[ComboSkill]：與<noparse>楔事務所</noparse> 收尾人 唐吉訶德的技能共鳴時，觸發以下效果 (每回合最多1次)\n- [WhenUse] 拚點威力+<style=\"highlight\">3</style>\n- [WhenUse] 使自身獲得1層 [BattleFieldKnow]\n- [WhenUse] 造成的傷害+<style=\"highlight\">30%</style>\n[EndSkill] 使目標的 [WedgeMarkYellow] 全部消失\n[EndSkill] 使友方<noparse>楔事務所</noparse> 代表 奧提斯人格的 [ComboWedge] 增加3層",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "自身每帶有1層 [BattleFieldKnow]，使造成的傷害+10% (最多40%)",
+                  "summary": "依 [BattleFieldKnow] 層數提升造成的傷害"
+                },
+                {
+                  "desc": "若目標處於 [Switch_Vibration] 或 [FusionVibration] 狀態，則造成的傷害+30%",
+                  "summary": "造成的傷害+30%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 重複使用本硬幣1次 (每個技能最多1次)"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 若目標未處於 [Switch_Vibration] 狀態，則 [Switch_Vibration] 為 [VibrationCollapse]",
+                  "summary": "[ReUseOnSucceedAttack] [Switch_Vibration] 為 [VibrationCollapse]"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkYellow] 層數×4)%的突刺傷害 (最多32%)",
+                  "summary": "[ReUseOnSucceedAttack] 依目標的 [WedgeMarkYellow] 層數造成突刺傷害"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 觸發2次 [VibrationExplosion]。使目標的 [Vibration] 回數減少2回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

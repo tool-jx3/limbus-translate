@@ -1,6 +1,6 @@
 {
-  "raw_tag": "raw-20261105",
-  "raw_token": "l20261105_4RMUNwPWm5cUQDw9o-n8",
+  "raw_tag": "raw-20261112",
+  "raw_token": "l20261112_5pAcdxbyP1RC08yIrdPw",
   "rules_commit": "ebbb490ca56d41c7d99dcd8496ccaee19a55063e",
   "built_at": "2026-11-11T11:39:32Z",
   "upstream": {
@@ -8,17 +8,20 @@
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
     "paratranz": "user-unknown-0711/ParatranzUploader@1793285016"
   },
-  "notes_seen": 1000,
+  "model": "claude-opus-5-5",
+  "cost_usd": 22.6464382,
+  "stopped": "done",
+  "notes_seen": 1058,
   "zips": {
-    "zh-TW_complete_raw-20261105.zip": "f481f8d59e49d97986b40dc441d49f29414cfbecf2191d8516f5b4d0d4f0072f",
-    "zh-TW_text_raw-20261105.zip": "bd4e0daa4a5200863be4c37f4cc224a105a23424cee6a49d0bbcf699aef3647a"
+    "zh-TW_complete_raw-20261112.zip": "ef406440133771521b0b4443888f115ff6f1ce94756df6e30ab5f0d911a1846c",
+    "zh-TW_text_raw-20261112.zip": "5e340e88916161a3f6e676ca7d1a5a59958c1798950408107069b0d3244f6ba6"
   },
   "report": {
     "origins": {
-      "claude": 18072,
-      "copy": 90961,
+      "claude": 19833,
+      "copy": 91934,
       "human": 104,
-      "paratranz": 163738
+      "paratranz": 163978
     },
     "pending": 0,
     "needs_review": 0,
@@ -33,7 +36,7 @@
       "halfwidth-punct": 9,
       "kana": 7,
       "length-ratio": 2,
-      "term-missing": 674
+      "term-missing": 662
     },
     "missing_glyphs": [],
     "stand_in": 0,
@@ -119,6 +122,24 @@
       },
       {
         "family": "enemy",
+        "field": "name",
+        "kr": "회피",
+        "zh": [
+          "閃避",
+          "迴避"
+        ],
+        "keys": [
+          "Skills.json|/dataList/1/levelList/0/name",
+          "Skills_Abnormality-walpu10.json|/dataList/16/levelList/0/name"
+        ],
+        "counts": [
+          55,
+          1
+        ],
+        "units": 56
+      },
+      {
+        "family": "enemy",
         "field": "desc",
         "kr": "[OnSucceedAttack] [Vibration] 2 부여",
         "zh": [
@@ -130,10 +151,10 @@
           "Skills_Abnormality_Refraction1_bokgak.json|/dataList/96/levelList/0/coinlist/0/coindescs/0/desc"
         ],
         "counts": [
-          43,
+          51,
           3
         ],
-        "units": 46
+        "units": 54
       },
       {
         "family": "enemy",
@@ -228,6 +249,42 @@
       {
         "family": "enemy",
         "field": "desc",
+        "kr": "[OnSucceedAttack] [Combustion] 3 부여",
+        "zh": [
+          "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度",
+          "[OnSucceedAttack] 對目標施加3級 [Combustion] 強度"
+        ],
+        "keys": [
+          "Skills_Abnormality-BossRaid.json|/dataList/32/levelList/0/coinlist/0/coindescs/2/desc",
+          "Skills_Abnormality_Refraction6.json|/dataList/13/levelList/0/coinlist/1/coindescs/0/desc"
+        ],
+        "counts": [
+          11,
+          1
+        ],
+        "units": 12
+      },
+      {
+        "family": "enemy",
+        "field": "desc",
+        "kr": "[OnSucceedAttack] [VibrationExplosion]. [Vibration] 횟수 1 감소",
+        "zh": [
+          "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]",
+          "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+        ],
+        "keys": [
+          "Skills_Abnormality-a1c10p2.json|/dataList/55/levelList/0/coinlist/0/coindescs/3/desc",
+          "Skills_Abnormality-a1c971.json|/dataList/1/levelList/0/coinlist/0/coindescs/1/desc"
+        ],
+        "counts": [
+          4,
+          8
+        ],
+        "units": 12
+      },
+      {
+        "family": "enemy",
+        "field": "desc",
         "kr": "[OnSucceedAttack] 정신력 5 피해",
         "zh": [
           "[OnSucceedAttack] 對目標造成5點理智傷害",
@@ -258,6 +315,42 @@
         "counts": [
           11,
           1
+        ],
+        "units": 12
+      },
+      {
+        "family": "keywords",
+        "field": "name",
+        "kr": "불꽃나비의 관",
+        "zh": [
+          "火蝶之棺",
+          "炎蝶之棺"
+        ],
+        "keys": [
+          "BattleKeywords-walpu10.json|/dataList/12/name",
+          "BattleKeywords.json|/dataList/562/name"
+        ],
+        "counts": [
+          6,
+          6
+        ],
+        "units": 12
+      },
+      {
+        "family": "keywords",
+        "field": "name",
+        "kr": "새벽불",
+        "zh": [
+          "黎明之火",
+          "曉光之火"
+        ],
+        "keys": [
+          "BattleKeywords-walpu10.json|/dataList/9/name",
+          "BattleKeywords.json|/dataList/551/name"
+        ],
+        "counts": [
+          6,
+          6
         ],
         "units": 12
       },
@@ -297,24 +390,6 @@
         "counts": [
           6,
           5
-        ],
-        "units": 11
-      },
-      {
-        "family": "enemy",
-        "field": "desc",
-        "kr": "[OnSucceedAttack] [VibrationExplosion]. [Vibration] 횟수 1 감소",
-        "zh": [
-          "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]",
-          "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
-        ],
-        "keys": [
-          "Skills_Abnormality-a1c10p2.json|/dataList/55/levelList/0/coinlist/0/coindescs/3/desc",
-          "Skills_Abnormality-a1c971.json|/dataList/1/levelList/0/coinlist/0/coindescs/1/desc"
-        ],
-        "counts": [
-          3,
-          8
         ],
         "units": 11
       },
@@ -401,93 +476,422 @@
           1
         ],
         "units": 11
-      },
-      {
-        "family": "story-main",
-        "field": "content",
-        "kr": "아니.",
-        "zh": [
-          "不。",
-          "不對。",
-          "不是。",
-          "否。"
-        ],
-        "keys": [
-          "StoryData/8D206B.json|/dataList/14/content",
-          "StoryData/S1002B.json|/dataList/113/content",
-          "StoryData/S1008B.json|/dataList/23/content",
-          "StoryData/S810B.json|/dataList/65/content"
-        ],
-        "counts": [
-          5,
-          3,
-          2,
-          1
-        ],
-        "units": 11
-      },
-      {
-        "family": "story-main",
-        "field": "content",
-        "kr": "하…",
-        "zh": [
-          "哈……",
-          "哈啊……"
-        ],
-        "keys": [
-          "StoryData/4D104B.json|/dataList/28/content",
-          "StoryData/S706B.json|/dataList/11/content"
-        ],
-        "counts": [
-          10,
-          1
-        ],
-        "units": 11
-      },
-      {
-        "family": "ally",
-        "field": "name",
-        "kr": "회피",
-        "zh": [
-          "閃避",
-          "迴避"
-        ],
-        "keys": [
-          "Skills_personality-01.json|/dataList/11/levelList/0/name",
-          "Skills_personality-01.json|/dataList/49/levelList/0/name"
-        ],
-        "counts": [
-          8,
-          2
-        ],
-        "units": 10
-      },
-      {
-        "family": "enemy",
-        "field": "desc",
-        "kr": "[OnSucceedAttack] [Combustion] 3 부여",
-        "zh": [
-          "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度",
-          "[OnSucceedAttack] 對目標施加3級 [Combustion] 強度"
-        ],
-        "keys": [
-          "Skills_Abnormality-BossRaid.json|/dataList/32/levelList/0/coinlist/0/coindescs/2/desc",
-          "Skills_Abnormality_Refraction6.json|/dataList/13/levelList/0/coinlist/1/coindescs/0/desc"
-        ],
-        "counts": [
-          9,
-          1
-        ],
-        "units": 10
       }
     ],
-    "notes": [],
-    "new_translated": 73,
+    "notes": [
+      {
+        "key": "BattleKeywords-walpu10.json|/dataList/1/desc",
+        "batch": "20261112T033735-c8a93f25",
+        "kr_sha": "6edad3b63566dd8e5aa29a0b19afb85e63d4c9a8816bad397e01bf1a40e6db09",
+        "model": "claude-opus-5-5",
+        "note": "도발치 譯「嘲諷值」，詞彙表未收，請確認官方譯名"
+      },
+      {
+        "key": "BattleKeywords-walpu10.json|/dataList/2/desc",
+        "batch": "20261112T033735-c8a93f25",
+        "kr_sha": "33d05b8cd262045c75ffa610ddd2dc61818bc4b428744e7e2d781e5ab3e50967",
+        "model": "claude-opus-5-5",
+        "note": "보호→守護、공격 위력 증가→強壯（依既有規則檔）；수비 위력 증가 譯「忍耐」，未能查到官方中文名，請確認"
+      },
+      {
+        "key": "BattleKeywords-walpu10.json|/dataList/4/desc",
+        "batch": "20261112T033735-c8a93f25",
+        "kr_sha": "3711dbfe9ad32f7f04df374b4708aa963a8280ee800d5b68a11706544af4885a",
+        "model": "claude-opus-5-5",
+        "note": "관통 피해량 증가 譯「突刺傷害強化」，比照既有「斬擊傷害強化」，請確認官方名稱"
+      },
+      {
+        "key": "BattleKeywords-walpu10.json|/dataList/6/desc",
+        "batch": "20261112T033735-c8a93f25",
+        "kr_sha": "09378c02ee57af0ff4fc53f016c102689dcba56e0badf1e716f37df65da16f89",
+        "model": "claude-opus-5-5",
+        "note": "파괴 불가 코인 譯「不可摧毀硬幣」，未能查到官方中文名，請確認"
+      },
+      {
+        "key": "BattleKeywords-walpu10.json|/dataList/12/desc",
+        "batch": "20261112T033735-c8a93f25",
+        "kr_sha": "1fc5cadb2c0b1acbb216496fec20b260d017a4abd9b15b114ad13791fa24d8fa",
+        "model": "claude-opus-5-5",
+        "note": "새벽 사무소 譯「黎明事務所」、선배 譯「前輩」，請確認既有譯名；KR 被動名稱沒有引號，為易讀加「」"
+      },
+      {
+        "key": "BattleKeywords-walpu10.json|/dataList/22/name",
+        "batch": "20261112T033735-c8a93f25",
+        "kr_sha": "dcf4a36ff7725e4939284261a011dd58b45e25ee3086b847a83e3526e6ab10ad",
+        "model": "claude-opus-5-5",
+        "note": "감정 단계 譯「情感等級」，請確認官方譯名"
+      },
+      {
+        "key": "BattleKeywords-walpu10.json|/dataList/23/name",
+        "batch": "20261112T034008-535e2fbd",
+        "kr_sha": "1158e774cdaefd79fce5fcf1b02164897e08f9a6a547f36d7060e42386e60ccb",
+        "model": "claude-opus-5-5",
+        "note": "감정 단계 譯「情感等級」，與前批一致，請確認官方譯名"
+      },
+      {
+        "key": "BattleKeywords-walpu10.json|/dataList/30/desc",
+        "batch": "20261112T034008-535e2fbd",
+        "kr_sha": "9029ec2136f61464d30d45ee5b985432990c5dbb26d92c20320e1f5db9186ac4",
+        "model": "claude-opus-5-5",
+        "note": "흐트러짐 피해량 依 EN「Stagger Threshold raised」、JP「混乱区間前進量」譯「混亂閾值前移量」"
+      },
+      {
+        "key": "BattleKeywords.json|/dataList/621/desc",
+        "batch": "20261112T034008-535e2fbd",
+        "kr_sha": "90f6473160584aced711d27c595f03548defa5f515734654954b884824239466",
+        "model": "claude-opus-5-5",
+        "note": "관통 피해량 증가 譯「突刺傷害強化」，比照既有「斬擊傷害強化」，請確認官方名稱"
+      },
+      {
+        "key": "BattleKeywords.json|/dataList/622/desc",
+        "batch": "20261112T034008-535e2fbd",
+        "kr_sha": "7ee971b35dc18efa2afcd46a72d3bf65ff7407d9f6e9f84860ff1945a2cd4d45",
+        "model": "claude-opus-5-5",
+        "note": "피해량 증가（Damage Up）譯「傷害提升」，未能查到官方中文名，請確認"
+      },
+      {
+        "key": "BattleKeywords.json|/dataList/625/desc",
+        "batch": "20261112T034102-fad32b92",
+        "kr_sha": "be3c7ccce3cfeb3fdc35d99a891bf8061b5f5f82b029bbd5ae9652099e98c047",
+        "model": "claude-opus-5-5",
+        "note": "관통 취약（Pierce Fragility）譯「突刺易損」，比照易損，請確認官方名稱"
+      },
+      {
+        "key": "StoryData/E100X.json|/dataList/34/content",
+        "batch": "20261112T034140-e53d6699",
+        "kr_sha": "7d345b5730caf7e951279fdeb10d9555119cefa61d536fa58be0b84e99e5ca3e",
+        "model": "claude-opus-5-5",
+        "note": "시나리오 譯「劇本」，詞彙表未收"
+      },
+      {
+        "key": "StoryData/E100X.json|/dataList/71/content",
+        "batch": "20261112T034140-e53d6699",
+        "kr_sha": "513f3b997e6f8c6fc4d974b9f8f6f57b0d6e0549c0e03eb104909ab9654b945c",
+        "model": "claude-opus-5-5",
+        "note": "불순물 譯「雜質」（EN Impuritas Civitatis）；역사의 층 譯「歷史層」，與 BattleKeywords-walpu10 的「指定司書 [歷史層]」一致"
+      },
+      {
+        "key": "StoryData/E100X.json|/dataList/104/content",
+        "batch": "20261112T034140-e53d6699",
+        "kr_sha": "8a9dc6a5a8d8bb289f2690ca64ce8cdfc4f7926c43850c0def1d26199d95cb7b",
+        "model": "claude-opus-5-5",
+        "note": "스티그마 공방 譯「聖痕工坊」（EN Stigma Workshop），詞彙表未收"
+      },
+      {
+        "key": "StoryData/E100X.json|/dataList/105/content",
+        "batch": "20261112T034140-e53d6699",
+        "kr_sha": "4e05804b9c794533464436d78afe49e5d01eeae90efa4552d4a94472aa4425bf",
+        "model": "claude-opus-5-5",
+        "note": "뱃지 콜렉숀：唐吉訶德把 collection 唸成西語腔（JP カレクシェン、EN colección），依 base.md 外語詞的規則寫 ruby"
+      },
+      {
+        "key": "StoryData/E100X.json|/dataList/119/content",
+        "batch": "20261112T034401-b788b447",
+        "kr_sha": "8c9692419d3b58366ca9f0b25e59c7b1ad130615b94fbc9408a29bd3a89bcbb2",
+        "model": "claude-opus-5-5",
+        "note": "츠바이 照 base.md 寫「Zwei」"
+      },
+      {
+        "key": "StoryData/E100X.json|/dataList/120/content",
+        "batch": "20261112T034401-b788b447",
+        "kr_sha": "7ad4f8d1eb48e90713ad7823abbe50ea1869890deac3eff9120cedbc2d75bae7",
+        "model": "claude-opus-5-5",
+        "note": "유나 譯「尤娜」，詞彙表未收"
+      },
+      {
+        "key": "StoryData/E100X.json|/dataList/124/content",
+        "batch": "20261112T034401-b788b447",
+        "kr_sha": "b4501f30146d398408363a9ae43aecb05b91771da588f670522a7ee7fa65467b",
+        "model": "claude-opus-5-5",
+        "note": "살바도르 譯「薩爾瓦多」，詞彙表未收"
+      },
+      {
+        "key": "StoryData/E101X.json|/dataList/19/content",
+        "batch": "20261112T034418-f029c637",
+        "kr_sha": "06c5da289bd3d88db4f6875d2a26e7873e07cdfa08c1cfd21af10a2bc3fabc5b",
+        "model": "claude-opus-5-5",
+        "note": "奧斯卡把良秀的縮略語「시. 대.」誤當人名，照抄同一組字、不加點"
+      },
+      {
+        "key": "StoryData/E101X.json|/dataList/22/content",
+        "batch": "20261112T034418-f029c637",
+        "kr_sha": "93c4c45cf51efff2444e90357d0417c509538c43fce58ddf79e8d03c1f6552d4",
+        "model": "claude-opus-5-5",
+        "note": "오스카 譯「奧斯卡」、파멜라 譯「帕梅拉」、파멜리 譯「帕梅莉」，詞彙表未收"
+      },
+      {
+        "key": "StoryData/E102X.json|/dataList/9/content",
+        "batch": "20261112T034447-8c9ae81d",
+        "kr_sha": "0a7ebdad7a7d625a6c87fad5725a4a03ebfae2e74978b5023dce2008880399cc",
+        "model": "claude-opus-5-5",
+        "note": "與 BattleKeywords-walpu10 的效果名「能與悲傷一同站起的道路」對應"
+      },
+      {
+        "key": "StoryData/E103X.json|/dataList/7/content",
+        "batch": "20261112T034506-2b0f21e9",
+        "kr_sha": "833bdc8c7c1d27449c6dc313c3edd35a7e7057076d13230d04bd8fc67f2ed0c9",
+        "model": "claude-opus-5-5",
+        "note": "KR「E. G. O」有空格，依 base.md 一律寫「E.G.O」"
+      },
+      {
+        "key": "EGOVoiceDig/Voice_EGO_HongLu_6.json|/dataList/34/dlg",
+        "batch": "20261112T034554-8e5b36d2",
+        "kr_sha": "81e9ce4530c05206a22b5289a31877c3193eba8315ce59e70438de7e4e37161d",
+        "model": "claude-opus-5-5",
+        "note": "닳아버린 긍지 與 BattleKeywords 的效果名「磨損的矜持」一致"
+      },
+      {
+        "key": "BattleSpeechBubbleDlg-walpu10.json|/dataList/33/dlg",
+        "batch": "20261112T034646-45147bf6",
+        "kr_sha": "e782796289f946193afadd758625f0c7b66f39591a3e2d4eaefc442353dffe9b",
+        "model": "claude-opus-5-5",
+        "note": "속도：台詞中一般的速度，不是戰鬥數值，不用「速度值」"
+      },
+      {
+        "key": "BattleSpeechBubbleDlg-walpu10.json|/dataList/50/dlg",
+        "batch": "20261112T034646-45147bf6",
+        "kr_sha": "4f817f163b0e639d6ffed2aa183bf9900df6d24dba683560cc0a7a40f4b41fe8",
+        "model": "claude-opus-5-5",
+        "note": "43～50 推定為帕梅拉與帕梅莉互相對話（雙方皆女性），第二人稱用「妳」"
+      },
+      {
+        "key": "BattleSpeechBubbleDlg.json|/dataList/827/dlg",
+        "batch": "20261112T034723-ad08bbbd",
+        "kr_sha": "7fdea7c3422a2fb44bf9e8089af7bd89b9f2c27aa9c08c17ba9656867287ee82",
+        "model": "claude-opus-5-5",
+        "note": "KR「합격(合撃)」以括號附漢字說明是「合擊」而非「合格」，中文直接寫「合擊」即可"
+      },
+      {
+        "key": "PersonalityVoiceDlg/Voice_DonQuixote_Wedge_10316.json|/dataList/0/dlg",
+        "batch": "20261112T034723-ad08bbbd",
+        "kr_sha": "d2c021b30e1f6374dea9fb244ebbc76aea2892f1e1aba907b545145ab172bb9f",
+        "model": "claude-opus-5-5",
+        "note": "綠字是楔事務所辛克萊的台詞，依 base.md 辛克萊對所有人用「您」"
+      },
+      {
+        "key": "PersonalityVoiceDlg/Voice_DonQuixote_Wedge_10316.json|/dataList/2/dlg",
+        "batch": "20261112T034808-4c191ca9",
+        "kr_sha": "60b3eb584e73c94f556a4ec84588602c8a68a3df3a34c736807a8d4cece21e10",
+        "model": "claude-opus-5-5",
+        "note": "KR 是食物接龍（탕수육→육개장→장봉뵈르→르…그롸탕→탕바오→오므롸이스→스뫼레브뢰），JP 也改寫成日文的接龍；中文依字尾接龍重寫：唐吉訶德的怪腔「오므롸이스」寫成音譯「歐姆萊斯」，辛克萊最後用丹麥開放式三明治（smørrebrød）的音譯讓唐吉訶德接不下去"
+      },
+      {
+        "key": "PersonalityVoiceDlg/Voice_DonQuixote_Wedge_10316.json|/dataList/13/dlg",
+        "batch": "20261112T034808-4c191ca9",
+        "kr_sha": "1ebd97b9a1314730076d86fed1948faa051e9e85643e7f3c0ee870072e11c9ee",
+        "model": "claude-opus-5-5",
+        "note": "KR 寫「싱클레이」，應為「싱클레어」的誤植，照常譯「辛克萊」"
+      },
+      {
+        "key": "PersonalityVoiceDlg/Voice_Outis_Wedge_11116.json|/dataList/6/dlg",
+        "batch": "20261112T034956-6c465aca",
+        "kr_sha": "71ce4659ff8427940af321bdf168866fd376a82d3bf5e0da8d54e1aae4e90155",
+        "model": "claude-opus-5-5",
+        "note": "손가락 依劇情慣用譯為「指」（蜘蛛巢各指），뒤틀림 譯「扭曲」，뒤틀림 탐정 譯「扭曲偵探」，詞彙表未收"
+      },
+      {
+        "key": "PersonalityVoiceDlg/Voice_Outis_Wedge_11116.json|/dataList/21/dlg",
+        "batch": "20261112T034956-6c465aca",
+        "kr_sha": "835377eb15215d8697cf423cceb5ca915e3a855b2c0a077665da800aa55ecdaf",
+        "model": "claude-opus-5-5",
+        "note": "8시의 서커스 譯「8點馬戲團」，詞彙表未收；KR 第一行句末無標點，照 KR"
+      },
+      {
+        "key": "PersonalityVoiceDlg/Voice_Sinclair_Wedge_11017.json|/dataList/0/dlg",
+        "batch": "20261112T035043-a35748bb",
+        "kr_sha": "26b5d03f6c7b403bdec0760eb9700a89fcf43c7782d575ee5b1c413dc4b36321",
+        "model": "claude-opus-5-5",
+        "note": "與 Voice_DonQuixote_Wedge_10316 的同一段對話用相同譯文"
+      },
+      {
+        "key": "PersonalityVoiceDlg/Voice_Sinclair_Wedge_11017.json|/dataList/2/dlg",
+        "batch": "20261112T035043-a35748bb",
+        "kr_sha": "e5e4da42faa587370f23a90bca94a560ed21ccd80cda0e41990c4501c10c61eb",
+        "model": "claude-opus-5-5",
+        "note": "KR 是食物接龍，中文依字尾接龍重寫，與 Voice_DonQuixote_Wedge_10316 的同一段一致"
+      },
+      {
+        "key": "PersonalityVoiceDlg/Voice_Sinclair_Wedge_11017.json|/dataList/22/dlg",
+        "batch": "20261112T035154-1e35a1f0",
+        "kr_sha": "b759ef9dc9cb02f2ff946090d4fe4776769ec9d6ed87f2f983e3f45321505975",
+        "model": "claude-opus-5-5",
+        "note": "黃字是唐吉訶德的台詞（同檔既有譯文以「吾」「汝」表現）；쐐기다운 依 Voice_DonQuixote_Wedge_10316 同句譯為「不愧為楔」"
+      },
+      {
+        "key": "StoryData/P11116.json|/dataList/16/content",
+        "batch": "20261112T035445-2b450180",
+        "kr_sha": "564d0ceb0da75ab581569d5118f4af2582d8efd4ae82c6775489219e12509d55",
+        "model": "claude-opus-5-5",
+        "note": "8시의 서커스：詞彙表與既有譯文都沒有，暫譯「八點馬戲團」（JP 8時のサーカス、EN the 8 o'clock Circus）"
+      },
+      {
+        "key": "Passive_Ego.json|/dataList/123/desc",
+        "batch": "20261112T035558-e72870f7",
+        "kr_sha": "c3cfe9668c5372a3f9f1497acd88ef26a7c5fcdb50a349a314fdef06b20f7e39",
+        "model": "claude-opus-5-5",
+        "note": "JP 把「涙で研ぎ澄まされた剣」包在 <noparse> 裡（名稱同關鍵字 [DespairKnightEGOSword]），KR 沒有，依規則未新增 <noparse>；若遊戲中會被讀成關鍵字需補上（125 的 desc、summary 同）"
+      },
+      {
+        "key": "Passives.json|/dataList/638/desc",
+        "batch": "20261112T035558-e72870f7",
+        "kr_sha": "61d704f4b1f2538242da682dc7aa7216f0552d0d51d5cd4078c70e51648059a1",
+        "model": "claude-opus-5-5",
+        "note": "새벽녘 依既有黎明事務所被動譯為「黎明時分」（格里高爾的技能）"
+      },
+      {
+        "key": "Skills_Ego_Personality-06.json|/dataList/15/levelList/0/name",
+        "batch": "20261112T035814-e8802710",
+        "kr_sha": "1e5e88fe295cdfe7ee170e3642de73a33d90fee1a433c3a139122960843dbde3",
+        "model": "claude-opus-5-5",
+        "note": "눈물로 벼려낸 검：依關鍵字 [DespairKnightEGOSword] 與 Egos.json 寫「以淚磨礪之劍」；既有羅佳人格名稱寫「淚鋒之劍」，兩者不一致，待人確認"
+      },
+      {
+        "key": "Skills_personality-03.json|/dataList/58/levelList/0/name",
+        "batch": "20261112T035953-17c079b5",
+        "kr_sha": "4414ea0ab16d2474f704d3adebc2c532ea13c7c7af71f66a054984b215b8c8e7",
+        "model": "claude-opus-5-5",
+        "note": "빈틈 없이 확실하게 꿰뚫어주지：唐吉訶德的技能名，依角色指引用「汝」"
+      },
+      {
+        "key": "Enemies-walpu10.json|/dataList/0/name",
+        "batch": "20261112T040339-98008681",
+        "kr_sha": "6faed56a45776acc5476912a39268cd8e9c7f4dfe9671b36758d658e44bb012e",
+        "model": "claude-opus-5-5",
+        "note": "살바도르、오스카、파멜리、파멜라：詞彙表與既有譯文都沒有，暫譯「薩爾瓦多」「奧斯卡」「帕梅莉」「帕梅拉」；유나、필립依既有譯文寫「尤娜」「菲利普」"
+      },
+      {
+        "key": "Enemies-walpu10.json|/dataList/7/name",
+        "batch": "20261112T040339-98008681",
+        "kr_sha": "7d985975e7c31b4d943c8b649518a4d56d5e1a819f48b91090a7b9f9184a527f",
+        "model": "claude-opus-5-5",
+        "note": "밀랍날개：依既有被動的「不穩定E.G.O::蠟翼」寫「蠟翼」"
+      },
+      {
+        "key": "Passives_Abnormality-walpu10.json|/dataList/0/desc",
+        "batch": "20261112T040339-98008681",
+        "kr_sha": "4e88115d2050b4a736bd8f57c207110086ff52a3d171830d9634773345d24c8a",
+        "model": "claude-opus-5-5",
+        "note": "여명의 섬광、연계：依既有黎明事務所被動寫「黎明閃光」「聯手」"
+      },
+      {
+        "key": "Passives_Abnormality-walpu10.json|/dataList/1/name",
+        "batch": "20261112T040339-98008681",
+        "kr_sha": "84c5011eaf128b31941bb5c23a9d87d47d0d20614d03c6e77be2624f964d49e8",
+        "model": "claude-opus-5-5",
+        "note": "스티그마 공방：暫定詞為「聖痕工坊」（StoryData/E100X 登記），但既有人格被動（晨炎[烙印工坊]、炎蝶[烙印工坊]、烙印工坊的義體）與劇情 P11216 都寫「烙印工坊」，此處沿用「烙印工坊」以求一致，請人決定統一譯名"
+      },
+      {
+        "key": "Passives_Abnormality-walpu10.json|/dataList/1/flavor",
+        "batch": "20261112T040339-98008681",
+        "kr_sha": "c1769bb349e66acb616cbd5b0c687a71591a28e977117ab1c266cbbf83f95469",
+        "model": "claude-opus-5-5",
+        "note": "與 Passives.json 既有「晨炎[烙印工坊]」的 flavor 同文，沿用既有譯文"
+      },
+      {
+        "key": "Passives_Abnormality-walpu10.json|/dataList/5/flavor",
+        "batch": "20261112T040339-98008681",
+        "kr_sha": "9a899d5dc0e0866a5bbab781265185e0d20aafff92566e00fbb438af58622e22",
+        "model": "claude-opus-5-5",
+        "note": "與 Passives.json 既有「炎蝶[烙印工坊]」的 flavor 同文，沿用既有譯文，換行依本檔 KR"
+      },
+      {
+        "key": "Passives_Abnormality-walpu10.json|/dataList/16/flavor",
+        "batch": "20261112T040613-dc076fdf",
+        "kr_sha": "b863116996cbec3d857b2a2e4c15b72a787a91bf86948f615d87586549bbb786",
+        "model": "claude-opus-5-5",
+        "note": "손가락：都市的組織 Fingers，寫「手指」；쥐：後巷的「老鼠」"
+      },
+      {
+        "key": "Skills_Abnormality-walpu10.json|/dataList/4/levelList/0/flavor",
+        "batch": "20261112T040613-dc076fdf",
+        "kr_sha": "097bad2f49b2e3008693f0b1cfd7b0def2c4da7c7dee956aed78993403567a89",
+        "model": "claude-opus-5-5",
+        "note": "연기전쟁：寫「煙霧戰爭」；날개：決戰兵器的翅膀（字面），寫「翅膀」；聽者依 EN「Lady」為女性，用「妳」"
+      },
+      {
+        "key": "Skills_Abnormality-walpu10.json|/dataList/22/levelList/0/desc",
+        "batch": "20261112T040755-8f3b61ed",
+        "kr_sha": "5a1dba045a9686304e63fe6c7c282b8e4e11f863c5ad337f47b1209cb9cb37cf",
+        "model": "claude-opus-5-5",
+        "note": "원호방어：KR 未用 [ID]，寫關鍵字名稱「掩護防禦 」"
+      },
+      {
+        "key": "UnitKeyword.json|/dataList/84/content",
+        "batch": "20261112T041035-241805e1",
+        "kr_sha": "d7b80f6c4181e91f976bedd02fc069cee17617dea89572d0b51e5ba6a041b165",
+        "model": "claude-opus-5-5",
+        "note": "불주먹 사무소：寫「火拳事務所」"
+      },
+      {
+        "key": "AbEvents-walpu10.json|/dataList/1/behaveDesc",
+        "batch": "20261112T041054-70c5dd04",
+        "kr_sha": "4a290e044030f198fdb56094ecdac29f5feea27f7f5606705cf05b535fcbf15d",
+        "model": "claude-opus-5-5",
+        "note": "쌍화차：韓國傳統藥草茶，寫「雙和茶」"
+      },
+      {
+        "key": "ActionEvents-walpu10.json|/dataList/1/desc",
+        "batch": "20261112T041148-9aad20e3",
+        "kr_sha": "a90e6ca32d7dbff3af27ef3f12ce49e1d224400aa758355c26e864632a56d0cd",
+        "model": "claude-opus-5-5",
+        "note": "의뢰인가：是「의뢰＋인가」（是委託嗎），不是「의뢰인」（委託人），不用「委託人」"
+      },
+      {
+        "key": "ScenarioModelCodes-AutoCreated.json|/dataList/751/name",
+        "batch": "20261112T041435-9a35c82a",
+        "kr_sha": "b14664ea78a4ac51e20788da4070f75fad0da4033cda1b00a95989989b492f3d",
+        "model": "claude-opus-5-5",
+        "note": "유나：人名，寫「尤娜」"
+      },
+      {
+        "key": "ScenarioModelCodes-AutoCreated.json|/dataList/752/name",
+        "batch": "20261112T041435-9a35c82a",
+        "kr_sha": "4564246268b0396257e309740d7407733bbf7377f8ab496d51e4e3010b123855",
+        "model": "claude-opus-5-5",
+        "note": "필립：人名，寫「菲利普」"
+      },
+      {
+        "key": "Walpu10EventText.json|/dataList/36/content",
+        "batch": "20261112T041451-7a4e648d",
+        "kr_sha": "611ed3159b890ab5fe83f4300773a72b96777b8f7f9f96503ff90ee36e9f4d4e",
+        "model": "claude-opus-5-5",
+        "note": "고독한 해결사：效果名，暫譯「孤獨的收尾人」"
+      },
+      {
+        "key": "Walpu10EventText.json|/dataList/58/content",
+        "batch": "20261112T041451-7a4e648d",
+        "kr_sha": "e18004a3b327f08e2c8da8520d43e29a508afa554cb129f448795fbdcfc94393",
+        "model": "claude-opus-5-5",
+        "note": "환상해석：E.G.O 的 Threadspinning，暫譯「幻想解析」，請確認既有譯名"
+      },
+      {
+        "key": "MainUIText-a1c10p1.json|/dataList/19/content",
+        "batch": "20261112T041551-dc75fa71",
+        "kr_sha": "a0e1c41d78280e536dd158e82aaa5d5f0a9cd9745d174ffd7791d58fd0a0c28f",
+        "model": "claude-opus-5-5",
+        "note": "이상[理想]：李箱名字的雙關貨幣（EN Yisang [Ideality]），暫寫「李箱[理想]」，請確認既有譯名"
+      },
+      {
+        "key": "MainUIText-a1c10p1.json|/dataList/24/content",
+        "batch": "20261112T041551-dc75fa71",
+        "kr_sha": "4351015c020b831f005a824724b3cabe4c565f31dcb89c4d8772d8c3dcbec696",
+        "model": "claude-opus-5-5",
+        "note": "이상[理想]：同 MainUIText-a1c10p1 19，暫寫「李箱[理想]」"
+      },
+      {
+        "key": "SynergyKeyword.json|/dataList/0/name",
+        "batch": "20261112T041643-4ae3aaf0",
+        "kr_sha": "7ae0464e45f26ddc85a5954cec581bcfca46bc7ce4babc30734fbbe342e56ede",
+        "model": "claude-opus-5-5",
+        "note": "SynergyKeyword.json 落在 unsorted 族群，可能需要在 routing.yaml 歸類"
+      }
+    ],
+    "new_translated": 1763,
     "shown": {
-      "claude": 18072,
-      "copy": 90961,
+      "claude": 19833,
+      "copy": 91934,
       "human": 104,
-      "paratranz": 163738
+      "paratranz": 163978
     },
     "misaligned": [
       {
@@ -609,6 +1013,24 @@
     },
     {
       "family": "enemy",
+      "field": "name",
+      "kr": "회피",
+      "zh": [
+        "閃避",
+        "迴避"
+      ],
+      "keys": [
+        "Skills.json|/dataList/1/levelList/0/name",
+        "Skills_Abnormality-walpu10.json|/dataList/16/levelList/0/name"
+      ],
+      "counts": [
+        55,
+        1
+      ],
+      "units": 56
+    },
+    {
+      "family": "enemy",
       "field": "desc",
       "kr": "[OnSucceedAttack] [Vibration] 2 부여",
       "zh": [
@@ -620,10 +1042,10 @@
         "Skills_Abnormality_Refraction1_bokgak.json|/dataList/96/levelList/0/coinlist/0/coindescs/0/desc"
       ],
       "counts": [
-        43,
+        51,
         3
       ],
-      "units": 46
+      "units": 54
     },
     {
       "family": "enemy",
@@ -718,6 +1140,42 @@
     {
       "family": "enemy",
       "field": "desc",
+      "kr": "[OnSucceedAttack] [Combustion] 3 부여",
+      "zh": [
+        "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度",
+        "[OnSucceedAttack] 對目標施加3級 [Combustion] 強度"
+      ],
+      "keys": [
+        "Skills_Abnormality-BossRaid.json|/dataList/32/levelList/0/coinlist/0/coindescs/2/desc",
+        "Skills_Abnormality_Refraction6.json|/dataList/13/levelList/0/coinlist/1/coindescs/0/desc"
+      ],
+      "counts": [
+        11,
+        1
+      ],
+      "units": 12
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] [VibrationExplosion]. [Vibration] 횟수 1 감소",
+      "zh": [
+        "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]",
+        "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c10p2.json|/dataList/55/levelList/0/coinlist/0/coindescs/3/desc",
+        "Skills_Abnormality-a1c971.json|/dataList/1/levelList/0/coinlist/0/coindescs/1/desc"
+      ],
+      "counts": [
+        4,
+        8
+      ],
+      "units": 12
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
       "kr": "[OnSucceedAttack] 정신력 5 피해",
       "zh": [
         "[OnSucceedAttack] 對目標造成5點理智傷害",
@@ -748,6 +1206,42 @@
       "counts": [
         11,
         1
+      ],
+      "units": 12
+    },
+    {
+      "family": "keywords",
+      "field": "name",
+      "kr": "불꽃나비의 관",
+      "zh": [
+        "火蝶之棺",
+        "炎蝶之棺"
+      ],
+      "keys": [
+        "BattleKeywords-walpu10.json|/dataList/12/name",
+        "BattleKeywords.json|/dataList/562/name"
+      ],
+      "counts": [
+        6,
+        6
+      ],
+      "units": 12
+    },
+    {
+      "family": "keywords",
+      "field": "name",
+      "kr": "새벽불",
+      "zh": [
+        "黎明之火",
+        "曉光之火"
+      ],
+      "keys": [
+        "BattleKeywords-walpu10.json|/dataList/9/name",
+        "BattleKeywords.json|/dataList/551/name"
+      ],
+      "counts": [
+        6,
+        6
       ],
       "units": 12
     },
@@ -787,24 +1281,6 @@
       "counts": [
         6,
         5
-      ],
-      "units": 11
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [VibrationExplosion]. [Vibration] 횟수 1 감소",
-      "zh": [
-        "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]",
-        "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
-      ],
-      "keys": [
-        "Skills_Abnormality-a1c10p2.json|/dataList/55/levelList/0/coinlist/0/coindescs/3/desc",
-        "Skills_Abnormality-a1c971.json|/dataList/1/levelList/0/coinlist/0/coindescs/1/desc"
-      ],
-      "counts": [
-        3,
-        8
       ],
       "units": 11
     },
@@ -949,24 +1425,6 @@
       "counts": [
         8,
         2
-      ],
-      "units": 10
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Combustion] 3 부여",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度",
-        "[OnSucceedAttack] 對目標施加3級 [Combustion] 強度"
-      ],
-      "keys": [
-        "Skills_Abnormality-BossRaid.json|/dataList/32/levelList/0/coinlist/0/coindescs/2/desc",
-        "Skills_Abnormality_Refraction6.json|/dataList/13/levelList/0/coinlist/1/coindescs/0/desc"
-      ],
-      "counts": [
-        9,
-        1
       ],
       "units": 10
     },
@@ -1191,6 +1649,24 @@
     },
     {
       "family": "ally",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] [Breath] <style=\"highlight\">2</style> 얻음",
+      "zh": [
+        "[OnSucceedAttack] 使自身獲得<style=\"highlight\">2</style>級 [Breath] 強度",
+        "[OnSucceedAttack] 使自身增加<style=\"highlight\">2</style>級 [Breath] 強度"
+      ],
+      "keys": [
+        "Skills_personality-02.json|/dataList/32/levelList/1/coinlist/1/coindescs/0/desc",
+        "Skills_personality-06.json|/dataList/20/levelList/1/coinlist/1/coindescs/1/desc"
+      ],
+      "counts": [
+        7,
+        2
+      ],
+      "units": 9
+    },
+    {
+      "family": "ally",
       "field": "name",
       "kr": "후회",
       "zh": [
@@ -1204,6 +1680,24 @@
       "counts": [
         7,
         2
+      ],
+      "units": 9
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "꿰뚫기",
+      "zh": [
+        "穿刺釘刑",
+        "貫穿"
+      ],
+      "keys": [
+        "Skills.json|/dataList/159/levelList/0/name",
+        "Skills_Abnormality-walpu10.json|/dataList/19/levelList/0/name"
+      ],
+      "counts": [
+        8,
+        1
       ],
       "units": 9
     },
@@ -1243,6 +1737,24 @@
         3,
         3,
         3
+      ],
+      "units": 9
+    },
+    {
+      "family": "events",
+      "field": "content",
+      "kr": "어려움 난이도",
+      "zh": [
+        "困難難度",
+        "困難"
+      ],
+      "keys": [
+        "DawnOfGreenEventText.json|/dataList/3/content",
+        "Walpu3EventText.json|/dataList/39/content"
+      ],
+      "counts": [
+        8,
+        1
       ],
       "units": 9
     },
@@ -1414,6 +1926,27 @@
     {
       "family": "enemy",
       "field": "desc",
+      "kr": "크리티컬 피해량 +30%",
+      "zh": [
+        "使本硬幣暴擊時造成的傷害+30%",
+        "本技能暴擊時造成的傷害+30%",
+        "本硬幣暴擊時造成的傷害+30%"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p1.json|/dataList/32/levelList/0/coinlist/2/coindescs/0/desc",
+        "Skills_Abnormality-a1c9p2.json|/dataList/19/levelList/0/coinlist/0/coindescs/1/desc",
+        "Skills_Abnormality-a1c9p3.json|/dataList/84/levelList/0/coinlist/2/coindescs/0/desc"
+      ],
+      "counts": [
+        6,
+        1,
+        1
+      ],
+      "units": 8
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
       "kr": "크리티컬 피해량 +50%",
       "zh": [
         "使本硬幣暴擊時造成的傷害+50%",
@@ -1450,14 +1983,14 @@
     {
       "family": "events",
       "field": "content",
-      "kr": "어려움 난이도",
+      "kr": "쉬움 난이도",
       "zh": [
-        "困難難度",
-        "困難"
+        "簡單難度",
+        "簡單"
       ],
       "keys": [
-        "DawnOfGreenEventText.json|/dataList/3/content",
-        "Walpu3EventText.json|/dataList/39/content"
+        "Walpu10EventText.json|/dataList/1/content",
+        "Walpu3EventText.json|/dataList/38/content"
       ],
       "counts": [
         7,
@@ -1941,27 +2474,6 @@
     },
     {
       "family": "enemy",
-      "field": "desc",
-      "kr": "크리티컬 피해량 +30%",
-      "zh": [
-        "使本硬幣暴擊時造成的傷害+30%",
-        "本技能暴擊時造成的傷害+30%",
-        "本硬幣暴擊時造成的傷害+30%"
-      ],
-      "keys": [
-        "Skills_Abnormality-a1c9p1.json|/dataList/32/levelList/0/coinlist/2/coindescs/0/desc",
-        "Skills_Abnormality-a1c9p2.json|/dataList/19/levelList/0/coinlist/0/coindescs/1/desc",
-        "Skills_Abnormality-a1c9p3.json|/dataList/84/levelList/0/coinlist/2/coindescs/0/desc"
-      ],
-      "counts": [
-        5,
-        1,
-        1
-      ],
-      "units": 7
-    },
-    {
-      "family": "enemy",
       "field": "name",
       "kr": "사람",
       "zh": [
@@ -2014,24 +2526,6 @@
       "counts": [
         4,
         3
-      ],
-      "units": 7
-    },
-    {
-      "family": "events",
-      "field": "content",
-      "kr": "쉬움 난이도",
-      "zh": [
-        "簡單難度",
-        "簡單"
-      ],
-      "keys": [
-        "Walpu3EventText.json|/dataList/2/content",
-        "Walpu3EventText.json|/dataList/38/content"
-      ],
-      "counts": [
-        6,
-        1
       ],
       "units": 7
     },
@@ -2296,24 +2790,6 @@
     {
       "family": "ally",
       "field": "desc",
-      "kr": "[OnSucceedAttack] [Breath] <style=\"highlight\">2</style> 얻음",
-      "zh": [
-        "[OnSucceedAttack] 使自身獲得<style=\"highlight\">2</style>級 [Breath] 強度",
-        "[OnSucceedAttack] 使自身增加<style=\"highlight\">2</style>級 [Breath] 強度"
-      ],
-      "keys": [
-        "Skills_personality-02.json|/dataList/32/levelList/1/coinlist/1/coindescs/0/desc",
-        "Skills_personality-06.json|/dataList/20/levelList/1/coinlist/1/coindescs/1/desc"
-      ],
-      "counts": [
-        4,
-        2
-      ],
-      "units": 6
-    },
-    {
-      "family": "ally",
-      "field": "desc",
       "kr": "[OnSucceedAttack] 대상의 화상 수치만큼 진동 부여",
       "zh": [
         "[OnSucceedAttack] 根據目標帶有的燒傷 強度，相應增加震顫 強度",
@@ -2534,6 +3010,24 @@
       "units": 6
     },
     {
+      "family": "events",
+      "field": "content",
+      "kr": "이벤트 기간",
+      "zh": [
+        "活動期間",
+        "活動時間"
+      ],
+      "keys": [
+        "Walpu10EventText.json|/dataList/55/content",
+        "Walpu3EventText.json|/dataList/54/content"
+      ],
+      "counts": [
+        1,
+        5
+      ],
+      "units": 6
+    },
+    {
       "family": "identity",
       "field": "dlg",
       "kr": "이리 와라!",
@@ -2543,7 +3037,7 @@
       ],
       "keys": [
         "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/70/dlg",
-        "BattleSpeechBubbleDlg.json|/dataList/606/dlg"
+        "BattleSpeechBubbleDlg.json|/dataList/608/dlg"
       ],
       "counts": [
         5,
@@ -3760,6 +4254,30 @@
     {
       "family": "story-interlude",
       "field": "content",
+      "kr": "<…그래.>",
+      "zh": [
+        "<……嗯。>",
+        "<……這樣啊。>",
+        "<……好。>",
+        "<……是啊。>"
+      ],
+      "keys": [
+        "StoryData/E061X.json|/dataList/27/content",
+        "StoryData/E062X.json|/dataList/17/content",
+        "StoryData/E101X.json|/dataList/16/content",
+        "StoryData/E728B.json|/dataList/140/content"
+      ],
+      "counts": [
+        1,
+        2,
+        1,
+        1
+      ],
+      "units": 5
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
       "kr": "<하아…>",
       "zh": [
         "<哈……>",
@@ -3820,6 +4338,24 @@
     {
       "family": "story-interlude",
       "field": "content",
+      "kr": "…크흠.",
+      "zh": [
+        "……咳。",
+        "……咳咳。"
+      ],
+      "keys": [
+        "StoryData/E003I3.json|/dataList/63/content",
+        "StoryData/PC03B.json|/dataList/95/content"
+      ],
+      "counts": [
+        4,
+        1
+      ],
+      "units": 5
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
       "kr": "그래.",
       "zh": [
         "嗯。",
@@ -3871,6 +4407,27 @@
       "counts": [
         4,
         1
+      ],
+      "units": 5
+    },
+    {
+      "family": "story-interlude",
+      "field": "content",
+      "kr": "네.",
+      "zh": [
+        "好的。",
+        "請說。",
+        "對。"
+      ],
+      "keys": [
+        "StoryData/E020X.json|/dataList/25/content",
+        "StoryData/E103X.json|/dataList/6/content",
+        "StoryData/E405A.json|/dataList/11/content"
+      ],
+      "counts": [
+        2,
+        1,
+        2
       ],
       "units": 5
     },
@@ -5278,27 +5835,6 @@
     {
       "family": "story-interlude",
       "field": "content",
-      "kr": "<…그래.>",
-      "zh": [
-        "<……嗯。>",
-        "<……這樣啊。>",
-        "<……是啊。>"
-      ],
-      "keys": [
-        "StoryData/E061X.json|/dataList/27/content",
-        "StoryData/E062X.json|/dataList/17/content",
-        "StoryData/E728B.json|/dataList/140/content"
-      ],
-      "counts": [
-        1,
-        2,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
       "kr": "<그렇구나…>",
       "zh": [
         "<這樣啊……>",
@@ -5371,42 +5907,6 @@
       "counts": [
         3,
         1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…크흠.",
-      "zh": [
-        "……咳。",
-        "……咳咳。"
-      ],
-      "keys": [
-        "StoryData/E003I3.json|/dataList/63/content",
-        "StoryData/PC03B.json|/dataList/95/content"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "네.",
-      "zh": [
-        "好的。",
-        "對。"
-      ],
-      "keys": [
-        "StoryData/E020X.json|/dataList/25/content",
-        "StoryData/E405A.json|/dataList/11/content"
-      ],
-      "counts": [
-        2,
-        2
       ],
       "units": 4
     },
@@ -5953,7 +6453,7 @@
         "預設"
       ],
       "keys": [
-        "MainUIText.json|/dataList/253/content",
+        "MainUIText.json|/dataList/255/content",
         "SelectDUI.json|/dataList/3/content"
       ],
       "counts": [
@@ -7160,7 +7660,7 @@
       ],
       "keys": [
         "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/210/dlg",
-        "BattleSpeechBubbleDlg.json|/dataList/548/dlg"
+        "BattleSpeechBubbleDlg.json|/dataList/550/dlg"
       ],
       "counts": [
         2,
@@ -7214,7 +7714,7 @@
       ],
       "keys": [
         "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/68/dlg",
-        "BattleSpeechBubbleDlg.json|/dataList/605/dlg"
+        "BattleSpeechBubbleDlg.json|/dataList/607/dlg"
       ],
       "counts": [
         2,
@@ -8288,7 +8788,7 @@
       ],
       "keys": [
         "FormationNameEtcFilter.json|/dataList/0/content",
-        "MainUIText.json|/dataList/473/content"
+        "MainUIText.json|/dataList/475/content"
       ],
       "counts": [
         1,
@@ -8306,7 +8806,7 @@
       ],
       "keys": [
         "FormationUI_S6.json|/dataList/55/content",
-        "MainUIText.json|/dataList/199/content"
+        "MainUIText.json|/dataList/201/content"
       ],
       "counts": [
         2,
@@ -8421,7 +8921,7 @@
       ],
       "keys": [
         "FormationNameEtcFilter.json|/dataList/28/content",
-        "MainUIText.json|/dataList/211/content",
+        "MainUIText.json|/dataList/213/content",
         "ShopUI.json|/dataList/5/content"
       ],
       "counts": [
@@ -8602,7 +9102,7 @@
         "編輯隊伍"
       ],
       "keys": [
-        "MainUIText.json|/dataList/205/content",
+        "MainUIText.json|/dataList/207/content",
         "TutorialMainUIText.json|/dataList/860/content"
       ],
       "counts": [
@@ -9900,96 +10400,6 @@
       "keys": [
         "Skills_Abnormality-a1c7p1.json|/dataList/3/levelList/0/coinlist/3/coindescs/1/desc",
         "Skills_Abnormality-a1c7p3.json|/dataList/67/levelList/0/coinlist/3/coindescs/1/desc"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 대상의 [Burst]만큼 [Laceration] 부여",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加等同於其 [Burst] 強度的 [Laceration] 強度",
-        "[OnSucceedAttack] 根據目標帶有的 [Burst] 強度，使其增加相應的 [Laceration] 強度"
-      ],
-      "keys": [
-        "Skills_Abnormality-a1c6p2.json|/dataList/9/levelList/0/coinlist/2/coindescs/1/desc",
-        "Skills_Enemy-a1c6p2.json|/dataList/36/levelList/0/coinlist/2/coindescs/1/desc"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 대상의 [Laceration]이 10이상이면, 피해량의 70%만큼 체력 회복",
-      "zh": [
-        "[OnSucceedAttack] 若目標的 [Laceration] 強度不低於10級，則使自身恢復本硬幣傷害量70%的體力",
-        "[OnSucceedAttack] 若目標的 [Laceration] 強度不低於10級，則使自身恢復本硬幣造成傷害70%的體力"
-      ],
-      "keys": [
-        "Skills_Abnormality-a1c6p2.json|/dataList/23/levelList/0/coinlist/3/coindescs/1/desc",
-        "Skills_Abnormality-a1c6p3.json|/dataList/57/levelList/0/coinlist/3/coindescs/1/desc"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 대상의 [OminousTalisman] 3 소모",
-      "zh": [
-        "[OnSucceedAttack] 使目標消耗3層 [OminousTalisman]",
-        "[OnSucceedAttack] 消耗目標3層 [OminousTalisman]"
-      ],
-      "keys": [
-        "Skills_Abnormality-a1c8p2.json|/dataList/53/levelList/0/coinlist/1/coindescs/0/desc",
-        "Skills_Enemy-a1c8p2.json|/dataList/29/levelList/0/coinlist/1/coindescs/0/desc"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 자신의 [Vibration] 횟수가 10 이상이면, [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소",
-      "zh": [
-        "[OnSucceedAttack] 若自身的 [Vibration] 回數不低於10回，則使目標 [VibrationExplosion] 並使目標的 [Vibration] 回數減少1回",
-        "[OnSucceedAttack] 若自身的 [Vibration] 回數不低於10回，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
-      ],
-      "keys": [
-        "Skills_Enemy-tkt-re.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc",
-        "Skills_Enemy-tkt.json|/dataList/10/levelList/0/coinlist/1/coindescs/0/desc"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 파열 10 부여",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加10級破裂 強度 ",
-        "[OnSucceedAttack] 使目標增加10級破裂 強度"
-      ],
-      "keys": [
-        "Skills_Abnormality.json|/dataList/209/levelList/0/coinlist/0/coindescs/0/desc",
-        "Skills_Enemy91-4.json|/dataList/18/levelList/0/coinlist/0/coindescs/0/desc"
       ],
       "counts": [
         1,

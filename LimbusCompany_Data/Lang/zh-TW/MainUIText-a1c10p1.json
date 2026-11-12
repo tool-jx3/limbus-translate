@@ -59,6 +59,54 @@
     {
       "id": "exp_dungeon_10_open_condition",
       "content": "通關9.5-26與關卡10-4"
+    },
+    {
+      "id": "formation_deck_code_condition_reset",
+      "content": "不符合編隊條件的人格已套用為基本人格。"
+    },
+    {
+      "id": "character_list_friend_support_companion_impossible",
+      "content": "此關卡無法指定會一同被指定的{0}的支援人格。"
+    },
+    {
+      "id": "gacha_additional_explain_button_label",
+      "content": "同時獲得人格說明"
+    },
+    {
+      "id": "gacha_307_additional_explain_title",
+      "content": "同時獲得人格說明"
+    },
+    {
+      "id": "gacha_307_additional_explain_desc",
+      "content": "楔事務所收尾人 唐吉訶德與楔事務所收尾人 辛克萊在提取中視為1個3星人格，\n出現時一定會同時獲得兩個人格。\n\n．楔事務所收尾人 唐吉訶德 & 楔事務所收尾人 辛克萊的出現機率如下。\n- 兩個人格為代表3星人格（UP）的特定提取：與1名代表3星人格的出現機率相同\n- 其他會出現這兩個人格的提取：與1名非代表3星人格的出現機率相同\n（詳細機率可在各提取的[機率詳情]中確認。）\n \n．星芒也以1名3星人格計算，在提取中首次獲得時，兩個人格合計獲得300個星芒。\n\n．在兩個人格為代表3星人格的特定提取中，可用200個李箱[理想]同時兌換兩個人格。\n\n．在已持有兩個人格的狀態下再次獲得時，\n會獲得當前賽季的唐吉訶德自我碎片25個與辛克萊自我碎片25個，取代依稀有度給予的自我碎片。\n\n．加入自動販賣機後，可用唐吉訶德自我碎片與辛克萊自我碎片合計400個同時購買兩個人格。兩種自我碎片各需使用至少1個，比例可自由決定。\n\n．人格升級、同步、外觀投影時，兩個人格需分別進行，每個人格都需要與一般3星人格相同的素材。此時，自我碎片使用該罪人的自我碎片。"
+    },
+    {
+      "id": "formation_ui_panel_start_battle_lor",
+      "content": "開始接待"
+    },
+    {
+      "id": "battle_walpu10_ego_page_history_ashes",
+      "content": "為了將所有明亮之物燃燒殆盡……"
+    },
+    {
+      "id": "battle_walpu10_ego_page_history_nostalgic_embrace",
+      "content": "要不要緊緊抱住我？心情會平靜下來的。"
+    },
+    {
+      "id": "battle_walpu10_ego_page_history_gluttony",
+      "content": "我們守在你身邊的理由？\n當然是為了保護你啊！"
+    },
+    {
+      "id": "notice_of_pity_point_progress_or_not_already_have_companion",
+      "content": "已持有所選的所有人格。是否要消耗200個李箱[理想]，各兌換25個罪人的碎片？"
+    },
+    {
+      "id": "notice_of_vending_machine_companion_1",
+      "content": "可用唐吉訶德自我碎片與辛克萊自我碎片合計400個同時購買兩個人格。兩種自我碎片各需使用至少1個，比例可自由決定。"
+    },
+    {
+      "id": "notice_of_story_same_content",
+      "content": "與{0}內容相同，僅領取了獎勵。"
     }
   ]
 }

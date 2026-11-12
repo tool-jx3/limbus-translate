@@ -4014,6 +4014,7 @@
     {
       "id": "DawnTeam",
       "name": "黎明事務所",
+      "excludeAutoLink": true,
       "desc": "- 最大值：3\n- 自身每帶有1層本效果，則使攻擊等級+1\n- 若本效果的層數為3層，則回合開始時，使自身恢復5點理智值\n- 回合開始時，若除自身以外屬於「黎明事務所」的友方人格全數陣亡，則解除本效果",
       "summary": "",
       "undefined": "-",
@@ -4250,28 +4251,28 @@
     {
       "id": "PersonalityCombustion",
       "name": "燒傷人格",
-      "desc": "",
+      "desc": "擁有可施加燒傷 強度、燒傷 回數或特殊燒傷的基本攻擊技能的人格",
       "summary": "",
       "undefined": "-"
     },
     {
       "id": "PersonalityLaceration",
       "name": "流血人格",
-      "desc": "",
+      "desc": "擁有可施加流血 強度、流血 回數或特殊流血的基本攻擊技能的人格",
       "summary": "",
       "undefined": "-"
     },
     {
       "id": "PersonalityBurst",
       "name": "破裂人格",
-      "desc": "",
+      "desc": "擁有可施加破裂 強度、破裂 回數或特殊破裂的基本攻擊技能的人格",
       "summary": "",
       "undefined": "-"
     },
     {
       "id": "PersonalitySinking",
       "name": "沉淪人格",
-      "desc": "",
+      "desc": "擁有可施加沉淪 強度、沉淪 回數或特殊沉淪的基本攻擊技能的人格",
       "summary": "",
       "undefined": "-"
     },
@@ -4423,6 +4424,94 @@
       "id": "WarinessHonglu",
       "name": "傾聽刑罰",
       "desc": "- 最大值：2\n- 每有1層本效果，則使攻擊等級-1\n- 若存在帶有傾聽時分的人格，則使屬於漆黑派的人格受到的傷害+(本效果層數×10)%\n- 若存在帶有傾聽時分的人格，則回合結束時，使本效果的層數減少1層(施加本效果的人格撤退、陣亡時，移除本效果)",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "WedgeOffice",
+      "name": "楔事務所",
+      "excludeAutoLink": true,
+      "desc": "- 最大值：3\n- 每有1層，攻擊等級+1\n- 若層數為3，則戰鬥開始時獲得1層突刺傷害強化 \n- 回合結束時消失",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "ComboWedge",
+      "name": "勝機",
+      "excludeAutoLink": true,
+      "desc": "- 最大值：30\n- 每回合最多可獲得20層",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "ComboWedgeDawn",
+      "name": "黎明的羈絆",
+      "excludeAutoLink": true,
+      "desc": "- 最大值：5",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "DespairKnightEGOProtect",
+      "name": "騎士的守護",
+      "excludeAutoLink": true,
+      "desc": "基本值：3\n自身高於1.5的物理抗性調整為1.5 (混亂狀態除外)\n若自身處於混亂狀態，受到的傷害-30% (包含強制混亂)\n\n回合結束時減少1\n施加本效果的角色撤退或陣亡，或對其他目標施加本效果時消失。若被其他角色施加相同效果，則替換為該效果。\n\n被敵方擊殺時，於下回合對攻擊者施加2層易損 ，且本效果的施加者於下回合獲得2層強壯 、3層傷害提升 (每回合最多1次)",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "DespairKnightEGOSword",
+      "name": "以淚磨礪之劍",
+      "excludeAutoLink": true,
+      "desc": "- 最大值：3\n- 獲得或消耗充能 的技能造成的傷害+(充能 強度 x 2)% (最多10%)\n- 突刺或傲慢技能造成的傷害+(層數 x 5)%\n- 自身的突刺或傲慢技能命中時，造成(本效果層數 x 2) + (該硬幣最終傷害的5%)的傲慢傷害\n- 攻擊結束時，若主要目標為敵方，則施加等同於層數的沉淪 強度",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "DespairKnightEGOMind",
+      "name": "磨損的矜持",
+      "excludeAutoLink": true,
+      "desc": "- 最大值：999\n- 每回合最多可獲得500層",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "DespairKnightEGOAlly",
+      "name": "被遺忘的騎士之劍",
+      "excludeAutoLink": true,
+      "desc": "- 最大值：3\n- 被突刺或傲慢技能擊中時，層數增加1 (每個技能最多1次)\n．若層數為最大值，則受到50點傲慢傷害，並使本效果消失。本回合與下回合獲得1層突刺易損 \n- 本效果同時只能由一名角色持有 (對其他目標施加時，原有的效果消失)",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "BattleFieldKnow",
+      "name": "掌握戰場",
+      "excludeAutoLink": true,
+      "desc": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 根據本效果的層數，基本攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為不可摧毀硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為不可摧毀硬幣的效果，以使用技能前一刻的層數判定",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "WedgeMarkYellow",
+      "name": "楔 - 唐吉訶德",
+      "excludeAutoLink": true,
+      "desc": "- 最大值：8\n- 本效果達到一定層數以上時，強化楔事務所收尾人辛克萊的特定技能\n- 回合結束時，使自身增加1回震顫 \n- 回合開始時，若戰場上沒有屬於楔事務所的敵方角色，則本效果消失",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "WedgeMarkGreen",
+      "name": "楔 - 辛克萊",
+      "excludeAutoLink": true,
+      "desc": "- 最大值：8\n- 本效果達到一定層數以上時，強化楔事務所收尾人唐吉訶德的特定技能\n- 回合結束時，使自身增加1回震顫 \n- 回合開始時，若戰場上沒有屬於楔事務所的敵方角色，則本效果消失",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "ComboSkill",
+      "name": "連",
+      "excludeAutoLink": true,
+      "desc": "若對應的人格以可行動的狀態存活於戰場上，則觸發追加效果 (對應的人格處於任何種類的無法行動狀態、E.G.O侵蝕或混亂狀態時，不會觸發)",
       "summary": "",
       "undefined": "-"
     }
