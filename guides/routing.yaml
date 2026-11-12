@@ -82,7 +82,7 @@ families:
     guide: guides/families/enemy.md
     include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
   - id: keywords
-    nodes: ["Bufs", "Bufs_*", "BattleKeywords", "BattleKeywords_*", "UnitKeyword", "SkillTag", "BuffAbilities", "KeywordDictionary", "MentalCondition", "PanicInfo", "ResistText", "AttributeText", "ChoiceEventKeyword"]
+    nodes: ["Bufs", "Bufs_*", "BattleKeywords", "BattleKeywords_*", "UnitKeyword", "SynergyKeyword", "SkillTag", "BuffAbilities", "KeywordDictionary", "MentalCondition", "PanicInfo", "ResistText", "AttributeText", "ChoiceEventKeyword"]
     guide: guides/families/keywords.md
     include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
   - id: abnormality
