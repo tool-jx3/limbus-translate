@@ -1,0 +1,7 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「기본 스킬」既有 230/260 寫 基礎技能。
+reason: '「기본 스킬」寫「基礎技能」（既有譯名）'
+files: ['BattleKeywords-walpu10.json', 'Bufs-walpu10.json', 'EGOgift_walpu10.json']
+origins: [claude]
+pattern: '基本技能'
+replace: '基礎技能'
+kr_pattern: '기본 스킬'

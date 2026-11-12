@@ -1,0 +1,6 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「쐐기 대형 전개」人格技能名 Skills_personality-11 與被動寫 楔形陣展開。
+reason: '「쐐기 대형 전개」寫「楔形陣展開」（既有譯名）'
+files: ['EGOgift_walpu10.json', 'Skills_Abnormality-walpu10.json']
+pattern: '展開楔形陣'
+replace: '楔形陣展開'
+kr_pattern: '쐐기 대형 전개'

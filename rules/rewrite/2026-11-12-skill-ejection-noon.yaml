@@ -1,0 +1,7 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「사출」既有 Skills_personality-02#55 寫 紛射-正午。
+reason: '「사출」寫「紛射-正午」（既有譯名）'
+files: ['Skills_Abnormality-walpu10.json']
+origins: [claude]
+pattern: '射出 - 正午'
+replace: '紛射-正午'
+kr_pattern: '사출 - 정오'

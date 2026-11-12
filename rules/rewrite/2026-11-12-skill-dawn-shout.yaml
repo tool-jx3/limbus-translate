@@ -1,0 +1,6 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「새벽녘」喊招台詞，既有人格台詞 BattleSpeechBubbleDlg#723 寫「破曉。」。
+reason: '「새벽녘」寫「破曉」（既有譯名）'
+files: ['BattleSpeechBubbleDlg-walpu10.json']
+pattern: '破曉時分'
+replace: '破曉'
+kr_pattern: '새벽녘'

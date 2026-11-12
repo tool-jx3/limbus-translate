@@ -5848,3 +5848,129 @@
   category: [general, buff]
   notes: 2026-11-12 更新暫定詞「지정 사서」的不空格寫法；新譯 11 處、舊譯 P11213 1 處都用 指定司書
 
+# 2026-11-12 更新：walpu10 的新譯與既有譯名不一致的技能名、詞，使用者決定用既有譯名
+# （這次新譯以 rules/rewrite/2026-11-12-{skill-*,bloom,evade,basic-skill,damage-up}.yaml 改正）
+
+- kr: 새벽녘
+  jp: 明け方
+  en: Crack of Dawn
+  zh: 黎明時分
+  status: approved
+  match: word
+  check: "off"
+  category: [combat]
+  notes: 2026-11-12 黎明事務所 格里高爾的技能名「새벽녘」用既有的 黎明時分（Skills_personality-12#47、Passives#638）；喊招台詞既有寫「破曉。」；劇情的一般用法另譯，所以不檢查
+
+- kr: 노을빛 검
+  jp: 茜さす剣
+  en: Sunset Blade
+  zh: 霞光劍刃
+  status: approved
+  category: [combat]
+  notes: 2026-11-12 黎明事務所的技能名，既有 10/10 寫 霞光劍刃
+
+- kr: 새벽을 가르는 검
+  jp: 夜明けを裂く剣
+  en: Dawnsplitter
+  zh: 撕裂黎明之劍
+  status: approved
+  category: [combat]
+  notes: 2026-11-12 黎明事務所的技能名，既有 4/4 寫 撕裂黎明之劍
+
+- kr: 아지랑이
+  jp: 陽炎
+  en: Heat Haze
+  zh: 海市蜃樓
+  status: approved
+  match: word
+  check: "off"
+  category: [combat]
+  notes: 2026-11-12 黎明事務所的技能名用既有的 海市蜃樓（Skills_personality-12#48）；劇情描寫熱氣、光暈時另譯，所以不檢查
+
+- kr: 여명의 섬광
+  jp: 黎明の閃光
+  en: Flash of Sunup
+  zh: 黎明閃光
+  status: approved
+  category: [combat]
+  notes: 2026-11-12 黎明事務所的技能名，既有 8/8 寫 黎明閃光
+
+- kr: 사출
+  jp: 射出
+  en: Eject
+  zh: 紛射
+  status: approved
+  match: word
+  check: "off"
+  category: [combat]
+  notes: 2026-11-12 黎明事務所的技能名「사출」「사출 - 정오」用既有的 紛射、紛射-正午（Skills_personality-02#52、#55）；「사출실」等其他用法另譯，所以不檢查
+
+- kr: 맹렬한 돌진
+  jp: 猛烈な突進
+  en: Fierce Charge
+  zh: 挺身而出
+  status: approved
+  category: [combat]
+  notes: 2026-11-12 技能名，既有 3/3 寫 挺身而出（Skills_personality-10#8）
+
+- kr: 격돌
+  jp: 激突
+  en: Collision
+  zh: 交鋒
+  status: approved
+  match: word
+  check: "off"
+  category: [combat]
+  notes: 2026-11-12 楔事務所的技能名與喊招，依人格技能名 Skills_personality-03、-10 寫 交鋒；劇情的一般用法（衝突、衝出）另譯，所以不檢查
+
+- kr: 쐐기 대형 전개
+  jp: 楔形陣展開
+  en: Assume Wedge Formation
+  zh: 楔形陣展開
+  status: approved
+  category: [combat]
+  notes: 2026-11-12 楔事務所的技能名，依人格技能名 Skills_personality-11#53 與被動寫 楔形陣展開；喊招「楔形陣，展開！」可以
+
+- kr: 연계
+  jp: 連携
+  en: Seconded Offensive
+  zh: 聯手
+  status: approved
+  match: word
+  check: "off"
+  category: [combat]
+  notes: 2026-11-12 收尾人事務所的技能名「연계」用既有的 聯手（Skills_personality-02#54、黎明事務所被動）；鴻璐與黑獸的連動寫 連攜，另一回事，所以不檢查
+
+- kr: 개화
+  jp: 開花
+  zh: 綻放
+  status: approved
+  match: word
+  category: [general]
+  notes: 2026-11-12 劇情單獨出現的「개화」（E.G.O 的綻放）用既有的 綻放（既有 92/115），與「개화 E.G.O → 綻放E.G.O」一致；花真的開了的描寫不在此限
+
+- kr: 회피
+  jp: 回避
+  en: Evade
+  zh: 閃避
+  status: approved
+  match: word
+  category: [combat]
+  notes: 2026-11-12 既有 92/121 寫 閃避（另 21 處 迴避）
+
+- kr: 기본 스킬
+  zh: 基礎技能
+  status: approved
+  match: word
+  category: [combat]
+  notes: 2026-11-12 既有 230/260 寫 基礎技能（與「기본 공격 스킬 → 基礎攻擊技能」一致）
+
+- kr: 감정 단계
+  jp: 感情レベル
+  en: Emotion Level
+  zh: 情感等級
+  status: approved
+  match: word
+  category: [buff]
+  notes: 2026-11-12 更新新出現的詞，沒有舊譯；新譯 8/8 用 情感等級，與「감정 0단계 → 情感等級0」一致
+

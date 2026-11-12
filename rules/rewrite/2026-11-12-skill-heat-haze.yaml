@@ -1,0 +1,6 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「아지랑이」技能名，既有 5 處寫 海市蜃樓。
+reason: '「아지랑이」寫「海市蜃樓」（既有譯名）'
+files: ['Skills_Abnormality-walpu10.json']
+pattern: '陽炎'
+replace: '海市蜃樓'
+kr_pattern: '아지랑이'

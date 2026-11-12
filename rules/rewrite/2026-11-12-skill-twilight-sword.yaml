@@ -1,0 +1,6 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「노을빛 검」既有 10/10 寫 霞光劍刃。
+reason: '「노을빛 검」寫「霞光劍刃」（既有譯名）'
+files: ['Skills_Abnormality-walpu10.json']
+pattern: '晚霞之劍'
+replace: '霞光劍刃'
+kr_pattern: '노을빛 검'

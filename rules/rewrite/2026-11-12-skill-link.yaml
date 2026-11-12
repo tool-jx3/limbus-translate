@@ -1,0 +1,7 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「연계」技能名，既有黎明事務所技能 Skills_personality-02#54 與被動寫 聯手（連攜 是鴻璐與黑獸的連動，另一回事）。
+reason: '「연계」寫「聯手」（既有譯名）'
+files: ['Skills_Abnormality-walpu10.json', 'Walpu10EventText.json']
+origins: [claude]
+pattern: '連攜'
+replace: '聯手'
+kr_pattern: '연계'

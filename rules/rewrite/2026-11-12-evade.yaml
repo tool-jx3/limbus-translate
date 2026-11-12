@@ -1,0 +1,6 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「회피」既有 92/121 寫 閃避。
+reason: '「회피」寫「閃避」（既有譯名）'
+files: ['Skills_Abnormality-walpu10.json']
+pattern: '迴避'
+replace: '閃避'
+kr_pattern: '회피'

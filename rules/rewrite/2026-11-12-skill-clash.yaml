@@ -1,0 +1,7 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「격돌」沒有更早的譯法；人格技能名 Skills_personality-03、-10 寫 交鋒，敵方技能名、說明與喊招一併統一。
+reason: '「격돌」寫「交鋒」（既有譯名）'
+files: ['BattleSpeechBubbleDlg-walpu10.json', 'BattleSpeechBubbleDlg.json', 'EGOgift_walpu10.json', 'PersonalityVoiceDlg/Voice_Outis_Wedge_11116.json', 'Skills_Abnormality-walpu10.json']
+origins: [claude]
+pattern: '衝撞|激突'
+replace: '交鋒'
+kr_pattern: '격돌'

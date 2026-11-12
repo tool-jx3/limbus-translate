@@ -1,0 +1,6 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「새벽녘」技能名，既有格里高爾（黎明事務所）的技能與被動寫 黎明時分。
+reason: '「새벽녘」寫「黎明時分」（既有譯名）'
+files: ['Skills_Abnormality-walpu10.json']
+pattern: '破曉時分'
+replace: '黎明時分'
+kr_pattern: '새벽녘'

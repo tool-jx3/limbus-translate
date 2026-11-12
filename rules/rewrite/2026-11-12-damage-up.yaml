@@ -1,0 +1,7 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「피해량 증가」效果名，既有效果名 피해량 증가 寫 傷害強化。
+reason: '「피해량 증가」寫「傷害強化」（既有譯名）'
+files: ['BattleKeywords.json', 'Bufs.json']
+origins: [claude]
+pattern: '傷害提升'
+replace: '傷害強化'
+kr_pattern: '피해량 증가'

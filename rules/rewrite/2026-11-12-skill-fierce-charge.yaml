@@ -1,0 +1,6 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「맹렬한 돌진」既有 3/3 寫 挺身而出。
+reason: '「맹렬한 돌진」寫「挺身而出」（既有譯名）'
+files: ['Skills_Abnormality-walpu10.json']
+pattern: '猛烈突進'
+replace: '挺身而出'
+kr_pattern: '맹렬한 돌진'

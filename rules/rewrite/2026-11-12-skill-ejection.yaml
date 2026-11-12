@@ -1,0 +1,7 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「사출」技能名與喊招，既有 15 處寫 紛射。
+reason: '「사출」寫「紛射」（既有譯名）'
+files: ['BattleSpeechBubbleDlg.json', 'Skills_Abnormality-walpu10.json']
+origins: [claude]
+pattern: '射出'
+replace: '紛射'
+kr_pattern: '사출'

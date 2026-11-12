@@ -1,0 +1,7 @@
+# 2026-11-12 更新的新譯改回既有譯名（使用者決定）：「개화」劇情單獨出現的 개화，既有 92/115 寫 綻放（詞彙表 개화 E.G.O → 綻放E.G.O）。
+reason: '「개화」寫「綻放」（既有譯名）'
+files: ['StoryData/E102X.json', 'StoryData/E103X.json']
+origins: [claude]
+pattern: '開花'
+replace: '綻放'
+kr_pattern: '개화'
