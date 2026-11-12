@@ -453,10 +453,11 @@ func uniqueID(id string, pending []store.PendingItem, taken func(string) (bool, 
 // assemble builds the batch of parts, the units taken from each file in the
 // order they were taken (a story batch has one part). byFile holds the pending
 // indexes of each file; records loads the stored translations (only story
-// batches and batches with [ID]s need them); keywords returns the whole
-// keyword table (see keywordTable) made from those records, and is asked only
-// when a text names a keyword. Next builds it anew for each batch, a Previewer
-// keeps it.
+// batches, batches with [ID]s and batches with a unit whose KR the same-text
+// index has in another group need them); keywords returns the whole keyword
+// table (see keywordTable) made from those records, and is asked only when a
+// text names a keyword. Next builds it anew for each batch, a Previewer keeps
+// it.
 func assemble(
 	env Env, id, family string,
 	pending []store.PendingItem, byFile map[string][]int, parts []part,
@@ -479,6 +480,7 @@ func assemble(
 	}
 	var texts []unitText
 	var uses []nameUse
+	var same []sameAsk
 	needRecords := story
 	for _, p := range parts {
 		fd := p.fd
@@ -498,12 +500,8 @@ func assemble(
 			if err != nil {
 				return nil, err
 			}
-			refs := cleanRefs(item.Refs)
-			if same := env.SameText.For(u.KR, SameTextGroup(TextGroupOf(env.Rules, fd.doc, u))); len(same) > 0 {
-				if refs == nil {
-					refs = map[string]string{}
-				}
-				refs[RefSameText] = existing.SameTextRef(same)
+			if g := SameTextGroup(TextGroupOf(env.Rules, fd.doc, u)); inOtherGroup(env.SameText, u.KR, g) {
+				same = append(same, sameAsk{len(b.Units), g})
 			}
 			if env.Names.IsName(u.Field, u.KR) {
 				use := nameUse{name: env.Names.Lookup(u.KR), exact: true, key: item.Key}
@@ -532,7 +530,7 @@ func assemble(
 				Hint:    item.Hint,
 				EN:      en,
 				JP:      jp,
-				Refs:    refs,
+				Refs:    cleanRefs(item.Refs),
 				Keep:    constraints(u.KR),
 			})
 			texts = append(texts, unitText{fd.file, u.KR, item.Key})
@@ -549,12 +547,15 @@ func assemble(
 	b.Names = nameRefs(uses)
 
 	b.Keywords = map[string]string{}
-	if !needRecords {
+	if !needRecords && len(same) == 0 {
 		return b, nil
 	}
 	recs, err := records()
 	if err != nil {
 		return nil, err
+	}
+	for _, a := range same {
+		sameTextRef(env.SameText, &b.Units[a.unit], a.group, recs)
 	}
 	if krs := distinctKRs(texts); len(keywordIDs(krs)) > 0 {
 		table, err := keywords(recs)
@@ -572,6 +573,40 @@ func assemble(
 		b.Context = storyContext(env, p.fd, recs, pendingByKey, p.chosen)
 	}
 	return b, nil
+}
+
+// sameAsk is a unit of a batch whose KR the same-text index has in another
+// group than the unit's: the index of the unit in Batch.Units, and its group.
+type sameAsk struct {
+	unit  int
+	group string
+}
+
+// inOtherGroup reports whether s has kr in a group other than group, so that
+// the records are worth reading for its references. A nil s has nothing.
+func inOtherGroup(s *existing.SameText, kr, group string) bool {
+	if s == nil {
+		return false
+	}
+	return slices.ContainsFunc(s.Texts[kr], func(g existing.SameGroup) bool { return g.Group != group })
+}
+
+// sameTextRef puts into the refs of u, a unit of group, the renderings of its
+// KR in other groups: the translations their units have now in recs, when
+// those are usable (existing.Usable). So a translation submitted earlier in
+// this update counts. It adds nothing when no other group has one.
+func sameTextRef(s *existing.SameText, u *BatchUnit, group string, recs map[string]store.Record) {
+	rs := s.For(u.KR, group, func(key string) (string, bool) {
+		rec, ok := recs[key]
+		return rec.ZH, ok && existing.Usable(rec, u.KR)
+	})
+	if len(rs) == 0 {
+		return
+	}
+	if u.Refs == nil {
+		u.Refs = map[string]string{}
+	}
+	u.Refs[RefSameText] = existing.SameTextRef(rs)
 }
 
 // contextReach is how many dataList elements on each side of the element of

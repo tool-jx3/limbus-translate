@@ -1130,11 +1130,23 @@ func TestBaseEnvLoadsNames(t *testing.T) {
 	}); err != nil {
 		t.Fatal(err)
 	}
-	// Two groups, neither the unit's own, so the unit gets both lines.
+	// Two groups, neither the unit's own, so the unit gets both lines: the
+	// translations are those of the records of their units.
+	const sentence = "뫼르소가 말했다"
 	if err := existing.SaveSameText(st, existing.CollectSameText("raw-20261029", []existing.TextUnit{
-		{Key: "Other.json|/dataList/0/content", Group: "x|content|", File: "Other.json", KR: "뫼르소가 말했다", ZH: "穆爾索說了"},
-		{Key: "More.json|/dataList/0/content", Group: "y|content|", File: "More.json", KR: "뫼르소가 말했다", ZH: "穆爾索開口了"},
+		{Key: "Other.json|/dataList/0/content", Group: "x|content|", KR: sentence},
+		{Key: "More.json|/dataList/0/content", Group: "y|content|", KR: sentence},
 	})); err != nil {
+		t.Fatal(err)
+	}
+	recs, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for key, zh := range map[string]string{"Other.json|/dataList/0/content": "穆爾索說了", "More.json|/dataList/0/content": "穆爾索開口了"} {
+		recs[key] = store.Record{Key: key, KRSha: units.KRSha(sentence), ZH: zh, Origin: store.OriginClaude, Since: "raw-20261029"}
+	}
+	if err := st.SaveRecords(recs); err != nil {
 		t.Fatal(err)
 	}
 	got, raw, err := runNextJSON(t, root)

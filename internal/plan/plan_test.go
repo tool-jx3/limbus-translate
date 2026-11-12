@@ -1794,10 +1794,11 @@ func TestPlanWritesSameTextIndex(t *testing.T) {
 		long  = "열 글자가 넘는 같은 문장입니다" // 10 runes or more
 		nine  = "아홉글자짜리문장이"         // 9 runes
 		alone = "한 군데에만 있는 긴 문장입니다"
+		fresh = "아직 아무도 번역하지 않은 문장" // translated nowhere
 	)
 	tag := e.snapshot(map[string]string{
-		"Skills_A.json": dataList(obj{"id": 1, "desc": long}, obj{"id": 2, "desc": nine}, obj{"id": 3, "desc": alone}),
-		"Skills_B.json": dataList(obj{"id": 1, "help": long}, obj{"id": 2, "help": nine}),
+		"Skills_A.json": dataList(obj{"id": 1, "desc": long}, obj{"id": 2, "desc": nine}, obj{"id": 3, "desc": alone}, obj{"id": 4, "desc": fresh}),
+		"Skills_B.json": dataList(obj{"id": 1, "help": long}, obj{"id": 2, "help": nine}, obj{"id": 3, "help": fresh}),
 	})
 	e.seed([]store.Record{
 		translated(descKey("Skills_A.json", 0), long, "超過十個字的相同句子"),
@@ -1812,17 +1813,24 @@ func TestPlanWritesSameTextIndex(t *testing.T) {
 	if idx.RawTag != tag {
 		t.Errorf("RawTag = %s, want %s", idx.RawTag, tag)
 	}
-	// The sentence is in two groups (desc and help); only one has a translation.
-	if rs := idx.Texts[long]; len(rs) != 1 || rs[0].Group != "skill|desc|" || rs[0].ZH != "超過十個字的相同句子" {
-		t.Errorf("Texts[long] = %+v, want the translation of the desc group", rs)
+	// Each sentence is in two groups (desc and help); the index holds their
+	// units, translated or not.
+	for kr, entry := range map[string][2]int{long: {0, 0}, fresh: {3, 2}} { // its entries in A and B
+		want := []existing.SameGroup{
+			{Group: "skill|desc|", Keys: []string{descKey("Skills_A.json", entry[0])}},
+			{Group: "skill|help|", Keys: []string{at("Skills_B.json", fmt.Sprintf("/dataList/%d/help", entry[1]))}},
+		}
+		if gs := idx.Texts[kr]; !reflect.DeepEqual(gs, want) {
+			t.Errorf("Texts[%q] = %+v, want %+v", kr, gs, want)
+		}
 	}
 	for _, kr := range []string{nine, alone} {
 		if rs, ok := idx.Texts[kr]; ok {
 			t.Errorf("%q is in the index: %+v", kr, rs)
 		}
 	}
-	if sum.NameTable.SameTexts != 1 {
-		t.Errorf("SameTexts = %d, want 1", sum.NameTable.SameTexts)
+	if sum.NameTable.SameTexts != 2 {
+		t.Errorf("SameTexts = %d, want 2", sum.NameTable.SameTexts)
 	}
 }
 
@@ -1857,7 +1865,9 @@ func TestPlanKeepsOneOfTheTwoFilesAndRebuildsTheOther(t *testing.T) {
 }
 
 // Only a record of the KR text there is now, made by a translation, counts.
-func TestPlanLeavesUnusableRecordsOutOfTheTableAndTheIndex(t *testing.T) {
+// The same-text index holds units, not records: it has every group, and the
+// records are judged (existing.Usable) when a batch reads them.
+func TestPlanLeavesUnusableRecordsOutOfTheTable(t *testing.T) {
 	e := newPlanEnv(t)
 	const long = "열 글자가 넘는 같은 문장입니다"
 	kr := map[string]string{
@@ -1908,7 +1918,15 @@ func TestPlanLeavesUnusableRecordsOutOfTheTableAndTheIndex(t *testing.T) {
 	if err != nil || idx == nil {
 		t.Fatalf("LoadSameText = %v, %v", idx, err)
 	}
-	if rs := idx.Texts[long]; len(rs) != 1 || rs[0].ZH != "好句" {
-		t.Errorf("Texts[long] = %+v, want only the usable 好句", rs)
+	if gs := idx.Texts[long]; len(gs) != 5 {
+		t.Errorf("Texts[long] = %+v, want the five groups", gs)
+	}
+	recs := e.records()
+	zhOf := func(key string) (string, bool) {
+		r, ok := recs[key]
+		return r.ZH, ok && existing.Usable(r, long)
+	}
+	if rs := idx.For(long, "", zhOf); len(rs) != 1 || rs[0].ZH != "好句" {
+		t.Errorf("For(long) = %+v, want only the usable 好句", rs)
 	}
 }

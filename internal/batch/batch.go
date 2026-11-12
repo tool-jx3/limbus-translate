@@ -75,8 +75,10 @@ type Env struct {
 	// existing name: a batch brings their entry of the table even where the
 	// name is short and unquoted (see existing.Index.Mentions).
 	NameBoost map[string]bool
-	// SameText holds the renderings of the same KR sentence in other groups:
-	// Next puts them into refs.same_text. Nil means none.
+	// SameText holds the units of the same KR sentence in other groups: Next
+	// puts the translations they have when the batch is cut into
+	// refs.same_text, so that those submitted earlier in the update count
+	// too. Nil means none.
 	SameText *existing.SameText
 	// Scripts, if set, remembers rules.ScriptRenderings by file, which Judge
 	// would otherwise work out for every unit; the preview, which judges many
@@ -118,7 +120,7 @@ type Batch struct {
 }
 
 // Limits of Batch.Names, and the name of the reference with the renderings of
-// the same sentence in other groups.
+// the same sentence in other groups (see Env.SameText).
 const (
 	MaxNames        = 40
 	maxNameVariants = 3
@@ -725,7 +727,7 @@ func TextGroupOf(r *rules.Rules, doc *jsonx.Node, u units.Unit) TextGroup {
 }
 
 // SameTextGroup names the group of g without its text, as the same-text
-// index keys its renderings: family, field and speaker joined by "|".
+// index keys its groups: family, field and speaker joined by "|".
 func SameTextGroup(g TextGroup) string {
 	return g.Family + "|" + g.Field + "|" + g.Speaker
 }

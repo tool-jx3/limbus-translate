@@ -4884,12 +4884,22 @@ func TestBatchNamesCapKeepsExactFirst(t *testing.T) {
 	}
 }
 
-// sameTextOf is an index in which kr has a translation in another group than
-// that of the unit of A.json (other|content|, without a speaker).
-func sameTextOf(kr string) *existing.SameText {
+// sameTextOf sets up an index in which kr is in the group of the unit of
+// A.json (other|content|, without a speaker) and in another one, and the
+// records of both: the other group's unit has a translation, and so has a
+// second unit of the own group (C.json, not in the pack).
+func sameTextOf(t *testing.T, env Env, kr string) *existing.SameText {
+	t.Helper()
+	if err := env.Store.SaveRecords(map[string]store.Record{
+		key("B.json", 0): translated(key("B.json", 0), kr, "同一句話"),
+		key("C.json", 0): translated(key("C.json", 0), kr, "自己組的譯文"),
+	}); err != nil {
+		t.Fatal(err)
+	}
 	return existing.CollectSameText(testTag, []existing.TextUnit{
-		{Key: "A.json|/dataList/0/content", Group: "other|content|", File: "A.json", KR: kr, ZH: "自己組的譯文"},
-		{Key: "B.json|/dataList/0/content", Group: "other|content|philip", File: "B.json", Speaker: "philip", KR: kr, ZH: "同一句話"},
+		{Key: key("A.json", 0), Group: "other|content|", KR: kr},
+		{Key: key("C.json", 0), Group: "other|content|", KR: kr},
+		{Key: key("B.json", 0), Group: "other|content|philip", Speaker: "philip", KR: kr},
 	})
 }
 
@@ -4897,18 +4907,11 @@ func TestBatchSameTextRef(t *testing.T) {
 	const kr = "같은 문장입니다"
 	env := newEnv(t, map[string]string{"A.json": oneLine(t, kr)}, nil, nil)
 	seed(t, env, items("A.json", 0, 1)...)
-	env.SameText = sameTextOf(kr)
-	want := existing.SameTextRef(env.SameText.For(kr, "other|content|"))
-	if want == "" || !strings.Contains(want, "同一句話") {
-		t.Fatalf("fixture: the other group's rendering is not in %q", want)
-	}
+	env.SameText = sameTextOf(t, env, kr)
 	b := mustNext(t, env, NextOptions{})
 	got := b.Units[0].Refs[RefSameText]
-	if got != want {
+	if want := "B.json（philip）：同一句話"; got != want {
 		t.Errorf("Refs[same_text] = %q, want %q", got, want)
-	}
-	if strings.Contains(got, "自己組的譯文") {
-		t.Errorf("Refs[same_text] = %q holds the unit's own group", got)
 	}
 }
 
@@ -4916,10 +4919,86 @@ func TestBatchSameTextRefKeepsOtherRefs(t *testing.T) {
 	const kr = "같은 문장입니다"
 	env := newEnv(t, map[string]string{"A.json": oneLine(t, kr)}, nil, nil)
 	seed(t, env, store.PendingItem{Key: key("A.json", 0), Reason: "new", Refs: map[string]string{"llc": "舊"}})
-	env.SameText = sameTextOf(kr)
+	env.SameText = sameTextOf(t, env, kr)
 	b := mustNext(t, env, NextOptions{})
 	if r := b.Units[0].Refs; r["llc"] != "舊" || r[RefSameText] == "" {
 		t.Errorf("Refs = %v, want llc and same_text", r)
+	}
+}
+
+// A translation submitted in this update is a reference for the batches cut
+// after it: the index names the units, and the batch reads their records.
+func TestBatchSameTextSeesTranslationsOfThisUpdate(t *testing.T) {
+	const kr = "같은 문장입니다"
+	env := newEnv(t, map[string]string{
+		"A.json": oneLine(t, kr),
+		"B.json": dataList(t, 1, "파우스트", func(int) string { return kr }),
+	}, nil, nil)
+	seed(t, env, append(items("A.json", 0, 1), items("B.json", 0, 1)...)...)
+	env.SameText = existing.CollectSameText(testTag, []existing.TextUnit{
+		{Key: key("A.json", 0), Group: "other|content|", KR: kr},
+		{Key: key("B.json", 0), Group: "other|content|faust", Speaker: "faust", KR: kr},
+	})
+	opt := NextOptions{MaxUnits: 1}
+	a := mustNext(t, env, opt)
+	if a == nil || a.Units[0].Key != key("A.json", 0) {
+		t.Fatalf("batch A = %+v", a)
+	}
+	if r, ok := a.Units[0].Refs[RefSameText]; ok {
+		t.Errorf("batch A: Refs[same_text] = %q, want none: nothing is translated", r)
+	}
+	before := mustNext(t, env, opt)
+	if before == nil || before.Units[0].Key != key("B.json", 0) {
+		t.Fatalf("batch B = %+v", before)
+	}
+	if r, ok := before.Units[0].Refs[RefSameText]; ok {
+		t.Errorf("batch B before A is submitted: Refs[same_text] = %q, want none", r)
+	}
+	if _, err := Release(env, before.ID); err != nil {
+		t.Fatal(err)
+	}
+	res, err := Submit(env, a, []OutUnit{{Key: key("A.json", 0), ZH: "同一句話"}}, "test-model", 3)
+	if err != nil || len(res.Accepted) != 1 {
+		t.Fatalf("submit A = %+v, %v", res, err)
+	}
+	after := mustNext(t, env, opt)
+	if after == nil || after.Units[0].Key != key("B.json", 0) {
+		t.Fatalf("batch B again = %+v", after)
+	}
+	if got, want := after.Units[0].Refs[RefSameText], "A.json：同一句話"; got != want {
+		t.Errorf("batch B after A is submitted: Refs[same_text] = %q, want %q", got, want)
+	}
+}
+
+// The records are read for the same-text references only when a unit's KR
+// is in the index: a batch that needs them fails on a broken record file,
+// one that does not is cut all the same.
+func TestBatchReadsRecordsForSameTextOnlyWhenIndexed(t *testing.T) {
+	const kr = "같은 문장입니다"
+	for _, indexed := range []bool{false, true} {
+		twRoot := filepath.Join(t.TempDir(), "tw")
+		env := newEnvIn(t, twRoot, map[string]string{"A.json": oneLine(t, kr)}, nil, nil)
+		seed(t, env, items("A.json", 0, 1)...)
+		other := "다른 문장입니다"
+		if indexed {
+			other = kr
+		}
+		env.SameText = existing.CollectSameText(testTag, []existing.TextUnit{
+			{Key: key("X.json", 0), Group: "other|content|", KR: other},
+			{Key: key("B.json", 0), Group: "other|content|philip", Speaker: "philip", KR: other},
+		})
+		if err := env.Store.SaveRecords(map[string]store.Record{key("B.json", 0): translated(key("B.json", 0), other, "同一句話")}); err != nil {
+			t.Fatal(err)
+		}
+		bad := filepath.Join(twRoot, ".meta", "units", "Broken.json.jsonl")
+		writeFile(t, bad, "not json\n")
+		_, err := Next(env, NextOptions{})
+		if indexed && err == nil {
+			t.Error("indexed: Next did not read the records")
+		}
+		if !indexed && err != nil {
+			t.Errorf("not indexed: Next = %v, want the batch without reading the records", err)
+		}
 	}
 }
 

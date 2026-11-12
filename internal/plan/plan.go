@@ -483,7 +483,9 @@ func (p *planner) usableRecord(key string) (store.Record, bool) {
 }
 
 // collectSources reads the units the table (names) and the index (texts) are
-// made of; it reads only for those asked for.
+// made of; it reads only for those asked for. The table takes the units with
+// a usable record and their translations, the index every unit long enough,
+// translated or not, and no translation: a batch reads those when it is cut.
 func (p *planner) collectSources(names, texts bool) ([]existing.Source, []existing.TextUnit, error) {
 	var srcs []existing.Source
 	var tus []existing.TextUnit
@@ -511,11 +513,7 @@ func (p *planner) collectSources(names, texts bool) ([]existing.Source, []existi
 			}
 			if texts && utf8.RuneCountInString(u.KR) >= batch.ShortTextRunes {
 				g := batch.TextGroupOf(p.in.Rules, f.doc, u)
-				tu := existing.TextUnit{Key: key, File: f.name, KR: u.KR, Speaker: g.Speaker, Group: batch.SameTextGroup(g)}
-				if usable {
-					tu.ZH = rec.ZH
-				}
-				tus = append(tus, tu)
+				tus = append(tus, existing.TextUnit{Key: key, KR: u.KR, Speaker: g.Speaker, Group: batch.SameTextGroup(g)})
 			}
 		}
 	}

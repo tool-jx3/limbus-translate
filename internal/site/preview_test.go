@@ -279,6 +279,10 @@ func newPvWorld(t *testing.T, frozen ...string) pvWorld {
 		ruleRec(rec(rulesFile, 1, "第二", store.OriginClaude), "abc1234", "raw-20261029"),
 		// no rules commit, and another since, where the other two have them
 		ruleRec(rec(rulesFile, 2, "第三", store.OriginClaude), "", "raw-20261001"),
+		// The units the same-text index names besides Other.json #1, which are
+		// not in the pack: one of its own group, one of the story said by faust.
+		pvRec(other, at(other, 9), "새 문장", "自己組的譯文", store.OriginClaude),
+		pvRec(story, at(story, 9), "새 문장", "新的一句", store.OriginClaude),
 	} {
 		records[r.Key] = r
 	}
@@ -327,8 +331,9 @@ func newPvWorld(t *testing.T, frozen ...string) pvWorld {
 	// A second spelling of 출혈 that no pack has: no jp, en or others.
 	table.Names[1].Variants = append(table.Names[1].Variants, existing.Variant{Renderings: []existing.Rendering{{ZH: "出血", Units: 1}}})
 	sameText := existing.CollectSameText("raw-20261029", []existing.TextUnit{
-		{Key: units.Key(other, at(other, 1)), Group: "other|content|", File: other, KR: "새 문장", ZH: "自己組的譯文"},
-		{Key: units.Key(story, at(story, 6)), Group: "story-main|content|faust", File: story, Speaker: "faust", KR: "새 문장", ZH: "新的一句"},
+		{Key: units.Key(other, at(other, 1)), Group: "other|content|", KR: "새 문장"},
+		{Key: units.Key(other, at(other, 9)), Group: "other|content|", KR: "새 문장"},
+		{Key: units.Key(story, at(story, 9)), Group: "story-main|content|faust", Speaker: "faust", KR: "새 문장"},
 	})
 	env := batch.Env{
 		Store: st, Src: src, Rules: r, RawTag: "raw-20261029", RulesCommit: pvRulesCommit,
