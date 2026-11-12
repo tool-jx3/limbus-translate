@@ -209,17 +209,22 @@ func nameDiffItems(rep Report) []string {
 
 // inconsistentNewItems is the item of each group of one KR text with
 // different renderings that holds units of this update, except a group whose
-// new units are all listed under an existing name already.
+// new units are all listed already under the existing name that is its KR
+// text. A unit listed under another name, one its text mentions, does not
+// count: that tells nothing of how it differs from the other units of its
+// own text.
 func inconsistentNewItems(info Info) []string {
-	listed := map[string]bool{}
+	listed := map[[2]string]bool{} // the KR of the name, trimmed, and a key
 	for _, d := range info.Report.NameDiffs {
+		kr := strings.TrimSpace(d.KR)
 		for _, u := range d.Units {
-			listed[u.Key] = true
+			listed[[2]string{kr, u.Key}] = true
 		}
 	}
 	var items []string
 	for _, g := range inconsistentGroups(info) {
-		if g.New == 0 || (len(g.NewKeys) > 0 && !slices.ContainsFunc(g.NewKeys, func(k string) bool { return !listed[k] })) {
+		kr := strings.TrimSpace(g.KR)
+		if g.New == 0 || (len(g.NewKeys) > 0 && !slices.ContainsFunc(g.NewKeys, func(k string) bool { return !listed[[2]string{kr, k}] })) {
 			continue
 		}
 		var zhs []string

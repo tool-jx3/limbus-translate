@@ -700,6 +700,25 @@ func TestReviewIssueCapsLongKRAndZH(t *testing.T) {
 	}
 }
 
+// A group is left out only when its new units are listed under the name that
+// is its KR: a unit listed as a mention of another name still differs from
+// the other units of its own text.
+func TestReviewIssueInconsistentNewNeedsTheNameOfItsKR(t *testing.T) {
+	info := issueInfo()
+	info.Report.NameDiffs = []NameDiff{{KR: "노을빛 검", Existing: []existing.Rendering{{ZH: "霞光劍刃", Units: 2}},
+		Units: []NameDiffUnit{{Key: "A|/1", ZH: "揮出晚霞之劍", Kind: NameDiffMention}, {Key: "B|/1", ZH: "晚霞之劍", Kind: NameDiffField}}}}
+	mention := Inconsistency{Family: "f", Field: "content", KR: "노을빛 검 휘두르기", ZH: []string{"揮出晚霞之劍", "揮出霞光劍刃"},
+		Keys: []string{"A|/1", "A|/2"}, Counts: []int{1, 1}, Units: 2, New: 1, NewKeys: []string{"A|/1"}}
+	// Its KR is the name's, but for blanks: its new unit is listed already.
+	field := Inconsistency{Family: "f", Field: "name", KR: " 노을빛 검", ZH: []string{"晚霞之劍", "霞光劍刃"},
+		Keys: []string{"B|/1", "B|/2"}, Counts: []int{1, 1}, Units: 2, New: 1, NewKeys: []string{"B|/1"}}
+	info.InconsistentAll = []Inconsistency{mention, field}
+	sec := sectionOfKind(ReviewItems(info, nil, nil), KindInconsistentNew)
+	if sec == nil || len(sec.Items) != 1 || !strings.HasPrefix(sec.Items[0], "`"+itemid.Inconsistent("f", "content", "노을빛 검 휘두르기")+"`") {
+		t.Errorf("section = %+v, want only the group of the text that mentions the name", sec)
+	}
+}
+
 // A group with new units but no NewKeys (an older record) cannot be shown to
 // be listed under a name, so it is kept.
 func TestReviewIssueInconsistentNewKeepsAGroupWithoutNewKeys(t *testing.T) {
