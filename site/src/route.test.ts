@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { fileHref, parseHash, reviewHref, searchHref, updateHref, updatesHref, glossaryHref, termHref, previewHref } from './route'
+import { fileHref, parseHash, reviewHref, searchHref, updateHref, updatesHref, glossaryHref, termHref, previewHref, namesHref } from './route'
 
 describe('parseHash', () => {
   it('reads the empty hash and #/ as home', () => {
@@ -254,5 +254,23 @@ describe('preview route', () => {
   it('falls back to the file route without u, and for a bad path', () => {
     expect(parseHash('#/pv/StoryData/S001A.json')).toEqual({ kind: 'file', path: 'StoryData/S001A.json' })
     expect(parseHash('#/pv/a/../b.json?u=%2Fx')).toEqual({ kind: 'home' })
+  })
+})
+
+describe('names route', () => {
+  it('reads #/n with its filters', () => {
+    expect(parseHash('#/n?q=%EA%B2%80&only=multi&sort=kr')).toEqual({ kind: 'names', q: '검', only: 'multi', sort: 'kr' })
+    expect(parseHash('#/n')).toEqual({ kind: 'names', q: '', only: '', sort: 'units' })
+  })
+
+  it('falls back to the defaults for an unknown only or sort', () => {
+    expect(parseHash('#/n?only=x&sort=y')).toEqual({ kind: 'names', q: '', only: '', sort: 'units' })
+  })
+
+  it('writes only what is not the default', () => {
+    expect(namesHref({})).toBe('#/n')
+    expect(namesHref({ sort: 'units', only: '' })).toBe('#/n')
+    expect(namesHref({ q: '검', only: 'review', sort: 'kr' })).toBe('#/n?q=%EA%B2%80&only=review&sort=kr')
+    expect(parseHash(namesHref({ q: '검', only: 'declined', sort: 'kr' }))).toEqual({ kind: 'names', q: '검', only: 'declined', sort: 'kr' })
   })
 })

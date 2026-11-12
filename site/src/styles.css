@@ -3198,3 +3198,64 @@ a.uc-cause:focus-visible {
   color: var(--muted);
   overflow-wrap: anywhere;
 }
+
+/* The page of the existing names: one row per name, its variants stacked in the second cell. */
+.nm-name {
+  white-space: nowrap;
+}
+
+.nm-kr {
+  font-weight: 600;
+}
+
+.nm-units {
+  margin-inline-start: 0.5rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.nm-variant {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+  padding: 0.15rem 0;
+}
+
+.nm-variant + .nm-variant {
+  border-top: 1px dashed var(--border);
+}
+
+.nm-src {
+  display: flex;
+  gap: 0.6rem;
+  color: var(--muted);
+}
+
+.nm-zh {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.6rem;
+}
+
+.nm-main {
+  font-weight: 600;
+}
+
+.nm-other {
+  opacity: 0.8;
+}
+
+.nm-example {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+}
+
+.nm-marks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.6rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}

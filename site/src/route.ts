@@ -6,6 +6,7 @@ import type { UpdateFilter } from './updates/filter'
  * #/r/<tab>?family=…&kind=…&q=…&all=1&id=… (sub is the kind of the query: of a suggestion, the code of a warning),
  * #/gold (the gold sample to judge),
  * #/u, #/u/<tag>?k=<kinds>&o=<origin>&f=<file>&copy=1,
+ * #/n?q=…&only=…&sort=… (the existing names),
  * #/g?q=…&sort=…&only=…&family=…, #/g/<a>/<b>?family=…&group=…&chapter=…&character=…&event=…&origin=…&q=… (the entry glossary/<a>/<b>).
  */
 export type Route =
@@ -18,6 +19,7 @@ export type Route =
   | { kind: 'gold' }
   | { kind: 'update'; tag: string; kinds: UpdateKind[]; origin: string; file: string; copy: boolean; cause: string; group: string }
   | { kind: 'glossary'; q: string; sort: GlossarySort; only: GlossaryOnly; family: string }
+  | { kind: 'names'; q: string; only: NamesOnly; sort: NamesSort }
   | { kind: 'term'; id: string; family: string; group: string; chapter: string; character: string; event: string; origin: string; q: string }
 
 /** How the list of glossary entries is ordered: by units without the rendering (most first), by KR, or by rate. */
@@ -71,6 +73,11 @@ export interface TermFilter {
   q: string
 }
 
+/** Which existing names the list keeps: all, those with several renderings or variants, those the review has a new rendering for, those the glossary has, or those declined. */
+export type NamesOnly = '' | 'multi' | 'review' | 'glossary' | 'declined'
+/** How the existing names are ordered: most units first (ties by KR), or by KR. */
+export type NamesSort = 'units' | 'kr'
+
 /** How the inconsistent translations are shown: by KR alone, or with each variant's JP and EN. */
 export type ReviewMode = 'kr' | 'jpen'
 /** The JP/EN class the inconsistent translations are filtered by; '' for all. */
@@ -82,6 +89,7 @@ const LANGS: readonly string[] = ['kr', 'jp', 'en', 'zh']
 const REVIEW_TABS: readonly string[] = ['suggestions', 'warnings', 'notes', 'todo', 'scope']
 const UPDATE_KINDS: readonly string[] = ['new', 'kr-changed', 'deleted', 'zh-changed']
 const GLOSSARY_ONLY: readonly string[] = ['missing', 'hard']
+const NAMES_ONLY: readonly string[] = ['multi', 'review', 'glossary', 'declined']
 /** The <a>/<b> of glossary/<a>/<b>. */
 const ENTRY_PATH = /^[0-9A-Za-z_-]+\/[0-9A-Za-z_-]+$/
 const UPDATE_TAG = /^zh-TW-\d{8}\.\d+$/
@@ -181,6 +189,15 @@ export function parseHash(hash: string): Route {
       q: query.get('q') ?? '',
     }
   }
+  if (pathname === '/n') {
+    const only = query.get('only') ?? ''
+    return {
+      kind: 'names',
+      q: query.get('q') ?? '',
+      only: NAMES_ONLY.includes(only) ? (only as NamesOnly) : '',
+      sort: query.get('sort') === 'kr' ? 'kr' : 'units',
+    }
+  }
   if (pathname === '/gold') return { kind: 'gold' }
   if (pathname === '/u') return { kind: 'updates' }
   if (pathname.startsWith('/u/')) {
@@ -278,4 +295,14 @@ export function termHref(id: string, f: Partial<TermFilter> = {}): string {
   }
   const query = pairs.map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')
   return `#/g/${id.replace(/^glossary\//, '')}${query ? `?${query}` : ''}`
+}
+
+/** The hash of the page of the existing names, with the filters that are not the default. */
+export function namesHref(f: Partial<Pick<Extract<Route, { kind: 'names' }>, 'q' | 'only' | 'sort'>> = {}): string {
+  const pairs: [string, string][] = []
+  if (f.q) pairs.push(['q', f.q])
+  if (f.only) pairs.push(['only', f.only])
+  if (f.sort && f.sort !== 'units') pairs.push(['sort', f.sort])
+  const query = pairs.map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')
+  return `#/n${query ? `?${query}` : ''}`
 }

@@ -1,4 +1,4 @@
-import type { FileData, GlossaryFile, GlossaryIndex, GoldData, Index, Meta, PreviewFileWire, PreviewShared, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
+import type { FileData, GlossaryFile, GlossaryIndex, GoldData, Index, NamesData, Meta, PreviewFileWire, PreviewShared, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
 
 /** The version of the layout and keys of the data that this page reads. */
 const FORMAT = 2
@@ -156,6 +156,16 @@ export function loadGlossary(): Promise<GlossaryIndex> {
       throw new DataError('format', 'glossary/index.json: no thresholds and entries')
     }
     return doc as unknown as GlossaryIndex
+  })
+}
+
+/** data/names.json: the table of existing names. */
+export function loadNames(): Promise<NamesData> {
+  return load('names.json', (doc) => {
+    if (!isRecord(doc) || typeof doc.raw_tag !== 'string' || !Array.isArray(doc.fields) || !Array.isArray(doc.names)) {
+      throw new DataError('format', 'names.json: no raw_tag, fields and names')
+    }
+    return doc as unknown as NamesData
   })
 }
 

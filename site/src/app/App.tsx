@@ -2,6 +2,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { DataError, loadIndex, loadMeta } from '../data'
 import { parseHash, type Route } from '../route'
 import { GlossaryView } from '../glossary/GlossaryView'
+import { NamesView } from '../glossary/NamesView'
 import { TermView } from '../glossary/TermView'
 import { GoldView } from '../gold/GoldView'
 import { PreviewView } from '../preview/PreviewView'
@@ -150,6 +151,8 @@ function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: Pag
       return <UpdateView route={route} settings={settings} onSettings={onSettings} />
     case 'glossary':
       return <GlossaryView route={route} />
+    case 'names':
+      return <NamesView route={route} />
     case 'term':
       return <TermView route={route} settings={settings} />
   }

@@ -779,3 +779,39 @@ export interface GoldData {
   units: GoldUnit[]
   report?: GoldReport
 }
+
+/** One rendering of a name, with the units that carry it. */
+export interface NameRendering {
+  zh: string
+  units: number
+}
+
+/** One JP/EN pair a KR name has, with the renderings it got (most units first) and example unit keys ("<file path>|<pointer>"). */
+export interface NameVariant {
+  jp?: string
+  en?: string
+  renderings: NameRendering[]
+  examples: string[]
+}
+
+/** One KR name of the table of existing names. */
+export interface NameRow {
+  kr: string
+  units: number
+  variants: NameVariant[]
+  /** The glossary has an entry for the name. */
+  glossary?: true
+  /** The name was declined. */
+  declined?: true
+  /** The review has a different new rendering for the name. */
+  review?: true
+}
+
+/** data/names.json: the table of existing names (KR order), made before the last update of the translations. */
+export interface NamesData {
+  /** The snapshot the table was made before; "" when there is no table. */
+  raw_tag: string
+  /** The name fields the table was made from. */
+  fields: string[]
+  names: NameRow[]
+}

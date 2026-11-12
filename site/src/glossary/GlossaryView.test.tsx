@@ -305,4 +305,9 @@ describe('GlossaryView, the sort by header', () => {
       expect(el2.querySelectorAll('.gl-table thead [aria-sort]')).toHaveLength(1)
     }
   })
+
+  it('links to the page of the existing names', async () => {
+    const el = await mount()
+    expect(el.querySelector('a[href="#/n"]')?.textContent).toContain('既有譯名表')
+  })
 })

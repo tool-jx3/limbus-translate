@@ -1,7 +1,7 @@
 import { useMemo } from 'preact/hooks'
 import { Notice } from '../app/Notice'
 import { loadGlossary } from '../data'
-import { GLOSSARY_COLUMNS, glossaryHref, glossarySort, sortParts, termHref, type GlossaryColumn, type GlossaryOnly, type GlossarySort, type Route, type SortDir } from '../route'
+import { GLOSSARY_COLUMNS, glossaryHref, glossarySort, namesHref, sortParts, termHref, type GlossaryColumn, type GlossaryOnly, type GlossarySort, type Route, type SortDir } from '../route'
 import { LANG_ATTR, type ScopeEntry, type ScopeThresholds } from '../types'
 import { CHECK_TITLE, checkLevel } from './check'
 import { useLoad } from './useLoad'
@@ -145,6 +145,9 @@ export function GlossaryView({ route }: { route: GlossaryRoute }) {
       <h1>詞彙</h1>
       <p class="rv-lede">
         詞彙表的每一條，與它命中的單位裡有多少用了譯名。點一條看用了與沒用的全部單位。
+      </p>
+      <p class="rv-lede">
+        <a href={namesHref()}>既有譯名表（名稱欄位的既有譯法）→</a>
       </p>
       {loaded?.status === 'error' && <Notice error={loaded.error} />}
       {loaded === undefined && <p role="status">詞彙載入中…</p>}

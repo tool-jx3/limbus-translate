@@ -1,0 +1,42 @@
+{
+  "raw_tag": "raw-20261029",
+  "fields": ["name", "title"],
+  "names": [
+    {
+      "kr": "검",
+      "units": 5,
+      "variants": [
+        {
+          "jp": "剣",
+          "en": "Sword",
+          "renderings": [
+            { "zh": "劍", "units": 3 },
+            { "zh": "長劍", "units": 1 }
+          ],
+          "examples": ["Skills_personality-02.json|/dataList/0/name", "Skills_personality-02.json|/dataList/1/name"]
+        },
+        {
+          "jp": "刀",
+          "en": "Blade",
+          "renderings": [{ "zh": "刀", "units": 1 }],
+          "examples": ["Skills_personality-02.json|/dataList/2/name"]
+        }
+      ],
+      "glossary": true,
+      "review": true
+    },
+    {
+      "kr": "우레",
+      "units": 2,
+      "variants": [
+        { "jp": "雷", "en": "Thunder", "renderings": [{ "zh": "雷鳴", "units": 2 }], "examples": ["Skills_personality-02.json|/dataList/3/name"] }
+      ],
+      "declined": true
+    },
+    {
+      "kr": "방패",
+      "units": 1,
+      "variants": [{ "en": "Shield", "renderings": [{ "zh": "盾", "units": 1 }], "examples": ["Skills_personality-02.json|/dataList/4/name"] }]
+    }
+  ]
+}

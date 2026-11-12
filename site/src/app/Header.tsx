@@ -72,7 +72,7 @@ export function Header({ route, review, settings, onSettings, fileQuery, onFileQ
         審核
         {open > 0 && <span class="review-count">{open}</span>}
       </a>
-      <a class="glossary-link" href={glossaryHref()} {...(route.kind === 'glossary' || route.kind === 'term' ? { 'aria-current': 'page' as const } : {})}>
+      <a class="glossary-link" href={glossaryHref()} {...(route.kind === 'glossary' || route.kind === 'term' || route.kind === 'names' ? { 'aria-current': 'page' as const } : {})}>
         詞彙
       </a>
       <a class="gold-link" href={goldHref()} {...(route.kind === 'gold' ? { 'aria-current': 'page' as const } : {})}>
