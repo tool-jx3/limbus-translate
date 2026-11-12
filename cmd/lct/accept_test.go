@@ -10,6 +10,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/build"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -1029,5 +1031,32 @@ func TestAcceptRefusesAGlossaryEntryID(t *testing.T) {
 	}
 	if got := readOptional(t, s.root, "rules/declined.yaml") + readOptional(t, s.root, "rules/accepted.yaml"); !strings.HasPrefix(got, "# keep\n") || strings.Contains(got, s.suggestion) {
 		t.Errorf("a list changed:\n%s", got)
+	}
+}
+
+// A name suggestion is declined as any rule suggestion is.
+func TestAcceptNameSuggestion(t *testing.T) {
+	s := acceptRepo(t)
+	st := store.Open(filepath.Join(s.root, ".work", "tw"))
+	var info build.Info
+	if found, err := st.ReadMetaJSON("build.json", &info); err != nil || !found {
+		t.Fatalf("build.json: %v %v", found, err)
+	}
+	info.Report.NameDiffs = []build.NameDiff{{
+		KR:       "노을빛 검",
+		Existing: []existing.Rendering{{ZH: "暮色之劍", Units: 5}},
+		Units:    []build.NameDiffUnit{{Key: "a.json|/dataList/0/name", ZH: "夕照之劍", Kind: build.NameDiffField}},
+	}}
+	if err := st.WriteMetaJSON("build.json", info); err != nil {
+		t.Fatal(err)
+	}
+	const id = "name/노을빛 검"
+	var out acceptOut
+	mustLct(t, &out, "accept", "--reason", "R", "--date", "2026-11-03", id)
+	if !slices.Equal(out.Declined, []string{id}) {
+		t.Fatalf("accept = %+v", out)
+	}
+	if declined := readOptional(t, s.root, "rules/declined.yaml"); !strings.Contains(declined, `- id: "`+id+`"`) {
+		t.Errorf("declined.yaml:\n%s", declined)
 	}
 }

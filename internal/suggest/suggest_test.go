@@ -11,6 +11,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/build"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
@@ -107,7 +108,7 @@ func run(t *testing.T, in Inputs) []Suggestion {
 // The ids are the contract with the rules PRs (<!-- suggestion:<id> -->), so
 // they are pinned to the text. They come in the order of Kinds.
 func TestSuggestKindsAndIDs(t *testing.T) {
-	got := run(t, fixture())
+	got := run(t, nameFixture())
 	want := []string{
 		"note/" + noteKey + "/3713708f", // sha256("KR 這句有雙關")[:8]
 		"speaker/새 화자",
@@ -115,6 +116,7 @@ func TestSuggestKindsAndIDs(t *testing.T) {
 		"field/add/BattleSpeechBubbleDlg/desc",
 		"adjustment-moved/" + movedFrom,
 		"adjustment-expired/" + expiredKey,
+		"name/노을빛 검",
 		"term-new/임시어",
 		"term/신규 용어",
 		"inconsistent/ally/name/fd93b875", // sha256("도약 모듈")[:8]
@@ -781,5 +783,147 @@ func TestLintDeclinedScope(t *testing.T) {
 	writeFile(t, root, DeclinedFile, "- {id: 'bogus/x', reason: r, date: 2026-11-06}\n")
 	if got := LintDeclined(root); len(got) != 1 || !strings.Contains(got[0].Message, KindScope) {
 		t.Errorf("unknown kind: %v, want the kinds to name %s", got, KindScope)
+	}
+}
+
+// nameFixture is the fixture with one NameDiff of two units and two existing
+// renderings.
+func nameFixture() Inputs {
+	in := fixture()
+	in.Build.Report.NameDiffs = []build.NameDiff{{
+		KR:       "노을빛 검",
+		Existing: []existing.Rendering{{ZH: "暮色之劍", Units: 5}, {ZH: "晚霞劍", Units: 2}},
+		Units: []build.NameDiffUnit{
+			{Key: "a.json|/dataList/0/name", ZH: "夕照之劍", Note: "譯者說明", Kind: build.NameDiffField},
+			{Key: "b.json|/dataList/1/desc", ZH: "含夕照之劍的句子", Kind: build.NameDiffMention},
+		},
+	}}
+	return in
+}
+
+func find(list []Suggestion, id string) *Suggestion {
+	for i := range list {
+		if list[i].ID == id {
+			return &list[i]
+		}
+	}
+	return nil
+}
+
+func TestSuggestName(t *testing.T) {
+	got := run(t, nameFixture())
+	s := find(got, "name/노을빛 검")
+	if s == nil {
+		t.Fatalf("ids = %v, want name/노을빛 검", ids(got))
+	}
+	if s.Kind != KindName {
+		t.Errorf("kind = %q", s.Kind)
+	}
+	if want := "與既有譯名不同：노을빛 검（既有 暮色之劍，這次 2 個單位不同）"; s.Title != want {
+		t.Errorf("title = %q, want %q", s.Title, want)
+	}
+	want := []Evidence{
+		{KR: "노을빛 검", ZH: "暮色之劍", Count: 5},
+		{KR: "노을빛 검", ZH: "晚霞劍", Count: 2},
+		{Key: "a.json|/dataList/0/name", KR: "노을빛 검", ZH: "夕照之劍", Note: "譯者說明"},
+		{Key: "b.json|/dataList/1/desc", KR: "노을빛 검", ZH: "含夕照之劍的句子"},
+	}
+	if !reflect.DeepEqual(s.Evidence, want) {
+		t.Errorf("evidence = %+v, want %+v", s.Evidence, want)
+	}
+}
+
+func TestSuggestNameEvidenceIsBounded(t *testing.T) {
+	in := nameFixture()
+	d := &in.Build.Report.NameDiffs[0]
+	for i := 0; i < 20; i++ {
+		d.Units = append(d.Units, build.NameDiffUnit{Key: fmt.Sprintf("c.json|/dataList/%d/name", i), ZH: "x", Kind: build.NameDiffField})
+	}
+	s := find(run(t, in), "name/노을빛 검")
+	if len(s.Evidence) != MaxEvidence || s.Evidence[0].Count != 5 || s.Evidence[2].Key != "a.json|/dataList/0/name" {
+		t.Errorf("evidence = %+v", s.Evidence)
+	}
+}
+
+func TestSuggestNameOrder(t *testing.T) {
+	got := ids(run(t, nameFixture()))
+	i, j, k := slices.Index(got, "adjustment-expired/"+expiredKey), slices.Index(got, "name/노을빛 검"), slices.Index(got, "term-new/임시어")
+	if i < 0 || j < 0 || k < 0 || !(i < j && j < k) {
+		t.Errorf("order = %v, want adjustment-expired < name < term-new", got)
+	}
+	if a, b := slices.Index(Kinds, KindName), slices.Index(Kinds, KindNewTerm); a < 0 || a >= b || slices.Index(Kinds, KindAdjustmentExpired) >= a {
+		t.Errorf("Kinds = %v", Kinds)
+	}
+}
+
+func TestSuggestNameOrderBySize(t *testing.T) {
+	in := nameFixture()
+	in.Build.Report.NameDiffs = append([]build.NameDiff{{
+		KR:       "가 이름",
+		Existing: []existing.Rendering{{ZH: "甲", Units: 1}},
+		Units:    []build.NameDiffUnit{{Key: "z.json|/dataList/0/name", ZH: "乙", Kind: build.NameDiffField}},
+	}}, in.Build.Report.NameDiffs...)
+	got := ids(run(t, in))
+	if a, b := slices.Index(got, "name/노을빛 검"), slices.Index(got, "name/가 이름"); a < 0 || b < 0 || a > b {
+		t.Errorf("order = %v, want the bigger name first", got)
+	}
+}
+
+func TestSuggestTermNewDiffering(t *testing.T) {
+	in := fixture()
+	in.Provisional = []store.ProvisionalTerm{{
+		KR: "임시어", ZH: "暫定詞", Key: "F.json|/dataList/9/name", Batch: "b0",
+		Old: &store.OldUse{Existing: "舊譯詞", Units: 7, With: 2},
+	}}
+	in.Build.Report.TermDiffs = []build.TermDiff{{
+		KR: "임시어", ZH: "暫定詞", Existing: "舊譯詞", OldUnits: 7, OldWith: 2,
+		Examples: []existing.OldExample{{Key: "o.json|/dataList/0/desc", KR: "임시어 예문", ZH: "舊譯詞的例句"}},
+	}}
+	s := find(run(t, in), "term-new/임시어")
+	if s == nil {
+		t.Fatal("no term-new/임시어")
+	}
+	if want := "暫定詞（與舊譯不同，未生效）：임시어 → 暫定詞"; s.Title != want {
+		t.Errorf("title = %q, want %q", s.Title, want)
+	}
+	want := []Evidence{
+		{Key: "F.json|/dataList/9/name", KR: "임시어", ZH: "暫定詞", Note: "b0"},
+		{KR: "임시어", ZH: "舊譯詞", Count: 7, Note: "與舊譯不同：舊譯 7 個單位，含暫定譯法 2 個"},
+		{Key: "o.json|/dataList/0/desc", KR: "임시어 예문", ZH: "舊譯詞的例句", Note: "舊譯例句"},
+	}
+	if !reflect.DeepEqual(s.Evidence, want) {
+		t.Errorf("evidence = %+v, want %+v", s.Evidence, want)
+	}
+
+	// A provisional term without Old keeps the plain title and rows.
+	plain := find(run(t, fixture()), "term-new/임시어")
+	if plain.Title != "暫定詞：임시어 → 暫定詞" || len(plain.Evidence) != 1 {
+		t.Errorf("plain = %+v", plain)
+	}
+}
+
+func TestSuggestMergesTermNewIntoName(t *testing.T) {
+	in := nameFixture()
+	in.Provisional = []store.ProvisionalTerm{{
+		KR: "노을빛 검", ZH: "夕照之劍", Key: "F.json|/dataList/9/name", Batch: "b0",
+		Old: &store.OldUse{Existing: "暮色之劍", Units: 5, With: 0},
+	}}
+	got := run(t, in)
+	if find(got, "term-new/노을빛 검") != nil {
+		t.Errorf("term-new/노을빛 검 is listed beside the name: %v", ids(got))
+	}
+	s := find(got, "name/노을빛 검")
+	if s == nil {
+		t.Fatal("no name/노을빛 검")
+	}
+	reg := Evidence{Key: "F.json|/dataList/9/name", KR: "노을빛 검", ZH: "夕照之劍", Note: "b0"}
+	if !slices.Contains(s.Evidence, reg) {
+		t.Errorf("evidence lacks the registration row: %+v", s.Evidence)
+	}
+	if len(s.Evidence) > MaxEvidence {
+		t.Errorf("%d rows", len(s.Evidence))
+	}
+	if s.Evidence[0].Count != 5 || s.Title != "與既有譯名不同：노을빛 검（既有 暮色之劍，這次 2 個單位不同）" {
+		t.Errorf("the name suggestion changed: %+v", s)
 	}
 }

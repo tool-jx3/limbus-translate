@@ -19,6 +19,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/build"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
@@ -36,6 +37,7 @@ import (
 //	field/<add|remove>/<group or ->/<field>    a change of rules/fields.yaml
 //	adjustment-moved/<old key>                 an adjustment whose key moved
 //	adjustment-expired/<key>                   an adjustment that expired
+//	name/<kr>                                  a name this update translated otherwise than the existing translations
 //	term-new/<kr>                              a provisional term a translator registered
 //	term/<kr>                                  a glossary term that is a candidate
 //	inconsistent/<family>/<field>/<sha8(KR)>   one group of Info.InconsistentAll
@@ -50,6 +52,7 @@ const (
 	KindField             = "field"
 	KindFamily            = "family"
 	KindNote              = "note"
+	KindName              = "name"
 	KindTerm              = "term"
 	KindNewTerm           = "term-new"
 	KindAdjustmentMoved   = "adjustment-moved"
@@ -63,7 +66,7 @@ const (
 // different translations, of which a build finds hundreds, last.
 var Kinds = []string{
 	KindNote, KindSpeaker, KindFamily, KindField,
-	KindAdjustmentMoved, KindAdjustmentExpired, KindNewTerm, KindTerm, KindInconsistent,
+	KindAdjustmentMoved, KindAdjustmentExpired, KindName, KindNewTerm, KindTerm, KindInconsistent,
 }
 
 // MaxEvidence is the most rows of evidence a suggestion has.
@@ -163,6 +166,10 @@ func Run(in Inputs) ([]Suggestion, error) {
 	}
 	c.fromGlossary(in.Rules.Glossary)
 	c.fromProvisional(in.Provisional)
+	if in.RawTag != "" && in.Build != nil && in.Build.RawTag == in.RawTag {
+		c.addTermExamples(in.Build.Report.TermDiffs)
+	}
+	c.mergeTermNewIntoName()
 
 	out := make([]Suggestion, 0, len(c.byID))
 	for _, s := range c.byID {
@@ -271,6 +278,27 @@ func (c *collector) fromBuild(info build.Info) {
 			rows...)
 		c.units[id] = max(c.units[id], g.Units)
 	}
+	for _, d := range rep.NameDiffs {
+		if d.KR == "" || len(d.Units) == 0 {
+			continue
+		}
+		main := ""
+		if len(d.Existing) > 0 {
+			main = d.Existing[0].ZH
+		}
+		rows := make([]Evidence, 0, len(d.Existing)+len(d.Units))
+		for _, r := range d.Existing {
+			rows = append(rows, Evidence{KR: d.KR, ZH: r.ZH, Count: r.Units})
+		}
+		for _, u := range d.Units {
+			rows = append(rows, Evidence{Key: u.Key, KR: d.KR, ZH: u.ZH, Note: u.Note})
+		}
+		rest := strings.TrimPrefix(existing.SuggestionID(d.KR), KindName+"/")
+		c.add(KindName, rest,
+			fmt.Sprintf("與既有譯名不同：%s（既有 %s，這次 %d 個單位不同）", clip(d.KR, maxTitleText), main, len(d.Units)),
+			rows...)
+		c.units[existing.SuggestionID(d.KR)] = len(d.Units)
+	}
 	for _, n := range rep.Notes {
 		if strings.TrimSpace(n.Note) == "" {
 			continue
@@ -350,17 +378,59 @@ func (c *collector) fromGlossary(terms []rules.Term) {
 // (its batch in Note) and then each conflicting rendering. A KR that has only
 // conflicts is not suggested; there is no term to decide on.
 func (c *collector) fromProvisional(terms []store.ProvisionalTerm) {
+	seen := map[string]bool{}
 	for _, t := range terms {
 		if t.Conflict || t.KR == "" {
 			continue
 		}
-		c.add(KindNewTerm, t.KR, fmt.Sprintf("暫定詞：%s → %s", clip(t.KR, maxTitleText), clip(t.ZH, maxTitleText)),
-			Evidence{Key: t.Key, KR: t.KR, ZH: t.ZH, Note: t.Batch})
+		first := !seen[t.KR]
+		seen[t.KR] = true
+		title := fmt.Sprintf("暫定詞：%s → %s", clip(t.KR, maxTitleText), clip(t.ZH, maxTitleText))
+		rows := []Evidence{{Key: t.Key, KR: t.KR, ZH: t.ZH, Note: t.Batch}}
+		if first && t.Old != nil {
+			title = fmt.Sprintf("暫定詞（與舊譯不同，未生效）：%s → %s", clip(t.KR, maxTitleText), clip(t.ZH, maxTitleText))
+			rows = append(rows, Evidence{KR: t.KR, ZH: t.Old.Existing, Count: t.Old.Units,
+				Note: fmt.Sprintf("與舊譯不同：舊譯 %d 個單位，含暫定譯法 %d 個", t.Old.Units, t.Old.With)})
+		}
+		c.add(KindNewTerm, t.KR, title, rows...)
 	}
 	for _, t := range terms {
 		if _, ok := c.byID[KindNewTerm+"/"+t.KR]; ok && t.Conflict {
 			c.add(KindNewTerm, t.KR, "", Evidence{Key: t.Key, KR: t.KR, ZH: t.ZH, Note: "衝突"})
 		}
+	}
+}
+
+// addTermExamples adds the examples of the old translation of each TermDiff to
+// the term-new suggestion of its KR, when there is one.
+func (c *collector) addTermExamples(diffs []build.TermDiff) {
+	for _, d := range diffs {
+		if _, ok := c.byID[KindNewTerm+"/"+d.KR]; !ok {
+			continue
+		}
+		rows := make([]Evidence, len(d.Examples))
+		for i, ex := range d.Examples {
+			rows[i] = Evidence{Key: ex.Key, KR: ex.KR, ZH: ex.ZH, Note: "舊譯例句"}
+		}
+		c.add(KindNewTerm, d.KR, "", rows...)
+	}
+}
+
+// mergeTermNewIntoName folds the term-new suggestion of a KR that has a name
+// suggestion too into the name suggestion: the name is what a person decides
+// on, and the provisional term is part of its evidence.
+func (c *collector) mergeTermNewIntoName() {
+	for id, s := range c.byID {
+		if s.Kind != KindNewTerm {
+			continue
+		}
+		kr := strings.TrimPrefix(id, KindNewTerm+"/")
+		if _, ok := c.byID[existing.SuggestionID(kr)]; !ok {
+			continue
+		}
+		c.add(KindName, kr, "", s.Evidence...)
+		delete(c.byID, id)
+		delete(c.units, id)
 	}
 }
 

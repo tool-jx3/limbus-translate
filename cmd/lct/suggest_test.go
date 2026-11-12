@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -416,5 +417,31 @@ func TestSuggestListsProvisionalTerms(t *testing.T) {
 	}
 	if code, _, stderr := lct(t, "suggest", "--skip-kind", "bogus"); code != 1 || !strings.Contains(stderr, "bogus") {
 		t.Errorf("--skip-kind bogus: exit code %d, stderr %q; want 1 and a message with bogus", code, stderr)
+	}
+}
+
+// A name the update translated otherwise than the existing translations is
+// listed as name/<kr>, and a declined one is not listed again.
+func TestSuggestNameDeclined(t *testing.T) {
+	root, _ := suggestRepo(t)
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	var info build.Info
+	if found, err := st.ReadMetaJSON("build.json", &info); err != nil || !found {
+		t.Fatalf("build.json: %v %v", found, err)
+	}
+	info.Report.NameDiffs = []build.NameDiff{{
+		KR:       "노을빛 검",
+		Existing: []existing.Rendering{{ZH: "暮色之劍", Units: 5}},
+		Units:    []build.NameDiffUnit{{Key: "a.json|/dataList/0/name", ZH: "夕照之劍", Kind: build.NameDiffField}},
+	}}
+	if err := st.WriteMetaJSON("build.json", info); err != nil {
+		t.Fatal(err)
+	}
+	if got := suggestJSON(t, "--kind", "name"); !slices.Equal(got.ids(), []string{"name/노을빛 검"}) {
+		t.Fatalf("name = %v", got.ids())
+	}
+	writeTestFile(t, root, "rules/declined.yaml", "- {id: 'name/노을빛 검', reason: r, date: 2026-11-06}\n")
+	if got := suggestJSON(t); slices.Contains(got.ids(), "name/노을빛 검") {
+		t.Errorf("after declining: %v", got.ids())
 	}
 }
