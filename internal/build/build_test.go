@@ -2671,3 +2671,119 @@ func TestBuildWithoutNames(t *testing.T) {
 		}
 	}
 }
+
+// Only the notes made from the KR text the unit has now count: an older note
+// that writes the name neither mutes name-differs nor is shown, while a
+// current one that writes it mutes the warning.
+func TestBuildNameDiffNotesOfTheCurrentKR(t *testing.T) {
+	const doc = `{"dataList":[{"id":1,"name":"노을빛 검"},{"id":2,"name":"노을빛 검"}]}`
+	recs := []store.Record{
+		written(rec("Skills.json", "/dataList/0/name", "노을빛 검", "晚霞之劍")),
+		written(rec("Skills.json", "/dataList/1/name", "노을빛 검", "晚霞之劍")),
+	}
+	e := nameEnv(t, doc, nil, recs...)
+	current, older := units.KRSha("노을빛 검"), units.KRSha("노을빛 칼")
+	if _, err := store.Open(e.opt.TWRoot).AppendNotes([]store.Note{
+		{Key: recs[0].Key, Batch: "b0", KRSha: older, Model: "m", Note: "노을빛 검：舊的備註"},
+		{Key: recs[0].Key, Batch: "b1", KRSha: current, Model: "m", Note: "依技能演出"},
+		{Key: recs[1].Key, Batch: "b1", KRSha: current, Model: "m", Note: "노을빛 검：此處是劇情描寫"},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	rep := e.run()
+	if rep.Warnings[existing.CodeNameDiffers] != 1 || !slices.Equal(rep.WarningSamples[existing.CodeNameDiffers], []string{recs[0].Key}) {
+		t.Errorf("Warnings = %v, samples %v; want one name-differs, of %s", rep.Warnings, rep.WarningSamples, recs[0].Key)
+	}
+	want := []NameDiff{{
+		KR: "노을빛 검", Existing: wantNameExisting,
+		Units: []NameDiffUnit{{Key: recs[0].Key, ZH: "晚霞之劍", Note: "依技能演出", Kind: NameDiffField}},
+	}}
+	if !reflect.DeepEqual(rep.NameDiffs, want) {
+		t.Errorf("NameDiffs = %+v, want %+v", rep.NameDiffs, want)
+	}
+}
+
+// A record that breaks the structure of KR is queued again with its text as
+// the draft, so it is compared with the existing translations all the same:
+// its name, its mention and its use of a provisional term are listed.
+func TestBuildComparesRecordsThatFallBack(t *testing.T) {
+	const doc = `{"dataList":[{"id":1,"name":"노을빛 검"},{"id":2,"desc":"노을빛 검 [Bleed] 발동"},{"id":3,"desc":"도발치 [Bleed] 증가"}]}`
+	recs := []store.Record{
+		written(rec("Skills.json", "/dataList/0/name", "노을빛 검", "晚霞之劍[Bleed]")),
+		written(rec("Skills.json", "/dataList/1/desc", "노을빛 검 [Bleed] 발동", "發動晚霞之劍")),
+		written(rec("Skills.json", "/dataList/2/desc", "도발치 [Bleed] 증가", "嘲諷值增加")),
+	}
+	e := nameEnv(t, doc, nil, recs...)
+	if _, err := store.Open(e.opt.TWRoot).AppendTerms([]store.ProvisionalTerm{
+		{KR: "도발치", ZH: "嘲諷值", Key: recs[2].Key, Batch: "b1", RawTag: testTag, Old: &store.OldUse{Units: 9}},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	rep := e.run()
+	if rep.StructuralFallback != 3 {
+		t.Fatalf("StructuralFallback = %d, want all three records", rep.StructuralFallback)
+	}
+	want := []NameDiff{{
+		KR: "노을빛 검", Existing: wantNameExisting,
+		Units: []NameDiffUnit{
+			{Key: recs[0].Key, ZH: "晚霞之劍[Bleed]", Kind: NameDiffField},
+			{Key: recs[1].Key, ZH: "發動晚霞之劍", Kind: NameDiffMention},
+		},
+	}}
+	if !reflect.DeepEqual(rep.NameDiffs, want) {
+		t.Errorf("NameDiffs = %+v, want %+v", rep.NameDiffs, want)
+	}
+	if len(rep.TermDiffs) != 1 || !slices.Equal(rep.TermDiffs[0].Keys, []string{recs[2].Key}) {
+		t.Errorf("TermDiffs = %+v, want one with the key %s", rep.TermDiffs, recs[2].Key)
+	}
+}
+
+// Without the rules nothing is compared with the existing names, even when
+// they are given.
+func TestBuildNamesNeedRules(t *testing.T) {
+	run := func(withRules bool) *Report {
+		e := nameEnv(t, mentionsKR, nil, mentionsRecords()...)
+		if _, err := store.Open(e.opt.TWRoot).AppendTerms([]store.ProvisionalTerm{
+			{KR: "노을빛 검", ZH: "晚霞之劍", Key: mentionsRecords()[0].Key, Batch: "b1", RawTag: testTag, Old: &store.OldUse{Units: 9}},
+		}); err != nil {
+			t.Fatal(err)
+		}
+		if !withRules {
+			e.opt.Rules = nil
+		}
+		return e.run()
+	}
+	if rep := run(true); rep.Warnings[existing.CodeNameDiffers] != 1 || len(rep.NameDiffs) != 1 || len(rep.TermDiffs) != 1 {
+		t.Fatalf("with the rules: Warnings = %v, NameDiffs = %+v, TermDiffs = %+v; want a warning and both listed", rep.Warnings, rep.NameDiffs, rep.TermDiffs)
+	}
+	rep := run(false)
+	if rep.Warnings[existing.CodeNameDiffers] != 0 || len(rep.NameDiffs) != 0 || len(rep.TermDiffs) != 0 {
+		t.Errorf("without the rules: Warnings = %v, NameDiffs = %+v, TermDiffs = %+v; want none", rep.Warnings, rep.NameDiffs, rep.TermDiffs)
+	}
+}
+
+// A table that lists a name twice hits a unit twice for it; the unit is
+// listed once, and the name field that is the name is not a mention of it.
+func TestBuildListsAUnitOnceUnderAName(t *testing.T) {
+	recs := mentionsRecords()
+	e := nameEnv(t, mentionsKR, nil, recs...)
+	name := existing.Name{
+		KR: "노을빛 검",
+		Variants: []existing.Variant{
+			{JP: "茜さす剣", Renderings: []existing.Rendering{{ZH: "霞光劍刃", Units: 12}, {ZH: "霞光之劍", Units: 1}}},
+			{EN: "Dusk Blade", Renderings: []existing.Rendering{{ZH: "霞光劍刃", Units: 2}, {ZH: "夕霞劍", Units: 1}}},
+		},
+	}
+	e.opt.Names = existing.NewIndex(&existing.Table{RawTag: "raw-20261001", Fields: []string{"name"}, Names: []existing.Name{name, name}}, e.opt.Rules, nil)
+	rep := e.run()
+	want := []NameDiff{{
+		KR: "노을빛 검", Existing: wantNameExisting,
+		Units: []NameDiffUnit{
+			{Key: recs[0].Key, ZH: "發動晚霞之劍", Kind: NameDiffMention},
+			{Key: recs[3].Key, ZH: "晚霞之劍", Kind: NameDiffField},
+		},
+	}}
+	if !reflect.DeepEqual(rep.NameDiffs, want) {
+		t.Errorf("NameDiffs = %+v, want %+v", rep.NameDiffs, want)
+	}
+}

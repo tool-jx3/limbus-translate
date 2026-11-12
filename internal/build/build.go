@@ -193,8 +193,11 @@ type Report struct {
 	// warning that is not accepted) or where a text mentions the name. A
 	// declined name is not listed. TermDiffs lists, by KR, the provisional
 	// terms registered at this raw tag that differ from the existing names or
-	// the old translations and are not declined. Both are never nil, though a
-	// build.json of an older lct has neither (see Options.Names).
+	// the old translations and are not declined. Both weigh the records that
+	// break the structure of KR too: such a record is queued again with its
+	// text as the draft, so how it renders a name or a term still matters.
+	// Both are never nil, though a build.json of an older lct has neither
+	// (see Options.Names).
 	NameDiffs []NameDiff `json:"name_diffs"`
 	TermDiffs []TermDiff `json:"term_diffs"`
 }
@@ -219,11 +222,10 @@ type NameDiffUnit struct {
 	Kind string `json:"kind"`
 }
 
-// The kinds of a NameDiffUnit: a name field that warns name-differs (the
-// code of the warning, existing.CodeNameDiffers), and a text that mentions
-// the name and has none of its renderings.
+// The kinds of a NameDiffUnit: a name field that warns name-differs, and a
+// text that mentions the name and has none of its renderings.
 const (
-	NameDiffField   = "name-differs"
+	NameDiffField   = existing.CodeNameDiffers
 	NameDiffMention = "mention"
 )
 
@@ -298,9 +300,9 @@ type builder struct {
 	// provisional are the provisional terms in force, which cover glossary
 	// terms in the checks as they do at submission (batch.ValidateTermsIn).
 	provisional []rules.Term
-	// notes are the notes of the translator on each unit, by key, joined by
-	// newlines.
-	notes map[string]string
+	// notes are the notes of the translator on each unit, by key, in the
+	// order they were added (see noteOn).
+	notes map[string][]store.Note
 	// nameDiffs are the entries of Report.NameDiffs, by KR; termDiffs the
 	// provisional terms of Report.TermDiffs, by KR, and tally counts the old
 	// units that hold them. All three stay empty without Options.Names.
@@ -567,7 +569,8 @@ func (b *builder) decide(u units.Unit, frozen bool, al *align.FileAligner) (text
 		return u.KR, store.OriginCopy, nil
 	}
 	if usable {
-		return b.useRecord(u, key, rec, frozen, al)
+		text, shown := b.useRecord(u, key, rec, frozen, en, jp)
+		return text, shown, nil
 	}
 	b.rep.Pending++
 	b.rep.StandIn++
@@ -589,22 +592,19 @@ func (b *builder) countUsed(rec store.Record, review bool) {
 // useRecord returns the text a used record gives the unit, and what that
 // shows: the origin of the record, or ShownStandIn when the text is a
 // stand-in (a record of origin fallback, or a record replaced for breaking
-// the structure of KR).
-func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen bool, al *align.FileAligner) (text, shown string, err error) {
+// the structure of KR). en and jp are the texts aligned to the unit, nil when
+// none.
+func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen bool, en, jp *align.LangAligned) (text, shown string) {
 	// A copy is the KR text itself: there is nothing to check, and the Hangul
 	// it keeps would only flood the warnings.
 	if rec.Origin == store.OriginCopy {
 		b.countUsed(rec, true)
-		return rec.ZH, store.OriginCopy, nil
+		return rec.ZH, store.OriginCopy
 	}
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
 	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File, ScriptOK: b.scriptOK(u.File), Terms: b.terms(u.File, u.KR)})
-	named, err := b.nameIssue(u, key, rec, al)
-	if err != nil {
-		return "", "", err
-	}
-	if named != nil {
+	if named := b.nameIssue(u, key, rec, en, jp); named != nil {
 		issues = append(issues, *named)
 	}
 	// Every used record counts its warnings, whether or not its text is
@@ -620,7 +620,7 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 				b.warnKeys[is.Code] = append(keys, key)
 			}
 			if is.Code == existing.CodeNameDiffers && rec.TranslatedIn(b.opt.RawTag) {
-				b.addNameDiff(b.opt.Names.Lookup(u.KR), NameDiffUnit{Key: key, ZH: rec.ZH, Note: b.notes[key], Kind: NameDiffField})
+				b.addNameDiff(b.opt.Names.Lookup(u.KR), NameDiffUnit{Key: key, ZH: rec.ZH, Note: b.noteOn(u, key), Kind: NameDiffField})
 			}
 		}
 	}
@@ -629,10 +629,10 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 		b.countUsed(rec, true)
 		if rec.Origin == store.OriginFallback {
 			b.rep.StandIn++ // the stand-in text is the record's text
-			return rec.ZH, ShownStandIn, nil
+			return rec.ZH, ShownStandIn
 		}
 		b.addRendering(u, key, rec.ZH, rec.TranslatedIn(b.opt.RawTag))
-		return rec.ZH, rec.Origin, nil
+		return rec.ZH, rec.Origin
 	}
 	b.rep.StandIn++
 
@@ -650,11 +650,7 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 			b.added = append(b.added, store.PendingItem{Key: key, Reason: ReasonStructuralFail, Draft: rec.ZH})
 		}
 	}
-	en, _, err := al.Get(u.Pointer)
-	if err != nil {
-		return "", "", err
-	}
-	return standIn(u, en), ShownStandIn, nil
+	return standIn(u, en), ShownStandIn
 }
 
 // standIn is the text shown for a unit that has no translation: the EN text
@@ -674,17 +670,31 @@ func (b *builder) comparing() bool {
 
 // nameIssue is the name-differs warning of rec, the record of unit u (key),
 // or nil: only a record of origin claude of a name field is checked, against
-// the variant of the name that the JP or EN text of the unit points at (see
-// existing.Index.Differs).
-func (b *builder) nameIssue(u units.Unit, key string, rec store.Record, al *align.FileAligner) (*validate.Issue, error) {
+// the variant of the name that en or jp, the texts aligned to the unit, point
+// at (see existing.Index.Differs).
+func (b *builder) nameIssue(u units.Unit, key string, rec store.Record, en, jp *align.LangAligned) *validate.Issue {
 	if !b.comparing() || rec.Origin != store.OriginClaude || !b.opt.Names.IsName(u.Field, u.KR) {
-		return nil, nil
+		return nil
 	}
-	en, jp, err := al.Get(u.Pointer)
-	if err != nil {
-		return nil, err
+	return b.opt.Names.Differs(u.Field, u.KR, rec.ZH, b.noteOn(u, key), alignedText(jp), alignedText(en))
+}
+
+// noteOn is what the translator noted on unit u (key) when translating the KR
+// text it has now: those notes of key, joined by newlines in the order they
+// were added. Notes made from an earlier KR text are left out.
+func (b *builder) noteOn(u units.Unit, key string) string {
+	notes := b.notes[key]
+	if len(notes) == 0 {
+		return ""
 	}
-	return b.opt.Names.Differs(u.Field, u.KR, rec.ZH, b.notes[key], alignedText(jp), alignedText(en)), nil
+	sha := units.KRSha(u.KR)
+	var texts []string
+	for _, n := range notes {
+		if n.KRSha == sha {
+			texts = append(texts, n.Note)
+		}
+	}
+	return strings.Join(texts, "\n")
 }
 
 // alignedText is the text of a, or "" when nothing is aligned.
@@ -696,11 +706,12 @@ func alignedText(a *align.LangAligned) string {
 }
 
 // compareWithExisting weighs rec, the record of unit u (key) and not a copy,
-// against the existing translations. An old record counts in the tally of the
-// provisional terms of Report.TermDiffs. A record of this raw tag adds u to
-// the NameDiff of each name its KR mentions, other than the name a name field
-// is, that is not declined and whose renderings its text all lacks, and to the
-// TermDiff of each term its KR holds and whose rendering its text uses.
+// against the existing translations, whether or not it keeps the structure of
+// KR. An old record counts in the tally of the provisional terms of
+// Report.TermDiffs. A record of this raw tag adds u to the NameDiff of each
+// name its KR mentions, other than the name a name field is, that is not
+// declined and whose renderings its text all lacks, and to the TermDiff of
+// each term its KR holds and whose rendering its text uses.
 func (b *builder) compareWithExisting(u units.Unit, key string, rec store.Record) {
 	if !b.comparing() {
 		return
@@ -720,10 +731,11 @@ func (b *builder) compareWithExisting(u units.Unit, key string, rec store.Record
 		exact = ix.Lookup(u.KR)
 	}
 	for _, n := range ix.Mentions(u.KR, nil) {
-		if n == exact || ix.Declined(n.KR) || n.Has(rec.ZH) {
+		// By Lookup, so that a table listing the name twice is one name.
+		if (exact != nil && ix.Lookup(n.KR) == exact) || ix.Declined(n.KR) || n.Has(rec.ZH) {
 			continue
 		}
-		b.addNameDiff(n, NameDiffUnit{Key: key, ZH: rec.ZH, Note: b.notes[key], Kind: NameDiffMention})
+		b.addNameDiff(n, NameDiffUnit{Key: key, ZH: rec.ZH, Note: b.noteOn(u, key), Kind: NameDiffMention})
 	}
 	if len(b.termDiffs) > 0 {
 		plain, text := validate.MatchText(u.KR), validate.MatchText(rec.ZH)
@@ -939,11 +951,11 @@ func (b *builder) finish() {
 }
 
 // newNotes returns the notes added since the previous build, the number of
-// notes there are in all, and every note of each unit, by key, joined by
-// newlines in the order they were added. The previous build counted the notes
-// it reported in .meta/build.json; a count above the number of notes (the file
-// was replaced) starts over from the first note.
-func newNotes(st *store.Store) (notes []store.Note, seen int, byKey map[string]string, err error) {
+// notes there are in all, and every note of each unit, by key, in the order
+// they were added. The previous build counted the notes it reported in
+// .meta/build.json; a count above the number of notes (the file was replaced)
+// starts over from the first note.
+func newNotes(st *store.Store) (notes []store.Note, seen int, byKey map[string][]store.Note, err error) {
 	var prev Info
 	if _, err := st.ReadMetaJSON(infoName, &prev); err != nil {
 		return nil, 0, nil, err
@@ -956,13 +968,9 @@ func newNotes(st *store.Store) (notes []store.Note, seen int, byKey map[string]s
 	if from < 0 || from > len(all) {
 		from = 0
 	}
-	byKey = map[string]string{}
+	byKey = map[string][]store.Note{}
 	for _, n := range all {
-		if joined, ok := byKey[n.Key]; ok {
-			byKey[n.Key] = joined + "\n" + n.Note
-		} else {
-			byKey[n.Key] = n.Note
-		}
+		byKey[n.Key] = append(byKey[n.Key], n)
 	}
 	return append([]store.Note{}, all[from:]...), len(all), byKey, nil
 }
