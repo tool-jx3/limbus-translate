@@ -32,7 +32,7 @@ allowed-tools:
 
 0. 執行 `go build -o bin/lct ./cmd/lct`，失敗就停止並回報。`bin/lct suggest`、`bin/lct glossary derive` 與 `bin/lct search` 讀 `.work/raw`（原文快照）與 `.work/tw`（現行譯文）；指令說沒有快照或找不到時，停止並請人先在終端機建立（`git fetch origin raw tw`，再 `git worktree add .work/raw raw` 與 `git worktree add .work/tw tw`），不由這個 skill 代做
 1. 問人要從哪一種候選開始（先做暫定詞，因為它們已經在批次裡生效；再做詞彙表裡的候選，因為它們已經在詞彙表裡）：
-   - 暫定詞：執行 `bin/lct suggest --json --kind term-new`。`id` 是 `term-new/<kr>`，標題是「暫定詞：<kr> → <zh>」；`evidence` 第一列是登記它的單位（`key`，`note` 是批次 id），之後每列 `note` 是「衝突」的是別的批次對同一 KR 登記的另一種譯法。暫定詞還沒在詞彙表裡，但翻譯批次已經照它的譯法翻；人決定之前不要動詞彙表。`rules/declined.yaml` 已有的 id 不會列出
+   - 暫定詞：執行 `bin/lct suggest --json --kind term-new`。`id` 是 `term-new/<kr>`，標題是「暫定詞：<kr> → <zh>」；`evidence` 第一列是登記它的單位（`key`，`note` 是批次 id），之後每列 `note` 是「衝突」的是別的批次對同一 KR 登記的另一種譯法。暫定詞還沒在詞彙表裡，但翻譯批次已經照它的譯法翻；人決定之前不要動詞彙表。`rules/declined.yaml` 已有的 id 不會列出。標題有「與舊譯不同，未生效」的暫定詞沒有生效，`evidence` 有舊譯的單位數與例句；以舊譯為主，人選的譯法與舊譯不同時照第 4 步處理。與 `name/<kr>` 同一個 KR 的暫定詞已併進 `name/<kr>`，不在這裡列出，由審核頁或 `/rules-review` 處理
    - 詞彙表裡的候選：執行 `bin/lct suggest --json`，只看 `kind` 是 `term` 的建議，其他種類（說話者、欄位、備註等）是 `rules-review` 的事，不處理。`id` 是 `term/<kr>`，`evidence` 的 `kr` 與 `zh` 是該條目現在的內容；它在 `glossary/terms.yaml` 裡是 `status: candidate`，不生效。`rules/declined.yaml` 已有的 id 不會列出
    - 詞彙表沒有的名稱：執行 `bin/lct glossary derive --json --limit 50 --offset 0`，可加 `--source keyword` 或 `--source speaker` 只看一種。結果 `{total, candidates: [{kr, zh, source}]}`，`candidates` 依 KR 排序，`total` 是還有幾個（有幾千個，所以分頁）。KR 已在任何詞條裡、已不採用（`term/<kr>`）、譯名還含韓文的不會列出
    - exit 1 照錯誤訊息處理，exit 2 停止並回報。沒有候選就告訴人，結束

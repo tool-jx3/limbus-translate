@@ -12,6 +12,7 @@ import (
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
@@ -1654,6 +1655,115 @@ func TestGlossaryFilesOfAnOffEntry(t *testing.T) {
 	for _, u := range f.Missing {
 		if u.ID != "" || u.Accepted != nil {
 			t.Errorf("missing unit %+v has a warning id", u)
+		}
+	}
+}
+
+// nameDiffInputs is reviewInputs with a table that names 하나 (JP いち, EN
+// one) 單: the claude records of 하나 translate it 一, and the paratranz one
+// 壹.
+func nameDiffInputs(t *testing.T) (Inputs, []string) {
+	t.Helper()
+	in, files := reviewInputs(t)
+	in.Review.Names = existing.NewIndex(&existing.Table{RawTag: "t1", Fields: []string{"content"}, Names: []existing.Name{{
+		KR: rvKR, Variants: []existing.Variant{{JP: "いち", EN: "one", Renderings: []existing.Rendering{{ZH: "單", Units: 3}}}},
+	}}}, in.Rules, nil)
+	return in, files
+}
+
+func nameDiffsOf(r Review) []WarningItem {
+	var out []WarningItem
+	for _, w := range r.Warnings {
+		if w.Code == existing.CodeNameDiffers {
+			out = append(out, w)
+		}
+	}
+	return out
+}
+
+func TestReviewWarnsNameDiffers(t *testing.T) {
+	in, files := nameDiffInputs(t)
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	got := nameDiffsOf(r)
+	id := itemid.UnitWarning(existing.CodeNameDiffers, rvKR, "單", rvKR, "一")
+	if len(got) != 1 || got[0].ID != id || got[0].KR != rvKR || got[0].ZH != "一" || got[0].Message == "" {
+		t.Fatalf("name-differs warnings = %+v, want one with id %s", got, id)
+	}
+	// The claude records of A.json and B.json; the paratranz one is not checked.
+	if want := []string{k(rvA, 0), k(rvB, 0)}; !slices.Equal(got[0].Keys, want) {
+		t.Errorf("Keys = %v, want %v", got[0].Keys, want)
+	}
+	if got[0].Accepted != nil {
+		t.Errorf("Accepted = %+v, want nil", got[0].Accepted)
+	}
+	if !slices.Contains(r.Refs[k(rvA, 0)], id) {
+		t.Errorf("Refs[%s] = %v lacks the warning", k(rvA, 0), r.Refs[k(rvA, 0)])
+	}
+
+	// A person confirmed it.
+	in.Review.Accepted = []suggest.Declined{{ID: id, Reason: "語境不同", Date: "2026-11-12"}}
+	r, err = BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := nameDiffsOf(r); len(got) != 1 || got[0].Accepted == nil || *got[0].Accepted != (Confirmed{Reason: "語境不同", Date: "2026-11-12"}) {
+		t.Errorf("accepted: warnings = %+v, want it confirmed", got)
+	}
+}
+
+func TestReviewNameDiffersHonoursNotesAndOrigin(t *testing.T) {
+	in, files := nameDiffInputs(t)
+	// A note of the current KR text that writes the KR name excuses the unit;
+	// one made from another KR text does not.
+	in.Review.Notes = []store.Note{
+		{Key: k(rvA, 0), KRSha: units.KRSha(rvKR), Note: rvKR + "：語境不同"},
+		{Key: k(rvB, 0), KRSha: units.KRSha("다른 글"), Note: rvKR + "：舊的備註"},
+	}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	got := nameDiffsOf(r)
+	if len(got) != 1 || !slices.Equal(got[0].Keys, []string{k(rvB, 0)}) {
+		t.Errorf("warnings = %+v, want only %s", got, k(rvB, 0))
+	}
+
+	// No table, no warning.
+	in, files = nameDiffInputs(t)
+	in.Review.Names = nil
+	if r, err = BuildReview(in, files); err != nil {
+		t.Fatal(err)
+	} else if got := nameDiffsOf(r); len(got) != 0 {
+		t.Errorf("without a table: warnings = %+v", got)
+	}
+}
+
+// A provisional term whose KR is also a name suggestion keeps its term and
+// its hits on the merged name/<kr> suggestion.
+func TestReviewNameSuggestionKeepsTheProvisionalTerm(t *testing.T) {
+	in, files := newTermInputs(t, [3]string{"자판기 하나", "販賣機一", store.OriginClaude})
+	in.Review.Provisional = []store.ProvisionalTerm{{KR: "자판기", ZH: "販賣機", Key: nthKey(0), Batch: "b1", RawTag: "t1"}}
+	in.Review.Names = existing.NewIndex(&existing.Table{RawTag: "t1", Fields: []string{"content"}, Names: []existing.Name{{
+		KR: "자판기", Variants: []existing.Variant{{EN: "vending", Renderings: []existing.Rendering{{ZH: "自動販賣機", Units: 4}}}},
+	}}}, in.Rules, nil)
+	in.Review.Build = &build.Info{RawTag: "t1", Report: build.Report{NameDiffs: []build.NameDiff{{
+		KR: "자판기", Existing: []existing.Rendering{{ZH: "自動販賣機", Units: 4}},
+		Units: []build.NameDiffUnit{{Key: nthKey(0), ZH: "販賣機一", Kind: build.NameDiffField}},
+	}}}}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	s := findSuggestion(t, r, "name/자판기")
+	if s.Term == nil || *s.Term != (TermRef{KR: "자판기", ZH: "販賣機"}) {
+		t.Errorf("term = %+v, want 자판기 → 販賣機", s.Term)
+	}
+	for _, o := range r.Suggestions {
+		if o.ID == "term-new/자판기" {
+			t.Errorf("term-new/자판기 is listed next to the merged suggestion")
 		}
 	}
 }

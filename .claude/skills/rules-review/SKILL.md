@@ -22,7 +22,7 @@ allowed-tools:
 
 # 規則改進
 
-`bin/lct suggest` 列出建置與 plan 發現規則還沒回答的事（不一致的譯法、新說話者、新欄位、新檔案、譯者的備註、詞彙候選、key 已移動或過期的調整）。這個 skill 把有把握的建議寫成對規則的修改，並寫一份 PR 說明，讓人審核。CI 與人在本機的流程相同，只有最後一步不同。指令都在 repo 根目錄執行。
+`bin/lct suggest` 列出建置與 plan 發現規則還沒回答的事（不一致的譯法、新說話者、新欄位、新檔案、譯者的備註、詞彙候選、與既有譯名不同的名稱、key 已移動或過期的調整）。這個 skill 把有把握的建議寫成對規則的修改，並寫一份 PR 說明，讓人審核。CI 與人在本機的流程相同，只有最後一步不同。指令都在 repo 根目錄執行。
 
 ## 限制
 
@@ -32,7 +32,7 @@ allowed-tools:
 - 翻譯規則不寫在這裡，也不憑記憶：見 `guides/README.md`、`glossary/README.md` 與它們指向的檔案。新規則寫進那些檔，格式依它們的說明；規則有衝突時，指出衝突在哪裡，不自行取捨
 - 不讀 `.git/` 底下的檔案（那裡可能有 git 的憑證），也不把看起來像 token 或金鑰的字串寫進說明或規則檔；`bin/lct proposal publish` 會拒絕含有這類字串的說明與修改
 - 規則改了不會自動重翻舊譯文。要重翻，只能附一個重翻要求檔，範圍要小而明確；合併 PR 即代表人同意重翻
-- `term-new`（翻譯者登記的暫定詞）不處理：它由人在審核頁或 `/term-decision` 決定採用或不採用，不進規則 PR，所以兩種執行都加 `--skip-kind term-new`；結果裡若仍出現 `term-new/…`，略過它，不寫進說明
+- `term-new`（翻譯者登記的暫定詞）不處理：它由人在審核頁或 `/term-decision` 決定採用或不採用，不進規則 PR，所以兩種執行都加 `--skip-kind term-new`；結果裡若仍出現 `term-new/…`，略過它，不寫進說明。與 `name/<kr>` 同一個 KR 的暫定詞已併進 `name/<kr>`，照 `name` 處理
 - 回合有限：一次最多處理 8 個建議，依 `bin/lct suggest` 給的順序（第 1 步只取這 8 個）。處理完一定接著做第 3 到 5 步（檢查、影響評估、說明、收尾），不因為還有建議就停下；沒輪到的下次執行再處理
 - 沒有把握的項目（需要詞彙或指引以外的決定、證據不足、規則互相衝突）不改檔、也不記進 `rules/declined.yaml`：列在說明的 `## 需要人決定` 一節，附標記與一行理由，交給人決定。列進規則 PR 之後，PR 開著時就不會再提出，不會每次都佔住前 8 個的位置。`note` 尤其要列：建置只列上次建置後新增的備註，每則備註只提出一次，沒列就不會再出現
 
@@ -54,6 +54,7 @@ allowed-tools:
    - `family`：新檔案落在預設族群。在 `guides/routing.yaml` 加族群或擴充某族群的 `match`；順序就是比對順序，較具體的排前面，並依該檔開頭的說明，每個族群也要列進 `priority`。需要專屬指引時寫在 `guides/families/<族群 id>.md`（新族群要新增一份，並在 `guide:` 指向它）；數個但非全部族群共用的規則寫在 `guides/shared/<主題>.md`，並在這些族群的 `include:` 引入
    - `note`：備註全文在 `evidence` 的 `note`（`title` 只引前 120 字）。看這則備註說的是規則不清楚、互相矛盾，還是缺一個詞。補進指引，或在 `glossary/terms.yaml` 加一筆 `status: candidate` 的詞條；只是單一單位的疑慮，就不改規則
    - `term`：詞彙候選。用 `bin/lct search --text RE --json` 看現有譯文怎麼用，附證據（出現次數、各種譯法）建議採用或不採用。採用就把該條的 `status` 改成 `approved`，必要時補 `forbidden`、`category`
+   - `name`：這次新譯的名稱與既有譯名不同。`evidence` 先列既有譯法（`count` 是單位數），再列這次的單位（`key`、`zh`、`note`）；有暫定詞的列（`note` 是批次 id、「衝突」或「與舊譯不同…」「舊譯例句」）時，這也是翻譯者登記的暫定詞。以既有譯名為準：單位與既有譯名指同一個東西（用 `bin/lct search --json --key K` 看全文與 JP/EN），就在 `glossary/terms.yaml` 加條目（`zh` 用既有譯名，格式見 `glossary/README.md`），並手寫 `rules/rewrite/<日期>-<主題>.yaml`（`reason`、`files`、`origins: [claude]`、`pattern`、`replace`、`kr_pattern`），只改證據中寫法不同的這次新譯單位。單位的 `note` 說明了語境不同、或證據不足以判斷是不是同一個東西時，不改檔，列進 `## 需要人決定`
    - `adjustment-moved`、`adjustment-expired`：執行 `bin/lct adjust tidy --json`，它替 key 已移動的調整改 key、刪掉單位已重翻的過期調整；它改的檔列進說明。仍留下的過期調整是 KR 變了、單位還沒重翻，不處理
    - 確定不需要規則的項目（例如只是閒聊的備註、路人說話者）：在 `rules/declined.yaml` 加一筆 `id`（原樣、用雙引號包起來）、`reason`（寫成別人看得懂的理由）、`date`（今天，`YYYY-MM-DD`），並在說明列出，人可以還原
    - 沒有把握（需要詞彙或指引以外的決定、證據不足、規則互相衝突）：不改檔、不記進 `rules/declined.yaml`，列進說明的 `## 需要人決定`（第 4 步）

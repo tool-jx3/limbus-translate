@@ -1060,3 +1060,36 @@ func TestAcceptNameSuggestion(t *testing.T) {
 		t.Errorf("declined.yaml:\n%s", declined)
 	}
 }
+
+// The id of a name-differs warning of the review page is one lct accept
+// knows.
+func TestAcceptDryRunNameDiffers(t *testing.T) {
+	s := acceptRepo(t)
+	st := store.Open(filepath.Join(s.root, ".work", "tw"))
+	recs, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	const key = "Bufs.json|/dataList/0/name"
+	r, ok := recs[key]
+	if !ok {
+		t.Fatalf("the fixture has no record of %s", key)
+	}
+	kr := "열상"
+	r.Origin, r.ZH, r.Written, r.KRSha = store.OriginClaude, "撕裂", "raw-20261029", units.KRSha(kr)
+	recs[key] = r
+	if err := st.SaveRecords(recs); err != nil {
+		t.Fatal(err)
+	}
+	if err := existing.SaveTable(st, &existing.Table{RawTag: "raw-20261029", Fields: []string{"name"}, Names: []existing.Name{{
+		KR: kr, Variants: []existing.Variant{{JP: "裂傷", EN: "Laceration", Renderings: []existing.Rendering{{ZH: "流血", Units: 3}}}},
+	}}}); err != nil {
+		t.Fatal(err)
+	}
+	id := itemid.UnitWarning(existing.CodeNameDiffers, kr, "流血", kr, "撕裂")
+	var out lookupOut
+	mustLct(t, &out, "accept", "--dry-run", id)
+	if len(out.Unknown) != 0 || len(out.Items) != 1 || out.Items[0].ID != id || out.Items[0].Kind != "warning" || out.Items[0].List != "accepted" {
+		t.Fatalf("lookup = %+v, want the name-differs warning", out)
+	}
+}

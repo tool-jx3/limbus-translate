@@ -12,6 +12,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
@@ -47,6 +48,10 @@ type ReviewInputs struct {
 	// (see suggest.Inputs); a declined one is flagged with its entry of
 	// Declined, as a suggestion of any kind is.
 	Provisional []store.ProvisionalTerm
+	// Names is the index of the existing names (existing.NewIndex), built
+	// with the declined ids; nil without a table. The units whose name
+	// differs from the existing translations get a name-differs warning.
+	Names *existing.Index
 }
 
 // Confirmed says that a person confirmed an item, and why (suggest.Confirmed,
@@ -309,7 +314,9 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 		queued[p.Key] = true
 	}
 	notesOf := map[string][]store.Note{}
+	notesOnKey := map[string][]store.Note{}
 	for _, n := range rv.Notes {
+		notesOnKey[n.Key] = append(notesOnKey[n.Key], n)
 		if file, _, err := units.SplitKey(n.Key); err == nil {
 			notesOf[file] = append(notesOf[file], n)
 		}
@@ -325,7 +332,9 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 	// as many as the rows of evidence suggest leaves room for.
 	newTerms := map[string]*newTermHits{}
 	for _, s := range suggestions {
-		if s.Kind != suggest.KindNewTerm {
+		// A provisional term whose KR is also a name suggestion is merged into
+		// it (name/<kr>); it keeps its term and its hits.
+		if s.Kind != suggest.KindNewTerm && s.Kind != suggest.KindName {
 			continue
 		}
 		kr := strings.TrimPrefix(s.ID, s.Kind+"/")
@@ -408,7 +417,15 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			scopeUnits = append(scopeUnits, scope.Unit{Key: key, File: path, KR: ku.KR, ZH: rec.ZH, Origin: rec.Origin, EN: alignedValue(en), JP: alignedValue(jp)})
 			seen := map[string]bool{}
 			terms := batch.ValidateTermsIn(in.Rules, inForce, path, ku.KR)
-			for _, is := range validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: scriptOK, Terms: terms}) {
+			issues := validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: scriptOK, Terms: terms})
+			if rec.Origin == store.OriginClaude && rv.Names.IsName(ku.Field, ku.KR) {
+				// As the build does: the notes made from this KR text, the JP and
+				// EN text aligned to the unit.
+				if named := rv.Names.Differs(ku.Field, ku.KR, rec.ZH, noteTexts(notesOnKey[key], ku.KR), alignedValue(jp), alignedValue(en)); named != nil {
+					issues = append(issues, *named)
+				}
+			}
+			for _, is := range issues {
 				if is.Severity != validate.SeverityWarn {
 					continue
 				}
@@ -800,6 +817,20 @@ func placeNotes(notes []store.Note, us []placedUnit) []placedNote {
 		res[i] = s.placedNote
 	}
 	return res
+}
+
+// noteTexts joins the notes of one unit that were made from the KR text kr,
+// by newlines in the order they were added; notes of another KR text are left
+// out (the rule of the build).
+func noteTexts(notes []store.Note, kr string) string {
+	sha := units.KRSha(kr)
+	var texts []string
+	for _, n := range notes {
+		if n.KRSha == sha {
+			texts = append(texts, n.Note)
+		}
+	}
+	return strings.Join(texts, "\n")
 }
 
 // alignedValue is the text aligned to a unit, "" without an alignment.

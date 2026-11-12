@@ -5174,3 +5174,14 @@ func TestTranslatePendingExplainsTermsDiffer(t *testing.T) {
 		t.Error("translate-pending/SKILL.md does not explain terms_differ (a differing provisional term is stored but not in force)")
 	}
 }
+
+// The suggestions of kind name (name/<kr>) are handled by the skills that
+// work on the suggestions.
+func TestNameSuggestionIsHandledBySkills(t *testing.T) {
+	for _, skill := range []string{"rules-review", "review-page", "term-decision"} {
+		_, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", skill, "SKILL.md"))
+		if !strings.Contains(content, "name/") {
+			t.Errorf("%s/SKILL.md does not mention name/<kr>", skill)
+		}
+	}
+}

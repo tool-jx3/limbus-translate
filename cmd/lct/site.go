@@ -16,6 +16,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
 	"github.com/tool-jx3/limbus-translate/internal/gold"
@@ -276,7 +277,7 @@ func openSiteSources(ctx *cli.Context, cmd string) (siteSources, error) {
 // the build record and plan of the tw worktree (nil when there is none; a
 // plan of another snapshot is no plan), the adjustments, the field rules, the
 // frozen patterns, the notes, the pending list, the declined and accepted
-// entries and the provisional terms. r are the rules the caller loaded (the
+// entries, the provisional terms and the index of the existing names. r are the rules the caller loaded (the
 // glossary decides which provisional terms count); they are not read again.
 // cmd names the command in the errors.
 func loadReviewInputs(ctx *cli.Context, cmd string, r *rules.Rules) (site.ReviewInputs, error) {
@@ -327,6 +328,15 @@ func loadReviewInputs(ctx *cli.Context, cmd string, r *rules.Rules) (site.Review
 	if in.Provisional, _, err = activeProvisionalRecords(ctx.Root, st, r); err != nil {
 		return in, err
 	}
+	table, err := existing.LoadTable(st)
+	if err != nil {
+		return in, err
+	}
+	declined := make(map[string]bool, len(in.Declined))
+	for _, d := range in.Declined {
+		declined[d.ID] = true
+	}
+	in.Names = existing.NewIndex(table, r, declined)
 	return in, nil
 }
 

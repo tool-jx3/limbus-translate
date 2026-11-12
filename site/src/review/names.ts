@@ -9,6 +9,7 @@ export const WARNING_NAMES: Record<string, { name: string; desc: string }> = {
   hangul: { name: '韓文殘留', desc: 'TW 裡有韓文字：可能是漏譯' },
   simplified: { name: '簡體字', desc: 'TW 裡有簡體字，應為繁體' },
   'forbidden-term': { name: '禁用譯法', desc: 'TW 用了詞彙表禁用的譯法' },
+  'name-differs': { name: '與既有譯名不同', desc: '名稱欄位的譯法和既有譯文不同：同一個東西就統一，語境不同就保留' },
 }
 
 /** What to call a check code: the known ones by name, any other by its code and the message of its first unit. */
@@ -26,6 +27,7 @@ const SUGGESTION_KINDS: Record<string, string> = {
   term: '詞彙候選',
   'adjustment-moved': '調整已移位',
   'adjustment-expired': '調整已過期',
+  name: '與既有譯名不同',
 }
 
 /** The name of a kind of rule suggestion; an unknown kind is its own name. */
