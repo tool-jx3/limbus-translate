@@ -9,6 +9,8 @@ import (
 	"unicode/utf16"
 	"unicode/utf8"
 
+	"github.com/tool-jx3/limbus-translate/internal/existing"
+	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/translate"
@@ -46,6 +48,12 @@ const (
 	KindFieldChange = "field_change"
 	// KindNewFamily is the new files in the catch-all family.
 	KindNewFamily = "new_family"
+	// KindNameDiffers is the new translations that differ from the existing
+	// names.
+	KindNameDiffers = "name_differs"
+	// KindInconsistentNew is the groups of one KR text with different
+	// renderings that hold units translated in this update.
+	KindInconsistentNew = "inconsistent_new"
 	// KindLoopError is the translation loop that stopped on an error.
 	KindLoopError = "loop_error"
 	// KindNotTranslated is the translation that was not run, with units
@@ -58,7 +66,8 @@ const (
 // contract test reads this list.
 var ReviewKinds = []string{
 	KindNeedsReview, KindAdjustmentExpired, KindFrozenChanged, KindFrozenFallback,
-	KindNewSpeaker, KindFieldChange, KindNewFamily, KindLoopError, KindNotTranslated,
+	KindNewSpeaker, KindFieldChange, KindNewFamily, KindNameDiffers, KindInconsistentNew,
+	KindLoopError, KindNotTranslated,
 }
 
 // ReviewSection is one kind of thing that needs a person: a heading, what to
@@ -129,6 +138,12 @@ func ReviewItems(info Info, sum *plan.Summary, pending []store.PendingItem) []Re
 			"這些新檔沒有對應的檔案族群；到 `guides/routing.yaml` 加上族群。",
 			codes(sum.NewFilesDefaultFamily))
 	}
+	add(KindNameDiffers, "與既有譯名不同的新譯",
+		"既有譯文對這些名稱有固定寫法，這次新譯不同（名稱欄位，或說明、劇情裡提到卻沒用既有譯法）。指的是同一個東西：在 `glossary/terms.yaml` 加條目（以既有譯名為準），並寫 `rules/rewrite/` 的改寫檔，只改這次新譯；依語境本來就該不同：把項目開頭的 ID 寫進 `rules/declined.yaml`（審核頁或 `lct accept`）。",
+		nameDiffItems(info.Report))
+	add(KindInconsistentNew, "同一 KR 不同譯法（含這次新譯）",
+		"同一段 KR 在同族群、同欄位有不同譯法，其中有這次新翻的單位。要統一：照 `rules-review` 的 `inconsistent` 處理（詞彙或指引，加重翻要求檔或改寫檔）；依 JP/EN 或語境本來就該不同：把項目開頭的 ID 寫進 `rules/declined.yaml`。",
+		inconsistentNewItems(info))
 	if info.Stopped == translate.StopError {
 		add(KindLoopError, "翻譯迴圈因錯誤中斷",
 			"看 Actions 的執行紀錄；修正後重跑，還沒翻的單位仍在待譯清單裡。",
@@ -142,6 +157,90 @@ func ReviewItems(info Info, sum *plan.Summary, pending []store.PendingItem) []Re
 			[]string{fmt.Sprintf("%s（待譯 %d 個單位）", reason(info.StopError), n)})
 	}
 	return secs
+}
+
+// maxItemUnits is how many units, or renderings, an item of name_differs and
+// inconsistent_new lists.
+const maxItemUnits = 5
+
+// nameDiffItems is the item of each existing name that was rendered otherwise
+// and of each provisional term that is not in force.
+func nameDiffItems(rep Report) []string {
+	var items []string
+	for _, d := range rep.NameDiffs {
+		var olds []string
+		for _, r := range d.Existing {
+			olds = append(olds, fmt.Sprintf("%s（%d）", code(r.ZH), r.Units))
+		}
+		var units []string
+		for _, u := range d.Units[:min(len(d.Units), maxItemUnits)] {
+			if u.Kind == NameDiffMention {
+				units = append(units, code(u.Key)+"（提及）")
+			} else {
+				units = append(units, code(u.Key)+"（"+code(u.ZH)+"）")
+			}
+		}
+		item := fmt.Sprintf("%s：既有 %s；這次 %d 個單位不同：%s",
+			code(existing.SuggestionID(d.KR)), strings.Join(olds, "、"), len(d.Units), strings.Join(units, "、"))
+		if len(d.Units) > maxItemUnits {
+			item += "…等"
+		}
+		items = append(items, item)
+	}
+	for _, d := range rep.TermDiffs {
+		item := fmt.Sprintf("%s：暫定詞 → %s（未生效），舊譯 %d 個單位、含暫定譯法 %d 個",
+			code("term-new/"+d.KR), code(d.ZH), d.OldUnits, d.OldWith)
+		if d.Existing != "" {
+			item += "；既有譯名 " + code(d.Existing)
+		}
+		if len(d.Keys) > 0 {
+			item += "；這次用了暫定譯法：" + strings.Join(codes(d.Keys[:min(len(d.Keys), maxItemUnits)]), "、")
+			if len(d.Keys) > maxItemUnits {
+				item += "…等"
+			}
+		}
+		items = append(items, item)
+	}
+	return items
+}
+
+// inconsistentNewItems is the item of each group of one KR text with
+// different renderings that holds units of this update, except a group whose
+// new units are all listed under an existing name already.
+func inconsistentNewItems(info Info) []string {
+	listed := map[string]bool{}
+	for _, d := range info.Report.NameDiffs {
+		for _, u := range d.Units {
+			listed[u.Key] = true
+		}
+	}
+	var items []string
+	for _, g := range inconsistentGroups(info) {
+		if g.New == 0 || (len(g.NewKeys) > 0 && !slices.ContainsFunc(g.NewKeys, func(k string) bool { return !listed[k] })) {
+			continue
+		}
+		var zhs []string
+		for i, zh := range g.ZH[:min(len(g.ZH), maxItemUnits)] {
+			if i < len(g.Counts) {
+				zhs = append(zhs, fmt.Sprintf("%s（%d）", code(zh), g.Counts[i]))
+			} else {
+				zhs = append(zhs, code(zh))
+			}
+		}
+		items = append(items, fmt.Sprintf("%s：%s（族群 %s、欄位 %s，%d 個單位，這次新譯 %d 個）：%s",
+			code(itemid.Inconsistent(g.Family, g.Field, g.KR)), code(g.KR), code(g.Family), code(g.Field), g.Units, g.New, strings.Join(zhs, "、")))
+	}
+	return items
+}
+
+// inconsistentGroups are the groups of one KR text with different renderings
+// the build record holds: all that it kept, or, in a record of an older lct,
+// the ones its report lists.
+func inconsistentGroups(info Info) []Inconsistency {
+	if info.InconsistentAll != nil {
+		return info.InconsistentAll
+	}
+	return info.Report.Inconsistent
 }
 
 // waitingForTranslation counts the pending units a translation can still

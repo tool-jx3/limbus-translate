@@ -14,6 +14,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/translate"
@@ -268,7 +269,8 @@ func markdown(opt Options, info Info, sum *plan.Summary, pending []store.Pending
 	infoUnits(&b, info.Report)
 	infoMisaligned(&b, info.Report)
 	infoWarnings(&b, info.Report)
-	infoInconsistent(&b, info.Report)
+	infoNameDiffs(&b, info.Report)
+	infoInconsistent(&b, info)
 	infoNotes(&b, info.Report)
 	infoGlyphs(&b, info.Report)
 	return []byte(b.String())
@@ -475,19 +477,94 @@ func infoWarnings(b *strings.Builder, rep Report) {
 	}
 }
 
-// infoInconsistent lists the texts that were translated in different ways.
-func infoInconsistent(b *strings.Builder, rep Report) {
-	b.WriteString("\n### 同一 KR 不同譯法\n\n")
-	if len(rep.Inconsistent) == 0 {
+// infoNameDiffs lists the new translations that differ from the existing
+// names and the provisional terms that are not in force.
+func infoNameDiffs(b *strings.Builder, rep Report) {
+	b.WriteString("\n### 與既有譯名不同的新譯\n\n")
+	if len(rep.NameDiffs) == 0 && len(rep.TermDiffs) == 0 {
 		b.WriteString("None.\n")
 		return
 	}
-	for _, g := range rep.Inconsistent {
+	for _, d := range rep.NameDiffs {
+		var olds []string
+		for _, r := range d.Existing {
+			olds = append(olds, fmt.Sprintf("%s（%d）", code(r.ZH), r.Units))
+		}
+		fmt.Fprintf(b, "- %s（%s）：既有 %s\n", code(d.KR), code(existing.SuggestionID(d.KR)), strings.Join(olds, "、"))
+		for _, u := range d.Units {
+			if u.Kind == NameDiffMention {
+				fmt.Fprintf(b, "  - %s：提及；譯文 %s\n", code(u.Key), code(capRunes(oneLine(u.ZH), maxNameDiffRunes)))
+				continue
+			}
+			fmt.Fprintf(b, "  - %s：%s（名稱欄位）", code(u.Key), code(u.ZH))
+			if note := oneLine(u.Note); note != "" {
+				fmt.Fprintf(b, "；note：%s", capRunes(note, maxNoteRunes))
+			}
+			b.WriteString("\n")
+		}
+	}
+	for _, d := range rep.TermDiffs {
+		fmt.Fprintf(b, "- 暫定詞 %s → %s（%s，未生效）：舊譯 %d 個單位，含暫定譯法 %d 個", code(d.KR), code(d.ZH), code("term-new/"+d.KR), d.OldUnits, d.OldWith)
+		if d.Existing != "" {
+			fmt.Fprintf(b, "；既有譯名 %s", code(d.Existing))
+		}
+		b.WriteString("\n")
+		for _, ex := range d.Examples {
+			fmt.Fprintf(b, "  - 舊譯 %s：KR %s／TW %s\n", code(ex.Key), code(capRunes(oneLine(ex.KR), maxNameDiffRunes)), code(capRunes(oneLine(ex.ZH), maxNameDiffRunes)))
+		}
+		if len(d.Keys) > 0 {
+			fmt.Fprintf(b, "  - 這次用了暫定譯法：%s\n", strings.Join(codes(d.Keys), "、"))
+		}
+	}
+}
+
+const (
+	// maxNameDiffRunes is how long a translation in the list of NameDiffs is.
+	maxNameDiffRunes = 80
+	// maxNoteRunes is how long a note in that list is.
+	maxNoteRunes = 200
+)
+
+// infoInconsistent lists the texts that were translated in different ways:
+// first the groups with units of this update, then the ones of old
+// translations only.
+func infoInconsistent(b *strings.Builder, info Info) {
+	b.WriteString("\n### 同一 KR 不同譯法\n")
+	groups := inconsistentGroups(info)
+	var withNew, oldOnly []Inconsistency
+	for _, g := range groups {
+		if g.New > 0 {
+			withNew = append(withNew, g)
+		} else {
+			oldOnly = append(oldOnly, g)
+		}
+	}
+	if len(withNew) == 0 && len(oldOnly) == 0 {
+		b.WriteString("\nNone.\n")
+		return
+	}
+	fmt.Fprintf(b, "\n#### 含這次新譯（%d 組）\n\n", len(withNew))
+	inconsistentGroupLines(b, withNew)
+	b.WriteString("\n#### 只有舊譯\n\n")
+	inconsistentGroupLines(b, oldOnly[:min(len(oldOnly), maxInconsistent)])
+}
+
+// inconsistentGroupLines writes the lines of groups, None. for no group.
+func inconsistentGroupLines(b *strings.Builder, groups []Inconsistency) {
+	if len(groups) == 0 {
+		b.WriteString("None.\n")
+		return
+	}
+	for _, g := range groups {
 		where := "欄位 " + code(g.Field)
 		if g.Family != "" {
 			where = "族群 " + code(g.Family) + "、" + where
 		}
-		fmt.Fprintf(b, "- %s（%s，共 %d 個單位）\n", code(g.KR), where, g.Units)
+		extra := ""
+		if g.New > 0 {
+			extra = fmt.Sprintf("，這次新譯 %d 個", g.New)
+		}
+		fmt.Fprintf(b, "- %s（%s，共 %d 個單位%s）\n", code(g.KR), where, g.Units, extra)
 		for i, zh := range g.ZH {
 			fmt.Fprintf(b, "  - %s：%s\n", code(zh), code(g.Keys[i]))
 		}

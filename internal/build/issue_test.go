@@ -9,7 +9,9 @@ import (
 	"testing"
 	"unicode/utf16"
 
+	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
+	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/translate"
@@ -316,8 +318,9 @@ func TestReviewItemsMatchTheIssue(t *testing.T) {
 		}
 	}
 	// ReviewKinds, which the contract of the review skill reads, lists every
-	// kind in this order, not_translated (which leaves out loop_error) last.
-	if want := append(slices.Clone(wantKinds), "not_translated"); !slices.Equal(ReviewKinds, want) {
+	// kind in this order, name_differs and inconsistent_new (which this
+	// build has none of) before loop_error, not_translated last.
+	if want := append(slices.Clone(wantKinds[:7]), "name_differs", "inconsistent_new", "loop_error", "not_translated"); !slices.Equal(ReviewKinds, want) {
 		t.Errorf("ReviewKinds = %q, want %q", ReviewKinds, want)
 	}
 
@@ -587,5 +590,95 @@ func TestReviewSectionsCarryKeys(t *testing.T) {
 		if sec.Keys != nil && len(sec.Keys) != len(sec.Items) {
 			t.Errorf("%s: %d keys for %d items", sec.Kind, len(sec.Keys), len(sec.Items))
 		}
+	}
+}
+
+func sectionOfKind(secs []ReviewSection, kind string) *ReviewSection {
+	for i := range secs {
+		if secs[i].Kind == kind {
+			return &secs[i]
+		}
+	}
+	return nil
+}
+
+func TestReviewKindsOrder(t *testing.T) {
+	want := []string{"needs_review", "adjustment_expired", "frozen_changed", "frozen_fallback", "new_speaker",
+		"field_change", "new_family", "name_differs", "inconsistent_new", "loop_error", "not_translated"}
+	if !slices.Equal(ReviewKinds, want) {
+		t.Errorf("ReviewKinds = %v, want %v", ReviewKinds, want)
+	}
+}
+
+func TestReviewIssueNameDiffers(t *testing.T) {
+	info := issueInfo()
+	var units []NameDiffUnit
+	for i := range 7 {
+		units = append(units, NameDiffUnit{Key: fmt.Sprintf("S.json|/dataList/%d/name", i), ZH: "晚霞之劍", Kind: NameDiffField})
+	}
+	units[1].Kind, units[1].ZH = NameDiffMention, "長譯文"
+	info.Report.NameDiffs = []NameDiff{
+		{KR: "노을빛 검", Existing: []existing.Rendering{{ZH: "霞光劍刃", Units: 12}, {ZH: "晚霞", Units: 1}}, Units: units},
+		{KR: "작은 검", Existing: []existing.Rendering{{ZH: "小劍", Units: 3}}, Units: units[:2]},
+	}
+	info.Report.TermDiffs = []TermDiff{
+		{KR: "도발치", ZH: "嘲諷值", Existing: "挑釁值", OldUnits: 95, OldWith: 0, Keys: []string{"K1", "K2"}},
+		{KR: "무명", ZH: "無名", OldUnits: 4, OldWith: 1},
+	}
+	secs := ReviewItems(info, nil, nil)
+	sec := sectionOfKind(secs, KindNameDiffers)
+	if sec == nil {
+		t.Fatalf("no name_differs section in %+v", secs)
+	}
+	if sec.Title != "與既有譯名不同的新譯" || !strings.Contains(sec.Hint, "`glossary/terms.yaml`") ||
+		!strings.Contains(sec.Hint, "`rules/rewrite/`") || !strings.Contains(sec.Hint, "`rules/declined.yaml`") || !strings.Contains(sec.Hint, "`lct accept`") {
+		t.Errorf("title/hint = %q / %q", sec.Title, sec.Hint)
+	}
+	if len(sec.Items) != 4 {
+		t.Fatalf("items = %q", sec.Items)
+	}
+	if !strings.HasPrefix(sec.Items[0], "`name/노을빛 검`：既有 `霞光劍刃`（12）、`晚霞`（1）；這次 7 個單位不同：`S.json|/dataList/0/name`（`晚霞之劍`）、`S.json|/dataList/1/name`（提及）") ||
+		!strings.HasSuffix(sec.Items[0], "…等") {
+		t.Errorf("item 0 = %q", sec.Items[0])
+	}
+	if strings.Contains(sec.Items[0], "/dataList/5/name") {
+		t.Errorf("item 0 lists more than 5 units: %q", sec.Items[0])
+	}
+	if strings.HasSuffix(sec.Items[1], "等") {
+		t.Errorf("item 1 has 2 units but ends with 等: %q", sec.Items[1])
+	}
+	if want := "`term-new/도발치`：暫定詞 → `嘲諷值`（未生效），舊譯 95 個單位、含暫定譯法 0 個；既有譯名 `挑釁值`；這次用了暫定譯法：`K1`、`K2`"; sec.Items[2] != want {
+		t.Errorf("item 2 = %q, want %q", sec.Items[2], want)
+	}
+	if want := "`term-new/무명`：暫定詞 → `無名`（未生效），舊譯 4 個單位、含暫定譯法 1 個"; sec.Items[3] != want {
+		t.Errorf("item 3 = %q, want %q", sec.Items[3], want)
+	}
+}
+
+func TestReviewIssueInconsistentNew(t *testing.T) {
+	info := issueInfo()
+	info.Report.NameDiffs = []NameDiff{{KR: "검", Existing: []existing.Rendering{{ZH: "劍", Units: 2}},
+		Units: []NameDiffUnit{{Key: "A|/1", ZH: "刀", Kind: NameDiffField}, {Key: "A|/2", ZH: "刃", Kind: NameDiffField}}}}
+	listed := Inconsistency{Family: "f", Field: "name", KR: "검", ZH: []string{"刀", "刃"}, Keys: []string{"A|/1", "A|/2"},
+		Counts: []int{1, 1}, Units: 2, New: 2, NewKeys: []string{"A|/1", "A|/2"}}
+	other := Inconsistency{Family: "f", Field: "content", KR: "방패", ZH: []string{"盾", "盾牌"}, Keys: []string{"B|/1", "B|/2"},
+		Counts: []int{3, 1}, Units: 4, New: 1, NewKeys: []string{"B|/2"}}
+	oldOnly := Inconsistency{Family: "f", Field: "content", KR: "옛", ZH: []string{"甲", "乙"}, Keys: []string{"C|/1", "C|/2"}, Units: 2}
+	info.InconsistentAll = []Inconsistency{listed, other, oldOnly}
+	info.Report.Inconsistent = []Inconsistency{oldOnly}
+
+	sec := sectionOfKind(ReviewItems(info, nil, nil), KindInconsistentNew)
+	if sec == nil {
+		t.Fatal("no inconsistent_new section")
+	}
+	if sec.Title != "同一 KR 不同譯法（含這次新譯）" || !strings.Contains(sec.Hint, "`rules-review`") || !strings.Contains(sec.Hint, "`inconsistent`") || !strings.Contains(sec.Hint, "`rules/declined.yaml`") {
+		t.Errorf("title/hint = %q / %q", sec.Title, sec.Hint)
+	}
+	if len(sec.Items) != 1 {
+		t.Fatalf("items = %q", sec.Items)
+	}
+	want := "`" + itemid.Inconsistent("f", "content", "방패") + "`：`방패`（族群 `f`、欄位 `content`，4 個單位，這次新譯 1 個）：`盾`（3）、`盾牌`（1）"
+	if sec.Items[0] != want {
+		t.Errorf("item = %q, want %q", sec.Items[0], want)
 	}
 }

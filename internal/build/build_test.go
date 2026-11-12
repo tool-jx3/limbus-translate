@@ -2787,3 +2787,87 @@ func TestBuildListsAUnitOnceUnderAName(t *testing.T) {
 		t.Errorf("NameDiffs = %+v, want %+v", rep.NameDiffs, want)
 	}
 }
+
+// nameDiffInfo is a build record with one NameDiff (a name field and a
+// mention) and one TermDiff.
+func nameDiffInfo() Info {
+	info := Info{RawTag: testTag, RawToken: testToken, RulesCommit: "abc1234", BuiltAt: "2026-10-31T12:30:45Z"}
+	info.Report.NameDiffs = []NameDiff{{
+		KR:       "노을빛 검",
+		Existing: []existing.Rendering{{ZH: "霞光劍刃", Units: 12}, {ZH: "晚霞", Units: 1}},
+		Units: []NameDiffUnit{
+			{Key: "Skills.json|/dataList/3/name", ZH: "晚霞之劍", Note: "line one\nline two", Kind: NameDiffField},
+			{Key: "StoryData/S1.json|/dataList/9/content", ZH: "他拔出\n了劍", Kind: NameDiffMention},
+		},
+	}}
+	info.Report.TermDiffs = []TermDiff{{
+		KR: "도발치", ZH: "嘲諷值", Existing: "挑釁值", OldUnits: 95, OldWith: 0,
+		Examples: []existing.OldExample{{Key: "Bufs.json|/dataList/2/desc", KR: "도발치 증가", ZH: "挑釁值增加"}},
+		Keys:     []string{"Skills.json|/dataList/4/desc", "Skills.json|/dataList/5/desc"},
+	}}
+	return info
+}
+
+func TestReportListsNameDiffs(t *testing.T) {
+	opt := Options{RawTag: testTag, RawToken: testToken, RulesCommit: "abc1234", BuiltAt: testBuiltAt}
+	got := string(Markdown(opt, nameDiffInfo(), nil, nil))
+	sec := section(t, got, "### 與既有譯名不同的新譯")
+	for _, want := range []string{
+		"`노을빛 검`（`name/노을빛 검`）：既有 `霞光劍刃`（12）、`晚霞`（1）",
+		"`Skills.json|/dataList/3/name`：`晚霞之劍`（名稱欄位）；note：line one line two",
+		"`StoryData/S1.json|/dataList/9/content`：提及；譯文 `他拔出 了劍`",
+		"暫定詞 `도발치` → `嘲諷值`（`term-new/도발치`，未生效）：舊譯 95 個單位，含暫定譯法 0 個；既有譯名 `挑釁值`",
+		"舊譯 `Bufs.json|/dataList/2/desc`：KR `도발치 증가`／TW `挑釁值增加`",
+		"這次用了暫定譯法：`Skills.json|/dataList/4/desc`、`Skills.json|/dataList/5/desc`",
+	} {
+		if !strings.Contains(sec, want) {
+			t.Errorf("section lacks %q:\n%s", want, sec)
+		}
+	}
+	const heading = "\n### 與既有譯名不同的新譯\n"
+	if i, j := strings.Index(got, "### 驗證警告"), strings.Index(got, heading); i < 0 || j < i {
+		t.Errorf("the section is not after the warnings")
+	}
+	if i, j := strings.Index(got, heading), strings.Index(got, "### 同一 KR 不同譯法"); j < i {
+		t.Errorf("the section is not before the inconsistent one")
+	}
+}
+
+func TestReportNameDiffsNone(t *testing.T) {
+	opt := Options{RawTag: testTag, RawToken: testToken, RulesCommit: "abc1234", BuiltAt: testBuiltAt}
+	info := Info{RawTag: testTag, RawToken: testToken}
+	got := string(Markdown(opt, info, nil, nil))
+	if sec := section(t, got, "### 與既有譯名不同的新譯"); !strings.Contains(sec, "None.") {
+		t.Errorf("section = %q, want None.", sec)
+	}
+}
+
+func TestReportSplitsInconsistent(t *testing.T) {
+	opt := Options{RawTag: testTag, RawToken: testToken, RulesCommit: "abc1234", BuiltAt: testBuiltAt}
+	info := Info{RawTag: testTag, RawToken: testToken}
+	newGroup := Inconsistency{Family: "alpha", Field: "content", KR: "새것", ZH: []string{"甲", "乙"},
+		Keys: []string{"A.json|/0", "A.json|/1"}, Units: 3, New: 2, NewKeys: []string{"A.json|/0", "A.json|/1"}}
+	oldGroup := Inconsistency{Family: "alpha", Field: "content", KR: "옛것", ZH: []string{"丙", "丁"},
+		Keys: []string{"B.json|/0", "B.json|/1"}, Units: 2}
+	info.InconsistentAll = []Inconsistency{newGroup, oldGroup}
+	info.Report.Inconsistent = []Inconsistency{oldGroup}
+	got := string(Markdown(opt, info, nil, nil))
+	sec := section(t, got, "### 同一 KR 不同譯法")
+	i, j := strings.Index(sec, "#### 含這次新譯（1 組）"), strings.Index(sec, "#### 只有舊譯")
+	if i < 0 || j < i {
+		t.Fatalf("subsections missing or misordered:\n%s", sec)
+	}
+	if a := sec[i:j]; !strings.Contains(a, "`새것`") || !strings.Contains(a, "這次新譯 2 個") || strings.Contains(a, "`옛것`") {
+		t.Errorf("new subsection = %q", a)
+	}
+	if b := sec[j:]; !strings.Contains(b, "`옛것`") || strings.Contains(b, "`새것`") {
+		t.Errorf("old subsection = %q", b)
+	}
+
+	// A build.json of an older lct has no InconsistentAll.
+	info.InconsistentAll = nil
+	sec = section(t, string(Markdown(opt, info, nil, nil)), "### 同一 KR 不同譯法")
+	if !strings.Contains(sec, "#### 含這次新譯（0 組）") || !strings.Contains(sec, "`옛것`") {
+		t.Errorf("old record: %q", sec)
+	}
+}
