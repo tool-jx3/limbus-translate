@@ -640,6 +640,8 @@ export interface BatchJSON {
   guides: string[]
   glossary: Term[]
   keywords: Record<string, string>
+  /** The existing names the units use; the preview never carries any. */
+  names: never[]
   units: BatchUnit[]
   context: ContextLine[]
 }

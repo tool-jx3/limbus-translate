@@ -137,6 +137,7 @@ export function rebuildBatch(path: string, file: FileData, pf: PreviewFile, shar
   })
   batch.glossary = glossary
   batch.keywords = goMap(keywords)
+  batch.names = []
   batch.units = [unit as BatchUnit]
   batch.context = context
   return batch as BatchJSON
