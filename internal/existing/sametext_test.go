@@ -97,7 +97,7 @@ func TestSameTextForReadsCurrentTranslations(t *testing.T) {
 		t.Errorf("For with no translation = %v, want nil", got)
 	}
 	zh := map[string]string{
-		"1": "自己組", // the asking group: never returned
+		"1": "自己組",                   // the asking group: never returned
 		"2": "乙", "3": "甲", "4": "甲", // most keys say 甲; File is that of the first of them
 		"6": "丙", "5": "丁", // a tie: the first key wins
 		// g4 has no translation
