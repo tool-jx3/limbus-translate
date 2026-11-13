@@ -7,7 +7,7 @@ number: 2
 code: "02"
 models: [파우스트, 다친파우스트, 파우스트다침, 파우스트그림자, 파우스트만우]
 models_other_self: [프롤로그파우스트]
-models_not_this: [파우스트와삼조]  # 多人同時說話
+models_not_this: [파우스트와삼조, 베르길파우]  # 多人同時說話（베르길파우 = E702B#50 與維吉里烏斯同時說話）
 file_names: [Faust]
 ---
 

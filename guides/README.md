@@ -11,6 +11,7 @@
 | `shared/<主題>.md` | 跨族群、但不是所有族群都用的規則（每份 ≤ 4096 bytes，附出處） | 用到的族群在 `routing.yaml` 以 `include:` 引入 |
 | `families.md` | 給人看的參考：檔名規律、檔案族群、翻譯優先序、凍結項目 | 不送給譯者 |
 | `characters/<id>.md` | 角色語言風格 | 該批出現此角色時（劇情看每行的 `model`，RPG 對話看該行的 `speaker` 欄位，對得上角色 id 才套用；語音／`AbDlg` 看檔名） |
+| `npcs.yaml` | 不需要指引的路人：`model`、性別、一句身分（見「新說話者」） | 不送給譯者；審核 Issue 與規則建議不再把這些 `model` 列為新說話者 |
 | `../glossary/terms.yaml` | 譯名統一列表（預設譯名；`check: hard` 的條目缺譯名才退回，`check: off` 的一般用語缺譯名也不警告，禁用譯法一律退回） | 每一批注入命中的條目 |
 
 疊加順序：`base` → 族群 → 該族群的 `include`（共用指引，依序）→ 依節點或標記疊加的指引（`routing.yaml` 的 `guides:`）→ 角色 → 單檔備註。`base.md` 的格式規則是硬性規定；詞彙表的譯名是預設（`check: hard` 的條目與 `forbidden` 除外），角色風格不能推翻它們。
@@ -22,6 +23,15 @@
 - `models_not_this`：鍵值裡有角色名但不是本人（例如 `뫼르소엄마` 是莫梭的母親），或是多人同時說話
 - `file_names`：`AbDlg_`、`PersonalityVoiceDlg/Voice_`、`EGOVoiceDig/Voice_EGO_` 檔名中的拼法（遊戲檔名拼法不一致，如 `Meursalut`、`Outist`）
 - `number`：遊戲內罪人編號；`code`：檔名代碼（`P1YYXX`、人格編號 `1YYXX` 的 `YY`）
+
+### 新說話者
+
+審核 Issue 的「未對應的說話者」與規則建議的 `speaker/…` 是這次更新新出現、指引還不認得的 `model`。依情況處理，補上後下次建置就不再列出：
+
+- **既有角色的變體**（受傷、回憶、劇中劇、愚人節等）：補進該角色檔的 `models`（本人）、`models_other_self`（其他時期的本人）或 `models_not_this`（名字相近但不是本人、多人同時說話）
+- **同一群人**（同一組織的士兵、職員、成員等，語氣一致）：寫一份共用的 `characters/<id>.md`，`models` 列出這群人的全部 `model`，內容寫身分、語體與稱呼，幾行即可；之後出現同一群人的新 `model` 就補進去
+- **有特色的新角色**：新增 `characters/<id>.md`
+- **一次性的路人**：不需要指引，在 `npcs.yaml` 加一筆。`model` 必填；`gender`（`male`／`female`／`unspecified`）看得出才寫；`note` 寫一句身分（出處、第幾章）。名單上的 `model` 不能同時列在角色檔裡（`lct rules lint` 會檢查）
 
 ## 標記
 

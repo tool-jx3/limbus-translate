@@ -162,6 +162,58 @@ func TestReviewCommand(t *testing.T) {
 	}
 }
 
+// The plan keeps every new speaker and new file of the snapshot; the review
+// issue, the report and "lct review" leave out those the rules answer by now:
+// a model a character guide lists (필립), a file the routing gives a family
+// (SynergyKeyword.json). A rebuild after the guides were written posts nothing
+// about them again.
+func TestReviewLeavesOutWhatTheRulesAnswer(t *testing.T) {
+	root := buildRepo(t)
+	t.Setenv(sourceDateEpoch, "")
+	t.Chdir(root)
+	writeReviewPlan(t, root, plan.Summary{
+		RawTag: "raw-20261029", PrevRawTag: "raw-20261022",
+		NewSpeakers:           []string{"신규 NPC", "필립"},
+		NewFilesDefaultFamily: []string{"Brand/New.json", "SynergyKeyword.json"},
+	})
+	if got, err := runBuildJSON(t, root); err != nil || got.ReviewIssueParts != 1 {
+		t.Fatalf("build: %+v, %v, want one part of the review issue", got, err)
+	}
+
+	want := []string{"`신규 NPC`", "`Brand/New.json`"}
+	if _, _, items := checklist(t, root); strings.Join(items, "\n") != strings.Join(want, "\n") {
+		t.Errorf("issue items = %q, want %q", items, want)
+	}
+	var got reviewJSON
+	mustLct(t, &got, "review")
+	var items []string
+	for _, s := range got.Sections {
+		items = append(items, s.Items...)
+	}
+	if strings.Join(items, "\n") != strings.Join(want, "\n") {
+		t.Errorf("review items = %q, want %q", items, want)
+	}
+	report := string(readFile(t, filepath.Join(root, ".work", "tw", ".meta", "reports", "raw-20261029.md")))
+	todo, _, _ := strings.Cut(report[strings.Index(report, "## 需要你處理"):], "\n## ")
+	for _, answered := range []string{"필립", "SynergyKeyword.json"} {
+		if strings.Contains(todo, answered) {
+			t.Errorf("the report lists %q, which the rules answer:\n%s", answered, todo)
+		}
+	}
+	if !strings.Contains(todo, "신규 NPC") || !strings.Contains(todo, "Brand/New.json") {
+		t.Errorf("the report lacks what the rules do not answer:\n%s", todo)
+	}
+
+	// Answered in full: no review issue at all.
+	writeReviewPlan(t, root, plan.Summary{
+		RawTag: "raw-20261029", PrevRawTag: "raw-20261022",
+		NewSpeakers: []string{"필립"}, NewFilesDefaultFamily: []string{"SynergyKeyword.json"},
+	})
+	if got, err := runBuildJSON(t, root); err != nil || got.ReviewIssueParts != 0 {
+		t.Errorf("build with everything answered: %+v, %v, want no review issue", got, err)
+	}
+}
+
 // Without a build there is nothing to list: exit 1, and a message that says
 // what to do. Nothing is written.
 func TestReviewCommandNeedsABuild(t *testing.T) {

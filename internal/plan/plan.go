@@ -129,6 +129,39 @@ type Summary struct {
 	NameTable NameTableSummary `json:"name_table"`
 }
 
+// Unanswered is s with only what the rules r do not answer yet among the new
+// speakers and the new files of the default family: a model no character
+// guide knows (rules.KnowsModel), a file the routing still puts in the default
+// family. The plan keeps what the snapshot brought for as long as it is the
+// current one, rules or no rules (see Run); the review issue, the report,
+// "lct review" and the suggestions read it through this, so that a guide or a
+// family written since takes the item off. The rest of the summary is as it
+// is, and s is not changed. A nil s is nil; nil rules answer nothing.
+func (s *Summary) Unanswered(r *rules.Rules) *Summary {
+	if s == nil {
+		return nil
+	}
+	out := *s
+	if r == nil {
+		return &out
+	}
+	out.NewSpeakers = []string{}
+	for _, model := range s.NewSpeakers {
+		if !r.KnowsModel(model) {
+			out.NewSpeakers = append(out.NewSpeakers, model)
+		}
+	}
+	out.NewFilesDefaultFamily = []string{}
+	if def := r.DefaultFamily(); def != "" {
+		for _, file := range s.NewFilesDefaultFamily {
+			if r.Family(file) == def {
+				out.NewFilesDefaultFamily = append(out.NewFilesDefaultFamily, file)
+			}
+		}
+	}
+	return &out
+}
+
 // NameTableSummary reports .meta/names.json and .meta/same-text.json, which
 // are made once for each raw tag. Built is true when this run made either
 // of them; the counts are those of the files that stand.

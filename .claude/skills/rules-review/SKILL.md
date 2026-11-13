@@ -56,7 +56,8 @@ allowed-tools:
    - `term`：詞彙候選。用 `bin/lct search --text RE --json` 看現有譯文怎麼用，附證據（出現次數、各種譯法）建議採用或不採用。採用就把該條的 `status` 改成 `approved`，必要時補 `forbidden`、`category`
    - `name`：這次新譯的名稱與既有譯名不同。`evidence` 先列既有譯法（`count` 是單位數），再列這次的單位（`key`、`zh`、`note`）；有暫定詞的列（`note` 是批次 id、「衝突」或「與舊譯不同…」「舊譯例句」）時，這也是翻譯者登記的暫定詞。以既有譯名為準：單位與既有譯名指同一個東西（用 `bin/lct search --json --key K` 看全文與 JP/EN），就在 `glossary/terms.yaml` 加條目（`zh` 用既有譯名，格式見 `glossary/README.md`），並手寫 `rules/rewrite/<日期>-<主題>.yaml`（`reason`、`files`、`origins: [claude]`、`pattern`、`replace`、`kr_pattern`），只改證據中寫法不同的這次新譯單位。單位的 `note` 說明了語境不同、或證據不足以判斷是不是同一個東西時，不改檔，列進 `## 需要人決定`
    - `adjustment-moved`、`adjustment-expired`：執行 `bin/lct adjust tidy --json`，它替 key 已移動的調整改 key、刪掉單位已重翻的過期調整；它改的檔列進說明。仍留下的過期調整是 KR 變了、單位還沒重翻，不處理
-   - 確定不需要規則的項目（例如只是閒聊的備註、路人說話者）：在 `rules/declined.yaml` 加一筆 `id`（原樣、用雙引號包起來）、`reason`（寫成別人看得懂的理由）、`date`（今天，`YYYY-MM-DD`），並在說明列出，人可以還原
+   - 新說話者（`speaker/…`）：依 `guides/README.md`「新說話者」一節，補進既有角色檔的 `models`／`models_other_self`／`models_not_this`、寫同一群人的共用角色檔或新角色檔；一次性的路人在 `guides/npcs.yaml` 加一筆 `model`（看得出性別就寫 `gender`，`note` 寫一句身分），不寫 `rules/declined.yaml`
+   - 確定不需要規則的項目（例如只是閒聊的備註）：在 `rules/declined.yaml` 加一筆 `id`（原樣、用雙引號包起來）、`reason`（寫成別人看得懂的理由）、`date`（今天，`YYYY-MM-DD`），並在說明列出，人可以還原
    - 沒有把握（需要詞彙或指引以外的決定、證據不足、規則互相衝突）：不改檔、不記進 `rules/declined.yaml`，列進說明的 `## 需要人決定`（第 4 步）
 3. 檢查並評估影響：
    - 執行 `bin/lct rules lint --json`。exit 0 才算過；exit 1 會列出有問題的檔，自己寫的檔修正後再跑，`lct` 寫出的檔有問題就在說明回報，不手改

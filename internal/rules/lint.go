@@ -42,6 +42,7 @@ func Lint(root string) []error {
 	l.characters()
 	l.routing()
 	l.foreignIgnore()
+	l.npcs()
 	l.adjustments()
 	return l.errs
 }

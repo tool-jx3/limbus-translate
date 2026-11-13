@@ -217,17 +217,18 @@ func repoURL() string {
 
 // buildState is what the last build left in the tw worktree and the review
 // issue is made of: the build record, the plan of that snapshot (nil when the
-// worktree has none, or one of another snapshot) and the pending list.
+// worktree has none, or one of another snapshot) with only what the rules do
+// not answer yet (plan.Summary Unanswered), and the pending list.
 type buildState struct {
 	Info    build.Info
 	Plan    *plan.Summary
 	Pending []store.PendingItem
 }
 
-// readBuildState reads the build state of the tw worktree at twRoot. "lct
-// build" and "lct review" both read it here, so that the issue and the review
-// are made of the same inputs.
-func readBuildState(twRoot string) (buildState, error) {
+// readBuildState reads the build state of the tw worktree at twRoot, the plan
+// read through the rules r. "lct build" and "lct review" both read it here, so
+// that the issue and the review are made of the same inputs.
+func readBuildState(twRoot string, r *rules.Rules) (buildState, error) {
 	info, err := build.ReadInfo(twRoot)
 	if err != nil {
 		return buildState{}, err
@@ -240,7 +241,7 @@ func readBuildState(twRoot string) (buildState, error) {
 	if err != nil {
 		return buildState{}, err
 	}
-	return buildState{Info: info, Plan: sum, Pending: pending}, nil
+	return buildState{Info: info, Plan: sum.Unanswered(r), Pending: pending}, nil
 }
 
 // writeReviewFiles writes what the workflow posts, to opt.OutDir: the summary
@@ -250,7 +251,7 @@ func readBuildState(twRoot string) (buildState, error) {
 // when nothing needs a person, so that the issue of an earlier build is not
 // posted again. It returns the number of parts.
 func writeReviewFiles(opt build.Options) (int, error) {
-	state, err := readBuildState(opt.TWRoot)
+	state, err := readBuildState(opt.TWRoot, opt.Rules)
 	if err != nil {
 		return 0, err
 	}
