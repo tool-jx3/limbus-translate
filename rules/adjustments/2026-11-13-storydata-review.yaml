@@ -40,3 +40,33 @@
   zh: <蟲……不對，戴眼鏡的兄弟。你知道我們現在是要去哪嗎？>
   reason: StoryData 審查 S0006：KR 안경 낀（戴著眼鏡），錯字「帶眼鏡」→「戴眼鏡」
   rule: one-off
+- key: StoryData/S101B.json|/dataList/48/content
+  raw: raw-20261112
+  kr_sha: acc1baebe9414eabcc2bbf91e1dc0daa22728aba191bda5a4b82f418512cc3b1
+  zh: 毫無緣由的暴力不可原諒！汝就由吾來懲治！
+  reason: StoryData 審查 S0007：KR 後半「그대는 내가 응징하지!」是「汝就由吾來懲治！」，明確指向動手的良秀（JP「そなたは私が成敗してみせよう」）；TW 寫成「吾將貫徹正義！」（照 EN），漏了懲治的對象「그대（汝）」與「응징（懲治）」的動作。（譯法：使用者選 A）
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/107/content
+  raw: raw-20261112
+  kr_sha: 12360dc06d2d87ad417781284ee084650831072fdc358a9f5bb006f9947832c8
+  zh: 請、請等一等！但丁經理看上去很痛苦的樣子，我們就到此為……
+  reason: StoryData 審查 S0008：KR「이쯤에서 접…」是「就到此為止吧……」（접다＝收手，話被打斷；JP「このあたりでや…」）；TW「我們真的應該……」沒有譯出要大家住手、到此為止的意思。
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/108/content
+  raw: raw-20261112
+  kr_sha: 903f22e3e8eeb51f0f8aba8f7591b67e9cfe813af8ecdafc300a970d1feab56a
+  zh: 還沒等他說完，希斯克利夫的金屬球棒就狠狠砸在了辛克萊的頭上。
+  reason: StoryData 審查 S0009：KR 只說「希斯克利夫的鐵棍狠狠砸向辛克萊的頭」（강하게 내리쳤다）；TW「在辛克萊的頭上開了個窟窿」多加了打出窟窿的結果，KR 沒有。
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/131/content
+  raw: raw-20261112
+  kr_sha: f00894aad795354f8a64aca79496afd31f130db83d33d4d1333a704f49aaae20
+  zh: 乞求他賜予我死亡都比再承受那樣的苦痛要好。我飛快地搖了搖頭。
+  reason: StoryData 審查 S0010：KR「고개를 재빠르게 가로저었다」是「飛快地搖頭」（JP「素早く」、EN「quickly」）；TW 寫成「沮喪地搖了搖頭」，把動作的快速誤成情緒沮喪。
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/135/content
+  raw: raw-20261112
+  kr_sha: 4fe2f0c05e8c22876156207c1305e87ec886cc82b24c5f8cf8a7b2b6c081625c
+  zh: 讓你面對那種程度的痛楚也能眼睛都不眨一下。這樣一來，你就撐得住了吧？
+  reason: StoryData 審查 S0011：KR 接上一句「我很樂意幫你」：「（幫到）讓你對那種程度的痛楚連眼都不眨一下。這樣一來，不就撐得住了嗎？」——維吉里烏斯是在威脅要「幫」但丁習慣痛苦（JP「その程度の苦痛には目がピクリともしないようにですね。それなら、耐えられませんかね？」、EN「won't even make you bat an eye once …
+  rule: one-off
