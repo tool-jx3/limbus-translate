@@ -1,0 +1,6 @@
+- key: StoryData/S002B.json|/dataList/79/content
+  raw: raw-20261112
+  kr_sha: fbe102716133ebd029056a290855f12bf4fee633f8c0e25f1e870c34be1a98b6
+  zh: 但他只是百無聊賴地盯著車窗，目光空洞，彷彿對一切都提不起興趣。
+  reason: StoryData 審查 S0002：KR 차창 是車窗（JP 車窓、EN out the window），現行譯成「天花板」
+  rule: one-off
