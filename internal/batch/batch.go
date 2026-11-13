@@ -121,6 +121,10 @@ type Batch struct {
 	Units []BatchUnit `json:"units"`
 	// Context are translated lines around the units of a story batch.
 	Context []ContextLine `json:"context"`
+	// NPCs are the speakers of the units and of the context that the list of
+	// NPCs has (guides/npcs.yaml), each once, those of the units first: their
+	// gender, when the text says it, and who they are. None is no field.
+	NPCs []rules.NPC `json:"npcs,omitempty"`
 }
 
 // Limits of Batch.Names, and the name of the reference with the renderings of

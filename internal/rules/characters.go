@@ -148,7 +148,21 @@ func (r *Rules) KnowsModel(model string) bool {
 			return true
 		}
 	}
-	return slices.ContainsFunc(r.NPCs, func(n NPC) bool { return n.Model == model })
+	_, ok := r.NPC(model)
+	return ok
+}
+
+// NPC finds the entry of the list of NPCs (NPCsFile) for a model key.
+func (r *Rules) NPC(model string) (NPC, bool) {
+	if model == "" {
+		return NPC{}, false
+	}
+	for _, n := range r.NPCs {
+		if n.Model == model {
+			return n, true
+		}
+	}
+	return NPC{}, false
 }
 
 var (

@@ -974,6 +974,64 @@ func TestSpeakerFromTheObjectOfTheLine(t *testing.T) {
 	}
 }
 
+// A batch lists the speakers of its units and of its context that are on the
+// list of NPCs (guides/npcs.yaml), each once, those of the units first: the
+// translator learns their gender and who they are. Characters, speakers on no
+// list and NPCs who do not speak in the batch are left out; with none the
+// field is not written.
+func TestBatchListsTheNPCsOfItsSpeakers(t *testing.T) {
+	const file = "StoryData/S001A.json"
+	kr := map[string]string{file: `{"dataList":[
+ {"id":0,"model":"선원","content":"첫째 줄"},
+ {"id":1,"model":"여자시민","content":"둘째 줄"},
+ {"id":2,"model":"파우스트","content":"셋째 줄"},
+ {"id":3,"model":"무명","content":"넷째 줄"},
+ {"id":4,"model":"여자시민","content":"다섯째 줄"}
+]}`}
+	env := newEnv(t, kr, nil, nil)
+	citizen := rules.NPC{Model: "여자시민", Gender: "female", Note: "第 1 章的市民"}
+	sailor := rules.NPC{Model: "선원", Note: "船員"}
+	env.Rules.NPCs = []rules.NPC{sailor, citizen, {Model: "안쓰임", Gender: "male"}}
+	seed(t, env,
+		store.PendingItem{Key: key(file, 1), Reason: "new"},
+		store.PendingItem{Key: key(file, 2), Reason: "new"},
+		store.PendingItem{Key: key(file, 3), Reason: "new"})
+	if err := env.Store.SaveRecords(map[string]store.Record{
+		key(file, 0): translated(key(file, 0), "첫째 줄", "第一行"),
+		key(file, 4): translated(key(file, 4), "다섯째 줄", "第五行"),
+	}); err != nil {
+		t.Fatal(err)
+	}
+
+	b := mustNext(t, env, NextOptions{})
+
+	if len(b.Units) != 3 || len(b.Context) != 2 {
+		t.Fatalf("batch has %d units and %d context lines, want 3 and 2", len(b.Units), len(b.Context))
+	}
+	if want := []rules.NPC{citizen, sailor}; !reflect.DeepEqual(b.NPCs, want) {
+		t.Errorf("NPCs = %+v, want %+v (the units' first, then the context's)", b.NPCs, want)
+	}
+	data, err := json.Marshal(b)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), `"npcs":[{"model":"여자시민","gender":"female","note":"第 1 章的市民"},{"model":"선원","note":"船員"}]`) {
+		t.Errorf("JSON of the batch lacks the npcs:\n%s", data)
+	}
+
+	// No NPC speaks: no field.
+	other := newEnv(t, map[string]string{"Other.json": dataList(t, 2, "", line)}, nil, nil)
+	other.Rules.NPCs = []rules.NPC{citizen}
+	seed(t, other, items("Other.json", 0, 2)...)
+	ob := mustNext(t, other, NextOptions{})
+	if ob.NPCs != nil {
+		t.Errorf("NPCs of a batch no NPC speaks in = %+v, want none", ob.NPCs)
+	}
+	if data, _ := json.Marshal(ob); strings.Contains(string(data), `"npcs"`) {
+		t.Errorf("JSON of a batch without NPCs has the field:\n%s", data)
+	}
+}
+
 func TestOtherBatchesHaveNoContext(t *testing.T) {
 	env := newEnv(t, map[string]string{"Other.json": dataList(t, 4, "", line)}, nil, nil)
 	seed(t, env, items("Other.json", 1, 2)...)

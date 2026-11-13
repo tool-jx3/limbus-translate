@@ -224,6 +224,20 @@
           "zh": { "type": "string" }
         }
       }
+    },
+    "npcs": {
+      "description": "The speakers of the units and of the context that need no character guide (guides/npcs.yaml), each once; absent when there is none. A unit's or context line's speaker is the model.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["model"],
+        "properties": {
+          "model": { "description": "The speaker string, as in speaker.", "type": "string" },
+          "gender": { "description": "Absent when the text does not say.", "type": "string", "enum": ["male", "female", "unspecified"] },
+          "note": { "description": "Who the speaker is.", "type": "string" }
+        }
+      }
     }
   }
 }
