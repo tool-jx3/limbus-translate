@@ -196,3 +196,15 @@
   zh: 卑鄙的殘兵
   reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
   rule: one-off
+- key: StoryData/S111B.json|/dataList/71/content
+  raw: raw-20261112
+  kr_sha: 29be3ce022a10c321a8d70c30433204cf4a25a67945d3167f7f19d9b069ac646
+  zh: 啊哈，你應該也上過前線吧。怎麼樣，真正的我看起來比海報上好多了吧？
+  reason: StoryData 審查 S0028：KR「포스터」（JP ポスター）是海報，前面第30行已譯為海報；TW 這裡寫成「傳單」，用詞不一致且不準確。
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/86/content
+  raw: raw-20261112
+  kr_sha: d382316a089d82a55fa94faeb46ef9bb900f9e39c9b06474d399344a7cb09815
+  zh: 哪怕是那些有錢有勢的傢伙也會在人背後捅刀。你最好是別有什麼天真的期待。
+  reason: StoryData 審查 S0029：KR「가진 놈들」指有錢有勢的人（JP 金のある連中）：連有錢人都會背後捅刀。TW 譯成「稍微好點的傢伙」，意思偏離。
+  rule: one-off
