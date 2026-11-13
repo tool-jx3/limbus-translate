@@ -124,3 +124,15 @@
   zh: 那他們是不是還承諾過，如果妳在原來的工作地點立了大功，就會提拔妳到隊長的位置上？
   reason: StoryData 審查 S0020：以實瑪利對尤莉（女性）說話，TW 兩處「你」應寫「妳」。
   rule: one-off
+- key: StoryData/S105B.json|/dataList/44/content
+  raw: raw-20261112
+  kr_sha: 6a9c6b902ef2cc47deb854d299bb1cc21d8976f0bc94a371e28ac38d0ea7b670
+  zh: 哈，那可真是毫無意義的一條命啊。
+  reason: StoryData 審查 S0021：KR「부질없는 목숨」是「毫無意義、白費的命」（EN pointless life）；TW「悲慘的命運」照 JP「惨めな命」譯，把「沒有意義」換成「悲慘」，也把「命」寫成「命運」。以實瑪利是在諷刺為業績賭命不值得。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/45/content
+  raw: raw-20261112
+  kr_sha: bbcacfe1649ea835e581e05a2e2f1d48d1a1bee51195c19171c4901f6e352018
+  zh: （喂，從剛才開始妳怎麼就一直在冷嘲熱諷啊？是什麼讓妳不爽了嗎？）
+  reason: StoryData 審查 S0022：格里高爾對以實瑪利（女性）說悄悄話，TW 兩處「你」應寫「妳」。
+  rule: one-off
