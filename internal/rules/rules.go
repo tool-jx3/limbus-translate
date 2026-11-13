@@ -32,10 +32,13 @@ type Rules struct {
 	// names (names only the LTM translation uses): common words that LTM
 	// happens to give a speaker, such as 媽媽.
 	ForeignIgnore []string
+	// NPCs are the speakers who need no character guide (NPCsFile).
+	NPCs []NPC
 }
 
 // Load reads the rules under root, the repo root. It fails when a file is
-// missing (the list of ignored foreign names may be) or cannot be parsed;
+// missing (the list of ignored foreign names and that of NPCs may be) or
+// cannot be parsed;
 // Lint checks the content as well.
 func Load(root string) (*Rules, error) {
 	r := &Rules{}
@@ -84,6 +87,16 @@ func Load(root string) (*Rules, error) {
 	if err == nil {
 		if r.ForeignIgnore, err = parseForeignIgnore(data); err != nil {
 			return nil, fmt.Errorf("%s: %w", ForeignIgnoreFile, err)
+		}
+	}
+
+	data, err = os.ReadFile(filepath.Join(root, filepath.FromSlash(NPCsFile)))
+	if err != nil && !errors.Is(err, fs.ErrNotExist) {
+		return nil, err
+	}
+	if err == nil {
+		if r.NPCs, _, err = parseNPCs(data); err != nil {
+			return nil, fmt.Errorf("%s: %w", NPCsFile, err)
 		}
 	}
 	return r, nil

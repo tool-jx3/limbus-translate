@@ -1144,6 +1144,72 @@ func TestForeignIgnore(t *testing.T) {
 	}
 }
 
+// The speakers that need no character guide are a YAML list in guides/npcs.yaml,
+// which may be missing: each entry a model, and maybe a gender and a note. A
+// model on the list is one the guides know, but no character.
+func TestNPCs(t *testing.T) {
+	root := copyRules(t)
+	if err := os.Remove(filepath.Join(root, filepath.FromSlash(rules.NPCsFile))); err != nil && !errors.Is(err, fs.ErrNotExist) {
+		t.Fatal(err)
+	}
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(r.NPCs) != 0 || r.KnowsModel("여자시민") {
+		t.Errorf("without %s: NPCs = %+v, KnowsModel(여자시민) = %v; want none", rules.NPCsFile, r.NPCs, r.KnowsModel("여자시민"))
+	}
+	if errs := rules.Lint(root); len(errs) != 0 {
+		t.Errorf("lint of rules without the file: %v", errs)
+	}
+
+	write := func(content string) {
+		t.Helper()
+		if err := os.WriteFile(filepath.Join(root, filepath.FromSlash(rules.NPCsFile)), []byte(content), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	write("# 路人\n- model: 여자시민\n  gender: female\n  note: 第 3 章街上的市民\n- model: 당황하는 선원\n")
+	r, err = rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := []rules.NPC{{Model: "여자시민", Gender: "female", Note: "第 3 章街上的市民"}, {Model: "당황하는 선원"}}
+	if !reflect.DeepEqual(r.NPCs, want) {
+		t.Errorf("NPCs = %+v, want %+v", r.NPCs, want)
+	}
+	if !r.KnowsModel("여자시민") || !r.KnowsModel("당황하는 선원") || r.KnowsModel("남자시민") {
+		t.Error("KnowsModel: want true for the two on the list and false for another")
+	}
+	if _, _, ok := r.CharacterByModel("여자시민"); ok {
+		t.Error("CharacterByModel(여자시민) found a character; an NPC is none")
+	}
+	if errs := rules.Lint(root); len(errs) != 0 {
+		t.Errorf("lint of a good file: %v", errs)
+	}
+
+	for _, tc := range []struct {
+		name, content, want string
+		loadFails           bool
+	}{
+		{"not a list", "여자시민: female\n", "npcs.yaml", true},
+		{"no model", "- gender: female\n", "model is missing", false},
+		{"model twice", "- model: 여자시민\n- model: 여자시민\n", "twice", false},
+		{"bad gender", "- model: 여자시민\n  gender: woman\n", "gender", false},
+		{"unknown field", "- model: 여자시민\n  name: 女市民\n", "unknown field", false},
+		{"a character's model", "- model: 이스마엘\n", "guides/characters/ishmael.md", false},
+		{"a model not this", "- model: 파우스트와삼조\n", "guides/characters/faust.md", false},
+	} {
+		write(tc.content)
+		if _, err := rules.Load(root); (err != nil) != tc.loadFails {
+			t.Errorf("%s: Load error = %v, want an error: %v", tc.name, err, tc.loadFails)
+		}
+		if msg := lintMessages(rules.Lint(root)); !strings.Contains(msg, tc.want) {
+			t.Errorf("%s: lint output does not mention %q:\n%s", tc.name, tc.want, msg)
+		}
+	}
+}
+
 // adjustmentYAML is one entry of an adjustment file.
 func adjustmentYAML(key, sha, rule string) string {
 	return "- key: " + key + "\n  raw: raw-20261029\n  kr_sha: " + sha + "\n  zh: 新譯文\n  reason: 測試\n  rule: " + rule + "\n"

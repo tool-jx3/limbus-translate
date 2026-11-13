@@ -438,7 +438,7 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
     | 種類 | id | 來源 | 規則已回答，不提 |
     |---|---|---|---|
     | 不一致譯法 | `inconsistent/<族群>/<欄位>/<sha8(KR)>` | 報表的不一致譯法，每一組 | |
-    | 新說話者 | `speaker/<model>` | `new_speakers` | `guides/characters/` 已認得這個 model：本人、另一時期的本人（`models_other_self`），或列為不是這個角色（`models_not_this`） |
+    | 新說話者 | `speaker/<model>` | `new_speakers` | `guides/characters/` 已認得這個 model：本人、另一時期的本人（`models_other_self`），或列為不是這個角色（`models_not_this`）；或列在不需要指引的路人名單 `guides/npcs.yaml` |
     | 新欄位 | `field/<add\|remove>/<群組或 ->/<欄位>` | `field_changes`；識別欄位沒有群組，寫 `-` | |
     | 新檔案族群 | `family/<檔案>` | `new_files_default_family` | `guides/routing.yaml` 已把該檔歸入預設族群以外的族群 |
     | 譯者備註 | `note/<key>/<sha8(備註文字)>` | 報表的 `notes` | |
@@ -502,7 +502,7 @@ LimbusCompany_Data/
 | **Actions 執行頁的 summary** | 完整報表，另附 `tw` 的比較頁連結（建置前的 `tw` commit 到 `tw`），可直接看這次譯文變了什麼 | 進到該次執行查看；失敗時 GitHub 會寄信 |
 | **`tw` 分支 `.meta/reports/<raw tag>.md`** | 完整報表的存檔，可回頭比較歷次；附 raw 的比較頁連結，不附 `tw` 的 | 需要時查閱 |
 
-沒有需要處理的項目時不開 Issue。「未對應的說話者」與「預設族群的新檔」和建議（§11.2）一樣，每次建置都用當下的規則再檢查：`plan.json` 保留這個 snapshot 帶來的全部新說話者與新檔，Issue、報表與 `lct review` 只列規則還沒回答的（角色檔已認得這個 model，或 `guides/routing.yaml` 已把該檔歸入預設族群以外的族群，就不列）；補上角色檔或族群後重建，該項就不再出現，全部回答了就不再開 Issue 或留言。`lct review` 從本機 `tw` 的狀態印出同樣的項目（`{title, sections: [{kind, title, hint, items}]}`，與 CI 開 Issue 用的是同一份清單），`review` skill（§9.3）據此在 Claude Code 裡帶你逐項處理（接受、改譯文、改規則）。
+沒有需要處理的項目時不開 Issue。「未對應的說話者」與「預設族群的新檔」和建議（§11.2）一樣，每次建置都用當下的規則再檢查：`plan.json` 保留這個 snapshot 帶來的全部新說話者與新檔，Issue、報表與 `lct review` 只列規則還沒回答的（角色檔或路人名單 `guides/npcs.yaml` 已認得這個 model，或 `guides/routing.yaml` 已把該檔歸入預設族群以外的族群，就不列）；補上角色檔或族群後重建，該項就不再出現，全部回答了就不再開 Issue 或留言。`lct review` 從本機 `tw` 的狀態印出同樣的項目（`{title, sections: [{kind, title, hint, items}]}`，與 CI 開 Issue 用的是同一份清單），`review` skill（§9.3）據此在 Claude Code 裡帶你逐項處理（接受、改譯文、改規則）。
 
 ### 14.2 需要你處理
 
