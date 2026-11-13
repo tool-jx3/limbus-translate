@@ -154,3 +154,45 @@
   zh: 喂，既然妳這麼聰明，就去前面先幫忙把路找出來吧。從剛才開始他們就吵得我睡不著覺。
   reason: StoryData 審查 S0025：希斯克利夫對浮士德（女性）說話，TW「你這麼聰明」應寫「妳」。另外 KR「저 앞에 가서 길부터 찾아주지 그래」是「去前面先把路找出來」，TW 加了 KR 沒有的「那幾個蠢蛋」（KR 只在下一句用「저것들」指那幾個人）。
   rule: one-off
+- key: StoryData/S111B.json|/dataList/5/content
+  raw: raw-20261112
+  kr_sha: e153836f732f36067ef9f508b540e7dc78ea0d119b56aef90c08e7ffdf4cc93f
+  zh: 再次提醒各位，如果你們死在這裡，即使戰鬥結束也無法復活。
+  reason: StoryData 審查 S0026：「다시 한번」是『再說一次』，TW 寫成「最後一次警告」，並加了KR沒有的『但丁』作為復活者。KR 只說死在這裡即使戰鬥結束也無法復活。（官方EN有 one last time／Dante，但KR、JP均為「再一次」。）
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/55/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/58/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/62/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/70/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/72/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/81/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
