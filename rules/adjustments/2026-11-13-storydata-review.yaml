@@ -220,3 +220,57 @@
   zh: 戰鬥豈能不經苦……呃，嘔！咳咳！
   reason: StoryData 審查 S0285：KR「고난 없이 어찌 전투를…」是「沒有苦難，要如何戰鬥……」（話被毒氣打斷），JP「苦難無しにどうやって戦えよう」、EN「No battle is fought without adversi―」也是講戰鬥；現行 TW 把後半補成「何以成就英雄」，把「戰鬥」換成了「英雄」。；譯法由使用者決定（話說到一半被毒氣嗆斷）
   rule: one-off
+- key: StoryData/1D203B.json|/dataList/35/content
+  raw: raw-20261112
+  kr_sha: 8d372d42f7a5debadba60c9dc8dc5a60c86950379d32128dd4349b68bd11fb73
+  zh: 阿雅或許是覺得妳很討喜，因此處處關照著妳……但如今她已經死了，所以誰還會在乎呢。
+  reason: StoryData 審查 S0286：KR「널 귀엽게 봐서 챙겨주려고 했을지는 몰라도」是「阿雅也許是喜歡你、覺得你討喜才想照顧你」，JP「かわいがって」、EN「taken a liking to you」相同；現行 TW 寫成「覺得你很可憐」，把喜愛變成同情。；「귀엽게 보다」譯「討喜」，對尤莉用「妳」，譯法由使用者決定
+  rule: one-off
+- key: StoryData/1D203B.json|/dataList/31/content
+  raw: raw-20261112
+  kr_sha: 005e03704dcf51c748df47a1fb7d7ae12b8f62309777971aa395319182d2b9ca
+  zh: 那我也要問一問妳，尤莉。
+  reason: StoryData 審查 S0286（同段一併修改）：霍普金斯對尤莉（女性）說話，「你」應寫「妳」（guides/base.md）
+  rule: one-off
+- key: StoryData/1D203B.json|/dataList/34/content
+  raw: raw-20261112
+  kr_sha: 1bf4a8682513b7885746b50df3a4dd79789cdad75c9f3804161ce7bebc47c95b
+  zh: 直截了當地說，妳竟然能踏入我們的辦公室，真是令我驚訝。
+  reason: StoryData 審查 S0286（同段一併修改）：霍普金斯對尤莉（女性）說話，「你」應寫「妳」（guides/base.md）
+  rule: one-off
+- key: StoryData/1D203B.json|/dataList/52/content
+  raw: raw-20261112
+  kr_sha: da670a0dbc8dea1a020270ec10985d325d2862819cea53862a01a2bf270e2249
+  zh: 阿雅小姐她，咳。不是想要照顧妳嗎……所以這東西就是妳的了。
+  reason: 'StoryData 審查 S0287：KR「아야 씨가, 쿨럭. 너는 챙겨주려고 했었다면서… 그럼 네 거지.」是「阿雅小姐，咳，（聽說）她想照顧妳不是嗎……那這就是妳的」，承接霍普金斯 #35 的話；JP「お前のこと面倒見てやろうとしてたんだろ」、EN「looked after you, huh」相同。現行 TW「說了叫我多照顧你」變成阿雅託付格里高；格里高爾對尤莉說話，「你」寫「妳」'
+  rule: one-off
+- key: StoryData/1D203B.json|/dataList/65/content
+  raw: raw-20261112
+  kr_sha: c4c7301e467288463abdbec30ab78290b04662750e3e0bed35a3f75f579df5e2
+  zh: 在公司正為了不讓異想體逃進都市而把整棟大樓封鎖起來的情況下？
+  reason: StoryData 審查 S0288：KR「…회사가 통째로 폐쇄되고 있는데?」是反問「公司都在為了不讓異想體跑進都市而整個被封鎖了（我還能怎樣）？」，JP「閉鎖されてるっていうのに？」相同；現行 TW「就算是……的？」句式不通，「就算是」還變成讓步語氣，沒表達出反問。
+  rule: one-off
+- key: StoryData/1D204B.json|/dataList/16/content
+  raw: raw-20261112
+  kr_sha: 18729d2a4dc11d42fb3d2deab05a66a5d6fd6254ed00207d23866256e6affea1
+  zh: 它是逃了出來，然後到處亂殺人的嗎。
+  reason: StoryData 審查 S0289：KR「탈출해서 닥치는 대로 사람을 죽이고 다녔던 건가요.」是對已發生之事的推測「所以它是逃出來，然後見人就殺了嗎」，JP「殺し回ってたんですか」、EN「I guess it escaped and started killing」都是過去；現行 TW「我猜它會出逃，然後開始到處殺人」變成對未來的預測。
+  rule: one-off
+- key: StoryData/1D306A.json|/dataList/61/content
+  raw: raw-20261112
+  kr_sha: c396990c08d0bdec577402d6363c1d04c94d2df9cd917555f37df1af24b12782
+  zh: 我把它給你可不是為了看你落入這種處境的。
+  reason: StoryData 審查 S0290：KR「고작 이런 꼬락서니가 되라고 준 건 아니었는데」是「我給你（那份禮物）可不是為了讓你落到這副德性」，承接上一句「내가 준 선물」；JP「渡したわけじゃなかった」也是「給」。現行 TW「我培養你」照 EN 的 invest 譯，把「給予禮物（手臂）」換成了「培養」。
+  rule: one-off
+- key: StoryData/1D306A.json|/dataList/69/content
+  raw: raw-20261112
+  kr_sha: 3d242f5730fcd1cd02992a965f41d1232de7383151340704c9ef48fb7000634f
+  zh: 迎來黎明。
+  reason: 'StoryData 審查 S0291：KR #68「기나긴…」＋#69「악몽을 꾸고 일어난 새벽처럼.」是「漫長的……就像做了噩夢後醒來的黎明」；現行 TW 已把「從長夜的噩夢之中驚醒」放進 #68，#69 卻寫成「黎明正向你致意」，多出原文沒有的「向你致意」與第二人稱（旁白是但丁自述）。兩行合讀的意象（噩夢醒來、黎明）大致還在。'
+  rule: one-off
+- key: StoryData/1D306I2.json|/dataList/7/content
+  raw: raw-20261112
+  kr_sha: 1c15656e0177064caa4132ce7c12dbf994a9a01f625e6e1f4ad85cad9628cf97
+  zh: ……等回到巴士上後，我能教卡戎……嗎？
+  reason: StoryData 審查 S0292：這行是 1D306B#5「…버스로 돌아가면, 카론한테 지도 보는 법을 알려줘도 될까요?」（回到巴士後，我可以教卡戎看地圖嗎？）的殘缺版：KR 留下「教（알려줘도）」、省掉「看地圖的方法」，JP「カロンに…教えても良いですか」相同。現行 TW「我能……卡戎……看地圖嗎？」反過來留下「看地圖」、丟了「教」，與 KR
+  rule: one-off
