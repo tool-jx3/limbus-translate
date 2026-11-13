@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261112",
   "prev_raw_tag": "raw-20261105",
-  "rules_commit": "9a8e380f711686d3a4417a3a0e9c25d2a33c8632",
+  "rules_commit": "44b39fda3057c6972a4b761daf365df4ff6ae684",
   "changes": {
     "unchanged": 272865,
     "moved": 2138,
@@ -82,113 +82,12 @@
   "copy": 0,
   "reused": 0,
   "adjustments": {
-    "applied": 104,
+    "applied": 150,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [
-    {
-      "id": "2026-11-12-basic-skill",
-      "units": 15
-    },
-    {
-      "id": "2026-11-12-bloom",
-      "units": 2
-    },
-    {
-      "id": "2026-11-12-damage-up",
-      "units": 2
-    },
-    {
-      "id": "2026-11-12-evade",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-skill-clash",
-      "units": 7
-    },
-    {
-      "id": "2026-11-12-skill-dawn-cleaving-sword",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-skill-dawn-shout",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-skill-dawn",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-skill-ejection-noon",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-skill-ejection",
-      "units": 3
-    },
-    {
-      "id": "2026-11-12-skill-fierce-charge",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-skill-flash-of-dawn",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-skill-heat-haze",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-skill-link",
-      "units": 3
-    },
-    {
-      "id": "2026-11-12-skill-twilight-sword",
-      "units": 2
-    },
-    {
-      "id": "2026-11-12-skill-wedge-formation",
-      "units": 2
-    },
-    {
-      "id": "2026-11-12-term-aggro",
-      "units": 2
-    },
-    {
-      "id": "2026-11-12-term-base-attack-skill",
-      "units": 17
-    },
-    {
-      "id": "2026-11-12-term-blazing-strike",
-      "units": 7
-    },
-    {
-      "id": "2026-11-12-term-eight-oclock-circus",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-term-firefist-office",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-term-smoke-war",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-term-stigma-workshop",
-      "units": 1
-    },
-    {
-      "id": "2026-11-12-term-sword-sharpened-with-tears",
-      "units": 14
-    },
-    {
-      "id": "2026-11-12-term-unbreakable-coin",
-      "units": 4
-    }
-  ],
+  "rewrite_applied": [],
   "frozen_changed": [],
   "new_speakers": [
     "다친필립",
@@ -207,7 +106,7 @@
   "pending": 0,
   "name_table": {
     "raw_tag": "raw-20261112",
-    "built": true,
+    "built": false,
     "names": 8721,
     "same_texts": 1273
   }

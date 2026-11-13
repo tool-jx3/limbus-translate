@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261112",
   "raw_token": "l20261112_5pAcdxbyP1RC08yIrdPw",
-  "rules_commit": "9a8e380f711686d3a4417a3a0e9c25d2a33c8632",
-  "built_at": "2026-11-12T14:50:27Z",
+  "rules_commit": "44b39fda3057c6972a4b761daf365df4ff6ae684",
+  "built_at": "2026-11-13T13:40:57Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,15 +10,15 @@
   },
   "notes_seen": 1058,
   "zips": {
-    "zh-TW_complete_raw-20261112.zip": "75015c85b8be27a4db06861d261577ccec1991368340930236534f6341922ce6",
-    "zh-TW_text_raw-20261112.zip": "f43c4db8056691a84962e1a934912426f97863a8212d7992a29b473229cd0979"
+    "zh-TW_complete_raw-20261112.zip": "d20a6b66abdfd8f0dcb195499b7f5d386949a4c653ee988530a7c9df86654e75",
+    "zh-TW_text_raw-20261112.zip": "8a04622ccc9dfb2df08b04b39051e3ba1dcb7e08f3327e3bc012e8484a5523a2"
   },
   "report": {
     "origins": {
       "claude": 19833,
       "copy": 91934,
-      "human": 104,
-      "paratranz": 163978
+      "human": 150,
+      "paratranz": 163932
     },
     "pending": 0,
     "needs_review": 0,
@@ -486,8 +486,8 @@
     "shown": {
       "claude": 19833,
       "copy": 91934,
-      "human": 104,
-      "paratranz": 163978
+      "human": 150,
+      "paratranz": 163932
     },
     "misaligned": [
       {
@@ -3234,24 +3234,6 @@
       "counts": [
         2,
         4
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-main",
-      "field": "teller",
-      "kr": "야비한 패잔병",
-      "zh": [
-        "無禮的殘兵 ",
-        "卑鄙的殘兵 "
-      ],
-      "keys": [
-        "StoryData/S111B.json|/dataList/55/teller",
-        "StoryData/S111B.json|/dataList/81/teller"
-      ],
-      "counts": [
-        5,
-        1
       ],
       "units": 6
     },

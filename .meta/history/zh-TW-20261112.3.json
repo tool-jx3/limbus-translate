@@ -1,0 +1,909 @@
+{
+  "tag": "zh-TW-20261112.3",
+  "prev_tag": "zh-TW-20261112.2",
+  "released_at": "2026-11-13T13:41:46Z",
+  "prev_released_at": "2026-11-12T14:51:54Z",
+  "raw_tag": "raw-20261112",
+  "prev_raw_tag": "raw-20261112",
+  "rules_commit": "44b39fda3057c6972a4b761daf365df4ff6ae684",
+  "prev_rules_commit": "9a8e380f711686d3a4417a3a0e9c25d2a33c8632",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 46
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "StoryData/1D105A.json",
+      "field": "content",
+      "ptr": "/dataList/19/content",
+      "kind": "zh-changed",
+      "new_kr": "…그리고 부화할 거예요. 이 공간에서 일정 시간이 지난다면요.",
+      "old_zh": "……然後只要經過一定的時間，卵就會孵化。",
+      "new_zh": "……然後只要在這個空間裡經過一定的時間，卵就會孵化。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0284：KR「이 공간에서 일정 시간이 지난다면요」是「在這個空間裡經過一定時間的話」，JP「この空間で一定時間過ぎると」、EN「once enough time has passed here」也都有「在這裡」；現行 TW 只寫「經過一定的時間」，漏了「在這個空間裡」這個條件。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/1D203B.json",
+      "field": "content",
+      "ptr": "/dataList/17/content",
+      "kind": "zh-changed",
+      "new_kr": "고난 없이 어찌 전투를… 으헥, 꾸엑! 쿨럭!",
+      "old_zh": "不經歷苦難，何以成就英雄……呃，嘔！咳咳！",
+      "new_zh": "戰鬥豈能不經苦……呃，嘔！咳咳！",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0285：KR「고난 없이 어찌 전투를…」是「沒有苦難，要如何戰鬥……」（話被毒氣打斷），JP「苦難無しにどうやって戦えよう」、EN「No battle is fought without adversi―」也是講戰鬥；現行 TW 把後半補成「何以成就英雄」，把「戰鬥」換成了「英雄」。；譯法由使用者決定（話說到一半被毒氣嗆斷）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/1D203B.json",
+      "field": "content",
+      "ptr": "/dataList/31/content",
+      "kind": "zh-changed",
+      "new_kr": "나야말로 물어보자, 유리.",
+      "old_zh": "那我也要問一問你，尤莉。",
+      "new_zh": "那我也要問一問妳，尤莉。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0286（同段一併修改）：霍普金斯對尤莉（女性）說話，「你」應寫「妳」（guides/base.md）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/1D203B.json",
+      "field": "content",
+      "ptr": "/dataList/34/content",
+      "kind": "zh-changed",
+      "new_kr": "냉정하게 말하면, 우리 사무실에 네가 발을 들인 것도 놀라운 거야.",
+      "old_zh": "直截了當地說，你竟然能踏入我們的辦公室，真是令我驚訝。",
+      "new_zh": "直截了當地說，妳竟然能踏入我們的辦公室，真是令我驚訝。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0286（同段一併修改）：霍普金斯對尤莉（女性）說話，「你」應寫「妳」（guides/base.md）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/1D203B.json",
+      "field": "content",
+      "ptr": "/dataList/35/content",
+      "kind": "zh-changed",
+      "new_kr": "아야는 널 귀엽게 봐서 챙겨주려고 했을지는 몰라도… 지금은 죽었는데 무슨 상관이야.",
+      "old_zh": "阿雅或許是覺得你很可憐，因此處處關照著你……但如今她已經死了，所以誰還會在乎呢。",
+      "new_zh": "阿雅或許是覺得妳很討喜，因此處處關照著妳……但如今她已經死了，所以誰還會在乎呢。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0286：KR「널 귀엽게 봐서 챙겨주려고 했을지는 몰라도」是「阿雅也許是喜歡你、覺得你討喜才想照顧你」，JP「かわいがって」、EN「taken a liking to you」相同；現行 TW 寫成「覺得你很可憐」，把喜愛變成同情。；「귀엽게 보다」譯「討喜」，對尤莉用「妳」，譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/1D203B.json",
+      "field": "content",
+      "ptr": "/dataList/52/content",
+      "kind": "zh-changed",
+      "new_kr": "아야 씨가, 쿨럭. 너는 챙겨주려고 했었다면서… 그럼 네 거지.",
+      "old_zh": "阿雅小姐她，咳。說了叫我多照顧你……所以這東西就交給你啦。",
+      "new_zh": "阿雅小姐她，咳。不是想要照顧妳嗎……所以這東西就是妳的了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0287：KR「아야 씨가, 쿨럭. 너는 챙겨주려고 했었다면서… 그럼 네 거지.」是「阿雅小姐，咳，（聽說）她想照顧妳不是嗎……那這就是妳的」，承接霍普金斯 #35 的話；JP「お前のこと面倒見てやろうとしてたんだろ」、EN「looked after you, huh」相同。現行 TW「說了叫我多照顧你」變成阿雅託付格里高；格里高爾對尤莉說話，「你」寫「妳」"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/1D203B.json",
+      "field": "content",
+      "ptr": "/dataList/65/content",
+      "kind": "zh-changed",
+      "new_kr": "환상체들이 도시로 빠져나오면 안 된다는 이유로 회사가 통째로 폐쇄되고 있는데?",
+      "old_zh": "就算是公司為了不讓異想體逃進都市而把整棟大樓都封鎖起來的？",
+      "new_zh": "在公司正為了不讓異想體逃進都市而把整棟大樓封鎖起來的情況下？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0288：KR「…회사가 통째로 폐쇄되고 있는데?」是反問「公司都在為了不讓異想體跑進都市而整個被封鎖了（我還能怎樣）？」，JP「閉鎖されてるっていうのに？」相同；現行 TW「就算是……的？」句式不通，「就算是」還變成讓步語氣，沒表達出反問。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/1D204B.json",
+      "field": "content",
+      "ptr": "/dataList/16/content",
+      "kind": "zh-changed",
+      "new_kr": "탈출해서 닥치는 대로 사람을 죽이고 다녔던 건가요.",
+      "old_zh": "我猜它會出逃，然後開始到處殺人。",
+      "new_zh": "它是逃了出來，然後到處亂殺人的嗎。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0289：KR「탈출해서 닥치는 대로 사람을 죽이고 다녔던 건가요.」是對已發生之事的推測「所以它是逃出來，然後見人就殺了嗎」，JP「殺し回ってたんですか」、EN「I guess it escaped and started killing」都是過去；現行 TW「我猜它會出逃，然後開始到處殺人」變成對未來的預測。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/1D306A.json",
+      "field": "content",
+      "ptr": "/dataList/61/content",
+      "kind": "zh-changed",
+      "new_kr": "고작 이런 꼬락서니가 되라고 준 건 아니었는데.",
+      "old_zh": "我培養你可不是為了看你落入這種處境的。",
+      "new_zh": "我把它給你可不是為了看你落入這種處境的。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0290：KR「고작 이런 꼬락서니가 되라고 준 건 아니었는데」是「我給你（那份禮物）可不是為了讓你落到這副德性」，承接上一句「내가 준 선물」；JP「渡したわけじゃなかった」也是「給」。現行 TW「我培養你」照 EN 的 invest 譯，把「給予禮物（手臂）」換成了「培養」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/1D306A.json",
+      "field": "content",
+      "ptr": "/dataList/69/content",
+      "kind": "zh-changed",
+      "new_kr": "악몽을 꾸고 일어난 새벽처럼.",
+      "old_zh": "黎明正向你致意。",
+      "new_zh": "迎來黎明。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0291：KR #68「기나긴…」＋#69「악몽을 꾸고 일어난 새벽처럼.」是「漫長的……就像做了噩夢後醒來的黎明」；現行 TW 已把「從長夜的噩夢之中驚醒」放進 #68，#69 卻寫成「黎明正向你致意」，多出原文沒有的「向你致意」與第二人稱（旁白是但丁自述）。兩行合讀的意象（噩夢醒來、黎明）大致還在。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/1D306I2.json",
+      "field": "content",
+      "ptr": "/dataList/7/content",
+      "kind": "zh-changed",
+      "new_kr": "…버스로 돌아가면, 카론한테 …알려줘도 될까요?",
+      "old_zh": "……等回到巴士上後，我能……卡戎……看地圖嗎？",
+      "new_zh": "……等回到巴士上後，我能教卡戎……嗎？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0292：這行是 1D306B#5「…버스로 돌아가면, 카론한테 지도 보는 법을 알려줘도 될까요?」（回到巴士後，我可以教卡戎看地圖嗎？）的殘缺版：KR 留下「教（알려줘도）」、省掉「看地圖的方法」，JP「カロンに…教えても良いですか」相同。現行 TW「我能……卡戎……看地圖嗎？」反過來留下「看地圖」、丟了「教」，與 KR"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S002B.json",
+      "field": "content",
+      "ptr": "/dataList/63/content",
+      "kind": "zh-changed",
+      "new_kr": "분명, 원래는 둥지의 굉장한 사람이었겠지? 그때 버릇을 조금만 내비쳐도 우리한테 돈이 주르륵 들어올 생각을 하니… 후후….",
+      "old_zh": "我敢肯定，你原先是個巢裡的大人物吧？只要跟你偷學個一兩招，我們估計也能賺個金玉滿堂吧……呼呼……",
+      "new_zh": "我敢說，你以前一定是巢裡的大人物吧？一想到你只要稍微拿出點當年的派頭，錢就會嘩啦啦地流進我們口袋……呼呼……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0001：KR 是「只要你稍微露出當年的習慣（그때 버릇），錢就會嘩啦啦流進我們口袋」，露出舊習的是但丁；現行「只要跟你偷學個一兩招」主詞弄反。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S002B.json",
+      "field": "content",
+      "ptr": "/dataList/79/content",
+      "kind": "zh-changed",
+      "new_kr": "그는 그러한 것에 관심이 없는 듯 텅 빈 눈으로 차창만 쳐다보고 있을 뿐이었다.",
+      "old_zh": "但他只是百無聊賴地盯著天花板，目光空洞，彷彿對一切都提不起興趣。",
+      "new_zh": "但他只是百無聊賴地盯著車窗，目光空洞，彷彿對一切都提不起興趣。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0002：KR 차창 是車窗（JP 車窓、EN out the window），現行譯成「天花板」"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S101B.json",
+      "field": "content",
+      "ptr": "/dataList/3/content",
+      "kind": "zh-changed",
+      "new_kr": "나지막한 대화 소리가 들리고 나서야 눈을 떴다.",
+      "old_zh": "嚴肅的對話聲最終使得我睜開了雙眼。",
+      "new_zh": "直到耳邊傳來低聲交談，我才睜開了眼睛。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0003：KR 나지막한 대화（低聲交談，JP 低い声で交わされる会話）譯成「嚴肅的對話聲」；-고 나서야 寫「直到……才」。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S101B.json",
+      "field": "content",
+      "ptr": "/dataList/5/content",
+      "kind": "zh-changed",
+      "new_kr": "방향을 알 수 없는 버스에 앉아서 할 수 있는 것이 그것밖에 없었던 것일지도 모르지만…",
+      "old_zh": "或許在一輛不知駛向何方的巴士上，除此之外我真的是無事可做……",
+      "new_zh": "或許在一輛不知駛向何方的巴士上，除此之外我也無事可做……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0004（與 #6 一起改）：KR 沒有「真的」；#5、#6 是「也許……但也可能……」的對照推測。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S101B.json",
+      "field": "content",
+      "ptr": "/dataList/6/content",
+      "kind": "zh-changed",
+      "new_kr": "머리도 기억도 잃은 내게 떠오르는 방법이 이것뿐이었던 걸지도 모른다.",
+      "old_zh": "對於失去腦袋和記憶的我來說，這是我能想到的唯一方法。",
+      "new_zh": "又或者，對失去了腦袋和記憶的我來說，這是唯一想得到的辦法。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0004：KR 句尾 ~걸지도 모른다 是推測，接續 #5 的 ~일지도 모르지만；現行寫成肯定句。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S101B.json",
+      "field": "content",
+      "ptr": "/dataList/13/content",
+      "kind": "zh-changed",
+      "new_kr": "스스로는 꽤 흉악한 장면이라는 생각이 들었지만, 이들의 반응으로 보아 이 도시는 이런 장면이 흔한 것일지도 모르겠다.",
+      "old_zh": "雖然我感覺這是相當可怕的場面，但依他們的反應來看，也許這種暴行在都市中只能算是稀疏平常。",
+      "new_zh": "雖然我感覺這是相當可怕的場面，但依他們的反應來看，也許這種暴行在都市中只能算是稀鬆平常。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0005：錯字「稀疏平常」→「稀鬆平常」"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S101B.json",
+      "field": "content",
+      "ptr": "/dataList/16/content",
+      "kind": "zh-changed",
+      "new_kr": "<벌… 아니, 안경 낀 양반. 우리 지금 어디로 가는 건지 알아? >",
+      "old_zh": "<蟲……不對，帶眼鏡的兄弟。你知道我們現在是要去哪嗎？>",
+      "new_zh": "<蟲……不對，戴眼鏡的兄弟。你知道我們現在是要去哪嗎？>",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0006：KR 안경 낀（戴著眼鏡），錯字「帶眼鏡」→「戴眼鏡」"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S101B.json",
+      "field": "content",
+      "ptr": "/dataList/48/content",
+      "kind": "zh-changed",
+      "new_kr": "이유 없는 폭력은 용서받을 수 없다네! 그대는 내가 응징하지!",
+      "old_zh": "毫無緣由的暴力不可原諒！吾將貫徹正義！",
+      "new_zh": "毫無緣由的暴力不可原諒！汝就由吾來懲治！",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0007：KR 後半「그대는 내가 응징하지!」是「汝就由吾來懲治！」，明確指向動手的良秀（JP「そなたは私が成敗してみせよう」）；TW 寫成「吾將貫徹正義！」（照 EN），漏了懲治的對象「그대（汝）」與「응징（懲治）」的動作。（譯法：使用者選 A）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S101B.json",
+      "field": "content",
+      "ptr": "/dataList/107/content",
+      "kind": "zh-changed",
+      "new_kr": "자, 잠깐만요! 단테 씨가 괴로워하시는 것 같은데, 이쯤에서 접…",
+      "old_zh": "請、請等一等！但丁經理看上去很痛苦的樣子，我們真的應該……",
+      "new_zh": "請、請等一等！但丁經理看上去很痛苦的樣子，我們就到此為……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0008：KR「이쯤에서 접…」是「就到此為止吧……」（접다＝收手，話被打斷；JP「このあたりでや…」）；TW「我們真的應該……」沒有譯出要大家住手、到此為止的意思。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S101B.json",
+      "field": "content",
+      "ptr": "/dataList/108/content",
+      "kind": "zh-changed",
+      "new_kr": "말을 끝내지도 못한 상태에서, 히스클리프의 철제 몽둥이가 싱클레어의 머리를 강하게 내리쳤다.  ",
+      "old_zh": "還沒等他說完，希斯克利夫的金屬球棒就在辛克萊的頭上開了個窟窿。",
+      "new_zh": "還沒等他說完，希斯克利夫的金屬球棒就狠狠砸在了辛克萊的頭上。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0009：KR 只說「希斯克利夫的鐵棍狠狠砸向辛克萊的頭」（강하게 내리쳤다）；TW「在辛克萊的頭上開了個窟窿」多加了打出窟窿的結果，KR 沒有。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S101B.json",
+      "field": "content",
+      "ptr": "/dataList/131/content",
+      "kind": "zh-changed",
+      "new_kr": "죽여 달라고 애원하는 게 나을지도 모르는 고통이다. 나는 고개를 재빠르게 가로저었다.",
+      "old_zh": "乞求他賜予我死亡都比再承受那樣的苦痛要好。我沮喪地搖了搖頭。",
+      "new_zh": "乞求他賜予我死亡都比再承受那樣的苦痛要好。我飛快地搖了搖頭。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0010：KR「고개를 재빠르게 가로저었다」是「飛快地搖頭」（JP「素早く」、EN「quickly」）；TW 寫成「沮喪地搖了搖頭」，把動作的快速誤成情緒沮喪。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S101B.json",
+      "field": "content",
+      "ptr": "/dataList/135/content",
+      "kind": "zh-changed",
+      "new_kr": "그 정도의 고통에는 눈 하나 깜빡 안 하게 말이죠. 그럼, 견딜 수 있지 않겠습니까?",
+      "old_zh": "若是連那等痛楚你都能面不改色的忍耐住，那麼這點程度你肯定能撐下去吧？",
+      "new_zh": "讓你面對那種程度的痛楚也能眼睛都不眨一下。這樣一來，你就撐得住了吧？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0011：KR 接上一句「我很樂意幫你」：「（幫到）讓你對那種程度的痛楚連眼都不眨一下。這樣一來，不就撐得住了嗎？」——維吉里烏斯是在威脅要「幫」但丁習慣痛苦（JP「その程度の苦痛には目がピクリともしないようにですね。それなら、耐えられませんかね？」、EN「won't even make you bat an eye once …"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S103B.json",
+      "field": "content",
+      "ptr": "/dataList/1/content",
+      "kind": "zh-changed",
+      "new_kr": "그 앞, 버스의 아가리 앞에는 여러 가지 사람의 형태가 널브러져 있다. 개중에는 의식이 있는 자도, 이미 토막 난 이도 있었다.",
+      "old_zh": "在那附近的地面上，也就是巴士的嘴前，散落著各種各樣的人類。其中既有奄奄一息的，也有四分五裂的。",
+      "new_zh": "在那附近的地面上，也就是巴士的嘴前，散落著各種各樣的人類。其中既有意識尚存的，也有早已四分五裂的。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0012：KR 의식이 있는 자（還有意識的人，JP 意識がある人、EN still conscious）譯成「奄奄一息」，重點從清醒變成垂死；이미 補「早已」。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S103B.json",
+      "field": "content",
+      "ptr": "/dataList/2/content",
+      "kind": "zh-changed",
+      "new_kr": "이윽고 그 주둥이는 전부 열리고, 버스는 말 그대로 사람들을 씹어 먹기 시작한다. 게걸스럽게, 허겁지겁.",
+      "old_zh": "不久後，那張大口便完全張開了，巴士開始字面意思上地咀嚼起人類。興高采烈地、狼吞虎嚥地。",
+      "new_zh": "不久後，那張大口便完全張開了，巴士真的開始咀嚼起人來。狼吞虎嚥地、迫不及待地。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0013：KR 게걸스럽게, 허겁지겁（貪婪、急切）譯成「興高采烈地」（照 JP いそいそと）；말 그대로 寫「真的」。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S104B.json",
+      "field": "content",
+      "ptr": "/dataList/7/content",
+      "kind": "zh-changed",
+      "new_kr": "이전 L사 말이군요. 특이점으로 에너지를 생산하는 회사라고 들었어요. L사가 몰락한 지금은 잔해밖에 남지 않았지만.",
+      "old_zh": "你說的是以前的L公司吧。聽說那是一家透過奇點技術生產能源的公司。不過L公司沒落之後現在也只剩下廢墟與殘骸了。",
+      "new_zh": "妳說的是以前的L公司吧。聽說那是一家透過奇點技術生產能源的公司。不過L公司沒落之後現在也只剩下廢墟與殘骸了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0014：以實瑪利這句是回應浮士德（女性），TW 加的第二人稱應依 guides/base.md 寫「妳」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S105B.json",
+      "field": "content",
+      "ptr": "/dataList/14/content",
+      "kind": "zh-changed",
+      "new_kr": "추락한 날개라니, 분명 끝이 좋지 않았을 텐데요.",
+      "old_zh": "作為被折斷之翼的員工，你的工作一定結束得很不愉快吧。",
+      "new_zh": "作為被折斷之翼的員工，妳的工作一定結束得很不愉快吧。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0015：以實瑪利對尤莉（女性，同檔稱「尤莉小姐」）說話，TW 的「你的工作」應寫「妳」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S105B.json",
+      "field": "content",
+      "ptr": "/dataList/34/content",
+      "kind": "zh-changed",
+      "new_kr": "익숙지 않은 표정에 눈꼬리가 움찔거리는 것 같았지만, 모르는 척하기로 했다.",
+      "old_zh": "但由於不太習慣，他的眉毛幾乎僵直到抽搐，不過無傷大雅。",
+      "new_zh": "但由於不太習慣這種表情，他的眼角似乎在抽搐，不過我決定裝作沒看見。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0016：KR「눈꼬리가 움찔거리는 것 같았지만, 모르는 척하기로 했다」是「他的眼角似乎在抽搐，但我決定裝作沒看見」（EN、JP 同）；TW 把「眼角」寫成「眉毛」、加了「僵直」，並把敘述者「決定裝作不知道」改成「不過無傷大雅」，漏了這個動作。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S105B.json",
+      "field": "content",
+      "ptr": "/dataList/37/content",
+      "kind": "zh-changed",
+      "new_kr": "어디서 그런 소식을 들었는지 모르겠지만, 해결사는 그런 영웅들이 아니에요. 초라한 봉급자의 부질없는 냄새라면 몰라도.",
+      "old_zh": "我不知道你是從哪裡聽到這樣的消息，但收尾人並不是那樣的英雄。他們身上甚至只能聞到月薪族的窮酸味。",
+      "new_zh": "我不知道妳是從哪裡聽到這樣的消息，但收尾人並不是那樣的英雄。他們身上甚至只能聞到月薪族的窮酸味。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0017：以實瑪利這句是回應唐吉訶德（女性），TW「你是從哪裡聽到」應寫「妳」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S105B.json",
+      "field": "content",
+      "ptr": "/dataList/38/content",
+      "kind": "zh-changed",
+      "new_kr": "…금세 다른 밥벌이를 찾는 게 쉽진 않았을 텐데, 용케 해냈군.",
+      "old_zh": "……這麼快就找到另一份工作也挺不容易的，很高興你撐過來了。",
+      "new_zh": "……這麼快就找到另一份工作也挺不容易的，很高興妳撐過來了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0018：格里高爾對尤莉（女性）說話，TW「很高興你撐過來了」應寫「妳」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S105B.json",
+      "field": "content",
+      "ptr": "/dataList/40/content",
+      "kind": "zh-changed",
+      "new_kr": "아하. 굳이 다시 이곳으로 기어들어 온 이유도 그거였겠네요.",
+      "old_zh": "原來如此，這就是你硬是爬回這裡的理由啊。",
+      "new_zh": "原來如此，這就是妳硬是爬回這裡的理由啊。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0019：以實瑪利對尤莉（女性）說話，TW「你硬是爬回這裡」應寫「妳」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S105B.json",
+      "field": "content",
+      "ptr": "/dataList/41/content",
+      "kind": "zh-changed",
+      "new_kr": "예전 직장으로 돌아가서 크게 한탕이라도 치면, 팀장 자리라도 주겠대요?",
+      "old_zh": "那他們是不是還承諾過，如果你在原來的工作地點立了大功，就會提拔你到隊長的位置上？",
+      "new_zh": "那他們是不是還承諾過，如果妳在原來的工作地點立了大功，就會提拔妳到隊長的位置上？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0020：以實瑪利對尤莉（女性）說話，TW 兩處「你」應寫「妳」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S105B.json",
+      "field": "content",
+      "ptr": "/dataList/44/content",
+      "kind": "zh-changed",
+      "new_kr": "하, 그것참 부질없는 목숨이네요.",
+      "old_zh": "哈，那可真是悲慘的命運啊。",
+      "new_zh": "哈，那可真是毫無意義的一條命啊。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0021：KR「부질없는 목숨」是「毫無意義、白費的命」（EN pointless life）；TW「悲慘的命運」照 JP「惨めな命」譯，把「沒有意義」換成「悲慘」，也把「命」寫成「命運」。以實瑪利是在諷刺為業績賭命不值得。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S105B.json",
+      "field": "content",
+      "ptr": "/dataList/45/content",
+      "kind": "zh-changed",
+      "new_kr": "(어이, 아까부터 왜 이렇게 비꼬는 거야? 뭐가 그렇게 마음에 안 들어?)",
+      "old_zh": "（喂，從剛才開始你怎麼就一直在冷嘲熱諷啊？是什麼讓你不爽了嗎？）",
+      "new_zh": "（喂，從剛才開始妳怎麼就一直在冷嘲熱諷啊？是什麼讓妳不爽了嗎？）",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0022：格里高爾對以實瑪利（女性）說悄悄話，TW 兩處「你」應寫「妳」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S105B.json",
+      "field": "content",
+      "ptr": "/dataList/52/content",
+      "kind": "zh-changed",
+      "new_kr": "메피 배, 빵빵. 카론도 빵빵.",
+      "old_zh": "梅菲的肚子，砰砰。卡戎也砰砰。",
+      "new_zh": "梅菲的肚子，膨膨。卡戎也砰砰。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0023：KR「빵빵」是雙關：「배가 빵빵」是肚子吃得鼓鼓的、飽了，「카론도 빵빵」是按喇叭的叭叭聲（JP 寫「おなか、パンパン。カロンもクラクション、パンパーン」）；TW 兩處都寫「砰砰」，既看不出吃飽，也不像喇叭聲。依 base.md「沒有標記的雙關」，重現不了就各自照字面譯。；「膨膨」是肚子鼓鼓的，「砰砰」解釋為汽車橫衝直撞。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S106B.json",
+      "field": "content",
+      "ptr": "/dataList/7/content",
+      "kind": "zh-changed",
+      "new_kr": "계속 이상한 방향으로 가니까 그렇죠! 이 지도를 보세요. 우리가 가는 쪽은 남동쪽 방향인데…",
+      "old_zh": "因為你一直在往奇怪的方向走啊！麻煩你好好看看地圖。我們要去的是東南方向……",
+      "new_zh": "因為妳一直在往奇怪的方向走啊！麻煩妳好好看看地圖。我們要去的是東南方向……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0024：尤莉對卡戎（女性）說話，TW 兩處「你」應寫「妳」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S107A.json",
+      "field": "content",
+      "ptr": "/dataList/18/content",
+      "kind": "zh-changed",
+      "new_kr": "어이, 그렇게 뛰어나시다면 저 앞에 가서 길부터 찾아주지 그래. 아까부터 저것들이 시끄러워서 잠을 못 자겠잖아.",
+      "old_zh": "喂，既然你這麼聰明，就去前面幫那幾個蠢蛋指指路吧。從剛才開始他們就吵得我睡不著覺。",
+      "new_zh": "喂，既然妳這麼聰明，就去前面先幫忙把路找出來吧。從剛才開始他們就吵得我睡不著覺。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0025：希斯克利夫對浮士德（女性）說話，TW「你這麼聰明」應寫「妳」。另外 KR「저 앞에 가서 길부터 찾아주지 그래」是「去前面先把路找出來」，TW 加了 KR 沒有的「那幾個蠢蛋」（KR 只在下一句用「저것들」指那幾個人）。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "content",
+      "ptr": "/dataList/5/content",
+      "kind": "zh-changed",
+      "new_kr": "다시 한번 말씀드리지만, 이 안에서 죽으면 전투가 끝나도 되살아나지 못해요.",
+      "old_zh": "請允許我最後一次警告各位。如果你們死在這裡，即使戰鬥結束，但丁也無法讓你們復活。",
+      "new_zh": "再次提醒各位，如果你們死在這裡，即使戰鬥結束也無法復活。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0026：「다시 한번」是『再說一次』，TW 寫成「最後一次警告」，並加了KR沒有的『但丁』作為復活者。KR 只說死在這裡即使戰鬥結束也無法復活。（官方EN有 one last time／Dante，但KR、JP均為「再一次」。）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/55/teller",
+      "kind": "zh-changed",
+      "new_kr": "야비한 패잔병",
+      "old_zh": "無禮的殘兵 ",
+      "new_zh": "卑鄙的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/58/teller",
+      "kind": "zh-changed",
+      "new_kr": "야비한 패잔병",
+      "old_zh": "無禮的殘兵 ",
+      "new_zh": "卑鄙的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/62/teller",
+      "kind": "zh-changed",
+      "new_kr": "야비한 패잔병",
+      "old_zh": "無禮的殘兵 ",
+      "new_zh": "卑鄙的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/70/teller",
+      "kind": "zh-changed",
+      "new_kr": "야비한 패잔병",
+      "old_zh": "無禮的殘兵 ",
+      "new_zh": "卑鄙的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "content",
+      "ptr": "/dataList/71/content",
+      "kind": "zh-changed",
+      "new_kr": "아하, 너는 전방에 소속되어 있었나 보네. 어때, 그래도 포스터보단 실물이 낫지?",
+      "old_zh": "啊哈，你應該也上過前線吧。怎麼樣，真正的我看起來比傳單上好多了吧？",
+      "new_zh": "啊哈，你應該也上過前線吧。怎麼樣，真正的我看起來比海報上好多了吧？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0028：KR「포스터」（JP ポスター）是海報，前面第30行已譯為海報；TW 這裡寫成「傳單」，用詞不一致且不準確。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/72/teller",
+      "kind": "zh-changed",
+      "new_kr": "야비한 패잔병",
+      "old_zh": "無禮的殘兵 ",
+      "new_zh": "卑鄙的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/81/teller",
+      "kind": "zh-changed",
+      "new_kr": "야비한 패잔병",
+      "old_zh": "卑鄙的殘兵 ",
+      "new_zh": "卑鄙的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "content",
+      "ptr": "/dataList/86/content",
+      "kind": "zh-changed",
+      "new_kr": "가진 놈들도 뒤통수를 쳐 때리는 판인데. 그런 말랑한 걸 기대하냐, 넌.",
+      "old_zh": "哪怕是那些稍微好點的傢伙也會在人背後捅刀。你最好是別有什麼天真的期待。",
+      "new_zh": "哪怕是那些有錢有勢的傢伙也會在人背後捅刀。你最好是別有什麼天真的期待。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0029：KR「가진 놈들」指有錢有勢的人（JP 金のある連中）：連有錢人都會背後捅刀。TW 譯成「稍微好點的傢伙」，意思偏離。"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-13-storydata-review.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-13-storydata-review.yaml",
+      "path": "rules/adjustments/2026-11-13-storydata-review.yaml",
+      "title": "2026-11-13-storydata-review.yaml",
+      "commit": "44b39fda3057c6972a4b761daf365df4ff6ae684"
+    }
+  }
+}
