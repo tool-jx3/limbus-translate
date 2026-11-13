@@ -76,3 +76,51 @@
   zh: 在那附近的地面上，也就是巴士的嘴前，散落著各種各樣的人類。其中既有意識尚存的，也有早已四分五裂的。
   reason: StoryData 審查 S0012：KR 의식이 있는 자（還有意識的人，JP 意識がある人、EN still conscious）譯成「奄奄一息」，重點從清醒變成垂死；이미 補「早已」。譯法由使用者決定
   rule: one-off
+- key: StoryData/S103B.json|/dataList/2/content
+  raw: raw-20261112
+  kr_sha: dffe5e11cc91ada2b44221cac3cc1f9a47f538e82f55b865e732f9c368d0a418
+  zh: 不久後，那張大口便完全張開了，巴士真的開始咀嚼起人來。狼吞虎嚥地、迫不及待地。
+  reason: StoryData 審查 S0013：KR 게걸스럽게, 허겁지겁（貪婪、急切）譯成「興高采烈地」（照 JP いそいそと）；말 그대로 寫「真的」。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S104B.json|/dataList/7/content
+  raw: raw-20261112
+  kr_sha: 4353c284543bb995d9d4d90bc67ddf43f5b08ceb6e55edf0ecc7634d1e39a6c3
+  zh: 妳說的是以前的L公司吧。聽說那是一家透過奇點技術生產能源的公司。不過L公司沒落之後現在也只剩下廢墟與殘骸了。
+  reason: StoryData 審查 S0014：以實瑪利這句是回應浮士德（女性），TW 加的第二人稱應依 guides/base.md 寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/14/content
+  raw: raw-20261112
+  kr_sha: 453a0af9f9fc5db22d871df32f2968f59e4a40a1799c372f3b81903fc4d3a707
+  zh: 作為被折斷之翼的員工，妳的工作一定結束得很不愉快吧。
+  reason: StoryData 審查 S0015：以實瑪利對尤莉（女性，同檔稱「尤莉小姐」）說話，TW 的「你的工作」應寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/34/content
+  raw: raw-20261112
+  kr_sha: 2c473deba8eb3791be0789e5b67f04d03c0eafaffdbaa22e7baf6e2cff02f5aa
+  zh: 但由於不太習慣這種表情，他的眼角似乎在抽搐，不過我決定裝作沒看見。
+  reason: StoryData 審查 S0016：KR「눈꼬리가 움찔거리는 것 같았지만, 모르는 척하기로 했다」是「他的眼角似乎在抽搐，但我決定裝作沒看見」（EN、JP 同）；TW 把「眼角」寫成「眉毛」、加了「僵直」，並把敘述者「決定裝作不知道」改成「不過無傷大雅」，漏了這個動作。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/37/content
+  raw: raw-20261112
+  kr_sha: 2c0b317921149364a487b0ff3ad636b9fca444ea0616a604404dc94bb11a907f
+  zh: 我不知道妳是從哪裡聽到這樣的消息，但收尾人並不是那樣的英雄。他們身上甚至只能聞到月薪族的窮酸味。
+  reason: StoryData 審查 S0017：以實瑪利這句是回應唐吉訶德（女性），TW「你是從哪裡聽到」應寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/38/content
+  raw: raw-20261112
+  kr_sha: 3e811f78b3caca2605f2f7b17791e4656d21b0ee4c6216bcc9fc619902bcf3b1
+  zh: ……這麼快就找到另一份工作也挺不容易的，很高興妳撐過來了。
+  reason: StoryData 審查 S0018：格里高爾對尤莉（女性）說話，TW「很高興你撐過來了」應寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/40/content
+  raw: raw-20261112
+  kr_sha: adada6145a885d57b393359d1b22358c7888904499fa80ffbf746c44c79d6c80
+  zh: 原來如此，這就是妳硬是爬回這裡的理由啊。
+  reason: StoryData 審查 S0019：以實瑪利對尤莉（女性）說話，TW「你硬是爬回這裡」應寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/41/content
+  raw: raw-20261112
+  kr_sha: 379649b3634c67eb6244394934c4f7cb31bad2849f1f6f723c43b4507f96d2a0
+  zh: 那他們是不是還承諾過，如果妳在原來的工作地點立了大功，就會提拔妳到隊長的位置上？
+  reason: StoryData 審查 S0020：以實瑪利對尤莉（女性）說話，TW 兩處「你」應寫「妳」。
+  rule: one-off
