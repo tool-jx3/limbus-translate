@@ -4,3 +4,9 @@
   zh: 但他只是百無聊賴地盯著車窗，目光空洞，彷彿對一切都提不起興趣。
   reason: StoryData 審查 S0002：KR 차창 是車窗（JP 車窓、EN out the window），現行譯成「天花板」
   rule: one-off
+- key: StoryData/S002B.json|/dataList/63/content
+  raw: raw-20261112
+  kr_sha: 62400b6d6da64c7fd3978f575f9d5c102ea090b28f49259daea00ab2edaf9217
+  zh: 我敢說，你以前一定是巢裡的大人物吧？一想到你只要稍微拿出點當年的派頭，錢就會嘩啦啦地流進我們口袋……呼呼……
+  reason: StoryData 審查 S0001：KR 是「只要你稍微露出當年的習慣（그때 버릇），錢就會嘩啦啦流進我們口袋」，露出舊習的是但丁；現行「只要跟你偷學個一兩招」主詞弄反。譯法由使用者決定
+  rule: one-off
