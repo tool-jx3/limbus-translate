@@ -7,7 +7,7 @@ number: 12
 code: "11"
 models: [오티스, 오티스요리사, 주민오티스, 오티스다침, 오티스그림자, 오티스만우]
 models_other_self: []
-models_not_this: []
+models_not_this: [오에]  # 오에 = E923B 奧提斯與以斯拉同時說話
 file_names: [Outis, Outist]
 ---
 

@@ -6,8 +6,8 @@ gender: male
 number: null  # ScenarioModelCodes nickName：길잡이 → 嚮導
 code: null
 models: [베르길리우스, 베르길리우스2, 베르길리우스3, 다친베르길리우스, 베르길리우스만우]
-models_other_self: [산손베르길리우스]  # 待確認
-models_not_this: []
+models_other_self: []
+models_not_this: [산손베르길리우스, 베르길파우]  # 산손베르길리우스 = S737B#76–79 說話的是參孫；베르길파우 = E702B#50 與浮士德同時說話
 file_names: [Vergilius]
 ---
 

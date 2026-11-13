@@ -7,7 +7,7 @@ number: 1
 code: "01"
 models: [이상, 이상다침, 이상그림자, 이상만우]
 models_other_self: [과거이상]
-models_not_this: []
+models_not_this: ["이상 & 싱클레어"]  # ES290B 李箱與辛克萊同時說話
 file_names: [YiSang, Yisang]
 ---
 

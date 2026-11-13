@@ -5,8 +5,8 @@ name_kr: 싱클레어
 gender: male
 number: 11
 code: "10"
-models: [싱클레어, 싱클레어다침, 싱클레어그림자, 싱클레어만우]
-models_other_self: [각성싱클레어1, 각성싱클레어2]
+models: [싱클레어, 싱클레어다침, 싱클레어그림자, 싱클레어만우, 퀴즈싱클]  # 퀴즈싱클 = ES013 益智問答
+models_other_self: [각성싱클레어1, 각성싱클레어2, 기사싱클, 기사싱클2]  # 각성 = S943 另一分支的辛克萊；기사싱클 = S717B–S736B 參孫劇中劇的白月騎士巴里，跳出角色時照本人
 models_not_this: []
 file_names: [Sinclair]
 ---
