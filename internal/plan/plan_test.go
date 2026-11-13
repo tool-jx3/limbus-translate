@@ -1389,6 +1389,53 @@ func TestPlanReportsNewSpeakersAndFiles(t *testing.T) {
 	}
 }
 
+// The plan keeps the new speakers and files a snapshot brought; Unanswered
+// leaves out those the rules answer now: a model a character guide knows, a
+// file the routing puts in a family of its own. The summary itself is not
+// changed.
+func TestSummaryUnanswered(t *testing.T) {
+	e := newPlanEnv(t)
+	e.rule(rules.CharactersDir+"/mona.md", "---\nid: mona\nname: 莫娜\nmodels: [새인물]\nmodels_other_self: [어린새인물]\nmodels_not_this: [새인물들]\n---\n")
+	r, err := rules.Load(e.root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	sum := &Summary{
+		RawTag:                tag2,
+		NewSpeakers:           []string{"새NPC", "새인물", "새인물들", "어린새인물"},
+		NewFilesDefaultFamily: []string{"Misc.json", "Skills_New.json"},
+		FrozenChanged:         []string{"BgmLyrics/L.json|/dataList/0/content"},
+	}
+
+	got := sum.Unanswered(r)
+
+	if want := []string{"새NPC"}; !reflect.DeepEqual(got.NewSpeakers, want) {
+		t.Errorf("NewSpeakers = %q, want %q", got.NewSpeakers, want)
+	}
+	if want := []string{"Misc.json"}; !reflect.DeepEqual(got.NewFilesDefaultFamily, want) {
+		t.Errorf("NewFilesDefaultFamily = %q, want %q (Skills_New.json is of the skill family)", got.NewFilesDefaultFamily, want)
+	}
+	if got.RawTag != tag2 || !reflect.DeepEqual(got.FrozenChanged, sum.FrozenChanged) {
+		t.Errorf("Unanswered = %+v, want the rest of the summary as it is", got)
+	}
+	if len(sum.NewSpeakers) != 4 || len(sum.NewFilesDefaultFamily) != 2 {
+		t.Errorf("Unanswered changed the summary: %+v", sum)
+	}
+
+	// Answered in full: empty lists, not nil ones.
+	all := (&Summary{NewSpeakers: []string{"새인물"}, NewFilesDefaultFamily: []string{"Skills_New.json"}}).Unanswered(r)
+	if all.NewSpeakers == nil || len(all.NewSpeakers) != 0 || all.NewFilesDefaultFamily == nil || len(all.NewFilesDefaultFamily) != 0 {
+		t.Errorf("all answered = %q, %q; want two empty lists", all.NewSpeakers, all.NewFilesDefaultFamily)
+	}
+	// No plan stays no plan; no rules answer nothing.
+	if (*Summary)(nil).Unanswered(r) != nil {
+		t.Error("nil summary: want nil")
+	}
+	if none := sum.Unanswered(nil); !reflect.DeepEqual(none.NewSpeakers, sum.NewSpeakers) || !reflect.DeepEqual(none.NewFilesDefaultFamily, sum.NewFilesDefaultFamily) {
+		t.Errorf("nil rules = %q, %q; want everything", none.NewSpeakers, none.NewFilesDefaultFamily)
+	}
+}
+
 // Of two adjustments for one unit, the one whose key still holds the text
 // wins over one that moved there, and of equals the later one in file order;
 // the others are listed as expired and queue nothing (spec 11.1, R11).

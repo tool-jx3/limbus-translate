@@ -184,12 +184,13 @@ func newInfo(v versionInfo, tr translation, zips map[string]string, rep *Report,
 
 // writeMeta writes the build record and the report to the store. sum is the
 // plan of the snapshot, nil if there is none, and pending the queue after the
-// build.
+// build. The report lists what the rules do not answer yet (plan.Summary
+// Unanswered), as the review issue does.
 func writeMeta(st *store.Store, opt Options, info Info, sum *plan.Summary, pending []store.PendingItem) error {
 	if err := st.WriteMetaJSON(infoName, info); err != nil {
 		return err
 	}
-	return st.WriteMetaFile("reports/"+opt.RawTag+".md", Markdown(opt, info, sum, pending))
+	return st.WriteMetaFile("reports/"+opt.RawTag+".md", Markdown(opt, info, sum.Unanswered(opt.Rules), pending))
 }
 
 // SummaryLimit is the most bytes of the report that SummaryMarkdown keeps.

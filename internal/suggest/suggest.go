@@ -328,10 +328,8 @@ func (c *collector) fromBuild(info build.Info) {
 // fromPlan makes the suggestions of the plan of the snapshot: what the new
 // snapshot brought that the rules do not answer.
 func (c *collector) fromPlan(sum *plan.Summary, r *rules.Rules, adjustments []adjust.Adjustment) {
-	for _, model := range sum.NewSpeakers {
-		if knowsSpeaker(r, model) {
-			continue
-		}
+	open := sum.Unanswered(r)
+	for _, model := range open.NewSpeakers {
 		c.add(KindSpeaker, model,
 			fmt.Sprintf("新說話者「%s」：%s/ 還沒有這個 model", clip(model, maxTitleText), rules.CharactersDir),
 			Evidence{KR: model})
@@ -340,13 +338,8 @@ func (c *collector) fromPlan(sum *plan.Summary, r *rules.Rules, adjustments []ad
 		group := cmp.Or(ch.Group, noGroup)
 		c.add(KindField, ch.Op+"/"+group+"/"+ch.Field, fieldTitle(ch))
 	}
-	if def := r.DefaultFamily(); def != "" {
-		for _, file := range sum.NewFilesDefaultFamily {
-			if r.Family(file) != def {
-				continue // the routing has a family for the file now
-			}
-			c.add(KindFamily, file, fmt.Sprintf("新檔案 %s 落在預設族群「%s」，還沒有專屬的族群", file, def))
-		}
+	for _, file := range open.NewFilesDefaultFamily {
+		c.add(KindFamily, file, fmt.Sprintf("新檔案 %s 落在預設族群「%s」，還沒有專屬的族群", file, r.DefaultFamily()))
 	}
 
 	byKey := map[string]adjust.Adjustment{}
@@ -486,21 +479,6 @@ func termRowsFirst(rows []Evidence) (first, rest []Evidence) {
 		}
 	}
 	return first, rest
-}
-
-// knowsSpeaker reports whether the guides say who the speaker model is: the
-// character, the same person at another time of life, or not the character a
-// name in it suggests.
-func knowsSpeaker(r *rules.Rules, model string) bool {
-	if _, _, ok := r.CharacterByModel(model); ok {
-		return true
-	}
-	for _, c := range r.Characters {
-		if slices.Contains(c.ModelsNotThis, model) {
-			return true
-		}
-	}
-	return false
 }
 
 // fieldTitle says what a change of the field rules does.

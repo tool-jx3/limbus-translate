@@ -73,6 +73,29 @@ func TestLoadRepoRules(t *testing.T) {
 	}
 }
 
+// A character guide has a word on a model when the model is the character, the
+// character at another time of life, or listed as not the character; any other
+// model is one no guide knows yet.
+func TestKnowsModel(t *testing.T) {
+	r := loadRepo(t)
+	for _, tc := range []struct {
+		model string
+		want  bool
+	}{
+		{"이스마엘", true},    // models
+		{"과거료슈3", true},   // models_other_self
+		{"파우스트와삼조", true}, // models_not_this
+		{"필립", true},      // a guide added for a new speaker
+		{"알수없는모델", false}, // in no file
+		{"이스마엘 ", false},  // exact match only
+		{"", false},       // no model
+	} {
+		if got := r.KnowsModel(tc.model); got != tc.want {
+			t.Errorf("KnowsModel(%q) = %v, want %v", tc.model, got, tc.want)
+		}
+	}
+}
+
 func TestCharacterByModel(t *testing.T) {
 	r := loadRepo(t)
 	tests := []struct {

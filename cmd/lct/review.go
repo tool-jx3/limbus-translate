@@ -10,6 +10,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 )
 
 func init() {
@@ -67,7 +68,11 @@ func runReview(ctx *cli.Context, args []string) error {
 	}
 	cfg := ctx.Config
 	twRoot := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.TW))
-	state, err := readBuildState(twRoot)
+	r, err := rules.Load(ctx.Root)
+	if err != nil {
+		return err
+	}
+	state, err := readBuildState(twRoot, r)
 	if errors.Is(err, build.ErrNotBuilt) {
 		return cli.UserError(fmt.Sprintf("review: %s has no build record (.meta/build.json); bring the worktree of the tw branch "+
 			"up to date (git fetch origin tw) or run lct build", cfg.Worktrees.TW))

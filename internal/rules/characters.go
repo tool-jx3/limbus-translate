@@ -131,6 +131,25 @@ func (r *Rules) CharacterByModel(model string) (c *Character, otherSelf bool, ok
 	return nil, false, false
 }
 
+// KnowsModel reports whether a character guide has a word on a story line's
+// model key: it is the character (models), the character at another time of
+// life (models_other_self), or listed as not the character (models_not_this).
+// A new speaker a guide knows needs no person.
+func (r *Rules) KnowsModel(model string) bool {
+	if _, _, ok := r.CharacterByModel(model); ok {
+		return true
+	}
+	if model == "" {
+		return false
+	}
+	for i := range r.Characters {
+		if slices.Contains(r.Characters[i].ModelsNotThis, model) {
+			return true
+		}
+	}
+	return false
+}
+
 var (
 	// StoryData/P1<code>XX: the personality stories.
 	storyPersonaRe = regexp.MustCompile(`^StoryData/P1(\d{2})\d{2}$`)
