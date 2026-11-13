@@ -208,3 +208,9 @@
   zh: 哪怕是那些有錢有勢的傢伙也會在人背後捅刀。你最好是別有什麼天真的期待。
   reason: StoryData 審查 S0029：KR「가진 놈들」指有錢有勢的人（JP 金のある連中）：連有錢人都會背後捅刀。TW 譯成「稍微好點的傢伙」，意思偏離。
   rule: one-off
+- key: StoryData/1D105A.json|/dataList/19/content
+  raw: raw-20261112
+  kr_sha: e971cad8b1006c9107b456fbc14930dd37b093453e6d0ae916279bd0f61f2d3d
+  zh: ……然後只要在這個空間裡經過一定的時間，卵就會孵化。
+  reason: StoryData 審查 S0284：KR「이 공간에서 일정 시간이 지난다면요」是「在這個空間裡經過一定時間的話」，JP「この空間で一定時間過ぎると」、EN「once enough time has passed here」也都有「在這裡」；現行 TW 只寫「經過一定的時間」，漏了「在這個空間裡」這個條件。
+  rule: one-off
