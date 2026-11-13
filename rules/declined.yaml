@@ -65,3 +65,189 @@
 - id: "scope/bd542ee0/64da73be/not-files"
   reason: 不縮範圍：FAQ 的 3 個缺漏中，/2、/3 是商品名「월간 광기 패키지」（每月狂氣補給，已逐一確認），/7「각종 패키지」→「各類補給包」是同義的譯法不一，交給複查（使用者決定 2026-11-07）
   date: 2026-11-07
+- id: "inconsistent/ally/title/c854e039"
+  reason: G299：JP『末弟』『末妹』、EN Brother/Sister 不同：兩個不同人物（Personalities 76 與 77/136），KR『작은 아우』無性別，中文依人物性別譯（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/bcd5ceaa"
+  reason: G300：三種擬聲／語氣詞由不同說話者（李箱、堂吉訶德、格里高爾、奧提斯）說，語氣各異，EN 也有 Hm／Hmm 之差（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/6f310a5f"
+  reason: G301：「哎」為羅佳所說，「哈啊」為浮士德等；說話者語氣不同（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/0a794ac4"
+  reason: G302：EN 一為 Yes, ma'am、一為 Yessir，說話對象與敬稱不同（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/c096dd01"
+  reason: G303：說話者不同（紅鸞／格里高爾），EN Hyah／Hyup，用力聲各自對應（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/e5d8c47e"
+  reason: G304：說話者不同（羅佳等），兩種皆通；語氣取決於角色（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/b0f652be"
+  reason: G305：「呃」為李箱，「嗯」為其他角色；EN 皆 Mm...（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/4f4448ef"
+  reason: G306：來自 a1c9p3 氣泡與一般戰鬥氣泡，說話者不同，兩種皆通（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/95c78689"
+  reason: G307：「嚴禁破壞藝術！」與「請勿破壞！」來自不同氣泡，語氣不同（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/aa8d65dd"
+  reason: G308：兩句出自不同角色（LCE 與劉協會的李箱）；EN 一為 test its merits、一為 test my sword，各自符合角色與情境（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/d7d59046"
+  reason: G309：JP 一為「終わらせよう」一為「終わらせん」，語氣不同，分屬不同角色的台詞（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/e7d7ac29"
+  reason: G310：JP 為「何よ」與「何だよ」，語氣（女性／男性）不同，分屬不同角色（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/rpg/text/b0f652be"
+  reason: G311：語氣詞「음…」在不同說話者、不同 JP/EN（うむ／うーん）下用字不同，兩種都通（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/rpg/text/8445741d"
+  reason: G312：「네.」在不同角色、不同 EN（I am／Listening／Yes）語境下「是。」「是的。」都通（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/4a84c9fe"
+  reason: G313：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/f098bf05"
+  reason: G314：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/88753503"
+  reason: G315：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/4a8fac1b"
+  reason: G316：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/838384a0"
+  reason: G317：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/857c694e"
+  reason: G318：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/bcd5ceaa"
+  reason: G319：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/f6d7ce3b"
+  reason: G320：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/378eddc9"
+  reason: G321：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/47dd1707"
+  reason: G322：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/814a513e"
+  reason: G323：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/9a12b830"
+  reason: G324：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/a6919040"
+  reason: G325：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/ad515411"
+  reason: G326：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/fa6dfbfa"
+  reason: G327：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/607dd0b1"
+  reason: G328：JP 為「いや」與「いいえ」，說話者不同（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/69a391ca"
+  reason: G329：說話者不同（파우스트／뫼르소），語氣各異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/88d122f3"
+  reason: G330：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/90bb27e9"
+  reason: G331：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/105bb859"
+  reason: G332：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/c018113b"
+  reason: G333：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/ea0b8afe"
+  reason: G334：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/16636844"
+  reason: G335：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/16becc64"
+  reason: G336：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/25fe53e7"
+  reason: G337：說話者語氣不同，파우스트 較敬重（謝謝您）（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/2b72cf03"
+  reason: G338：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/4a64707f"
+  reason: G339：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/65217c38"
+  reason: G340：說話者不同（파우스트／앨런），稱呼與語氣不同（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/68de2347"
+  reason: G341：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/741fa918"
+  reason: G342：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/9ea23b31"
+  reason: G343：感嘆詞／語氣詞在不同說話者與不同 JP/EN 下用字不同，皆為刻意的角色口吻差異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/b2251a26"
+  reason: G344：說話者不同，語氣各異（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/d0a7e046"
+  reason: G345：說話者不同（파우스트／베르길리우스），皆通（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/21de7a50"
+  reason: G346：你／妳依對象性別或說話者不同，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/e7a4dd1f"
+  reason: G347：你／妳依對象性別或說話者不同，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/4167bd50"
+  reason: G348：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/54289955"
+  reason: G349：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/6651c9dc"
+  reason: G350：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/6ccca5c5"
+  reason: G351：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/7732aafa"
+  reason: G352：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/814a513e"
+  reason: G353：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/905a2249"
+  reason: G354：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/b2d7e544"
+  reason: G355：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/ba37b33c"
+  reason: G356：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/c2cf6dcc"
+  reason: G357：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/e451aab8"
+  reason: G358：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/f6bed8da"
+  reason: G359：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/f7691321"
+  reason: G360：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
+  date: 2026-11-13
