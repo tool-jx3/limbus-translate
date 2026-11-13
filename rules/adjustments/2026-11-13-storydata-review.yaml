@@ -16,3 +16,27 @@
   zh: 直到耳邊傳來低聲交談，我才睜開了眼睛。
   reason: StoryData 審查 S0003：KR 나지막한 대화（低聲交談，JP 低い声で交わされる会話）譯成「嚴肅的對話聲」；-고 나서야 寫「直到……才」。譯法由使用者決定
   rule: one-off
+- key: StoryData/S101B.json|/dataList/5/content
+  raw: raw-20261112
+  kr_sha: 7eb00dd4249d55efd398dd80802cadac9b5aa4b5269795fef2d1e2be072a0453
+  zh: 或許在一輛不知駛向何方的巴士上，除此之外我也無事可做……
+  reason: 'StoryData 審查 S0004（與 #6 一起改）：KR 沒有「真的」；#5、#6 是「也許……但也可能……」的對照推測。譯法由使用者決定'
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/6/content
+  raw: raw-20261112
+  kr_sha: 633c0a3011f7884dd9ca12058b7d0a15b6a06eb670abf5df4d4233761ceba2c5
+  zh: 又或者，對失去了腦袋和記憶的我來說，這是唯一想得到的辦法。
+  reason: 'StoryData 審查 S0004：KR 句尾 ~걸지도 모른다 是推測，接續 #5 的 ~일지도 모르지만；現行寫成肯定句。譯法由使用者決定'
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/13/content
+  raw: raw-20261112
+  kr_sha: 3bb4b4a3c1295f5dd1f178830ade5e28edae458b66422c44b032c7beaadd1380
+  zh: 雖然我感覺這是相當可怕的場面，但依他們的反應來看，也許這種暴行在都市中只能算是稀鬆平常。
+  reason: StoryData 審查 S0005：錯字「稀疏平常」→「稀鬆平常」
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/16/content
+  raw: raw-20261112
+  kr_sha: 47160cab6e71f5dc619c0f79868f02b44badb0cad7ddf37abb69a768a95f09a0
+  zh: <蟲……不對，戴眼鏡的兄弟。你知道我們現在是要去哪嗎？>
+  reason: StoryData 審查 S0006：KR 안경 낀（戴著眼鏡），錯字「帶眼鏡」→「戴眼鏡」
+  rule: one-off
