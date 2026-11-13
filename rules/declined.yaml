@@ -794,3 +794,132 @@
 - id: "inconsistent/ui/content/6d98a825"
   reason: G900：「主線劇情」與「故事位置」場景不同（EN The Main Story／Place in the Story）（使用者決定 2026-11-13：I7 保留）
   date: 2026-11-13
+- id: "inconsistent/identity/content/ba72434d"
+  reason: G592：JP/EN 皆為嗆聲擬聲詞（がはっ／かはっ／Kagh），「嘎……」「嘎啊……」差異微小（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/f6d7ce3b"
+  reason: G593：JP 同為「…はい。」，EN 為 Yes／Yeah／Okay，是否、好的語氣由說話者決定（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/1c63c0d6"
+  reason: G594：JP うぅ／うう，EN Hngh／Nngh，「唔」「嗚嗚」皆為呻吟（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/838384a0"
+  reason: G595：JP/EN 皆為 くっ／Agh 等忍痛聲，「咕」「呃」差異微小，且為語音需看角色（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/67882a61"
+  reason: G596：JP/EN 皆為 うっ！ 等痛呼，多種擬聲，依角色而異（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/d77446cc"
+  reason: G597：JP/EN 皆為呻吟，「唔」「嗚」「呃」差異微小（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/7dcd5add"
+  reason: G598：JP 同為 うっ…，「唔」「嗚」皆為呻吟（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/2467266a"
+  reason: G600：JP/EN 皆為 はっ…／Hup...，「呃」「嚯」皆為驚呼（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/316df963"
+  reason: G601：JP/EN 全同（制圧完了），「結束」「完畢」同義，來自不同氣泡（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/e697500b"
+  reason: G602：感嘆擬聲詞（EN Mmpf 為悶聲），分屬不同角色，呃／呃嗯皆可，無需強制統一（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/rpg/text/19d4cf1e"
+  reason: G603：同義問句，JP/EN 同，兩種都通（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/rpg/text/54bff5a2"
+  reason: G604：同義問句「沒事嗎／你沒事吧」，EN 口語 You good，兩種都通（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/80a612ea"
+  reason: G605：同義擬聲「咳」「咳咳」，皆通（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/7d553a6e"
+  reason: G606：가자=走吧/上吧，EN Let's go，兩種都通，不改（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/8f551fff"
+  reason: G607：同一說話者，兩種是同義改寫，皆通（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/c7047eaf"
+  reason: G610：JP/EN 同，兩種都通（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/d0f1c275"
+  reason: G611：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/e30d1e42"
+  reason: G612：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/e9836eb3"
+  reason: G613：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/ed5ae456"
+  reason: G614：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/eefe3a19"
+  reason: G615：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/f97635f2"
+  reason: G616：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/857c694e"
+  reason: G618：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/2b72cf03"
+  reason: G619：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/fa6dfbfa"
+  reason: G620：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/ea526e1a"
+  reason: G621：JP/EN 相同或相近，僅同義措辭不同，兩種皆通，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/73a9629f"
+  reason: G622：JP/EN 相同或相近，僅同義措辭不同，兩種皆通，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/12bf9f72"
+  reason: G623：JP/EN 相同或相近，僅同義措辭不同，兩種皆通，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/42234a60"
+  reason: G624：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/4a84c9fe"
+  reason: G625：JP/EN 相同或相近，僅同義措辭不同，兩種皆通，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/88d122f3"
+  reason: G626：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/60082107"
+  reason: G627：JP/EN 相同或相近，僅同義措辭不同，兩種皆通，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/88753503"
+  reason: G628：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/a8fe219b"
+  reason: G629：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/dc7fb5b1"
+  reason: G630：JP/EN 相同或相近，僅同義措辭不同，兩種皆通，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/62d05e86"
+  reason: G633：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/b27045dc"
+  reason: G635：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/bcd5ceaa"
+  reason: G636：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/cf86e99f"
+  reason: G637：JP/EN 相同或相近，僅同義措辭不同，兩種皆通，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/d77446cc"
+  reason: G638：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/e9836eb3"
+  reason: G639：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/0cc9bcc1"
+  reason: G642：語氣詞／擬聲感嘆詞依說話者與JP/EN各異，各譯法皆合理，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/2181fe43"
+  reason: G647：JP/EN 相同或相近，僅同義措辭不同，兩種皆通，保留（使用者決定 2026-11-13：I4 保留）
+  date: 2026-11-13
