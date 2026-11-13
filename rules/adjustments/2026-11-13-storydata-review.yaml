@@ -214,3 +214,9 @@
   zh: ……然後只要在這個空間裡經過一定的時間，卵就會孵化。
   reason: StoryData 審查 S0284：KR「이 공간에서 일정 시간이 지난다면요」是「在這個空間裡經過一定時間的話」，JP「この空間で一定時間過ぎると」、EN「once enough time has passed here」也都有「在這裡」；現行 TW 只寫「經過一定的時間」，漏了「在這個空間裡」這個條件。
   rule: one-off
+- key: StoryData/1D203B.json|/dataList/17/content
+  raw: raw-20261112
+  kr_sha: 39dcb0954661afa00e619850645219a82980ac9cabd2127588a6c4739745392d
+  zh: 戰鬥豈能不經苦……呃，嘔！咳咳！
+  reason: StoryData 審查 S0285：KR「고난 없이 어찌 전투를…」是「沒有苦難，要如何戰鬥……」（話被毒氣打斷），JP「苦難無しにどうやって戦えよう」、EN「No battle is fought without adversi―」也是講戰鬥；現行 TW 把後半補成「何以成就英雄」，把「戰鬥」換成了「英雄」。；譯法由使用者決定（話說到一半被毒氣嗆斷）
+  rule: one-off
