@@ -1,0 +1,4 @@
+# 不需要角色指引的說話者：一次性的路人、旁白與廣播、多人同時說話等。
+# 名單上的 model 不再被審核 Issue 與規則建議列為新說話者；不送給譯者。
+# 格式與何時用見 guides/README.md「新說話者」：model 必填，gender（male／female／unspecified）
+# 只在文本明確時寫，note 寫一句身分與出處。同一個 model 不能同時列在角色檔裡。
