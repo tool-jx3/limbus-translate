@@ -251,3 +251,546 @@
 - id: "inconsistent/story-main/content/f7691321"
   reason: G360：由不同說話者說，語氣與用字依角色而異，兩種都通，保留（使用者決定 2026-11-13：I3 全部保留）
   date: 2026-11-13
+- id: "inconsistent/ally/name/a146bc1d"
+  reason: G120：EN 一為 Regret 一為 Rue（不同的官方名稱），「悔恨」與「悔恨交加」分別對應，兩者是不同技能／E.G.O（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/1ca3cf82"
+  reason: G124：EN 對應不同：多數是 Guard/Defend 的「防禦」，一筆 EN 為 Shield Bash 的「持盾猛擊」，是不同技能（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/035fbb69"
+  reason: G125：EN 對應不同（Bludgeon／Baton／Hit），三種譯名各對應一種（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/4a3517d7"
+  reason: G126：EN 對應不同（Drive／Transpierce），為不同技能名（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/e172cc45"
+  reason: G127：EN 對應不同（Shank／Jag），各對應一種譯名（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/47d30969"
+  reason: G128：EN 對應不同（Blood Sac／Bloodbag），血囊與血袋各對應一種（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/918f4a4c"
+  reason: G129：EN 對應不同（Axe Combo／Halberd Combo），各自是針對武器的技能名（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/1dac12a9"
+  reason: G130：JP 同為「牽制」但 EN 一為 Careful Obstruction、一為 Wary Move，是不同招式，各自譯名成立（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/3ccee3fb"
+  reason: G131：EN 一為 Pulverization、一為 Crush，是不同招式，「粉碎」「碾碎」各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/69fb0931"
+  reason: G132：JP/EN 不同（ガー… Gua... 與 が… voice...!），是不同的招式名稱／被動，無法統一（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/89de63b7"
+  reason: G133：EN 一為 Charge In、一為 Onrush，是不同招式（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/2ec5f434"
+  reason: G134：JP 一為神父、一為司祭，EN 一為 Priest、一為 Chaplain，是不同角色頭銜（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/d1621ef5"
+  reason: G135：JP 一為「裂き斬る」、一為「引き裂く」，EN 也不同（Avulsion Slash／Ripping Slice），是不同招式（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/d804a5a9"
+  reason: G136：JP 不同（肉／矢），EN Flesh／Arrow，同一 KR 但指不同東西，不應統一（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/enemy/name/f64b08ed"
+  reason: G137：JP 不同（クググッ／クククッ），為擬聲詞各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/b7f97278"
+  reason: G138：JP 不同（うむ／ふむ），分別對應「嗯」「唔」（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/e9077439"
+  reason: G139：EN 對應不同（Pardon?／Eh?／Huh?／What?），各句語氣不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/ea526e1a"
+  reason: G140：EN 一為 What?／Come again?、一為 I'm sorry?，語氣不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/857c694e"
+  reason: G141：JP 不同（はぁ…／はっ…／ハッ…），分別對應「哈啊」「哈」（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/ad515411"
+  reason: G142：JP 不同（え／は／えっ），說話者語氣各異（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/08383eab"
+  reason: G143：EN 不同（However／Alas／But），語氣各異（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/3d6c02f1"
+  reason: G144：JP 不同（あぁ／あ／うん），分別對應嗯／啊／哦（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/7dc9e6ad"
+  reason: G145：EN 一為 Yes、一為 Indeed，語氣不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/99d3df3e"
+  reason: G146：EN 一為 Hah、一為 *sigh*，「哈」「唉」各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/e9836eb3"
+  reason: G147：JP 不同（かはっ／ごはっ／ぐはっ），為嗆咳擬聲詞各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/f20d2576"
+  reason: G148：JP 不同（ということは／そうであれば／それなら），意思不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/f9d2a797"
+  reason: G149：JP/EN 不同（バタン／パチッ／トン），是不同的擬音（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/27c1e09b"
+  reason: G150：EN 一為 Probably not、一為 wouldn't be the case, either，「也」有意義（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/3303c024"
+  reason: G151：JP 不同（ぎゃあっ／ぐぁっ），強度不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/3591e543"
+  reason: G152：JP 不同（あ？／は？），語氣不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/378eddc9"
+  reason: G153：JP 不同（こは…／これは…），EN 也不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/47dd1707"
+  reason: G154：JP 不同（あぁ／そう），意思不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/630c06ae"
+  reason: G155：EN 不同（as it does now／now is one such moment），意思不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/67882a61"
+  reason: G156：JP 不同（うっ！／ぐっ！），強度不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/86836265"
+  reason: G157：JP 不同（申し訳ございません／すみません），敬意程度不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/8a8ab3e6"
+  reason: G158：EN 不同（I see／Understood），意思不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/a8fe219b"
+  reason: G159：JP 不同（あー／えっと），語氣不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/bf95067d"
+  reason: G160：JP 不同（そうだな／ああ），意思不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/content/d77446cc"
+  reason: G161：JP 不同（うぅっ／ぅうっ），EN 也不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/6963a0ec"
+  reason: G162：JP 不同（ぐっ！／くっ！），且「咳！」為戰鬥氣泡，語境不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/f705db93"
+  reason: G163：EN 一為 Oh my!，語氣不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/90d06182"
+  reason: G164：EN 不同（Spread the impact!／Spread out!），意思略異（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/49f2933b"
+  reason: G165：EN 不同（On standby／Waiting），語氣略異（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/4bede46c"
+  reason: G166：JP 同為 ふっ…，EN 不同（Hngh／Hkh），皆為呻吟（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/88753503"
+  reason: G167：JP 不同（うぅ／うぅん），EN 不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/dlg/9042cbc8"
+  reason: G168：JP、EN 都不同（溢れるほどに／乱れるが良い），是兩個角色各自的台詞，譯法各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/mirror/content/742fa609"
+  reason: G169：EN 不同（Heal Sinner／Sinners heal HP），兩者可能是不同介面（按鈕與說明）；有 JP 換行差異，無法確定是同一用法（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/mirror/content/ca486344"
+  reason: G170：EN 不同（Refuse Gift／None Selected），兩處介面用途不同：一為拒絕飾品的選項、一為空欄位的提示（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/mirror/message/74e57466"
+  reason: G171：EN 不同：Refuse.／Shake your head.／Refuse it.，各事件的選項動作不同（搖頭為肢體動作），是依情境的譯法（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/mirror/message/9e97b12e"
+  reason: G172：JP、EN 不同（そうでない／幸せではない），「不是」與「不幸福」指的不同事情（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/rpg/text/cef635a3"
+  reason: G173：JP 同但 EN 不同（That would／Aha），說話者不同，「那是……」與「那樣……」指的語氣不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/rpg/text/1a1fabb1"
+  reason: G174：JP 同但 EN 為 Don't go／Don't leave，選項語境不同，「不走」「不離開」都合理（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/rpg/text/ade102bf"
+  reason: G175：JP 同但 EN 為 Go／Leave，選項語境不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/stage/name/2ec5f434"
+  reason: G176：JP／EN 不同：神父（The Priest）與司祭（The Chaplain）指不同角色稱謂（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/stage/title/41ea986c"
+  reason: G177：JP 同但 EN 為 Raid／Ambush，各自的關卡語境不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/15bff0b3"
+  reason: G178：JP/EN 分別是 What? 與 Huh?，「什麼」「嗯」各對應其一（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/2b9e13bd"
+  reason: G179：JP 或 EN 本來就不同，各譯法對應不同語意（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/44d3c087"
+  reason: G180：JP 或 EN 本來就不同，各譯法對應不同語意（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/e9077439"
+  reason: G181：JP 同但 EN 各異（Sorry?／Pardon?／Yes?／Huh?），各自語境不同；「那是什麼？」「我在？」可能偏離，建議人工看上下文（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/2db2cdc0"
+  reason: G182：JP/EN 各不同（そっか/うん/分かった/そうだね），KR「그래」語境不同，各譯法對應各自 JP/EN（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/51863b64"
+  reason: G183：EN 為 Haah/Phew 與 Sigh，語氣略異，屬擬聲詞同義（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/bf95067d"
+  reason: G184：JP 或 EN 本來就不同，各譯法對應不同語意（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/50a4ae53"
+  reason: G185：어? 各對應 JP「え/あれ」、EN 不同，「哦」「嗯」都通（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/8a8ab3e6"
+  reason: G186：JP 或 EN 本來就不同，各譯法對應不同語意（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/b9dc1331"
+  reason: G187：JP/EN 一種為 I see/そっか，一種為 Okay，各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/2c02df4e"
+  reason: G188：JP 或 EN 本來就不同，各譯法對應不同語意（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/4148a23e"
+  reason: G189：JP/EN 一種為 Uh，一種為 Huh...?，語感不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/b466596d"
+  reason: G190：JP 或 EN 本來就不同，各譯法對應不同語意（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/bcc109d9"
+  reason: G191：JP/EN 各異（え/あれ，Oh/Huh/Uh），都通（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/df3ead96"
+  reason: G192：JP 或 EN 本來就不同，各譯法對應不同語意（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/294956de"
+  reason: G193：JP 同但 EN 為 Good／Understood，語意略異（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/31ed1631"
+  reason: G194：JP 同但 EN 不同，語境不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/51f13018"
+  reason: G195：EN 不同（That's when／All of a sudden），「就在這時／那時」皆通（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/567e3d6f"
+  reason: G196：JP 為「ただ」與「ただし」，語意有別（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/60082107"
+  reason: G197：EN 不同（Now nothing／I smell nothing），語境不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/617022a2"
+  reason: G198：JP 或 EN 本來就不同，各譯法對應不同語意（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/6304d32f"
+  reason: G199：JP 為「それならば」與「然らば」，語氣不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/742fc56f"
+  reason: G200：JP/EN 一種為 That's good，一種為 That's a relief，各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/aad32bec"
+  reason: G201：EN 為 slam／Boom，音效語境不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/c783946b"
+  reason: G202：EN 為 Some time ago／Sometime ago，皆通（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/cd30d676"
+  reason: G203：JP/EN 不同（やめ/まった，stop/that'd be enough），各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/f2cdc061"
+  reason: G204：JP/EN 不同（No thanks / this isn't—），各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/f05525bb"
+  reason: G205：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/cef635a3"
+  reason: G206：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/e903ae69"
+  reason: G207：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/44d3c087"
+  reason: G208：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/8445741d"
+  reason: G209：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/a100eecf"
+  reason: G210：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/b466596d"
+  reason: G211：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/d2c92319"
+  reason: G212：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/e9077439"
+  reason: G213：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/f20d2576"
+  reason: G214：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/fbf24073"
+  reason: G215：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/378eddc9"
+  reason: G216：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/421b87d3"
+  reason: G217：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/9c5caca6"
+  reason: G218：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/b557a5f2"
+  reason: G219：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/dd84b26c"
+  reason: G220：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/ee90d69c"
+  reason: G221：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/05a5fbc8"
+  reason: G222：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/31ed1631"
+  reason: G223：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/3591e543"
+  reason: G224：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/3d6c02f1"
+  reason: G225：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/4a8fac1b"
+  reason: G226：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/5ffdd537"
+  reason: G227：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/719db776"
+  reason: G228：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/7dc9e6ad"
+  reason: G229：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/82d66d1a"
+  reason: G230：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/8a8ab3e6"
+  reason: G231：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/90a554ae"
+  reason: G232：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/9469481b"
+  reason: G233：JP/EN 各不同（なんの/なっ），三種是不同半句（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/08383eab"
+  reason: G234：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/1e66dd2b"
+  reason: G235：JP/EN 各異，各對應不同語境（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/281457f4"
+  reason: G236：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/2db2cdc0"
+  reason: G237：JP/EN 各異（そっか/うん/そうだね），各對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/4148a23e"
+  reason: G238：JP/EN 各異（えっと/あ/え），各對應不同語氣詞（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/46a8bb91"
+  reason: G239：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/4d0f1255"
+  reason: G240：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/51f13018"
+  reason: G241：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/567e3d6f"
+  reason: G242：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/6b7e195e"
+  reason: G243：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/a631151d"
+  reason: G244：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/bcc109d9"
+  reason: G245：JP/EN 各異（え/あれ），各對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/cf320d07"
+  reason: G246：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/d0a0b1f5"
+  reason: G247：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/ea0b8afe"
+  reason: G248：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/ed5ae456"
+  reason: G249：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/0072d2fc"
+  reason: G250：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/0a794ac4"
+  reason: G251：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/105bb859"
+  reason: G252：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/1127c744"
+  reason: G253：JP/EN 不同（え/あれ），各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/16b7c01b"
+  reason: G254：JP/EN 不同（そうだね/そうだな，Sure/Okay），各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/1c0d6a1f"
+  reason: G255：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/1cc90f1a"
+  reason: G256：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/242b6094"
+  reason: G257：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/38702ba5"
+  reason: G258：JP/EN 對應不同(語氣或語意不同)，各譯法依各自 JP/EN 與說話者合理，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/3ba1d18f"
+  reason: G259：JP 相同、EN 分別為 Yes, I'm okay 與 No, I am unhurt，兩種語氣各自可通，同為 홍루 的台詞，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/40ce2a9e"
+  reason: G260：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/435edbf5"
+  reason: G261：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/47301676"
+  reason: G262：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/4be4e461"
+  reason: G263：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/4d94b321"
+  reason: G264：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/55a59a78"
+  reason: G265：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/607dd0b1"
+  reason: G266：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/6e260eca"
+  reason: G267：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/7c942c9c"
+  reason: G269：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/94441fa8"
+  reason: G270：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/9bb26fec"
+  reason: G271：EN 一種為 What...?，一種為 What do you…?，兩種都通（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/9ea23b31"
+  reason: G272：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/a39dcc27"
+  reason: G273：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/aad32bec"
+  reason: G274：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/cc118534"
+  reason: G276：EN 分別為 stay afloat 與 stay buoyant，兩種譯法各自對應；「繼續漂流」語意略偏，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/d44d7868"
+  reason: G277：JP/EN 一種為 This is...!，一種為 This is...?，語氣不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/d70c8f95"
+  reason: G278：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/e3cdd14d"
+  reason: G279：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/f10dde83"
+  reason: G280：EN 一種為 What do you mean，一種為 But why，各自對應（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/f4080592"
+  reason: G281：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/f8f7171e"
+  reason: G282：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/ffa9ae74"
+  reason: G283：KR 相同但各譯法對應不同的 JP/EN 用字或語氣，兩種都符合各自的 JP/EN，保留（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/f090ebd5"
+  reason: G284：「繼續」（戰鬥畫面回到戰鬥）與「返回」（一般介面返回）EN 分別為 Continue、Return，場景不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/f16e733f"
+  reason: G285：「巡迴」（鐵道的巡迴數）與「循環」（IntroductionPreset 的 Samsara 說明）EN 為 Cycle、Samsara，指的是不同概念（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/1202aff9"
+  reason: G286：「好友」（UI）與「朋友」（IntroductionPreset，JP 為ともだち）JP、EN 不同，指的是不同用法（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/2008c717"
+  reason: G287：「成長」（ShopUI、ReturnPolicy）與「升級」（教學文本，EN Powering Up）EN 不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/313416dc"
+  reason: G288：「進入」（按鈕）與「進入戰鬥」（教學，EN 為 Stage Entry）EN 不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/515a4984"
+  reason: G289：「決斷」「選項」「事件選項」各自對應 EN 的 Choices／Checks／Choice Events，指的是戰鬥決斷、教學選項、事件選項等不同場景（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/9de9b509"
+  reason: G292：「持有時」（戰鬥提示，Owned）、「持有」「擁有」EN 為 Owned／Obtained／Owned，場景各異，不宜硬統一（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/000c0fa3"
+  reason: G293：「快取」（cache）與「凱茜」（JP「キャシー」、EN「Cathy」，官方玩笑）JP、EN 不同；詞彙表「클리어 올 캐시」為「清除凱茜」，這是官方刻意的諧音（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/0619d323"
+  reason: G294：「投影中」（Projected，皮膚投影）與「應用中」（Applying...）EN 不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/20759ff0"
+  reason: G295：與 38 相同，「快取」「凱茜」JP、EN 不同（Clear all caches? / Clear All Cathy?），為官方玩笑（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/78496a61"
+  reason: G296：「經理介紹」與「經理」EN 為 Manager Info／Manager，場景不同（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/b88ad0af"
+  reason: G298：「{0}張」（JP {0}枚）與「{0}章」（JP {0}章）是不同詞，KR 的「장」同字異義（使用者決定 2026-11-13：I2 保留）
+  date: 2026-11-13
+- id: "inconsistent/identity/teller/66716d31"
+  reason: G890：兩組出現在不同事件，JP 同為「組員たち」但 EN 分別是 Underlings／Pirates，後者說話者標示為「조직원들」，指的是海盜，語境不同（使用者決定 2026-11-13：I7 保留）
+  date: 2026-11-13
+- id: "inconsistent/mirror/message/b8a19a0c"
+  reason: G892：KR 無對象，各事件的選項依場景補上對象（蚌殼、花甸、他們），EN 也分 it／them，保留（使用者決定 2026-11-13：I7 保留）
+  date: 2026-11-13
+- id: "inconsistent/mirror/message/e2767e18"
+  reason: G893：三者各自對應場景：告訴某個對象、如實回答問題、公開真相，KR 同為「사실대로 말한다」，無法單向統一（使用者決定 2026-11-13：I7 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-interlude/content/8445741d"
+  reason: G894：JP 同但 EN 為 Of course／Understood／Yes／No／Yes?，各場景語氣不同（使用者決定 2026-11-13：I7 保留）
+  date: 2026-11-13
+- id: "inconsistent/story-main/content/f3034822"
+  reason: G895：『僅……』為KR 오直譯之外的斷句(囚犯 EN We...)，與其餘感嘆『哦／噢』語境不同（使用者決定 2026-11-13：I7 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/46b289bb"
+  reason: G896：BattleUIText／StoryDungeonUI 的「事件」（戰鬥或劇情中的事件）與篩選、主選單的「活動」（限時活動）是不同場景，KR 同字、JP 同為イベント（使用者決定 2026-11-13：I7 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/3603b458"
+  reason: G897：「基礎」（好友資訊分頁）與「預設」（SelectDUI 的預設選項）EN 分別為 Basic、Default，場景不同（使用者決定 2026-11-13：I7 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/69ec5575"
+  reason: G898：「故事」（戰鬥介面、主選單）與「劇情關卡」（FormationNameFilterUI 的篩選項目）是不同場景的同字（使用者決定 2026-11-13：I7 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/269e7c46"
+  reason: G899：「Zwei協會」（FormationNameEtcFilter 的組織篩選）與「Zwei」（IntroductionPreset 引導文字）場景不同；詞彙表只有「츠바이 협회」（使用者決定 2026-11-13：I7 保留）
+  date: 2026-11-13
+- id: "inconsistent/ui/content/6d98a825"
+  reason: G900：「主線劇情」與「故事位置」場景不同（EN The Main Story／Place in the Story）（使用者決定 2026-11-13：I7 保留）
+  date: 2026-11-13
