@@ -274,3 +274,15 @@
   zh: ……等回到巴士上後，我能教卡戎……嗎？
   reason: StoryData 審查 S0292：這行是 1D306B#5「…버스로 돌아가면, 카론한테 지도 보는 법을 알려줘도 될까요?」（回到巴士後，我可以教卡戎看地圖嗎？）的殘缺版：KR 留下「教（알려줘도）」、省掉「看地圖的方法」，JP「カロンに…教えても良いですか」相同。現行 TW「我能……卡戎……看地圖嗎？」反過來留下「看地圖」、丟了「教」，與 KR
   rule: one-off
+- key: StoryData/S202A.json|/dataList/59/content
+  raw: raw-20261112
+  kr_sha: e8b4ab0239bda2b86e793f59fb07aa6ff9be59d2eef655ab046e7140ae2c0abc
+  zh: 鴻璐是唯一真心實意歡迎他們的人（他差點就要鼓掌了），
+  reason: StoryData 審查 S0030：KR括號內「실제로 박수를 치기 직전까지 갔다」是『差點就真的鼓掌了』（未鼓掌；JP 拍手するところだった）。TW 寫成「也真的起身鼓掌了」，變成已經鼓掌，事實相反。
+  rule: one-off
+- key: StoryData/S203B.json|/dataList/8/content
+  raw: raw-20261112
+  kr_sha: 81300ad07e97308b897df05c795c12983e428e032c3191e0d183fcb9e8bcca7d
+  zh: ……好像也不必了？
+  reason: StoryData 審查 S0031：接在「그대로 두고 봐…／두고 봐…」之後，「…도 되겠네?」是『（那樣放著看）也行吧？』，與下文『文件很完美』呼應（JP …なくてもよさそうね，EN do as they say）。TW 變成「我們執行他們計畫的能力，對吧？」，語意不通且與上下文脫節。
+  rule: one-off
