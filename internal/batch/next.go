@@ -548,6 +548,7 @@ func assemble(
 
 	b.Keywords = map[string]string{}
 	if !needRecords && len(same) == 0 {
+		b.NPCs = npcsOf(env.Rules, b)
 		return b, nil
 	}
 	recs, err := records()
@@ -572,7 +573,27 @@ func assemble(
 		}
 		b.Context = storyContext(env, p.fd, recs, pendingByKey, p.chosen)
 	}
+	b.NPCs = npcsOf(env.Rules, b)
 	return b, nil
+}
+
+// npcsOf lists the speakers of the units of b, then of its context, that the
+// list of NPCs has, each once; nil when there is none. A speaker that is a
+// character is its id, which the list never has.
+func npcsOf(r *rules.Rules, b *Batch) []rules.NPC {
+	var out []rules.NPC
+	add := func(speaker string) {
+		if n, ok := r.NPC(speaker); ok && !slices.ContainsFunc(out, func(m rules.NPC) bool { return m.Model == n.Model }) {
+			out = append(out, n)
+		}
+	}
+	for _, u := range b.Units {
+		add(u.Speaker)
+	}
+	for _, c := range b.Context {
+		add(c.Speaker)
+	}
+	return out
 }
 
 // sameAsk is a unit of a batch whose KR the same-text index has in another

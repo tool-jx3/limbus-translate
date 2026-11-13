@@ -26,6 +26,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/proposal"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 )
@@ -641,6 +642,46 @@ func TestBatchSchemaDeclaresHint(t *testing.T) {
 	}
 	if _, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md")); !strings.Contains(prompt, "`hint`") {
 		t.Error("prompts/translate.md does not tell the translator what to do with `hint`")
+	}
+}
+
+// A batch can list the NPCs among its speakers (guides/npcs.yaml): the schema
+// declares the list, with the fields of an entry, and the shared prompt tells
+// the translator what to do with it.
+func TestBatchSchemaDeclaresNPCs(t *testing.T) {
+	_, content := readRepoFile(t, filepath.Join(repoRoot, "schemas", "batch.schema.json"))
+	var schema struct {
+		Required   []string `json:"required"`
+		Properties struct {
+			NPCs struct {
+				Type  string `json:"type"`
+				Items struct {
+					Required   []string `json:"required"`
+					Properties map[string]struct {
+						Type string   `json:"type"`
+						Enum []string `json:"enum"`
+					} `json:"properties"`
+				} `json:"items"`
+			} `json:"npcs"`
+		} `json:"properties"`
+	}
+	if err := json.Unmarshal([]byte(content), &schema); err != nil {
+		t.Fatalf("schemas/batch.schema.json does not parse: %v", err)
+	}
+	npcs := schema.Properties.NPCs
+	if npcs.Type != "array" || !slices.Equal(npcs.Items.Required, []string{"model"}) || slices.Contains(schema.Required, "npcs") {
+		t.Errorf("schemas/batch.schema.json: npcs = %+v, want an optional array of entries that require model", npcs)
+	}
+	for _, f := range []string{"model", "gender", "note"} {
+		if p, ok := npcs.Items.Properties[f]; !ok || p.Type != "string" {
+			t.Errorf("schemas/batch.schema.json: npcs.items.properties.%s = %+v (declared %v), want a string", f, p, ok)
+		}
+	}
+	if g := npcs.Items.Properties["gender"]; !slices.Equal(g.Enum, rules.Genders) {
+		t.Errorf("schemas/batch.schema.json: npcs gender enum = %q, want %q", g.Enum, rules.Genders)
+	}
+	if _, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md")); !strings.Contains(prompt, "`npcs`") {
+		t.Error("prompts/translate.md does not tell the translator what to do with `npcs`")
 	}
 }
 
