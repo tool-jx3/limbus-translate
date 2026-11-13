@@ -1,0 +1,276 @@
+- key: StoryData/S002B.json|/dataList/79/content
+  raw: raw-20261112
+  kr_sha: fbe102716133ebd029056a290855f12bf4fee633f8c0e25f1e870c34be1a98b6
+  zh: 但他只是百無聊賴地盯著車窗，目光空洞，彷彿對一切都提不起興趣。
+  reason: StoryData 審查 S0002：KR 차창 是車窗（JP 車窓、EN out the window），現行譯成「天花板」
+  rule: one-off
+- key: StoryData/S002B.json|/dataList/63/content
+  raw: raw-20261112
+  kr_sha: 62400b6d6da64c7fd3978f575f9d5c102ea090b28f49259daea00ab2edaf9217
+  zh: 我敢說，你以前一定是巢裡的大人物吧？一想到你只要稍微拿出點當年的派頭，錢就會嘩啦啦地流進我們口袋……呼呼……
+  reason: StoryData 審查 S0001：KR 是「只要你稍微露出當年的習慣（그때 버릇），錢就會嘩啦啦流進我們口袋」，露出舊習的是但丁；現行「只要跟你偷學個一兩招」主詞弄反。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/3/content
+  raw: raw-20261112
+  kr_sha: 82a9c90327d5aac85b0fbebd3d2578f02ec960ac9126dd7e06262f968171b0f8
+  zh: 直到耳邊傳來低聲交談，我才睜開了眼睛。
+  reason: StoryData 審查 S0003：KR 나지막한 대화（低聲交談，JP 低い声で交わされる会話）譯成「嚴肅的對話聲」；-고 나서야 寫「直到……才」。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/5/content
+  raw: raw-20261112
+  kr_sha: 7eb00dd4249d55efd398dd80802cadac9b5aa4b5269795fef2d1e2be072a0453
+  zh: 或許在一輛不知駛向何方的巴士上，除此之外我也無事可做……
+  reason: 'StoryData 審查 S0004（與 #6 一起改）：KR 沒有「真的」；#5、#6 是「也許……但也可能……」的對照推測。譯法由使用者決定'
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/6/content
+  raw: raw-20261112
+  kr_sha: 633c0a3011f7884dd9ca12058b7d0a15b6a06eb670abf5df4d4233761ceba2c5
+  zh: 又或者，對失去了腦袋和記憶的我來說，這是唯一想得到的辦法。
+  reason: 'StoryData 審查 S0004：KR 句尾 ~걸지도 모른다 是推測，接續 #5 的 ~일지도 모르지만；現行寫成肯定句。譯法由使用者決定'
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/13/content
+  raw: raw-20261112
+  kr_sha: 3bb4b4a3c1295f5dd1f178830ade5e28edae458b66422c44b032c7beaadd1380
+  zh: 雖然我感覺這是相當可怕的場面，但依他們的反應來看，也許這種暴行在都市中只能算是稀鬆平常。
+  reason: StoryData 審查 S0005：錯字「稀疏平常」→「稀鬆平常」
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/16/content
+  raw: raw-20261112
+  kr_sha: 47160cab6e71f5dc619c0f79868f02b44badb0cad7ddf37abb69a768a95f09a0
+  zh: <蟲……不對，戴眼鏡的兄弟。你知道我們現在是要去哪嗎？>
+  reason: StoryData 審查 S0006：KR 안경 낀（戴著眼鏡），錯字「帶眼鏡」→「戴眼鏡」
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/48/content
+  raw: raw-20261112
+  kr_sha: acc1baebe9414eabcc2bbf91e1dc0daa22728aba191bda5a4b82f418512cc3b1
+  zh: 毫無緣由的暴力不可原諒！汝就由吾來懲治！
+  reason: StoryData 審查 S0007：KR 後半「그대는 내가 응징하지!」是「汝就由吾來懲治！」，明確指向動手的良秀（JP「そなたは私が成敗してみせよう」）；TW 寫成「吾將貫徹正義！」（照 EN），漏了懲治的對象「그대（汝）」與「응징（懲治）」的動作。（譯法：使用者選 A）
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/107/content
+  raw: raw-20261112
+  kr_sha: 12360dc06d2d87ad417781284ee084650831072fdc358a9f5bb006f9947832c8
+  zh: 請、請等一等！但丁經理看上去很痛苦的樣子，我們就到此為……
+  reason: StoryData 審查 S0008：KR「이쯤에서 접…」是「就到此為止吧……」（접다＝收手，話被打斷；JP「このあたりでや…」）；TW「我們真的應該……」沒有譯出要大家住手、到此為止的意思。
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/108/content
+  raw: raw-20261112
+  kr_sha: 903f22e3e8eeb51f0f8aba8f7591b67e9cfe813af8ecdafc300a970d1feab56a
+  zh: 還沒等他說完，希斯克利夫的金屬球棒就狠狠砸在了辛克萊的頭上。
+  reason: StoryData 審查 S0009：KR 只說「希斯克利夫的鐵棍狠狠砸向辛克萊的頭」（강하게 내리쳤다）；TW「在辛克萊的頭上開了個窟窿」多加了打出窟窿的結果，KR 沒有。
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/131/content
+  raw: raw-20261112
+  kr_sha: f00894aad795354f8a64aca79496afd31f130db83d33d4d1333a704f49aaae20
+  zh: 乞求他賜予我死亡都比再承受那樣的苦痛要好。我飛快地搖了搖頭。
+  reason: StoryData 審查 S0010：KR「고개를 재빠르게 가로저었다」是「飛快地搖頭」（JP「素早く」、EN「quickly」）；TW 寫成「沮喪地搖了搖頭」，把動作的快速誤成情緒沮喪。
+  rule: one-off
+- key: StoryData/S101B.json|/dataList/135/content
+  raw: raw-20261112
+  kr_sha: 4fe2f0c05e8c22876156207c1305e87ec886cc82b24c5f8cf8a7b2b6c081625c
+  zh: 讓你面對那種程度的痛楚也能眼睛都不眨一下。這樣一來，你就撐得住了吧？
+  reason: StoryData 審查 S0011：KR 接上一句「我很樂意幫你」：「（幫到）讓你對那種程度的痛楚連眼都不眨一下。這樣一來，不就撐得住了嗎？」——維吉里烏斯是在威脅要「幫」但丁習慣痛苦（JP「その程度の苦痛には目がピクリともしないようにですね。それなら、耐えられませんかね？」、EN「won't even make you bat an eye once …
+  rule: one-off
+- key: StoryData/S103B.json|/dataList/1/content
+  raw: raw-20261112
+  kr_sha: db20e9e022e527da5139b404eaf069b31e6ee254f6a990532131305411006ce9
+  zh: 在那附近的地面上，也就是巴士的嘴前，散落著各種各樣的人類。其中既有意識尚存的，也有早已四分五裂的。
+  reason: StoryData 審查 S0012：KR 의식이 있는 자（還有意識的人，JP 意識がある人、EN still conscious）譯成「奄奄一息」，重點從清醒變成垂死；이미 補「早已」。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S103B.json|/dataList/2/content
+  raw: raw-20261112
+  kr_sha: dffe5e11cc91ada2b44221cac3cc1f9a47f538e82f55b865e732f9c368d0a418
+  zh: 不久後，那張大口便完全張開了，巴士真的開始咀嚼起人來。狼吞虎嚥地、迫不及待地。
+  reason: StoryData 審查 S0013：KR 게걸스럽게, 허겁지겁（貪婪、急切）譯成「興高采烈地」（照 JP いそいそと）；말 그대로 寫「真的」。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S104B.json|/dataList/7/content
+  raw: raw-20261112
+  kr_sha: 4353c284543bb995d9d4d90bc67ddf43f5b08ceb6e55edf0ecc7634d1e39a6c3
+  zh: 妳說的是以前的L公司吧。聽說那是一家透過奇點技術生產能源的公司。不過L公司沒落之後現在也只剩下廢墟與殘骸了。
+  reason: StoryData 審查 S0014：以實瑪利這句是回應浮士德（女性），TW 加的第二人稱應依 guides/base.md 寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/14/content
+  raw: raw-20261112
+  kr_sha: 453a0af9f9fc5db22d871df32f2968f59e4a40a1799c372f3b81903fc4d3a707
+  zh: 作為被折斷之翼的員工，妳的工作一定結束得很不愉快吧。
+  reason: StoryData 審查 S0015：以實瑪利對尤莉（女性，同檔稱「尤莉小姐」）說話，TW 的「你的工作」應寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/34/content
+  raw: raw-20261112
+  kr_sha: 2c473deba8eb3791be0789e5b67f04d03c0eafaffdbaa22e7baf6e2cff02f5aa
+  zh: 但由於不太習慣這種表情，他的眼角似乎在抽搐，不過我決定裝作沒看見。
+  reason: StoryData 審查 S0016：KR「눈꼬리가 움찔거리는 것 같았지만, 모르는 척하기로 했다」是「他的眼角似乎在抽搐，但我決定裝作沒看見」（EN、JP 同）；TW 把「眼角」寫成「眉毛」、加了「僵直」，並把敘述者「決定裝作不知道」改成「不過無傷大雅」，漏了這個動作。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/37/content
+  raw: raw-20261112
+  kr_sha: 2c0b317921149364a487b0ff3ad636b9fca444ea0616a604404dc94bb11a907f
+  zh: 我不知道妳是從哪裡聽到這樣的消息，但收尾人並不是那樣的英雄。他們身上甚至只能聞到月薪族的窮酸味。
+  reason: StoryData 審查 S0017：以實瑪利這句是回應唐吉訶德（女性），TW「你是從哪裡聽到」應寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/38/content
+  raw: raw-20261112
+  kr_sha: 3e811f78b3caca2605f2f7b17791e4656d21b0ee4c6216bcc9fc619902bcf3b1
+  zh: ……這麼快就找到另一份工作也挺不容易的，很高興妳撐過來了。
+  reason: StoryData 審查 S0018：格里高爾對尤莉（女性）說話，TW「很高興你撐過來了」應寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/40/content
+  raw: raw-20261112
+  kr_sha: adada6145a885d57b393359d1b22358c7888904499fa80ffbf746c44c79d6c80
+  zh: 原來如此，這就是妳硬是爬回這裡的理由啊。
+  reason: StoryData 審查 S0019：以實瑪利對尤莉（女性）說話，TW「你硬是爬回這裡」應寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/41/content
+  raw: raw-20261112
+  kr_sha: 379649b3634c67eb6244394934c4f7cb31bad2849f1f6f723c43b4507f96d2a0
+  zh: 那他們是不是還承諾過，如果妳在原來的工作地點立了大功，就會提拔妳到隊長的位置上？
+  reason: StoryData 審查 S0020：以實瑪利對尤莉（女性）說話，TW 兩處「你」應寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/44/content
+  raw: raw-20261112
+  kr_sha: 6a9c6b902ef2cc47deb854d299bb1cc21d8976f0bc94a371e28ac38d0ea7b670
+  zh: 哈，那可真是毫無意義的一條命啊。
+  reason: StoryData 審查 S0021：KR「부질없는 목숨」是「毫無意義、白費的命」（EN pointless life）；TW「悲慘的命運」照 JP「惨めな命」譯，把「沒有意義」換成「悲慘」，也把「命」寫成「命運」。以實瑪利是在諷刺為業績賭命不值得。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/45/content
+  raw: raw-20261112
+  kr_sha: bbcacfe1649ea835e581e05a2e2f1d48d1a1bee51195c19171c4901f6e352018
+  zh: （喂，從剛才開始妳怎麼就一直在冷嘲熱諷啊？是什麼讓妳不爽了嗎？）
+  reason: StoryData 審查 S0022：格里高爾對以實瑪利（女性）說悄悄話，TW 兩處「你」應寫「妳」。
+  rule: one-off
+- key: StoryData/S105B.json|/dataList/52/content
+  raw: raw-20261112
+  kr_sha: 63198f3d6152785700b6f393197b450af2ea7443b30123f99afe8b408a9e88ee
+  zh: 梅菲的肚子，膨膨。卡戎也砰砰。
+  reason: StoryData 審查 S0023：KR「빵빵」是雙關：「배가 빵빵」是肚子吃得鼓鼓的、飽了，「카론도 빵빵」是按喇叭的叭叭聲（JP 寫「おなか、パンパン。カロンもクラクション、パンパーン」）；TW 兩處都寫「砰砰」，既看不出吃飽，也不像喇叭聲。依 base.md「沒有標記的雙關」，重現不了就各自照字面譯。；「膨膨」是肚子鼓鼓的，「砰砰」解釋為汽車橫衝直撞。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S106B.json|/dataList/7/content
+  raw: raw-20261112
+  kr_sha: 4bbb3801112b37c81751ea414bb62c60f7563395e48206c301e9aa89240a53f3
+  zh: 因為妳一直在往奇怪的方向走啊！麻煩妳好好看看地圖。我們要去的是東南方向……
+  reason: StoryData 審查 S0024：尤莉對卡戎（女性）說話，TW 兩處「你」應寫「妳」。
+  rule: one-off
+- key: StoryData/S107A.json|/dataList/18/content
+  raw: raw-20261112
+  kr_sha: 39af1f4c6174a42266ae8b7c4ee30445abba00a9eef7c8f0b173dd8c57e6158a
+  zh: 喂，既然妳這麼聰明，就去前面先幫忙把路找出來吧。從剛才開始他們就吵得我睡不著覺。
+  reason: StoryData 審查 S0025：希斯克利夫對浮士德（女性）說話，TW「你這麼聰明」應寫「妳」。另外 KR「저 앞에 가서 길부터 찾아주지 그래」是「去前面先把路找出來」，TW 加了 KR 沒有的「那幾個蠢蛋」（KR 只在下一句用「저것들」指那幾個人）。
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/5/content
+  raw: raw-20261112
+  kr_sha: e153836f732f36067ef9f508b540e7dc78ea0d119b56aef90c08e7ffdf4cc93f
+  zh: 再次提醒各位，如果你們死在這裡，即使戰鬥結束也無法復活。
+  reason: StoryData 審查 S0026：「다시 한번」是『再說一次』，TW 寫成「最後一次警告」，並加了KR沒有的『但丁』作為復活者。KR 只說死在這裡即使戰鬥結束也無法復活。（官方EN有 one last time／Dante，但KR、JP均為「再一次」。）
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/55/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/58/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/62/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/70/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/72/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/81/teller
+  raw: raw-20261112
+  kr_sha: 1553b92f3f5302109e6bbf34651c5b2ba06d3b162d434e07419ef8534d77f42f
+  zh: 卑鄙的殘兵
+  reason: StoryData 審查 S0027：KR「야비한 패잔병」是「卑鄙的殘兵」（EN Crooked Veteran），「無禮」意思不對；同檔同一說話者統一為「卑鄙的殘兵」，去掉結尾半形空格
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/71/content
+  raw: raw-20261112
+  kr_sha: 29be3ce022a10c321a8d70c30433204cf4a25a67945d3167f7f19d9b069ac646
+  zh: 啊哈，你應該也上過前線吧。怎麼樣，真正的我看起來比海報上好多了吧？
+  reason: StoryData 審查 S0028：KR「포스터」（JP ポスター）是海報，前面第30行已譯為海報；TW 這裡寫成「傳單」，用詞不一致且不準確。
+  rule: one-off
+- key: StoryData/S111B.json|/dataList/86/content
+  raw: raw-20261112
+  kr_sha: d382316a089d82a55fa94faeb46ef9bb900f9e39c9b06474d399344a7cb09815
+  zh: 哪怕是那些有錢有勢的傢伙也會在人背後捅刀。你最好是別有什麼天真的期待。
+  reason: StoryData 審查 S0029：KR「가진 놈들」指有錢有勢的人（JP 金のある連中）：連有錢人都會背後捅刀。TW 譯成「稍微好點的傢伙」，意思偏離。
+  rule: one-off
+- key: StoryData/1D105A.json|/dataList/19/content
+  raw: raw-20261112
+  kr_sha: e971cad8b1006c9107b456fbc14930dd37b093453e6d0ae916279bd0f61f2d3d
+  zh: ……然後只要在這個空間裡經過一定的時間，卵就會孵化。
+  reason: StoryData 審查 S0284：KR「이 공간에서 일정 시간이 지난다면요」是「在這個空間裡經過一定時間的話」，JP「この空間で一定時間過ぎると」、EN「once enough time has passed here」也都有「在這裡」；現行 TW 只寫「經過一定的時間」，漏了「在這個空間裡」這個條件。
+  rule: one-off
+- key: StoryData/1D203B.json|/dataList/17/content
+  raw: raw-20261112
+  kr_sha: 39dcb0954661afa00e619850645219a82980ac9cabd2127588a6c4739745392d
+  zh: 戰鬥豈能不經苦……呃，嘔！咳咳！
+  reason: StoryData 審查 S0285：KR「고난 없이 어찌 전투를…」是「沒有苦難，要如何戰鬥……」（話被毒氣打斷），JP「苦難無しにどうやって戦えよう」、EN「No battle is fought without adversi―」也是講戰鬥；現行 TW 把後半補成「何以成就英雄」，把「戰鬥」換成了「英雄」。；譯法由使用者決定（話說到一半被毒氣嗆斷）
+  rule: one-off
+- key: StoryData/1D203B.json|/dataList/35/content
+  raw: raw-20261112
+  kr_sha: 8d372d42f7a5debadba60c9dc8dc5a60c86950379d32128dd4349b68bd11fb73
+  zh: 阿雅或許是覺得妳很討喜，因此處處關照著妳……但如今她已經死了，所以誰還會在乎呢。
+  reason: StoryData 審查 S0286：KR「널 귀엽게 봐서 챙겨주려고 했을지는 몰라도」是「阿雅也許是喜歡你、覺得你討喜才想照顧你」，JP「かわいがって」、EN「taken a liking to you」相同；現行 TW 寫成「覺得你很可憐」，把喜愛變成同情。；「귀엽게 보다」譯「討喜」，對尤莉用「妳」，譯法由使用者決定
+  rule: one-off
+- key: StoryData/1D203B.json|/dataList/31/content
+  raw: raw-20261112
+  kr_sha: 005e03704dcf51c748df47a1fb7d7ae12b8f62309777971aa395319182d2b9ca
+  zh: 那我也要問一問妳，尤莉。
+  reason: StoryData 審查 S0286（同段一併修改）：霍普金斯對尤莉（女性）說話，「你」應寫「妳」（guides/base.md）
+  rule: one-off
+- key: StoryData/1D203B.json|/dataList/34/content
+  raw: raw-20261112
+  kr_sha: 1bf4a8682513b7885746b50df3a4dd79789cdad75c9f3804161ce7bebc47c95b
+  zh: 直截了當地說，妳竟然能踏入我們的辦公室，真是令我驚訝。
+  reason: StoryData 審查 S0286（同段一併修改）：霍普金斯對尤莉（女性）說話，「你」應寫「妳」（guides/base.md）
+  rule: one-off
+- key: StoryData/1D203B.json|/dataList/52/content
+  raw: raw-20261112
+  kr_sha: da670a0dbc8dea1a020270ec10985d325d2862819cea53862a01a2bf270e2249
+  zh: 阿雅小姐她，咳。不是想要照顧妳嗎……所以這東西就是妳的了。
+  reason: 'StoryData 審查 S0287：KR「아야 씨가, 쿨럭. 너는 챙겨주려고 했었다면서… 그럼 네 거지.」是「阿雅小姐，咳，（聽說）她想照顧妳不是嗎……那這就是妳的」，承接霍普金斯 #35 的話；JP「お前のこと面倒見てやろうとしてたんだろ」、EN「looked after you, huh」相同。現行 TW「說了叫我多照顧你」變成阿雅託付格里高；格里高爾對尤莉說話，「你」寫「妳」'
+  rule: one-off
+- key: StoryData/1D203B.json|/dataList/65/content
+  raw: raw-20261112
+  kr_sha: c4c7301e467288463abdbec30ab78290b04662750e3e0bed35a3f75f579df5e2
+  zh: 在公司正為了不讓異想體逃進都市而把整棟大樓封鎖起來的情況下？
+  reason: StoryData 審查 S0288：KR「…회사가 통째로 폐쇄되고 있는데?」是反問「公司都在為了不讓異想體跑進都市而整個被封鎖了（我還能怎樣）？」，JP「閉鎖されてるっていうのに？」相同；現行 TW「就算是……的？」句式不通，「就算是」還變成讓步語氣，沒表達出反問。
+  rule: one-off
+- key: StoryData/1D204B.json|/dataList/16/content
+  raw: raw-20261112
+  kr_sha: 18729d2a4dc11d42fb3d2deab05a66a5d6fd6254ed00207d23866256e6affea1
+  zh: 它是逃了出來，然後到處亂殺人的嗎。
+  reason: StoryData 審查 S0289：KR「탈출해서 닥치는 대로 사람을 죽이고 다녔던 건가요.」是對已發生之事的推測「所以它是逃出來，然後見人就殺了嗎」，JP「殺し回ってたんですか」、EN「I guess it escaped and started killing」都是過去；現行 TW「我猜它會出逃，然後開始到處殺人」變成對未來的預測。
+  rule: one-off
+- key: StoryData/1D306A.json|/dataList/61/content
+  raw: raw-20261112
+  kr_sha: c396990c08d0bdec577402d6363c1d04c94d2df9cd917555f37df1af24b12782
+  zh: 我把它給你可不是為了看你落入這種處境的。
+  reason: StoryData 審查 S0290：KR「고작 이런 꼬락서니가 되라고 준 건 아니었는데」是「我給你（那份禮物）可不是為了讓你落到這副德性」，承接上一句「내가 준 선물」；JP「渡したわけじゃなかった」也是「給」。現行 TW「我培養你」照 EN 的 invest 譯，把「給予禮物（手臂）」換成了「培養」。
+  rule: one-off
+- key: StoryData/1D306A.json|/dataList/69/content
+  raw: raw-20261112
+  kr_sha: 3d242f5730fcd1cd02992a965f41d1232de7383151340704c9ef48fb7000634f
+  zh: 迎來黎明。
+  reason: 'StoryData 審查 S0291：KR #68「기나긴…」＋#69「악몽을 꾸고 일어난 새벽처럼.」是「漫長的……就像做了噩夢後醒來的黎明」；現行 TW 已把「從長夜的噩夢之中驚醒」放進 #68，#69 卻寫成「黎明正向你致意」，多出原文沒有的「向你致意」與第二人稱（旁白是但丁自述）。兩行合讀的意象（噩夢醒來、黎明）大致還在。'
+  rule: one-off
+- key: StoryData/1D306I2.json|/dataList/7/content
+  raw: raw-20261112
+  kr_sha: 1c15656e0177064caa4132ce7c12dbf994a9a01f625e6e1f4ad85cad9628cf97
+  zh: ……等回到巴士上後，我能教卡戎……嗎？
+  reason: StoryData 審查 S0292：這行是 1D306B#5「…버스로 돌아가면, 카론한테 지도 보는 법을 알려줘도 될까요?」（回到巴士後，我可以教卡戎看地圖嗎？）的殘缺版：KR 留下「教（알려줘도）」、省掉「看地圖的方法」，JP「カロンに…教えても良いですか」相同。現行 TW「我能……卡戎……看地圖嗎？」反過來留下「看地圖」、丟了「教」，與 KR
+  rule: one-off
