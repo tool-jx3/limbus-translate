@@ -1,0 +1,4447 @@
+[
+ {
+  "ref": "3D304B#0",
+  "key": "StoryData/3D304B.json|/dataList/0/content",
+  "file": "StoryData/3D304B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "싱클레어→辛克萊",
+  "kr": "부모님의 눈을 피해 지하실 열쇠를 몰래 훔친 후, 나는 약속했던 대로 크로머와 만나 지하실로 내려갔다.",
+  "jp": "両親の目を盗んで地下室の鍵をこっそり盗んだ後、⏎僕は約束通りクローマーと会って地下室に降りた。",
+  "en": "After stealing the key without my parents noticing, I took Kromer to the basement of my estate as I had promised.",
+  "tw": "我在背著父母悄悄偷走了地下室的鑰匙之後，就像約好的那樣，我與克羅默會合，將她帶到了地下室。",
+  "first_pass": [
+   {
+    "from": "a02",
+    "category": "A4",
+    "severity": "low",
+    "explain": "KR 是「我與克羅默會面後，一起下到地下室」，下去的是兩人；TW 寫成「將她帶到了地下室」，變成辛克萊帶克羅默去，帶領者弄反（下一句才是克羅默領路）。",
+    "suggest": "我在背著父母悄悄偷走了地下室的鑰匙之後，就像約好的那樣，我與克羅默會合，一起下到了地下室。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "low",
+  "explain": "KR「크로머와 만나 지하실로 내려갔다」是「和克羅默會合後下到地下室」；現行 TW「將她帶到了地下室」與 EN「I took Kromer to the basement」相同。",
+  "suggest": null,
+  "reason": "鑰匙在辛克萊手上、地點是他家，所以由他帶克羅默下去和 KR 不衝突；下一句「克羅默領路」說的是地下室裡的通風管，前後文也說得通，不算錯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "3D308B#16",
+  "key": "StoryData/3D308B.json|/dataList/16/content",
+  "file": "StoryData/3D308B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "싱클레어→辛克萊",
+  "kr": "하지 마…!",
+  "jp": "やめろ…！",
+  "en": "Stop it…!",
+  "tw": "閉嘴……！",
+  "first_pass": [
+   {
+    "from": "a02",
+    "category": "A1",
+    "severity": "low",
+    "explain": "「하지 마…!」是「住手／不要」（JP やめろ、EN Stop it），對應克羅默描述殺戮未來的話；TW 譯成「閉嘴」，語意不同。",
+    "suggest": "不要……！",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「하지 마…!」是「不要……！／住手……！」，JP「やめろ…！」、EN「Stop it…!」。",
+  "suggest": null,
+  "reason": "克羅默正在描述辛克萊殺人的未來，「하지 마」在這裡就是叫她別再說下去，現行 TW「閉嘴……！」是依前後文的意譯，意思相同，只是措辭不同。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "3D309B#6",
+  "key": "StoryData/3D309B.json|/dataList/6/content",
+  "file": "StoryData/3D309B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "파우스트→浮士德",
+  "kr": "싱클레어, 공명하기 시작한 황금가지를 회수하려면…",
+  "jp": "シンクレア、共鳴し始めた黄金の枝を回収するには…。",
+  "en": "Sinclair, the only way to retrieve a Golden Bough that’s begun to resonate is…",
+  "tw": "辛克萊，回收開始共鳴的金枝的唯一方法是……",
+  "first_pass": [
+   {
+    "from": "a02",
+    "category": "A3",
+    "severity": "low",
+    "explain": "KR 句子只到「회수하려면…」（要回收的話……），並沒有說「唯一方法」；TW 加上「的唯一方法是」，多出限定語。",
+    "suggest": "辛克萊，要回收開始共鳴的金枝的話……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "low",
+  "explain": "KR「공명하기 시작한 황금가지를 회수하려면…」是「要回收開始共鳴的金枝的話……」；現行 TW「回收……金枝的唯一方法是……」與 EN「the only way to retrieve…is…」相同。",
+  "suggest": null,
+  "reason": "KR 的「-려면…」本來就引出必要條件（要回收，就得……殺了克羅默），下一句辛克萊立刻回「我知道」，寫成「唯一方法」與前後文一致，只是措辭不同。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "4D304B#6",
+  "key": "StoryData/4D304B.json|/dataList/6/content",
+  "file": "StoryData/4D304B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "구보→仇甫",
+  "kr": "황혼이 될 때 다시 돌아올 테니.",
+  "jp": "黄昏になれば再び戻ってくるであろうに。",
+  "en": "I'll return once twilight arrives.",
+  "tw": "時至黃昏再回來吧。",
+  "first_pass": [
+   {
+    "from": "a02",
+    "category": "A4",
+    "severity": "medium",
+    "explain": "KR「돌아올 테니」是仇甫說「我（黃昏時）會回來」；TW 寫「時至黃昏再回來吧」變成命令李箱回來，主詞與語氣都錯（EN I'll return once twilight arrives）。",
+    "suggest": "待到黃昏，我會再回來。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "medium",
+  "explain": "KR「황혼이 될 때 다시 돌아올 테니.」的「-ㄹ 테니」可以是說話者的意圖，也可以是對他人的推測；JP「黄昏になれば再び戻ってくるであろうに」是推測，EN「I'll return」是第一人稱。",
+  "suggest": null,
+  "reason": "前文 #0「떠나기로 결정했나?」與 #3、#4 說明要離開的是李箱，仇甫在嘲諷「儘管去玩吧，到了黃昏（你）就會回來」，與 JP 一致；初篩照 EN 讀成仇甫自己要回來，是誤讀。現行 TW「時至黃昏再回來吧」與 KR 的意思相符。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "7D107B#4",
+  "key": "StoryData/7D107B.json|/dataList/4/content",
+  "file": "StoryData/7D107B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "로쟈→羅佳",
+  "kr": "뭐, 뭐야? 돈키호테는 공격 안 하는 거 아니었어?",
+  "jp": "な、なに？ドンキホーテは攻撃しないんじゃなかったの？",
+  "en": "H-huh? Why are they attacking Don Quixote?",
+  "tw": "什、什麼？他們不是不會攻擊唐吉訶德的嗎？",
+  "first_pass": [
+   {
+    "from": "a04",
+    "category": "A4",
+    "severity": "medium",
+    "explain": "KR/JP 是「唐吉訶德不是不會攻擊的嗎？」（唐吉訶德主動出手打飛了怪人）；TW 寫成「他們不是不會攻擊唐吉訶德」，主詞受詞對調，且與上文唐吉訶德揮手擊飛對方的情節不符。",
+    "suggest": "什、什麼？唐吉訶德不是不會攻擊的嗎？",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "medium",
+  "explain": "KR「돈키호테는 공격 안 하는 거 아니었어?」的「는」是主題標記，可讀成「（他們）不會攻擊唐吉訶德」，也可讀成「唐吉訶德不攻擊」；EN 寫「Why are they attacking Don Quixote?」，取前一種讀法。前文是一把劍從拐角刺向唐吉訶德（EN aiming straight for Don Quixote），一路上血魔只擋罪人、沒有對她出手，羅佳驚訝「他們不是不會攻擊唐吉訶德嗎」說得通。現行 TW 與 EN 一致。",
+  "suggest": null,
+  "reason": "初篩把 KR 讀成唐吉訶德是攻擊的一方，但 KR 本身有兩種讀法，EN 官方採「有人攻擊唐吉訶德」，前文（劍是衝著唐吉訶德來的）也支持現行譯文。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "7D111I2#121",
+  "key": "StoryData/7D111I2.json|/dataList/121/content",
+  "file": "StoryData/7D111I2.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "…너도 얼른 가족을 만들어야 날 이해할 텐데. 자식이 속 썩이는 기분에 대해서 말이야.",
+  "jp": "…君も早く家族を作れば俺の気持ちが分かるだろう。⏎子供に悩まされる気持ちについてさ。",
+  "en": "... You will understand the pain of dealing with Children when you make Kindreds of your own.",
+  "tw": "……你要是也早點創造出家人就能理解我的心情了吧。子嗣們讓親族煩惱的心情。",
+  "first_pass": [
+   {
+    "from": "a04",
+    "category": "A6",
+    "severity": "low",
+    "explain": "KR「자식이 속 썩이는 기분」是「子嗣讓（父母）操心的心情」，說話者是父親；TW 寫成「子嗣們讓親族煩惱」，어버이誤為親族。",
+    "suggest": "……你要是也早點創造出家人就能理解我的心情了吧。子嗣們讓父親煩惱的心情。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「자식이 속 썩이는 기분」是「被孩子惹得操心的心情」（JP 子供に悩まされる気持ち），KR 這一句沒有「어버이」。現行 TW「子嗣們讓親族煩惱的心情」補出受者「親族」，雖不如「父母」精確，但意思（子嗣讓長輩操心）沒有錯，讀者不會誤解。",
+  "suggest": null,
+  "reason": "初篩說「어버이誤為親族」，但 KR 沒有어버이；改成「父親」也不妥：唐吉訶德是說桑丘將來自己有了家人（當了長輩）就會懂，不是指讓「父親」煩惱。現行措辭只是不夠精確，不算錯譯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "7D112A#55",
+  "key": "StoryData/7D112A.json|/dataList/55/content",
+  "file": "StoryData/7D112A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "체사라→切薩拉",
+  "kr": "P사에 살았던 사람들이라면… 모두가 알 법한 이야기. 오래 전, P사 대표가 만들어낸 특이점. \r",
+  "jp": "P社に住んでいた人々なら…誰もが知っている話。⏎昔、P社の代表が作り出した特異点。",
+  "en": "There's a tale at P Corp. that everyone who's lived here knows. The old, old tale about the Singularity created by P Corp.'s Chief Executive Director.",
+  "tw": "有一個P公司的居民……都知道的故事。曾經，P公司的代表發明出了P公司的奇點。",
+  "first_pass": [
+   {
+    "from": "a04",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR「P사에 살았던 사람들이라면 모두가 알 법한 이야기」是「只要是住過P公司的人，都會知道的故事」；TW 寫成「有一個P公司的居民……都知道的故事」，把條件句誤譯為存在句，意思錯。",
+    "suggest": "住過P公司的人……都會知道的故事。曾經，P公司的代表發明出了P公司的奇點。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR「P사에 살았던 사람들이라면… 모두가 알 법한 이야기」是「住過P公司的人都會知道的故事」，EN「There's a tale at P Corp. that everyone who's lived here knows」。現行 TW「有一個P公司的居民……都知道的故事」就是「有一個P公司居民都知道的故事」，意思與 KR、EN 一致。",
+  "suggest": null,
+  "reason": "把條件句寫成「有一個……都知道的故事」只是句式不同，意思沒變；EN 官方也用存在句。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "8D103B#12",
+  "key": "StoryData/8D103B.json|/dataList/12/content",
+  "file": "StoryData/8D103B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "싱클레어→辛克萊",
+  "kr": "가시춘 씨… 잘 버티고 있으려나요…",
+  "jp": "ジア・シーチュンさん…⏎上手いこと持ちこたえてますかね…。",
+  "en": "Jia Xichun... I wonder if she's doing okay...",
+  "tw": "賈惜春小姐那邊……會順利地撐過去吧……",
+  "first_pass": [
+   {
+    "from": "a05",
+    "category": "A5",
+    "severity": "low",
+    "explain": "KR「잘 버티고 있으려나요」是疑問／擔心「不知她有沒有好好撐住」；TW 寫成肯定推測「會順利地撐過去吧」，語氣與疑慮被弄反。",
+    "suggest": "賈惜春小姐那邊……不知道有沒有好好撐住……",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A5",
+  "severity": "low",
+  "explain": "KR「잘 버티고 있으려나요…」是擔心地猜想「不知她撐不撐得住」（EN I wonder if she's doing okay）；現行 TW「會順利地撐過去吧……」用「吧」和刪節號，是帶著不安的推測，語氣相近；接下來鴻璐安慰辛克萊「她會沒事的」也接得上。",
+  "suggest": null,
+  "reason": "現行譯文不是肯定句，疑慮沒有被弄反；「不知道……」與「……吧」的差別屬措辭。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "8D204B#89",
+  "key": "StoryData/8D204B.json|/dataList/89/content",
+  "file": "StoryData/8D204B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "왕대위→王大韙",
+  "kr": "따라서 이 왕대위, 비록 비극적인 사고로 인해 가주 대전에 참가하진 못했지만…",
+  "jp": "よってこのワン・ダーウェイ、⏎不幸な事故によって家主大戦には参加できなかったけれども…。",
+  "en": "Thus I, Wang Dawei, have allied with another, formerly prospective candidate who, while he could not partake due to certain personal tragedies...",
+  "tw": "因此我王大韙，和另一位因為不幸的事故而無法參加家主爭奪……",
+  "first_pass": [
+   {
+    "from": "a05",
+    "category": "A4",
+    "severity": "medium",
+    "explain": "KR 是王大韙自己「因悲劇性事故無法參加家主爭奪」，卻與另一位熱衷的候選人聯手（JP 同）；TW 寫成「和另一位因為不幸的事故而無法參加」，把事故安到另一位候選人身上，主體錯置，句子也不完整。",
+    "suggest": "因此我王大韙，雖然因為悲劇性的事故而無法參加家主爭奪……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "medium",
+  "explain": "KR 這一行的「비록 비극적인 사고로 인해 가주 대전에 참가하진 못했지만…」與下一行的「누구보다 이 대전을 위해 열의를 바쳤던 다른 후보자와 손을 잡았죠」連成一句：「與另一位雖因悲劇性的事故無法參加家主爭奪，卻比誰都熱衷這場爭奪的候選人聯手」。EN 也是「have allied with another, formerly prospective candidate who, while he could not partake due to certain personal tragedies...」。王大韙自己正在參賽（上文自稱「聰穎候選人」），接著登場的史易華說「余……再度現身了」。現行 TW 與 KR、EN 一致。",
+  "suggest": null,
+  "reason": "初篩把「無法參加」安到王大韙身上，誤讀了跨行的修飾結構；現行 TW 到下一行才完整，是照 KR 的斷行。",
+  "confidence": "high"
+ },
+ {
+  "ref": "8D207A#92",
+  "key": "StoryData/8D207A.json|/dataList/92/content",
+  "file": "StoryData/8D207A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "홍루→鴻璐",
+  "kr": "치우 형님이 보았던 건… 아무것도 남지 않은 건물과 아무것도 말해주지 않는 대관원 사람들, 그리고 그릇된 탐욕을 가졌다는 오명만 남긴 공씨 가의 이야기뿐일 거예요.",
+  "jp": "チォウ兄長が目にしたのは…何も残っていない建物と、何も語ろうとしない大観園の人々、⏎そして歪んだ欲望を抱いたという汚名だけが残されたコン家の物語だけだったのでしょう。",
+  "en": "What welcomed him upon his return were the empty ruins of this building, the silence of the Daguanyuan people, and the tale of the Kong family's disgraceful greed, and how it destroyed them.",
+  "tw": "丘大哥所看見的……只有空無一人的建築物、大觀園閉口不言的人們，以及被蒙上貪婪之名的孔家寓言。",
+  "first_pass": [
+   {
+    "from": "a06",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「이야기」是故事、傳聞（孔家被留下貪婪汙名的事）；TW 譯成「寓言」，意思不同（寓言是帶教訓的虛構故事）。",
+    "suggest": "丘大哥所看見的……只有空無一人的建築物、大觀園閉口不言的人們，以及被蒙上貪婪之名的孔家故事。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「그릇된 탐욕을 가졌다는 오명만 남긴 공씨 가의 이야기」是「只留下『懷有錯誤貪欲』汙名的孔家的故事」（JP コン家の物語、EN the tale of the Kong family's disgraceful greed）；現行 TW「孔家寓言」把這段往事寫成被拿來警示貪婪的故事，與 KR 的意思相通。",
+  "suggest": null,
+  "reason": "「故事／寓言」屬措辭選擇：這段往事在大觀園正是被當成「貪婪的下場」流傳，「寓言」不會讓讀者誤解劇情。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "8D209A#136",
+  "key": "StoryData/8D209A.json|/dataList/136/content",
+  "file": "StoryData/8D209A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "가치우→賈丘",
+  "kr": "구름이 밟으면 나무와 땅, 그 어느 것이든 아파하지 않지.",
+  "jp": "雲が踏めど⏎木も大地も、どちらも痛がりはしないのだ。",
+  "en": "Yes, clouds do not bring suffering to trees, to earth, or to anything—it is not a force that tramples.",
+  "tw": "即使被雲踩踏，無論是樹木還是大地都不會感到疼痛。",
+  "first_pass": [
+   {
+    "from": "a06",
+    "category": "A4",
+    "severity": "medium",
+    "explain": "KR「구름이 밟으면 나무와 땅…아파하지 않지」主詞是雲，雲踩踏下去時樹木與大地不會痛；TW「被雲踩踏」把主詞受詞顛倒。",
+    "suggest": "即使雲踩踏下去，無論是樹木還是大地都不會感到疼痛。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "medium",
+  "explain": "KR「구름이 밟으면 나무와 땅, 그 어느 것이든 아파하지 않지」是「雲踩下去，樹木和大地都不會痛」（JP 雲が踏めど木も大地も、どちらも痛がりはしない）；現行 TW「即使被雲踩踏，無論是樹木還是大地都不會感到疼痛」用被動句，「被雲踩踏」的施事者仍是雲、受事者是樹木與大地，意思與 KR 相同。",
+  "suggest": null,
+  "reason": "初篩把被動句誤當成主受詞顛倒；現行譯文沒有錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E001X#191",
+  "key": "StoryData/E001X.json|/dataList/191/content",
+  "file": "StoryData/E001X.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "그레고르→格里高爾",
+  "kr": "이제 어쩌시게요, 오티스 씨. 관리자님 목이라도 벨 건가요?",
+  "jp": "で、どうするんですか、ウーティスさん。⏎管理人さんの首でも刎ねるつもりですか？",
+  "en": "What now, Outis? Are you going to cut off your Executive Manager's head?",
+  "tw": "現在怎麼辦呢，奧提斯小姐。要砍掉你的執行經理的頭嗎？",
+  "first_pass": [
+   {
+    "from": "a06",
+    "category": "A4",
+    "severity": "low",
+    "explain": "KR「관리자님 목이라도 벨 건가요?」是砍經理（但丁）的頭；TW 寫成「你的執行經理的頭」，多出「你的」，指涉變得奇怪。",
+    "suggest": "現在怎麼辦呢，奧提斯小姐。要砍掉經理的頭嗎？",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "low",
+  "explain": "KR「관리자님 목이라도 벨 건가요?」是「要砍經理的頭嗎」；現行 TW「你的執行經理的頭」多了「你的」，但 EN 也寫 your Executive Manager's head，指的仍是但丁，用來揶揄對經理特別忠心的奧提斯也說得通，沒有指涉錯誤。",
+  "suggest": null,
+  "reason": "「你的」是承自 EN 的措辭，不改變所指；本檔的「관리자」都譯「執行經理」（上文「執、執行經理您嗎？！」），用語一致。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E041X#17",
+  "key": "StoryData/E041X.json|/dataList/17/content",
+  "file": "StoryData/E041X.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "…이상이 놀라울 정도로 뱃멀미에 약하다는 것만 빼면.",
+  "jp": "…イサンがびっくりするくらい船酔いに弱いということだけを除けば。",
+  "en": "Except for Yi Sang, who had a surprisingly low tolerance for seasickness...",
+  "tw": "……除了李箱，他意外地容易暈船。",
+  "first_pass": [
+   {
+    "from": "a07",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 是「除了李箱意外地容易暈船這點以外（航行很平和）」；TW「除了李箱，他意外地容易暈船」把李箱排除在句外，語意錯亂。",
+    "suggest": "……除了李箱意外地容易暈船這點以外。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「…이상이 놀라울 정도로 뱃멀미에 약하다는 것만 빼면.」接下一行「이 항해는 제법 평화로웠다」，意思是「除了李箱意外地容易暈船以外，這次航行還算平和」。",
+  "suggest": null,
+  "reason": "現行 TW「……除了李箱，他意外地容易暈船。」＋下一行「這次航行到現在還算平和。」與 EN「Except for Yi Sang, who had a surprisingly low tolerance for seasickness...」結構相同，「他」就是李箱，資訊沒有缺漏也沒有錯，只是句子切成兩行，屬於措辭問題。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E063X#35",
+  "key": "StoryData/E063X.json|/dataList/35/content",
+  "file": "StoryData/E063X.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "단테→但丁",
+  "kr": "<T사에서 나한테 물어봤잖아. 만약 그때 소냐를…>",
+  "jp": "<T社で私に聞いてきたよね。もしあのときソーニャを…。>",
+  "en": "<I'm talking about the time you asked me about Sonya. About what would've happened if you—>",
+  "tw": "<你在T公司的時候不是問過我嗎？如果當時你跟著索尼亞……>",
+  "first_pass": [
+   {
+    "from": "a08",
+    "category": "A3",
+    "severity": "low",
+    "explain": "KR 只說「如果當時（把）索尼亞……」，句子被打斷，並無「你跟著」。TW 自行加入「你跟著索尼亞」，把受詞「소냐를」改成了跟隨的對象。",
+    "suggest": "你在T公司的時候不是問過我嗎？如果當時索尼亞……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "low",
+  "explain": "KR「T사에서 나한테 물어봤잖아. 만약 그때 소냐를…」說到一半被打斷，被省略的動詞是羅佳在 T 公司問的那句話。",
+  "suggest": null,
+  "reason": "羅佳在 T 公司問的是「내가 만약… 그때 카지노에서 소냐를 따라갔다면…」（E611B#44，現行譯「如果我……當時在賭場跟著索尼亞一起走的話……」），所以「如果當時你跟著索尼亞……」補出的正是原本的問題，意思正確。初篩的改法「如果當時索尼亞……」反而把索尼亞變成主詞，也漏了但丁台詞的 <>。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E070X#51",
+  "key": "StoryData/E070X.json|/dataList/51/content",
+  "file": "StoryData/E070X.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "파우스트→浮士德",
+  "kr": "방향성이 조금 다르군요. 이들은 도시에서 살아가는 자신을 톱니바퀴로 여기고…",
+  "jp": "方向性が少し違うようですね。⏎彼らは都市で生きる自分を歯車とみなしていて…。",
+  "en": "Not exactly. They consider themselves to be, as denizens of the City, nothing more than 'gears'.",
+  "tw": "方向上有點錯誤。他們將生活在都市中的自己視作齒輪……",
+  "first_pass": [
+   {
+    "from": "a08",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「방향성이 조금 다르군요」是「方向有點不同」（浮士德修正羅佳的猜測），並非「錯誤」。TW 寫成「方向上有點錯誤」語意偏重，且與下文她接著補充說明不一致。",
+    "suggest": "方向有點不同。他們將生活在都市中的自己視作齒輪……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「방향성이 조금 다르군요」是「方向有點不同」，浮士德在修正羅佳「是崇拜齒輪嗎」的猜測，EN「Not exactly.」。",
+  "suggest": null,
+  "reason": "現行 TW「方向上有點錯誤」同樣表達「你猜的方向不太對」，接著補充說明，前後文說得通；「不同」與「錯誤」只是措辭輕重之別，屬於風格偏好。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E070X#57",
+  "key": "StoryData/E070X.json|/dataList/57/content",
+  "file": "StoryData/E070X.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "파우스트→浮士德",
+  "kr": "다만, 고기 톱니라는 평신도들이 생각 톱니라 불리우는 ‘인체로 구성된 톱니바퀴’를 추앙하며 스스로 뇌를 헤집는 것은…",
+  "jp": "ただ、肉の歯車と呼ばれる平信者たちが、考えの歯車という⏎「人体で構成された歯車」を崇拝しながら自ら脳を抉るのは―",
+  "en": "However, do understand that the laity of this religion, dubbed 'Meat Gears', install their objects of worship known as 'Thought Gears', gears made from humans, into their own brains. And—",
+  "tw": "然而，那些被稱為肉之齒輪的普通信徒們，崇拜著被稱作思想齒輪的「由人體製成的齒輪」，並將它們裝進自己的大腦中……",
+  "first_pass": [
+   {
+    "from": "a08",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR「스스로 뇌를 헤집는」（JP 自ら脳を抉る）是自己翻攪／剜挖自己的大腦，並非把齒輪「裝進」大腦。TW 寫成「將它們裝進自己的大腦中」，動作與對象都不同，也與 E071X 描寫腦漿與碎片流出的場面不合。",
+    "suggest": "然而，那些被稱為肉之齒輪的普通信徒們，崇拜著被稱作思想齒輪的「由人體製成的齒輪」，並親手翻攪自己的大腦……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR「스스로 뇌를 헤집는 것은…」字面是「親手翻攪自己的大腦」，JP「自ら脳を抉る」；EN 寫成把思想齒輪裝進自己的大腦。",
+  "suggest": null,
+  "reason": "依設定，齒輪教團的「思想齒輪」就是裝在信徒腦內的齒輪（limbuscompany.wiki.gg「The Church of Gears」：the cogs worn and lodged inside their members），信徒翻攪大腦正是為了裝入齒輪。現行 TW「將它們裝進自己的大腦中」與設定一致，讀者理解的事實不會錯，只是沒有照字面寫出「翻攪」。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E301B#8",
+  "key": "StoryData/E301B.json|/dataList/8/content",
+  "file": "StoryData/E301B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "???→???",
+  "kr": "보살 치킨이란 다리 6개, 날개가 8개 달린, 맛도 양도 보살이라고 명성이 자자한 치킨 가게죠.",
+  "jp": "菩薩チキンとは脚が6つ、翼が8つ生えた、味も量も菩薩と評判のチキン屋です。",
+  "en": "Bodhisattva Chicken is a highly renowned restaurant known for its six-legged, eight-winged poultry whose blissful tastes and gracious quantities really make you feel great compassion.",
+  "tw": "菩薩雞，是一家以長著六爪八翼的雞肉為招牌、不論味道還是份量都堪稱菩薩在世的炸雞店。",
+  "first_pass": [
+   {
+    "from": "a09",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR/JP/EN 皆為『다리 6개』（六條腿，EN six-legged），TW 譯成『六爪』，爪與腿不同。",
+    "suggest": "菩薩雞，是一家以長著六條腿、八隻翅膀的雞肉為招牌、不論味道還是份量都堪稱菩薩在世的炸雞店。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「다리 6개, 날개가 8개」是六條腿、八隻翅膀。",
+  "suggest": null,
+  "reason": "中文說雞的腳本來就用「爪」（雞爪），「六爪八翼」表達的就是六條腿、八隻翅膀，數量與意思都正確，只是措辭不同。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E302B#53",
+  "key": "StoryData/E302B.json|/dataList/53/content",
+  "file": "StoryData/E302B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "뫼르소→莫梭",
+  "kr": "…타격 소리가 적군의 포로를 심문할 때의 세기와 유사했다.",
+  "jp": "…打撃音は、敵の捕虜を尋問するときと同じくらい力強かった。",
+  "en": "…The sound of the impacts was comparable to when she was interrogating a captive enemy.",
+  "tw": "……這動靜稱得上審問敵軍俘虜了。",
+  "first_pass": [
+   {
+    "from": "a09",
+    "category": "A2",
+    "severity": "low",
+    "explain": "KR：打擊聲的力道與審問敵軍俘虜時相近（유사했다）。TW『這動靜稱得上審問敵軍俘虜了』漏掉『力道』與『相近』的比較。",
+    "suggest": "……打擊聲的力道，與審問敵軍俘虜時相近。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A2",
+  "severity": "low",
+  "explain": "KR「타격 소리가 적군의 포로를 심문할 때의 세기와 유사했다」是「打擊聲的力道與審問敵軍俘虜時相近」。",
+  "suggest": null,
+  "reason": "現行 TW「這動靜稱得上審問敵軍俘虜了」同樣是拿審問俘虜來比喻打擊的力道，「動靜」就是打擊聲，比較的意思沒有漏掉，只是措辭較口語，屬於風格偏好。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E304A#39",
+  "key": "StoryData/E304A.json|/dataList/39/content",
+  "file": "StoryData/E304A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "자기 차례가 되기 전, 홍루가 잽싸게 박수를 치며 주위를 환기시켰다.",
+  "jp": "自分の番になる前に、ホンルが素早く拍手をしながら空気を入れ換えた。",
+  "en": "Hong Lu swiftly made a suggestion with a shower of claps to break the frigid tension before his turn to be condemned came around.",
+  "tw": "鴻璐在批判輪到自己之前，拍了拍手迅速轉換了話題。",
+  "first_pass": [
+   {
+    "from": "a09",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR：在輪到自己（被評論）之前，鴻璐迅速拍手轉移大家的注意。TW『在批判輪到自己之前』文字破碎，且『批判』原文沒有，後半的『拍手轉換話題』雖對，但前半語意不清。",
+    "suggest": "在輪到自己之前，鴻璐迅速拍手，轉移了大家的注意。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「자기 차례가 되기 전, 홍루가 잽싸게 박수를 치며 주위를 환기시켰다」是「在輪到自己之前，鴻璐迅速拍手，轉換了氣氛」。",
+  "suggest": null,
+  "reason": "前文（E304A#29–#37）是莫梭依序批評每個人做的料理，「輪到自己」指的正是輪到鴻璐被批評，EN 也寫「before his turn to be condemned」。現行 TW「在批判輪到自己之前」把這層意思寫明，語句通順，意思正確。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E306B#3",
+  "key": "StoryData/E306B.json|/dataList/3/content",
+  "file": "StoryData/E306B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "보살 치킨 사장→菩薩雞 經理",
+  "kr": "후… 찾아내기 힘들었어. 특급 비밀 레시피라고 해서 매우 철저하게 숨겨져 있을 줄 알았는데 라면 받침대로 쓰이고 있었을 줄이야…!",
+  "jp": "ふぅ…見つけるのが大変だったな。トップシークレットのレシピっていうから、⏎徹底的に隠されていると思ったのにラーメンストッパーに使われていたとは…！",
+  "en": "Phew… I’ve finally found it. I thought he’d keep his top-secret recipe locked up tight and away, but he was using it as a trivet to eat ramen…!",
+  "tw": "呼……終於找到了。我原以為他會把他的絕密食譜藏得很好，沒想到他居然拿這東西當泡麵蓋用……！",
+  "first_pass": [
+   {
+    "from": "a09",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「라면 받침대」是放鍋子的泡麵墊（받침대），TW『泡麵蓋』不同；另『他會把他的絕密食譜藏得很好』主詞可保留。",
+    "suggest": "呼……找得真辛苦。我還以為既然是特級機密食譜，一定藏得非常嚴密，沒想到居然被拿來當泡麵的墊子用……！",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「라면 받침대로 쓰이고 있었을 줄이야」是「沒想到被拿來墊泡麵鍋」，這是韓國把書本拿去墊泡麵的常見笑梗。",
+  "suggest": null,
+  "reason": "中文網路對應的笑梗是把書拿來「蓋泡麵」，現行 TW「拿這東西當泡麵蓋用」是在地化的同類說法，「重要的東西被當成吃泡麵的雜物」這個笑點與意思都保留了，不算錯譯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E404B#36",
+  "key": "StoryData/E404B.json|/dataList/36/content",
+  "file": "StoryData/E404B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "이스마엘→以實瑪利",
+  "kr": "순서를 바꿔서, 다른 지부의 황금 가지를 해결하자고요.",
+  "jp": "順番を変えて、他の支部の黄金の枝から回収しようって。",
+  "en": "Tell him that we have to collect the Golden Boughs of other branches first.",
+  "tw": "讓他更改順序，先去收集其他分部的金枝。",
+  "first_pass": [
+   {
+    "from": "a10",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 說「다른 지부의 황금 가지를 해결하자」，意思是先「解決（處理）」其他分部的金枝；TW 寫成「收集」，把處理金枝改成蒐集物品，詞義與前後文（解決金枝）不符。",
+    "suggest": "讓他更改順序，先去解決其他分部的金枝。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「다른 지부의 황금 가지를 해결하자」中「해결」指處理（取得）其他分部的金枝。",
+  "suggest": null,
+  "reason": "JP「他の支部の黄金の枝から回収しよう」、EN「collect the Golden Boughs」都是回收；處理金枝的實際內容就是取回金枝，現行 TW「收集」意思正確。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E407A#2",
+  "key": "StoryData/E407A.json|/dataList/2/content",
+  "file": "StoryData/E407A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "W사의 워프 열차가 고장나는 일을 한 번 겪고 나니, 차라리 차량을 통해 움직이는 게 나을 것 같다는 생각이 들었다는 듯 하다.",
+  "jp": "W社のワープ列車が故障する事故を一度経験したので、⏎いっそ車で移動する方がマシだという考えになったらしい。",
+  "en": "After experiencing a WARP train malfunction, they apparently decided they'd rather take the car.",
+  "tw": "顯然，在經歷過一次WARP列車拋錨事故之後，他們更願意選擇乘坐汽車出行。",
+  "first_pass": [
+   {
+    "from": "a10",
+    "category": "A2",
+    "severity": "low",
+    "explain": "KR「W사의 워프 열차」有公司名 W社；TW 只寫「WARP列車」，漏掉「W公司」。",
+    "suggest": "顯然，在經歷過一次W公司的WARP列車拋錨事故之後，他們更願意選擇乘坐汽車出行。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A2",
+  "severity": "low",
+  "explain": "KR「W사의 워프 열차」有公司名「W公司」，現行 TW 只寫「WARP列車」。",
+  "suggest": null,
+  "reason": "WARP列車本身就是W公司的列車，前文也一再提到，省略公司名不會讓讀者誤會，EN 也省略了；屬於措辭選擇。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E506A#10",
+  "key": "StoryData/E506A.json|/dataList/10/content",
+  "file": "StoryData/E506A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "로쟈→羅佳",
+  "kr": "하아, 뭐든지 사람을 갖고 해결하는 건 외곽이나 도시나 똑같네.",
+  "jp": "はぁ、何にでも人間を使って解決するのは外郭も都市もおんなじかぁ。",
+  "en": "Haah... more stuff made from human sacrifice? I guess the Outskirts isn't so different from the City, huh?",
+  "tw": "哈，看來郊區和都市一樣，都是以人為本來解決一切問題。",
+  "first_pass": [
+   {
+    "from": "a10",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR 是諷刺「什麼事都拿人來解決（當材料）」；TW「以人為本」是褒義詞，語意被扭轉。",
+    "suggest": "哈，看來不管是郊區還是都市，什麼事都拿人來解決這點都一樣。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR「뭐든지 사람을 갖고 해결하는 건 외곽이나 도시나 똑같네」是諷刺什麼事都拿人來解決（剛看到用人做的禮物）。現行 TW「都是以人為本來解決一切問題」把褒義口號反過來用，字面就是「拿人當根本（材料）」，緊接在「人．造．物」「用人類製造的禮物」之後，讀者讀得出是黑色幽默。",
+  "suggest": null,
+  "reason": "「以人為本」在這裡是刻意的反諷雙關，意思（拿人當材料解決問題）與 KR 一致，語氣也是羅佳的挖苦；屬於措辭選擇，不算錯譯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E603B#96",
+  "key": "StoryData/E603B.json|/dataList/96/content",
+  "file": "StoryData/E603B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "직원?→員工？",
+  "kr": "이런 이런 이런… 100억 4천만 안을 한 번에 뽑아내는 건 역시 어려웠나 봐. 여기 보여? 측정 불가라고 나오잖아. 이런 경우는 거의 없었는데.",
+  "jp": "これはこれはこれは…100億4000万<ruby=眼>アン</ruby>を一度に⏎抜き取るのはやっぱり難しかったみたいだ。見えるか？⏎測定不可って出てるだろ。こんなことはほとんど無かったんだけどな。",
+  "en": "My, my, my! Sucking ten billion and forty million Ahn’s worth of time from your friend was too much, I suppose. Look, it says “measurement error”. That rarely ever happens.",
+  "tw": "哎呀哎呀哎呀……看來一次性抽取你朋友100億4000萬眼的時間確實太難了。看到了嗎？它顯示「測量錯誤」。這種情況幾乎沒出現過。",
+  "first_pass": [
+   {
+    "from": "a12",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 說畫面顯示「측정 불가」（無法測量），TW 寫成「測量錯誤」，語意變成儀器出錯而非無法測量。",
+    "suggest": "哎呀哎呀哎呀……看來一次性抽取你朋友100億4000萬眼的時間確實太難了。看到了嗎？它顯示「無法測量」。這種情況幾乎沒出現過。",
+    "confidence": "medium"
+   },
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 4，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": "low",
+  "explain": "KR「100억 4천만 안」＝100億4000萬眼。",
+  "suggest": null,
+  "reason": "「4천만」是4000萬，TW「100億4000萬眼」數字正確；腳本誤報。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E606B#15",
+  "key": "StoryData/E606B.json|/dataList/15/content",
+  "file": "StoryData/E606B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "2등급 징수직 직원→2級徵收人員",
+  "kr": "유로지비를 말씀하시는 겁니까?",
+  "jp": "ユロージヴィのことでしょうか？",
+  "en": "Perhaps you are looking for the Yurodiviye?",
+  "tw": "你們是在找聖愚嗎？",
+  "first_pass": [
+   {
+    "from": "a12",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 是確認「你是指聖愚嗎？」（對前一句「對巢不滿的人」的回應），TW 寫成「你們是在找聖愚嗎」，加入「尋找」的意思。",
+    "suggest": "你們說的是聖愚嗎？",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「유로지비를 말씀하시는 겁니까?」是「您說的是聖愚嗎？」，接在他們打聽「對巢不滿的人」之後；現行 TW「你們是在找聖愚嗎？」照 EN「looking for」寫成「在找」。",
+  "suggest": null,
+  "reason": "他們正是在打聽這種團體，「在找」與「說的是」都是在確認對方指的是聖愚，讀者理解不會有差，屬於措辭不同。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E614B#31",
+  "key": "StoryData/E614B.json|/dataList/31/content",
+  "file": "StoryData/E614B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "로쟈→羅佳",
+  "kr": "정말 진심으로… 말한 건 아니었겠지?",
+  "jp": "本当に本気で…言ったわけじゃないよね？",
+  "en": "He... he didn't mean that, did he?",
+  "tw": "他不是……真心這麼說的吧？",
+  "first_pass": [
+   {
+    "from": "a12",
+    "category": "A7",
+    "severity": "low",
+    "explain": "此句問的是鴻璐（女性，TW 其他處稱「妳」「她」）是否真心，TW 用「他」，性別代詞錯。",
+    "suggest": "她不是……真心這麼說的吧？",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A7",
+  "severity": "low",
+  "explain": "KR 沒有代名詞，問的是剛說「請拿走吧」的鴻璐；EN 也寫「He... he didn't mean that」。",
+  "suggest": null,
+  "reason": "初篩誤以為鴻璐是女性。鴻璐是男性（guides/characters/honglu.md: gender: male），現行 TW「他」正確；文中的「妳」「她」是鴻璐稱呼良秀、羅佳時用的。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E706B#62",
+  "key": "StoryData/E706B.json|/dataList/62/content",
+  "file": "StoryData/E706B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "싱클레어→辛克萊",
+  "kr": "거기에 분노를 표출하는 것엔… 아무런 의미가 없다는 것을… 비록 히스클리프 씨의 발을 몰래 밟아야 했을 때 조금 기쁘긴 했지만…",
+  "jp": "そこに怒りをぶつけるのは…まったく意味が無いってことを…。⏎まあヒースクリフさんの足をこっそり踏んづけたときは、⏎ちょっとだけ楽しかったですけど…。",
+  "en": "… expressing my anger at that is meaningless at the end of the day. … Okay, I did enjoy it a little when I had to ‘accidentally’ step on Heathcliff’s toes, but…",
+  "tw": "對那種事表達憤怒……是完全沒有意義的……雖然「不小心」踩了希斯克利夫先生的腳時，我確實有點開心……",
+  "first_pass": [
+   {
+    "from": "a14",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 是「不得不偷偷踩希斯克利夫的腳時」（몰래，JP こっそり），即刻意偷偷為之；TW 寫成「『不小心』踩」，把刻意改成失誤，且 KR 並無引號反語。",
+    "suggest": "對那種事表達憤怒……是完全沒有意義的……雖然偷偷踩希斯克利夫先生的腳時，我確實有點開心……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「히스클리프 씨의 발을 몰래 밟아야 했을 때」是「（不得不）偷偷踩希斯克利夫先生的腳時」；現行 TW 寫「『不小心』踩了」，引號表示假裝不小心、其實故意（EN「‘accidentally’ step on」同一寫法）。",
+  "suggest": null,
+  "reason": "加了引號的「不小心」是反語，表達的正是偷偷故意踩，與 KR「몰래」意思一致，初篩誤以為譯成了失誤，屬於措辭不同。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E709B#2",
+  "key": "StoryData/E709B.json|/dataList/2/content",
+  "file": "StoryData/E709B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "료슈→良秀",
+  "kr": "교. 희.",
+  "jp": "交・希。",
+  "en": "S.T.",
+  "tw": "希．換。",
+  "first_pass": [
+   {
+    "from": "a14",
+    "category": "A9",
+    "severity": "low",
+    "explain": "KR 是把「교체（交替）」「희망（希望）」依序拆成「교．희」（JP：交・希），下一句辛克萊再解釋；TW 寫成「希．換」順序顛倒，與後面『希望換個人』的拆字順序不符。",
+    "suggest": "換．希。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A9",
+  "severity": "low",
+  "explain": "KR「교. 희.」是「교체 희망（希望交換）」的縮略，下一行辛克萊解釋；現行 TW「希．換」對應的正是 TW 辛克萊那句「她說希望換個人」。",
+  "suggest": null,
+  "reason": "良秀縮略語的規則是「先譯出完整意思，每個詞取一個代表字，可照中文語序」（guides/characters/ryoshu.md）。中文是「希望換人」，取「希．換」順序正確，也和下一句的解釋一致；初篩要求照韓文語序改成「換．希」，反而對不上中文解釋。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E711B#94",
+  "key": "StoryData/E711B.json|/dataList/94/content",
+  "file": "StoryData/E711B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "오티스→奧提斯",
+  "kr": "제길… 관리자님의 말씀을 뭘로 들은 거냐! 모든 갈증이 몰려드는데 여기 있는 혈액 샘플 몇 개로 해결될 리가…",
+  "jp": "クソッ…管理人様の話を聞いてはいたのか！⏎全ての渇きが押し寄せてきているというのに、⏎たかが血液サンプル数個で解決するわけが―",
+  "en": "Dammit, have you been listening to what the Executive Manager’s been saying?! It’s the <i>combined</i> thirst of every single Kindred! A few blood samples aren't going to do anything…!",
+  "tw": "該死……你把執行經理的話當耳邊風了嗎！所有的乾渴都湧上來了，就憑這裡的幾個血液樣本怎麼可能解決……",
+  "first_pass": [
+   {
+    "from": "a15",
+    "category": "A6",
+    "severity": "low",
+    "explain": "KR 是「관리자님」，詞彙表（glossary/terms.yaml）「관리자」預設譯「經理」；TW 寫成「執行經理」，多出「執行」且與全劇其他處不一致。",
+    "suggest": "該死……你把經理的話當耳邊風了嗎！所有的乾渴都湧上來了，就憑這裡的幾個血液樣本怎麼可能解決……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「관리자님의 말씀」指但丁剛才說的話（上文但丁說要平息所有眷屬的乾渴）；TW「執行經理」是但丁的全稱，EN 本行也是「the Executive Manager」，指涉與意思都正確。",
+  "suggest": null,
+  "reason": "KR「관리자님」指但丁，本行 EN 也寫「Executive Manager」；「執行經理」是但丁的正式職稱（詞彙表「관리자」的 meaning 也寫明是 LCB 部門的執行經理），指涉正確、意思不變。guides/characters/outis.md 記錄奧提斯稱但丁的「관리자님」既有譯文「經理」148 行、「執行經理」36 行，兩者並用；詞彙表這一條不是 check: hard。屬措辭差異，不算錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E718B#19",
+  "key": "StoryData/E718B.json|/dataList/19/content",
+  "file": "StoryData/E718B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "성대하게 준비하겠네! 반짝반짝 폭죽도 잔뜩! 그리고 맛있는 것도…",
+  "jp": "盛大に準備しようぞ！キラキラのクラッカーもどっさり！⏎それに美味しい食べ物も…。",
+  "en": "Forsooth, the grandiosity of this banquet shall be one for the books! Fireworks most brilliant! Enough delicacies to—",
+  "tw": "來隆重準備吧！還會有閃閃亮亮的彩帶放個不停！以及許多珍饈美味……",
+  "first_pass": [
+   {
+    "from": "a15",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「폭죽」是爆竹、煙火，TW 譯成「彩帶」（streamers），是另一種東西；「放個不停」也只適用爆竹。",
+    "suggest": "來隆重準備吧！還會有閃閃亮亮的爆竹放個不停！以及許多珍饈美味……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「반짝반짝 폭죽도 잔뜩」；TW「閃閃亮亮的彩帶放個不停」。",
+  "suggest": null,
+  "reason": "KR「폭죽」可指爆竹煙火，也可指派對拉炮；JP 官方譯「キラキラのクラッカー」（拉炮，拉開會噴出彩帶），TW 依的是這個理解。兩者都是慶祝用的熱鬧道具，不影響理解，屬措辭差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E719A#13",
+  "key": "StoryData/E719A.json|/dataList/13/content",
+  "file": "StoryData/E719A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "오티스→奧提斯",
+  "kr": "역시. 관리자님다운 정확한 통찰이십니다.",
+  "jp": "さすが。管理人様らしい正確な洞察でいらっしゃいますね。",
+  "en": "A highly accurate assessment of the situation by the Executive Manager. I expected no less from someone of your genius.",
+  "tw": "不愧是您。真是和執行經理相稱的準確洞察。",
+  "first_pass": [
+   {
+    "from": "a15",
+    "category": "A6",
+    "severity": "low",
+    "explain": "KR「관리자님」詞彙表預設譯「經理」，TW 寫成「執行經理」，多出「執行」，與全篇其他處不一致。",
+    "suggest": "不愧是您。真是與經理相稱的準確洞察。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「관리자님다운 정확한 통찰」是奧提斯稱讚但丁；TW「執行經理」是但丁的全稱，EN 本行也寫「by the Executive Manager」，指涉與意思都正確。",
+  "suggest": null,
+  "reason": "KR「관리자님」指但丁，本行 EN 也寫「Executive Manager」；「執行經理」是但丁的正式職稱（詞彙表「관리자」的 meaning 也寫明是 LCB 部門的執行經理），指涉正確、意思不變。guides/characters/outis.md 記錄奧提斯稱但丁的「관리자님」既有譯文「經理」148 行、「執行經理」36 行，兩者並用；詞彙表這一條不是 check: hard。屬措辭差異，不算錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E719B#83",
+  "key": "StoryData/E719B.json|/dataList/83/content",
+  "file": "StoryData/E719B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "삼삼→杉三",
+  "kr": "하! 꼴에 명문 출신이라고, 몇 번 경험한 적은 있는 모양이다만…",
+  "jp": "ハッ！さすが名家出身ともなると、⏎数回くらいは経験があるみたいだが…。",
+  "en": "Hah! So the rich boy’s dabbled in some duels, has he? It’s—",
+  "tw": "哈！不愧是名門家庭出身，已經有過幾次經驗了啊……",
+  "first_pass": [
+   {
+    "from": "a15",
+    "category": "A7",
+    "severity": "low",
+    "explain": "KR「꼴에 명문 출신이라고」是帶輕蔑的語氣（就憑你也算名門出身），是諷刺。TW「不愧是名門家庭出身」變成稱讚，語氣相反。",
+    "suggest": "哈！還以為自己是名門出身，看來是有過幾次經驗的樣子……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A7",
+  "severity": "low",
+  "explain": "KR「꼴에 명문 출신이라고」帶輕蔑（就憑你也算名門出身）；TW「哈！不愧是名門家庭出身」。",
+  "suggest": null,
+  "reason": "「꼴에」確有輕蔑語氣，但 JP 官方也譯「さすが名家出身ともなると」；TW 的「哈！不愧是……」是常見的反諷用法，配上後半「已經有過幾次經驗了啊」，嘲弄語氣讀得出來，意思沒錯，屬措辭差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E721B#50",
+  "key": "StoryData/E721B.json|/dataList/50/content",
+  "file": "StoryData/E721B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "료슈→良秀",
+  "kr": "목. 죽. 덜 떨어진 것.",
+  "jp": "息・殺。間抜け。",
+  "en": "S.U. Idiot.",
+  "tw": "屏．吸。蠢貨。",
+  "first_pass": [
+   {
+    "from": "a15",
+    "category": "A1",
+    "severity": "low",
+    "explain": "這是良秀以暗號般的單字指示「屏息」（JP「息・殺」，EN「S.U.」）。TW 寫成「屏．吸」，「吸」與屏息的意思相反／不通，應為「息」。",
+    "suggest": "屏．息。蠢貨。",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「목. 죽.」是良秀的縮略語，＝목소리 죽여（壓低聲音），JP「息・殺」、EN「S.U.」；TW「屏．吸」。",
+  "suggest": null,
+  "reason": "依 guides/characters/ryoshu.md「先譯出完整意思，每個詞取一個代表字」，「屏．吸」是「屏住呼吸」各取一字，意思是要希斯克利夫別出聲，並非與屏息相反；改成「屏．息」只是另一種縮法，不是錯誤。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E722A#97",
+  "key": "StoryData/E722A.json|/dataList/97/content",
+  "file": "StoryData/E722A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "시춘? 군?! 우, 우리 저~기 휴게실이라도 가서 잠시 그간 못 나눴던 이야기라도…",
+  "jp": "シーチュン？君！？わ、我々あ～っちの休憩室に行って、⏎少しの間、今まで話せなかったことでも…。",
+  "en": "Young Xi-chun? W-well, wouldst thou accompany me to the lounge but a moment, so that we may share a moment of 'catching-up'...?",
+  "tw": "惜春？啊？！吾、吾等去那～邊的休息室，稍微聊下至今未能談論之事吧……",
+  "first_pass": [
+   {
+    "from": "a16",
+    "category": "A2",
+    "severity": "low",
+    "explain": "KR 的「시춘? 군?!」是唐吉訶德稱呼惜春為「惜春君」，JP 為「シーチュン？君！？」；TW 把「군」譯成語氣詞「啊」，漏掉了稱謂「君」。",
+    "suggest": "惜春？君？！吾、吾等去那～邊的休息室，稍微聊下至今未能談論之事吧……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A2",
+  "severity": "low",
+  "explain": "KR「시춘? 군?!」是唐吉訶德慌張地叫惜春、又補上「~군」；TW「惜春？啊？！」。",
+  "suggest": null,
+  "reason": "guides/characters/donquixote.md 規定唐吉訶德的「~군」只對浮士德譯「小姐」，對其他人直呼名字；她稱惜春的「시춘 군」既有譯文也一律只寫「惜春」（S806B#62、S821B#161、ES013B#46 等）。TW「惜春？啊？！」已表現出慌亂；改成「君」會引入全劇沒有的稱謂。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E723B#29",
+  "key": "StoryData/E723B.json|/dataList/29/content",
+  "file": "StoryData/E723B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "가시춘→賈惜春",
+  "kr": "…성의가 없어도 너무 없어서 기가 차네.",
+  "jp": "…雑すぎて言葉が出てこないね。",
+  "en": "... I'm not even sure what to say to this ridiculous negligence.",
+  "tw": "……亂得我都說不出話了。",
+  "first_pass": [
+   {
+    "from": "a16",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「성의가 없어도 너무 없어서 기가 차네」是說「（準備得）太沒有誠意，令人無言」，批評的是不用心；TW「亂得我都說不出話了」改成了環境雜亂，把原因說錯了。",
+    "suggest": "……再怎麼沒誠意也該有個限度，真讓人無言。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「성의가 없어도 너무 없어서 기가 차네」批評客棧準備得太馬虎；TW「亂得我都說不出話了」。",
+  "suggest": null,
+  "reason": "JP 官方譯「雑すぎて言葉が出てこないね」（太隨便、太亂，說不出話），上一句惜春也說「看來他們是真的沒時間打掃啊」；TW 與 JP 一致、合乎前後文，屬措辭差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E723B#51",
+  "key": "StoryData/E723B.json|/dataList/51/content",
+  "file": "StoryData/E723B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "오티스→奧提斯",
+  "kr": "제 경력이 몇 년인데… 어찌… 그런 티가 풀풀 나는 첩자에게… 하아, 아닙니다…",
+  "jp": "私が何年この仕事をやってるというのに…なぜ…あんな露骨な間者に…。⏎はぁ、いや…。",
+  "en": "Executive Manager, I... I've been in this business for many years. How... how could you even imagine that I would be fooled by an amateur spy who's so overtly suspi— Haah, it's nothing.",
+  "tw": "我都已經不知道自己有多少年這類工作的經驗了……怎麼可能……還會被那麼明顯的間諜……哈啊，不對……",
+  "first_pass": [
+   {
+    "from": "a16",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「제 경력이 몇 년인데」是反問「我資歷有好幾年了，怎麼會……」，強調自己經驗豐富；TW「我都已經不知道自己有多少年……經驗了」變成不記得年資，語意走樣。",
+    "suggest": "我的資歷都有好幾年了……怎麼……會被那麼明顯的間諜……哈啊，不對……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「제 경력이 몇 년인데…」是反問，強調自己資歷深；TW「我都已經不知道自己有多少年這類工作的經驗了」。",
+  "suggest": null,
+  "reason": "TW 是「多到數不清」的誇飾，同樣在強調經驗豐富，接「怎麼可能……還會被那麼明顯的間諜」意思一致，不是「不記得年資」。屬措辭差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E805B#11",
+  "key": "StoryData/E805B.json|/dataList/11/content",
+  "file": "StoryData/E805B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "자공→子貢",
+  "kr": "‘평안주거지원소(平安住居支援所)’… 가원춘이 이전에 가모와 함께 추진하던 정책이었지.",
+  "jp": "平安住居支援所…。ユアンチュンが以前、ジア・ムーと共に推進していた政策だった。",
+  "en": "<ruby=Peace and Calm>Pingan</ruby> Residential Support Zone. It is a policy Jia Yuanchun and the former Jia Mu pursued.",
+  "tw": "平安住宅支援所……賈元春與賈母之前推行過的政策。",
+  "first_pass": [
+   {
+    "from": "a17",
+    "category": "A6",
+    "severity": "low",
+    "explain": "KR 括號漢字為「平安住居支援所」（JP 同為住居），TW 寫「平安住宅支援所」，與原文漢字不符（其他出現處也同樣寫作住宅，若採原文應一併統一）。",
+    "suggest": "平安住居支援所……賈元春與賈母之前推行過的政策。",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR 括號漢字是「平安住居支援所」，TW 寫「平安住宅支援所」。",
+  "suggest": null,
+  "reason": "只差一字、意思相同；這個名稱在 E806B、E808A、E808B、E809B、E811B、E811I1 的地點欄位共 7 處都寫「平安住宅支援所」，譯名一致。若要改用原文漢字，應先在詞彙表定案再一併改，不宜只改這一句。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E902B#65",
+  "key": "StoryData/E902B.json|/dataList/65/content",
+  "file": "StoryData/E902B.json",
+  "field": "content",
+  "origin": "claude",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "같은… 취미… 헛! 료슈 군 설마… 그대도 해결사에 대한 열정을 가지… 읍!",
+  "jp": "類は…友を…はっ！良秀君、まさか…そなたもまた⏎フィクサーへの情熱を抱き―むぐっ！",
+  "en": "Same... Tastes...? Hoh! Young Ryōshū, could it be that thou also dost harbor a passionate zeal for Fix—mmph!",
+  "tw": "同樣……期待……哦！良秀，莫非……汝也對收尾人懷抱著期待與熱……唔！",
+  "first_pass": [
+   {
+    "from": "a17",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 唐吉訶德誤聽到的是「같은 취미」（同樣的興趣／類——JP 類は友を），之後說「해결사에 대한 열정」（對收尾人的熱情）；TW 把「취미」譯成「期待」，且「期待與熱……」多出「期待」一詞，與 KR 不符。",
+    "suggest": "同樣……興趣……哦！良秀，莫非……汝也對收尾人懷抱著熱忱……唔！",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR 唐吉訶德把良秀的縮略語「같. 취.」（같은 취급）誤聽成「같은 취미」（同樣的興趣）；TW「同樣……期待……」。",
+  "suggest": null,
+  "reason": "上一行良秀的「같. 취.」TW 寫「同．待」（同等對待）；TW 讓唐吉訶德把它讀成「同樣……期待」，再接「懷抱著期待與熱……」，正是依 guides/characters/ryoshu.md「猜錯或雙關也只用一組字，兩種讀法都要讀得出」重現誤聽。改成「興趣」就和「同．待」對不上，雙關消失。",
+  "confidence": "high"
+ },
+ {
+  "ref": "ES061A#9",
+  "key": "StoryData/ES061A.json|/dataList/9/content",
+  "file": "StoryData/ES061A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "가시춘→賈惜春",
+  "kr": "그러니까 나는 이겨야겠어. 이전 가주들이 물려준 기름진 땅을 가꾸지 않고서. 그건 홍원의 피와 눈물로 만든 옥토니까.",
+  "jp": "だから私は勝たないと。先代の家主たちが残してくれた⏎肥沃な土地を手入れせずに。⏎あれは鴻園の血と涙で造られた沃土だから。",
+  "en": "So I'm going to win. And I'm going to win without the fertile soil my predecessors have left behind, because their legacy was unjustly nourished by the blood and tears of Hongyuan itself.",
+  "tw": "所以我必須贏。不能依靠前任家主們所留下的肥沃土壤。畢竟那是以鴻園的血與淚所灌溉而成的沃土。",
+  "first_pass": [
+   {
+    "from": "a21",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「가꾸지 않고서」是『不去耕耘（照料）前任家主留下的肥沃土地』，意即我必須贏、不能荒廢它；TW 寫成「不能依靠」，意思變成不可倚賴前人遺產。",
+    "suggest": "所以我必須贏。不能不去耕耘前任家主們所留下的肥沃土壤。畢竟那是以鴻園的血與淚所灌溉而成的沃土。",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「이전 가주들이 물려준 기름진 땅을 가꾸지 않고서」是「不靠前任家主留下的沃土就贏」，JP「肥沃な土地を手入れせずに」、EN「without the fertile soil my predecessors have left behind」都一樣；後句說那片沃土是用鴻園的血淚造成的，所以她不想用。現行 TW「不能依靠前任家主們所留下的肥沃土壤」意思正確。",
+  "suggest": null,
+  "reason": "初篩把「가꾸지 않고서」誤讀成「不能荒廢它」，與 JP、EN 及後句的理由矛盾；現行譯文正確。",
+  "confidence": "high"
+ },
+ {
+  "ref": "ES180B#0",
+  "key": "StoryData/ES180B.json|/dataList/0/content",
+  "file": "StoryData/ES180B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "가시춘→賈惜春",
+  "kr": "오빠한테 들었어. 그쪽이 건 동전들이 치우… 오빠를 향했다고.",
+  "jp": "哥哥から聞いたよ。そっちが投げた銅銭は、⏎チォウ…哥哥に向けられたものだったって。",
+  "en": "I heard from big bro that you sent your coins to ... big brother Qiu.",
+  "tw": "從哥哥那裡聽說了。你把銅錢送給了丘……哥哥對吧。",
+  "first_pass": [
+   {
+    "from": "a21",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「그쪽이 건 동전들」是『你下注／押上的銅錢』，這些錢『指向』了丘……哥哥；TW 寫成「送給了」，動作不同（後文 #23 才是對方把銅錢『交給』惜春）。",
+    "suggest": "我從哥哥那裡聽說了。你押上的銅錢，都是衝著丘……哥哥去的。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「그쪽이 건 동전들이 치우… 오빠를 향했다고」是「你押上的銅錢投向了丘……哥哥」，EN「you sent your coins to ... big brother Qiu」。現行 TW「你把銅錢送給了丘……哥哥」表達的也是銅錢流向哥哥，與下一行「每一張牌都會幾經流轉，最終物歸原主」及 #23 哥哥再把銅錢交給惜春連得起來。",
+  "suggest": null,
+  "reason": "「押上」與「送給」只是措辭不同，銅錢流向誰沒有弄錯，讀者不會誤會劇情；屬於風格差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "ES240A#30",
+  "key": "StoryData/ES240A.json|/dataList/30/content",
+  "file": "StoryData/ES240A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "가시춘은 생각이 많아진 것 같다.",
+  "jp": "ジア・シーチュンは物思いにふけることが増えたようだ。",
+  "en": "Jia Xichun seems deeply engrossed in thought.",
+  "tw": "令賈惜春陷入沉思的事物變多了。",
+  "first_pass": [
+   {
+    "from": "a21",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR：賈惜春似乎陷入更多思考（생각이 많아진 것 같다）；TW 「令……陷入沉思的事物變多了」主語改變，意思不同。",
+    "suggest": "賈惜春似乎心事重重了起來。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「가시춘은 생각이 많아진 것 같다」是「賈惜春似乎心事變多了」，JP「物思いにふけることが増えたようだ」、EN「seems deeply engrossed in thought」。現行 TW「令賈惜春陷入沉思的事物變多了」換了句型，但意思一樣，都是她想的事變多。",
+  "suggest": null,
+  "reason": "只是換了主語的句型，意思相同（頂多少了「似乎」），屬於措辭差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "ES250B#10",
+  "key": "StoryData/ES250B.json|/dataList/10/content",
+  "file": "StoryData/ES250B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "웨이→衛",
+  "kr": "땡… 땡…? 그게 무엇이죠? 적을 제거한다는 새로운 은어인가요?",
+  "jp": "サボ…？何ですかそれ？⏎敵を排除する新しい隠語ですか？",
+  "en": "Playing... hooky? Is it a euphemism for... eliminating your enemies?",
+  "tw": "俏……客……？那是什麼？清除敵人的新暗號嗎？",
+  "first_pass": [
+   {
+    "from": "a21",
+    "category": "A1",
+    "severity": "low",
+    "explain": "衛在重複不懂的詞「땡땡」（翹課的땡땡이），KR 兩次都是同一個詞；TW 寫成「俏……客……」不成詞，與前後文的「翹課」對不上。",
+    "suggest": "翹……課……？那是什麼？清除敵人的新暗號嗎？",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「땡… 땡…?」是衛把沒聽過的「땡땡이」（翹課）一字一字跟著唸，JP「サボ…？」也是。現行 TW 上一行辛克萊說「翹課」，衛回「俏……客……？」，是刻意用同音字表現他不懂這個詞、只照音重複。",
+  "suggest": null,
+  "reason": "「俏客」與「翹課」同音，是刻意的在地化，用來表現衛不懂這個詞，與 KR 的效果相同，不是錯字。",
+  "confidence": "high"
+ },
+ {
+  "ref": "ES300A#22",
+  "key": "StoryData/ES300A.json|/dataList/22/content",
+  "file": "StoryData/ES300A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "설보차→薛寶釵",
+  "kr": "과실이 탐스럽게 열매를 맺었다면… 그걸 누구보다 먼저 움켜잡고 과육을 맛보아야만 하는 거지.",
+  "jp": "果実が見事に実を結んだのなら…誰よりも先にそれを掴み取って⏎その果肉を味わわなきゃならないのよ。",
+  "en": "If a fruit has fully ripened... we have to seize it and taste its juices before anyone else.",
+  "tw": "花開堪折直須折，莫待無花空折枝……不落任何人之後。",
+  "first_pass": [
+   {
+    "from": "a22",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR 以果實為喻：果實結得豐美，就該比任何人都先抓住並品嚐果肉（JP、EN 同為果實意象）。TW 改成「花開堪折直須折，莫待無花空折枝」，換成花與折枝的詩句，意象與內容不同，且「누구보다 먼저」的語意被放到句末變成「不落任何人之後」。",
+    "suggest": "果實結得豐碩飽滿的話……就必須比任何人都先一把抓住它，嚐一嚐那果肉。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR 用果實比喻：果實結得豐美，就要比誰都先抓住、嚐那果肉；JP、EN 同樣是果實。現行 TW 換成杜秋娘〈金縷衣〉的「花開堪折直須折，莫待無花空折枝」，再接「不落任何人之後」，意思仍是「時機到了就要搶先拿到手」。",
+  "suggest": null,
+  "reason": "這是意象替換的意譯：「搶先佔有成熟之物」與「比任何人都先」都保留了，與寶釵前後的「花季」「香氣」意象也一致，後文沒有再提到果實；屬於風格選擇。如果想忠於 KR 的果實意象，可另行改譯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10105#21",
+  "key": "StoryData/P10105.json|/dataList/21/content",
+  "file": "StoryData/P10105.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "그것들을 차근차근 쌓아 올려서 결국 최근에는 R사라는 날개의 일감을 받아냈다는 건, 이제는 아이의 사무소가 그만큼 인정받는다는 이야기가 된 거겠지.",
+  "jp": "それらを一つ一つ積み上げて、最終的にR社という翼の仕事を勝ち取ったということは、⏎今や子供の事務所がそれだけ認められたってことだろうね。",
+  "en": "After all that toil, the Office finally seized a remarkable opportunity like a contract from R Corp., a Wing. People were finally starting to recognize them.",
+  "tw": "這些點點滴滴積累起來，最終成功從一個翼，R公司拿到了工作，人們終於開始認可孩子的事務所了。",
+  "first_pass": [
+   {
+    "from": "a22",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR「R사라는 날개의 일감」是指「R公司這個翼」的工作（JP：R社という翼の仕事，EN：a contract from R Corp., a Wing）；TW 寫成「從一個翼，R公司拿到了工作」，把 R公司 與翼分開成兩個對象，語意混亂；後半「인정받는다는 이야기가 된 거겠지」也變成人們開始認可，語氣不同。",
+    "suggest": "這些點點滴滴積累起來，最終成功接下R公司這個翼的工作，這也就代表孩子的事務所如今已獲得相當的認可了吧。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR「R사라는 날개의 일감을 받아냈다」是「接下了 R 公司這個翼的工作」，後半是「這代表事務所已經獲得那樣的認可了吧」。現行 TW「最終成功從一個翼，R公司拿到了工作，人們終於開始認可孩子的事務所了」用同位語「一個翼，R公司」表達同一件事，讀者不會把兩者當成兩個對象；後半意思也相同（EN 同樣是「People were finally starting to recognize them」）。",
+  "suggest": null,
+  "reason": "句子較生硬，但 R 公司是翼、事務所受到認可兩點都正確，屬於措辭差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10106#1",
+  "key": "StoryData/P10106.json|/dataList/1/content",
+  "file": "StoryData/P10106.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "그 누구도 입을 열지 않는다. 벙어리일까? 아니다. 철마에 앉아있는 자들은 모두가 홀로다. 그들 누구도 다른 사람과 얽히고 엮이려 하지 않는다. 옆이던 앞이던 언제나 그렇다.",
+  "jp": "なんぴとも口を開かない。口が利けないのだろうか？⏎いや、鉄馬に座る者たちは皆一人だ。⏎彼らは誰も他人と絡もうともしない。隣も前も常にそうだ。",
+  "en": "Voiceless ones ride the iron horse. Have we lost our tongues? Nay, we are but lonesome souls. Companionship is a comfort seldom sought, scarcely expected here, whether that be with the ones adjacent to or with ones opposite of.",
+  "tw": "無人言語。我們皆患失語了嗎？並非如此。乘上這鐵馬的個體均是孤身一人。不論與人相鄰、與人相對，都不願相談。",
+  "first_pass": [
+   {
+    "from": "a22",
+    "category": "A4",
+    "severity": "low",
+    "explain": "KR 在問「벙어리일까?」（他們是啞巴嗎？）指的是車廂內的其他乘客，敘述者此時尚未把自己歸入（後文才說「나도 그들과 다르지 않다」）；TW 寫成「我們皆患失語了嗎」，主詞變成「我們」。",
+    "suggest": "無人言語。他們皆患失語了嗎？並非如此。乘上這鐵馬的個體均是孤身一人。不論與人相鄰、與人相對，都不願相談。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "low",
+  "explain": "KR「벙어리일까?」沒有寫出主詞，前句是「沒有任何人開口」，說話者自己也是坐在鐵馬上不說話的乘客之一；EN 官方譯本寫成「Have we lost our tongues?」。現行 TW「我們皆患失語了嗎？」是合理的解讀。",
+  "suggest": null,
+  "reason": "KR 省略主詞，「我們」與 EN 一致，也符合敘述者同為沉默乘客的情境；改成「他們」只是另一種解讀，不能算錯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10106#19",
+  "key": "StoryData/P10106.json|/dataList/19/content",
+  "file": "StoryData/P10106.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "안내방송→廣播",
+  "kr": "…역입니다. 내리실 분은…",
+  "jp": "…駅です。お降りの方は…。",
+  "en": "",
+  "tw": "……站到了，開……邊門。",
+  "first_pass": [
+   {
+    "from": "a22",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR 是車內廣播的片段「……역입니다. 내리실 분은…」（……站到了，下車的乘客請……；JP：…駅です。お降りの方は…）；TW「開……邊門」沒有對應的原文，是亂碼般的譯文，「내리실 분은」（要下車的乘客）被漏掉。",
+    "suggest": "……站到了。要下車的乘客……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR「…역입니다. 내리실 분은…」是被打斷的車內廣播片段（「……站到了。下車的乘客……」）。現行 TW「……站到了，開……邊門。」改用中文捷運廣播常見的「開左／右邊門」句型，同樣是到站、下車相關的廣播片段，在敘述者的恍惚狀態中被截斷。",
+  "suggest": null,
+  "reason": "這是在地化成中文廣播習慣的片段，不是亂碼；到站、下車的廣播功能與斷續的效果都保留了，不影響理解。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10204#16",
+  "key": "StoryData/P10204.json|/dataList/16/content",
+  "file": "StoryData/P10204.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "파우스트→浮士德",
+  "kr": "심장도, 폐도, 전부 강화 시술로 바꿔 버릴 수 있지만 뇌 만큼은 도시에서 대체할 수 없는 순수한 것이지.",
+  "jp": "心臓も、肺も、全部強化施術で変えてしまうことはできるが、⏎脳だけは都市で代替することのできない純粋なもの。",
+  "en": "The likes of the heart and lungs can all be augmented and swapped out, but the brain is the one pure irreplaceable thing in the City.",
+  "tw": "心臟也好肺也罷，全都可以透過強化手術進行替換，但是只有大腦，這都市中無可替代的純粹之物，不行。",
+  "first_pass": [
+   {
+    "from": "a23",
+    "category": "A3",
+    "severity": "low",
+    "explain": "KR 只說「但只有大腦是都市中無可替代的純粹之物」，句末沒有否定；TW 句尾多出「不行」，那是下一行（#18「그래서는 안되지」）的內容，造成語意混亂。",
+    "suggest": "心臟也好肺也罷，全都可以透過強化手術進行替換，但是只有大腦，是這都市中無可替代的純粹之物。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "low",
+  "explain": "KR：心臟、肺都能用強化手術換掉，但只有大腦是都市裡無法取代的純粹之物。現行 TW「但是只有大腦，這都市中無可替代的純粹之物，不行」裡的「不行」是「（大腦）換不了」的意思，接在「全都可以……替換」之後，意思和 KR 一樣，不是挪用下一行的「그래서는 안되지」。",
+  "suggest": null,
+  "reason": "「不行」承接前半句的「可以替換」，意思是大腦不能替換，與 KR 相符；只是句子較生硬。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10205#6",
+  "key": "StoryData/P10205.json|/dataList/6/content",
+  "file": "StoryData/P10205.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "로쟈→羅佳",
+  "kr": "아우, 잠깐만! 내가 먹을 도넛은 남겨 둬야지!",
+  "jp": "おっと、ちょっと待って！私が食べるドーナツは残しといてよね！",
+  "en": "Ugh, hey! Don't eat all the donuts, leave some for me!",
+  "tw": "哦，等下！我吃的甜甜圈還留著呢吧！",
+  "first_pass": [
+   {
+    "from": "a23",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「내가 먹을 도넛은 남겨 둬야지!」是要求「要把我要吃的甜甜圈留下來」的命令語氣；TW 「還留著呢吧」變成確認式疑問，語意不同。",
+    "suggest": "哦，等下！我要吃的甜甜圈要留著啊！",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「내가 먹을 도넛은 남겨 둬야지!」是「要把我的甜甜圈留下來啊！」；現行 TW「我吃的甜甜圈還留著呢吧！」用確認的口氣表達同一個要求，下一行浮士德回「需要食物可以申請經費」也接得上。",
+  "suggest": null,
+  "reason": "要對方留甜甜圈給她的意思沒有變，只是句式從命令換成確認，屬於措辭差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10206#21",
+  "key": "StoryData/P10206.json|/dataList/21/content",
+  "file": "StoryData/P10206.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "아이가 주로 담당하고 있는 건, 세븐에 들어왔던 의뢰를 수사한 다른 해결사들의 정보를 취합해서 결론을 내는 것.",
+  "jp": "子供が主に担当してるのは、セブンに来た依頼を⏎捜査した他のフィクサーたちの情報を総合して結論を下すこと。",
+  "en": "This child's primary duty at the Association is to draw conclusions on contracted cases based on evidence gathered by other Fixers of the Seven Association.",
+  "tw": "孩子在Seven協會的主要職責是，根據其他收尾人收集到的證據，對簽訂合約的委託作出結論。",
+  "first_pass": [
+   {
+    "from": "a23",
+    "category": "A3",
+    "severity": "low",
+    "explain": "KR 是「彙整調查過 Seven 所接委託的其他收尾人的情報，並得出結論」；TW 改成「收集到的證據」「簽訂合約的委託」，多出「簽訂合約」並改變調查者與情報的關係。",
+    "suggest": "孩子在Seven協會的主要職責是，彙整調查過Seven協會所接委託的其他收尾人的情報，並得出結論。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "low",
+  "explain": "KR：孩子主要負責彙整「調查過 Seven 所接委託的其他收尾人」的情報，再下結論。現行 TW「根據其他收尾人收集到的證據，對簽訂合約的委託作出結論」意思相同：情報來自其他收尾人，結論針對協會接下的委託（EN 也寫成 contracted cases、evidence gathered by other Fixers）。",
+  "suggest": null,
+  "reason": "「簽訂合約的委託」就是協會接下的委託，「收集到的證據」就是調查得到的情報，角色關係沒有變；屬於措辭差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10207#46",
+  "key": "StoryData/P10207.json|/dataList/46/content",
+  "file": "StoryData/P10207.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "안내 방송→廣播",
+  "kr": "[알림, 녹빛 여명의 시련 등장. 1단계 트럼펫 발동. 각 부서의 제압 담당 직원은 즉시 상층 제일 하단의 우측 엘리베이터로 이동.]",
+  "jp": "[通告、緑の黎明の試練出現。1段階トランペット発動。⏎各部署の制圧担当職員は、即時上層最下段の右側エレベーターへ移動。]",
+  "en": "[WARNING. ORDEAL OF GREEN DAWN ALERT. SUPPRESSION PERSONNEL FROM ALL DEPARTMENTS MUST IMMEDIATELY ASSEMBLE AT THE BOTTOM RIGHT ELEVATOR OF THE UPPER LAYER.]",
+  "tw": "[警報，綠色的黎明考驗出現。1級警報啟動。請各部門負責鎮壓的員工立即移動至上層最下方右側的電梯。]",
+  "first_pass": [
+   {
+    "from": "a23",
+    "category": "A2",
+    "severity": "low",
+    "explain": "KR「1단계 트럼펫 발동」（JP 1段階トランペット発動）指第一階段號角（Trumpet）；TW 譯成「1級警報啟動」，漏掉「號角」，也與 Lobotomy Corp 的號角設定脫節。",
+    "suggest": "[警報，綠色的黎明考驗出現。1階段號角啟動。請各部門負責鎮壓的員工立即移動至上層最下方右側的電梯。]",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A2",
+  "severity": "low",
+  "explain": "KR「1단계 트럼펫 발동」是腦葉公司的第一級警報（Trumpet）。既有譯文一律譯成「警報」：P10110「一級警報已啟動」、P10111「퍼스트 트럼펫… 인 건가요?」→「這是……一級警報嗎？」，P10111 也說明 트럼펫 是警報聲。現行 TW「1級警報啟動」與既有譯法一致。",
+  "suggest": null,
+  "reason": "「1級警報」是本專案對 트럼펫 的既有譯法，沒有漏譯；改成「號角」反而會和 P10110、P10111 不一致。",
+  "confidence": "high"
+ },
+ {
+  "ref": "P10308#43",
+  "key": "StoryData/P10308.json|/dataList/43/content",
+  "file": "StoryData/P10308.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "엣헴! 그렇지 않아도 흑운회 회식 자리를 염탐하고 왔다네.",
+  "jp": "えっへん！そう言われずとも、黒雲会の会食の席を偵察してきたのである。",
+  "en": "Ahem! Worry not thy heart! I have spied on the Kurokumo Clan curs as they dined!",
+  "tw": "咳嗯！不要擔心！吾已然細細偵查了黑雲會的聚餐場所。",
+  "first_pass": [
+   {
+    "from": "a24",
+    "category": "A3",
+    "severity": "low",
+    "explain": "KR「그렇지 않아도」是「正好、說起來」的意思，用來接續前一句話題；TW 譯成「不要擔心」，憑空加了安撫對方的語意。",
+    "suggest": "咳嗯！正好，吾已然細細偵查了黑雲會的聚餐場所。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "low",
+  "explain": "KR「그렇지 않아도 흑운회 회식 자리를 염탐하고 왔다네」的「그렇지 않아도」是「不用你說（吾早就……）」，JP「そう言われずとも」；EN 譯為「Worry not thy heart!」。現行 TW「不要擔心！吾已然細細偵查了……」與 EN 一樣，把「不待吩咐、已經辦好」寫成安撫的語氣。",
+  "suggest": null,
+  "reason": "「그렇지 않아도」在這裡是回應奧提斯正要追問黑雲會的事：不必你問，吾已經查好了，本身就帶有「放心」的意思；現行 TW 與官方 EN 的處理一致，句意（已偵查黑雲會的聚餐）沒有錯，屬於措辭選擇。初篩的「正好」也沒有比較貼近 KR。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10309#32",
+  "key": "StoryData/P10309.json|/dataList/32/content",
+  "file": "StoryData/P10309.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "로쟈→羅佳",
+  "kr": "평소답지 않게 치밀하네… 저번에 뒷골목에 갔을 때는 50보 걸을 때마다 배고프다고 칭얼거렸으면서.",
+  "jp": "緻密だねぇ、普段らしくないけど…。この前裏路地に行ったときは⏎50歩歩くたびにお腹空いたってぐずついてた癖に。",
+  "en": "You're unusually prepared today. I remember how you were during the Backstreets collections job—didn'tcha stop and complain every few steps that you wanted something to eat?",
+  "tw": "今天思維真是縝密啊，不像平時……記得上次去後巷工作時，你每走五十步就喊著肚子餓要吃點東西的樣子嗎？",
+  "first_pass": [
+   {
+    "from": "a24",
+    "category": "A5",
+    "severity": "low",
+    "explain": "KR 後半是帶「으면서」的吐槽陳述（上次去後巷明明每走五十步就鬧著喊餓）；TW 變成「記得……的樣子嗎？」的疑問句，並多了「要吃點東西」，語氣與語意都偏掉。",
+    "suggest": "今天特別縝密呢，不像平時……上次去後巷的時候，明明每走五十步就會鬧著喊肚子餓。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A5",
+  "severity": "low",
+  "explain": "KR 後半「50보 걸을 때마다 배고프다고 칭얼거렸으면서」是「上次明明每走五十步就喊餓」的吐槽；現行 TW 寫成反問「記得……的樣子嗎？」，官方 EN 也是反問「didn'tcha stop and complain every few steps that you wanted something to eat?」。",
+  "suggest": null,
+  "reason": "反問句同樣是在吐槽對方上次每走五十步就喊餓，意思沒有反轉；「要吃點東西」與 EN 一致，只是補足「喊餓」的內容。屬於措辭差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10310#175",
+  "key": "StoryData/P10310.json|/dataList/175/content",
+  "file": "StoryData/P10310.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "산초→桑丘",
+  "kr": "피를 탐하고, 인간을 해치고!",
+  "jp": "血を欲し、人間を害し！",
+  "en": "We will seek blood! Slaughter every human we see!",
+  "tw": "去渴求鮮血，屠戮人類吧！",
+  "first_pass": [
+   {
+    "from": "a24",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 是桑丘宣告「我們將渴求血、傷害人類」，不是向誰下令；TW 的祈使語氣「……吧」與「屠戮」程度皆超出原意。",
+    "suggest": "我們要渴求鮮血，傷害人類！",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「피를 탐하고, 인간을 해치고!」承上一行，列出眷屬們拋棄父親理想後要做的事；EN「We will seek blood! Slaughter every human we see!」。現行 TW「去渴求鮮血，屠戮人類吧！」。",
+  "suggest": null,
+  "reason": "這裡的「……吧」是包含說話者在內的號召，與 KR 列舉「我們要做的事」意思相同；「屠戮」與 EN「Slaughter」一致，血鬼語境下的「인간을 해치다」就是殺害人類，不算程度超出。屬於措辭差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10312#5",
+  "key": "StoryData/P10312.json|/dataList/5/content",
+  "file": "StoryData/P10312.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "음… 아니 아니, 그래도 환상체라는 본질을 잊지 않으려 노력해야지. 이제는 팀장으로서 다른 직원들의 모범도 되어야 하고.",
+  "jp": "うむ…いやいや、だとしても幻想体という本質を忘れぬよう努めねば。⏎今やチーフとして他の職員たちの模範になるべきだ。",
+  "en": "Mm... nay, nay. One must always remain wary of the truth that she is but an Abnormality. Not to mention that I, as a Captain, must set a proper example for the other employees.",
+  "tw": "嗯……不對不對，得時刻謹記其身為異想體的本質才行。且現今應履行身為菁英員工的義務，成為其他員工們效仿的典範才對。",
+  "first_pass": [
+   {
+    "from": "a24",
+    "category": "A6",
+    "severity": "low",
+    "explain": "KR「팀장」（JP チーフ、EN Captain）指職稱隊長／組長；TW 譯成「菁英員工」，職稱不符，詞彙表亦註明 팀장 → 隊長。另「履行義務」為 KR 沒有的加字。",
+    "suggest": "嗯……不對不對，得時刻謹記其身為異想體的本質才行。而且現在身為隊長，也應該成為其他員工們的典範才對。",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「이제는 팀장으로서 다른 직원들의 모범도 되어야 하고」是「現在身為팀장，也得成為其他員工的榜樣」；現行 TW 把팀장寫成「菁英員工」，並寫成「應履行身為菁英員工的義務，成為……典範」。",
+  "suggest": null,
+  "reason": "這個人格的職位「중앙본부팀 팀장」在遊戲內的名稱就是「中央本部菁英員工」（Bufs-walpu6、BattleKeywords-walpu6、Walpu6EventText），唐吉訶德的語音 Voice_DonQuixote_LEGOMagic_10312 也寫「調任為中央本部的菁英」，劇情沿用同一譯名是一致的寫法；詞彙表的「팀장 → 隊長」只寫在摩西／LCD 的條目，不是通用規則。「履行身為…的義務」只是把「팀장으로서…되어야」展開，意思沒變。若要改成其他腦葉公司故事（P10110、P10207、P10410）用的「隊長」，應連同 Walpu6 的增益名一起決定。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10312#41",
+  "key": "StoryData/P10312.json|/dataList/41/content",
+  "file": "StoryData/P10312.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "이렇게, 팀장의 자리에 이르게 되기도 했고!",
+  "jp": "このように、チーフの座に就くことにもなり！",
+  "en": "... and that hath lifted me to the position of a Captain!",
+  "tw": "就如同現在這般，登上了菁英員工的位置！",
+  "first_pass": [
+   {
+    "from": "a24",
+    "category": "A6",
+    "severity": "low",
+    "explain": "同 P10312#5，「팀장」是隊長／組長職位，TW 譯成「菁英員工」不符。",
+    "suggest": "就如同現在這般，登上了隊長的位置！",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「팀장의 자리에 이르게 되기도 했고」是「也登上了팀장的位置」；現行 TW 寫「登上了菁英員工的位置」。",
+  "suggest": null,
+  "reason": "同 P10312#5：這個人格的「중앙본부팀 팀장」在遊戲內的增益名是「中央本部菁英員工」（Bufs-walpu6 等），語音也寫「中央本部的菁英」，本檔劇情沿用一致的譯名，不算錯譯；要改成「隊長」須連同遊戲內名稱一起決定。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10408#32",
+  "key": "StoryData/P10408.json|/dataList/32/content",
+  "file": "StoryData/P10408.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "그 늑대에게서 조금이나마 저택 사람들의 목숨을 지킬 수 있도록 하기 위해 했던 행동이지만,",
+  "jp": "あの狼から、少しでも邸宅の人々の命を⏎より守れるようにするための行動だったけど、",
+  "en": "... when the wolf would inevitably come to besiege the manor, they could at least save their own skin.",
+  "tw": "能盡可能多地從那匹狼手上保住宅邸裡人們的性命。",
+  "first_pass": [
+   {
+    "from": "a25",
+    "category": "A2",
+    "severity": "low",
+    "explain": "KR 句尾是「…했던 행동이지만,」，整句是說「這是為了讓宅邸裡的人們多少能從那匹狼手上保住性命而採取的行動，但……」，並與下一句「不合常態的行動很快就被注意到」相連。TW 只剩「能盡可能多地從那匹狼手上保住宅邸裡人們的性命。」，缺了「這是（她）為此採取的行動」與轉折語氣，句子懸空、主詞不明。",
+    "suggest": "這是為了讓宅邸裡的人們，能多少從那匹狼手上保住性命而採取的行動，但",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A2",
+  "severity": "low",
+  "explain": "KR「그 늑대에게서 조금이나마 저택 사람들의 목숨을 지킬 수 있도록 하기 위해 했던 행동이지만,」是「（那是）為了讓宅邸的人們多少能從那匹狼手上保住性命而做的事，但」，接下一行「做不像自己會做的事，很快就露餡」。現行 TW 本行為「能盡可能多地從那匹狼手上保住宅邸裡人們的性命。」",
+  "suggest": null,
+  "reason": "現行 TW 是跨行接續：上一行 #31 結尾「為了……」，本行接「能……保住宅邸裡人們的性命」，下一行 #33「她這些不合常態的行動，很快便被周圍人注意到了」接上「했던 행동」。三行合起來意思完整，句子沒有懸空，主詞也清楚；少的只有轉折「但」，屬於措辭。初篩的改法會與上一行的「為了……」重複。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10410#54",
+  "key": "StoryData/P10410.json|/dataList/54/content",
+  "file": "StoryData/P10410.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "료슈→良秀",
+  "kr": "자.정.이 왔는데도 고작 이 정도 트럼펫 경보라…",
+  "jp": "む・の・うが来たってのに、⏎たかがこの程度のトランペット警報か…。",
+  "en": "We've a D.O.V. in our hands, but *this* is the level of trumpets we're getting?",
+  "tw": "明明是紫．午，卻只有這種等級的警報嗎……",
+  "first_pass": [
+   {
+    "from": "a25",
+    "category": "A2",
+    "severity": "low",
+    "explain": "KR 與 EN 都明講「트럼펫 경보」（EN: trumpets），即號角（Trumpet）警報，與上文紫色正午的設定呼應。TW 只寫「警報」，漏掉「號角／Trumpet」。",
+    "suggest": "明明是紫．午，卻只有這種等級的號角警報嗎……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A2",
+  "severity": "low",
+  "explain": "KR「고작 이 정도 트럼펫 경보라…」是「才這種程度的 Trumpet 警報」；現行 TW「卻只有這種等級的警報嗎……」沒寫出「號角／Trumpet」。",
+  "suggest": null,
+  "reason": "既有譯文把腦葉公司的「트럼펫」警報一律寫成「警報」：P10110#39「1단계 트럼펫 발동」→「一級警報已啟動」、P10111#50「퍼스트 트럼펫」→「一級警報」、P10207#46 同、莫梭語音 Voice_Meursalut_LEGO_10514「트럼펫 경보 해제」→「警報解除」、良秀語音 Voice_Ryoshu_Spider_10410「트럼펫 경보」→「警報聲」。本行照這個慣例寫「這種等級的警報」，等級的意思也在，不算漏譯；只改這一行反而與其他處不一致。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10613#167",
+  "key": "StoryData/P10613.json|/dataList/167/content",
+  "file": "StoryData/P10613.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "홍루→紅露",
+  "kr": "…신과 망. 그리고 신비.",
+  "jp": "…<ruby=シン>心</ruby>と<ruby=マン>望</ruby>。そして神秘。",
+  "en": "... Shin, Mang, and the Psychoments...",
+  "tw": "……心、望。以及神備。",
+  "first_pass": [
+   {
+    "from": "a27",
+    "category": "A6",
+    "severity": "low",
+    "explain": "KR「신비」＝JP「神秘」，是與「心」「望」並列的詞；TW 寫成「神備」，疑為誤字（應為神祕／神秘）。",
+    "suggest": "……心、望。以及神祕。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「신비」在這裡是專有名詞（EN Psychoments），與「心」「望」並列。現行 TW「神備」是既有譯名：P10313（神備使用者）、P10714、S912B 都寫「神備」，不是錯字。",
+  "suggest": null,
+  "reason": "「神備」是這個術語在既有譯文中一致的寫法，不是「神祕」的誤字；改成「神祕」反而與其他檔案不一致。",
+  "confidence": "high"
+ },
+ {
+  "ref": "P10705#20",
+  "key": "StoryData/P10705.json|/dataList/20/content",
+  "file": "StoryData/P10705.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "어쩌면 이것도, 어느 날의 나처럼… 내쫓겨지고 버려진 누군가의 친구일지도 모르잖아.",
+  "jp": "もしかしたらこれも、ある日のオレみてぇに…⏎追い出されて捨てられた誰かの友達なのかもしんねぇだろ。",
+  "en": "",
+  "tw": "也許，就和那天的我一樣……它也是被某個朋友趕走並拋棄了。",
+  "first_pass": [
+   {
+    "from": "a27",
+    "category": "A4",
+    "severity": "medium",
+    "explain": "KR/JP「내쫓겨지고 버려진 누군가의 친구」是『某個被趕走、被拋棄的人的朋友』，與「어느 날의 나처럼」並列（像我一樣被趕走被拋棄的人）；TW 寫成『它被某個朋友趕走並拋棄了』，主客關係完全不同。",
+    "suggest": "也許，這東西就像那天的我一樣……是某個被趕走、被拋棄之人的朋友也說不定。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "low",
+  "explain": "KR「어쩌면 이것도, 어느 날의 나처럼… 내쫓겨지고 버려진 누군가의 친구일지도 모르잖아.」修飾範圍有歧義（JP 也一樣）。前一句說「覺得這東西和我很像」，前文主角自比「被丟在後巷的破傘」，較自然的讀法是「它也像那天的我一樣，是某個人被趕走、被拋棄的朋友」；現行 TW「它也是被某個朋友趕走並拋棄了」與這個讀法意思相近。",
+  "suggest": null,
+  "reason": "初篩採「被趕走、被拋棄之人的朋友」的讀法，但這與「나와 비슷하단 생각」（覺得它跟我很像）不合；現行 TW 的讀法說得通，不算主客顛倒。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10805#3",
+  "key": "StoryData/P10805.json|/dataList/3/content",
+  "file": "StoryData/P10805.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "저건 아이가 스스로 입은 일종의 ‘장비’,’슈트’,’의복’ 그리고 ’도구’ 이니까.",
+  "jp": "あれは子供が自分で着た一種の「装備」、「スーツ」、「衣服」そして「道具」だから。",
+  "en": "That is a kind of 'equipment', 'suit', 'outfit', and 'tool' the child put on of her own volition.",
+  "tw": "這是孩子自願穿上的一種「裝備」、「衣物」、「服裝」以及「工具」。",
+  "first_pass": [
+   {
+    "from": "a28",
+    "category": "A3",
+    "severity": "low",
+    "explain": "KR 是「아이가 스스로 입은」（她自己穿上的），並無「自願」之意；後文她還抱怨為什麼只有自己要穿，TW 的「自願」與劇情矛盾。",
+    "suggest": "這是孩子自己穿上的一種「裝備」、「衣物」、「服裝」以及「工具」。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "low",
+  "explain": "KR「아이가 스스로 입은」的「스스로」可以是「自己（動手）」也可以是「主動、自願」，EN 官方譯為 of her own volition。前文羅佳說「不願意的話就只能赤手空拳」，她是不情願但仍自己選擇穿上。",
+  "suggest": null,
+  "reason": "「스스로」本身就有「自願」的意思，EN 也這樣譯；她雖然抱怨，最後仍選擇穿上，「自願」與劇情不矛盾。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10808#15",
+  "key": "StoryData/P10808.json|/dataList/15/content",
+  "file": "StoryData/P10808.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "이스마엘→以實瑪利",
+  "kr": "오늘 밤, 우리는 고래를 칠 것이다!",
+  "jp": "今夜、我々は鯨を討つであろう！",
+  "en": "Tonight, we will fell a Whale!",
+  "tw": "今夜，我等將擊沉巨鯨！",
+  "first_pass": [
+   {
+    "from": "a28",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「고래를 칠 것이다」＝獵（打）鯨；TW 寫成「擊沉巨鯨」，鯨不是船，不能擊沉。",
+    "suggest": "今夜，我等將獵殺巨鯨！",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「고래를 칠 것이다」是「將攻擊（討伐）鯨」（JP 鯨を討つ、EN fell a Whale）。現行 TW「擊沉巨鯨」的「擊」對應「치다」，結果是把鯨打倒沉下，意思沒有錯，只是搭配較少見。",
+  "suggest": null,
+  "reason": "屬於措辭選擇，不會讓讀者誤解；以實瑪利在這裡模仿船長的宣言，「擊沉巨鯨」也合乎語氣。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10814#48",
+  "key": "StoryData/P10814.json|/dataList/48/content",
+  "file": "StoryData/P10814.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "작은 형님→幼兄",
+  "kr": "쯧. 똑같군.",
+  "jp": "ちっ。同じだな。",
+  "en": "Tsk. Guess we share the same target.",
+  "tw": "嘖。跟我一樣。",
+  "first_pass": [
+   {
+    "from": "a29",
+    "category": "A4",
+    "severity": "medium",
+    "explain": "KR「똑같군」是說眼前的孩子跟她母親奧提斯一模一樣（同樣是擅自出手報同一筆仇、領域重疊），下一句接著抱怨「大姐也真是的」；TW 寫「跟我一樣」，指涉成說話者自己。",
+    "suggest": "嘖。簡直一模一樣。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "medium",
+  "explain": "KR「쯧. 똑같군.」是「嘖，一樣啊」（JP 同じだな），EN 官方譯為 Guess we share the same target；下一句「大姐也真是的，都說要注意別讓地盤重疊」，抱怨的正是目標撞在一起。現行 TW「跟我一樣」即「跟我的目標一樣」，說得通。",
+  "suggest": null,
+  "reason": "初篩認為是說孩子跟母親一模一樣，但下一句抱怨的是「地盤重疊」，EN 也是「目標相同」；現行 TW 指的是說話者自己的目標，並非指涉錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "P10814#54",
+  "key": "StoryData/P10814.json|/dataList/54/content",
+  "file": "StoryData/P10814.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "누님이나 아우 같은 호칭도 받은 적 없어.",
+  "jp": "姉貴や妹分といった呼び名を与えられたこともないんだ。",
+  "en": "On top of that, she never received a title. She was Sister to no one in The Middle.",
+  "tw": "也沒有姐妹之類的稱呼。",
+  "first_pass": [
+   {
+    "from": "a29",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 的「누님이나 아우」是「大姐、幼弟（弟妹）」這類稱呼；TW 寫成「姐妹」，意思不同。",
+    "suggest": "也從沒被稱呼過大姐或幼弟之類的稱呼。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「누님이나 아우 같은 호칭」是「누님（大姐）或아우（弟妹）這類稱呼」，JP 寫「姉貴や妹分」（大姐或小妹）。對象是女孩，現行 TW「姐妹之類的稱呼」正好是「姐（누님）」與「妹（아우）」，意思相符。",
+  "suggest": null,
+  "reason": "「姐妹」可視為「姐」「妹」兩種稱呼的合稱，與 JP「姉貴や妹分」一致；初篩改法的「幼弟」反而把女孩的稱呼寫成男性。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10902#8",
+  "key": "StoryData/P10902.json|/dataList/8/content",
+  "file": "StoryData/P10902.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "아, 다행히도 아이의 시선을 다른 곳으로 이끌어 줄 길잡이가 온 모양이네.",
+  "jp": "あぁ、幸いにも子供の視線を他の場所へと導いてくれる、⏎案内人が来たみたいね。",
+  "en": "Oh, how fortunate for him. It looks like a guide has arrived to distract her.",
+  "tw": "哦，這個男人可真幸運啊。看起來有個嚮導的到來吸引了孩子的注意。",
+  "first_pass": [
+   {
+    "from": "a29",
+    "category": "A4",
+    "severity": "medium",
+    "explain": "KR 是「幸好有個能把孩子視線引開的嚮導來了」，慶幸的是情勢；TW 寫成「這個男人可真幸運」，變成嚮導很幸運，指涉錯誤。",
+    "suggest": "哦，幸好有個能把孩子的視線引向別處的嚮導來了。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "low",
+  "explain": "KR「다행히도 아이의 시선을 다른 곳으로 이끌어 줄 길잡이가 온 모양이네」是「幸好，似乎來了個能把孩子視線引開的嚮導」，慶幸的是被孩子盯上的守財奴；EN「how fortunate for him」把這層意思明說出來。現行 TW「這個男人可真幸運啊」的「這個男人」指的就是守財奴，不是嚮導（嚮導是良秀，女性）。",
+  "suggest": null,
+  "reason": "初篩把「這個男人」誤讀成嚮導。TW 照 EN 把「對誰幸運」明說成守財奴，與 KR 隱含的意思一致，後半「嚮導的到來吸引了孩子的注意」也符合 KR，不算錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "P10909#77",
+  "key": "StoryData/P10909.json|/dataList/77/content",
+  "file": "StoryData/P10909.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "로쟈→羅佳",
+  "kr": "내 시간을 낭비하게 만든 값. 제대로 뜯어갈 테니 각오하라고.",
+  "jp": "私の時間を浪費させた代償。⏎目一杯むしり取ってくから覚悟してね。",
+  "en": "You'll pay dearly for wasting my time. Oh, just you wait 'till I'm done with ya.",
+  "tw": "浪費我時間的代價。做好加倍償還的準備吧。",
+  "first_pass": [
+   {
+    "from": "a29",
+    "category": "A3",
+    "severity": "low",
+    "explain": "KR「제대로 뜯어갈 테니」是「會好好收取」；TW 寫「加倍償還」，多出「加倍」。",
+    "suggest": "浪費我時間的代價。我會好好收回來的，做好覺悟吧。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "low",
+  "explain": "KR「제대로 뜯어갈 테니 각오하라고」是「我會好好地（狠狠地）討回來，做好覺悟吧」，JP「目一杯むしり取ってくから覚悟してね」、EN「You'll pay dearly」；現行 TW「做好加倍償還的準備吧」。",
+  "suggest": null,
+  "reason": "「加倍償還」是表達「狠狠討回」的慣用說法，與 JP「目一杯」、EN「pay dearly」一樣只是加強語氣，不是實際的倍數，意思沒有偏離，屬措辭選擇。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10910#80",
+  "key": "StoryData/P10910.json|/dataList/80/content",
+  "file": "StoryData/P10910.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "이 가방이, 이 플루드니차가 자신을 몇대 째 사용자로 인식하고 있을지 라던가.",
+  "jp": "この鞄が、このポルードニツァが自分を何代目の使用者として⏎認識してるんだろうということや。",
+  "en": "Because doing so would also show her anxiety about how many users this Poludnitsa has had in the past...",
+  "tw": "因為這會顯露出她對這個包，這個波魯德尼察曾經有過多少代使用者……",
+  "first_pass": [
+   {
+    "from": "a29",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR 是「這個包、這個波魯德尼察把自己認定為第幾代使用者」；TW 寫成「她對這個包……曾經有過多少代使用者」，主客顛倒、語意含混。",
+    "suggest": "這個包，這個波魯德尼察，把自己認定為第幾代使用者之類的事。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR #80「이 가방이, 이 플루드니차가 자신을 몇대 째 사용자로 인식하고 있을지 라던가」與 #81「자신도 곧 그렇게 과거의 사용자가 될지도 모른다는 불안감은…」連成一句：「這個包把自己認作第幾代使用者，以及自己也可能很快成為過去使用者的不安……」。現行 TW #80「她對這個包……曾經有過多少代使用者……」接 #81「或者自己可能也會成為『前使用者』這種事情的不安感……」，是「她對 X……或者 Y 的不安感」的跨行句。",
+  "suggest": null,
+  "reason": "「她對」是跨行句「她對……的不安感」的開頭，不是主客顛倒；「曾有過多少代使用者」與「把自己認作第幾代」說的是同一件事（EN 也這樣寫）。初篩的改法會切斷與 #81 的銜接，不宜採用。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10913#53",
+  "key": "StoryData/P10913.json|/dataList/53/content",
+  "file": "StoryData/P10913.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "그래서 일부러 아이의 담당을 바꿔가며 가호를 받지 않게 했지.",
+  "jp": "だからわざと子供の担当を入れ替えながら⏎加護を受けさせなかったんだ。",
+  "en": "Which is why he constantly assigned the child to different Abnormalities, to prevent her from gaining the Blessing.",
+  "tw": "所以才故意將負責的孩子換掉，避免她被授予加護。",
+  "first_pass": [
+   {
+    "from": "a29",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「아이의 담당을 바꿔가며」是不斷調換這孩子的負責對象；TW 寫「將負責的孩子換掉」，變成把孩子換掉。",
+    "suggest": "所以才故意不斷調換孩子負責的對象，避免她獲得加護。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「일부러 아이의 담당을 바꿔가며 가호를 받지 않게 했지」是「故意（一再）調換孩子負責的對象，不讓她得到加護」；現行 TW「故意將負責的孩子換掉，避免她被授予加護」，可讀作把負責（那個異想體）的孩子換下來。",
+  "suggest": null,
+  "reason": "「將負責的孩子換掉」指的是把孩子從那個異想體的負責人位置換下，結果同樣是孩子不再管理它、得不到加護，與 KR 意思一致，不是把孩子本人換掉；差別只在措辭。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10915#4",
+  "key": "StoryData/P10915.json|/dataList/4/content",
+  "file": "StoryData/P10915.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "누구는 고양이를, 누구는 개를, 또 누구는 염소를.",
+  "jp": "ある人は猫を、ある人は犬を、またある人は山羊を。",
+  "en": "Some cuddle up to a cat. Others leash a dog. Or a goat, even—tied real close to the core of who they really are.",
+  "tw": "有人的是貓，有人的是狗，也有人的是羊。",
+  "first_pass": [
+   {
+    "from": "a30",
+    "category": "A1",
+    "severity": "low",
+    "explain": "염소是「山羊」，TW 的「羊」過於籠統，與貓、狗並列的動物意象略有失真。",
+    "suggest": "有人的是貓，有人的是狗，也有人的是山羊。",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「염소」是山羊，JP「山羊」、EN「goat」；現行 TW 寫「羊」。",
+  "suggest": null,
+  "reason": "中文「羊」是包括山羊在內的總稱，不算錯譯，這裡也沒有要靠山羊與綿羊區分的劇情，屬措辭偏好。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10916#250",
+  "key": "StoryData/P10916.json|/dataList/250/content",
+  "file": "StoryData/P10916.json",
+  "field": "content",
+  "origin": "claude",
+  "speaker": "旁白→旁白",
+  "kr": "일반적인 치료제는 물론 어중간한 가격의 특이점으로도 낫지 않을 지독한 상처를 남긴다.",
+  "jp": "一般的な治療薬はもちろん、半端な価格の特異点でも癒えない⏎ひどい傷を残す。",
+  "en": "The vicious wound it leaves is the kind no common treatment could mend. The kind that no budget-priced Singularity could patch up.",
+  "tw": "會留下不只一般的治療藥，就連價格不上不下的奇點都治不好的嚴重傷口。",
+  "first_pass": [
+   {
+    "from": "a30",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR：不僅一般治療藥，連價格不上不下的奇點也治不好的嚴重傷口（『A는 물론 B로도 낫지 않을』）。TW「不只一般的治療藥」語意不通，像是在說傷口留下治療藥，意思被弄亂。",
+    "suggest": "別說是一般的治療藥，就連價格不上不下的奇點也治不好的嚴重傷口。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR「일반적인 치료제는 물론 어중간한 가격의 특이점으로도 낫지 않을 지독한 상처를 남긴다」是「會留下不只一般治療藥，連價格不上不下的奇點也治不好的嚴重傷口」；現行 TW「會留下不只一般的治療藥，就連價格不上不下的奇點都治不好的嚴重傷口」。",
+  "suggest": null,
+  "reason": "現行 TW 是長定語句，讀到「治不好的嚴重傷口」就能理解，意思與 KR 一致，只是句式較長，屬措辭；初篩改法刪掉了「會留下」，反而不成句。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P11107#9",
+  "key": "StoryData/P11107.json|/dataList/9/content",
+  "file": "StoryData/P11107.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "한때, 담배라는 걸 입에 대지 않았던 날도 있었는데 말이야.",
+  "jp": "一時は、煙草というものを⏎口に咥えなかった日もあったというのにね。",
+  "en": "There once was a time when she never even thought of bringing a thing like the smoking pipe anywhere near her mouth.",
+  "tw": "曾經，她從未想過自己會有將菸草送入口中的一天。",
+  "first_pass": [
+   {
+    "from": "a31",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 是「曾有一段時期，她連菸都不碰」（過去不抽菸的日子），TW 寫成「從未想過自己會有將菸草送入口中的一天」，改成預想／意願，原意是過去不碰菸的事實。",
+    "suggest": "曾經，也有過她不碰菸草的日子呢。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「한때, 담배라는 걸 입에 대지 않았던 날도 있었는데 말이야」是「曾經也有過她不碰菸的日子呢」；現行 TW「曾經，她從未想過自己會有將菸草送入口中的一天」，與 EN「she never even thought of bringing ... near her mouth」相同。",
+  "suggest": null,
+  "reason": "TW 多了「從未想過」，但要說的同樣是「她以前不抽菸」，接下來的情節也不受影響，屬措辭差異。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P11202#9",
+  "key": "StoryData/P11202.json|/dataList/9/content",
+  "file": "StoryData/P11202.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "괴로워하는 건달→痛苦的混混",
+  "kr": "애초에 다 늙어빠진 아저씨가! 새파랗게 어린 사람 8명을 때려눕히는 게 말이 돼?",
+  "jp": "そもそも老いぼれたオッサンが！⏎ぴっちぴちの若造8人をぶちのめすとかあり得るのか？",
+  "en": "How does it make sense for a scraggly prune like you to beat up eight healthy young people?",
+  "tw": "所以說油膩的中年大叔！撂倒8個年紀輕輕的人，像話嗎？",
+  "first_pass": [
+   {
+    "from": "a32",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 的 다 늙어빠진 是「老得不成樣的」（下一句 늙… 也在接這個字）；TW 改成「油膩的中年大叔」，「油膩」KR 沒有，「老」的重點被換掉，使下一行 늙… 對應不上。",
+    "suggest": "所以說一個老得不成樣的大叔！撂倒8個年紀輕輕的人，像話嗎？",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「다 늙어빠진 아저씨가! 새파랗게 어린 사람 8명을 때려눕히는 게 말이 돼?」是「一個老掉牙的大叔，撂倒8個年紀輕輕的人，像話嗎？」；現行 TW「油膩的中年大叔」，下一行格里高爾的反應 TW 也寫「中年大叔……」。",
+  "suggest": null,
+  "reason": "「油膩的中年大叔」是中文常見的罵人說法，同樣在挖苦對方的年紀，與「年紀輕輕的人」的對比仍在；下一行 TW「中年大叔……」正好接得上，初篩說「對應不上」不成立（若照初篩改法，反而要連下一行一起改）。屬在地化措辭。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P11204#26",
+  "key": "StoryData/P11204.json|/dataList/26/content",
+  "file": "StoryData/P11204.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "그레고르→格里高爾",
+  "kr": "후…그래. 료.고.파 다. 마음에 안드는 가게 이름이지만.",
+  "jp": "ふぅ…そうだ。りょ・ミ・パだ。店の名前は気に入らないが。",
+  "en": "Hoo… That’s right. Welcome to R.B. Can’t say I’m fond of our shop’s name.",
+  "tw": "呼……沒錯。是良．派。雖然我不怎麼喜歡這店名。",
+  "first_pass": [
+   {
+    "from": "a32",
+    "category": "A6",
+    "severity": "low",
+    "explain": "這家店名是「료(良)．고(肉)．파(派)」（료슈의 고기 파이），JP 作 りょ・ミ・パ；TW 寫成「良．派」，漏掉「고／肉」，雙關（縮寫少了一字）對不上，也和前一行「良秀的大肉……」不連貫。",
+    "suggest": "呼……沒錯。是良．肉．派。雖然我不怎麼喜歡這店名。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「료.고.파」是「료슈의 고기파이」（良秀的肉派）的縮寫；現行 TW 寫「良．派」。",
+  "suggest": null,
+  "reason": "「良．派」是這家店既有的譯名：UnitKeyword #34（료.고.파 → 良．派）、被動「良．派 廚師長 良秀」、P10404 #22 都這樣寫。只改這一行會與遊戲內的關鍵字、人格名稱不一致；要改縮寫得全部一起改，不是這一行的錯譯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "P11204#30",
+  "key": "StoryData/P11204.json|/dataList/30/content",
+  "file": "StoryData/P11204.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "그레고르→格里高爾",
+  "kr": "아무리 생각해도 료슈의 고기파이가 아니라 료.고.파인건 도당체가 이해 안된단 말이지.",
+  "jp": "いくら考えてみても良秀のミートパイじゃなくて⏎りょ・ミ・パなこと自体理解できないんだよな。",
+  "en": "But I really just don’t understand why it has to be called “R.B” and not “Ryōshū’s Bistro”.",
+  "tw": "但我怎麼想也想不通為什麼這店不叫「良秀的大肉派」，而是「良．派」。",
+  "first_pass": [
+   {
+    "from": "a32",
+    "category": "A6",
+    "severity": "low",
+    "explain": "同上：KR 的簡稱是「료.고.파」（良．肉．派），TW 的「良．派」漏了「肉」。",
+    "suggest": "但我怎麼想也想不通為什麼這店不叫「良秀的大肉派」，而是「良．肉．派」。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「료슈의 고기파이가 아니라 료.고.파인건」是「不叫良秀的肉派，而叫『료.고.파』」；現行 TW 寫「不叫『良秀的大肉派』，而是『良．派』」。",
+  "suggest": null,
+  "reason": "同 P11204#26：「良．派」是 UnitKeyword、被動與 P10404 共用的既有譯名，縮寫要不要改應全部一起決定，這一行與既有譯名一致，不算錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "P11211#3",
+  "key": "StoryData/P11211.json|/dataList/3/content",
+  "file": "StoryData/P11211.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "누님→大姐",
+  "kr": "꿈과… 희망이…",
+  "jp": "夢と…希望で…。",
+  "en": "La... Manchaland... let's...",
+  "tw": "抵達那……充滿夢……",
+  "first_pass": [
+   {
+    "from": "a32",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 是「夢想與……希望……」（接 #6「充滿的拉．曼查領」，整句是「充滿夢想與希望的拉．曼查領」）；TW「抵達那……充滿夢……」多了「抵達」且把「希望」放到下一行，語意破碎。",
+    "suggest": "夢想與……希望……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR 把一句話拆成兩行：「꿈과… 희망이…」（#3）與「가득한 라만차랜드로…」（#6），合起來是「前往充滿夢想與希望的拉．曼查領……」。中文語序必須先寫「充滿」，TW 把整句重新分配成「抵達那……充滿夢……」「與希望的拉．曼查領……」，兩行連讀就是「抵達那充滿夢與希望的拉．曼查領」，「抵達」對應 KR 的「로」（往……）。",
+  "suggest": null,
+  "reason": "兩行合起來意思與 KR 相同，只是配合中文語序在兩行間重新分配；EN 也同樣重組（La... Manchaland... let's... / ... all dream free here... We hope...）。初篩改法「夢想與……希望……」「充滿……的拉．曼查領……」逐行對應 KR，中文反而破碎。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P11211#6",
+  "key": "StoryData/P11211.json|/dataList/6/content",
+  "file": "StoryData/P11211.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "누님→大姐",
+  "kr": "가득한 라만차랜드로…",
+  "jp": "いっぱいのラ・マンチャランドへ…。",
+  "en": "... all dream free here... We hope...",
+  "tw": "與希望的拉．曼查領……",
+  "first_pass": [
+   {
+    "from": "a32",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 是「充滿（夢想與希望）的拉．曼查領……」；TW「與希望的拉．曼查領」缺了「充滿」。",
+    "suggest": "充滿……的拉．曼查領……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "同 #3：KR「꿈과… 희망이…」「가득한 라만차랜드로…」兩行合起來是「前往充滿夢想與希望的拉．曼查領……」；TW 依中文語序把「充滿」放在前一行（「抵達那……充滿夢……」），這一行寫「與希望的拉．曼查領……」，連讀意思完整。",
+  "suggest": null,
+  "reason": "「充滿」沒有漏掉，只是移到上一行；兩行連讀與 KR 一致，EN 也重組了這兩行。初篩改法「充滿……的拉．曼查領……」不成中文。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P11211#75",
+  "key": "StoryData/P11211.json|/dataList/75/content",
+  "file": "StoryData/P11211.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "이전에는 폐장 시간이 가까워져 정보만 듣고 빠져나간 탓일까.",
+  "jp": "以前は閉園時間が近づいていたせいで、⏎情報を聞くだけ聞いてすぐに引き上げたせいだろうか。",
+  "en": "Last time, I left as soon as I got the necessary intel because I was cutting it close to the park closing hours.",
+  "tw": "上次由於閉園時間將近，我在獲取情報後就離開了。",
+  "first_pass": [
+   {
+    "from": "a32",
+    "category": "A5",
+    "severity": "low",
+    "explain": "KR 的 탓일까 是旁白的猜測（「是不是因為上次接近閉園時間，我只聽了情報就走的緣故？」），用來解釋血魔這次的反應；TW 改成肯定敘述，語氣由疑問變陳述。",
+    "suggest": "是因為上次接近閉園時間，我只聽了情報就離開的緣故嗎。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A5",
+  "severity": "low",
+  "explain": "KR #75「是因為上次接近閉園時間，我只聽了情報就走掉的緣故嗎」、#76「吐情報吐到喘不過氣的血魔眼裡帶著期待」；TW 把推測語氣移到下一行：#75 寫成陳述「上次……獲取情報後就離開了」，#76 寫「也許這就是……眼神裡帶有一抹希望的原因」。",
+  "suggest": null,
+  "reason": "兩行合起來意思與 KR 相同（上次只拿情報就走，所以血魔這次懷著期待，而且同樣是推測），只是把「탓일까」的推測放到 #76 表達；EN 也是同樣的分配（Last time, I left... / Perhaps that's why...）。#75 本身敘述的事實也正確，不算反轉。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P11211#76",
+  "key": "StoryData/P11211.json|/dataList/76/content",
+  "file": "StoryData/P11211.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "한참을 숨이 차도록 정보를 토해낸 혈귀의 눈빛에는 기대가 서려 있었다.",
+  "jp": "息が上がるほど次々と情報を吐き出す血鬼の目には、⏎どこか期待の光が宿っているのが見えた。",
+  "en": "Perhaps that's why there was a slight look of hope and anticipation in the Bloodfiend's eyes after sharing that deluge of information.",
+  "tw": "也許這就是那血魔急忙吐出情報後，眼神裡帶有一抹希望的原因。",
+  "first_pass": [
+   {
+    "from": "a32",
+    "category": "A5",
+    "severity": "low",
+    "explain": "KR 是陳述：吐出情報吐到喘不過氣的血魔，眼神裡帶著期待；TW 把它寫成猜測「也許這就是……的原因」，且與 #75 的疑問句錯位。",
+    "suggest": "吐了好一陣子情報、吐到上氣不接下氣的血魔，眼神裡帶著期待。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A5",
+  "severity": "low",
+  "explain": "KR 是陳述「吐情報吐到喘不過氣的血魔，眼神裡帶著期待」；TW「也許這就是那血魔急忙吐出情報後，眼神裡帶有一抹希望的原因」把上一行 #75 的推測（탓일까）併到這一行。",
+  "suggest": null,
+  "reason": "與 #75 一起看，意思與 KR 一致，推測語氣只是換了位置，EN 也這樣寫。單獨改這一行而不改 #75，反而會讓 #75 的「上次……就離開了」與這一行接不起來。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P11214#45t",
+  "key": "StoryData/P11214.json|/dataList/45/title",
+  "file": "StoryData/P11214.json",
+  "field": "title",
+  "origin": "paratranz",
+  "speaker": "팀장→隊長",
+  "kr": "LCA 인재 관리2팀",
+  "jp": "LCA人材管理チーム2",
+  "en": "LCA HR Management Team 2",
+  "tw": "LCA人力資源管理2組",
+  "first_pass": [
+   {
+    "from": "a33",
+    "category": "A8",
+    "severity": "low",
+    "explain": "說話者稱號 KR「팀장」在本檔其他處（研究員稱格里高爾）譯為「組長」，此處譯為「隊長」，且 LCA 人力資源管理2組屬行政組別；建議統一為「組長」（#45、#48、#51、#59 同）。",
+    "suggest": "組長［LCA人力資源管理2組］",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A8",
+  "severity": "low",
+  "explain": "這個單位是稱號欄位，KR「LCA 인재 관리2팀」，TW「LCA人力資源管理2組」，意思正確，和本檔其他 9 處同一稱號寫法一致。",
+  "suggest": null,
+  "reason": "初篩指的是說話者名稱「팀장」寫「隊長」的問題，那屬於 #45n（以及 #48n、#51n、#59n）的說話者欄位，不是這個稱號；初篩的改法「組長［LCA人力資源管理2組］」把名稱和稱號混在一起，不能當稱號用。若要把「隊長」統一成「組長」（本檔研究員稱格里高爾「組長」，部門也叫「2組」），應另外改說話者欄位。",
+  "confidence": "high"
+ },
+ {
+  "ref": "PC02B#17",
+  "key": "StoryData/PC02B.json|/dataList/17/content",
+  "file": "StoryData/PC02B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "대답하시게!! 노잡이!!! 지금부터 메피스토펠레스호의 일등 항해사 이스마엘이 배를 몰아… 에페페펩!",
+  "jp": "応えたまえ！！漕ぎ手！！今よりメフィストフェレス号の一等航海士⏎イシュメールが舵を取…うぇえべべべ！",
+  "en": "ANSWERS, YE DOGS!! OARSMEN!!! ‘Tis the moment I, Ishmael, the first mate of vessel Mephistopheles, shall navi—aaaugh!",
+  "tw": "回應我！！槳手！！！從現在開始，由我梅菲斯托費勒斯的大副以實瑪利來掌……欸呸呸呸！",
+  "first_pass": [
+   {
+    "from": "a33",
+    "category": "A6",
+    "severity": "low",
+    "explain": "KR「메피스토펠레스호의 일등 항해사 이스마엘」是梅菲斯托費勒斯「號」的大副；TW 漏了「號」，並多出「我」，且「來掌」後少了「舵」，語意不全。",
+    "suggest": "回應我！！槳手！！！從現在開始，由梅菲斯托費勒斯號的大副以實瑪利來掌舵……欸呸呸呸！",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「지금부터 메피스토펠레스호의 일등 항해사 이스마엘이 배를 몰아… 에페페펩!」是唐吉訶德在講冒險故事、扮演以實瑪利，說到「駕船」一半就被摀住嘴；TW「由我梅菲斯托費勒斯的大副以實瑪利來掌……欸呸呸呸！」。",
+  "suggest": null,
+  "reason": "「來掌……」斷在半個詞是刻意的：KR「배를 몰아…」本來就被打斷，EN 也寫「shall navi—」，補上「舵」反而失去被摀嘴的效果。「由我」是唐吉訶德扮演以實瑪利的口吻，EN 也寫「I, Ishmael」。少了「號」只是措辭差異，「大副」已表明是船，意思沒有改變。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "PC04B#54",
+  "key": "StoryData/PC04B.json|/dataList/54/content",
+  "file": "StoryData/PC04B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "히스클리프→希斯克利夫",
+  "kr": "후우… 저 재수탱이가 요즘 잠잠하긴 했지. 그래서 뭔 말인데?",
+  "jp": "ふぅ…最近あのムカつく話し方が落ち着いたと思ってたんだがな。⏎それで、どういう意味だ？",
+  "en": "Haah… I was wondering when Miss smartarse would start gabbing like that again. So, what’s she on about?",
+  "tw": "呼……還以為那讓人不爽的說話方式最近收斂了點呢。所以呢，那是什麼意思？",
+  "first_pass": [
+   {
+    "from": "a34",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 的「저 재수탱이가 요즘 잠잠하긴 했지」是說「那個討人厭的傢伙（指浮士德本人）最近倒是安分了」，罵的是人；TW 寫成「那讓人不爽的說話方式最近收斂了點」，把對象從人改成了說話方式。",
+    "suggest": "呼……那個討人厭的傢伙最近是安分了點呢。所以呢，那是什麼意思？",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「저 재수탱이가 요즘 잠잠하긴 했지」字面是「那個討人厭的傢伙最近是挺安分的」，指浮士德那套冗長的說話方式最近少了；TW「還以為那讓人不爽的說話方式最近收斂了點呢」。",
+  "suggest": null,
+  "reason": "官方 JP 也譯成「最近あのムカつく話し方が落ち着いたと思ってたんだがな」（那讓人火大的說話方式），TW 與 JP 一致；KR 說「安分」的正是她的說話方式（前一行浮士德又講了一長串），意思沒有改變，只是把罵人的對象換成說話方式，屬於措辭選擇。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "PC13B#31",
+  "key": "StoryData/PC13B.json|/dataList/31/content",
+  "file": "StoryData/PC13B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "메이어스→邁爾斯",
+  "kr": "마을에서 너희를 공격했을 때는 나도 놀랐어. 아마… 파우스트와 오티스가 배를 수리하는 걸 보고… 탐이 났나 봐.",
+  "jp": "村でファビウスが君たちを襲ったときは、私も驚いたよ。⏎たぶん…ファウストとウーティスが船を直すのを見て、欲が出たんだと思う。",
+  "en": "I was pretty taken aback too, when they attacked you back at the village. Maybe he got... greedy when he saw Faust and Outis repairing the ship.",
+  "tw": "看見他們在村裡襲擊你們，我也吃了一驚。我想應該是……因為看見浮士德跟奧提斯修好了船，所以才起了貪念吧。",
+  "first_pass": [
+   {
+    "from": "a35",
+    "category": "A4",
+    "severity": "low",
+    "explain": "KR 是「（法比烏斯）在村裡攻擊你們時，我也嚇了一跳」，驚訝的原因是對方的襲擊；JP/EN 也明示攻擊者是法比烏斯。TW 寫成「看見他們在村裡襲擊你們」，變成邁爾斯親眼看見襲擊，主詞與事件關係被改動。",
+    "suggest": "他們在村裡襲擊你們的時候，我也吃了一驚。我想應該是……看見浮士德跟奧提斯修好了船，所以才起了貪念吧。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "low",
+  "explain": "KR「마을에서 너희를 공격했을 때는 나도 놀랐어」是「（法比烏斯他們）在村裡攻擊你們的時候，我也嚇了一跳」；TW「看見他們在村裡襲擊你們，我也吃了一驚」多了「看見」。",
+  "suggest": null,
+  "reason": "襲擊者（他們）、受害者（你們）與邁爾斯吃驚的原因都沒有變，「看見」只是措辭上的小差異，不影響劇情理解；初篩說「主詞與事件關係被改動」言過其實。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S1017B#63",
+  "key": "StoryData/S1017B.json|/dataList/63/content",
+  "file": "StoryData/S1017B.json",
+  "field": "content",
+  "origin": "claude",
+  "speaker": "홍루→鴻璐",
+  "kr": "그럴지도 모르겠네요. 관리자님은 항상 차례가 온 분들의 기억을 엿보시곤 하셨으니까요.",
+  "jp": "そうかもしれませんね。管理人さんはいつも、⏎順番が来た方の記憶を覗かれていましたから。",
+  "en": "Maybe that's what happened. Whenever someone's \"turn\" comes, Dante tends to get a chance to peek into their memories.",
+  "tw": "或許是那樣呢。畢竟執行經理總是會窺探輪到的那位的記憶嘛。",
+  "first_pass": [
+   {
+    "from": "a36",
+    "category": "A6",
+    "severity": "low",
+    "explain": "KR「관리자님」稱但丁，詞彙表 `관리자` 的譯名是「經理」（稱但丁約 1,170 行）。TW 寫成「執行經理」，與詞彙表不符（「執行經理」只出現在少數舊譯中）。",
+    "suggest": "或許是那樣呢。畢竟經理總是會窺探輪到的那位的記憶嘛。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「관리자님」指但丁，TW 寫「執行經理」；詞彙表 관리자 的預設譯名是「經理」。",
+  "suggest": null,
+  "reason": "「執行經理」是但丁的正式職稱（Executive Manager，詞彙表 meaning 欄也這樣寫），意思沒有錯；詞彙表這條不是 check: hard，只是預設譯名。鴻璐說「관리자님」的既有譯文 4 處（8D105B#165、E515A#33、E728B#82 與本句）都寫「執行經理」，屬於用詞統一的選擇，不是錯譯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S101B#91",
+  "key": "StoryData/S101B.json|/dataList/91/content",
+  "file": "StoryData/S101B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "죽어버리고만 싶은 아픔이 언제 까지고 이어진다.",
+  "jp": "いっそ死んでしまいたい痛みがいつまでも続く。",
+  "en": "A torture so unbearable I'd have taken death over it—and it refused to let up.",
+  "tw": "這股生不如死的痛覺還要持續多久。",
+  "first_pass": [
+   {
+    "from": "a37",
+    "category": "A5",
+    "severity": "low",
+    "explain": "KR「언제까지고 이어진다」是陳述「（生不如死的痛楚）沒完沒了地持續著」（JP「いつまでも続く」）；TW 寫成「還要持續多久」，變成疑問／感嘆持續時間，失去「無止境地持續」的意思。",
+    "suggest": "這股生不如死的痛覺無止境地持續著。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A5",
+  "severity": "low",
+  "explain": "KR「언제까지고 이어진다」是「沒完沒了地持續著」；TW「這股生不如死的痛覺還要持續多久。」用句號收尾的感嘆，表達的也是痛苦看不到盡頭，下一句又接「像是永遠那般持續著」。",
+  "suggest": null,
+  "reason": "不算反轉：TW 不是疑問句，是用感嘆寫出痛苦沒有盡頭，意思相同，只是措辭不同；建議的「無止境地持續著」也和下一句「像是永遠那般持續著」重複。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S111B#73",
+  "key": "StoryData/S111B.json|/dataList/73/content",
+  "file": "StoryData/S111B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "그레고르→格里高爾",
+  "kr": "이런, 실물에 대고 한 것도 아닌데 너무 그러지 말지 그래.",
+  "jp": "ありゃぁ、実物に対してやったわけでもないのにそう言ってくれるなよ。",
+  "en": "Whoa, easy there, it’s not like you had to salute me in person.",
+  "tw": "哎呀，又不需要你對著真人敬禮，就別這麼說了。",
+  "first_pass": [
+   {
+    "from": "a39",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR：我又不是對著本人（實物）敬禮的，所以別那樣說（敬禮對象是海報）。TW 寫成「又不需要你對著真人敬禮」，變成『不需要你向真人敬禮』，意思與上下文（對方曾對著海報敬禮）不合。",
+    "suggest": "哎呀，又不是對著本人敬禮的，就別這麼說了。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR「실물에 대고 한 것도 아닌데」是「又不是對著本人（敬禮）」；TW「又不需要你對著真人敬禮」意思是「你又不必對著本人敬禮」，EN 也是 it's not like you had to salute me in person。",
+  "suggest": null,
+  "reason": "TW 與 KR、EN 同義：都表示對方敬禮的對象不是格里高爾本人（是海報），接上一句「對著你的臉敬禮」說得通，只是措辭不同。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S207B#2",
+  "key": "StoryData/S207B.json|/dataList/2/content",
+  "file": "StoryData/S207B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "콩콩이파 보스→豆豆幫老大",
+  "kr": "누가 보낸 거냐? 차림을 보니까 하바네로파나 정육점파 녀석들은 아니고…",
+  "jp": "誰が送った？服を見るにハバネロ派や精肉店派の奴らじゃぁないな…。",
+  "en": "Who sent ya? Judgin’ by the getup, you ain’t Los Habaneros or the Butchers...",
+  "tw": "誰讓你們來的？你們的衣服看起來也不是哈瓦那幫或者肉鋪幫的那些傢伙們啊……",
+  "first_pass": [
+   {
+    "from": "a39",
+    "category": "A6",
+    "severity": "low",
+    "explain": "KR「하바네로파」是辣椒 habanero（EN Los Habaneros），TW 譯為「哈瓦那幫」像是古巴 Havana，名稱音譯不符。",
+    "suggest": "誰讓你們來的？你們的衣服看起來也不是哈巴內羅幫或者肉鋪幫的那些傢伙們啊……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「하바네로파」取自辣椒 habanero（EN Los Habaneros）；habanero 的中文常用名正是「哈瓦那辣椒」（habanero 本意即「哈瓦那的」）。",
+  "suggest": null,
+  "reason": "「哈瓦那幫」對應的是 habanero 的中文通稱「哈瓦那辣椒」，不算音譯錯誤；這個幫派全遊戲只出現這一次，改成「哈巴內羅幫」只是另一種寫法。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S301B#65",
+  "key": "StoryData/S301B.json|/dataList/65/content",
+  "file": "StoryData/S301B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "파우스트→浮士德",
+  "kr": "두괄적 발화가 언제나 옳지는 않아요. 파우스트는 그때그때의 가장 효과적인 방식을 선택할 뿐이랍니다.",
+  "jp": "頭括式発話がいつも正しいわけではありません。⏎ファウストはその場その場で最適な方法を選択するのみです。",
+  "en": "Hysteron proteron isn’t always correct. Faust simply adopts the most effective mode of communication for the given situation.",
+  "tw": "概括式說明並不總是正確的。浮士德只是選擇了該場合下最有效的敘述方式而已。",
+  "first_pass": [
+   {
+    "from": "a40",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「두괄적 발화」（頭括式發話，即結論先行的說法），JP 作「頭括式発話」，下一句希斯克利夫正是被這個生僻詞絆住。TW 譯成「概括式說明」，意思變成『概要式』，與『先講結論』不同。",
+    "suggest": "結論先行式的發話並不總是正確的。浮士德只是選擇了該場合下最有效的敘述方式而已。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「두괄적 발화」是結論先行的說法；TW「概括式說明」雖不等於「頭括式」，但這句是回應希斯克利夫「是或不是一句話的事卻能廢話那麼久」，「概括式說明並不總是正確的」在前後文說得通。",
+  "suggest": null,
+  "reason": "意思在前後文裡成立，屬措辭選擇；而且下一句 #66 希斯克利夫的「概……概啥？」是配合「概括式」寫的，只改這句會讓結巴的雙關接不上。若要改，須連同 #66 一起改。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S303B#25",
+  "key": "StoryData/S303B.json|/dataList/25/content",
+  "file": "StoryData/S303B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "모범생 역할을 자처하기로 마음먹은 것 같은 이스마엘이 대신 대답했다.",
+  "jp": "模範生役を買って出ることにしたらしいイシュメールが代わりに答えた。",
+  "en": "Ishmael took the role of the model student and answered in Vergilius’s stead.",
+  "tw": "以實瑪利就像模範生一樣替維吉里烏斯回答道。",
+  "first_pass": [
+   {
+    "from": "a40",
+    "category": "A4",
+    "severity": "medium",
+    "explain": "KR「이스마엘이 대신 대답했다」是以實瑪利『代替但丁（管理者）』回答（前面問的是但丁的時鐘頭算不算武器，而且她回答中說『관리자님의 머리』）。TW 寫成『替維吉里烏斯回答』，對象錯了。",
+    "suggest": "似乎打定主意要扮演模範生的以實瑪利，代替但丁回答道。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "medium",
+  "explain": "這段是維吉里烏斯在回答大家的問題（前句「그렇다. 다음.」），羅佳的問題也是問他；以實瑪利「대신 대답했다」是代替維吉里烏斯回答，之後維吉里烏斯才說「정확해.」，EN 也明寫 answered in Vergilius's stead。",
+  "suggest": null,
+  "reason": "初篩誤讀：答句裡的「관리자님의 머리」是回答的內容，不是代替的對象；TW「替維吉里烏斯回答」正確。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S307B#2",
+  "key": "StoryData/S307B.json|/dataList/2/content",
+  "file": "StoryData/S307B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "뫼르소→莫梭",
+  "kr": "앞으로 3초. 관리자님, 판단을.",
+  "jp": "残り三秒。管理人様、判断を。",
+  "en": "ETA is three seconds. Manager, your judgement?",
+  "tw": "還剩三秒。執行經理，決斷為？",
+  "first_pass": [
+   {
+    "from": "a40",
+    "category": "A9",
+    "severity": "medium",
+    "explain": "KR「앞으로 3초. 관리자님, 판단을.」＝還有三秒，請經理下判斷。TW『執行經理，決斷為？』語句殘缺不通順，像是疑問句，意思變成問『決斷是什麼』。",
+    "suggest": "還剩三秒。執行經理，請下判斷。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A9",
+  "severity": "medium",
+  "explain": "KR「관리자님, 판단을.」是省略式的「經理，請判斷」；EN「Manager, your judgement?」也寫成問句。TW「執行經理，決斷為？」是省略式的「您的決斷是？」，意思相同。",
+  "suggest": null,
+  "reason": "屬風格：莫梭的台詞像書面報告，簡短省略的句式符合角色，意思沒有偏差，也不是殘缺或亂碼。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S317B#20",
+  "key": "StoryData/S317B.json|/dataList/20/content",
+  "file": "StoryData/S317B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "오티스→奧提斯",
+  "kr": "잠깐… 거수자 한 명, 전방이다.",
+  "jp": "待て…挙不者一名、前方だ。",
+  "en": "Halt… One Uniform, straight ahead.",
+  "tw": "等等……舉異者一名，正前方。",
+  "first_pass": [
+   {
+    "from": "a40",
+    "category": "A6",
+    "severity": "medium",
+    "explain": "KR「거수자」＝可疑人員（舉止可疑者，軍事用語）。TW『舉異者』不是詞，疑似誤植。",
+    "suggest": "等等……可疑人員一名，正前方。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "medium",
+  "explain": "KR「거수자」是軍中把「거동수상자」（舉動可疑者）縮略的行話，JP 也自造縮略「挙不者」；TW「舉異者」是同樣的縮略造詞，全遊戲一致使用（1D105B#33、S111B#46，S111B#48 還有人反問「舉異……者？這是什麼啊？」，對應 KR 的同一個梗）。",
+  "suggest": null,
+  "reason": "不是誤植，是刻意造的軍事縮略語，與其他檔一致；改成「可疑人員」會讓 S111B#48 的反問接不上。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S409B#35",
+  "key": "StoryData/S409B.json|/dataList/35/content",
+  "file": "StoryData/S409B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "삼조→三朝",
+  "kr": "반론합니다. 닭은 본래 날지 못하거니와, 이 기술은 현재 수많은 시민에게 질적인 복지를…",
+  "jp": "反論します。鶏は本来飛べませんが、この技術は現在数多くの市民へ質的な福祉を…。",
+  "en": "I must object. Chickens cannot fly in the first place, and this technology is providing quality welfare to many...",
+  "tw": "我必須反對。首先，雞並不會飛，另外，這項技術已經把優質的福利帶給了許多民……",
+  "first_pass": [
+   {
+    "from": "a41",
+    "category": "A9",
+    "severity": "low",
+    "explain": "KR「수많은 시민에게」，TW 結尾「許多民……」把「市民」截斷成「民」，缺了「市」，看起來是漏字。",
+    "suggest": "我必須反對。首先，雞並不會飛，另外，這項技術已經把優質的福利帶給了許多市民……",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A9",
+  "severity": "low",
+  "explain": "KR「이 기술은 현재 수많은 시민에게 질적인 복지를…」在動詞前被東朗打斷（下一句「沒關係的，三朝先生」）；中文語序是動詞在前，TW 把打斷的位置放在句尾「許多民……」，讀起來是話說到一半（民眾／市民）被截斷。",
+  "suggest": null,
+  "reason": "不是漏字：「……」表示話被打斷，截在詞中間是中文常見的寫法，意思完整保留；改成「市民……」只是措辭不同。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S427B#31",
+  "key": "StoryData/S427B.json|/dataList/31/content",
+  "file": "StoryData/S427B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "동랑→東朗",
+  "kr": "아직 한 명 더 남아있는 모양인데.",
+  "jp": "もう一人残っているみたいだけど。",
+  "en": "Looks like there'll be another you have to face.",
+  "tw": "你似乎還有一個人要見。",
+  "first_pass": [
+   {
+    "from": "a41",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR：「好像還剩下一個人」，指有一名組織成員仍留在建築內（後文「組織成員應該都已逃出，但似乎不然」）；TW 寫成「你似乎還有一個人要見」，多出「你要見」的意思。",
+    "suggest": "似乎還有一個人留在這裡。",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「아직 한 명 더 남아있는 모양인데」字面是「好像還剩一個人」；前文唐吉訶德說李箱這趟旅途重逢的朋友很多、東朗說「看樣子你已經體會過重逢的喜悅了」，接著出現的正是李箱的另一位舊友（帶著照片與金枝的人）。EN 也譯成 there'll be another you have to face。",
+  "suggest": null,
+  "reason": "TW「你似乎還有一個人要見」是依重逢的前後文對「還剩一個人」的解讀，與 EN 相同，接下來的「什麼意思？」「我本以為組織成員都逃走了……似乎並非如此」也說得通，不算錯譯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S438B#7",
+  "key": "StoryData/S438B.json|/dataList/7/content",
+  "file": "StoryData/S438B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "슈렌느→施倫妮",
+  "kr": "저도 나름 팀장으로 진급했는데 그놈의 최우수 뭐시기 그거 하나 못 받았다고… 안 끼워주더라고요.",
+  "jp": "私もなんとかチーフに昇格したんですけど、あんの最優秀なんたらを⏎受け取れなかっただけで…仲間に入れてくれなかったんですよ。",
+  "en": "'I've been promoted to team manager too, but I wasn't let in... just because I didn't win that silly \"best\" award.'",
+  "tw": "「即使我已經升職成部長了，他們還是沒讓我加入……就因為我沒領到那個最佳員工獎。」",
+  "first_pass": [
+   {
+    "from": "a42",
+    "category": "A6",
+    "severity": "low",
+    "explain": "KR 是「팀장」（組長／隊長級），本檔其他處（S435B）譯作「隊長」；TW 寫成「部長」，職稱不一致，也比原文高一級。",
+    "suggest": "「即使我已經升職成隊長了，他們還是沒讓我加入……就因為我沒領到那個最佳員工獎。」",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「팀장」在本章第一次出現時（S408B#45「옆 부서 팀장」）TW 寫成「隔壁部門的部長」，施倫妮是另一個部門的主管；本行沿用「部長」，與介紹她的那一句一致。",
+  "suggest": null,
+  "reason": "不是錯譯：「部長」與 S408B#45 介紹施倫妮的譯名相同；初篩所說的「隊長」只出現在 S435B#9 一行，若要統一，應整章一起決定，不宜只改這一行。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S438B#28",
+  "key": "StoryData/S438B.json|/dataList/28/content",
+  "file": "StoryData/S438B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "단테→但丁",
+  "kr": "<잘했어…>",
+  "jp": "<ありがとう…。>",
+  "en": "<Good work...>",
+  "tw": "<謝謝……>",
+  "first_pass": [
+   {
+    "from": "a42",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「잘했어」是稱讚「做得好」（EN 為 Good work）；TW 寫成「謝謝」，語意不同。（JP 官方為「ありがとう」，故信心不高）",
+    "suggest": "<做得好……>",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「잘했어…」是「做得好……」（EN Good work），但丁對莫梭連符號都照唸的信疲憊地回應；官方 JP 譯為「ありがとう…」，TW「謝謝……」與 JP 相同。",
+  "suggest": null,
+  "reason": "官方 JP 也這樣處理；「謝謝……」同樣是但丁無奈地收下莫梭的朗讀，語境說得通，屬措辭選擇。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S445B#38",
+  "key": "StoryData/S445B.json|/dataList/38/content",
+  "file": "StoryData/S445B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "히스클리프→希斯克利夫",
+  "kr": "하… 아까 읽었던 그 소망을 이뤄주는 동화? 딴 데가 아니라 여기 있었네.",
+  "jp": "はぁ…さっき読んでたあの願いを叶えてくれる童話？⏎そんなんがどこにあんだよって思ったらここにあったよ。",
+  "en": "Hah... Guess we had our version of wish-granting tales just like that storybook we read earlier.",
+  "tw": "哈……我之前讀過的那個美夢成真的童話故事？我想知道自己能在哪裡找到這樣的東西，結果就在此處。",
+  "first_pass": [
+   {
+    "from": "a42",
+    "category": "A3",
+    "severity": "medium",
+    "explain": "KR 是說「剛才讀到的那個實現願望的童話？原來不在別處，就在這裡」；TW 多出「我想知道自己能在哪裡找到這樣的東西，結果就在此處」，並把童話譯成「美夢成真」，加入原文沒有的內容，語意走樣。",
+    "suggest": "哈……剛才讀到的那個能實現願望的童話？原來不是在別的地方，就在這裡啊。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "medium",
+  "explain": "KR「딴 데가 아니라 여기 있었네」是「原來不在別處，就在這裡」；官方 JP 譯為「そんなんがどこにあんだよって思ったらここにあったよ」（還在想哪裡會有那種東西，結果就在這裡），TW「我想知道自己能在哪裡找到這樣的東西，結果就在此處」與 JP 相同。「美夢成真的童話」也就是實現願望的童話。",
+  "suggest": null,
+  "reason": "TW 的內容與官方 JP 一致，是把「不在別處、就在這裡」寫得更白，沒有多出 KR 沒有的意思；「美夢成真」與「實現願望」同義。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S448B#8",
+  "key": "StoryData/S448B.json|/dataList/8/content",
+  "file": "StoryData/S448B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "동랑→東朗",
+  "kr": "그리고 아직… 내가 만든 기술은 소개해주지도 못했단 말이야. 그렇지, 오랜만인데 기술 낭송회라도 다시 할까?",
+  "jp": "それにまだ…僕が作った技術は紹介すら出来なかったんだよ。⏎そうだ、久々だし技術の朗術会でもまたやる？",
+  "en": "Besides... I haven't even introduced you to the technology I developed. I know, why don't we hold our first conference in a while?",
+  "tw": "此外……我還沒有向妳介紹我開發的技術呢。對了，要不久違地舉行技術朗術會吧？",
+  "first_pass": [
+   {
+    "from": "a42",
+    "category": "A9",
+    "severity": "low",
+    "explain": "KR 為「기술 낭송회」（技術朗誦會）；TW「技術朗術會」是錯字／不通順的詞，且「要不久違地舉行……會吧？」也不是疑問語氣。",
+    "suggest": "此外……我還沒有向妳介紹我開發的技術呢。對了，要不要久違地再辦一次技術朗誦會？",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A9",
+  "severity": "low",
+  "explain": "KR 這裡寫「기술 낭송회」，但本章固定用語是「낭술회」（九人會發表技術的聚會），JP 一律寫「朗術会」，TW 在 S428B#5、S428B#55、S454B#72、4D103B 等處一律寫「朗術會」；本行 JP 也寫「技術の朗術会」。",
+  "suggest": null,
+  "reason": "「朗術會」是本作的固定譯名，不是錯字；「要不……吧？」是中文常用的提議句式，本身就是詢問語氣。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S515B#9",
+  "key": "StoryData/S515B.json|/dataList/9/content",
+  "file": "StoryData/S515B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "아니, 그것이 말이오…! 우리가 약속 장소에 도착했는데…!",
+  "jp": "いや、それが聞いて驚け…！⏎我々が約束の場所に到着したというのに…！",
+  "en": "Allow me to explain...! Upon our arrival at the promised location—",
+  "tw": "聽聞後可別驚慌……！吾等抵達了約定之地……！",
+  "first_pass": [
+   {
+    "from": "a43",
+    "category": "A3",
+    "severity": "low",
+    "explain": "KR 只是「不，事情是這樣的……！我們抵達了約定的地點……！」；TW 多加了「聽聞後可別驚慌」，KR 沒有。",
+    "suggest": "不，這個嘛……！吾等抵達了約定之地……！",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "low",
+  "explain": "KR「아니, 그것이 말이오…!」是唐吉訶德激動地開始解釋時的「這個嘛，說來聽聽……！」；官方 JP 譯為「いや、それが聞いて驚け…！」（聽了可別嚇到），TW「聽聞後可別驚慌……！」與 JP 相同。",
+  "suggest": null,
+  "reason": "TW 照官方 JP 的處理，用來表現 KR 這句急著開口的感嘆語氣，沒有改變內容（後半「吾等抵達了約定之地」照譯），屬措辭選擇。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S516B#15",
+  "key": "StoryData/S516B.json|/dataList/15/content",
+  "file": "StoryData/S516B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "그레고르→格里高爾",
+  "kr": "…있긴 하군. 거, 미안하게 됐다.",
+  "jp": "…あったな。申しわけない。",
+  "en": "—attacked by anything. My bad.",
+  "tw": "……倒也不一定啊。抱歉了。",
+  "first_pass": [
+   {
+    "from": "a43",
+    "category": "A5",
+    "severity": "medium",
+    "explain": "格里高爾剛說完「只要遵守規則就不太可能在這裡被襲擊」，以實瑪利察覺到前方有東西，他說「……還真有（襲擊）啊。抱歉」（EN：attacked by anything. My bad.）；TW 寫成「倒也不一定啊」，意思變成不確定，與 KR 的肯定相反。",
+    "suggest": "……還真的有啊。抱歉了。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A5",
+  "severity": "medium",
+  "explain": "前一句格里高爾說「好好遵守大湖的規則，應該是不至於在這裡突然被襲擊（할 리가…）」，以實瑪利隨即察覺前方有狀況；本句 KR「…있긴 하군」接著前句，是「……看來還是會有啊」，收回自己的話並道歉。TW「……倒也不一定啊。抱歉了。」接在「應該是不至於……被襲擊」後面，意思同樣是「（不會被襲擊）倒也不一定」，並且道歉。",
+  "suggest": null,
+  "reason": "不是反轉：「不一定」否定的是前一句「不至於被襲擊」，整體意思與 KR 相同，只是語氣比較保留，屬措辭不同。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S520B#23",
+  "key": "StoryData/S520B.json|/dataList/23/content",
+  "file": "StoryData/S520B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "오티스→奧提斯",
+  "kr": "…관리자님이 요전번처럼 파도에 맞서게 허락만 해주신다면 그럴 필요는 없겠지만…",
+  "jp": "…管理人様からこの前のように、波に立ち向かう許可さえ⏎出していただければその限りではありませんが。",
+  "en": "... the Executive Manager would authorize us to weather the Waves once more...",
+  "tw": "……但若執行經理能像上次那樣，允許我們直面浪潮的話，可就不一定了。",
+  "first_pass": [
+   {
+    "from": "a43",
+    "category": "A5",
+    "severity": "medium",
+    "explain": "KR：只要經理像上次那樣允許我們正面迎戰浪潮，就不需要等（그럴 필요는 없겠지만）；TW「可就不一定了」語意不明且與 KR 不符（JP「その限りではありませんが」＝就不在此限）。",
+    "suggest": "……但若執行經理能像上次那樣，允許我們直面浪潮的話，就不必等這麼久了……",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A5",
+  "severity": "medium",
+  "explain": "前一句奧提斯說去下一片湖域前必須等三小時；本句 KR「…관리자님이 요전번처럼 파도에 맞서게 허락만 해주신다면 그럴 필요는 없겠지만…」是「……只要經理像上次那樣允許我們迎向浪潮，就不必（等）了……」。官方 JP 譯為「その限りではありませんが」（那就不在此限），TW「可就不一定了」與 JP 同義：不一定非等三小時不可。",
+  "suggest": null,
+  "reason": "TW 與官方 JP 的寫法相同，「可就不一定了」承接前一句「必須要等待三小時」，表示可以不必等，意思與 KR 一致，沒有反轉。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S524B#17",
+  "key": "StoryData/S524B.json|/dataList/17/content",
+  "file": "StoryData/S524B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "홍루→鴻璐",
+  "kr": "‘재앙이 오고 있다’ …였었나요?",
+  "jp": "「災害が来ている」…でしたっけ？",
+  "en": "'The Calamity is coming', wasn't it?",
+  "tw": "「災難就要來了」……對吧？",
+  "first_pass": [
+   {
+    "from": "a43",
+    "category": "A6",
+    "severity": "low",
+    "explain": "同一故事線前文（S514B#70、S518A#84）把 재앙 譯為「災害」（五大災害、「災害」），此處改為「災難」，術語不一致。",
+    "suggest": "「災害要來了」……是這樣說的吧？",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A6",
+  "severity": "low",
+  "explain": "KR「‘재앙이 오고 있다’」是海盜留下的警告「災難要來了」；S524B 全檔把同一個「재앙」都寫成「災難」（#24「所以災難是……」、#25、#27、#31、#32），本行與檔內一致。",
+  "suggest": null,
+  "reason": "這是引述的一般警告，「災難就要來了」意思正確；只改這一行會讓 S524B 檔內不一致。專有說法「五大災害（오재앙）」見 S524B#28。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S611B#56",
+  "key": "StoryData/S611B.json|/dataList/56/content",
+  "file": "StoryData/S611B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "료슈→良秀",
+  "kr": "하? 뭘 하는 거지, 벌. 양?",
+  "jp": "はぁ？何のつもりだ、む・だ？",
+  "en": "Haah? What are you doing, B.G.?",
+  "tw": "哈啊？你在說什麼，蟲．男？",
+  "first_pass": [
+   {
+    "from": "a45",
+    "category": "A7",
+    "severity": "low",
+    "explain": "KR「벌. 양?」中「양」是對年輕女性的稱呼（小姐），EN 為 B.G.（Bug Girl）；格里高爾在本作為女性（同檔 #55 TW 也用『她』）。TW 寫「蟲．男」性別錯誤。",
+    "suggest": "哈啊？你在說什麼，蟲．女？",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A7",
+  "severity": "low",
+  "explain": "KR「벌. 양?」是良秀的縮略語「벌레 양반」（蟲大爺），指格里高爾（男性）；EN「B.G.」、JP「む・だ」（虫旦那）同樣。`guides/characters/ryoshu.md` 規定 `벌.양.` 寫「蟲．男」（例：3D309A#97「喂，蟲．男。給我打火機。」）。上一行 TW 的「她」指良秀（格里高爾在替她說話），不是格里高爾。現行 TW 正確。",
+  "suggest": null,
+  "reason": "初篩把「양」誤讀為稱呼女性的「~양」，又把格里高爾當成女性；「蟲．男」是角色指引規定的寫法。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S620B#0",
+  "key": "StoryData/S620B.json|/dataList/0/content",
+  "file": "StoryData/S620B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "씩씩하게 출발한 것 치고는 부엌으로 향하는 길은 쉽지 않았다.",
+  "jp": "勇ましく出発したのは良いが、⏎台所へ向かう道は中々厄介なものだった。",
+  "en": "We had a rather spirited start to this investigation, but our journey to the kitchen was far from straightforward.",
+  "tw": "出發時有精神是好事，但我們前往廚房的旅程並不容易。",
+  "first_pass": [
+   {
+    "from": "a46",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 是「明明是精神抖擻地出發，往廚房的路卻不好走」（씩씩하게 출발한 것 치고는＝就出發時的氣勢而言）；TW 寫成「出發時有精神是好事」，變成評價出發有精神是好事，轉折語意與 KR 的落差感不同。",
+    "suggest": "雖然是精神抖擻地出發的，但我們前往廚房的旅程並不容易。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「씩씩하게 출발한 것 치고는 부엌으로 향하는 길은 쉽지 않았다」＝出發時精神抖擻，往廚房的路卻不好走；JP「勇ましく出発したのは良いが」。TW「出發時有精神是好事，但我們前往廚房的旅程並不容易」接近 JP「～のは良いが」的說法，「精神抖擻地出發／路卻不好走」的轉折仍在，意思沒有偏離。",
+  "suggest": null,
+  "reason": "屬措辭差異，不影響理解，不必改。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S634A#41",
+  "key": "StoryData/S634A.json|/dataList/41/content",
+  "file": "StoryData/S634A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "린튼→林頓",
+  "kr": "‘우리는 부부였어’",
+  "jp": "『私たちは夫婦だった。』",
+  "en": "'We were married.'",
+  "tw": "「我們是一對恩愛夫妻。」",
+  "first_pass": [
+   {
+    "from": "a46",
+    "category": "A3",
+    "severity": "low",
+    "explain": "KR 只說「우리는 부부였어」（我們是夫妻）；TW 加了「恩愛」，把關係品質加進去，與 KR 及此劇情中林頓自承婚姻不幸福的設定衝突。",
+    "suggest": "「我們是夫妻。」",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "low",
+  "explain": "這行是林頓先前說過的話的回響：S611B#22 KR「우리는 부부였어. 매일 매일 행복하고 충만한 날들을 보냈지…」，現行 TW「我們是一對恩愛夫妻。每天都過著幸福充實的日子……」。此處 TW 沿用同一句來呼應；林頓本人也宣稱婚姻幸福，初篩說「林頓自承婚姻不幸福」與劇情不符。",
+  "suggest": null,
+  "reason": "「恩愛」雖是 KR 沒有的字，但與 S611B#22 的譯文刻意一致、符合林頓的說法；若要嚴格依 KR 拿掉，應與 S611B#22 一起改，單改此行反而失去呼應。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S634B#18",
+  "key": "StoryData/S634B.json|/dataList/18/content",
+  "file": "StoryData/S634B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "히스클리프→希斯克利夫",
+  "kr": "나의 캐시? …죽게 만든 자? 누가… 아니, 뭘 말하고 있는 거야!",
+  "jp": "オレのキャシー？…死に至らせた者？⏎誰が…いや、なに言ってんだよ！",
+  "en": "My Cathy? The one who— Who... no, what the bloody hell are you talking about?!",
+  "tw": "害死？……我的凱茜的人？是誰……不，你在說什麼！",
+  "first_pass": [
+   {
+    "from": "a46",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 希斯克利夫先重複「나의 캐시?」再重複「…죽게 만든 자?」；TW 變成「害死？……我的凱茜的人？」，兩段重複的順序與斷句被打亂，語意變得難讀。",
+    "suggest": "我的凱茜？……害她死的人？是誰……不，你在說什麼！",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR 希斯克利夫分兩段重複對方上一句「나의 캐시를 죽게 만든… 자」；上一行 TW 是「那害死我的凱茜的人」，此行 TW「害死？……我的凱茜的人？」照中文語序切成兩段重複，意思與 KR 相同，後半「是誰……不，你在說什麼！」也正確。",
+  "suggest": null,
+  "reason": "只是重複片段的順序隨中文語序調整，屬措辭差異，不影響理解。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S648A#3",
+  "key": "StoryData/S648A.json|/dataList/3/content",
+  "file": "StoryData/S648A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "그레고르→格里高爾",
+  "kr": "그자에게 간 거겠지.",
+  "jp": "あいつの元へ行ったんだろうな。",
+  "en": "She must've taken it to her.",
+  "tw": "應該是拿去她身邊了吧。",
+  "first_pass": [
+   {
+    "from": "a47",
+    "category": "A7",
+    "severity": "medium",
+    "explain": "KR「그자」是中性的「那個人」，指赫爾曼（헤르만，下一行格里高爾說出名字）；JP「あいつ」亦無性別。赫爾曼在劇情中是男性，TW 寫「她」性別代詞有誤（EN 寫 her 不足為據）。",
+    "suggest": "應該是拿去他身邊了吧。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A7",
+  "severity": "medium",
+  "explain": "「그자」指下一行格里高爾說出的赫爾曼。赫爾曼是女性：EN 此行寫 her，其他檔也一樣（1D306A#51「her foot」、S1005B#93「her footing」、4D302B#14「Miss Hermann」），格里高爾是她兒子（S637A#73「헤르만 이사의 아들」）。TW「她」正確。",
+  "suggest": null,
+  "reason": "初篩以為赫爾曼是男性，判斷錯誤。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S725B#60",
+  "key": "StoryData/S725B.json|/dataList/60/content",
+  "file": "StoryData/S725B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "산손→參孫",
+  "kr": "제가 간악한 술수를 부리려는 건…\r",
+  "jp": "私が<ruby=かんあく>奸悪</ruby>な策略を巡らせようとしているのは…。",
+  "en": "My vile tricks...",
+  "tw": "使我策劃這險惡詭計的人……",
+  "first_pass": [
+   {
+    "from": "a49",
+    "category": "A4",
+    "severity": "medium",
+    "explain": "KR：我之所以要耍奸詐手段，不是為了「你們」，而是只為了你（後句「오직 당신 하나만을 위해」承接）。TW「使我策劃這險惡詭計的人」把「為了誰」誤成「使我策劃的人」，與下一句「不是你們，而是你」的指涉不通，意思錯亂。",
+    "suggest": "我之所以要耍弄這奸詐的手段……",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "medium",
+  "explain": "KR 三行「제가 간악한 술수를 부리려는 건… / ‘당신들’이 아니라, 당신… / 오직 당신 하나만을 위해.」＝我要耍奸計……不是為了「你們」，而是為了妳……只為妳一人。現行 TW「使我策劃這險惡詭計的人……／不是「你們」，而是你呀……／僅僅只為你一人。」三行連起來是「讓我策劃詭計的不是你們而是你，只為你一人」，指涉仍是唐吉訶德，意思與 KR 相同。",
+  "suggest": null,
+  "reason": "TW 把「為了誰」說成「使我策劃的人」，只是換了說法，三行讀下來意思一致，不構成指涉錯誤。（另：對唐吉訶德依 base.md 應用「妳」，不屬本筆初篩的問題。）",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S725B#100",
+  "key": "StoryData/S725B.json|/dataList/100/content",
+  "file": "StoryData/S725B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "또한 본인에게 먼저 결투를 신청한 건 그 기사였다네. 용기가 가상했지.",
+  "jp": "また、当人へ先に決闘を申し込んだのは⏎あの騎士であった。感心すべき勇気である。",
+  "en": "'Twas the Knight who challenged me first as well. Forsooth, I was quite impressed by that daring courage.",
+  "tw": "同時也是向吾申請決鬥的那位騎士。有著令人欽佩的勇氣。",
+  "first_pass": [
+   {
+    "from": "a49",
+    "category": "A2",
+    "severity": "low",
+    "explain": "KR 說「先」（먼저）向吾提出決鬥的是那位騎士，強調是對方先挑戰；TW 漏掉「先」，且「申請決鬥」用詞不自然。",
+    "suggest": "同時也是先向吾提出決鬥的那位騎士。有著令人欽佩的勇氣。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A2",
+  "severity": "low",
+  "explain": "KR「본인에게 먼저 결투를 신청한 건 그 기사였다네」＝先向吾提出決鬥的是那位騎士（JP 先に決闘を申し込んだ）。TW「同時也是向吾申請決鬥的那位騎士」已表達是騎士發起決鬥，「먼저」只是強調；「申請決鬥」是唐吉訶德台詞的既有寫法（S706B「向汝申請決鬥」）。",
+  "suggest": null,
+  "reason": "省略「先」不改變意思，「申請」屬用詞風格，不算錯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S735B#15",
+  "key": "StoryData/S735B.json|/dataList/15/content",
+  "file": "StoryData/S735B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "돌시네아→杜爾西涅婭",
+  "kr": "그만둬야 할 이유에 대해서.",
+  "jp": "やめるべき、理由について。",
+  "en": "Why must we stop?",
+  "tw": "為何我們必須停下？",
+  "first_pass": [
+   {
+    "from": "a49",
+    "category": "A4",
+    "severity": "medium",
+    "explain": "KR：（說吧，）關於你「該停手」的理由，主語是對方應停手；TW「為何我們必須停下」變成我們要停，指涉錯誤，意思相反。",
+    "suggest": "關於你該停手的理由。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "medium",
+  "explain": "前文 #10 唐吉訶德喊「당장 그만두게나」要遊行停下，杜爾西涅婭接「說。關於（我們）該停下的理由」，EN「Why must we stop?」，下一句唐吉訶德回答「因為那是非正義之舉」。要停的是杜爾西涅婭這邊，現行 TW「為何我們必須停下？」主詞正確。",
+  "suggest": null,
+  "reason": "初篩把「該停手」的人誤讀成唐吉訶德；從 #10 的喊話與 EN 都看得出是杜爾西涅婭在問「我們為何要停」，TW 只是把「關於理由」改成問句，意思不變。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S801B#39",
+  "key": "StoryData/S801B.json|/dataList/39/content",
+  "file": "StoryData/S801B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "홍루→鴻璐",
+  "kr": "그럴게요, 할머니, 어머니.",
+  "jp": "そうしますね、お婆さん、母上。",
+  "en": "Okay, grandmother. Mother.",
+  "tw": "悉聽尊便，奶奶、母親。",
+  "first_pass": [
+   {
+    "from": "a49",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「그럴게요」是「我會那樣做」，表示答應；TW「悉聽尊便」是「隨您高興」的意思，把順從答應變成任由對方決定，語氣和意思都偏了。",
+    "suggest": "我會的，奶奶、母親。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A7",
+  "severity": "low",
+  "explain": "KR「그럴게요」是答應「我會那樣做」。現行 TW「悉聽尊便」是「一切照您的意思」，在這裡就是答應祖母「時機到了就離開」，意思相同，只是比較書面、恭敬。",
+  "suggest": null,
+  "reason": "「悉聽尊便」是順從對方意思的客套話，不是「隨您高興、與我無關」；鴻璐的角色指引容許書面化措辭，屬於用詞選擇。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S802B#63",
+  "key": "StoryData/S802B.json|/dataList/63/content",
+  "file": "StoryData/S802B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "소드→索德",
+  "kr": "설마 당신 눈에는 ‘이게’ 멀쩡한 세가의 인원으로 보이시나요?",
+  "jp": "まさかあなたの目には「コレ」が⏎まともな勢家の一員に見えるんですか？",
+  "en": "I mean, don't tell me this <i>thing</i> looks like a normal, contributing member of a clan to you?",
+  "tw": "難道說在您眼中「這個」能稱得上是人嗎？",
+  "first_pass": [
+   {
+    "from": "a49",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR：難道您覺得「這個」像是正經世家的成員嗎？（세가의 인원）；TW 寫成「能稱得上是人嗎」，把「世家成員」改成「人」，與後文討論人數／編制不合。",
+    "suggest": "難道說在您眼中「這個」像是正經世家的成員嗎？",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「‘이게’ 멀쩡한 세가의 인원으로 보이시나요」是「『這個』看起來像正常的世家成員嗎」，索德是要說但丁不算在「十二人」的人數裡，轎伕接著說「這不是義體嗎？時鐘……」。現行 TW「能稱得上是人嗎」同樣是把但丁排除在人數之外，笑點與轎伕的回應都接得上。",
+  "suggest": null,
+  "reason": "轎伕問的是人數（12명），TW 用「算不算人」表達「不能算進人數」，與 KR 的作用相同；EN 也用「this thing」。屬於意譯，不是錯譯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S912B#79",
+  "key": "StoryData/S912B.json|/dataList/79/content",
+  "file": "StoryData/S912B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "앵두→櫻桃",
+  "kr": "손가락 걸기 따위로 치고박고 싸우지 않고서야… 하물며 같은 목표로 움직인다니.",
+  "jp": "指切りなどで殴り合うならいざ知らず…⏎ましてや同じ目標に向けて動くとは。",
+  "en": "Those ilk have no business coming within even a sleeve's breadth of each other, save when compelled to attend assemblies such as the Finger Bow-bell, where they oft quarrel to no end.",
+  "tw": "在拉勾之類的場合，連不動手打架都做不到的傢伙們……更何況是為了同一個目標。",
+  "first_pass": [
+   {
+    "from": "a53",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR/JP（指切りなどで殴り合うならいざ知らず）意思是：除非是勾手指之類（如指會）的場合才會打成一團，否則手指們不會聚在一起，何況是為同一目標行動；TW 寫成「在拉勾之類的場合連不動手打架都做不到」，邏輯與意思都不同。",
+    "suggest": "除非是勾指之類的場合打成一團，否則……更何況是為了同一個目標行動。",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「손가락 걸기 따위로 치고박고 싸우지 않고서야… 하물며 같은 목표로 움직인다니」是「除非是在拉勾（手指幫派間的會議，詞彙表譯名）這類場合打成一團……更何況還是朝同一目標行動」，重點是手指之間互相排斥，竟然合作很奇怪。現行 TW「在拉勾之類的場合，連不動手打架都做不到的傢伙們……更何況是為了同一個目標」換了句型，但同樣說他們在拉勾上都免不了打架、更不可能為同一目標合作，結論相同，也接得上摩西 #80 的「沒錯」。",
+  "suggest": null,
+  "reason": "現行譯文換了句型，但「手指彼此敵對、合作很反常」的意思沒變；初篩的改法「除非是勾指之類的場合打成一團，否則……」反而不完整，也沒用詞彙表的「拉勾」。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S912B#90",
+  "key": "StoryData/S912B.json|/dataList/90/content",
+  "file": "StoryData/S912B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "료슈→良秀",
+  "kr": "뭘. 원. 알.",
+  "jp": "何・知・分。",
+  "en": "I.K.W.Y.W.",
+  "tw": "我．知．妳。",
+  "first_pass": [
+   {
+    "from": "a53",
+    "category": "A2",
+    "severity": "medium",
+    "explain": "良秀的縮略語「뭘．원．알」（JP 何・知・分、EN I.K.W.Y.W.）= 知道妳想要什麼；TW「我．知．妳」缺少「要什麼」，辛克萊下一句「是在說我知道妳想……」才接得上。",
+    "suggest": "我．知．妳．要。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A2",
+  "severity": "low",
+  "explain": "KR「뭘. 원. 알.」是良秀把「뭘 원하는지 알아（我知道妳要什麼）」縮成三個字。現行 TW「我．知．妳」也是三個字，取自「我知道妳想要……」；辛克萊下一句「這是在說我知道妳想……」把每個字都展開了，接著被摩西打斷，與 KR 辛克萊只說到「뭘 원하시는지…」同樣是講到一半。",
+  "suggest": null,
+  "reason": "縮略語的取字是譯法選擇：現行三字與 KR 字數相同，下一句的展開都找得到這三個字，讀者看得懂；改成四字「我．知．妳．要」只是另一種寫法，不算漏譯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S912B#145",
+  "key": "StoryData/S912B.json|/dataList/145/content",
+  "file": "StoryData/S912B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "파우스트→浮士德",
+  "kr": "관리자님께서 황금가지의 위치를 묻는군요.",
+  "jp": "管理人様が黄金の枝の位置をお尋ねです。",
+  "en": "The manager would like to know the location of the Golden Boughs.",
+  "tw": "其正在詢問金枝的位置。",
+  "first_pass": [
+   {
+    "from": "a53",
+    "category": "A2",
+    "severity": "low",
+    "explain": "KR 主詞是「관리자님（管理人／經理）」；TW 只寫「其」，漏掉主詞，浮士德轉述的對象不明。",
+    "suggest": "經理正在詢問金枝的位置。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A2",
+  "severity": "low",
+  "explain": "KR「관리자님께서 황금가지의 위치를 묻는군요」是浮士德轉述但丁的問題。現行 TW「其正在詢問金枝的位置」用「其」指但丁，正是 guides/characters/faust.md 規定的寫法（轉述但丁的話時用「其」「此」「該」，例句「其在詢問金枝的用處」），指涉也清楚（但丁上一句剛問）。",
+  "suggest": null,
+  "reason": "浮士德的角色指引明定轉述但丁的話用「其」，例句和這行幾乎一樣；不是漏譯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S948B#5",
+  "key": "StoryData/S948B.json|/dataList/5/content",
+  "file": "StoryData/S948B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "오티스→奧提斯",
+  "kr": "료슈, 저 치가 아비와 교전을 시작했습니다.",
+  "jp": "良秀、あの愚か者が小指の親方との交戦を開始しました。",
+  "en": "Ryōshū has begun engaging the Nursefather.",
+  "tw": "良秀那蠢貨，與小指父輩交戰了。",
+  "first_pass": [
+   {
+    "from": "a56",
+    "category": "A3",
+    "severity": "low",
+    "explain": "KR 的「저 치」只是帶輕蔑的「那傢伙」，沒有「蠢貨」的意思；TW 加了強烈辱罵，也丟了敬語語氣（奧提斯對經理用 -습니다）。",
+    "suggest": "良秀那傢伙，已經與小指父輩交戰了。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "low",
+  "explain": "KR「저 치」是帶輕蔑的「那傢伙」，官方 JP 譯為「あの愚か者」（那個蠢貨）。現行 TW「良秀那蠢貨」與 JP 的強度相同，符合奧提斯對罪人不客氣的口吻（對但丁的敬語在中文這句沒有對應的標記可寫）。",
+  "suggest": null,
+  "reason": "「저 치」本來就帶貶意，官方 JP 也寫成「愚か者」，TW 的「蠢貨」有依據，不算多譯。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S948B#26",
+  "key": "StoryData/S948B.json|/dataList/26/content",
+  "file": "StoryData/S948B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "지혜성→地慧星",
+  "kr": "그럼, 아니라고 생각해?",
+  "jp": "じゃあ…違うとでも思うのか？",
+  "en": "What, are you saying it's not?",
+  "tw": "那，有什麼不對嗎？",
+  "first_pass": [
+   {
+    "from": "a56",
+    "category": "A5",
+    "severity": "medium",
+    "explain": "KR 是反問「那妳（現在）覺得不是這樣嗎？」，承接前句「妳總是說是我害的」；JP「違うとでも思うのか」、EN「you saying it's not?」同。TW 改成「有什麼不對嗎」，意思變成問良秀哪裡不對，語意偏離。",
+    "suggest": "那，妳覺得不是嗎？",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A5",
+  "severity": "low",
+  "explain": "KR「그럼, 아니라고 생각해?」是反問「那妳覺得不是嗎？」，意思是「本來就是妳害的」。現行 TW「那，有什麼不對嗎？」是反問「我這樣說有什麼不對？」，同樣是在肯定「就是妳害的」，接上良秀上一句「妳總是說是因為我」與下一句良秀的反駁，意思一致。",
+  "suggest": null,
+  "reason": "「有什麼不對嗎」在這裡是反問自己的說法哪裡錯，不是問良秀哪裡不對；與 KR 的反問作用相同，屬於措辭不同。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S951B#65",
+  "key": "StoryData/S951B.json|/dataList/65/content",
+  "file": "StoryData/S951B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "뤼엔→禮恩",
+  "kr": "땡 쳐주는걸…",
+  "jp": "お湯を掛けて融かしてくれるのを…。",
+  "en": "You forgot...",
+  "tw": "忘記……",
+  "first_pass": [
+   {
+    "from": "a56",
+    "category": "A9",
+    "severity": "medium",
+    "explain": "#64-#66 是一句話：「네가 땡 쳐주는 걸 잊어버린 모양이야」（妳大概忘了來為我解凍）。官方 JP/EN 顯示 #65 是「解凍」（お湯を掛けて融かしてくれるのを）、#66 是「忘記」（EN: ...to unfreeze me 前接 You forgot）。TW 兩行內容對調，連讀變成「看來妳……忘記……要為我解凍了」，語意錯亂。",
+    "suggest": "解凍……",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A9",
+  "severity": "low",
+  "explain": "#64–#66 是一句話：「딸… 아무래도 네가… / 땡 쳐주는걸… / 잊어버린 모양이야.」＝「女兒……看來妳……忘了來替我解凍。」中文語序是「忘了」在「解凍」前，現行 TW 三行連讀「女兒……看來妳……忘記……要為我解凍了。」意思正確，EN 也同樣調換為「You forgot... / ... to unfreeze me.」。",
+  "suggest": null,
+  "reason": "三行連讀意思正確，只是照中文語序調換了 #65、#66 的內容，EN 也這樣做；初篩照 KR 對調後會變成「看來妳……解凍……看來是忘了」，語序反而不自然、「看來」重複。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S951B#66",
+  "key": "StoryData/S951B.json|/dataList/66/content",
+  "file": "StoryData/S951B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "뤼엔→禮恩",
+  "kr": "잊어버린 모양이야.",
+  "jp": "忘れたみたいだ。",
+  "en": "... to unfreeze me.",
+  "tw": "要為我解凍了。",
+  "first_pass": [
+   {
+    "from": "a56",
+    "category": "A9",
+    "severity": "medium",
+    "explain": "與 #65 對調：此行 KR 是「看來是忘了」，TW 寫成「要為我解凍了」，意思相反（忘了解凍 vs 要解凍）。",
+    "suggest": "看來是忘了。",
+    "confidence": "high"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A9",
+  "severity": "low",
+  "explain": "同 #65：三行連讀「女兒……看來妳……忘記……要為我解凍了。」就是 KR「看來妳忘了來替我解凍」，「要為我解凍了」在這裡是「忘記」的受詞，不是「即將解凍」。",
+  "suggest": null,
+  "reason": "與 #65 一起照中文語序調換，連讀意思正確，不是相反；不需修改。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E914B#41",
+  "key": "StoryData/E914B.json|/dataList/41/content",
+  "file": "StoryData/E914B.json",
+  "field": "content",
+  "origin": "claude",
+  "speaker": "키라→綺羅",
+  "kr": "막 그런 거 아냐? 아주 고생이 많은 건 알고 있으니까, 닥친 일부터 쫌 해라… 뭐 그런 뜻?",
+  "jp": "あれっしょ？だいぶ苦労してることは分かってるから、⏎まずは目の前の仕事からやってくれ…とか、そんな感じ？",
+  "en": "What if it's something like, uhm. \"Sheesh, That's a Full-day. Unwind after work, though\"?",
+  "tw": "不就是那樣嗎？「閉門苦幹辛苦你了，嘴上先別說，先把眼前的事做完」……之類的意思？",
+  "first_pass": [
+   {
+    "from": "a19",
+    "category": "A3",
+    "severity": "low",
+    "explain": "KR 是把縮寫「아닥」拆成『아(주 고생이 많은 건 알고 있으니까), 닥(친 일부터 쫌 해라)』，意思只是「我知道你很辛苦，先把眼前的事做一做」。JP 同（目の前の仕事からやってくれ）。TW 多出「嘴上先別說」，且「閉門苦幹」KR 沒有，是為了配合『閉．嘴』雙關硬加的內容，句意變成叫對方別說話。若團隊刻意這樣做雙關，可保留，僅供複核。",
+    "suggest": "不就是那樣嗎？「我知道你很辛苦，先把眼前的事做一做」……之類的意思？",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A3",
+  "severity": "low",
+  "explain": "KR 把良秀的縮略語「아.닥.」（閉嘴）拆成「아(주 고생이 많은 건 알고 있으니까), 닥(친 일부터 쫌 해라)」的雙關。TW 的縮略語是 #33「閉．嘴」，所以綺羅的展開必須以「閉」「嘴」開頭：「閉門苦幹辛苦你了，嘴上先別說，先把眼前的事做完」。",
+  "suggest": null,
+  "reason": "這是刻意重現的雙關，不是多譯：依 guides/characters/ryoshu.md「有人展開時，每個字都要在展開句的譯文裡找得到」（既有寫法 `아.닥.` → 閉．嘴），「閉門苦幹」「嘴上先別說」是為了讓「閉」「嘴」出現在展開句裡；句意（知道你辛苦，先把眼前的事做完）與 KR、JP 一致。初篩的改法會讓雙關失效。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E915B#8",
+  "key": "StoryData/E915B.json|/dataList/8/content",
+  "file": "StoryData/E915B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "단테→但丁",
+  "kr": "<전혀 다른 장소에 있는 수감자들의 전투를 각각 보조하려니까, 대화에 집중하기가 어렵네.>",
+  "jp": "<まったく別の場所にいる囚人たちの戦闘をそれぞれ補助しようとすると、⏎会話に集中するのが難しいなぁ。>",
+  "en": "<It's just hard to focus on one conversation when I'm trying to support battles happening in completely different places at once.>",
+  "tw": "<只是輔助身在各處的每一位罪人的話，很難集中交談。>",
+  "first_pass": [
+   {
+    "from": "a19o",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR 是「要分別輔助身在完全不同地方的罪人們的戰鬥，所以很難專心對話」，說明分心的原因；TW 寫成「只是輔助……的話，很難集中交談」，加了 KR 沒有的「只是」，變成「如果只是輔助……就很難」的條件句，原因關係不清，也漏了「전투」（戰鬥）。JP「それぞれ補助しようとすると」、EN「when I'm trying to support battles happening in completely different places」皆同 KR。",
+    "suggest": "<要分別輔助在完全不同地方戰鬥的罪人們，很難專心交談。>",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「전혀 다른 장소에 있는 수감자들의 전투를 각각 보조하려니까, 대화에 집중하기가 어렵네」是「要分別輔助在完全不同地方的罪人們的戰鬥，所以很難專心對話」。現行 TW「只是輔助身在各處的每一位罪人的話，很難集中交談」。",
+  "suggest": null,
+  "reason": "TW 的「只是」承接上一句「不，也沒到很糟糕……」，是「只不過……」的意思（EN 也是「It's just hard to focus...」），整句仍是「在輔助各處罪人，所以難以專心交談」，意思正確；少了「戰鬥」、用「的話」是措辭差異，讀者不會誤會。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E915B#13",
+  "key": "StoryData/E915B.json|/dataList/13/content",
+  "file": "StoryData/E915B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "갑작스럽게 뒤틀림이 뒷골목 중 버터 거리라는 장소에 중구난방으로 나타나는 통에, 수감자들을 여러 그룹으로 나눠 밖으로 내보내기로 했다.",
+  "jp": "突然、ねじれが裏路地の中のバター通りという場所にわんさか現れたので、⏎囚人たちをいくつかのグループに分けて外へ出すことにした。",
+  "en": "Distortions suddenly started cropping up all over an area of the Backstreets called Butter Street, without any coherent pattern. No obvious point of origin or route of spread—nothing convenient like that, and I had no choice but to split the Sinners into several groups and send them out.",
+  "tw": "但扭曲突然從一個叫奶油街的地方大量湧出，罪人們只能分成幾個小組行動。",
+  "first_pass": [
+   {
+    "from": "a19o",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR「중구난방으로 나타나는 통에」是扭曲毫無章法地四處出現，因此「決定把罪人分成幾組派出去」；TW 寫成「從一個叫奶油街的地方大量湧出」，變成有單一來源、大量湧出，失去「四處零散出現」這個分組的理由，也漏了「뒷골목 중」與「밖으로 내보내기로 했다」（決定派出去）。EN「cropping up all over an area… without any coherent pattern… split the Sinners into several groups and send them out」。",
+    "suggest": "但扭曲突然在後巷中一個叫奶油街的地方四處零星冒出，所以我們決定把罪人們分成幾個小組派出去。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「뒤틀림이 뒷골목 중 버터 거리라는 장소에 중구난방으로 나타나는 통에, 수감자들을 여러 그룹으로 나눠 밖으로 내보내기로 했다」是扭曲在奶油街四處亂冒，所以決定把罪人分組派出去。現行 TW「但扭曲突然從一個叫奶油街的地方大量湧出，罪人們只能分成幾個小組行動」。",
+  "suggest": null,
+  "reason": "JP 寫「バター通りという場所にわんさか現れた」（大量出現），TW「大量湧出」與 JP 一致；「分成幾個小組行動」也已表達分組出動。差別只在「從」與「在」、少了「後巷中」，屬措辭差異。初篩改法的「零星冒出」反而與 JP「わんさか」（大量）相反。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E915B#40",
+  "key": "StoryData/E915B.json|/dataList/40/content",
+  "file": "StoryData/E915B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "K사에서 기억 소거를 당할 때도, 황금가지의 힘으로 캐서린이 지워질 때도, 아라야시키에 베인 이들이 기억에서 도려내질 때도…",
+  "jp": "K社で記憶消去を受けたときも、黄金の枝の力でキャサリンが消されたときも、⏎阿頼耶識に斬られた者たちが記憶から抉り取られたときも…。",
+  "en": "That's right. Despite K Corp.'s Memory Wipe Procedure, Catherine's \"erasure\" by the Golden Bough's power, and Arayashiki severing people from existence...",
+  "tw": "不論是在K公司接受消除記憶，或是因金枝而抹去的凱瑟琳，以及被阿賴耶識斬去記憶……",
+  "first_pass": [
+   {
+    "from": "a19o",
+    "category": "A2",
+    "severity": "low",
+    "explain": "KR 第三項是「被阿賴耶識斬到的人們從（眾人的）記憶中被剜去時」（指索拉、刃等人）；TW「以及被阿賴耶識斬去記憶」漏了主體「베인 이들」（被斬的人們），讀起來像是某人的記憶被斬，指涉不清。JP「阿頼耶識に斬られた者たちが記憶から抉り取られたときも」。",
+    "suggest": "不論是在K公司接受消除記憶，或是因金枝之力而抹去的凱瑟琳，以及被阿賴耶識斬殺的人從記憶中被剜去時……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A2",
+  "severity": "low",
+  "explain": "KR 第三項「아라야시키에 베인 이들이 기억에서 도려내질 때도」是「被阿賴耶識斬到的人從記憶中被剜去時」。現行 TW「以及被阿賴耶識斬去記憶……」。",
+  "suggest": null,
+  "reason": "TW「被阿賴耶識斬去記憶」說的就是（關於那些人的）記憶被阿賴耶識斬去，與 KR 描述的是同一件事；前文 #37 已說明索拉與刃的記憶只剩但丁有，讀者不會誤會。差別在沒寫出「被斬的人」，屬濃縮的措辭。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E915B#53",
+  "key": "StoryData/E915B.json|/dataList/53/content",
+  "file": "StoryData/E915B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "나는, 그러니까 과거의 나는 저 성위라는 것을 지독히도 원했다는 것을.",
+  "jp": "私は、つまり過去の私は、⏎あの星位というものをひどく望んでいたのだと。",
+  "en": "It's that the \"me\" from before all of this began had wanted it badly. Obsessively, desperately.",
+  "tw": "那便是過去的我很渴望那個名為星位的東西。",
+  "first_pass": [
+   {
+    "from": "a19o",
+    "category": "A2",
+    "severity": "low",
+    "explain": "KR「지독히도 원했다」是「極度、近乎執念地渴望」；TW「很渴望」漏掉強烈的修飾語「지독히도」，語氣減弱。EN「had wanted it badly. Obsessively, desperately」。",
+    "suggest": "那便是過去的我極其渴望那個名為星位的東西。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A2",
+  "severity": "low",
+  "explain": "KR「지독히도 원했다」是「極度地渴望」；JP「ひどく望んでいた」。現行 TW「很渴望」。",
+  "suggest": null,
+  "reason": "「很渴望」已表達強烈的渴望，只是程度比「지독히도」弱一些，屬措辭輕重；下文 #56「我那麼渴望它」也接得上，讀者不會誤會。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "E924B#96",
+  "key": "StoryData/E924B.json|/dataList/96/content",
+  "file": "StoryData/E924B.json",
+  "field": "content",
+  "origin": "claude",
+  "speaker": "김삿갓→金笠",
+  "kr": "사람 아니야, 오리지.",
+  "jp": "人じゃないよ、<ruby=オリ>鴨</ruby>だ。",
+  "en": "They weren't people. Rats.",
+  "tw": "不是人，是狐狸啦。",
+  "first_pass": [
+   {
+    "from": "a20",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR「오리」是鴨子（JP 為「鴨」並以 ruby 雙關「汚吏」）；TW 譯成「狐狸」，動物種類錯誤，且與後文雙關（鴨子頭戴官帽＝汙吏）脫鉤。",
+    "suggest": "不是人，是鴨子啦。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR「사람 아니야, 오리지.」的「오리」字面是鴨子，同時與「汙吏」（오리）同音；JP「<ruby=オリ>鴨</ruby>」、EN 改成「Rats」。現行 TW「是狐狸啦」。",
+  "suggest": null,
+  "reason": "KR 用「오리」（鴨）與「오리」（汙吏）同音做雙關，中文的「鴨」沒有這個雙關。TW 改用與「汙吏」音近的「狐狸」（hú·li／wū·lì），並在 #99 以「汙吏」點明，#100「喜歡在頭上戴官帽」、#102「腐臭味」也都接得上；官方 EN 同樣換成能做雙關的動物（rats／kleptoc-rat）。依 guides/base.md「沒有標記的雙關：能在中文重現就重現」，這是刻意的在地化，不是錯譯；照初篩改成「鴨子」反而會讓 #99 的「汙吏」失去雙關。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E924B#97",
+  "key": "StoryData/E924B.json|/dataList/97/content",
+  "file": "StoryData/E924B.json",
+  "field": "content",
+  "origin": "claude",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "오리…?",
+  "jp": "鴨…？",
+  "en": "Rats...?",
+  "tw": "狐狸……？",
+  "first_pass": [
+   {
+    "from": "a20",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR「오리」是鴨子（JP 為「鴨」並以 ruby 雙關「汚吏」）；TW 譯成「狐狸」，動物種類錯誤，且與後文雙關（鴨子頭戴官帽＝汙吏）脫鉤。",
+    "suggest": "鴨子……？",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR「오리…?」（鴨……？），承接 #96 的「오리」雙關；JP「鴨…？」、EN「Rats...?」。現行 TW「狐狸……？」。",
+  "suggest": null,
+  "reason": "KR 用「오리」（鴨）與「오리」（汙吏）同音做雙關，中文的「鴨」沒有這個雙關。TW 改用與「汙吏」音近的「狐狸」（hú·li／wū·lì），並在 #99 以「汙吏」點明，#100「喜歡在頭上戴官帽」、#102「腐臭味」也都接得上；官方 EN 同樣換成能做雙關的動物（rats／kleptoc-rat）。依 guides/base.md「沒有標記的雙關：能在中文重現就重現」，這是刻意的在地化，不是錯譯；照初篩改成「鴨子」反而會讓 #99 的「汙吏」失去雙關。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E924B#98",
+  "key": "StoryData/E924B.json|/dataList/98/content",
+  "file": "StoryData/E924B.json",
+  "field": "content",
+  "origin": "claude",
+  "speaker": "김삿갓→金笠",
+  "kr": "그래. 어르신이 오리를 좀 싫어하시거든. 오리를 쫓으려면 그러는 편이 낫지.",
+  "jp": "そう。右議政様が<ruby=オリ>鴨</ruby>を少し嫌っていらっしゃるんでね。⏎鴨を追い払うなら、そうする方がいいだろう。",
+  "en": "Oh yes, the Councilor finds rats detestable. Much better to stop them from a distance if you want to crush them.",
+  "tw": "對。大人有點討厭狐狸。要趕狐狸的話，這麼做比較好。",
+  "first_pass": [
+   {
+    "from": "a20",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR「오리」是鴨子（JP 為「鴨」並以 ruby 雙關「汚吏」）；TW 譯成「狐狸」，動物種類錯誤，且與後文雙關（鴨子頭戴官帽＝汙吏）脫鉤。",
+    "suggest": "對。大人有點討厭鴨子。要趕鴨子的話，這麼做比較好。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR「어르신이 오리를 좀 싫어하시거든. 오리를 쫓으려면 그러는 편이 낫지」（大人討厭「오리」，要趕「오리」這樣比較好），延續 #96 的雙關；EN 用 rats。現行 TW 一律寫「狐狸」。",
+  "suggest": null,
+  "reason": "KR 用「오리」（鴨）與「오리」（汙吏）同音做雙關，中文的「鴨」沒有這個雙關。TW 改用與「汙吏」音近的「狐狸」（hú·li／wū·lì），並在 #99 以「汙吏」點明，#100「喜歡在頭上戴官帽」、#102「腐臭味」也都接得上；官方 EN 同樣換成能做雙關的動物（rats／kleptoc-rat）。依 guides/base.md「沒有標記的雙關：能在中文重現就重現」，這是刻意的在地化，不是錯譯；照初篩改成「鴨子」反而會讓 #99 的「汙吏」失去雙關。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E924B#99",
+  "key": "StoryData/E924B.json|/dataList/99/content",
+  "file": "StoryData/E924B.json",
+  "field": "content",
+  "origin": "claude",
+  "speaker": "임경업→林慶業",
+  "kr": "그 오리가 혹시 관직을 탐하길 좋아하는 오리야?",
+  "jp": "その<ruby=オリ>鴨</ruby>は、もしかして官職を欲しがる<ruby=オリ>汚吏</ruby>か？",
+  "en": "By any chance, do these rats... have a habit of sneaking into the Royal Court to better pilfer what the commonfolk rightfully deserve?",
+  "tw": "那隻狐狸，該不會是貪戀官職的「汙吏」吧？",
+  "first_pass": [
+   {
+    "from": "a20",
+    "category": "A1",
+    "severity": "medium",
+    "explain": "KR「오리」是鴨子（JP 為「鴨」並以 ruby 雙關「汚吏」）；TW 譯成「狐狸」，動物種類錯誤，且與後文雙關（鴨子頭戴官帽＝汙吏）脫鉤。（此行 TW 已點出「汙吏」，改為鴨子後雙關更完整。）",
+    "suggest": "那隻鴨子，該不會是貪戀官職的「汙吏」吧？",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "medium",
+  "explain": "KR「그 오리가 혹시 관직을 탐하길 좋아하는 오리야?」第二個「오리」是汙吏；JP「その<ruby=オリ>鴨</ruby>は…<ruby=オリ>汚吏</ruby>か？」。現行 TW「那隻狐狸，該不會是貪戀官職的「汙吏」吧？」，以「狐狸／汙吏」音近重現雙關。",
+  "suggest": null,
+  "reason": "KR 用「오리」（鴨）與「오리」（汙吏）同音做雙關，中文的「鴨」沒有這個雙關。TW 改用與「汙吏」音近的「狐狸」（hú·li／wū·lì），並在 #99 以「汙吏」點明，#100「喜歡在頭上戴官帽」、#102「腐臭味」也都接得上；官方 EN 同樣換成能做雙關的動物（rats／kleptoc-rat）。依 guides/base.md「沒有標記的雙關：能在中文重現就重現」，這是刻意的在地化，不是錯譯；照初篩改成「鴨子」反而會讓 #99 的「汙吏」失去雙關。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S805B#45",
+  "key": "StoryData/S805B.json|/dataList/45/content",
+  "file": "StoryData/S805B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "홍루는 여전히 투명한 웃음을 짓고 있었지만, 무언가 잠겨져 있는 그림자가 비친 것만 같기도 했다.",
+  "jp": "ホンルは未だ透明な笑みを浮かべていたけど⏎どこか深く沈んだ影が差しているようにも見えた。",
+  "en": "There was still a transparent smile on his face, but I think I saw a burying, sinking shadow behind it.",
+  "tw": "鴻璐依然掛著那透明澄澈的笑容，但同時我也看見了某處有著深遠而沉淪似影那般的存在。",
+  "first_pass": [
+   {
+    "from": "a50",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR：鴻璐依然是透明（澄澈）的笑容，但彷彿也映出了某種沉入深處（被鎖住）的陰影。TW「某處有著深遠而沉淪似影那般的存在」語意含糊，主詞也變成『我看見』，與原文『影子映出』不同。",
+    "suggest": "鴻璐依然掛著那透明澄澈的笑容，但彷彿也映出了某種沉入深處的陰影。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「무언가 잠겨져 있는 그림자가 비친 것만 같기도 했다」是「彷彿也映出了某種沉入深處的陰影」；JP「どこか深く沈んだ影が差しているようにも見えた」、EN「I think I saw a burying, sinking shadow behind it」。現行 TW「但同時我也看見了某處有著深遠而沉淪似影那般的存在」。",
+  "suggest": null,
+  "reason": "TW 的意思（笑容背後似乎有某種深沉、下沉的陰影）與 KR 相符，「某處」也對應 JP「どこか」；以「我看見」為主詞 EN 也是如此。差在措辭較拗口、少了「彷彿」的保留語氣，屬文字潤飾，讀者不會誤會。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S812A#82",
+  "key": "StoryData/S812A.json|/dataList/82/content",
+  "file": "StoryData/S812A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "파우스트→浮士德",
+  "kr": "누가 가주가 되느냐에 따라 당분간의 H사 방향이 결정되니, 다양한 자들의 이권이 보이지 않는 곳에서부터 눈앞에까지 펼쳐질 테죠.",
+  "jp": "誰が家主になるかで当面の間のH社の行方が決まりますので⏎あらゆる者の利権が、見えない場所から目の前まで⏎至る所で蠢くことになるでしょう。",
+  "en": "The outcome of the Family Hierarch Evaluation determines the immediately foreseeable future of H Corp., which brings parties of varying, possibly clashing interests here.",
+  "tw": "不論最終誰成為家主，都能決定H公司未來的走向，所以許多勢力都為此明爭暗鬥。",
+  "first_pass": [
+   {
+    "from": "a50",
+    "category": "A5",
+    "severity": "low",
+    "explain": "KR：誰成為家主，將決定H公司近期（당분간）的方向，因此各方的利害會從暗處攤到檯面上。TW『不論最終誰成為家主，都能決定……』把『取決於誰』變成『不論誰』，因果反了，並漏掉『當分間』。",
+    "suggest": "誰當上家主，就會決定H公司近期的走向，因此各方勢力的利害關係，將從看不見的地方一路攤到檯面上。",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A5",
+  "severity": "low",
+  "explain": "KR「누가 가주가 되느냐에 따라 당분간의 H사 방향이 결정되니, 다양한 자들의 이권이 보이지 않는 곳에서부터 눈앞에까지 펼쳐질 테죠」是「誰當上家主將決定H公司今後一段時間的走向，所以各方利益會從暗處一路攤到眼前」。現行 TW「不論最終誰成為家主，都能決定H公司未來的走向，所以許多勢力都為此明爭暗鬥」。",
+  "suggest": null,
+  "reason": "TW 的意思是「成為家主的人能決定H公司的走向，所以各勢力相爭」，與 KR 的因果一致，並沒有反轉；「明爭暗鬥」也對應「從看不見的地方到眼前」。少了「당분간」（近期）只是細節。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S813B#114",
+  "key": "StoryData/S813B.json|/dataList/114/content",
+  "file": "StoryData/S813B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "가원춘→賈元春",
+  "kr": "부활이 끝나면, 틀림없이 머리가…",
+  "jp": "復活が終われば、間違いなく頭が…。",
+  "en": "Once the resurrection is complete, the Head will...",
+  "tw": "若是等到復活結束，首腦毫無疑問會……",
+  "first_pass": [
+   {
+    "from": "a50",
+    "category": "A1",
+    "severity": "low",
+    "explain": "KR/JP『머리』『頭』指頭（部）。TW『首腦』會被讀成『首領』，語意偏離（指的是復活完成後他的頭……）。",
+    "suggest": "若是等到復活結束，他的頭肯定會……",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A1",
+  "severity": "low",
+  "explain": "KR「부활이 끝나면, 틀림없이 머리가…」的「머리」是都市的組織「首腦」（The Head）：EN 寫成大寫的「the Head will...」，下一句「得在這之前解決」也是怕首腦察覺復活（首腦禁止復活技術，如 4D103B#7）。現行 TW「首腦毫無疑問會……」。",
+  "suggest": null,
+  "reason": "初篩把「머리」誤讀成身體的頭。「首腦」是 머리（The Head）的既有譯名（ScenarioModelCodes nickName、8D105B#66「首腦……不會讓觸犯禁忌者活下來」等），TW 正確。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S814B#32",
+  "key": "StoryData/S814B.json|/dataList/32/content",
+  "file": "StoryData/S814B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "가보옥→賈寶玉",
+  "kr": "저번에 내가 시킨 대로 환약을 주었는데도… 그러니?",
+  "jp": "この前、僕があげた丸薬でも…ダメだったの？",
+  "en": "… Even after he was fed the Boluses I’d sent him...?",
+  "tw": "之前我送過去的丸藥……也治不好嗎？",
+  "first_pass": [
+   {
+    "from": "a50",
+    "category": "A4",
+    "severity": "low",
+    "explain": "KR：寶玉說『（襲人）照我吩咐給了丸藥，卻還是……？』，是襲人依吩咐送藥。TW『之前我送過去的丸藥』把送藥的人變成寶玉自己。",
+    "suggest": "之前照我吩咐給了丸藥，卻還是……這樣嗎？",
+    "confidence": "medium"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A4",
+  "severity": "low",
+  "explain": "KR「저번에 내가 시킨 대로 환약을 주었는데도… 그러니?」是「上次照我吩咐給了丸藥，還是那樣嗎？」。現行 TW「之前我送過去的丸藥……也治不好嗎？」。",
+  "suggest": null,
+  "reason": "丸藥是寶玉的（下一句襲人說「도련님이 주신 환약」少爺給的丸藥），由他吩咐送去；JP「僕があげた丸薬でも…ダメだったの？」、EN「the Boluses I'd sent him」都和 TW 一樣寫成「我給的／我送去的丸藥」。TW 意思正確，只是沒寫出經手的人。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S828B#31",
+  "key": "StoryData/S828B.json|/dataList/31/content",
+  "file": "StoryData/S828B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "료슈→良秀",
+  "kr": "알. 못. 역시 솔다토 따위는 제 분수도 파악하지 못하는군. 네 놈 혀가 백 가닥이라도 모자라다.",
+  "jp": "そ・ん・わ・な。⏎やはりソルダート如きは自分の身の程も分からないのか。⏎お前の舌は百枚あったところで足りんな。",
+  "en": "I.F. Shouldn't have expected a trivial little thing like a Soldato to know his place. You don't have enough tongues to lose for this disrespect.",
+  "tw": "懂．自．懂，區區士兵的你也搞不清自己的地位。就算有數百條舌頭也不夠用。",
+  "first_pass": [
+   {
+    "from": "a51",
+    "category": "A9",
+    "severity": "low",
+    "explain": "KR 「알. 못.」是斷開強調的「不知（無知）」（JP「そ・ん・わ・な」也是刻意斷開的拼字遊戲，EN 為「I.F.」）；TW「懂．自．懂」不成句，看不出對應 KR 的意思。後面「舌頭百條」可再斟酌。此處原文為文字遊戲，無法確定，信心低。",
+    "suggest": "不．知。果然區區士兵根本搞不清自己的分寸。就算有一百條舌頭也不夠。",
+    "confidence": "low"
+   }
+  ],
+  "verdict": "rejected",
+  "category": "A9",
+  "severity": "low",
+  "explain": "KR「알. 못.」是良秀的縮略語（알지 못하는＝外行、什麼都不懂）。",
+  "suggest": null,
+  "reason": "`guides/characters/ryoshu.md` 的「既有寫法（重複出現的照用）」明定 `알.못.` 寫「懂．自．懂」，現行譯文照規定；指引也說 JP、EN 的異寫（そ・ん・わ・な、I.F.）不要跟。後半「數百條舌頭」與 KR「백 가닥」略有出入，但都是「再多舌頭也不夠」的誇飾，意思相同，不算錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E511B#33",
+  "key": "StoryData/E511B.json|/dataList/33/content",
+  "file": "StoryData/E511B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "???→???",
+  "kr": "통행세, 1인당 50만 안.",
+  "jp": "通行税、1人あたり50万<ruby=眼>アン</ruby>。",
+  "en": "The toll is five-hundred-thousand Ahn. Per person.",
+  "tw": "過路費，每人50萬眼。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 1，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「통행세, 1인당 50만 안」＝「過路費，每人50萬眼」。",
+  "suggest": null,
+  "reason": "KR 的「1」是「1인당（每人）」，TW「每人」已譯出，金額也正確，不是錯誤。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E601B#16",
+  "key": "StoryData/E601B.json|/dataList/16/content",
+  "file": "StoryData/E601B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "자, 자, 자. 여기 3면을 보시게나! 1면을 뺏긴 것은 조오금 아쉬우나…",
+  "jp": "さぁ、さぁ、さぁ。ここの3面をご覧ぜよ！⏎1面を奪われたのはすこぉし惜しいのでありまするが…。",
+  "en": "Forsooth, forsooth! Feast thy eyes on page-three! Though 'tis quite regrettable that we were robbed of the chance to be on the front page...",
+  "tw": "來、來、來。請看這第三頁！雖然頭版的位置被奪走著實有些遺憾……",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 1，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「3면」「1면」是報紙的第3版與頭版。",
+  "suggest": null,
+  "reason": "「1면」就是報紙頭版，TW「頭版」正確；「3면」寫「第三頁」數字也對，不是錯誤。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E601B#74",
+  "key": "StoryData/E601B.json|/dataList/74/content",
+  "file": "StoryData/E601B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "2등급 징수직 직원→2級徵收人員",
+  "kr": "총 100억 4천만 안입니다.",
+  "jp": "計100億4000万<ruby=眼>アン</ruby>です。",
+  "en": "... 10,040,000,000 Ahn behind in Time Tax payments.",
+  "tw": "共計100億4000萬眼。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 4，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「100억 4천만 안」＝100億4000萬眼。",
+  "suggest": null,
+  "reason": "「4천만」是4000萬，TW「100億4000萬眼」數字正確；腳本把「4」與「4000」比對不到而誤報。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E601B#97",
+  "key": "StoryData/E601B.json|/dataList/97/content",
+  "file": "StoryData/E601B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "2등급 징수직 직원→2級徵收人員",
+  "kr": "…100억 4천만 안입니다.",
+  "jp": "…100億4000万<ruby=眼>アン</ruby>です。",
+  "en": "... Ten-billion-and-forty-million Ahn, to be exact.",
+  "tw": "……是100億4000萬眼。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 4，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「100억 4천만 안」＝100億4000萬眼。",
+  "suggest": null,
+  "reason": "「4천만」是4000萬，TW「100億4000萬眼」數字正確；腳本誤報。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E602A#13",
+  "key": "StoryData/E602A.json|/dataList/13/content",
+  "file": "StoryData/E602A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "2등급 징수직 직원→2級徵收人員",
+  "kr": "100억 4천만 안입니다.",
+  "jp": "100億4000万<ruby=眼>アン</ruby>です。",
+  "en": "Ten-billion-and-forty-million Ahn, to be exact.",
+  "tw": "是100億4000萬眼。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 4，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「100억 4천만 안」＝100億4000萬眼。",
+  "suggest": null,
+  "reason": "「4천만」是4000萬，TW「100億4000萬眼」數字正確；腳本誤報。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E726A#14",
+  "key": "StoryData/E726A.json|/dataList/14/content",
+  "file": "StoryData/E726A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "오티스→奧提斯",
+  "kr": "현재 시각 03시 21분… 이미 시작되었군.",
+  "jp": "現在時刻、03時21分…もう始まったようだ。",
+  "en": "Current time is 0321 hours... then it's too late.",
+  "tw": "當前時間為3點21分……已經開始了。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 03，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「03시 21분」＝3點21分。",
+  "suggest": null,
+  "reason": "TW「3點21分」與 KR 的時間相同，只是省略前導零，台詞中自然，不是錯誤。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E727A#1",
+  "key": "StoryData/E727A.json|/dataList/1/content",
+  "file": "StoryData/E727A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "오티스→奧提斯",
+  "kr": "현재 시각 04시 24분… 뒷골목의 밤은 10분여 남았습니다만, 제3파도의 물결이 끝났으니… 이제는 한숨 돌릴 수 있겠군요.",
+  "jp": "現在時刻04時24分…裏路地の夜はあと10分ほど残っていますが、⏎第3波も終わったようですし…これで一息つけそうですね。",
+  "en": "Current time is 0424 hours... about ten minutes until the Night in the Backstreets ends. But... we can relax now, given that we survived the third wave.",
+  "tw": "當前時間為4點24分……後巷深宵還有大約10分鐘，但第三波似乎已經結束了……這下應該可以喘口氣了。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 04，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「현재 시각 04시 24분」，JP「04時24分」、EN「0424 hours」都是凌晨4點24分；現行 TW「當前時間為4點24分」數字相同，其餘（後巷深宵還剩約10分鐘、第三波結束、可以喘口氣）也與 KR 一致。",
+  "suggest": null,
+  "reason": "腳本把「04」的前導 0 當成數字不符；只是省略前導 0，時間沒有錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "E801B#167",
+  "key": "StoryData/E801B.json|/dataList/167/content",
+  "file": "StoryData/E801B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "자공→子貢",
+  "kr": "과거, 주군께서 말씀하시길 세 사람이 있으면 그 중에는 반드시 나의 스승이 있다 하였지.",
+  "jp": "昔、主君曰く。三人行えば、必ずわが師ありと。",
+  "en": "My lord has spoken in the past that, when in the presence of three people, at least one of them is bound to be a teacher of mine.",
+  "tw": "主公曾言。三人行，必有我師焉。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 35 字，TW 12 字",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「과거, 주군께서 말씀하시길 세 사람이 있으면 그 중에는 반드시 나의 스승이 있다 하였지」是引用《論語．述而》「三人行，必有我師焉」，JP 也寫成訓讀「三人行えば、必ずわが師ありと」。現行 TW「主公曾言。三人行，必有我師焉。」直接用原典句子，意思完整。",
+  "suggest": null,
+  "reason": "字數短是因為用了文言原典；子貢是孔子弟子，引經據典符合角色，不是漏譯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "ES000B#23",
+  "key": "StoryData/ES000B.json|/dataList/23/content",
+  "file": "StoryData/ES000B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "자로→子路",
+  "kr": "이것이 넘치면 사람은 난폭해지고, 결여되면 비겁해지는 법. 따라서 적절한 조화를 이루는 게 중요하다.",
+  "jp": "これが過ぎれば人は乱暴になり、これが欠ければ卑怯になるのが常。⏎よって、適切な調和を成すことが重要だ。",
+  "en": "Have too much of it, and risk becoming a brute; have too little, and risk becoming a craven. It needs harmony and balance.",
+  "tw": "過則為暴，缺則為怯，需適中而行。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 41 字，TW 13 字",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「이것이 넘치면 사람은 난폭해지고, 결여되면 비겁해지는 법. 따라서 적절한 조화를 이루는 게 중요하다」= 勇過多則粗暴、不足則怯懦，所以要取得適當的調和；現行 TW「過則為暴，缺則為怯，需適中而行。」三個分句都譯到。",
+  "suggest": null,
+  "reason": "子路這段台詞全用文言（前後是「智，即知者不失人」「仁者，心之德也」），字數短是文體，意思沒有缺漏。",
+  "confidence": "high"
+ },
+ {
+  "ref": "P10108#8",
+  "key": "StoryData/P10108.json|/dataList/8/content",
+  "file": "StoryData/P10108.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "그 둘이 얼마나 비슷한 궤를 가지고 있는지 더 설명하지 않아도 좋을 것이오.",
+  "jp": "その二つがいかほど似た軌を有せるや、さらに説明する要は無からん。",
+  "en": "... it would be no hyperbole to say that these two subjects have much in common.",
+  "tw": "無需解釋兩者多麼相似。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 30 字，TW 10 字",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「그 둘이 얼마나 비슷한 궤를 가지고 있는지 더 설명하지 않아도 좋을 것이오」= 兩者有多相似，不必再多說明；JP 相同，EN 改寫為「these two subjects have much in common」。現行 TW「無需解釋兩者多麼相似。」意思一致。",
+  "suggest": null,
+  "reason": "只是精簡，只少了「더（再）」，不影響理解，屬於措辭。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "P10305#7",
+  "key": "StoryData/P10305.json|/dataList/7/content",
+  "file": "StoryData/P10305.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "막상 부장이라는 사람은 30분째 골목을 휘적거리기만 하고 있었으니까 말이야.",
+  "jp": "いざ会うと、部長という人は30分も裏路地をうろついてばかりいたからね。",
+  "en": "And here she was, tagging along to this director's leisurely afternoon stroll about the alleyways.",
+  "tw": "見面之後，她卻被科長帶著在小巷裡亂逛了半個小時。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 30，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「막상 부장이라는 사람은 30분째 골목을 휘적거리기만 하고 있었으니까」= 結果那位部長已經在小巷裡閒晃了30分鐘；現行 TW「亂逛了半個小時」數字一致。「부장」在 Cinq 協會的既有譯法是「科長」（同檔 #15、P10810、P10908 都寫科長）。",
+  "suggest": null,
+  "reason": "30分鐘寫成半個小時，不算錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "P10611#26",
+  "key": "StoryData/P10611.json|/dataList/26/content",
+  "file": "StoryData/P10611.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "사무소의 1년 예산과 다름없는 그 용돈이면, 아슬아슬해도 매번 탄환을 다시 채워넣을 수 있을 테니까.",
+  "jp": "事務所の1年分の予算に匹敵するそのお小遣いなら、⏎カツカツでも毎回弾丸を再び補充できるだろうから。",
+  "en": "... That 'pocket money', being the equivalent of the Office's yearly budget, could fill their warehouse to the brim with ammunition. It wouldn't leave them much, of course, but still.",
+  "tw": "因為有著可以與事務所年度預算相匹敵的那些零用錢，因此即使勉勉強強，也能每次都補滿彈藥。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 1，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「사무소의 1년 예산과 다름없는 그 용돈」= 等同事務所一年預算的零用錢，現行 TW「與事務所年度預算相匹敵」的「年度」就是1年；後半「아슬아슬해도 매번 탄환을 다시 채워넣을 수 있을」→「即使勉勉強強，也能每次都補滿彈藥」也正確。",
+  "suggest": null,
+  "reason": "「1년」譯為「年度」，數字沒有漏。",
+  "confidence": "high"
+ },
+ {
+  "ref": "P10712#74",
+  "key": "StoryData/P10712.json|/dataList/74/content",
+  "file": "StoryData/P10712.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "旁白→旁白",
+  "kr": "동부의 여러 조직이 대소사를 결정할 때 곧잘 쓰이는 1대1 결투 제도.",
+  "jp": "東部のいろんな組織が重要な事柄を決める際に⏎よく用いられる、一対一の決闘制度。",
+  "en": "Syndicates of the eastern region often employed this tradition when making important decisions.",
+  "tw": "東部的許多幫派在決定重要事務的時候，經常會使用單挑決鬥制度。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 1，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「동부의 여러 조직이 대소사를 결정할 때 곧잘 쓰이는 1대1 결투 제도」= 東部許多組織決定大小事時常用的一對一決鬥制度；現行 TW「單挑決鬥制度」的「單挑」就是一對一，其餘也正確。",
+  "suggest": null,
+  "reason": "「1대1」譯成「單挑」，意思沒有漏。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S1034B#44",
+  "key": "StoryData/S1034B.json|/dataList/44/content",
+  "file": "StoryData/S1034B.json",
+  "field": "content",
+  "origin": "claude",
+  "speaker": "뫼르소→莫梭",
+  "kr": "어머니의 귀가는 대체로 7시 10분경에, 나의 귀가는 그보다 조금 더 빠른 18시에 이루어진다.",
+  "jp": "母の帰宅はおおむね19時10分頃、⏎私の帰宅はそれより少し早い18時だ。",
+  "en": "Mother generally returns from work at approximately 19:10. I arrive home somewhat earlier, at 18:00.",
+  "tw": "母親通常在19點10分左右回家，我則稍早一些，在18點回家。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 7，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「7시 10분경」接著說自己「그보다 조금 더 빠른 18시」回家，可見是晚上7點10分；JP「19時10分頃」、EN「19:10」都寫成19點。現行 TW「19點10分左右」與 JP、EN 一致，前後的時間關係也正確。",
+  "suggest": null,
+  "reason": "TW 把 KR 的「7시」統一成24小時制的19點，時間相同，不是錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S307B#9",
+  "key": "StoryData/S307B.json|/dataList/9/content",
+  "file": "StoryData/S307B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "???→???",
+  "kr": "다만 30분 후에는 잡지 인터뷰가 있어서 길게는 시간을 내주진 못해. 섭섭해도 이해해주게!",
+  "jp": "ただ三十分後には雑誌のインタビューがあるからそう長く時間は取れない。⏎寂しくても理解してくれるように！",
+  "en": "Alas, I must attend a magazine interview in half an hour, so I cannot overlinger. I pray you to understand!",
+  "tw": "只是我在半小時後還有雜誌採訪，所以無法久留。雖然很遺憾，但還望各位理解！",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 30，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「30분 후에는 잡지 인터뷰가 있어서」= 30分鐘後有雜誌採訪，JP「三十分後」、EN「in half an hour」；現行 TW「半小時後還有雜誌採訪」數字一致。",
+  "suggest": null,
+  "reason": "30分鐘寫成半小時，不算錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S402B#83",
+  "key": "StoryData/S402B.json|/dataList/83/content",
+  "file": "StoryData/S402B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "료슈→良秀",
+  "kr": "저 날아다니는 기계는 뭐지? 아까부터 거슬려. 베.싶.생을 3천번째 하고 있는 중.",
+  "jp": "あの飛び回る機械はなんだ？さっきから目障りだ。斬・望・考を三千回してる最中だ。",
+  "en": "What’s that flying machine? It’s been irking me. Got the urge to S.I.D. for the three-thousandth time.",
+  "tw": "那些飛來飛去的機器是什麼？剛剛開始就很礙眼，想．考．斬第三千次了。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 3，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「베.싶.생을 3천번째 하고 있는 중」= 第三千次在想「想砍」（베고 싶다는 생각）；現行 TW「想．考．斬第三千次了」的「第三千次」就是3천번째，縮略語也照 ryoshu.md 每字加「．」。",
+  "suggest": null,
+  "reason": "數字以中文寫出，沒有漏；縮略語取字屬於措辭。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S705B#17",
+  "key": "StoryData/S705B.json|/dataList/17/content",
+  "file": "StoryData/S705B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "벌써부터 림버스 컴퍼니를 알아보는 해결사가 있단 말인가! 으하핫, 이거 참 곤란한데… 에헤이! 그래서 일부러 1면에 본인 사진을 싣는 건 과하다고 했거늘!",
+  "jp": "もうすでにリンバス・カンパニーを認識しているフィクサーがいるのであるか！⏎うははっ、これは困りまするな…へへん！だからわざわざ一面に⏎当人の写真を載せるのはやりすぎだって言ったのでありまするのに！",
+  "en": "Hath our reputation already preceded us?! To be recognized by mere sight... Muahaha, 'tis a joyous conundrum, indeed! Eheh, 'tis precisely why I had said that I must graciously bow out from that special feature on the front page of a newspaper!",
+  "tw": "莫非已經有收尾人認識邊獄公司了嗎！呼哈哈，這下可難辦了……欸嘿！所以才說在頭版特地刊登吾的照片有些誇張了！",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 1，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「그래서 일부러 1면에 본인 사진을 싣는 건 과하다고 했거늘」= 所以就說了特地在頭版刊登本人照片太過了；「1면」就是頭版，現行 TW「所以才說在頭版特地刊登吾的照片有些誇張了」意思正確。",
+  "suggest": null,
+  "reason": "「1면」譯為「頭版」，數字沒有漏。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S706B#139",
+  "key": "StoryData/S706B.json|/dataList/139/content",
+  "file": "StoryData/S706B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "알레시오→阿萊西奧",
+  "kr": "즉, 여기 있는 인원들을 나누어서 각각 1구역부터 3구역까지 입장을 해야 한다는 것입니다.",
+  "jp": "つまり、ここにいる人員を分けて、それぞれ区域1から区域3に⏎入場しなければならないということです。",
+  "en": "In other words, we will have to divide and conquer. Team up with other Fixers, choose an Area to tackle.",
+  "tw": "也就是說，在座的各位需要兵分三路，分別前往三片區域。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 1，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「각각 1구역부터 3구역까지 입장을 해야 한다」= 要分頭進入1區到3區，JP 同，EN 改寫為「choose an Area to tackle」。現行 TW「兵分三路，分別前往三片區域」沒寫出編號，但前兩行剛說明1、2區啟動過、3區還沒，下一行羅梅羅也說「1、2、3區的所有裝置」，讀者不會誤會是哪三區。",
+  "suggest": null,
+  "reason": "編號省略不影響理解，屬於措辭。",
+  "confidence": "medium"
+ },
+ {
+  "ref": "S808B#28",
+  "key": "StoryData/S808B.json|/dataList/28/content",
+  "file": "StoryData/S808B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "소드→索德",
+  "kr": "천만다행이지 않겠어요? 그래도 저희의 목표가 가주 대전의 1등이 아니라는 게.",
+  "jp": "ホント幸いだと思いません？⏎私たちの目標は、家主大戦の1位じゃないんですから。",
+  "en": "Well, isn't it such a relief that our goal isn’t to come first place in the Family Hierarch war?",
+  "tw": "真的很幸運吧？我們的目標並不是家主爭奪的榜首。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 1，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「그래도 저희의 목표가 가주 대전의 1등이 아니라는 게」= 我們的目標不是家主大戰的第一名；現行 TW「家主爭奪的榜首」的「榜首」就是第一名，下一行唐吉訶德也接「不必取得第一」。",
+  "suggest": null,
+  "reason": "「1등」譯為「榜首」，意思正確。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S812A#40",
+  "key": "StoryData/S812A.json|/dataList/40/content",
+  "file": "StoryData/S812A.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "히스클리프→希斯克利夫",
+  "kr": "뭔 떡대가… 키가 2미터는 되겠는데?",
+  "jp": "なんだあの図体…身長が2メートルくらいねぇか？",
+  "en": "What an absolute unit... Bloke's got to be at least two metres tall.",
+  "tw": "那個體格……好歹也有200公分高了吧？",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 2，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「뭔 떡대가… 키가 2미터는 되겠는데?」= 那體格……身高少說有2公尺吧？現行 TW「好歹也有200公分高了吧？」換算成公分，數值相同，語氣也符合希斯克利夫。",
+  "suggest": null,
+  "reason": "2公尺＝200公分，不是錯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S821B#27",
+  "key": "StoryData/S821B.json|/dataList/27/content",
+  "file": "StoryData/S821B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "돈키호테→唐吉訶德",
+  "kr": "아~ 그것은 말일세? 흐흠, 제목을 붙인다면 우리 림버스 컴퍼니가 2위라는 영예를 차지하게 된 일에 대하여! 가 좋겠군. 자, 긴 이야기는 아닐세. 그러니까~",
+  "jp": "あ～それはですなぁ？ふぅむ、タイトルを付けるなら、⏎我らがリンバス・カンパニーが2位の栄誉を手にした出来事について！が⏎良いであろう。さぁ、長い話ではありませぬぞ。つまり～。",
+  "en": "Aha! Thou wishest to hear our tale, then? Forsooth, were I to bestow a title upon this adventure, I would call it <i>IN WHICH LIMBUS COMPANY CLAIMETH A MOST GLORIOUS HONOR OF ATTAINING THE RANKING OF THE RUNNER-UP IN A CONTEST OF MIGHT AND WIT</i>! Now, worry thee not, for this tale shan't consume overmuch of thy time. To recount a few highlights of this adventure~",
+  "tw": "啊～這個嘛？咳咳，如果要下標題的話，吾將其稱為關於邊獄公司榮獲亞軍之故事！這樣不錯吧。那麼，故事並不長。就是說～",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 2，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「우리 림버스 컴퍼니가 2위라는 영예를 차지하게 된 일에 대하여!」= 關於我們邊獄公司榮獲第2名的事！現行 TW「關於邊獄公司榮獲亞軍之故事！」的「亞軍」就是第2名。",
+  "suggest": null,
+  "reason": "「2위」譯為「亞軍」，數字沒有漏；少了「우리（我們）」不影響意思。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S823B#128",
+  "key": "StoryData/S823B.json|/dataList/128/content",
+  "file": "StoryData/S823B.json",
+  "field": "content",
+  "origin": "paratranz",
+  "speaker": "가치우→賈丘",
+  "kr": "그 수면만 바라보고서야, 어찌 그 깊이까지 감히 헤아릴 수 있겠는가.",
+  "jp": "水面だけを見て、その深さまでどうして推し量れようか。",
+  "en": "How can one speak of the fathoms of a lake when all they have seen is the water's surface?",
+  "tw": "徒觀水面，焉知其深。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 27 字，TW 8 字",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「그 수면만 바라보고서야, 어찌 그 깊이까지 감히 헤아릴 수 있겠는가」= 只看水面，怎敢揣測其深度；現行 TW「徒觀水面，焉知其深。」是文言濃縮，意思完整，與上句「心之所動，因人而異」文體一致。",
+  "suggest": null,
+  "reason": "字數短是文言句式，不是漏譯。",
+  "confidence": "high"
+ },
+ {
+  "ref": "S930B#71",
+  "key": "StoryData/S930B.json|/dataList/71/content",
+  "file": "StoryData/S930B.json",
+  "field": "content",
+  "origin": "claude",
+  "speaker": "뤼엔→禮恩",
+  "kr": "사람을 죽이는 건… 요시히데, 네가 1등과 2등보다 뛰어나니까.",
+  "jp": "人間を殺すことに掛けては…ヨシヒデ、⏎お前が一位と二位より優れているからね。",
+  "en": "Because when it comes to killing, Yoshihide... you're in a class beyond the first and second ranks.",
+  "tw": "論殺人……<ruby=ヨシヒデ>良秀</ruby>，妳比前兩名都優秀。",
+  "first_pass": [
+   {
+    "from": "mech",
+    "category": "M",
+    "severity": null,
+    "explain": "腳本檢查：KR 有 1，TW 沒有",
+    "suggest": null,
+    "confidence": null
+   }
+  ],
+  "verdict": "rejected",
+  "category": "M",
+  "severity": null,
+  "explain": "KR「사람을 죽이는 건… 요시히데, 네가 1등과 2등보다 뛰어나니까」= 論殺人，良秀，妳比第一名和第二名都強；現行 TW「妳比前兩名都優秀」的「前兩名」就是第1、2名，ruby 也照 base.md 寫成 <ruby=ヨシヒデ>良秀</ruby>。",
+  "suggest": null,
+  "reason": "「1등과 2등」譯為「前兩名」，意思正確。",
+  "confidence": "high"
+ }
+]
