@@ -70,3 +70,9 @@
   zh: 讓你面對那種程度的痛楚也能眼睛都不眨一下。這樣一來，你就撐得住了吧？
   reason: StoryData 審查 S0011：KR 接上一句「我很樂意幫你」：「（幫到）讓你對那種程度的痛楚連眼都不眨一下。這樣一來，不就撐得住了嗎？」——維吉里烏斯是在威脅要「幫」但丁習慣痛苦（JP「その程度の苦痛には目がピクリともしないようにですね。それなら、耐えられませんかね？」、EN「won't even make you bat an eye once …
   rule: one-off
+- key: StoryData/S103B.json|/dataList/1/content
+  raw: raw-20261112
+  kr_sha: db20e9e022e527da5139b404eaf069b31e6ee254f6a990532131305411006ce9
+  zh: 在那附近的地面上，也就是巴士的嘴前，散落著各種各樣的人類。其中既有意識尚存的，也有早已四分五裂的。
+  reason: StoryData 審查 S0012：KR 의식이 있는 자（還有意識的人，JP 意識がある人、EN still conscious）譯成「奄奄一息」，重點從清醒變成垂死；이미 補「早已」。譯法由使用者決定
+  rule: one-off
