@@ -6,7 +6,7 @@ gender: female
 number: null  # ScenarioModelCodes name：료슈딸2、료슈딸연구실、아라야10대／20대 是 아라야；아라야정장* 是 지혜성 → 地慧星
 code: null
 models: [료슈딸, 료슈딸2, 료슈딸연구실, 아라야공백]
-models_other_self: [아라야10대, 아라야20대, 아라야정장, 아라야정장2]
+models_other_self: [아라야10대, 아라야20대, 아라야정장, 아라야정장2, 소지아비3, 소지아비얼굴]  # 소지아비3、소지아비얼굴 = 第 9 章假扮小指 父輩（地慧星）的阿賴耶（S929A、S948B）
 models_not_this: []
 file_names: []
 ---
