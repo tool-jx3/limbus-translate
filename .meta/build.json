@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261112",
   "raw_token": "l20261112_5pAcdxbyP1RC08yIrdPw",
-  "rules_commit": "c9a50ce28393587826d6ec57b0693bca59484a99",
-  "built_at": "2026-11-13T21:26:43Z",
+  "rules_commit": "002e71c70e75fa344ca43800efd8d2794a347baa",
+  "built_at": "2026-11-13T23:26:50Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,8 +10,8 @@
   },
   "notes_seen": 1058,
   "zips": {
-    "zh-TW_complete_raw-20261112.zip": "2e59e53d7fbaa526211dece10a65b5d56a6386fe3ccc706ec2e57f22a5136265",
-    "zh-TW_text_raw-20261112.zip": "7d6f5befeaa72b48ba270630458f54a848e990da609d087c1eb34a667eb9427f"
+    "zh-TW_complete_raw-20261112.zip": "ab373ca90b5b4ac9b9b9100f7d86b66cd89f1e89e2d3f2e18d4d7d32fc3f05c8",
+    "zh-TW_text_raw-20261112.zip": "139a2d8d38c68db579c6d5b02a683165ec2509dc0b56e260373915763309b401"
   },
   "report": {
     "origins": {
@@ -170,24 +170,6 @@
           1
         ],
         "units": 25
-      },
-      {
-        "family": "enemy",
-        "field": "name",
-        "kr": "방어",
-        "zh": [
-          "防禦",
-          "持盾猛擊"
-        ],
-        "keys": [
-          "Skills.json|/dataList/0/levelList/0/name",
-          "Skills.json|/dataList/89/levelList/0/name"
-        ],
-        "counts": [
-          20,
-          1
-        ],
-        "units": 21
       },
       {
         "family": "enemy",
@@ -392,54 +374,6 @@
       },
       {
         "family": "story-interlude",
-        "field": "content",
-        "kr": "…흠.",
-        "zh": [
-          "……哼。",
-          "……嗯。",
-          "……呼嗯。"
-        ],
-        "keys": [
-          "StoryData/E002X.json|/dataList/23/content",
-          "StoryData/E501B.json|/dataList/29/content",
-          "StoryData/E722A.json|/dataList/39/content"
-        ],
-        "counts": [
-          5,
-          3,
-          3
-        ],
-        "units": 11
-      },
-      {
-        "family": "story-interlude",
-        "field": "content",
-        "kr": "그리고…",
-        "zh": [
-          "還有……",
-          "此外……",
-          "而且……",
-          "然後……",
-          "隨後……"
-        ],
-        "keys": [
-          "StoryData/E030X.json|/dataList/88/content",
-          "StoryData/E304A.json|/dataList/37/content",
-          "StoryData/E618B.json|/dataList/59/content",
-          "StoryData/E626B.json|/dataList/70/content",
-          "StoryData/PC01B.json|/dataList/132/content"
-        ],
-        "counts": [
-          5,
-          1,
-          2,
-          2,
-          1
-        ],
-        "units": 11
-      },
-      {
-        "family": "story-interlude",
         "field": "teller",
         "kr": "삼삼",
         "zh": [
@@ -457,28 +391,88 @@
         "units": 11
       },
       {
-        "family": "story-main",
-        "field": "content",
-        "kr": "아니.",
+        "family": "ally",
+        "field": "name",
+        "kr": "회피",
         "zh": [
-          "不。",
-          "不對。",
-          "不是。",
-          "否。"
+          "閃避",
+          "迴避"
         ],
         "keys": [
-          "StoryData/8D206B.json|/dataList/14/content",
-          "StoryData/S1002B.json|/dataList/113/content",
-          "StoryData/S1008B.json|/dataList/23/content",
-          "StoryData/S810B.json|/dataList/65/content"
+          "Skills_personality-01.json|/dataList/11/levelList/0/name",
+          "Skills_personality-01.json|/dataList/49/levelList/0/name"
         ],
         "counts": [
-          5,
-          3,
+          8,
+          2
+        ],
+        "units": 10
+      },
+      {
+        "family": "enemy",
+        "field": "desc",
+        "kr": "[OnSucceedAttack] 개화 1 부여",
+        "zh": [
+          "[OnSucceedAttack] 對目標施加1層開花 ",
+          "[OnSucceedAttack] 對目標施加1層開花"
+        ],
+        "keys": [
+          "Skills_Abnormality.json|/dataList/192/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality.json|/dataList/205/levelList/0/coinlist/1/coindescs/0/desc"
+        ],
+        "counts": [
+          8,
+          2
+        ],
+        "units": 10
+      },
+      {
+        "family": "enemy",
+        "field": "desc",
+        "kr": "[WhenUse] 자신의 [Laceration] 횟수 3당, 기본 위력 +1 (최대 2)",
+        "zh": [
+          "[WhenUse] 自身每帶有3回 [Laceration] 使該技能基礎威力+1 (最多+2)",
+          "[WhenUse] 自身每帶有3回 [Laceration]，則使本技能的基礎威力+1(最多+2)"
+        ],
+        "keys": [
+          "Skills_Abnormality-mowe-re.json|/dataList/3/levelList/0/desc",
+          "Skills_Abnormality_Mirror7-extreme.json|/dataList/82/levelList/0/desc"
+        ],
+        "counts": [
+          1,
+          9
+        ],
+        "units": 10
+      },
+      {
+        "family": "enemy",
+        "field": "name",
+        "kr": "할퀴기",
+        "zh": [
+          "橫掃",
+          "撕撓",
+          "撕扯",
+          "利爪撕扯",
+          "利爪",
+          "猛爪"
+        ],
+        "keys": [
+          "Skills_Abnormality-a1c7p3.json|/dataList/9/levelList/0/name",
+          "Skills_Abnormality.json|/dataList/24/levelList/0/name",
+          "Skills_Abnormality.json|/dataList/77/levelList/0/name",
+          "Skills_Abnormality.json|/dataList/113/levelList/0/name",
+          "Skills_Abnormality_Mirror7-extreme.json|/dataList/8/levelList/0/name",
+          "Skills_Enemy-a1c8p1.json|/dataList/16/levelList/0/name"
+        ],
+        "counts": [
+          1,
+          1,
+          1,
           2,
+          4,
           1
         ],
-        "units": 11
+        "units": 10
       }
     ],
     "notes": [],
@@ -662,24 +656,6 @@
         1
       ],
       "units": 25
-    },
-    {
-      "family": "enemy",
-      "field": "name",
-      "kr": "방어",
-      "zh": [
-        "防禦",
-        "持盾猛擊"
-      ],
-      "keys": [
-        "Skills.json|/dataList/0/levelList/0/name",
-        "Skills.json|/dataList/89/levelList/0/name"
-      ],
-      "counts": [
-        20,
-        1
-      ],
-      "units": 21
     },
     {
       "family": "enemy",
@@ -884,54 +860,6 @@
     },
     {
       "family": "story-interlude",
-      "field": "content",
-      "kr": "…흠.",
-      "zh": [
-        "……哼。",
-        "……嗯。",
-        "……呼嗯。"
-      ],
-      "keys": [
-        "StoryData/E002X.json|/dataList/23/content",
-        "StoryData/E501B.json|/dataList/29/content",
-        "StoryData/E722A.json|/dataList/39/content"
-      ],
-      "counts": [
-        5,
-        3,
-        3
-      ],
-      "units": 11
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "그리고…",
-      "zh": [
-        "還有……",
-        "此外……",
-        "而且……",
-        "然後……",
-        "隨後……"
-      ],
-      "keys": [
-        "StoryData/E030X.json|/dataList/88/content",
-        "StoryData/E304A.json|/dataList/37/content",
-        "StoryData/E618B.json|/dataList/59/content",
-        "StoryData/E626B.json|/dataList/70/content",
-        "StoryData/PC01B.json|/dataList/132/content"
-      ],
-      "counts": [
-        5,
-        1,
-        2,
-        2,
-        1
-      ],
-      "units": 11
-    },
-    {
-      "family": "story-interlude",
       "field": "teller",
       "kr": "삼삼",
       "zh": [
@@ -941,48 +869,6 @@
       "keys": [
         "StoryData/E719B.json|/dataList/71/teller",
         "StoryData/E719B.json|/dataList/97/teller"
-      ],
-      "counts": [
-        10,
-        1
-      ],
-      "units": 11
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "아니.",
-      "zh": [
-        "不。",
-        "不對。",
-        "不是。",
-        "否。"
-      ],
-      "keys": [
-        "StoryData/8D206B.json|/dataList/14/content",
-        "StoryData/S1002B.json|/dataList/113/content",
-        "StoryData/S1008B.json|/dataList/23/content",
-        "StoryData/S810B.json|/dataList/65/content"
-      ],
-      "counts": [
-        5,
-        3,
-        2,
-        1
-      ],
-      "units": 11
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "하…",
-      "zh": [
-        "哈……",
-        "哈啊……"
-      ],
-      "keys": [
-        "StoryData/4D104B.json|/dataList/28/content",
-        "StoryData/S706B.json|/dataList/11/content"
       ],
       "counts": [
         10,
@@ -1075,24 +961,6 @@
       "units": 10
     },
     {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "큭…",
-      "zh": [
-        "咕……",
-        "呃……"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Heathcliff_Oufi_10708.json|/dataList/16/dlg",
-        "PersonalityVoiceDlg/Voice_Heathcliff_WCorp_10713.json|/dataList/16/dlg"
-      ],
-      "counts": [
-        8,
-        2
-      ],
-      "units": 10
-    },
-    {
       "family": "mirror",
       "field": "messageDesc",
       "kr": "선택 시, 충전 E.G.O GIFT 획득",
@@ -1107,87 +975,6 @@
       "counts": [
         2,
         8
-      ],
-      "units": 10
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그건…",
-      "zh": [
-        "恐怕……",
-        "那……",
-        "但……",
-        "這個嘛……",
-        "那是……",
-        "我以為……",
-        "這個……",
-        "這……"
-      ],
-      "keys": [
-        "StoryData/1D304B.json|/dataList/14/content",
-        "StoryData/5D302B.json|/dataList/36/content",
-        "StoryData/7D102A.json|/dataList/20/content",
-        "StoryData/8D105B.json|/dataList/14/content",
-        "StoryData/S1022B.json|/dataList/41/content",
-        "StoryData/S821B.json|/dataList/76/content",
-        "StoryData/S822B.json|/dataList/78/content",
-        "StoryData/S951B.json|/dataList/106/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1,
-        1,
-        3,
-        1,
-        1,
-        1
-      ],
-      "units": 10
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "윽…",
-      "zh": [
-        "嗚呃……",
-        "唔……",
-        "嗚……",
-        "呃……",
-        "咕……"
-      ],
-      "keys": [
-        "StoryData/3D102A.json|/dataList/34/content",
-        "StoryData/S002B.json|/dataList/100/content",
-        "StoryData/S514B.json|/dataList/59/content",
-        "StoryData/S617B.json|/dataList/17/content",
-        "StoryData/S725B.json|/dataList/43/content"
-      ],
-      "counts": [
-        1,
-        5,
-        2,
-        1,
-        1
-      ],
-      "units": 10
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "저는…",
-      "zh": [
-        "我……",
-        "我是……"
-      ],
-      "keys": [
-        "StoryData/8D203A.json|/dataList/45/content",
-        "StoryData/S002B.json|/dataList/124/content"
-      ],
-      "counts": [
-        8,
-        2
       ],
       "units": 10
     },
@@ -1246,42 +1033,6 @@
       "units": 9
     },
     {
-      "family": "ally",
-      "field": "name",
-      "kr": "후회",
-      "zh": [
-        "悔恨",
-        "悔恨交加"
-      ],
-      "keys": [
-        "Egos.json|/dataList/49/name",
-        "Skills_personality-10.json|/dataList/11/levelList/0/name"
-      ],
-      "counts": [
-        7,
-        2
-      ],
-      "units": 9
-    },
-    {
-      "family": "enemy",
-      "field": "name",
-      "kr": "꿰뚫기",
-      "zh": [
-        "穿刺釘刑",
-        "貫穿"
-      ],
-      "keys": [
-        "Skills.json|/dataList/159/levelList/0/name",
-        "Skills_Abnormality-walpu10.json|/dataList/19/levelList/0/name"
-      ],
-      "counts": [
-        8,
-        1
-      ],
-      "units": 9
-    },
-    {
       "family": "enemy",
       "field": "name",
       "kr": "숫자 세는 불한당",
@@ -1296,27 +1047,6 @@
       "counts": [
         8,
         1
-      ],
-      "units": 9
-    },
-    {
-      "family": "enemy",
-      "field": "name",
-      "kr": "타격",
-      "zh": [
-        "當頭一棒",
-        "棍棒打擊",
-        "打擊"
-      ],
-      "keys": [
-        "Skills.json|/dataList/112/levelList/0/name",
-        "Skills.json|/dataList/124/levelList/0/name",
-        "Skills_Enemy.json|/dataList/13/levelList/0/name"
-      ],
-      "counts": [
-        3,
-        3,
-        3
       ],
       "units": 9
     },
@@ -1574,99 +1304,6 @@
       ],
       "counts": [
         7,
-        1
-      ],
-      "units": 8
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "음.",
-      "zh": [
-        "唔。",
-        "嗯。"
-      ],
-      "keys": [
-        "StoryData/P10208.json|/dataList/30/content",
-        "StoryData/P10209.json|/dataList/11/content"
-      ],
-      "counts": [
-        1,
-        7
-      ],
-      "units": 8
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "윽!",
-      "zh": [
-        "嗚！",
-        "呃！",
-        "唔！"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Donquixote_WCorp5_10302.json|/dataList/16/dlg",
-        "PersonalityVoiceDlg/Voice_Faust_LCB_10201.json|/dataList/13/dlg",
-        "PersonalityVoiceDlg/Voice_Gregor_LiuAsso6_11202.json|/dataList/15/dlg"
-      ],
-      "counts": [
-        4,
-        3,
-        1
-      ],
-      "units": 8
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그러니까…",
-      "zh": [
-        "所以……",
-        "所以說……",
-        "因此……",
-        "也就是說……",
-        "所以呀……"
-      ],
-      "keys": [
-        "StoryData/S1038A.json|/dataList/32/content",
-        "StoryData/S514B.json|/dataList/14/content",
-        "StoryData/S648I.json|/dataList/44/content",
-        "StoryData/S832B.json|/dataList/213/content",
-        "StoryData/S949A.json|/dataList/56/content"
-      ],
-      "counts": [
-        2,
-        1,
-        3,
-        1,
-        1
-      ],
-      "units": 8
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "크윽…",
-      "zh": [
-        "唔……",
-        "咳……",
-        "咕呃……",
-        "咕……",
-        "呃……"
-      ],
-      "keys": [
-        "StoryData/3D309A.json|/dataList/82/content",
-        "StoryData/S412B.json|/dataList/21/content",
-        "StoryData/S644I.json|/dataList/3/content",
-        "StoryData/S706A.json|/dataList/14/content",
-        "StoryData/S929A.json|/dataList/77/content"
-      ],
-      "counts": [
-        4,
-        1,
-        1,
-        1,
         1
       ],
       "units": 8
@@ -2092,24 +1729,6 @@
       "units": 7
     },
     {
-      "family": "enemy",
-      "field": "name",
-      "kr": "후비기",
-      "zh": [
-        "入骨尖刀",
-        "深剜"
-      ],
-      "keys": [
-        "Skills.json|/dataList/72/levelList/0/name",
-        "Skills.json|/dataList/145/levelList/0/name"
-      ],
-      "counts": [
-        4,
-        3
-      ],
-      "units": 7
-    },
-    {
       "family": "identity",
       "field": "teller",
       "kr": "싸늘한 협회 직원",
@@ -2147,27 +1766,6 @@
     },
     {
       "family": "mirror",
-      "field": "message",
-      "kr": "거절한다.",
-      "zh": [
-        "拒絕。",
-        "搖頭。",
-        "拒絕它。"
-      ],
-      "keys": [
-        "ActionEvents-walpu8.json|/dataList/6/options/1/message",
-        "ActionEvents_Mirror.json|/dataList/10/options/1/message",
-        "ActionEvents_Mirror.json|/dataList/26/options/1/message"
-      ],
-      "counts": [
-        4,
-        2,
-        1
-      ],
-      "units": 7
-    },
-    {
-      "family": "mirror",
       "field": "simpleDesc",
       "kr": "[Charge] 횟수 3 증가",
       "zh": [
@@ -2187,24 +1785,6 @@
     {
       "family": "story-interlude",
       "field": "content",
-      "kr": "으음…",
-      "zh": [
-        "唔……",
-        "嗯……"
-      ],
-      "keys": [
-        "StoryData/E301A.json|/dataList/36/content",
-        "StoryData/E511A.json|/dataList/35/content"
-      ],
-      "counts": [
-        1,
-        6
-      ],
-      "units": 7
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
       "kr": "흐음…",
       "zh": [
         "呼嗯……",
@@ -2213,45 +1793,6 @@
       "keys": [
         "StoryData/E061X.json|/dataList/68/content",
         "StoryData/E505A.json|/dataList/3/content"
-      ],
-      "counts": [
-        6,
-        1
-      ],
-      "units": 7
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…네?",
-      "zh": [
-        "……嗯？",
-        "……什麼？",
-        "……是？"
-      ],
-      "keys": [
-        "StoryData/S003A.json|/dataList/12/content",
-        "StoryData/S1004B.json|/dataList/159/content",
-        "StoryData/S832B.json|/dataList/198/content"
-      ],
-      "counts": [
-        1,
-        5,
-        1
-      ],
-      "units": 7
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "너…",
-      "zh": [
-        "你……",
-        "妳……"
-      ],
-      "keys": [
-        "StoryData/S426B.json|/dataList/22/content",
-        "StoryData/S947B.json|/dataList/130/content"
       ],
       "counts": [
         6,
@@ -2572,24 +2113,6 @@
       "units": 6
     },
     {
-      "family": "enemy",
-      "field": "name",
-      "kr": "피주머니",
-      "zh": [
-        "血囊",
-        "血袋"
-      ],
-      "keys": [
-        "Passives_Abnormality-mr7-extreme.json|/dataList/16/name",
-        "Passives_Enemy-a1c7p1.json|/dataList/5/name"
-      ],
-      "counts": [
-        4,
-        2
-      ],
-      "units": 6
-    },
-    {
       "family": "events",
       "field": "content",
       "kr": "이벤트 기간",
@@ -2622,24 +2145,6 @@
       "counts": [
         5,
         1
-      ],
-      "units": 6
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "큭!",
-      "zh": [
-        "咳！",
-        "呃！"
-      ],
-      "keys": [
-        "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/124/dlg",
-        "PersonalityVoiceDlg/Voice_Ryoshu_Contem_10416.json|/dataList/16/dlg"
-      ],
-      "counts": [
-        4,
-        2
       ],
       "units": 6
     },
@@ -2839,387 +2344,6 @@
       "units": 6
     },
     {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "<뭐?>",
-      "zh": [
-        "<嗯？>",
-        "<什麼？>"
-      ],
-      "keys": [
-        "StoryData/E030X.json|/dataList/109/content",
-        "StoryData/E402A.json|/dataList/5/content"
-      ],
-      "counts": [
-        2,
-        4
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…네.",
-      "zh": [
-        "……嗯。",
-        "……好。",
-        "……在。",
-        "……是。"
-      ],
-      "keys": [
-        "StoryData/E405A.json|/dataList/1/content",
-        "StoryData/E405A.json|/dataList/99/content",
-        "StoryData/E617B.json|/dataList/44/content",
-        "StoryData/E706B.json|/dataList/15/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1,
-        3
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "그러니까…",
-      "zh": [
-        "也就是說……",
-        "所以……",
-        "現在，仔細聽好……",
-        "所以說……",
-        "那個……"
-      ],
-      "keys": [
-        "StoryData/E091X.json|/dataList/45/content",
-        "StoryData/E509B.json|/dataList/128/content",
-        "StoryData/E613B.json|/dataList/93/content",
-        "StoryData/E618B.json|/dataList/35/content",
-        "StoryData/ES011A.json|/dataList/24/content"
-      ],
-      "counts": [
-        2,
-        1,
-        1,
-        1,
-        1
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "네?",
-      "zh": [
-        "咦？",
-        "那是什麼？",
-        "我在？",
-        "什麼？",
-        "欸？"
-      ],
-      "keys": [
-        "StoryData/E003I3.json|/dataList/39/content",
-        "StoryData/E306B.json|/dataList/18/content",
-        "StoryData/E407A.json|/dataList/28/content",
-        "StoryData/E621A.json|/dataList/9/content",
-        "StoryData/E709B.json|/dataList/3/content"
-      ],
-      "counts": [
-        2,
-        1,
-        1,
-        1,
-        1
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "뭐…?",
-      "zh": [
-        "哈……？",
-        "欸……？",
-        "什麼……？"
-      ],
-      "keys": [
-        "StoryData/E512A.json|/dataList/19/content",
-        "StoryData/E809B.json|/dataList/11/content",
-        "StoryData/E902B.json|/dataList/20/content"
-      ],
-      "counts": [
-        1,
-        3,
-        2
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "쾅!",
-      "zh": [
-        "咚！",
-        "哐！",
-        "砰！"
-      ],
-      "keys": [
-        "StoryData/E003I1.json|/dataList/79/content",
-        "StoryData/E918B.json|/dataList/49/content",
-        "StoryData/E919A.json|/dataList/127/content"
-      ],
-      "counts": [
-        4,
-        1,
-        1
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "큭…",
-      "zh": [
-        "咕……",
-        "呃……"
-      ],
-      "keys": [
-        "StoryData/E405A.json|/dataList/55/content",
-        "StoryData/E512B.json|/dataList/64/content"
-      ],
-      "counts": [
-        1,
-        5
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "하…",
-      "zh": [
-        "哈啊……",
-        "唉……",
-        "哈……"
-      ],
-      "keys": [
-        "StoryData/E051X.json|/dataList/37/content",
-        "StoryData/E407A.json|/dataList/37/content",
-        "StoryData/E501B.json|/dataList/60/content"
-      ],
-      "counts": [
-        1,
-        2,
-        3
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "흠…",
-      "zh": [
-        "嗯……",
-        "呼嗯……",
-        "哼……"
-      ],
-      "keys": [
-        "StoryData/E001X.json|/dataList/168/content",
-        "StoryData/E803B.json|/dataList/183/content",
-        "StoryData/PC08B.json|/dataList/94/content"
-      ],
-      "counts": [
-        4,
-        1,
-        1
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…허.",
-      "zh": [
-        "……呵。",
-        "……哈。",
-        "……哈啊。"
-      ],
-      "keys": [
-        "StoryData/S518B.json|/dataList/29/content",
-        "StoryData/S930B.json|/dataList/27/content",
-        "StoryData/S942B.json|/dataList/46/content"
-      ],
-      "counts": [
-        4,
-        1,
-        1
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그럼…",
-      "zh": [
-        "那麼……",
-        "那為什麼……",
-        "那到底是……",
-        "那……"
-      ],
-      "keys": [
-        "BgmLyrics/BgmLyrics_Credit7.json|/dataList/28/content",
-        "StoryData/S513B.json|/dataList/51/content",
-        "StoryData/S522B.json|/dataList/34/content",
-        "StoryData/S830B.json|/dataList/63/content"
-      ],
-      "counts": [
-        3,
-        1,
-        1,
-        1
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그렇구나.",
-      "zh": [
-        "原來如此。",
-        "是這樣啊。",
-        "這樣啊。",
-        "我懂了。"
-      ],
-      "keys": [
-        "StoryData/S735B.json|/dataList/20/content",
-        "StoryData/S814B.json|/dataList/27/content",
-        "StoryData/S947B.json|/dataList/30/content",
-        "StoryData/S948A.json|/dataList/60/content"
-      ],
-      "counts": [
-        1,
-        1,
-        3,
-        1
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그렇다면…",
-      "zh": [
-        "那樣的話……",
-        "既然如此……",
-        "也就是說……",
-        "那麼……"
-      ],
-      "keys": [
-        "StoryData/4D305I.json|/dataList/66/content",
-        "StoryData/S316B.json|/dataList/11/content",
-        "StoryData/S624B.json|/dataList/9/content",
-        "StoryData/S634A.json|/dataList/64/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1,
-        3
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "네.",
-      "zh": [
-        "當然。",
-        "好的。",
-        "對。",
-        "是的。",
-        "是。",
-        "好。"
-      ],
-      "keys": [
-        "StoryData/3D102A.json|/dataList/81/content",
-        "StoryData/S002B.json|/dataList/120/content",
-        "StoryData/S313A.json|/dataList/56/content",
-        "StoryData/S525B.json|/dataList/48/content",
-        "StoryData/S833A.json|/dataList/190/content",
-        "StoryData/S941B.json|/dataList/38/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "네?",
-      "zh": [
-        "什麼？",
-        "啊？",
-        "怎麼了？",
-        "咦？"
-      ],
-      "keys": [
-        "StoryData/1D304B.json|/dataList/7/content",
-        "StoryData/S701B.json|/dataList/77/content",
-        "StoryData/S936B.json|/dataList/33/content",
-        "StoryData/S951B.json|/dataList/29/content"
-      ],
-      "counts": [
-        3,
-        1,
-        1,
-        1
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "아니야.",
-      "zh": [
-        "不。",
-        "不對。"
-      ],
-      "keys": [
-        "StoryData/S517A.json|/dataList/11/content",
-        "StoryData/S648B.json|/dataList/2/content"
-      ],
-      "counts": [
-        1,
-        5
-      ],
-      "units": 6
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "왜…",
-      "zh": [
-        "為什麼……",
-        "為何……"
-      ],
-      "keys": [
-        "StoryData/1D203B.json|/dataList/51/content",
-        "StoryData/S448A.json|/dataList/11/content"
-      ],
-      "counts": [
-        5,
-        1
-      ],
-      "units": 6
-    },
-    {
       "family": "story-main",
       "field": "teller",
       "kr": "몸 푸는 철공회 조직원",
@@ -3255,24 +2379,6 @@
         1,
         1,
         4
-      ],
-      "units": 6
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "이벤트",
-      "zh": [
-        "事件",
-        "活動"
-      ],
-      "keys": [
-        "BattleUIText.json|/dataList/60/content",
-        "FormationNameFilterUI.json|/dataList/11/content"
-      ],
-      "counts": [
-        4,
-        2
       ],
       "units": 6
     },
@@ -3475,24 +2581,6 @@
       "units": 5
     },
     {
-      "family": "enemy",
-      "field": "name",
-      "kr": "연속 베기",
-      "zh": [
-        "斧刃連舞",
-        "連斬"
-      ],
-      "keys": [
-        "Skills.json|/dataList/104/levelList/0/name",
-        "Skills.json|/dataList/117/levelList/0/name"
-      ],
-      "counts": [
-        3,
-        2
-      ],
-      "units": 5
-    },
-    {
       "family": "events",
       "field": "content",
       "kr": "<size=75%>이벤트 첫 번째 이야기\n감상 시 개방</size>",
@@ -3503,24 +2591,6 @@
       "keys": [
         "EventLCBCheckupText.json|/dataList/3/content",
         "EventMOWEText.json|/dataList/3/content"
-      ],
-      "counts": [
-        4,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "…네?",
-      "zh": [
-        "……什麼？",
-        "……啊？"
-      ],
-      "keys": [
-        "StoryData/P10111.json|/dataList/41/content",
-        "StoryData/P10908.json|/dataList/17/content"
       ],
       "counts": [
         4,
@@ -3543,105 +2613,6 @@
       "counts": [
         4,
         1
-      ],
-      "units": 5
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "네?",
-      "zh": [
-        "什麼？",
-        "嗯？",
-        "啊？"
-      ],
-      "keys": [
-        "StoryData/P10414.json|/dataList/72/content",
-        "StoryData/P10603.json|/dataList/17/content",
-        "StoryData/P11011.json|/dataList/77/content"
-      ],
-      "counts": [
-        3,
-        1,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "흠…",
-      "zh": [
-        "嗯……",
-        "呼嗯……",
-        "哼……"
-      ],
-      "keys": [
-        "StoryData/P10110.json|/dataList/16/content",
-        "StoryData/P10313.json|/dataList/95/content",
-        "StoryData/P11114.json|/dataList/45/content"
-      ],
-      "counts": [
-        2,
-        2,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "앗!",
-      "zh": [
-        "啊！",
-        "哎呀！"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Donquixote_LCB_10301.json|/dataList/13/dlg",
-        "PersonalityVoiceDlg/Voice_Honglu_LCB_10601.json|/dataList/13/dlg"
-      ],
-      "counts": [
-        4,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "으윽…",
-      "zh": [
-        "唔……",
-        "嗚……",
-        "呃……"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Heathcliff_Qui_10707.json|/dataList/16/dlg",
-        "PersonalityVoiceDlg/Voice_Sinclair_Devjat_11011.json|/dataList/16/dlg",
-        "PersonalityVoiceDlg/Voice_Yisang_LCE_10111.json|/dataList/16/dlg"
-      ],
-      "counts": [
-        3,
-        1,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "identity",
-      "field": "teller",
-      "kr": "조직원들",
-      "zh": [
-        "幫派成員們",
-        "海盜們"
-      ],
-      "keys": [
-        "StoryData/P11113.json|/dataList/116/teller",
-        "StoryData/P11207.json|/dataList/21/teller"
-      ],
-      "counts": [
-        3,
-        2
       ],
       "units": 5
     },
@@ -3760,24 +2731,6 @@
       "units": 5
     },
     {
-      "family": "rpg",
-      "field": "text",
-      "kr": "음…",
-      "zh": [
-        "唔嗯……",
-        "嗯……"
-      ],
-      "keys": [
-        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/13/texts/33/text",
-        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/108/texts/2/text"
-      ],
-      "counts": [
-        1,
-        4
-      ],
-      "units": 5
-    },
-    {
       "family": "stage",
       "field": "content",
       "kr": "착용한 E.G.O를 확인해 필요한 자원을 얻을 수 있는 인격으로 구성하여 전투를 진행해 봅시다.",
@@ -3792,147 +2745,6 @@
       "counts": [
         3,
         2
-      ],
-      "units": 5
-    },
-    {
-      "family": "stage",
-      "field": "name",
-      "kr": "신부",
-      "zh": [
-        "神父",
-        "牧師"
-      ],
-      "keys": [
-        "ScenarioModelCodes-AutoCreated.json|/dataList/331/name",
-        "ScenarioModelCodes-AutoCreated.json|/dataList/735/name"
-      ],
-      "counts": [
-        4,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "<…그래.>",
-      "zh": [
-        "<……嗯。>",
-        "<……這樣啊。>",
-        "<……好。>",
-        "<……是啊。>"
-      ],
-      "keys": [
-        "StoryData/E061X.json|/dataList/27/content",
-        "StoryData/E062X.json|/dataList/17/content",
-        "StoryData/E101X.json|/dataList/16/content",
-        "StoryData/E728B.json|/dataList/140/content"
-      ],
-      "counts": [
-        1,
-        2,
-        1,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "<하아…>",
-      "zh": [
-        "<哈……>",
-        "<哈啊……>"
-      ],
-      "keys": [
-        "StoryData/E030X.json|/dataList/81/content",
-        "StoryData/E503B.json|/dataList/163/content"
-      ],
-      "counts": [
-        1,
-        4
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…그래.",
-      "zh": [
-        "……好吧。",
-        "……是啊。",
-        "……沒錯。",
-        "……無妨。"
-      ],
-      "keys": [
-        "StoryData/E050X.json|/dataList/8/content",
-        "StoryData/E607B.json|/dataList/38/content",
-        "StoryData/E802B.json|/dataList/36/content",
-        "StoryData/ES040B.json|/dataList/11/content"
-      ],
-      "counts": [
-        1,
-        1,
-        2,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…뭐?",
-      "zh": [
-        "……嗯？",
-        "……什麼？"
-      ],
-      "keys": [
-        "StoryData/E502B.json|/dataList/54/content",
-        "StoryData/E605B.json|/dataList/110/content"
-      ],
-      "counts": [
-        1,
-        4
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…크흠.",
-      "zh": [
-        "……咳。",
-        "……咳咳。"
-      ],
-      "keys": [
-        "StoryData/E003I3.json|/dataList/63/content",
-        "StoryData/PC03B.json|/dataList/95/content"
-      ],
-      "counts": [
-        4,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "그래.",
-      "zh": [
-        "嗯。",
-        "是啊。",
-        "明白。"
-      ],
-      "keys": [
-        "StoryData/E509B.json|/dataList/153/content",
-        "StoryData/E909B.json|/dataList/70/content",
-        "StoryData/PC07B.json|/dataList/150/content"
-      ],
-      "counts": [
-        1,
-        3,
-        1
       ],
       "units": 5
     },
@@ -3955,126 +2767,6 @@
       "units": 5
     },
     {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "나는…",
-      "zh": [
-        "我……",
-        "我是……"
-      ],
-      "keys": [
-        "StoryData/E001X.json|/dataList/281/content",
-        "StoryData/E611B.json|/dataList/35/content"
-      ],
-      "counts": [
-        4,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "네.",
-      "zh": [
-        "好的。",
-        "請說。",
-        "對。"
-      ],
-      "keys": [
-        "StoryData/E020X.json|/dataList/25/content",
-        "StoryData/E103X.json|/dataList/6/content",
-        "StoryData/E405A.json|/dataList/11/content"
-      ],
-      "counts": [
-        2,
-        1,
-        2
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "뭐?",
-      "zh": [
-        "什麼？",
-        "啊？",
-        "啥？"
-      ],
-      "keys": [
-        "StoryData/E091X.json|/dataList/34/content",
-        "StoryData/E502B.json|/dataList/26/content",
-        "StoryData/E907B.json|/dataList/166/content"
-      ],
-      "counts": [
-        3,
-        1,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "이건…",
-      "zh": [
-        "這是……",
-        "這……"
-      ],
-      "keys": [
-        "StoryData/E518B.json|/dataList/14/content",
-        "StoryData/E803B.json|/dataList/158/content"
-      ],
-      "counts": [
-        4,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "크윽…",
-      "zh": [
-        "唔……",
-        "哼……",
-        "咕……",
-        "咕唔……"
-      ],
-      "keys": [
-        "StoryData/E042X.json|/dataList/23/content",
-        "StoryData/E402A.json|/dataList/3/content",
-        "StoryData/E516B.json|/dataList/29/content",
-        "StoryData/E610A.json|/dataList/1/content"
-      ],
-      "counts": [
-        2,
-        1,
-        1,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "흠.",
-      "zh": [
-        "呼嗯。",
-        "哼。"
-      ],
-      "keys": [
-        "StoryData/E003I2.json|/dataList/100/content",
-        "StoryData/E405B.json|/dataList/47/content"
-      ],
-      "counts": [
-        4,
-        1
-      ],
-      "units": 5
-    },
-    {
       "family": "story-main",
       "field": "content",
       "kr": "<그건…>",
@@ -4089,234 +2781,6 @@
       "counts": [
         2,
         3
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…그렇군.",
-      "zh": [
-        "……是嗎。",
-        "……原來如此。",
-        "……是這樣啊。"
-      ],
-      "keys": [
-        "StoryData/3D102A.json|/dataList/42/content",
-        "StoryData/S1004B.json|/dataList/185/content",
-        "StoryData/S926B.json|/dataList/16/content"
-      ],
-      "counts": [
-        2,
-        2,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…흠.",
-      "zh": [
-        "……哼。",
-        "……嗯。",
-        "……呼嗯。"
-      ],
-      "keys": [
-        "StoryData/1D306A.json|/dataList/77/content",
-        "StoryData/S514B.json|/dataList/48/content",
-        "StoryData/S927B.json|/dataList/14/content"
-      ],
-      "counts": [
-        2,
-        2,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그런데…",
-      "zh": [
-        "說起來……",
-        "但……",
-        "但是……"
-      ],
-      "keys": [
-        "StoryData/7D108B.json|/dataList/47/content",
-        "StoryData/S533B.json|/dataList/29/content",
-        "StoryData/S822B.json|/dataList/3/content"
-      ],
-      "counts": [
-        1,
-        1,
-        3
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그렇다.",
-      "zh": [
-        "沒錯。",
-        "是。"
-      ],
-      "keys": [
-        "StoryData/S1010B.json|/dataList/4/content",
-        "StoryData/S926A.json|/dataList/31/content"
-      ],
-      "counts": [
-        3,
-        2
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그저…",
-      "zh": [
-        "我只是……",
-        "只是……",
-        "我所希望的只有……",
-        "僅僅……"
-      ],
-      "keys": [
-        "StoryData/4D105B.json|/dataList/40/content",
-        "StoryData/4D305I.json|/dataList/48/content",
-        "StoryData/4D305I.json|/dataList/73/content",
-        "StoryData/8D202A.json|/dataList/61/content"
-      ],
-      "counts": [
-        1,
-        2,
-        1,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "맞아.",
-      "zh": [
-        "對。",
-        "沒錯。",
-        "是啊。"
-      ],
-      "keys": [
-        "StoryData/5D202A.json|/dataList/10/content",
-        "StoryData/S648A.json|/dataList/53/content",
-        "StoryData/S833A.json|/dataList/202/content"
-      ],
-      "counts": [
-        2,
-        2,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "뭐…",
-      "zh": [
-        "什麼……？",
-        "嘛……",
-        "什……"
-      ],
-      "keys": [
-        "StoryData/5D304I8.json|/dataList/13/content",
-        "StoryData/S622B.json|/dataList/27/content",
-        "StoryData/S633B.json|/dataList/29/content"
-      ],
-      "counts": [
-        1,
-        3,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "오…",
-      "zh": [
-        "哦……",
-        "僅……",
-        "噢……"
-      ],
-      "keys": [
-        "StoryData/5D302B.json|/dataList/52/content",
-        "StoryData/8D106B.json|/dataList/27/content",
-        "StoryData/S606B.json|/dataList/93/content"
-      ],
-      "counts": [
-        3,
-        1,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "이건…",
-      "zh": [
-        "這真是……",
-        "這是……",
-        "這聲音是……"
-      ],
-      "keys": [
-        "StoryData/S001A.json|/dataList/4/content",
-        "StoryData/S1024B.json|/dataList/0/content",
-        "StoryData/S928B.json|/dataList/12/content"
-      ],
-      "counts": [
-        1,
-        3,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "잠시 후…",
-      "zh": [
-        "不久之後……",
-        "片刻之後……",
-        "過了一會兒……"
-      ],
-      "keys": [
-        "StoryData/2D306A.json|/dataList/38/content",
-        "StoryData/S1044B.json|/dataList/20/content",
-        "StoryData/S821B.json|/dataList/90/content"
-      ],
-      "counts": [
-        3,
-        1,
-        1
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "크흠…",
-      "zh": [
-        "咳……",
-        "咳咳……"
-      ],
-      "keys": [
-        "StoryData/1D102A.json|/dataList/15/content",
-        "StoryData/S206B.json|/dataList/24/content"
-      ],
-      "counts": [
-        3,
-        2
       ],
       "units": 5
     },
@@ -4722,24 +3186,6 @@
     {
       "family": "enemy",
       "field": "name",
-      "kr": "견제",
-      "zh": [
-        "牽制戰術",
-        "牽制"
-      ],
-      "keys": [
-        "Skills.json|/dataList/240/levelList/0/name",
-        "Skills_Enemy.json|/dataList/72/levelList/0/name"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "enemy",
-      "field": "name",
       "kr": "과부하",
       "zh": [
         "超載",
@@ -4905,45 +3351,6 @@
     {
       "family": "identity",
       "field": "content",
-      "kr": "뭐?",
-      "zh": [
-        "啊？",
-        "什麼？",
-        "啥？"
-      ],
-      "keys": [
-        "StoryData/P10104.json|/dataList/39/content",
-        "StoryData/P10310.json|/dataList/135/content",
-        "StoryData/P10716.json|/dataList/120/content"
-      ],
-      "counts": [
-        2,
-        1,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "하…",
-      "zh": [
-        "哈啊……",
-        "哈……"
-      ],
-      "keys": [
-        "StoryData/P10712.json|/dataList/89/content",
-        "StoryData/P10916.json|/dataList/46/content"
-      ],
-      "counts": [
-        2,
-        2
-      ],
-      "units": 4
-    },
-    {
-      "family": "identity",
-      "field": "content",
       "kr": "하아…",
       "zh": [
         "哈啊……",
@@ -4952,24 +3359,6 @@
       "keys": [
         "StoryData/P10110.json|/dataList/68/content",
         "StoryData/P10706.json|/dataList/20/content"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "음…",
-      "zh": [
-        "嗯……",
-        "呃……"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Faust_ShiAsso2_10213.json|/dataList/17/dlg",
-        "PersonalityVoiceDlg/Voice_Yisang_Funeral_10110.json|/dataList/16/dlg"
       ],
       "counts": [
         3,
@@ -5252,24 +3641,6 @@
     },
     {
       "family": "mirror",
-      "field": "message",
-      "kr": "아니다.",
-      "zh": [
-        "不幸福。",
-        "不是。"
-      ],
-      "keys": [
-        "ActionEvents.json|/dataList/6/options/1/message",
-        "ActionEvents.json|/dataList/29/options/1/message"
-      ],
-      "counts": [
-        1,
-        3
-      ],
-      "units": 4
-    },
-    {
-      "family": "mirror",
       "field": "simpleDesc",
       "kr": "([Breath] 위력/2)만큼 추가 오만 피해",
       "zh": [
@@ -5341,42 +3712,6 @@
       "units": 4
     },
     {
-      "family": "rpg",
-      "field": "text",
-      "kr": "그건…",
-      "zh": [
-        "那是……",
-        "那樣……"
-      ],
-      "keys": [
-        "RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/97/texts/3/text",
-        "RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/14/texts/0/text"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "rpg",
-      "field": "text",
-      "kr": "네.",
-      "zh": [
-        "是。",
-        "是的。"
-      ],
-      "keys": [
-        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/13/texts/1/text",
-        "RPGSystem/rpg-loc-dialogue-floor-b3-b.json|/dataList/31/texts/0/text"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
       "family": "stage",
       "field": "place",
       "kr": "메피스토펠레스 안",
@@ -5390,144 +3725,6 @@
       ],
       "counts": [
         3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "<그렇구나…>",
-      "zh": [
-        "<這樣啊……>",
-        "<好吧……>"
-      ],
-      "keys": [
-        "StoryData/E301A.json|/dataList/80/content",
-        "StoryData/E617B.json|/dataList/68/content"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "<어?>",
-      "zh": [
-        "<哦？>",
-        "<嗯？>"
-      ],
-      "keys": [
-        "StoryData/E003I4.json|/dataList/18/content",
-        "StoryData/E052X.json|/dataList/14/content"
-      ],
-      "counts": [
-        2,
-        2
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…그렇군요.",
-      "zh": [
-        "……原來如此。",
-        "……了解了。",
-        "……我了解了。",
-        "……是嗎。"
-      ],
-      "keys": [
-        "StoryData/E080X.json|/dataList/59/content",
-        "StoryData/E620B.json|/dataList/47/content",
-        "StoryData/E620B.json|/dataList/84/content",
-        "StoryData/E625A.json|/dataList/60/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…아니.",
-      "zh": [
-        "……不。",
-        "……不對。"
-      ],
-      "keys": [
-        "StoryData/E042X.json|/dataList/10/content",
-        "StoryData/E607B.json|/dataList/42/content"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "네…?",
-      "zh": [
-        "嗯……？",
-        "什麼……？",
-        "欸……？"
-      ],
-      "keys": [
-        "StoryData/E507A.json|/dataList/44/content",
-        "StoryData/E801B.json|/dataList/140/content",
-        "StoryData/ES130A.json|/dataList/17/content"
-      ],
-      "counts": [
-        1,
-        2,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "아닙니다.",
-      "zh": [
-        "不。",
-        "不是。"
-      ],
-      "keys": [
-        "StoryData/E618B.json|/dataList/26/content",
-        "StoryData/E920B.json|/dataList/34/content"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "크흠…",
-      "zh": [
-        "咳……",
-        "咳咳……",
-        "咳嗯……"
-      ],
-      "keys": [
-        "StoryData/E020X.json|/dataList/21/content",
-        "StoryData/E702B.json|/dataList/168/content",
-        "StoryData/E921B.json|/dataList/22/content"
-      ],
-      "counts": [
-        2,
-        1,
         1
       ],
       "units": 4
@@ -5606,354 +3803,6 @@
     },
     {
       "family": "story-main",
-      "field": "content",
-      "kr": "<무슨…>",
-      "zh": [
-        "<什麼……>",
-        "<你在說……？>",
-        "<什……>"
-      ],
-      "keys": [
-        "StoryData/2D306I.json|/dataList/1/content",
-        "StoryData/S207A.json|/dataList/30/content",
-        "StoryData/S532A.json|/dataList/10/content"
-      ],
-      "counts": [
-        2,
-        1,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…그렇군요.",
-      "zh": [
-        "……是嗎。",
-        "……所言即是。",
-        "……這樣啊。",
-        "……是這樣啊。"
-      ],
-      "keys": [
-        "StoryData/5D103B.json|/dataList/61/content",
-        "StoryData/8D107A.json|/dataList/39/content",
-        "StoryData/S926A.json|/dataList/32/content",
-        "StoryData/S943I2.json|/dataList/11/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…그렇습니다.",
-      "zh": [
-        "……正是如此。",
-        "……確實如此。"
-      ],
-      "keys": [
-        "StoryData/S1004B.json|/dataList/170/content",
-        "StoryData/S1024B.json|/dataList/20/content"
-      ],
-      "counts": [
-        2,
-        2
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…어.",
-      "zh": [
-        "……呃。",
-        "……啊。",
-        "……嗯。"
-      ],
-      "keys": [
-        "StoryData/S522B.json|/dataList/12/content",
-        "StoryData/S613B.json|/dataList/31/content",
-        "StoryData/S940B.json|/dataList/20/content"
-      ],
-      "counts": [
-        1,
-        2,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그게 무슨…",
-      "zh": [
-        "那是何意……",
-        "這到底是……",
-        "你到底在說什麼……",
-        "那是什……"
-      ],
-      "keys": [
-        "StoryData/S1029B.json|/dataList/30/content",
-        "StoryData/S614B.json|/dataList/18/content",
-        "StoryData/S647B.json|/dataList/64/content",
-        "StoryData/S716A.json|/dataList/38/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그래…",
-      "zh": [
-        "是啊……",
-        "沒錯……"
-      ],
-      "keys": [
-        "StoryData/7D101B.json|/dataList/27/content",
-        "StoryData/7D111A.json|/dataList/53/content"
-      ],
-      "counts": [
-        2,
-        2
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그럼에도…",
-      "zh": [
-        "儘管如此……",
-        "儘管這樣……",
-        "即使如此……",
-        "就算如此……"
-      ],
-      "keys": [
-        "StoryData/2D306B.json|/dataList/102/content",
-        "StoryData/7D112I3.json|/dataList/30/content",
-        "StoryData/S402B.json|/dataList/57/content",
-        "StoryData/S637A.json|/dataList/15/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그렇군요.",
-      "zh": [
-        "原來如此。",
-        "是嗎。",
-        "是這樣啊。",
-        "確實如此。"
-      ],
-      "keys": [
-        "StoryData/S1031B.json|/dataList/82/content",
-        "StoryData/S526A.json|/dataList/83/content",
-        "StoryData/S643B.json|/dataList/11/content",
-        "StoryData/S825A.json|/dataList/12/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그렇습니다.",
-      "zh": [
-        "是的。",
-        "確實如此。",
-        "沒錯。",
-        "正是如此。"
-      ],
-      "keys": [
-        "StoryData/S1036B.json|/dataList/11/content",
-        "StoryData/S538B.json|/dataList/82/content",
-        "StoryData/S608B.json|/dataList/37/content",
-        "StoryData/S808B.json|/dataList/55/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "당신…",
-      "zh": [
-        "你……",
-        "妳……"
-      ],
-      "keys": [
-        "StoryData/1D306A.json|/dataList/46/content",
-        "StoryData/S926B.json|/dataList/6/content"
-      ],
-      "counts": [
-        2,
-        2
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "뭐…?",
-      "zh": [
-        "什麼……？",
-        "什……？"
-      ],
-      "keys": [
-        "StoryData/S1002B.json|/dataList/7/content",
-        "StoryData/S1018B.json|/dataList/8/content"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "아무것도.",
-      "zh": [
-        "沒什麼。",
-        "什麼都不做。"
-      ],
-      "keys": [
-        "StoryData/4D102A.json|/dataList/15/content",
-        "StoryData/S822B.json|/dataList/127/content"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "알겠습니다.",
-      "zh": [
-        "我明白了。",
-        "了解。"
-      ],
-      "keys": [
-        "StoryData/5D302B.json|/dataList/47/content",
-        "StoryData/S408B.json|/dataList/37/content"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "어?",
-      "zh": [
-        "哦？",
-        "哎？"
-      ],
-      "keys": [
-        "StoryData/2D306A.json|/dataList/21/content",
-        "StoryData/3D303B.json|/dataList/12/content"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "어…",
-      "zh": [
-        "哦……",
-        "嗯……"
-      ],
-      "keys": [
-        "StoryData/8D105B.json|/dataList/117/content",
-        "StoryData/S940B.json|/dataList/22/content"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "역시…",
-      "zh": [
-        "畢竟……",
-        "果然……",
-        "我就知道……"
-      ],
-      "keys": [
-        "StoryData/2D306A.json|/dataList/58/content",
-        "StoryData/5D104B.json|/dataList/10/content",
-        "StoryData/S922B.json|/dataList/92/content"
-      ],
-      "counts": [
-        1,
-        2,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "으음…",
-      "zh": [
-        "唔嗯……",
-        "嗯姆……",
-        "唔……"
-      ],
-      "keys": [
-        "StoryData/S101B.json|/dataList/98/content",
-        "StoryData/S705B.json|/dataList/19/content",
-        "StoryData/S709B.json|/dataList/58/content"
-      ],
-      "counts": [
-        1,
-        1,
-        2
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
       "field": "place",
       "kr": "칼프 마을 광장",
       "zh": [
@@ -6009,24 +3858,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "기본",
-      "zh": [
-        "基礎",
-        "預設"
-      ],
-      "keys": [
-        "MainUIText.json|/dataList/255/content",
-        "SelectDUI.json|/dataList/3/content"
-      ],
-      "counts": [
-        2,
-        2
-      ],
-      "units": 4
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "내성 정보",
       "zh": [
         "抗性情報",
@@ -6039,42 +3870,6 @@
       "counts": [
         3,
         1
-      ],
-      "units": 4
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "돌아가기",
-      "zh": [
-        "繼續",
-        "返回"
-      ],
-      "keys": [
-        "BattleUIText.json|/dataList/76/content",
-        "DanteAbilityUIText_a1c9p3.json|/dataList/4/content"
-      ],
-      "counts": [
-        2,
-        2
-      ],
-      "units": 4
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "순환",
-      "zh": [
-        "循環",
-        "巡迴"
-      ],
-      "keys": [
-        "IntroductionPreset.json|/dataList/163/content",
-        "TutorialMainUIText.json|/dataList/416/content"
-      ],
-      "counts": [
-        1,
-        3
       ],
       "units": 4
     },
@@ -6439,24 +4234,6 @@
       "units": 3
     },
     {
-      "family": "ally",
-      "field": "title",
-      "kr": "중지\n작은 아우",
-      "zh": [
-        "中指\n幼妹",
-        "中指\n幼弟"
-      ],
-      "keys": [
-        "Personalities.json|/dataList/76/title",
-        "Personalities.json|/dataList/77/title"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
       "family": "enemy",
       "field": "desc",
       "kr": "2, 3코인이 앞면이라면 피해량 +30%",
@@ -6765,24 +4542,6 @@
     {
       "family": "enemy",
       "field": "name",
-      "kr": "가...",
-      "zh": [
-        "叫我……",
-        "防……"
-      ],
-      "keys": [
-        "Passives_Enemy-a1c6p3.json|/dataList/3/name",
-        "Skills_Abnormality-a1c6p3.json|/dataList/55/levelList/0/name"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
-      "family": "enemy",
-      "field": "name",
       "kr": "고통 새기기",
       "zh": [
         "銘刻痛苦",
@@ -6852,42 +4611,6 @@
       "counts": [
         2,
         1
-      ],
-      "units": 3
-    },
-    {
-      "family": "enemy",
-      "field": "name",
-      "kr": "돌진",
-      "zh": [
-        "突進",
-        "猛撞"
-      ],
-      "keys": [
-        "Skills_Abnormality-a1c10p1.json|/dataList/30/levelList/0/name",
-        "Skills_Abnormality.json|/dataList/148/levelList/0/name"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
-      "family": "enemy",
-      "field": "name",
-      "kr": "분쇄",
-      "zh": [
-        "碾碎",
-        "粉碎"
-      ],
-      "keys": [
-        "Skills_Abnormality-a1c7p3.json|/dataList/20/levelList/0/name",
-        "Skills_Abnormality_Refraction6.json|/dataList/1/levelList/0/name"
-      ],
-      "counts": [
-        1,
-        2
       ],
       "units": 3
     },
@@ -7002,66 +4725,6 @@
     {
       "family": "identity",
       "field": "content",
-      "kr": "…네.",
-      "zh": [
-        "……是。",
-        "……是的。",
-        "……好。"
-      ],
-      "keys": [
-        "StoryData/P10212.json|/dataList/69/content",
-        "StoryData/P10315.json|/dataList/30/content",
-        "StoryData/P11005.json|/dataList/49/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "…어.",
-      "zh": [
-        "……嗯。",
-        "……啊。",
-        "……哦。"
-      ],
-      "keys": [
-        "StoryData/P10711.json|/dataList/20/content",
-        "StoryData/P10813.json|/dataList/53/content",
-        "StoryData/P10916.json|/dataList/68/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "…하.",
-      "zh": [
-        "……哈。",
-        "……唉。"
-      ],
-      "keys": [
-        "StoryData/P10116.json|/dataList/49/content",
-        "StoryData/P10617.json|/dataList/70/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "content",
       "kr": "그건…",
       "zh": [
         "但……",
@@ -7070,177 +4733,6 @@
       "keys": [
         "StoryData/P10310.json|/dataList/73/content",
         "StoryData/P10310.json|/dataList/155/content"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "그렇다면…",
-      "zh": [
-        "也就是說……",
-        "那麼……",
-        "既然如此……"
-      ],
-      "keys": [
-        "StoryData/P10305.json|/dataList/24/content",
-        "StoryData/P10515.json|/dataList/28/content",
-        "StoryData/P10716.json|/dataList/136/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "그렇습니다.",
-      "zh": [
-        "正是如此。",
-        "是的。"
-      ],
-      "keys": [
-        "StoryData/P10206.json|/dataList/25/content",
-        "StoryData/P10507.json|/dataList/47/content"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "커헉…",
-      "zh": [
-        "咳呃……",
-        "嘎嗬……"
-      ],
-      "keys": [
-        "StoryData/P10416.json|/dataList/39/content",
-        "StoryData/P11112.json|/dataList/58/content"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "컥…",
-      "zh": [
-        "嘎啊……",
-        "嘎……"
-      ],
-      "keys": [
-        "StoryData/P10309.json|/dataList/43/content",
-        "StoryData/P10608.json|/dataList/24/content"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "탁.",
-      "zh": [
-        "吧嗒。",
-        "啪。",
-        "噠。"
-      ],
-      "keys": [
-        "StoryData/P10105.json|/dataList/12/content",
-        "StoryData/P10111.json|/dataList/42/content",
-        "StoryData/P10908.json|/dataList/11/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "하아.",
-      "zh": [
-        "哈啊。",
-        "哎。"
-      ],
-      "keys": [
-        "StoryData/P10811.json|/dataList/23/content",
-        "StoryData/P11111.json|/dataList/19/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "하지만.",
-      "zh": [
-        "可是。",
-        "然而。",
-        "但是。"
-      ],
-      "keys": [
-        "StoryData/P10410.json|/dataList/15/content",
-        "StoryData/P11005.json|/dataList/4/content",
-        "StoryData/P11009.json|/dataList/11/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "반달리즘은 사절이랍니다!",
-      "zh": [
-        "嚴禁破壞藝術！",
-        "請勿破壞！"
-      ],
-      "keys": [
-        "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/210/dlg",
-        "BattleSpeechBubbleDlg.json|/dataList/550/dlg"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "읏…",
-      "zh": [
-        "嗚……",
-        "唔……"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Donquixote_Tcorp_10309.json|/dataList/16/dlg",
-        "PersonalityVoiceDlg/Voice_Faust_Dawn_10216.json|/dataList/16/dlg"
       ],
       "counts": [
         1,
@@ -7259,42 +4751,6 @@
       "keys": [
         "PersonalityVoiceDlg/Voice_Ishmael_LCB_10801.json|/dataList/15/dlg",
         "PersonalityVoiceDlg/Voice_Rodion_LCB_10901.json|/dataList/15/dlg"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "질렸다!",
-      "zh": [
-        "已經厭倦了！",
-        "已經膩了！"
-      ],
-      "keys": [
-        "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/68/dlg",
-        "BattleSpeechBubbleDlg.json|/dataList/607/dlg"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "퍼져라!",
-      "zh": [
-        "擴大！",
-        "擴散！"
-      ],
-      "keys": [
-        "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/36/dlg",
-        "BattleSpeechBubbleDlg.json|/dataList/135/dlg"
       ],
       "counts": [
         2,
@@ -7341,24 +4797,6 @@
     {
       "family": "mirror",
       "field": "content",
-      "kr": "수감자 회복",
-      "zh": [
-        "治療罪人",
-        "罪人體力恢復"
-      ],
-      "keys": [
-        "MirrorDungeonUI_2.json|/dataList/22/content",
-        "MirrorDungeonUI_2.json|/dataList/62/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "mirror",
-      "field": "content",
       "kr": "시작 버프",
       "zh": [
         "開局增益",
@@ -7377,27 +4815,6 @@
     {
       "family": "mirror",
       "field": "message",
-      "kr": "다가간다.",
-      "zh": [
-        "靠近蚌殼。",
-        "靠近花甸。",
-        "接近。"
-      ],
-      "keys": [
-        "ActionEvents_Mirror.json|/dataList/23/options/1/message",
-        "ActionEvents_Mirror.json|/dataList/24/options/0/message",
-        "ActionEvents_Mirror.json|/dataList/30/options/0/message"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "mirror",
-      "field": "message",
       "kr": "돌아간다.",
       "zh": [
         "折返回頭",
@@ -7410,27 +4827,6 @@
       "counts": [
         1,
         2
-      ],
-      "units": 3
-    },
-    {
-      "family": "mirror",
-      "field": "message",
-      "kr": "사실대로 말한다.",
-      "zh": [
-        "告知真相。",
-        "告訴它真相。",
-        "如實回答。"
-      ],
-      "keys": [
-        "ActionEvents_Mirror.json|/dataList/53/options/0/message",
-        "ActionEvents_Mirror.json|/dataList/61/options/0/message",
-        "ActionEvents_Mirror3.json|/dataList/9/options/0/message"
-      ],
-      "counts": [
-        1,
-        1,
-        1
       ],
       "units": 3
     },
@@ -7616,159 +5012,6 @@
     },
     {
       "family": "story-interlude",
-      "field": "content",
-      "kr": "<…어?>",
-      "zh": [
-        "<……哦？>",
-        "<……嗯？>"
-      ],
-      "keys": [
-        "StoryData/E001X.json|/dataList/42/content",
-        "StoryData/E407B.json|/dataList/55/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "<어…>",
-      "zh": [
-        "<哦……>",
-        "<呃……>"
-      ],
-      "keys": [
-        "StoryData/E003I2.json|/dataList/139/content",
-        "StoryData/E910B.json|/dataList/64/content"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…그래?",
-      "zh": [
-        "……是嗎？",
-        "……是啊？",
-        "……是喔？"
-      ],
-      "keys": [
-        "StoryData/E613B.json|/dataList/29/content",
-        "StoryData/E615A.json|/dataList/28/content",
-        "StoryData/E907B.json|/dataList/7/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "그러지.",
-      "zh": [
-        "那好吧。",
-        "好。",
-        "行。"
-      ],
-      "keys": [
-        "StoryData/E728B.json|/dataList/16/content",
-        "StoryData/E904B.json|/dataList/17/content",
-        "StoryData/E920B.json|/dataList/78/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "그럼…",
-      "zh": [
-        "那為什麼……",
-        "那麼……"
-      ],
-      "keys": [
-        "StoryData/E053X.json|/dataList/56/content",
-        "StoryData/E071X.json|/dataList/23/content"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "엥?",
-      "zh": [
-        "嗯？",
-        "欸？"
-      ],
-      "keys": [
-        "StoryData/E509B.json|/dataList/69/content",
-        "StoryData/E601B.json|/dataList/46/content"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "허…",
-      "zh": [
-        "哦……",
-        "喔……",
-        "嗬……"
-      ],
-      "keys": [
-        "StoryData/E919A.json|/dataList/17/content",
-        "StoryData/E919A.json|/dataList/101/content",
-        "StoryData/PC01B.json|/dataList/169/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "헉…",
-      "zh": [
-        "嗬……",
-        "呃……"
-      ],
-      "keys": [
-        "StoryData/E722A.json|/dataList/91/content",
-        "StoryData/E919B.json|/dataList/24/content"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-interlude",
       "field": "place",
       "kr": "대관원 거리",
       "zh": [
@@ -7806,66 +5049,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "<…그래.>",
-      "zh": [
-        "<……確實。>",
-        "<……是的。>",
-        "<……沒錯。>"
-      ],
-      "keys": [
-        "StoryData/S203B.json|/dataList/24/content",
-        "StoryData/S805B.json|/dataList/79/content",
-        "StoryData/S926B.json|/dataList/80/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "<…어?>",
-      "zh": [
-        "<……啊？>",
-        "<……嗯？>",
-        "<……哦？>"
-      ],
-      "keys": [
-        "StoryData/S648I.json|/dataList/6/content",
-        "StoryData/S730B.json|/dataList/52/content",
-        "StoryData/S904B.json|/dataList/32/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "<그래.>",
-      "zh": [
-        "<沒錯。>",
-        "<好。>"
-      ],
-      "keys": [
-        "StoryData/7D111A.json|/dataList/109/content",
-        "StoryData/S830I1.json|/dataList/69/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "<뭐… 뭐라고?>",
       "zh": [
         "<什……什麼？>",
@@ -7877,27 +5060,6 @@
       ],
       "counts": [
         2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "<어…>",
-      "zh": [
-        "<呃……>",
-        "<啊……>",
-        "<哦……>"
-      ],
-      "keys": [
-        "StoryData/S648A.json|/dataList/41/content",
-        "StoryData/S707B.json|/dataList/63/content",
-        "StoryData/S913B.json|/dataList/18/content"
-      ],
-      "counts": [
-        1,
-        1,
         1
       ],
       "units": 3
@@ -7923,180 +5085,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "…아니요.",
-      "zh": [
-        "……不。",
-        "……沒有。"
-      ],
-      "keys": [
-        "StoryData/7D111A.json|/dataList/129/content",
-        "StoryData/8D105B.json|/dataList/109/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그 대신…",
-      "zh": [
-        "作為回報……",
-        "可是……",
-        "但還有……"
-      ],
-      "keys": [
-        "StoryData/3D302B.json|/dataList/28/content",
-        "StoryData/5D101B.json|/dataList/47/content",
-        "StoryData/S648A.json|/dataList/21/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그 말은…",
-      "zh": [
-        "你的話語……",
-        "你不會要……"
-      ],
-      "keys": [
-        "StoryData/8D209A.json|/dataList/93/content",
-        "StoryData/S737B.json|/dataList/83/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그게 아니라면…",
-      "zh": [
-        "不然的話……",
-        "要嘛就是……",
-        "若做不到……"
-      ],
-      "keys": [
-        "StoryData/7D109B.json|/dataList/49/content",
-        "StoryData/S633B.json|/dataList/24/content",
-        "StoryData/S940B.json|/dataList/145/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그때.",
-      "zh": [
-        "就在那時。",
-        "就在那時……",
-        "正當此刻。"
-      ],
-      "keys": [
-        "StoryData/3D309I2.json|/dataList/51/content",
-        "StoryData/S502B.json|/dataList/108/content",
-        "StoryData/S619A.json|/dataList/57/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그러니…",
-      "zh": [
-        "所以……",
-        "因此……"
-      ],
-      "keys": [
-        "StoryData/S1042B.json|/dataList/119/content",
-        "StoryData/S823B.json|/dataList/36/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그러지.",
-      "zh": [
-        "那好吧。",
-        "好的。"
-      ],
-      "keys": [
-        "StoryData/S606B.json|/dataList/84/content",
-        "StoryData/S915B.json|/dataList/22/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그리고는…",
-      "zh": [
-        "然後開口道……",
-        "然後……",
-        "隨後……"
-      ],
-      "keys": [
-        "StoryData/S317B.json|/dataList/83/content",
-        "StoryData/S318A.json|/dataList/13/content",
-        "StoryData/S609A.json|/dataList/14/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "다만…",
-      "zh": [
-        "但是……",
-        "只是……"
-      ],
-      "keys": [
-        "StoryData/4D302B.json|/dataList/2/content",
-        "StoryData/S916B.json|/dataList/126/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "아니. 그 글자는 그렇게 읽는 게 아니라…",
       "zh": [
         "不對。這個字不是這樣唸……",
@@ -8105,99 +5093,6 @@
       "keys": [
         "StoryData/S901B.json|/dataList/7/content",
         "StoryData/S931B.json|/dataList/29/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "아니야…",
-      "zh": [
-        "不對……",
-        "不……"
-      ],
-      "keys": [
-        "StoryData/3D308B.json|/dataList/18/content",
-        "StoryData/S648B.json|/dataList/13/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "알고 있다.",
-      "zh": [
-        "我清楚。",
-        "我知道。"
-      ],
-      "keys": [
-        "StoryData/5D101B.json|/dataList/9/content",
-        "StoryData/S1004B.json|/dataList/145/content"
-      ],
-      "counts": [
-        1,
-        2
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "어.",
-      "zh": [
-        "唔。",
-        "啊。",
-        "嗯。"
-      ],
-      "keys": [
-        "StoryData/S525B.json|/dataList/78/content",
-        "StoryData/S532B.json|/dataList/71/content",
-        "StoryData/S940B.json|/dataList/113/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "우욱…",
-      "zh": [
-        "嘔……",
-        "嗚、嘔……"
-      ],
-      "keys": [
-        "StoryData/1D305B.json|/dataList/10/content",
-        "StoryData/S301B.json|/dataList/69/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "으윽…",
-      "zh": [
-        "唔……",
-        "唔嗚……"
-      ],
-      "keys": [
-        "StoryData/5D107B.json|/dataList/4/content",
-        "StoryData/8D107B.json|/dataList/2/content"
       ],
       "counts": [
         2,
@@ -8222,84 +5117,6 @@
       "counts": [
         1,
         1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "잠깐.",
-      "zh": [
-        "等等。",
-        "等下。",
-        "慢著。"
-      ],
-      "keys": [
-        "StoryData/S111B.json|/dataList/62/content",
-        "StoryData/S634B.json|/dataList/23/content",
-        "StoryData/S803B.json|/dataList/1/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "커헉…",
-      "zh": [
-        "嘎嗬……",
-        "咳……",
-        "咕啊……"
-      ],
-      "keys": [
-        "StoryData/S941A.json|/dataList/35/content",
-        "StoryData/S943B.json|/dataList/153/content",
-        "StoryData/S946B.json|/dataList/2/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "하지만.",
-      "zh": [
-        "但是。",
-        "然而。"
-      ],
-      "keys": [
-        "StoryData/3D306B.json|/dataList/6/content",
-        "StoryData/S830A.json|/dataList/43/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "흠…",
-      "zh": [
-        "嗯……",
-        "哼……"
-      ],
-      "keys": [
-        "StoryData/S603A.json|/dataList/29/content",
-        "StoryData/S907B.json|/dataList/9/content"
-      ],
-      "counts": [
-        2,
         1
       ],
       "units": 3
@@ -8397,66 +5214,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "보유",
-      "zh": [
-        "持有時",
-        "持有",
-        "擁有"
-      ],
-      "keys": [
-        "BattleUIText.json|/dataList/135/content",
-        "FormationUI_S6.json|/dataList/26/content",
-        "MainUIText.json|/dataList/110/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "선택지",
-      "zh": [
-        "決斷",
-        "選項",
-        "事件選項"
-      ],
-      "keys": [
-        "BattleUIText.json|/dataList/69/content",
-        "TutorialPopUpDesc.json|/dataList/25/content",
-        "TutorialRenewalDesc.json|/dataList/189/content"
-      ],
-      "counts": [
-        1,
-        1,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "성장",
-      "zh": [
-        "成長",
-        "升級"
-      ],
-      "keys": [
-        "ReturnPolicy.json|/dataList/17/content",
-        "TutorialMainUIText.json|/dataList/166/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "세이브 포인트",
       "zh": [
         "檢查點",
@@ -8496,24 +5253,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "스토리",
-      "zh": [
-        "故事",
-        "劇情關卡"
-      ],
-      "keys": [
-        "BattleUIText.json|/dataList/54/content",
-        "FormationNameFilterUI.json|/dataList/2/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "인격 이야기",
       "zh": [
         "人格檔案",
@@ -8522,24 +5261,6 @@
       "keys": [
         "TutorialMainUIText.json|/dataList/99/content",
         "TutorialMainUIText.json|/dataList/113/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "입장",
-      "zh": [
-        "進入",
-        "進入戰鬥"
-      ],
-      "keys": [
-        "BattleUIText.json|/dataList/72/content",
-        "TutorialMainUIText.json|/dataList/128/content"
       ],
       "counts": [
         2,
@@ -8616,24 +5337,6 @@
       "counts": [
         2,
         1
-      ],
-      "units": 3
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "친구",
-      "zh": [
-        "朋友",
-        "好友"
-      ],
-      "keys": [
-        "IntroductionPreset.json|/dataList/513/content",
-        "TutorialMainUIText.json|/dataList/214/content"
-      ],
-      "counts": [
-        1,
-        2
       ],
       "units": 3
     },
@@ -10692,24 +7395,6 @@
     {
       "family": "enemy",
       "field": "name",
-      "kr": "끄그극",
-      "zh": [
-        "嘰咕咕",
-        "咕咕"
-      ],
-      "keys": [
-        "Skills_Abnormality-x1p1c1.json|/dataList/11/levelList/0/name",
-        "Skills_Abnormality.json|/dataList/128/levelList/0/name"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "enemy",
-      "field": "name",
       "kr": "만취 수행",
       "zh": [
         "泥醉修行",
@@ -10764,24 +7449,6 @@
     {
       "family": "enemy",
       "field": "name",
-      "kr": "살",
-      "zh": [
-        "肉",
-        "箭"
-      ],
-      "keys": [
-        "Enemies_Refraction2.json|/dataList/40/name",
-        "Skills_Abnormality-a1c7p2.json|/dataList/15/levelList/0/name"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "enemy",
-      "field": "name",
       "kr": "살점 뜯기",
       "zh": [
         "撕扯血肉",
@@ -10790,24 +7457,6 @@
       "keys": [
         "Skills_Enemy-a1c8p1.json|/dataList/32/levelList/0/name",
         "Skills_Enemy-a1c8p3.json|/dataList/6/levelList/0/name"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "enemy",
-      "field": "name",
-      "kr": "신부",
-      "zh": [
-        "牧師",
-        "神父"
-      ],
-      "keys": [
-        "Enemies-a1c10p3.json|/dataList/4/name",
-        "Enemies-a1c7p3.json|/dataList/10/name"
       ],
       "counts": [
         1,
@@ -10880,24 +7529,6 @@
       "keys": [
         "Skills_Abnormality-a1c9p2.json|/dataList/30/levelList/0/name",
         "Skills_Abnormality-a1c9p3.json|/dataList/73/levelList/0/name"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "enemy",
-      "field": "name",
-      "kr": "찢어베기",
-      "zh": [
-        "大卸八塊",
-        "撕裂"
-      ],
-      "keys": [
-        "Skills_Abnormality-exme.json|/dataList/2/levelList/0/name",
-        "Skills_Abnormality-pilgrimage.json|/dataList/7/levelList/0/name"
       ],
       "counts": [
         1,
@@ -11016,150 +7647,6 @@
     {
       "family": "identity",
       "field": "content",
-      "kr": "…그래.",
-      "zh": [
-        "……是吧。",
-        "……記得。"
-      ],
-      "keys": [
-        "StoryData/P10310.json|/dataList/148/content",
-        "StoryData/P11210.json|/dataList/48/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "…그렇군요.",
-      "zh": [
-        "……這樣啊。",
-        "……明白了。"
-      ],
-      "keys": [
-        "StoryData/P11008.json|/dataList/32/content",
-        "StoryData/P11108.json|/dataList/46/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "…약해 빠진 놈.",
-      "zh": [
-        "……軟腳蝦。",
-        "……不堪一擊的傢伙。"
-      ],
-      "keys": [
-        "StoryData/P10916.json|/dataList/138/content",
-        "StoryData/P11216.json|/dataList/146/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "그래, 지금처럼.",
-      "zh": [
-        "沒錯，就像現在這樣。",
-        "沒錯，就像此時此刻。"
-      ],
-      "keys": [
-        "StoryData/P10812.json|/dataList/31/content",
-        "StoryData/P11114.json|/dataList/59/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "그래.",
-      "zh": [
-        "沒。",
-        "沒關係。"
-      ],
-      "keys": [
-        "StoryData/P10708.json|/dataList/28/content",
-        "StoryData/P11203.json|/dataList/12/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "그렇진 않을 거야.",
-      "zh": [
-        "不是那樣吧。",
-        "也不是那樣吧。"
-      ],
-      "keys": [
-        "StoryData/P11006.json|/dataList/5/content",
-        "StoryData/P11006.json|/dataList/7/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "끄악!",
-      "zh": [
-        "咕啊！",
-        "啊！"
-      ],
-      "keys": [
-        "StoryData/P10413.json|/dataList/20/content",
-        "StoryData/P10806.json|/dataList/28/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "네…",
-      "zh": [
-        "好的……",
-        "是……"
-      ],
-      "keys": [
-        "StoryData/P10210.json|/dataList/3/content",
-        "StoryData/P10714.json|/dataList/94/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
       "kr": "아, 넵!",
       "zh": [
         "啊，是！",
@@ -11168,60 +7655,6 @@
       "keys": [
         "StoryData/P10917.json|/dataList/25/content",
         "StoryData/P11215.json|/dataList/11/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "어?",
-      "zh": [
-        "哈？",
-        "哦？"
-      ],
-      "keys": [
-        "StoryData/P10704.json|/dataList/22/content",
-        "StoryData/P11115.json|/dataList/131/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "어…",
-      "zh": [
-        "哦……",
-        "唔……"
-      ],
-      "keys": [
-        "StoryData/P10213.json|/dataList/41/content",
-        "StoryData/P10502.json|/dataList/8/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "엇챠!",
-      "zh": [
-        "哎呀！",
-        "哈呀！"
-      ],
-      "keys": [
-        "StoryData/P10608.json|/dataList/22/content",
-        "StoryData/P11206.json|/dataList/34/content"
       ],
       "counts": [
         1,
@@ -11250,96 +7683,6 @@
     {
       "family": "identity",
       "field": "content",
-      "kr": "으으…",
-      "zh": [
-        "唔……",
-        "嗚嗚……"
-      ],
-      "keys": [
-        "StoryData/P10805.json|/dataList/21/content",
-        "StoryData/P10912.json|/dataList/45/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "으윽…",
-      "zh": [
-        "嗚唔……",
-        "唔……"
-      ],
-      "keys": [
-        "StoryData/P10612.json|/dataList/54/content",
-        "StoryData/P11205.json|/dataList/2/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "윽!",
-      "zh": [
-        "呃！",
-        "嗚！"
-      ],
-      "keys": [
-        "StoryData/P10504.json|/dataList/23/content",
-        "StoryData/P11213.json|/dataList/97/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "이건…",
-      "zh": [
-        "這是……",
-        "這個……"
-      ],
-      "keys": [
-        "StoryData/P10412.json|/dataList/66/content",
-        "StoryData/P10617.json|/dataList/124/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "죄송합니다…",
-      "zh": [
-        "非常抱歉……",
-        "抱歉……"
-      ],
-      "keys": [
-        "StoryData/P10716.json|/dataList/57/content",
-        "StoryData/P11215.json|/dataList/22/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "content",
       "kr": "흥.",
       "zh": [
         "嗯。",
@@ -11358,24 +7701,6 @@
     {
       "family": "identity",
       "field": "dlg",
-      "kr": "…뭐야?",
-      "zh": [
-        "……怎麼會？",
-        "……怎麼？"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Faust_Ncorp_10204.json|/dataList/20/dlg",
-        "PersonalityVoiceDlg/Voice_Heathcliff_LEGO_10705.json|/dataList/13/dlg"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
       "kr": "…조준 중입니다.",
       "zh": [
         "……正在瞄準。",
@@ -11384,96 +7709,6 @@
       "keys": [
         "BattleSpeechBubbleDlg.json|/dataList/361/dlg",
         "PersonalityVoiceDlg/Voice_Faust_ShiAsso2_10213.json|/dataList/14/dlg"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "시험해 볼 기회구료.",
-      "zh": [
-        "是進行實驗的機會。",
-        "是試劍的好機會。"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Yisang_LCE_10111.json|/dataList/12/dlg",
-        "PersonalityVoiceDlg/Voice_Yisang_LiuAssoc_10112.json|/dataList/11/dlg"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "으음…",
-      "zh": [
-        "唔呃……",
-        "唔……"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Faust_Index_10214.json|/dataList/16/dlg",
-        "PersonalityVoiceDlg/Voice_Meursault_Rcorp_10506.json|/dataList/16/dlg"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "읍!",
-      "zh": [
-        "呃！",
-        "呃嗯！"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Honglu_Kurokumo_10602.json|/dataList/16/dlg",
-        "PersonalityVoiceDlg/Voice_Outis_SwordGroup_11102.json|/dataList/16/dlg"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "이제 끝내지.",
-      "zh": [
-        "就此結束吧。",
-        "到此為止。"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Outis_Blackwater_11112.json|/dataList/17/dlg",
-        "PersonalityVoiceDlg/Voice_Yisang_Dieci_10108.json|/dataList/17/dlg"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "적기를 기다리고 있습니다.",
-      "zh": [
-        "正在等待時機。",
-        "等待時機。"
-      ],
-      "keys": [
-        "BattleSpeechBubbleDlg.json|/dataList/362/dlg",
-        "PersonalityVoiceDlg/Voice_Faust_ShiAsso2_10213.json|/dataList/13/dlg"
       ],
       "counts": [
         1,
@@ -11520,24 +7755,6 @@
     {
       "family": "identity",
       "field": "dlg",
-      "kr": "제압 완료.",
-      "zh": [
-        "鎮壓結束。",
-        "鎮壓完畢。"
-      ],
-      "keys": [
-        "BattleSpeechBubbleDlg.json|/dataList/147/dlg",
-        "PersonalityVoiceDlg/Voice_Yisang_LCE_10111.json|/dataList/17/dlg"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
       "kr": "좀 많이!",
       "zh": [
         "太燙了！",
@@ -11546,60 +7763,6 @@
       "keys": [
         "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/76/dlg",
         "BattleSpeechBubbleDlg.json|/dataList/610/dlg"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "헛…",
-      "zh": [
-        "呃……",
-        "嚯……"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Faust_Butler_10209.json|/dataList/16/dlg",
-        "PersonalityVoiceDlg/Voice_Gregor_Blackwater_11212.json|/dataList/16/dlg"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "흐드러지게.",
-      "zh": [
-        "花開絢爛。",
-        "綻放吧。"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Faust_SwordGroup_10208.json|/dataList/15/dlg",
-        "PersonalityVoiceDlg/Voice_Yisang_LiuAssoc_10112.json|/dataList/15/dlg"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "identity",
-      "field": "dlg",
-      "kr": "흣…",
-      "zh": [
-        "呼……",
-        "唔……"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Faust_LCE_10211.json|/dataList/16/dlg",
-        "PersonalityVoiceDlg/Voice_Sinclair_LEGO_11006.json|/dataList/16/dlg"
       ],
       "counts": [
         1,
@@ -11690,24 +7853,6 @@
       "keys": [
         "MirrorDungeonUI_2.json|/dataList/20/content",
         "MirrorDungeonUI_2.json|/dataList/73/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "mirror",
-      "field": "content",
-      "kr": "선택하지 않음",
-      "zh": [
-        "拒絕飾品",
-        "未選中"
-      ],
-      "keys": [
-        "MirrorDungeonUI_2.json|/dataList/108/content",
-        "MirrorDungeonUI_5.json|/dataList/41/content"
       ],
       "counts": [
         1,
@@ -12924,42 +9069,6 @@
     {
       "family": "rpg",
       "field": "text",
-      "kr": "<그, 그런가?>",
-      "zh": [
-        "<是、是這樣嗎？>",
-        "<是、是嗎？>"
-      ],
-      "keys": [
-        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/35/texts/9/text",
-        "RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/42/texts/1/text"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "rpg",
-      "field": "text",
-      "kr": "<뫼르소, 괜찮아?>",
-      "zh": [
-        "<莫梭，沒事嗎？>",
-        "<莫梭，你沒事吧？>"
-      ],
-      "keys": [
-        "RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/107/texts/1/text",
-        "RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/100/texts/1/text"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "rpg",
-      "field": "text",
       "kr": "<이 아니고 내 시계 소리를 이해하고 있는 건가?!>",
       "zh": [
         "<不對，難道她能理解我的滴答聲嗎？！>",
@@ -12968,42 +9077,6 @@
       "keys": [
         "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json|/dataList/5/texts/2/text",
         "RPGSystem/rpg-loc-dialogue-route-c.json|/dataList/2/texts/2/text"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "rpg",
-      "field": "text",
-      "kr": "가지 않는다",
-      "zh": [
-        "不走",
-        "不離開"
-      ],
-      "keys": [
-        "RPGSystem/rpg-loc-dialogue-choice-floor-b1-b.json|/dataList/9/text",
-        "RPGSystem/rpg-loc-dialogue-choice-floor-b1.json|/dataList/12/text"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "rpg",
-      "field": "text",
-      "kr": "간다",
-      "zh": [
-        "走",
-        "離開"
-      ],
-      "keys": [
-        "RPGSystem/rpg-loc-dialogue-choice-floor-b1-b.json|/dataList/8/text",
-        "RPGSystem/rpg-loc-dialogue-choice-floor-b1.json|/dataList/11/text"
       ],
       "counts": [
         1,
@@ -13374,24 +9447,6 @@
     {
       "family": "stage",
       "field": "title",
-      "kr": "습격",
-      "zh": [
-        "突襲",
-        "襲擊"
-      ],
-      "keys": [
-        "StageNode1-4.json|/dataList/28/title",
-        "StageNode91-16.json|/dataList/3/title"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "stage",
-      "field": "title",
       "kr": "환영 인사",
       "zh": [
         "熱情歡迎",
@@ -13400,42 +9455,6 @@
       "keys": [
         "StageNode-a1c6p1.json|/dataList/8/title",
         "StageNode1-2.json|/dataList/12/title"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "<…가자.>",
-      "zh": [
-        "<……走吧。>",
-        "<……上吧。>"
-      ],
-      "keys": [
-        "StoryData/E063X.json|/dataList/161/content",
-        "StoryData/E407B.json|/dataList/79/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "<…어떡하지?>",
-      "zh": [
-        "<……該怎麼辦？>",
-        "<……怎麼做？>"
-      ],
-      "keys": [
-        "StoryData/PC06B.json|/dataList/31/content",
-        "StoryData/PC09B.json|/dataList/42/content"
       ],
       "counts": [
         1,
@@ -13464,150 +9483,6 @@
     {
       "family": "story-interlude",
       "field": "content",
-      "kr": "<그, 그만…>",
-      "zh": [
-        "<停、停下……>",
-        "<夠、夠了……>"
-      ],
-      "keys": [
-        "StoryData/E001X.json|/dataList/145/content",
-        "StoryData/E917B.json|/dataList/171/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "<다행이네…>",
-      "zh": [
-        "<很好……>",
-        "<太好了……>"
-      ],
-      "keys": [
-        "StoryData/E070X.json|/dataList/7/content",
-        "StoryData/E920B.json|/dataList/22/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "<아니…>",
-      "zh": [
-        "<不了……>",
-        "<不是……>"
-      ],
-      "keys": [
-        "StoryData/E091X.json|/dataList/69/content",
-        "StoryData/E702B.json|/dataList/111/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…감사합니다.",
-      "zh": [
-        "……謝謝。",
-        "……謝謝您。"
-      ],
-      "keys": [
-        "StoryData/E904B.json|/dataList/40/content",
-        "StoryData/E915B.json|/dataList/34/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…그런가.",
-      "zh": [
-        "……是嗎。",
-        "……這樣啊。"
-      ],
-      "keys": [
-        "StoryData/E914B.json|/dataList/65/content",
-        "StoryData/PC12B.json|/dataList/39/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…그리고.",
-      "zh": [
-        "……還有，",
-        "……以及。"
-      ],
-      "keys": [
-        "StoryData/E041X.json|/dataList/79/content",
-        "StoryData/E519A.json|/dataList/136/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…여기는.",
-      "zh": [
-        "……此處。",
-        "……這裡是。"
-      ],
-      "keys": [
-        "StoryData/E805B.json|/dataList/9/content",
-        "StoryData/E909B.json|/dataList/1/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "감사합니다. 그럼…",
-      "zh": [
-        "感謝大家。那麼……",
-        "謝謝各位。那麼……"
-      ],
-      "keys": [
-        "StoryData/E618B.json|/dataList/67/content",
-        "StoryData/E908B.json|/dataList/18/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
       "kr": "거기 적힌 걸 뒤틀린 자기 앞에서 읽어주면 된대요. 일종의… 암호 같은 거라고 하셨어요.",
       "zh": [
         "你可以在他面前讀出寫在上面的東西。他說那是一種……像密碼之類的東西。",
@@ -13616,78 +9491,6 @@
       "keys": [
         "StoryData/E714B.json|/dataList/77/content",
         "StoryData/E923I.json|/dataList/32/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "그때.",
-      "zh": [
-        "就在這時。",
-        "就在那時。"
-      ],
-      "keys": [
-        "StoryData/E061X.json|/dataList/72/content",
-        "StoryData/E923B.json|/dataList/53/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "그러니…",
-      "zh": [
-        "所以……",
-        "但是……"
-      ],
-      "keys": [
-        "StoryData/E053X.json|/dataList/93/content",
-        "StoryData/E082X.json|/dataList/68/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "그럴 수가…",
-      "zh": [
-        "怎會如此……",
-        "怎麼會……"
-      ],
-      "keys": [
-        "StoryData/E402B.json|/dataList/8/content",
-        "StoryData/ES030A.json|/dataList/15/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "그럼.",
-      "zh": [
-        "就這樣。",
-        "那麼。"
-      ],
-      "keys": [
-        "StoryData/E509B.json|/dataList/71/content",
-        "StoryData/E914B.json|/dataList/117/content"
       ],
       "counts": [
         1,
@@ -13734,150 +9537,6 @@
     {
       "family": "story-interlude",
       "field": "content",
-      "kr": "나도, 에즈라도… 그 착각을 바로잡는 것에 제법 많은 시간을 쓰고 있지.",
-      "zh": [
-        "我也好，以斯拉也好……至今都花了不少時間在糾正那個誤解。",
-        "我也好，以斯拉也好……都還在花不少時間糾正那個錯覺。"
-      ],
-      "keys": [
-        "StoryData/E909B.json|/dataList/65/content",
-        "StoryData/E917B.json|/dataList/131/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "다만…",
-      "zh": [
-        "只不過……",
-        "但是……"
-      ],
-      "keys": [
-        "StoryData/E063X.json|/dataList/13/content",
-        "StoryData/E711B.json|/dataList/106/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "뭐… 뭐?",
-      "zh": [
-        "做……什麼？",
-        "什麼……什麼？"
-      ],
-      "keys": [
-        "StoryData/E304A.json|/dataList/25/content",
-        "StoryData/E610A.json|/dataList/20/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "아니, 그게 아니라…",
-      "zh": [
-        "不，我說的不是那個……",
-        "不是，我不是那意思……"
-      ],
-      "keys": [
-        "StoryData/E712B.json|/dataList/48/content",
-        "StoryData/E716B.json|/dataList/22/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "아무것도.",
-      "zh": [
-        "不做什麼。",
-        "什麼都沒有。"
-      ],
-      "keys": [
-        "StoryData/E728B.json|/dataList/40/content",
-        "StoryData/ES300A.json|/dataList/55/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "알겠습니다.",
-      "zh": [
-        "了解。",
-        "我知道了。"
-      ],
-      "keys": [
-        "StoryData/E511A.json|/dataList/18/content",
-        "StoryData/E721B.json|/dataList/80/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "어…?",
-      "zh": [
-        "咦……？",
-        "哦……？"
-      ],
-      "keys": [
-        "StoryData/E907B.json|/dataList/170/content",
-        "StoryData/E926A.json|/dataList/34/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "예에?!",
-      "zh": [
-        "啊啊？！",
-        "哈啊？！"
-      ],
-      "keys": [
-        "StoryData/E301A.json|/dataList/42/content",
-        "StoryData/E301A.json|/dataList/61/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
       "kr": "우리는…",
       "zh": [
         "我們......",
@@ -13886,60 +9545,6 @@
       "keys": [
         "StoryData/E091X.json|/dataList/49/content",
         "StoryData/E705B.json|/dataList/88/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "으음.",
-      "zh": [
-        "嗯。",
-        "唔嗯。"
-      ],
-      "keys": [
-        "StoryData/E501B.json|/dataList/53/content",
-        "StoryData/ES120B.json|/dataList/16/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "윽…",
-      "zh": [
-        "咕……",
-        "唔……"
-      ],
-      "keys": [
-        "StoryData/E808A.json|/dataList/0/content",
-        "StoryData/ES210B.json|/dataList/54/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "잠깐…",
-      "zh": [
-        "等下……",
-        "等一下……"
-      ],
-      "keys": [
-        "StoryData/E620B.json|/dataList/21/content",
-        "StoryData/E712B.json|/dataList/45/content"
       ],
       "counts": [
         1,
@@ -13968,42 +9573,6 @@
     {
       "family": "story-interlude",
       "field": "content",
-      "kr": "조금 전…",
-      "zh": [
-        "剛才……",
-        "不久前……"
-      ],
-      "keys": [
-        "StoryData/E627B.json|/dataList/55/content",
-        "StoryData/ES013B.json|/dataList/4/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "좋습니다.",
-      "zh": [
-        "很好。",
-        "好的。"
-      ],
-      "keys": [
-        "StoryData/E042X.json|/dataList/30/content",
-        "StoryData/E054X.json|/dataList/79/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
       "kr": "좋아요, 요시히데. 학교는 아니더라도, 비슷한 곳에 갈 수 있게 제가 도와드리죠.",
       "zh": [
         "好吧，<ruby=ヨシヒデ>良秀</ruby>。就算不是學校，我也會幫妳去個類似的地方。",
@@ -14022,42 +9591,6 @@
     {
       "family": "story-interlude",
       "field": "content",
-      "kr": "커헉…",
-      "zh": [
-        "啊……",
-        "咕啊……"
-      ],
-      "keys": [
-        "StoryData/E519A.json|/dataList/17/content",
-        "StoryData/E625I.json|/dataList/0/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "쿵!",
-      "zh": [
-        "轟！",
-        "砰！"
-      ],
-      "keys": [
-        "StoryData/E916B.json|/dataList/19/content",
-        "StoryData/ES012B.json|/dataList/0/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
       "kr": "하나… 둘…",
       "zh": [
         "ㄧ……二……",
@@ -14066,60 +9599,6 @@
       "keys": [
         "StoryData/E801B.json|/dataList/96/content",
         "StoryData/PC09B.json|/dataList/35/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "허면…",
-      "zh": [
-        "即是說……",
-        "那麼……"
-      ],
-      "keys": [
-        "StoryData/E061X.json|/dataList/60/content",
-        "StoryData/E919A.json|/dataList/32/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "호오…",
-      "zh": [
-        "嚯……",
-        "哦……"
-      ],
-      "keys": [
-        "StoryData/E605B.json|/dataList/43/content",
-        "StoryData/ES250B.json|/dataList/13/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "흠… 흠…",
-      "zh": [
-        "哼……哼……",
-        "嗯……嗯……"
-      ],
-      "keys": [
-        "StoryData/E090X.json|/dataList/2/content",
-        "StoryData/E704A.json|/dataList/55/content"
       ],
       "counts": [
         1,
@@ -14184,42 +9663,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "<그게 무슨…>",
-      "zh": [
-        "<什麼意思……>",
-        "<那是什麼……>"
-      ],
-      "keys": [
-        "StoryData/8D104A.json|/dataList/99/content",
-        "StoryData/S001B.json|/dataList/57/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "<그래…>",
-      "zh": [
-        "<好吧……>",
-        "<好的……>"
-      ],
-      "keys": [
-        "StoryData/5D106B.json|/dataList/44/content",
-        "StoryData/S002B.json|/dataList/150/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "<그러고 보니…>",
       "zh": [
         "<這麼說來……>",
@@ -14238,60 +9681,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "<어…?>",
-      "zh": [
-        "<哦……？>",
-        "<嗯……？>"
-      ],
-      "keys": [
-        "StoryData/S1017B.json|/dataList/43/content",
-        "StoryData/S926B.json|/dataList/2/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "<왜…?>",
-      "zh": [
-        "<為什麼這麼說……？>",
-        "<為什麼……？>"
-      ],
-      "keys": [
-        "StoryData/S708B.json|/dataList/28/content",
-        "StoryData/S925B.json|/dataList/26/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "<이건…>",
-      "zh": [
-        "<這是……>",
-        "<這個……>"
-      ],
-      "keys": [
-        "StoryData/5D301A.json|/dataList/22/content",
-        "StoryData/8D102B.json|/dataList/57/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "… … …. …",
       "zh": [
         "… … …。 …",
@@ -14300,42 +9689,6 @@
       "keys": [
         "StoryData/S525B.json|/dataList/175/content",
         "StoryData/S526A.json|/dataList/0/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…그건 기만이야, 마 퓌스.",
-      "zh": [
-        "……那是欺瞞喔，小甜心。",
-        "……那是欺瞞，小甜心。"
-      ],
-      "keys": [
-        "StoryData/S1039I.json|/dataList/17/content",
-        "StoryData/S1040B.json|/dataList/17/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…그래?",
-      "zh": [
-        "……是那樣嗎？",
-        "……是這樣嗎？"
-      ],
-      "keys": [
-        "StoryData/5D106B.json|/dataList/32/content",
-        "StoryData/S833A.json|/dataList/38/content"
       ],
       "counts": [
         1,
@@ -14400,24 +9753,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "…그만.",
-      "zh": [
-        "……夠了。",
-        "……停下。"
-      ],
-      "keys": [
-        "StoryData/7D108B.json|/dataList/103/content",
-        "StoryData/S736B.json|/dataList/21/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "…나는 견디지 못했어, 단테.",
       "zh": [
         "……我沒能熬過去，但丁。",
@@ -14426,60 +9761,6 @@
       "keys": [
         "StoryData/S1039I2.json|/dataList/44/content",
         "StoryData/S1041B.json|/dataList/44/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…뭐.",
-      "zh": [
-        "……什麼。",
-        "……幹嘛。"
-      ],
-      "keys": [
-        "StoryData/4D305B.json|/dataList/3/content",
-        "StoryData/S801B.json|/dataList/88/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…아니.",
-      "zh": [
-        "……不。",
-        "……沒有。"
-      ],
-      "keys": [
-        "StoryData/1D305B.json|/dataList/23/content",
-        "StoryData/S940B.json|/dataList/12/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "…어?",
-      "zh": [
-        "……哦？",
-        "……嗯？"
-      ],
-      "keys": [
-        "StoryData/S1026B.json|/dataList/33/content",
-        "StoryData/S620B.json|/dataList/26/content"
       ],
       "counts": [
         1,
@@ -14526,42 +9807,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "…좋아.",
-      "zh": [
-        "……很好。",
-        "……好。"
-      ],
-      "keys": [
-        "StoryData/S004A.json|/dataList/20/content",
-        "StoryData/S706B.json|/dataList/239/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "가라앉지 않고 떠있으려면",
-      "zh": [
-        "如果你要保持浮力",
-        "如果你要繼續漂流"
-      ],
-      "keys": [
-        "BgmLyrics/BgmLyrics_Rendezvous.json|/dataList/4/content",
-        "BgmLyrics/BgmLyrics_Rendezvous.json|/dataList/22/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "결국 견디는 대신, 선택을 할 수밖에 없었지.",
       "zh": [
         "最後，我不再忍耐，而是只能做出選擇。",
@@ -14588,24 +9833,6 @@
       "keys": [
         "StoryData/S1039I2.json|/dataList/5/content",
         "StoryData/S1041B.json|/dataList/5/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "괜찮다.",
-      "zh": [
-        "沒關係。",
-        "無妨。"
-      ],
-      "keys": [
-        "StoryData/7D111I2.json|/dataList/127/content",
-        "StoryData/S833A.json|/dataList/176/content"
       ],
       "counts": [
         1,
@@ -14688,42 +9915,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "그래도…",
-      "zh": [
-        "就算這樣……",
-        "但是呢……"
-      ],
-      "keys": [
-        "StoryData/8D203B.json|/dataList/0/content",
-        "StoryData/S949A.json|/dataList/99/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그러나…",
-      "zh": [
-        "只可惜……",
-        "但是……"
-      ],
-      "keys": [
-        "StoryData/3D102A.json|/dataList/47/content",
-        "StoryData/S648B.json|/dataList/1/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "그렇게 필사적으로 나를 떠나서, 어디로 가려는 거야?",
       "zh": [
         "你這麼拚命地離開我，是想去哪裡？",
@@ -14778,24 +9969,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "그렇기에…",
-      "zh": [
-        "因此……",
-        "所以……"
-      ],
-      "keys": [
-        "StoryData/7D101B.json|/dataList/91/content",
-        "StoryData/S833A.json|/dataList/203/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "그렇기에… 이해가 되진 않는다, 여전히.",
       "zh": [
         "正因如此……我仍然無法理解。",
@@ -14822,42 +9995,6 @@
       "keys": [
         "StoryData/3D308B.json|/dataList/1/content",
         "StoryData/3D309I1.json|/dataList/1/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그리고 나는…",
-      "zh": [
-        "而我……",
-        "而且我……"
-      ],
-      "keys": [
-        "StoryData/5D106B.json|/dataList/131/content",
-        "StoryData/8D207A.json|/dataList/21/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "그만…",
-      "zh": [
-        "拜託這傢伙停下來……",
-        "住口……"
-      ],
-      "keys": [
-        "StoryData/S702B.json|/dataList/125/content",
-        "StoryData/S942A.json|/dataList/17/content"
       ],
       "counts": [
         1,
@@ -15048,24 +10185,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "내가 말했지.",
-      "zh": [
-        "我說過。",
-        "我曾經說過。"
-      ],
-      "keys": [
-        "StoryData/5D205A.json|/dataList/5/content",
-        "StoryData/S217B.json|/dataList/43/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "너는 어떤 존재이기에, 그들을 이끌고 있는 걸까.",
       "zh": [
         "你是什麼樣的存在，才會帶領著他們呢。",
@@ -15074,78 +10193,6 @@
       "keys": [
         "StoryData/S1039I2.json|/dataList/64/content",
         "StoryData/S1041B.json|/dataList/64/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "너를 오매불망 기다리고 있었단다.",
-      "zh": [
-        "我們朝思暮想地等著你呢。",
-        "吾等朝思暮想地等著汝呢。"
-      ],
-      "keys": [
-        "StoryData/8D203A.json|/dataList/37/content",
-        "StoryData/S832B.json|/dataList/15/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "네!",
-      "zh": [
-        "是！",
-        "可以！"
-      ],
-      "keys": [
-        "StoryData/S927B.json|/dataList/86/content",
-        "StoryData/S942B.json|/dataList/72/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "네, 괜찮아요.",
-      "zh": [
-        "好了，沒問題了。",
-        "是的，我沒事哦。"
-      ],
-      "keys": [
-        "StoryData/S813B.json|/dataList/58/content",
-        "StoryData/S821B.json|/dataList/24/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "네…",
-      "zh": [
-        "嗯……",
-        "好……"
-      ],
-      "keys": [
-        "StoryData/S733B.json|/dataList/5/content",
-        "StoryData/S947B.json|/dataList/191/content"
       ],
       "counts": [
         1,
@@ -15264,24 +10311,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "도망칠 수도, 숨 쉴 수도 없어, 뫼르소…!",
-      "zh": [
-        "我逃不了，也無法呼吸，莫梭……！",
-        "既逃不掉，也無法呼吸啊，莫梭……！"
-      ],
-      "keys": [
-        "StoryData/S1042B.json|/dataList/15/content",
-        "StoryData/S1061B.json|/dataList/4/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "동물도 사람이랑 똑같이 아픔을 느낀다는 걸 너도 안다면, 그런 말은 함부로 못 할 걸.",
       "zh": [
         "你要是知道動物和人一樣有痛覺，就不會隨便說這種話了。",
@@ -15290,42 +10319,6 @@
       "keys": [
         "StoryData/4D202B.json|/dataList/13/content",
         "StoryData/4D304B.json|/dataList/16/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "또한…",
-      "zh": [
-        "再次……",
-        "另外……"
-      ],
-      "keys": [
-        "StoryData/7D112I2.json|/dataList/16/content",
-        "StoryData/S608B.json|/dataList/124/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "말해.",
-      "zh": [
-        "說。",
-        "說吧。"
-      ],
-      "keys": [
-        "StoryData/S735B.json|/dataList/14/content",
-        "StoryData/S830B.json|/dataList/52/content"
       ],
       "counts": [
         1,
@@ -15362,42 +10355,6 @@
       "keys": [
         "StoryData/S1042B.json|/dataList/12/content",
         "StoryData/S1061B.json|/dataList/5/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "무슨 헛소리를…",
-      "zh": [
-        "你在開什麼玩……",
-        "你在說什麼鬼話……"
-      ],
-      "keys": [
-        "StoryData/7D111I3.json|/dataList/10/content",
-        "StoryData/S412B.json|/dataList/33/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "뭘 말이야?",
-      "zh": [
-        "還什麼？",
-        "你是指？"
-      ],
-      "keys": [
-        "StoryData/3D304B.json|/dataList/47/content",
-        "StoryData/S621A.json|/dataList/31/content"
       ],
       "counts": [
         1,
@@ -15552,78 +10509,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "아니이…",
-      "zh": [
-        "所以說……",
-        "不是啦……"
-      ],
-      "keys": [
-        "StoryData/S919B.json|/dataList/2/content",
-        "StoryData/S947B.json|/dataList/221/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "안 돼…! 뫼르소…! 아들!!!",
-      "zh": [
-        "不行……！莫梭……！我的兒子！！！",
-        "不行……！莫梭……！兒子！！！"
-      ],
-      "keys": [
-        "StoryData/S1042B.json|/dataList/17/content",
-        "StoryData/S1061B.json|/dataList/1/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "알아.",
-      "zh": [
-        "我明白。",
-        "我知道。"
-      ],
-      "keys": [
-        "StoryData/7D109B.json|/dataList/11/content",
-        "StoryData/S513B.json|/dataList/50/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "어…?",
-      "zh": [
-        "嗯……？",
-        "哦……？"
-      ],
-      "keys": [
-        "StoryData/3D306B.json|/dataList/7/content",
-        "StoryData/S927B.json|/dataList/70/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "어디에도 받아들여지지 않는 이들이 답답함에 절규하는 거지.",
       "zh": [
         "都是不被任何地方接納的人，在煩悶中吶喊罷了。",
@@ -15678,24 +10563,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "어떻게…",
-      "zh": [
-        "所以你怎麼能……",
-        "為什麼……"
-      ],
-      "keys": [
-        "StoryData/5D304I3.json|/dataList/1/content",
-        "StoryData/S633B.json|/dataList/8/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "언제 죽을지 모른다.",
       "zh": [
         "不知道何時會死。",
@@ -15732,42 +10599,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "왜냐하면…",
-      "zh": [
-        "要說為什麼……",
-        "那是因為……"
-      ],
-      "keys": [
-        "StoryData/S635A.json|/dataList/14/content",
-        "StoryData/S635I.json|/dataList/15/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "우리는…",
-      "zh": [
-        "我們是……",
-        "我們……"
-      ],
-      "keys": [
-        "StoryData/S207A.json|/dataList/2/content",
-        "StoryData/S931B.json|/dataList/16/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "우리는… 그곳으로 내려가야 해.",
       "zh": [
         "我們……得下去那個地方。",
@@ -15794,42 +10625,6 @@
       "keys": [
         "StoryData/S801B.json|/dataList/37/content",
         "StoryData/S806B.json|/dataList/195/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "으응…",
-      "zh": [
-        "唔嗯……",
-        "嗯……"
-      ],
-      "keys": [
-        "StoryData/S608B.json|/dataList/54/content",
-        "StoryData/S923B.json|/dataList/19/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "윽, 크윽…",
-      "zh": [
-        "唔，咳……",
-        "唔、咕唔……"
-      ],
-      "keys": [
-        "StoryData/S318A.json|/dataList/22/content",
-        "StoryData/S927B.json|/dataList/138/content"
       ],
       "counts": [
         1,
@@ -15930,42 +10725,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "이상하네.",
-      "zh": [
-        "真奇怪。",
-        "真奇怪呢。"
-      ],
-      "keys": [
-        "StoryData/S635A.json|/dataList/7/content",
-        "StoryData/S821B.json|/dataList/108/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "자, 그럼.",
-      "zh": [
-        "那麼，第二件事。",
-        "那麼，告辭。"
-      ],
-      "keys": [
-        "StoryData/S303B.json|/dataList/16/content",
-        "StoryData/S526A.json|/dataList/91/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "자신의 앞에 무엇이 있는지도 모른 채, 지나간 기억에, 지나칠 타인에, 곧 변해버릴 의미에 모든 것을 절실하게 걸고, 자신을 남김없이 소진한다.",
       "zh": [
         "他們不知道自己面前有什麼，就把一切懇切地押在逝去的記憶、終將擦身而過的他人、轉眼就會改變的意義上，將自己消耗殆盡。",
@@ -16056,24 +10815,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "저자는…",
-      "zh": [
-        "那個人是……",
-        "那傢伙……"
-      ],
-      "keys": [
-        "StoryData/S407B.json|/dataList/10/content",
-        "StoryData/S939B.json|/dataList/97/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "죄종들이군요.",
       "zh": [
         "那些是罪種。",
@@ -16092,24 +10833,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "지금.",
-      "zh": [
-        "是當下。",
-        "就是現在。"
-      ],
-      "keys": [
-        "StoryData/S1042B.json|/dataList/64/content",
-        "StoryData/S503B.json|/dataList/24/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "지금까지 쏟아온 노력이 물거품이 될지 모른다.",
       "zh": [
         "至今傾注的努力，或許都會化為泡影。",
@@ -16118,42 +10841,6 @@
       "keys": [
         "StoryData/S1039I2.json|/dataList/26/content",
         "StoryData/S1041B.json|/dataList/26/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "칵…",
-      "zh": [
-        "喀……",
-        "咕……"
-      ],
-      "keys": [
-        "StoryData/8D105B.json|/dataList/56/content",
-        "StoryData/S532A.json|/dataList/49/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "쿵!",
-      "zh": [
-        "轟！",
-        "嗵！"
-      ],
-      "keys": [
-        "StoryData/2D306I.json|/dataList/0/content",
-        "StoryData/5D304A.json|/dataList/21/content"
       ],
       "counts": [
         1,
@@ -16244,60 +10931,6 @@
       "keys": [
         "StoryData/S1039I2.json|/dataList/18/content",
         "StoryData/S1041B.json|/dataList/18/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "훗.",
-      "zh": [
-        "呵。",
-        "呼。"
-      ],
-      "keys": [
-        "StoryData/5D304A.json|/dataList/83/content",
-        "StoryData/S1004B.json|/dataList/333/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "흐음.",
-      "zh": [
-        "呼嗯。",
-        "唔嗯。"
-      ],
-      "keys": [
-        "StoryData/5D304A.json|/dataList/48/content",
-        "StoryData/S1044B.json|/dataList/135/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "흠.",
-      "zh": [
-        "哼。",
-        "呼嗯。"
-      ],
-      "keys": [
-        "StoryData/S606B.json|/dataList/79/content",
-        "StoryData/S912B.json|/dataList/134/content"
       ],
       "counts": [
         1,
@@ -16398,24 +11031,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "{0}장",
-      "zh": [
-        "{0}張",
-        "{0}章"
-      ],
-      "keys": [
-        "MainUIText.json|/dataList/41/content",
-        "SelectLoadingCgUi.json|/dataList/7/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "◆ 구매 즉시 패스 레벨 10 상승\n◆ 인격 특수 강화 티켓 V\n◆ 림버스 패키지 특별 배너 2종",
       "zh": [
         "◆ 購買後立即提升10級通行證等級\n◆ 人格等級直升券V\n◆ 邊獄組合包特別橫幅×2",
@@ -16460,60 +11075,6 @@
       "keys": [
         "TutorialDesc.json|/dataList/39/content",
         "TutorialRenewalDesc.json|/dataList/52/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "관리자",
-      "zh": [
-        "經理介紹",
-        "經理"
-      ],
-      "keys": [
-        "TutorialMainUIText.json|/dataList/196/content",
-        "UserInfo_Friends.json|/dataList/9/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "모든 캐시 삭제",
-      "zh": [
-        "清除所有快取",
-        "清除所有凱茜"
-      ],
-      "keys": [
-        "LoginUIText.json|/dataList/13/content",
-        "StoryUIText.json|/dataList/0/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "모든 캐시를 삭제하시겠습니까?",
-      "zh": [
-        "要清除所有快取嗎？",
-        "要清除所有凱茜嗎？"
-      ],
-      "keys": [
-        "LoginUIText.json|/dataList/35/content",
-        "StoryUIText.json|/dataList/1/content"
       ],
       "counts": [
         1,
@@ -16920,24 +11481,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "적용 중",
-      "zh": [
-        "投影中",
-        "應用中"
-      ],
-      "keys": [
-        "SkinUI.json|/dataList/13/content",
-        "StoryVoiceSettingUI.json|/dataList/11/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "전투 이후 남은 E.G.O 자원은 다음 역에서 사용할 수 있습니다.",
       "zh": [
         "通關本場戰鬥後剩餘的罪孽碎片在下一站依舊能夠使用。",
@@ -17010,24 +11553,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "주요 이야기",
-      "zh": [
-        "主線劇情",
-        "故事位置"
-      ],
-      "keys": [
-        "TutorialMainUIText.json|/dataList/92/content",
-        "TutorialMainUIText.json|/dataList/97/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "최근 접속일",
       "zh": [
         "最後登入：",
@@ -17072,24 +11597,6 @@
       "keys": [
         "MainUIText.json|/dataList/214/content",
         "TutorialMainUIText.json|/dataList/171/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "츠바이",
-      "zh": [
-        "Zwei協會",
-        "Zwei"
-      ],
-      "keys": [
-        "FormationNameEtcFilter.json|/dataList/8/content",
-        "IntroductionPreset.json|/dataList/309/content"
       ],
       "counts": [
         1,
