@@ -136,3 +136,21 @@
   zh: （喂，從剛才開始妳怎麼就一直在冷嘲熱諷啊？是什麼讓妳不爽了嗎？）
   reason: StoryData 審查 S0022：格里高爾對以實瑪利（女性）說悄悄話，TW 兩處「你」應寫「妳」。
   rule: one-off
+- key: StoryData/S105B.json|/dataList/52/content
+  raw: raw-20261112
+  kr_sha: 63198f3d6152785700b6f393197b450af2ea7443b30123f99afe8b408a9e88ee
+  zh: 梅菲的肚子，膨膨。卡戎也砰砰。
+  reason: StoryData 審查 S0023：KR「빵빵」是雙關：「배가 빵빵」是肚子吃得鼓鼓的、飽了，「카론도 빵빵」是按喇叭的叭叭聲（JP 寫「おなか、パンパン。カロンもクラクション、パンパーン」）；TW 兩處都寫「砰砰」，既看不出吃飽，也不像喇叭聲。依 base.md「沒有標記的雙關」，重現不了就各自照字面譯。；「膨膨」是肚子鼓鼓的，「砰砰」解釋為汽車橫衝直撞。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S106B.json|/dataList/7/content
+  raw: raw-20261112
+  kr_sha: 4bbb3801112b37c81751ea414bb62c60f7563395e48206c301e9aa89240a53f3
+  zh: 因為妳一直在往奇怪的方向走啊！麻煩妳好好看看地圖。我們要去的是東南方向……
+  reason: StoryData 審查 S0024：尤莉對卡戎（女性）說話，TW 兩處「你」應寫「妳」。
+  rule: one-off
+- key: StoryData/S107A.json|/dataList/18/content
+  raw: raw-20261112
+  kr_sha: 39af1f4c6174a42266ae8b7c4ee30445abba00a9eef7c8f0b173dd8c57e6158a
+  zh: 喂，既然妳這麼聰明，就去前面先幫忙把路找出來吧。從剛才開始他們就吵得我睡不著覺。
+  reason: StoryData 審查 S0025：希斯克利夫對浮士德（女性）說話，TW「你這麼聰明」應寫「妳」。另外 KR「저 앞에 가서 길부터 찾아주지 그래」是「去前面先把路找出來」，TW 加了 KR 沒有的「那幾個蠢蛋」（KR 只在下一句用「저것들」指那幾個人）。
+  rule: one-off
