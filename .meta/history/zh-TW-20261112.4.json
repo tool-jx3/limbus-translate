@@ -1,0 +1,536 @@
+{
+  "tag": "zh-TW-20261112.4",
+  "prev_tag": "zh-TW-20261112.3",
+  "released_at": "2026-11-14T01:00:27Z",
+  "prev_released_at": "2026-11-13T13:41:46Z",
+  "raw_tag": "raw-20261112",
+  "prev_raw_tag": "raw-20261112",
+  "rules_commit": "d183740168907053d3a04bb2ec245a67b5eebae0",
+  "prev_rules_commit": "44b39fda3057c6972a4b761daf365df4ff6ae684",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 26
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "StoryData/2D102B.json",
+      "field": "content",
+      "ptr": "/dataList/33/content",
+      "kind": "zh-changed",
+      "new_kr": "프로파간다인가. 유감스럽게도 먹혀들진 않았군.",
+      "old_zh": "宣傳改革嗎。可惜似乎沒什麼效果。",
+      "new_zh": "煽動宣傳嗎。遺憾的是並未奏效。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0293：KR「프로파간다인가.」只是「政治宣傳嗎」（JP「プロパガンダか」、EN「Propaganda.」）；格里高爾剛才喊的是號召人質起來反抗，現行 TW「宣傳改革嗎」多了原文沒有的「改革」。；譯法由使用者決定（接奧提斯的「煽動作戰」，去掉「似乎」）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/2D306A.json",
+      "field": "content",
+      "ptr": "/dataList/29/content",
+      "kind": "zh-changed",
+      "new_kr": "다수의 풍요를 위한 명확한 길이 보인다면 난 주저 없이 다른 쪽을 선택할 거야.",
+      "old_zh": "只因若是有一條能讓大多數人富裕起來的明確道路展現在眼前，我會毫不猶豫地選擇它。",
+      "new_zh": "若是看見了一條能讓多數人富足的明確道路，我會毫不猶豫地站到另一邊。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0294：KR「…난 주저 없이 다른 쪽을 선택할 거야」是「我會毫不猶豫地選擇另一邊」，JP「他の道を選ぶ」相同，暗示下次會站在與但丁一行人不同的一邊；現行 TW 照 EN 寫成「選擇它」，失去「另一邊」的對立意味。；譯法由使用者決定（「다른 쪽」寫「站到另一邊」，去掉「只因」）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/2D306A.json",
+      "field": "content",
+      "ptr": "/dataList/48/content",
+      "kind": "zh-changed",
+      "new_kr": "우리 관리자님이 크게 한탕 하셨을 때 날쌔게 챙겨왔지.",
+      "old_zh": "趁我們家經理手忙腳亂的時候順手拿來的。",
+      "new_zh": "趁我們家經理大賺一筆的時候順手拿來的。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0295：KR「우리 관리자님이 크게 한탕 하셨을 때」是「我們經理大撈一筆（在賭場中大獎）的時候」，JP「大当たりしたとき」、EN「hit the jackpot」相同；現行 TW 寫成「手忙腳亂的時候」，意思錯了。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/2D306B.json",
+      "field": "content",
+      "ptr": "/dataList/3/content",
+      "kind": "zh-changed",
+      "new_kr": "나는 가끔 머릿속이 복잡해질 때마다 이곳으로 오곤 했어. 비록 네가 좋아하는 안락의자나 위스키는 없지만…",
+      "old_zh": "我有時會在思緒混亂的時候來這裡。哪怕沒有妳喜歡的搖椅和威士忌……",
+      "new_zh": "我有時會在思緒混亂的時候來這裡。哪怕沒有妳喜歡的安樂椅和威士忌……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0296：KR「안락의자」是安樂椅（扶手椅），JP「安楽椅子」、EN「armchairs」相同；現行 TW 寫成「搖椅」，是另一種椅子。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/59/teller",
+      "kind": "zh-changed",
+      "new_kr": "입이 험한 패잔병",
+      "old_zh": "語氣很差的殘兵",
+      "new_zh": "粗俗的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g796-vulgar-veteran"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/61/teller",
+      "kind": "zh-changed",
+      "new_kr": "입이 험한 패잔병",
+      "old_zh": "語氣很差的殘兵",
+      "new_zh": "粗俗的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g796-vulgar-veteran"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/63/teller",
+      "kind": "zh-changed",
+      "new_kr": "입이 험한 패잔병",
+      "old_zh": "語氣很差的殘兵",
+      "new_zh": "粗俗的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g796-vulgar-veteran"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/64/teller",
+      "kind": "zh-changed",
+      "new_kr": "입이 험한 패잔병",
+      "old_zh": "語氣很差的殘兵",
+      "new_zh": "粗俗的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g796-vulgar-veteran"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/65/teller",
+      "kind": "zh-changed",
+      "new_kr": "입이 험한 패잔병",
+      "old_zh": "語氣很差的殘兵",
+      "new_zh": "粗俗的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g796-vulgar-veteran"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/66/teller",
+      "kind": "zh-changed",
+      "new_kr": "입이 험한 패잔병",
+      "old_zh": "語氣很差的殘兵",
+      "new_zh": "粗俗的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g796-vulgar-veteran"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/74/teller",
+      "kind": "zh-changed",
+      "new_kr": "입이 험한 패잔병",
+      "old_zh": "粗野的殘兵",
+      "new_zh": "粗俗的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g796-vulgar-veteran"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/75/teller",
+      "kind": "zh-changed",
+      "new_kr": "입이 험한 패잔병",
+      "old_zh": "粗野的殘兵",
+      "new_zh": "粗俗的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g796-vulgar-veteran"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S111B.json",
+      "field": "teller",
+      "ptr": "/dataList/82/teller",
+      "kind": "zh-changed",
+      "new_kr": "입이 험한 패잔병",
+      "old_zh": "粗野的殘兵",
+      "new_zh": "粗俗的殘兵",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g796-vulgar-veteran"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S202A.json",
+      "field": "content",
+      "ptr": "/dataList/59/content",
+      "kind": "zh-changed",
+      "new_kr": "홍루만이 진심으로 반가워하며 그들을 환영했으며(실제로 박수를 치기 직전까지 갔다),",
+      "old_zh": "鴻璐是唯一真心實意歡迎他們的人（他也真的起身鼓掌了），",
+      "new_zh": "鴻璐是唯一真心實意歡迎他們的人（他差點就要鼓掌了），",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0030：KR括號內「실제로 박수를 치기 직전까지 갔다」是『差點就真的鼓掌了』（未鼓掌；JP 拍手するところだった）。TW 寫成「也真的起身鼓掌了」，變成已經鼓掌，事實相反。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S203B.json",
+      "field": "content",
+      "ptr": "/dataList/8/content",
+      "kind": "zh-changed",
+      "new_kr": "…도 되겠네?",
+      "old_zh": "……我們執行他們計畫的能力，對吧？",
+      "new_zh": "……好像也不必了？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0031：接在「그대로 두고 봐…／두고 봐…」之後，「…도 되겠네?」是『（那樣放著看）也行吧？』，與下文『文件很完美』呼應（JP …なくてもよさそうね，EN do as they say）。TW 變成「我們執行他們計畫的能力，對吧？」，語意不通且與上下文脫節。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S203B.json",
+      "field": "content",
+      "ptr": "/dataList/162/content",
+      "kind": "zh-changed",
+      "new_kr": "이스마엘은 그 말이 모욕으로 들렸던 듯 반박을 하고 싶어 하는 낌새였지만, 그보다 콩콩이파 일당들이 품에서 무기를 꺼내고 있는 것이 더 눈에 들어왔다.",
+      "old_zh": "被這句話侮辱到的以實瑪利似乎試圖反駁，但是從懷中拿出武器的豆豆幫混混迎面就撲了上來。",
+      "new_zh": "被這句話侮辱到的以實瑪利似乎試圖反駁，但比起這個，更引人注意的是豆豆幫混混們正從懷中拿出武器。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0032：KR：以實瑪利想反駁，但『更先映入眼簾的是』豆豆幫混混們正從懷中拿出武器（尚未攻擊）。TW 寫成混混們「迎面就撲了上來」，變成已發動攻擊，並漏掉『更引人注意』的視角。；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S208B.json",
+      "field": "content",
+      "ptr": "/dataList/39/content",
+      "kind": "zh-changed",
+      "new_kr": "이곳에서 운이라는 건 보통 우리가 알고 있는 개념의 운처럼 돌아가지 않아요. 운을 모아서 터뜨리거나 운을 찔끔찔끔 넣어서 본전이나 노릴 정도면 몰라도, 입장하자마자 잭팟을 터뜨린다는 건 여기선 있을 수 없는 일인 거죠.",
+      "old_zh": "此處所說的運氣並非我們通常知曉的那個概念。你可以集中運氣一次爆發，也可以瞄準你想要的目標，一點點積攢，但是剛入場就立刻中頭獎在這裡是不可能的。",
+      "new_zh": "此處所說的運氣並非我們通常知曉的那個概念。把運氣累積起來一次爆發，或是一點一點地投入運氣、只求回本，那都在合理範圍內，但是剛入場就立刻中頭獎在這裡是不可能的。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0033：KR：『把運氣累積起來一次爆發，或是一點一點投入運氣、只求回本的程度還說得過去』。TW 把「찔끔찔끔 넣어서 본전이나 노릴」譯成「瞄準你想要的目標，一點點積攢」，漏掉『只求回本』並改變意思。；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S209A.json",
+      "field": "content",
+      "ptr": "/dataList/9/content",
+      "kind": "zh-changed",
+      "new_kr": "그런가. 그럼 내가 기회를 봐서 저 룰렛에 달려있는 소망통을 가져오겠다.",
+      "old_zh": "這樣啊。那我們可以找機會把那臺輪盤裡的願望罐拿過來。",
+      "new_zh": "這樣啊。那我會找機會把那臺輪盤裡的願望罐拿過來。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0034：KR 主詞是「내가」（奧提斯：我去拿來），TW 寫成「我們可以找機會……」，變成建議、主詞變複數，與下一句『我完成過無數作戰』所顯示的奧提斯自行負責不符。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S209A.json",
+      "field": "content",
+      "ptr": "/dataList/25/content",
+      "kind": "zh-changed",
+      "new_kr": "그런 우리를 상대로 헐떡이기나 하는 꼴이라니…",
+      "old_zh": "我們都這樣了，竟然還能和你們打得半斤八兩啊……",
+      "new_zh": "對上這樣的我們，你們居然還打得氣喘吁吁啊……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0035：KR「그런 우리를 상대로 헐떡이기나 하는 꼴이라니」是「對上這樣的我們，你們居然還打得氣喘吁吁」（JP ゼエゼエ言ってる、EN struggling），嘲諷警衛連這支弱隊都應付得很吃力；TW「竟然還能和你們打得半斤八兩」寫成雙方勢均力敵，看不出警衛吃力的樣子。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S210B.json",
+      "field": "content",
+      "ptr": "/dataList/7/content",
+      "kind": "zh-changed",
+      "new_kr": "야, 아니다. 얘 얼굴이 더 문제인데? 눈 역할 하는 건 시침이냐, 분침이냐?",
+      "old_zh": "不，等等。這傢伙的臉才是更大的問題吧？充當眼睛的是秒針？還是分針？",
+      "new_zh": "不，等等。這傢伙的臉才是更大的問題吧？充當眼睛的是時針？還是分針？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0036：KR「시침이냐, 분침이냐」是『時針還是分針』（JP 時針／分針）。TW 寫成「秒針？還是分針？」，時針誤為秒針。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S212A.json",
+      "field": "content",
+      "ptr": "/dataList/44/content",
+      "kind": "zh-changed",
+      "new_kr": "너, 우리 조직에 들어올래? 장차 크게 될 새싹이다.",
+      "old_zh": "你，要不要加入我們的幫派？能讓你的嫩芽茁壯成長哦。",
+      "new_zh": "你，要不要加入我們的幫派？你可是將來能成大器的好苗子。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0037：KR「장차 크게 될 새싹이다」是稱讚『你是將來會成大器的新芽』。TW 譯成「能讓你的嫩芽茁壯成長哦」，變成對方提供培育，主詞與意思偏移。；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S213B.json",
+      "field": "teller",
+      "ptr": "/dataList/0/teller",
+      "kind": "zh-changed",
+      "new_kr": "위협적인 철공회 조직원",
+      "old_zh": "危險的鐵工會幫派成員",
+      "new_zh": "危險的鐵工會成員",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g766-iron-union-threatening"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S213B.json",
+      "field": "teller",
+      "ptr": "/dataList/1/teller",
+      "kind": "zh-changed",
+      "new_kr": "몸 푸는 철공회 조직원",
+      "old_zh": "正在熱身的鐵工會幫派成員",
+      "new_zh": "正在熱身的鐵工會成員",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g765-iron-union-warming-up"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S213B.json",
+      "field": "teller",
+      "ptr": "/dataList/2/teller",
+      "kind": "zh-changed",
+      "new_kr": "위협적인 철공회 조직원",
+      "old_zh": "危險的鐵工會幫派成員",
+      "new_zh": "危險的鐵工會成員",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g766-iron-union-threatening"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S213B.json",
+      "field": "teller",
+      "ptr": "/dataList/3/teller",
+      "kind": "zh-changed",
+      "new_kr": "몸 푸는 철공회 조직원",
+      "old_zh": "正在熱身的鐵工會幫派成員",
+      "new_zh": "正在熱身的鐵工會成員",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g765-iron-union-warming-up"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S215A.json",
+      "field": "teller",
+      "ptr": "/dataList/10/teller",
+      "kind": "zh-changed",
+      "new_kr": "위협적인 철공회 조직원",
+      "old_zh": "危險的鐵工會幫派成員",
+      "new_zh": "危險的鐵工會成員",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-14-rs-g766-iron-union-threatening"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-13-storydata-review.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-13-storydata-review.yaml",
+      "path": "rules/adjustments/2026-11-13-storydata-review.yaml",
+      "title": "2026-11-13-storydata-review.yaml",
+      "commit": "d183740168907053d3a04bb2ec245a67b5eebae0"
+    },
+    "rewrite:2026-11-14-rs-g765-iron-union-warming-up": {
+      "kind": "rewrite",
+      "id": "2026-11-14-rs-g765-iron-union-warming-up",
+      "path": "rules/rewrite/2026-11-14-rs-g765-iron-union-warming-up.yaml",
+      "title": "「몸 푸는 철공회 조직원」統一寫「正在熱身的鐵工會成員」（規則建議 G765）",
+      "commit": "d183740168907053d3a04bb2ec245a67b5eebae0"
+    },
+    "rewrite:2026-11-14-rs-g766-iron-union-threatening": {
+      "kind": "rewrite",
+      "id": "2026-11-14-rs-g766-iron-union-threatening",
+      "path": "rules/rewrite/2026-11-14-rs-g766-iron-union-threatening.yaml",
+      "title": "「위협적인 철공회 조직원」統一寫「危險的鐵工會成員」（規則建議 G766）",
+      "commit": "d183740168907053d3a04bb2ec245a67b5eebae0"
+    },
+    "rewrite:2026-11-14-rs-g796-vulgar-veteran": {
+      "kind": "rewrite",
+      "id": "2026-11-14-rs-g796-vulgar-veteran",
+      "path": "rules/rewrite/2026-11-14-rs-g796-vulgar-veteran.yaml",
+      "title": "「입이 험한 패잔병」統一寫敵人名稱的「粗俗的殘兵」（規則建議 G796）",
+      "commit": "d183740168907053d3a04bb2ec245a67b5eebae0"
+    }
+  }
+}

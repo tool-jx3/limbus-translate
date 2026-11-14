@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261112",
   "raw_token": "l20261112_5pAcdxbyP1RC08yIrdPw",
-  "rules_commit": "002e71c70e75fa344ca43800efd8d2794a347baa",
-  "built_at": "2026-11-13T23:26:50Z",
+  "rules_commit": "d183740168907053d3a04bb2ec245a67b5eebae0",
+  "built_at": "2026-11-14T00:59:45Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,15 +10,15 @@
   },
   "notes_seen": 1058,
   "zips": {
-    "zh-TW_complete_raw-20261112.zip": "ab373ca90b5b4ac9b9b9100f7d86b66cd89f1e89e2d3f2e18d4d7d32fc3f05c8",
-    "zh-TW_text_raw-20261112.zip": "139a2d8d38c68db579c6d5b02a683165ec2509dc0b56e260373915763309b401"
+    "zh-TW_complete_raw-20261112.zip": "8493fa13e04c2c2ce176e562283d038e7dbf2fd0eeeb4aa4249b52271a8f557f",
+    "zh-TW_text_raw-20261112.zip": "fbbb1c7727f7857b247399fb340ba200150bbaab7363b346c7c5474faac92854"
   },
   "report": {
     "origins": {
       "claude": 19833,
       "copy": 91934,
-      "human": 150,
-      "paratranz": 163932
+      "human": 162,
+      "paratranz": 163920
     },
     "pending": 0,
     "needs_review": 0,
@@ -480,8 +480,8 @@
     "shown": {
       "claude": 19833,
       "copy": 91934,
-      "human": 150,
-      "paratranz": 163932
+      "human": 162,
+      "paratranz": 163920
     },
     "misaligned": [
       {
@@ -1119,24 +1119,6 @@
       "counts": [
         8,
         1
-      ],
-      "units": 9
-    },
-    {
-      "family": "story-main",
-      "field": "teller",
-      "kr": "입이 험한 패잔병",
-      "zh": [
-        "語氣很差的殘兵",
-        "粗野的殘兵"
-      ],
-      "keys": [
-        "StoryData/S111B.json|/dataList/59/teller",
-        "StoryData/S111B.json|/dataList/74/teller"
-      ],
-      "counts": [
-        6,
-        3
       ],
       "units": 9
     },
@@ -2344,24 +2326,6 @@
       "units": 6
     },
     {
-      "family": "story-main",
-      "field": "teller",
-      "kr": "몸 푸는 철공회 조직원",
-      "zh": [
-        "正在熱身的鐵工會幫派成員",
-        "正在熱身的鐵工會成員"
-      ],
-      "keys": [
-        "StoryData/S213B.json|/dataList/1/teller",
-        "StoryData/S215A.json|/dataList/11/teller"
-      ],
-      "counts": [
-        2,
-        4
-      ],
-      "units": 6
-    },
-    {
       "family": "ui",
       "field": "content",
       "kr": "스테이지를 처음으로 클리어할 경우, 해당 보상이 분실물 보관소에 등록되어 활성화됩니다.",
@@ -2763,24 +2727,6 @@
       "counts": [
         1,
         4
-      ],
-      "units": 5
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "<그건…>",
-      "zh": [
-        "<那是因為……>",
-        "<那是……>"
-      ],
-      "keys": [
-        "StoryData/1D306A.json|/dataList/86/content",
-        "StoryData/5D302B.json|/dataList/26/content"
-      ],
-      "counts": [
-        2,
-        3
       ],
       "units": 5
     },
@@ -3812,24 +3758,6 @@
       "keys": [
         "StoryData/S313A.json|/dataList/0/place",
         "StoryData/S316B.json|/dataList/0/place"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "teller",
-      "kr": "위협적인 철공회 조직원",
-      "zh": [
-        "危險的鐵工會幫派成員",
-        "危險的鐵工會成員"
-      ],
-      "keys": [
-        "StoryData/S213B.json|/dataList/0/teller",
-        "StoryData/S215B.json|/dataList/5/teller"
       ],
       "counts": [
         3,
@@ -10805,24 +10733,6 @@
       "keys": [
         "StoryData/S1039I.json|/dataList/9/content",
         "StoryData/S1040B.json|/dataList/9/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "죄종들이군요.",
-      "zh": [
-        "那些是罪種。",
-        "是罪種們。"
-      ],
-      "keys": [
-        "StoryData/S219B.json|/dataList/50/content",
-        "StoryData/S622B.json|/dataList/21/content"
       ],
       "counts": [
         1,

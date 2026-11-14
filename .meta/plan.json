@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261112",
   "prev_raw_tag": "raw-20261105",
-  "rules_commit": "002e71c70e75fa344ca43800efd8d2794a347baa",
+  "rules_commit": "d183740168907053d3a04bb2ec245a67b5eebae0",
   "changes": {
     "unchanged": 272865,
     "moved": 2138,
@@ -82,12 +82,25 @@
   "copy": 0,
   "reused": 0,
   "adjustments": {
-    "applied": 150,
+    "applied": 162,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [],
+  "rewrite_applied": [
+    {
+      "id": "2026-11-14-rs-g765-iron-union-warming-up",
+      "units": 2
+    },
+    {
+      "id": "2026-11-14-rs-g766-iron-union-threatening",
+      "units": 3
+    },
+    {
+      "id": "2026-11-14-rs-g796-vulgar-veteran",
+      "units": 9
+    }
+  ],
   "frozen_changed": [],
   "new_speakers": [
     "다친필립",
