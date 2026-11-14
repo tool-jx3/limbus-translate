@@ -334,3 +334,15 @@
   zh: 若是看見了一條能讓多數人富足的明確道路，我會毫不猶豫地站到另一邊。
   reason: StoryData 審查 S0294：KR「…난 주저 없이 다른 쪽을 선택할 거야」是「我會毫不猶豫地選擇另一邊」，JP「他の道を選ぶ」相同，暗示下次會站在與但丁一行人不同的一邊；現行 TW 照 EN 寫成「選擇它」，失去「另一邊」的對立意味。；譯法由使用者決定（「다른 쪽」寫「站到另一邊」，去掉「只因」）
   rule: one-off
+- key: StoryData/2D306A.json|/dataList/48/content
+  raw: raw-20261112
+  kr_sha: 030b75c7a7df511f2e9834d16ce8596e4d37efda0b3f9d6068b478fdebc28e95
+  zh: 趁我們家經理大賺一筆的時候順手拿來的。
+  reason: StoryData 審查 S0295：KR「우리 관리자님이 크게 한탕 하셨을 때」是「我們經理大撈一筆（在賭場中大獎）的時候」，JP「大当たりしたとき」、EN「hit the jackpot」相同；現行 TW 寫成「手忙腳亂的時候」，意思錯了。
+  rule: one-off
+- key: StoryData/2D306B.json|/dataList/3/content
+  raw: raw-20261112
+  kr_sha: f75273d13bb6b36224dd3a2b51da362e7e97182f576ae247d810eb19dd62104f
+  zh: 我有時會在思緒混亂的時候來這裡。哪怕沒有妳喜歡的安樂椅和威士忌……
+  reason: StoryData 審查 S0296：KR「안락의자」是安樂椅（扶手椅），JP「安楽椅子」、EN「armchairs」相同；現行 TW 寫成「搖椅」，是另一種椅子。
+  rule: one-off
