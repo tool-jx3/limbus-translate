@@ -923,3 +923,6 @@
 - id: "inconsistent/story-main/content/2181fe43"
   reason: G647：JP/EN 相同或相近，僅同義措辭不同，兩種皆通，保留（使用者決定 2026-11-13：I4 保留）
   date: 2026-11-13
+- id: "inconsistent/story-main/content/4e1512f9"
+  reason: G665：「那些是罪種」與「是罪種們」同義，詞彙表罪種皆符合，保留（使用者決定 2026-11-14：保留）
+  date: 2026-11-14

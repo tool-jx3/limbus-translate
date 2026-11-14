@@ -1,0 +1,9 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G766：說話者名「위협적인 철공회 조직원」
+# 有「危險的鐵工會幫派成員」3 處、「危險的鐵工會成員」1 處（S213B、S215A、S215B）。鐵工會的「조직원」
+# 別處都寫「成員」，統一成「危險的鐵工會成員」。使用者同意 2026-11-14。
+reason: '「위협적인 철공회 조직원」統一寫「危險的鐵工會成員」（規則建議 G766）'
+files: ['StoryData/S213B.json', 'StoryData/S215A.json']
+origins: [paratranz]
+pattern: '^危險的鐵工會幫派成員$'
+replace: '危險的鐵工會成員'
+kr_pattern: '^위협적인 철공회 조직원$'

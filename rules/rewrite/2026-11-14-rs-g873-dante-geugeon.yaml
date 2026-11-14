@@ -1,0 +1,9 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G873：但丁的「<그건…>」有「<那是……>」3 處、
+# 「<那是因為……>」2 處。KR 只有「그건」（那是），JP「それは」、EN「That's」也沒有「因為」，只修多譯的
+# 兩處。但丁的台詞保留 <>（報告資料的改後文字漏了 <>）。使用者同意 2026-11-14。
+reason: '但丁的「<그건…>」寫「<那是……>」，去掉多譯的「因為」（規則建議 G873）'
+files: ['StoryData/1D306A.json', 'StoryData/S001B.json']
+origins: [paratranz]
+pattern: '^<那是因為……>$'
+replace: '<那是……>'
+kr_pattern: '^<그건…>$'
