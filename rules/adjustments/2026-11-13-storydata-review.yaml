@@ -274,3 +274,75 @@
   zh: ……等回到巴士上後，我能教卡戎……嗎？
   reason: StoryData 審查 S0292：這行是 1D306B#5「…버스로 돌아가면, 카론한테 지도 보는 법을 알려줘도 될까요?」（回到巴士後，我可以教卡戎看地圖嗎？）的殘缺版：KR 留下「教（알려줘도）」、省掉「看地圖的方法」，JP「カロンに…教えても良いですか」相同。現行 TW「我能……卡戎……看地圖嗎？」反過來留下「看地圖」、丟了「教」，與 KR
   rule: one-off
+- key: StoryData/S202A.json|/dataList/59/content
+  raw: raw-20261112
+  kr_sha: e8b4ab0239bda2b86e793f59fb07aa6ff9be59d2eef655ab046e7140ae2c0abc
+  zh: 鴻璐是唯一真心實意歡迎他們的人（他差點就要鼓掌了），
+  reason: StoryData 審查 S0030：KR括號內「실제로 박수를 치기 직전까지 갔다」是『差點就真的鼓掌了』（未鼓掌；JP 拍手するところだった）。TW 寫成「也真的起身鼓掌了」，變成已經鼓掌，事實相反。
+  rule: one-off
+- key: StoryData/S203B.json|/dataList/8/content
+  raw: raw-20261112
+  kr_sha: 81300ad07e97308b897df05c795c12983e428e032c3191e0d183fcb9e8bcca7d
+  zh: ……好像也不必了？
+  reason: StoryData 審查 S0031：接在「그대로 두고 봐…／두고 봐…」之後，「…도 되겠네?」是『（那樣放著看）也行吧？』，與下文『文件很完美』呼應（JP …なくてもよさそうね，EN do as they say）。TW 變成「我們執行他們計畫的能力，對吧？」，語意不通且與上下文脫節。
+  rule: one-off
+- key: StoryData/S203B.json|/dataList/162/content
+  raw: raw-20261112
+  kr_sha: 7bb6e34f613ae6785c9f4162ae27a243986ca16762690ac0de6ce061d8f6a8d7
+  zh: 被這句話侮辱到的以實瑪利似乎試圖反駁，但比起這個，更引人注意的是豆豆幫混混們正從懷中拿出武器。
+  reason: StoryData 審查 S0032：KR：以實瑪利想反駁，但『更先映入眼簾的是』豆豆幫混混們正從懷中拿出武器（尚未攻擊）。TW 寫成混混們「迎面就撲了上來」，變成已發動攻擊，並漏掉『更引人注意』的視角。；譯法由使用者決定
+  rule: one-off
+- key: StoryData/S208B.json|/dataList/39/content
+  raw: raw-20261112
+  kr_sha: 59c398a56c50d63c25e7d074ede9413c49837e5f66d6f18a091da9e3a8478c70
+  zh: 此處所說的運氣並非我們通常知曉的那個概念。把運氣累積起來一次爆發，或是一點一點地投入運氣、只求回本，那都在合理範圍內，但是剛入場就立刻中頭獎在這裡是不可能的。
+  reason: StoryData 審查 S0033：KR：『把運氣累積起來一次爆發，或是一點一點投入運氣、只求回本的程度還說得過去』。TW 把「찔끔찔끔 넣어서 본전이나 노릴」譯成「瞄準你想要的目標，一點點積攢」，漏掉『只求回本』並改變意思。；譯法由使用者決定
+  rule: one-off
+- key: StoryData/S209A.json|/dataList/9/content
+  raw: raw-20261112
+  kr_sha: cf91d0935b628d4a03df5557602f9c3b16d875e97da25bae47247bb00b67feb2
+  zh: 這樣啊。那我會找機會把那臺輪盤裡的願望罐拿過來。
+  reason: StoryData 審查 S0034：KR 主詞是「내가」（奧提斯：我去拿來），TW 寫成「我們可以找機會……」，變成建議、主詞變複數，與下一句『我完成過無數作戰』所顯示的奧提斯自行負責不符。
+  rule: one-off
+- key: StoryData/S209A.json|/dataList/25/content
+  raw: raw-20261112
+  kr_sha: 2e96aedf5372d49b7d5758ca8569c879f1f2f06924a0e78d498c7e17dcd6c9cf
+  zh: 對上這樣的我們，你們居然還打得氣喘吁吁啊……
+  reason: StoryData 審查 S0035：KR「그런 우리를 상대로 헐떡이기나 하는 꼴이라니」是「對上這樣的我們，你們居然還打得氣喘吁吁」（JP ゼエゼエ言ってる、EN struggling），嘲諷警衛連這支弱隊都應付得很吃力；TW「竟然還能和你們打得半斤八兩」寫成雙方勢均力敵，看不出警衛吃力的樣子。
+  rule: one-off
+- key: StoryData/S210B.json|/dataList/7/content
+  raw: raw-20261112
+  kr_sha: a08d24ec30f35404d7e6bc17b7667c06e69c5468bc5b59b8ea449be65af35a13
+  zh: 不，等等。這傢伙的臉才是更大的問題吧？充當眼睛的是時針？還是分針？
+  reason: StoryData 審查 S0036：KR「시침이냐, 분침이냐」是『時針還是分針』（JP 時針／分針）。TW 寫成「秒針？還是分針？」，時針誤為秒針。
+  rule: one-off
+- key: StoryData/S212A.json|/dataList/44/content
+  raw: raw-20261112
+  kr_sha: fb69f6b14e241675fc1e804afcf74805d17418e4ab2810805dd6885623470783
+  zh: 你，要不要加入我們的幫派？你可是將來能成大器的好苗子。
+  reason: StoryData 審查 S0037：KR「장차 크게 될 새싹이다」是稱讚『你是將來會成大器的新芽』。TW 譯成「能讓你的嫩芽茁壯成長哦」，變成對方提供培育，主詞與意思偏移。；譯法由使用者決定
+  rule: one-off
+- key: StoryData/2D102B.json|/dataList/33/content
+  raw: raw-20261112
+  kr_sha: ef0decef98b6f3bc75e3dc07089b62025c113591b118a877b197ef28d858e4ad
+  zh: 煽動宣傳嗎。遺憾的是並未奏效。
+  reason: StoryData 審查 S0293：KR「프로파간다인가.」只是「政治宣傳嗎」（JP「プロパガンダか」、EN「Propaganda.」）；格里高爾剛才喊的是號召人質起來反抗，現行 TW「宣傳改革嗎」多了原文沒有的「改革」。；譯法由使用者決定（接奧提斯的「煽動作戰」，去掉「似乎」）
+  rule: one-off
+- key: StoryData/2D306A.json|/dataList/29/content
+  raw: raw-20261112
+  kr_sha: 458d048121fb25864cac19c1f93bb63f05531548f2a9b2988754e4c60c5754b4
+  zh: 若是看見了一條能讓多數人富足的明確道路，我會毫不猶豫地站到另一邊。
+  reason: StoryData 審查 S0294：KR「…난 주저 없이 다른 쪽을 선택할 거야」是「我會毫不猶豫地選擇另一邊」，JP「他の道を選ぶ」相同，暗示下次會站在與但丁一行人不同的一邊；現行 TW 照 EN 寫成「選擇它」，失去「另一邊」的對立意味。；譯法由使用者決定（「다른 쪽」寫「站到另一邊」，去掉「只因」）
+  rule: one-off
+- key: StoryData/2D306A.json|/dataList/48/content
+  raw: raw-20261112
+  kr_sha: 030b75c7a7df511f2e9834d16ce8596e4d37efda0b3f9d6068b478fdebc28e95
+  zh: 趁我們家經理大賺一筆的時候順手拿來的。
+  reason: StoryData 審查 S0295：KR「우리 관리자님이 크게 한탕 하셨을 때」是「我們經理大撈一筆（在賭場中大獎）的時候」，JP「大当たりしたとき」、EN「hit the jackpot」相同；現行 TW 寫成「手忙腳亂的時候」，意思錯了。
+  rule: one-off
+- key: StoryData/2D306B.json|/dataList/3/content
+  raw: raw-20261112
+  kr_sha: f75273d13bb6b36224dd3a2b51da362e7e97182f576ae247d810eb19dd62104f
+  zh: 我有時會在思緒混亂的時候來這裡。哪怕沒有妳喜歡的安樂椅和威士忌……
+  reason: StoryData 審查 S0296：KR「안락의자」是安樂椅（扶手椅），JP「安楽椅子」、EN「armchairs」相同；現行 TW 寫成「搖椅」，是另一種椅子。
+  rule: one-off

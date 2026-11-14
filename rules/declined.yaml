@@ -923,3 +923,9 @@
 - id: "inconsistent/story-main/content/2181fe43"
   reason: G647：JP/EN 相同或相近，僅同義措辭不同，兩種皆通，保留（使用者決定 2026-11-13：I4 保留）
   date: 2026-11-13
+- id: "inconsistent/story-main/content/4e1512f9"
+  reason: G665：「那些是罪種」與「是罪種們」同義，詞彙表罪種皆符合，保留（使用者決定 2026-11-14：保留）
+  date: 2026-11-14
+- id: "inconsistent/story-main/content/850ad13b"
+  reason: G873：依前後文而不同，兩種都對：接在「為什麼」之後、下一句才說原因的寫「<那是因為……>」（S001B#44、1D306A#86），其餘寫「<那是……>」（S830I1#46 下一句已有「因為」；5D302B#26、S823B#53 是遲疑）（使用者決定 2026-11-14：保留）
+  date: 2026-11-14

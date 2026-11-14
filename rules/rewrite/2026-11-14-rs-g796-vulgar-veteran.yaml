@@ -1,0 +1,10 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G796：S111B 說話者名「입이 험한 패잔병」
+# 有「語氣很差的殘兵」6 處、「粗野的殘兵」3 處。統一成戰鬥敵人名稱（Enemies.json）既有的
+# 「粗俗的殘兵」（JP 口の悪い敗残兵、EN Vulgar Veteran），與同場的「卑鄙的殘兵」（야비한 패잔병，
+# 敵人名稱同為卑鄙的殘兵）一致。使用者決定 2026-11-14。
+reason: '「입이 험한 패잔병」統一寫敵人名稱的「粗俗的殘兵」（規則建議 G796）'
+files: ['StoryData/S111B.json']
+origins: [paratranz]
+pattern: '^(?:語氣很差的殘兵|粗野的殘兵)$'
+replace: '粗俗的殘兵'
+kr_pattern: '^입이 험한 패잔병$'
