@@ -298,3 +298,21 @@
   zh: 此處所說的運氣並非我們通常知曉的那個概念。把運氣累積起來一次爆發，或是一點一點地投入運氣、只求回本，那都在合理範圍內，但是剛入場就立刻中頭獎在這裡是不可能的。
   reason: StoryData 審查 S0033：KR：『把運氣累積起來一次爆發，或是一點一點投入運氣、只求回本的程度還說得過去』。TW 把「찔끔찔끔 넣어서 본전이나 노릴」譯成「瞄準你想要的目標，一點點積攢」，漏掉『只求回本』並改變意思。；譯法由使用者決定
   rule: one-off
+- key: StoryData/S209A.json|/dataList/9/content
+  raw: raw-20261112
+  kr_sha: cf91d0935b628d4a03df5557602f9c3b16d875e97da25bae47247bb00b67feb2
+  zh: 這樣啊。那我會找機會把那臺輪盤裡的願望罐拿過來。
+  reason: StoryData 審查 S0034：KR 主詞是「내가」（奧提斯：我去拿來），TW 寫成「我們可以找機會……」，變成建議、主詞變複數，與下一句『我完成過無數作戰』所顯示的奧提斯自行負責不符。
+  rule: one-off
+- key: StoryData/S209A.json|/dataList/25/content
+  raw: raw-20261112
+  kr_sha: 2e96aedf5372d49b7d5758ca8569c879f1f2f06924a0e78d498c7e17dcd6c9cf
+  zh: 對上這樣的我們，你們居然還打得氣喘吁吁啊……
+  reason: StoryData 審查 S0035：KR「그런 우리를 상대로 헐떡이기나 하는 꼴이라니」是「對上這樣的我們，你們居然還打得氣喘吁吁」（JP ゼエゼエ言ってる、EN struggling），嘲諷警衛連這支弱隊都應付得很吃力；TW「竟然還能和你們打得半斤八兩」寫成雙方勢均力敵，看不出警衛吃力的樣子。
+  rule: one-off
+- key: StoryData/S210B.json|/dataList/7/content
+  raw: raw-20261112
+  kr_sha: a08d24ec30f35404d7e6bc17b7667c06e69c5468bc5b59b8ea449be65af35a13
+  zh: 不，等等。這傢伙的臉才是更大的問題吧？充當眼睛的是時針？還是分針？
+  reason: StoryData 審查 S0036：KR「시침이냐, 분침이냐」是『時針還是分針』（JP 時針／分針）。TW 寫成「秒針？還是分針？」，時針誤為秒針。
+  rule: one-off
