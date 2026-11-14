@@ -322,3 +322,9 @@
   zh: 你，要不要加入我們的幫派？你可是將來能成大器的好苗子。
   reason: StoryData 審查 S0037：KR「장차 크게 될 새싹이다」是稱讚『你是將來會成大器的新芽』。TW 譯成「能讓你的嫩芽茁壯成長哦」，變成對方提供培育，主詞與意思偏移。；譯法由使用者決定
   rule: one-off
+- key: StoryData/2D102B.json|/dataList/33/content
+  raw: raw-20261112
+  kr_sha: ef0decef98b6f3bc75e3dc07089b62025c113591b118a877b197ef28d858e4ad
+  zh: 煽動宣傳嗎。遺憾的是並未奏效。
+  reason: StoryData 審查 S0293：KR「프로파간다인가.」只是「政治宣傳嗎」（JP「プロパガンダか」、EN「Propaganda.」）；格里高爾剛才喊的是號召人質起來反抗，現行 TW「宣傳改革嗎」多了原文沒有的「改革」。；譯法由使用者決定（接奧提斯的「煽動作戰」，去掉「似乎」）
+  rule: one-off
