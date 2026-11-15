@@ -424,3 +424,9 @@
   zh: 哈？那你是怎麼知道要帶我們來地下室的？
   reason: StoryData 審查 S0057：KR「그럼 우리를 어떻게 알고 지하실로 안내한 건데?」是「那你是怎麼知道要帶我們到地下室的？」（어떻게 알고＝憑什麼知道），EN「how'd you know we oughta go to the basement」、JP「何を頼りに」也一樣；TW「你為啥要帶我們來地下室」問的是理由，不是「怎麼知道」。辛克萊接
   rule: one-off
+- key: StoryData/3D102A.json|/dataList/1/content
+  raw: raw-20261112
+  kr_sha: 5ba04cc1a7e7103ff6698a8d9e7d062f996fc70f710e89c9d50df60c56798f85
+  zh: ……執行經理。我建議您今後將確認擊殺作為基礎作戰計畫的一部分。
+  reason: StoryData 審查 S0297：KR「확인 사살」是「確認擊殺（補刀確保對方已死）」，JP「とどめを刺す」、EN「confirm that our foes are dead」相同；現行 TW 寫成「確認目標存活」，意思相反（下一刻被認為已死的圭多又出現了）。
+  rule: one-off
