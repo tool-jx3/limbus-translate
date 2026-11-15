@@ -1,6 +1,6 @@
 # 依遊戲行為的譯文檢查 — 設計
 
-> 狀態：待使用者確認。使用者已決定（2026-11-15）：新檢查在目前階段**全部只當警告**，不擋新翻譯。
+> 狀態：待使用者確認。已請一位沒參與討論的實作者讀過（2026-11-15）：`qmark-count` 的範圍依他的問題改成只看罪孽型敵人（我的決定，依據報告 `04-other.md` §4），試算數字依他重算的結果更正。使用者已決定（2026-11-15）：新檢查在目前階段**全部只當警告**，不擋新翻譯。
 > 依據：研究報告 `docs/research/2026-11-15-game-text-logic/`（以下稱「報告」）、審核頁 spec `docs/superpowers/specs/2026-11-03-review-page-design.md`（以下稱「審核頁 spec」）。
 
 ## 1. 目的
@@ -48,21 +48,21 @@
 
 ## 5. 新檢查
 
-全部是警告（`validate.ClassStyle`）。「範圍」以語言包檔名（不含資料夾時指根目錄的檔）與欄位表示；檔名以「去掉 `.json` 後，到第一個 `-` 或 `_` 之前的部分」判斷族群（`Skills_personality-01.json` 是 `Skills`，`AbEventsResultLog.json` 不是 `AbEvents`）。「現況」是以 `raw-20261112` 與 `tw` 7fccf1d 試算的單位數，供實作後核對數量級，不是測試的固定值。
+全部是警告（`validate.ClassStyle`）。「範圍」以語言包檔名（不含資料夾時指根目錄的檔）與欄位表示；檔名以「去掉 `.json` 後，到第一個 `-` 或 `_` 之前的部分」判斷族群（`Skills_personality-01.json` 是 `Skills`，`AbEventsResultLog.json` 不是 `AbEvents`）。「現況」是以 `raw-20261112` 與 `tw` 7fccf1d 試算的單位數，供實作後核對數量級，不是測試的固定值；數字與規則不一致時以規則為準。
 
 | 代碼 | 名稱 | 範圍 | 規則 | 現況 |
 |---|---|---|---|---|
-| `keyword-link` | 關鍵字誤連結 | §5.1 的欄位 | §5.1 | 144 |
+| `keyword-link` | 關鍵字誤連結 | §5.1 的欄位 | §5.1 | 130 |
 | `bracket-text` | 方括號文字 | `Skills`、`Passive`、`Passives` 的 `desc`、`summary`（含硬幣說明） | 譯文裡不是 `[ID]` 形式（`validate.IDs` 認得的）的 `[…]`（`\[.*?\]`，不跨行）數量比 KR 多。遊戲在這些欄位把它當標籤處理，找不到就顯示 `Unknown` | 4 |
 | `page-count` | 頁數不同 | `AbEvents` 的 `eventDesc`、`prevDesc`、`successDesc[i]`、`failureDesc[i]`；`ActionEvents` 的 `desc`、`options[i].result[0]` | 以 `\n\n` 切開的段數與 KR 不同。KR 是空字串或 `Error` 時算 0 段。訊息寫出 KR 幾頁、譯文幾頁；比 KR 少時說明遊戲會補「...」頁 | 5 |
-| `level-diff` | 同步等級比較 | `Skills` 的 `levelList[j].desc` 與 `levelList[j].coinlist[c].coindescs[d].desc` | §5.2 | 約 60 |
+| `level-diff` | 同步等級比較 | `Skills` 的 `levelList[j].desc` 與 `levelList[j].coinlist[c].coindescs[d].desc` | §5.2 | 61 |
 | `story-comment` | `//` 截斷 | `StoryData/` 的 `content` | 譯文的 `//` 出現次數比 KR 多。遊戲只顯示第一個 `//` 之前的文字 | 0 |
 | `stray-brace` | 多餘的大括號 | 全部 | 去掉佔位符（`validate.Placeholders` 認得的）之後，譯文的 `{` 與 `}` 總數比 KR 多 | 0 |
 | `regex-char` | 正規表示式字元 | `ChoiceEventEffect` 的 `content` | 以 `{`、`}` 切開譯文，每一段非空的文字 `p` 以 `"{" + p + "}"` 當正規表示式編譯（Go 的 `regexp/syntax`，Perl 語法）；有一段編譯失敗，而 KR 以同樣方式全部編譯成功。訊息指出是哪一段 | 0 |
 | `literal-newline` | 字面的 `\n` | 全部 | 譯文裡「反斜線＋n」兩個字元的出現次數比 KR 多 | 0 |
 | `reserved-value` | 保留字 | 全部 | 譯文去掉頭尾空白後，不分大小寫等於 `Unknown`，或等於 `Error`，而 KR 不是。遊戲把這兩個值當成「沒有資料」 | 0 |
-| `newline-space` | 換行旁的空格 | `Personalities`、`PersonalityCompanion` 的 `title`；`Egos` 的 `name` | 譯文裡 `\n` 的前一個或後一個字元是空白（半形或全形空格）。這些欄位的 `\n` 在單行顯示時會變成半形空格 | 1 |
-| `qmark-count` | 問號個數 | `Enemies` 族群的 `name` | KR 以一個以上的半形 `?` 結尾時，譯文的半形 `?` 個數與 KR 不同。遊戲用它算「N型」 | 0 |
+| `newline-space` | 換行旁的空格 | `Personalities`、`PersonalityCompanion` 的 `title`；`Egos` 的 `name` | 譯文裡 `\n` 的前一個或後一個字元是空白（半形或全形空格）。這些欄位的 `\n` 在單行顯示時會變成半形空格 | 9 |
+| `qmark-count` | 問號個數 | `Enemies` 族群的 `name` | 只看罪孽型敵人：KR 名稱符合 `죄종\?+$`（「죄종」後面接一個以上的半形 `?` 結尾）時，譯文的半形 `?` 個數與 KR 不同。遊戲用它算「N型」。其他以 `?` 結尾的名字（`히스클리프?`、`???`）不檢查，譯文照指引用全形「？」 | 0 |
 | `bullet-count` | 條列符號 | `StoryTheaterDanteNote`、`StoryTheaterDanteNoteDetail` 的 `desc` | 譯文裡「換行後緊接半形 `-`」的出現次數與 KR 不同 | 2 |
 | `ruby-form` | ruby 寫法 | 全部 | 譯文含有 `<r=`、`</r>`、`<ruby>`（沒有 `=`）或大小寫不是全小寫的 `<ruby`／`</ruby>`。遊戲的對話框只轉換 `<ruby=…>…</ruby>` | 0 |
 
@@ -142,4 +142,4 @@
 
 ## 10. 上線後預期看到的東西
 
-以目前的資料，審核頁的檢查警告分頁會多出大約 220 個單位（`keyword-link` 144、`level-diff` 約 60、`page-count` 5、`bracket-text` 4、`bullet-count` 2、`newline-space` 1），依「代碼＋KR＋TW」分組後項目數會少一些。建置報告的警告統計同步增加。這些項目照既有流程處理：要改的寫成人工調整，沒問題的用 `lct accept` 確認。
+以目前的資料，審核頁的檢查警告分頁會多出大約 210 個單位（`keyword-link` 130、`level-diff` 61、`newline-space` 9、`page-count` 5、`bracket-text` 4、`bullet-count` 2），依「代碼＋KR＋TW」分組後項目數會少一些。建置報告的警告統計同步增加。這些項目照既有流程處理：要改的寫成人工調整，沒問題的用 `lct accept` 確認。
