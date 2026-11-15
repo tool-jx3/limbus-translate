@@ -482,3 +482,21 @@
   zh: 自鳴得意。那是相當甜美的滋味。
   reason: StoryData 審查 S0305：KR「우쭐함. 그건 꽤 달콤한 맛이었다.」是「得意。那是相當甜美的滋味。」，JP「自惚れ。それはとても甘かった。」相同，是陳述句；現行 TW 寫成「我感到心神恍惚」，並改成疑問句、加了「受到簇擁喜愛」。；譯法由使用者決定（「우쭐함」寫「自鳴得意」）
   rule: one-off
+- key: StoryData/3D301B.json|/dataList/75/content
+  raw: raw-20261112
+  kr_sha: 165a455e320b5924564053cdafc80758fde7486d8d9d504957bebcc2a44f3478
+  zh: 伴隨著輕快的口哨聲，一個嬌小的身影出現在我的課桌前。
+  reason: StoryData 審查 S0306：KR「경쾌한 휘파람 소리」是「輕快的口哨聲」，JP「軽快な口笛の音」相同；現行 TW 寫成「奇怪的口哨聲」，語感不同。
+  rule: one-off
+- key: StoryData/3D306B.json|/dataList/0/content
+  raw: raw-20261112
+  kr_sha: 6322d535ce9c0732440f29fd2d59f77545d7262ec8707ecfba206775f5d0796e
+  zh: 那天是聖誕夜，鎮上充斥著鐘聲與喜悅。
+  reason: StoryData 審查 S0307：KR「크리스마스이브」是聖誕夜，JP「クリスマスイブ」、EN「Christmas Eve」相同，下一句也接「성야（聖夜）」；現行 TW 寫成「聖誕節」，把日子寫錯一天。
+  rule: one-off
+- key: StoryData/3D309A.json|/dataList/80/content
+  raw: raw-20261112
+  kr_sha: 2612320bbf81362e49e8f9640af0ab50d9da8db9c53baae3bb9ed896ae55fb55
+  zh: 蟲……不對，我可是特地叫了你卡戎！
+  reason: StoryData 審查 S0308：KR「벌… 아니, 기껏 카론이라고 불렀더니!」是格里高爾被叫「벌레 양반」後，差點脫口回一句「蟲」，改口說「我可是特地叫了妳卡戎！」（EN「Bu— I called you by your name for once!」）；現行 TW 開頭寫成「但……」，丟了「蟲」，「기껏」（特地）也寫成「一直都」，變成他向來都叫
+  rule: one-off
