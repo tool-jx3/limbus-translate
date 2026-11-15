@@ -23,6 +23,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/config"
 	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
+	"github.com/tool-jx3/limbus-translate/internal/gametext"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -314,6 +315,9 @@ type builder struct {
 	nameDiffs map[string]*NameDiff
 	termDiffs []*termDiff
 	tally     *existing.OldTally
+	// game is the information of the whole KR pack that the keyword-link and
+	// level-diff checks need, with the translations the build uses.
+	game *validate.Game
 }
 
 // termDiff is a provisional term of Report.TermDiffs while the units are
@@ -415,8 +419,12 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	if err != nil {
 		return nil, err
 	}
+	game, err := gametext.Load(src.KR, gametext.UsedText(records, opt.Frozen))
+	if err != nil {
+		return nil, err
+	}
 	b := &builder{
-		opt: opt, src: src, fr: fr,
+		opt: opt, src: src, fr: fr, game: game,
 		scripts: rules.NewScriptCache(opt.Rules),
 		records: records,
 		queued:  make(map[string]bool, len(pending)),
@@ -611,7 +619,7 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 	}
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
-	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File, ScriptOK: b.scriptOK(u.File), Terms: b.terms(u.File, u.KR)})
+	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File, Pointer: u.Pointer, ScriptOK: b.scriptOK(u.File), Terms: b.terms(u.File, u.KR), Game: b.game})
 	if named := b.nameIssue(u, key, rec, en, jp); named != nil {
 		issues = append(issues, *named)
 	}

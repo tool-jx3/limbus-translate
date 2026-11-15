@@ -14,6 +14,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/config"
 	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
+	"github.com/tool-jx3/limbus-translate/internal/gametext"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -364,6 +365,13 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 	}
 	inForce := batch.ActiveProvisional(rv.Provisional, in.Rules, declinedIDs)
 
+	// The information of the whole KR pack that some checks need, with the
+	// translations the build uses.
+	game, err := gametext.Load(in.KR, gametext.UsedText(in.Records, rv.Frozen))
+	if err != nil {
+		return Review{}, err
+	}
+
 	groups := map[string]*group{}
 	var warns []*warnAcc
 	warnByID := map[string]*warnAcc{}
@@ -422,7 +430,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			scopeUnits = append(scopeUnits, scope.Unit{Key: key, File: path, KR: ku.KR, ZH: rec.ZH, Origin: rec.Origin, EN: alignedValue(en), JP: alignedValue(jp)})
 			seen := map[string]bool{}
 			terms := batch.ValidateTermsIn(in.Rules, inForce, path, ku.KR)
-			issues := validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: scriptOK, Terms: terms})
+			issues := validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, Pointer: ku.Pointer, ScriptOK: scriptOK, Terms: terms, Game: game})
 			if rec.Origin == store.OriginClaude && rv.Names.IsName(ku.Field, ku.KR) {
 				// As the build does: the notes made from this KR text, the JP and
 				// EN text aligned to the unit.
