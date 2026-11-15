@@ -19,10 +19,11 @@ type Verdict struct {
 	Rejected bool
 }
 
-// Judge decides whether the translation zh of the KR text kr in file passes
-// the submit check, the one decision Submit and the preview share so that
-// they cannot drift apart. prov are the provisional terms the translation is
-// held to (see provisionalOf); note is the translator's note of the unit.
+// Judge decides whether the translation zh of the KR text kr of the unit at
+// pointer in file passes the submit check, the one decision Submit and the
+// preview share so that they cannot drift apart. prov are the provisional
+// terms the translation is held to (see provisionalOf); note is the
+// translator's note of the unit.
 //
 // The text is normalized (validate.Normalize, then the space after the keyword
 // names of env.KeywordNames) and checked as a new translation. A missing
@@ -35,7 +36,7 @@ type Verdict struct {
 //
 // Foreign names are warned about only when the translation is accepted, so a
 // rejected verdict never carries them.
-func Judge(env Env, prov []rules.Term, file, kr, zh, note string) Verdict {
+func Judge(env Env, prov []rules.Term, file, pointer, kr, zh, note string) Verdict {
 	zh = validate.NormalizeKeywordSpace(validate.Normalize(kr, zh), env.KeywordNames)
 	hits := env.Rules.GlossaryHits(file, kr) // looked up once for the check and the entries
 	var scriptOK []string
@@ -44,7 +45,7 @@ func Judge(env Env, prov []rules.Term, file, kr, zh, note string) Verdict {
 	} else {
 		scriptOK = env.Rules.ScriptRenderings(file)
 	}
-	issues := checkNewTerms(hits, prov, file, kr, zh, scriptOK)
+	issues := checkNewTerms(hits, prov, file, pointer, kr, zh, scriptOK)
 	entries := append(slices.Clip(hits), prov...)
 	warnOnly := env.Rules.GlossaryWarnOnly(file)
 	for j := range issues {

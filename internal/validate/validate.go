@@ -41,7 +41,10 @@ const (
 // tag-mismatch, tag-nesting and dante-wrapper; content codes are hangul,
 // simplified and forbidden-term; style codes are kana, halfwidth-punct,
 // halfwidth-bracket, placeholder-bracket, extra-keyword-id, ascii-ellipsis,
-// curly-quotes and length-ratio.
+// curly-quotes, length-ratio and term-missing, and the game-text codes of
+// gamechecks.go (bracket-text, page-count, story-comment, stray-brace,
+// regex-char, literal-newline, reserved-value, newline-space, qmark-count,
+// bullet-count, ruby-form, keyword-link and level-diff).
 const (
 	CodeEmpty               = "empty"
 	CodeIDMismatch          = "id-mismatch"
@@ -61,6 +64,22 @@ const (
 	CodeCurlyQuotes         = "curly-quotes"
 	CodeLengthRatio         = "length-ratio"
 	CodeTermMissing         = "term-missing"
+
+	// Game-text codes: they look at what the game does with the text, so they
+	// are always warnings. See gamechecks.go.
+	CodeBracketText    = "bracket-text"
+	CodePageCount      = "page-count"
+	CodeStoryComment   = "story-comment"
+	CodeStrayBrace     = "stray-brace"
+	CodeRegexChar      = "regex-char"
+	CodeLiteralNewline = "literal-newline"
+	CodeReservedValue  = "reserved-value"
+	CodeNewlineSpace   = "newline-space"
+	CodeQmarkCount     = "qmark-count"
+	CodeBulletCount    = "bullet-count"
+	CodeRubyForm       = "ruby-form"
+	CodeKeywordLink    = "keyword-link"
+	CodeLevelDiff      = "level-diff"
 )
 
 // Issue is one problem Check found in a translation.
@@ -134,6 +153,13 @@ type Context struct {
 	// words): the kana and Hangul checks leave the text of these renderings
 	// alone (rules.Rules.ScriptRenderings).
 	ScriptOK []string
+	// Pointer is the RFC 6901 pointer of the unit inside File, such as
+	// /dataList/3/levelList/1/desc; "" when it is not known, which skips every
+	// game check that looks at the field.
+	Pointer string
+	// Game is the data of the whole KR pack that some game checks need; nil
+	// skips keyword-link and level-diff.
+	Game *Game
 }
 
 // issue builds an Issue with the severity its class has in this context.
@@ -199,6 +225,7 @@ func Check(kr, zh string, ctx Context) []Issue {
 	issues = append(issues, checkStructure(kr, zh, ctx)...)
 	issues = append(issues, checkContent(kr, zh, ctx)...)
 	issues = append(issues, checkStyle(kr, zh, ctx)...)
+	issues = append(issues, checkGame(kr, zh, ctx)...)
 	return issues
 }
 

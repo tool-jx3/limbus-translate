@@ -117,8 +117,8 @@ func runAdjustAdd(ctx *cli.Context, args []string) error {
 		return err
 	}
 
-	file, _, _ := units.SplitKey(a.Key) // adjustKRText checked the key
-	normalized, issues := prepareAdjustmentText(r, keywords, file, kr, a.ZH)
+	file, pointer, _ := units.SplitKey(a.Key) // adjustKRText checked the key
+	normalized, issues := prepareAdjustmentText(r, keywords, file, pointer, kr, a.ZH)
 	if validate.HasHard(issues) {
 		if err := ctx.Emit(validateReport{Normalized: normalized, OK: false, Issues: issues}); err != nil {
 			return err
@@ -141,13 +141,13 @@ func runAdjustAdd(ctx *cli.Context, args []string) error {
 
 // prepareAdjustmentText makes the text of a new adjustment ready for the
 // pack and checks it against the KR text and the glossary terms that text
-// contains in file, the file of the unit. This is the only place that does
+// contains in file, the file of the unit at pointer. This is the only place that does
 // it: whatever has to happen to a translation before it is checked, as it
 // does for a batch submission (Normalize, then the space after the keyword
 // names), goes here. The text is a new one, so content issues are hard.
-func prepareAdjustmentText(r *rules.Rules, keywordNames []string, file, kr, zh string) (string, []validate.Issue) {
+func prepareAdjustmentText(r *rules.Rules, keywordNames []string, file, pointer, kr, zh string) (string, []validate.Issue) {
 	zh = validate.NormalizeKeywordSpace(validate.Normalize(kr, zh), keywordNames)
-	return zh, validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr), Existing: false, File: file, ScriptOK: r.ScriptRenderings(file)})
+	return zh, validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr), Existing: false, File: file, Pointer: pointer, ScriptOK: r.ScriptRenderings(file)})
 }
 
 // adjustKRText returns the raw snapshot the repo is at, its packs and the KR

@@ -329,7 +329,7 @@ func (b *builder) unit(u units.Unit, a alignedFile, frozen bool) {
 
 	if frozen && strings.TrimSpace(pz.Value) != "" && !names.HasHangul(pz.Value) {
 		var flags []string
-		if validate.HasHard(b.check(u.File, u.KR, pz.Value)) {
+		if validate.HasHard(b.check(u.File, u.Pointer, u.KR, pz.Value)) {
 			flags = []string{store.FlagNeedsReview}
 		}
 		b.settle(u, pz.Value, store.OriginParatranz, flags)
@@ -343,7 +343,7 @@ func (b *builder) unit(u units.Unit, a alignedFile, frozen bool) {
 		return
 	}
 	zh := validate.Normalize(u.KR, RestoreIDs(u.KR, pz.Value, b.keywords))
-	if validate.HasHard(b.check(u.File, u.KR, zh)) {
+	if validate.HasHard(b.check(u.File, u.Pointer, u.KR, zh)) {
 		b.queue(u, a, reasonParatranzRepair, zh)
 		return
 	}
@@ -351,10 +351,10 @@ func (b *builder) unit(u units.Unit, a alignedFile, frozen bool) {
 	b.res.Stats[StatParatranz]++
 }
 
-// check validates zh as a new translation of kr, a text of file, under the
-// approved glossary terms kr contains in that file.
-func (b *builder) check(file, kr, zh string) []validate.Issue {
-	return validate.Check(kr, zh, validate.Context{Terms: b.rules.ValidateTerms(file, kr), File: file, ScriptOK: b.scripts.For(file)})
+// check validates zh as a new translation of kr, the text at pointer in
+// file, under the approved glossary terms kr contains in that file.
+func (b *builder) check(file, pointer, kr, zh string) []validate.Issue {
+	return validate.Check(kr, zh, validate.Context{Terms: b.rules.ValidateTerms(file, kr), File: file, Pointer: pointer, ScriptOK: b.scripts.For(file)})
 }
 
 // settle records zh as the translation of u.

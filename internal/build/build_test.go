@@ -412,6 +412,34 @@ func TestBuildReportsFlagsAndWarnings(t *testing.T) {
 	}
 }
 
+// The checks that need the whole pack: skill 2's translation holds the buf
+// name its KR does not mention (keyword-link), and the levels of skill 1 have
+// the same KR lines and different translations (level-diff).
+func TestBuildGameWarnings(t *testing.T) {
+	e := newEnv(t, map[string]string{
+		"Bufs.json":   `{"dataList":[{"id":"Laceration","name":"출혈"}]}`,
+		"Skills.json": `{"dataList":[{"id":1,"levelList":[{"level":1,"desc":"가\n나 3"},{"level":2,"desc":"가\n나 4"}]},{"id":2,"levelList":[{"level":1,"desc":"설명"}]}]}`,
+	}, nil)
+	e.save(
+		rec("Bufs.json", "/dataList/0/name", "출혈", "流血"),
+		rec("Skills.json", "/dataList/0/levelList/0/desc", "가\n나 3", "甲\n乙3"),
+		rec("Skills.json", "/dataList/0/levelList/1/desc", "가\n나 4", "甲 \n乙4"),
+		rec("Skills.json", "/dataList/1/levelList/0/desc", "설명", "流血 "),
+	)
+	rep := e.run()
+	for code, key := range map[string]string{
+		validate.CodeKeywordLink: units.Key("Skills.json", "/dataList/1/levelList/0/desc"),
+		validate.CodeLevelDiff:   units.Key("Skills.json", "/dataList/0/levelList/1/desc"),
+	} {
+		if rep.Warnings[code] != 1 {
+			t.Errorf("Warnings[%s] = %d, want 1 (all: %v)", code, rep.Warnings[code], rep.Warnings)
+		}
+		if got := rep.WarningSamples[code]; !slices.Equal(got, []string{key}) {
+			t.Errorf("WarningSamples[%s] = %v, want [%s]", code, got, key)
+		}
+	}
+}
+
 // A copy record holds the KR text itself: it is not checked, so a name kept in
 // Hangul adds no warning.
 func TestBuildDoesNotCheckCopyRecords(t *testing.T) {

@@ -650,25 +650,29 @@ func ValidateTermsIn(r *rules.Rules, provisional []rules.Term, file, kr string) 
 // what Submit holds a translation to: the structure of kr, and the wording
 // rules with the glossary terms kr contains in file (see
 // rules.Rules.GlossaryHits), content issues being hard. zh is checked as it
-// is; Submit normalizes a translation first.
+// is; Submit normalizes a translation first. It passes no pointer, so the
+// checks that look at the field are skipped and only the hard issues matter to
+// its callers.
 func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
 	return CheckNewTerms(r, nil, file, kr, zh)
 }
 
 // CheckNewTerms is CheckNew with the provisional terms that occur in kr held
-// to as well, weighed with the glossary terms (TermsIn).
+// to as well, weighed with the glossary terms (TermsIn). Like CheckNew it
+// passes no pointer, so the checks that look at the field are skipped.
 func CheckNewTerms(r *rules.Rules, provisional []rules.Term, file, kr, zh string) []validate.Issue {
-	return checkNewTerms(r.GlossaryHits(file, kr), provisional, file, kr, zh, r.ScriptRenderings(file))
+	return checkNewTerms(r.GlossaryHits(file, kr), provisional, file, "", kr, zh, r.ScriptRenderings(file))
 }
 
 // checkNewTerms is CheckNewTerms on the glossary hits of kr and the script
-// renderings of file, which the caller has worked out.
-func checkNewTerms(hits []rules.Term, provisional []rules.Term, file, kr, zh string, scriptOK []string) []validate.Issue {
+// renderings of file, which the caller has worked out, for the unit at
+// pointer in file ("" when not known: the checks of the field are skipped).
+func checkNewTerms(hits []rules.Term, provisional []rules.Term, file, pointer, kr, zh string, scriptOK []string) []validate.Issue {
 	var terms []validate.Term
 	for _, t := range termsIn(hits, provisional, kr) {
 		terms = append(terms, t.ToValidate())
 	}
-	return validate.Check(kr, zh, validate.Context{Terms: terms, File: file, ScriptOK: scriptOK})
+	return validate.Check(kr, zh, validate.Context{Terms: terms, File: file, Pointer: pointer, ScriptOK: scriptOK})
 }
 
 // ProvisionalKRs returns the KR of the provisional terms that are listed for a
