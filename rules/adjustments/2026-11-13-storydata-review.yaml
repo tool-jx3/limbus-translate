@@ -500,3 +500,9 @@
   zh: 蟲……不對，我可是特地叫了你卡戎！
   reason: StoryData 審查 S0308：KR「벌… 아니, 기껏 카론이라고 불렀더니!」是格里高爾被叫「벌레 양반」後，差點脫口回一句「蟲」，改口說「我可是特地叫了妳卡戎！」（EN「Bu— I called you by your name for once!」）；現行 TW 開頭寫成「但……」，丟了「蟲」，「기껏」（特地）也寫成「一直都」，變成他向來都叫
   rule: one-off
+- key: StoryData/3D309B.json|/dataList/4/content
+  raw: raw-20261112
+  kr_sha: 1ca824746b920a958901781838d00fb8e98d3afaf0549551f3df7fd04a1f5cfc
+  zh: 你這樣，我會忍不住想把你殺了看看的嘛。
+  reason: StoryData 審查 S0309：KR「널 죽여보고 싶잖아.」接在「別那樣瞪著我，時機還沒到……」之後，是「（你那樣）會讓我想殺了你看看嘛」，JP「君を殺してみたくなるでしょ」、EN「You're making me want to kill you」都是肯定語氣；現行 TW「我說不定會想殺了你」多了「說不定」，把克羅默的殺意說成不確定。；譯法由使用者決定
+  rule: one-off
