@@ -382,3 +382,15 @@
   zh: ……請報上您所屬的組織和入境目的。
   reason: StoryData 審查 S0043：同 S303B#56：KR「소속 그룹, 이유」是所屬團體與理由，TW 寫成『身分證明』。；譯法同 S0041（使用者決定）
   rule: one-off
+- key: StoryData/S303B.json|/dataList/102/content
+  raw: raw-20261112
+  kr_sha: 4620f2a22dcfa476a5bd866c73c3cd4b74c9cc43bf8137d7589c7e726d8a6e50
+  zh: 似乎指的就是那些人。非常適合K公司的稱呼。
+  reason: StoryData 審查 S0045：KR「저들을 의미하나 보군요」是「似乎指的就是那些人」，下一句大家就望向浮士德手指的保全；TW「似乎就是如此」漏了「指那些人」，前後接不上。
+  rule: one-off
+- key: StoryData/S308B.json|/dataList/42/content
+  raw: raw-20261112
+  kr_sha: b6812baebd88180713492f7fe58fa6c450a964eceb41b06d3e717072cb2acf7a
+  zh: 噗……索德，你有看到那個時鐘的時針在顫抖嗎？就像要哭了一樣。
+  reason: StoryData 審查 S0049：KR「시침」是時針（JP 作「短針」，EN 為 hand）。TW 寫成『秒針』，錯了。
+  rule: one-off
