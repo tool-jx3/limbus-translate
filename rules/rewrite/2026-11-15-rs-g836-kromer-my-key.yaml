@@ -1,0 +1,8 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G836：3D308B#8 與 3D309I1#8 是同一句 KR。3D308B 多了 KR、JP 都沒有的「而」；統一成 3D309I1#8 的寫法。
+# 使用者同意 2026-11-15。
+reason: '刪去 KR、JP 都沒有的「而」，與 3D309I1#8 一致（規則建議 G836）'
+files: ['StoryData/3D308B.json']
+origins: [paratranz]
+pattern: '^而因為你就是我的鑰匙啊。$'
+replace: '因為你就是我的鑰匙啊。'
+kr_pattern: '^네가 나의 열쇠였기 때문이야\.$'

@@ -1,0 +1,9 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G117：說話者名「이단심문관 1」3D301B 寫「異端審判官1」4 處，S315B 寫「某異端審判官」1 處（照 EN An Inquisitor 意譯）。
+# 照 KR 編號，統一成「異端審判官1」。
+# 使用者同意 2026-11-15。
+reason: '「이단심문관 1」照 KR 編號統一寫「異端審判官1」（規則建議 G117）'
+files: ['StoryData/S315B.json']
+origins: [paratranz]
+pattern: '^某異端審判官$'
+replace: '異端審判官1'
+kr_pattern: '^이단심문관 1$'
