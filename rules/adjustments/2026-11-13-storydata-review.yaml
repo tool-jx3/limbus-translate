@@ -406,3 +406,21 @@
   zh: <你說什麼？>
   reason: StoryData 審查 S0052：KR「뭐라고?」是『什麼？／你說什麼？』（EN <What?>），TW 寫成『為什麼？』，問的內容不同。
   rule: one-off
+- key: StoryData/S313A.json|/dataList/28/content
+  raw: raw-20261112
+  kr_sha: 2803252253bd57e458ef927e2dec652b0dedbd2edd2398ddbdcda2831df8b907
+  zh: ……辛克萊，是你的鄰居們嗎？
+  reason: StoryData 審查 S0053：KR「이웃들이야?」是問『是你的鄰居們嗎？』，TW 寫成『你認識他？』，漏掉『鄰居』，且從複數變單數（看的是多顆義體頭）。
+  rule: one-off
+- key: StoryData/S313A.json|/dataList/37/content
+  raw: raw-20261112
+  kr_sha: c288cca03e094fa817fc7eaf0ce90564f750b607361db9f8ec892a0175e7ac57
+  zh: 聖善夜……
+  reason: StoryData 審查 S0054：KR「거룩한 밤」（Holy night，JP『聖なる夜』）是《平安夜》歌詞（上一句 TW 作『平安……』，對應 고요한 밤）。TW 寫成『午夜中……』，與 KR 不符。
+  rule: one-off
+- key: StoryData/S320B.json|/dataList/7/content
+  raw: raw-20261112
+  kr_sha: f2083cd90c6cb33aaf27dc807fdeef1bc51cdb5d7151bf124dddb9634494e0e3
+  zh: 哈？那你是怎麼知道要帶我們來地下室的？
+  reason: StoryData 審查 S0057：KR「그럼 우리를 어떻게 알고 지하실로 안내한 건데?」是「那你是怎麼知道要帶我們到地下室的？」（어떻게 알고＝憑什麼知道），EN「how'd you know we oughta go to the basement」、JP「何を頼りに」也一樣；TW「你為啥要帶我們來地下室」問的是理由，不是「怎麼知道」。辛克萊接
+  rule: one-off
