@@ -8,7 +8,7 @@
   UI.Utility.TMProStringMatcher.GetSkillTagMatchedString               [標籤] 的處理（只重現對比對有影響的部分）
 
 用法：
-  python3 -I kwsim.py link  <語言資料夾> <檔名前綴> '文字'        列出這段文字裡會被連結的名稱
+  python3 -I kwsim.py link  <語言資料夾> <檔名前綴> '文字'        列出這段文字裡會被連結的名稱（以技能、被動文字的方式處理）
   python3 -I kwsim.py diff  <KR資料夾> <譯文資料夾>               逐欄位比較 KR 與譯文產生的連結
 
   例：python3 -I kwsim.py link .work/tw/LimbusCompany_Data/Lang/zh-TW '' '施加1～2層易損 '
@@ -154,8 +154,10 @@ def units(path):
 
 
 # 會經過關鍵字處理的檔案與欄位（見報告 03-keywords.md 的表）
-FILES = re.compile(r"^(Skills|Passive|EGOgift)")
-FIELDS = re.compile(r"/(desc|summary|simpleDesc)$")
+FILES = re.compile(r"^(Skills|Passive|EGOgift|PanicInfo)")
+FIELDS = re.compile(r"/(desc|summary|simpleDesc|lowMoraleDescription|panicDescription)$")
+# 只有連結處理、沒有標籤處理的檔案：[TabExplain] 與技能標籤不會被換掉
+NO_TAG_PASS = re.compile(r"^(EGOgift|PanicInfo)")
 
 
 def diff(kr_dir, tw_dir):
@@ -172,7 +174,8 @@ def diff(kr_dir, tw_dir):
             if k is None or not FIELDS.search(p):
                 continue
             n += 1
-            ki, ti = set(kr.link_ids(k)), set(tw.link_ids(t))
+            tag = not NO_TAG_PASS.match(b)
+            ki, ti = set(kr.link_ids(k, tag)), set(tw.link_ids(t, tag))
             for i in sorted(ti - ki):
                 extra += 1
                 print("多出\t%s|%s\t%s\t%s" % (b, p, i, tw.buf[i].get("name")))
