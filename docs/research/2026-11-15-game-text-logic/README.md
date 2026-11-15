@@ -8,7 +8,7 @@
 | [02-tags-ruby.md](02-tags-ruby.md) | `<ruby>` 的語法與能用的位置；其他標籤；同步等級比較 |
 | [03-keywords.md](03-keywords.md) | 關鍵字的觸發規則；`[標籤]`、`<noparse>`、`[TabExplain]`、`excludeAutoLink`；哪些欄位會處理 |
 | [04-other.md](04-other.md) | 佔位符、選擇事件分頁、名稱、結構欄位、換行等其他注意事項 |
-| [method/](method/README.md) | 怎麼讀出來的；`kwsim.py` 是關鍵字比對的重現腳本 |
+| [method/](method/README.md) | 怎麼讀出來的，以及解密、反編譯、分析用的腳本；`kwsim.py` 是關鍵字比對的重現腳本，`packcheck.py` 是結構比對 |
 
 ## 四個問題的短答
 
