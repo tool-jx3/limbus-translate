@@ -155,6 +155,11 @@ func checkGame(kr, zh string, ctx Context) []Issue {
 	if hasWrongRuby(zh) {
 		add(CodeRubyForm, "ruby is not written <ruby=…>…</ruby> in lower case; by the game's code only that form is converted")
 	}
+	if known && ctx.Game != nil && inField(fam, field, keywordScope) {
+		if links := ctx.Game.unnamedLinks(kr, zh, fam); len(links) > 0 {
+			add(CodeKeywordLink, "by the game's code these words are linked to states KR does not name: %s", strings.Join(links, ", "))
+		}
+	}
 	return issues
 }
 
