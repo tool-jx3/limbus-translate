@@ -394,3 +394,9 @@
   zh: 噗……索德，你有看到那個時鐘的時針在顫抖嗎？就像要哭了一樣。
   reason: StoryData 審查 S0049：KR「시침」是時針（JP 作「短針」，EN 為 hand）。TW 寫成『秒針』，錯了。
   rule: one-off
+- key: StoryData/S311B.json|/dataList/12/content
+  raw: raw-20261112
+  kr_sha: 593e345f30eafb02e54b560c47c01bbc53416e2ace669a812305e790ba3908dd
+  zh: ……他們又來了。原來他們一直都沒有忘記。就這樣，找上門來……
+  reason: StoryData 審查 S0051：KR「그들이 또 온 거예요」是已經來了（過去完成：他們又來了，沒有忘記，這樣找上門來），JP「また来たんです」、EN「They’re back」同。TW 寫成『還會再來』，把已發生變成將發生。；譯法由使用者決定（「-았던 거죠」寫「原來……一直都」）
+  rule: one-off
