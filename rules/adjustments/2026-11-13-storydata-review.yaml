@@ -400,3 +400,9 @@
   zh: ……他們又來了。原來他們一直都沒有忘記。就這樣，找上門來……
   reason: StoryData 審查 S0051：KR「그들이 또 온 거예요」是已經來了（過去完成：他們又來了，沒有忘記，這樣找上門來），JP「また来たんです」、EN「They’re back」同。TW 寫成『還會再來』，把已發生變成將發生。；譯法由使用者決定（「-았던 거죠」寫「原來……一直都」）
   rule: one-off
+- key: StoryData/S311B.json|/dataList/38/content
+  raw: raw-20261112
+  kr_sha: aa020d3433036d3ba08ebf43090467ab0008f81dd5624396830ab3d64037fb8e
+  zh: <你說什麼？>
+  reason: StoryData 審查 S0052：KR「뭐라고?」是『什麼？／你說什麼？』（EN <What?>），TW 寫成『為什麼？』，問的內容不同。
+  rule: one-off
