@@ -376,3 +376,9 @@
   zh: 請報上您所屬的組織和入境目的。
   reason: StoryData 審查 S0041（同句一併修改）：KR「소속 그룹, 이유」＝所屬團體與（入境）理由，後面回答的也是『從邊獄公司來、因公務』。TW 寫成『身分證明和入境目的』，『身分證明』並非『所屬團體』。；譯法由使用者決定（「말씀해주세요」寫「報上」）
   rule: one-off
+- key: StoryData/S303B.json|/dataList/82/content
+  raw: raw-20261112
+  kr_sha: c9f8a7c5d91bddfe90ae5187e6e75c946ba7c7ea0f2f2936a190e1e012403f38
+  zh: ……請報上您所屬的組織和入境目的。
+  reason: StoryData 審查 S0043：同 S303B#56：KR「소속 그룹, 이유」是所屬團體與理由，TW 寫成『身分證明』。；譯法同 S0041（使用者決定）
+  rule: one-off
