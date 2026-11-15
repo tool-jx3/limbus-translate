@@ -430,3 +430,9 @@
   zh: ……執行經理。我建議您今後將確認擊殺作為基礎作戰計畫的一部分。
   reason: StoryData 審查 S0297：KR「확인 사살」是「確認擊殺（補刀確保對方已死）」，JP「とどめを刺す」、EN「confirm that our foes are dead」相同；現行 TW 寫成「確認目標存活」，意思相反（下一刻被認為已死的圭多又出現了）。
   rule: one-off
+- key: StoryData/3D102A.json|/dataList/2/content
+  raw: raw-20261112
+  kr_sha: a1a9b44948454535a488ba004cf5bb3b2cf5be05f46f4b75411bf46758333ef7
+  zh: 彷彿身體已經徹底記住了一般，渾身起了雞皮疙瘩。
+  reason: StoryData 審查 S0298：KR「아예 학습이 된 듯 온몸에는 소름이 돋아난다.」是「彷彿身體已經記住了似的，渾身起雞皮疙瘩」，JP「すっかり体が覚えてしまったようで」相同；現行 TW 照 EN 寫成「一想到他又一次死而復生」，加入原文沒有的原因，並丟掉「身體已經記住（條件反射）」的意思。；譯法由使用者決定
+  rule: one-off
