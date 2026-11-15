@@ -506,3 +506,9 @@
   zh: 你這樣，我會忍不住想把你殺了看看的嘛。
   reason: StoryData 審查 S0309：KR「널 죽여보고 싶잖아.」接在「別那樣瞪著我，時機還沒到……」之後，是「（你那樣）會讓我想殺了你看看嘛」，JP「君を殺してみたくなるでしょ」、EN「You're making me want to kill you」都是肯定語氣；現行 TW「我說不定會想殺了你」多了「說不定」，把克羅默的殺意說成不確定。；譯法由使用者決定
   rule: one-off
+- key: StoryData/3D309I2.json|/dataList/15/content
+  raw: raw-20261112
+  kr_sha: 5b50f3aa2456c4015dcecbae2589dc29ec5b53a80e6e08cf9eb5554ba3a6c30b
+  zh: 填滿血肉，流淌鮮血！讓最像人類的東西每一刻都不斷增加！
+  reason: StoryData 審查 S0310：KR「살점을 채우고, 피를 쏟고! 가장 인간다운 것을 매 순간 늘려가면서!」是「填滿血肉，傾灑鮮血！每一刻都讓最像人的東西不斷增加！」，JP「肉を満たし」、EN「Bloat the flesh」相同；現行 TW「剝離肉體」方向相反，後半「其每一刻都在變得更像人類」也不是原意。
+  rule: one-off
