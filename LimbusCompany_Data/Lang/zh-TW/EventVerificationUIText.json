@@ -2,15 +2,15 @@
   "dataList": [
     {
       "id": "event_verification_btn",
-      "content": "Project Moon 10周年驗證"
+      "content": "Project Moon 10週年通行證驗證"
     },
     {
       "id": "event_verification_popup_title",
-      "content": "Project Moon 10周年驗證"
+      "content": "Project Moon 10週年通行證驗證"
     },
     {
       "id": "event_verification_popup_desc",
-      "content": "請向會場的工作人員出示此畫面。\n由工作人員輸入驗證碼。\n\n<b><color=#990000>請經理注意，如果您自行完成了此帳戶的驗證，則無法再次於活動現場進行驗證。\n這代表您將無法在現場領取入場手環，也無法進入公演會場。</color></b>"
+      "content": "請向會場的工作人員出示此畫面。\n由工作人員輸入驗證碼。\n\n<b><color=#990000>請經理注意，如果您自行完成了此帳號的驗證，則無法再次於活動現場進行驗證。\n這代表您將無法在現場領取入場手環，也無法進入公演會場。</color></b>"
     },
     {
       "id": "event_verification_authenticate_btn",

@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261112",
   "raw_token": "l20261112_5pAcdxbyP1RC08yIrdPw",
-  "rules_commit": "d183740168907053d3a04bb2ec245a67b5eebae0",
-  "built_at": "2026-11-14T00:59:45Z",
+  "rules_commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c",
+  "built_at": "2026-11-15T13:21:03Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,15 +10,15 @@
   },
   "notes_seen": 1058,
   "zips": {
-    "zh-TW_complete_raw-20261112.zip": "8493fa13e04c2c2ce176e562283d038e7dbf2fd0eeeb4aa4249b52271a8f557f",
-    "zh-TW_text_raw-20261112.zip": "fbbb1c7727f7857b247399fb340ba200150bbaab7363b346c7c5474faac92854"
+    "zh-TW_complete_raw-20261112.zip": "e95332e2464bf91a3b043c8d8ee33b558ef1ffb7d852ffc6b9b628965de6df96",
+    "zh-TW_text_raw-20261112.zip": "34447cfee21bf0058043bb63e9218e6dd0e80a67e2609c5fd988d2b7f35362fe"
   },
   "report": {
     "origins": {
       "claude": 19833,
       "copy": 91934,
-      "human": 162,
-      "paratranz": 163920
+      "human": 193,
+      "paratranz": 163889
     },
     "pending": 0,
     "needs_review": 0,
@@ -28,11 +28,17 @@
     "field_rule_override": 0,
     "warnings": {
       "ascii-ellipsis": 13,
+      "bracket-text": 4,
+      "bullet-count": 2,
       "curly-quotes": 4,
       "forbidden-term": 3,
       "halfwidth-punct": 9,
       "kana": 7,
+      "keyword-link": 130,
       "length-ratio": 2,
+      "level-diff": 61,
+      "newline-space": 9,
+      "page-count": 5,
       "term-missing": 798
     },
     "missing_glyphs": [],
@@ -49,6 +55,16 @@
         "StoryData/E091X.json|/dataList/33/content",
         "StoryData/E091X.json|/dataList/49/content",
         "StoryData/P10414.json|/dataList/50/content"
+      ],
+      "bracket-text": [
+        "Passives-BossRaid.json|/dataList/11/desc",
+        "Passives-BossRaid.json|/dataList/18/desc",
+        "Passives_Abnormality-exme.json|/dataList/15/desc",
+        "Passives_Abnormality-exme.json|/dataList/9/desc"
+      ],
+      "bullet-count": [
+        "StoryTheaterDanteNoteDetail.json|/dataList/10/desc",
+        "StoryTheaterDanteNoteDetail.json|/dataList/5/desc"
       ],
       "curly-quotes": [
         "Skills_personality-01.json|/dataList/43/levelList/0/desc",
@@ -81,9 +97,51 @@
         "Skills_Abnormality-a1c10p3.json|/dataList/55/levelList/0/desc",
         "TutorialRenewalDesc.json|/dataList/70/content"
       ],
+      "keyword-link": [
+        "EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/38/desc",
+        "EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/42/desc",
+        "EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/43/desc",
+        "EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/54/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon-StoryTheme.json|/dataList/6/desc",
+        "EGOgift_MirrorDungeon-StoryTheme.json|/dataList/6/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon-StoryTheme.json|/dataList/9/desc",
+        "EGOgift_MirrorDungeon-StoryTheme.json|/dataList/9/simpleDesc/0/simpleDesc",
+        "EGOgift_MirrorDungeon-mowe.json|/dataList/4/desc",
+        "EGOgift_MirrorDungeon.json|/dataList/301/desc"
+      ],
       "length-ratio": [
         "BattleKeywords.json|/dataList/98/name",
         "Bufs.json|/dataList/101/name"
+      ],
+      "level-diff": [
+        "Skills.json|/dataList/9/levelList/1/desc",
+        "Skills.json|/dataList/9/levelList/2/desc",
+        "Skills_Assist.json|/dataList/0/levelList/1/desc",
+        "Skills_Assist.json|/dataList/1/levelList/1/desc",
+        "Skills_Assist.json|/dataList/2/levelList/1/desc",
+        "Skills_Ego_Personality-01.json|/dataList/3/levelList/1/desc",
+        "Skills_Ego_Personality-01.json|/dataList/4/levelList/2/desc",
+        "Skills_Ego_Personality-02.json|/dataList/2/levelList/1/desc",
+        "Skills_Ego_Personality-03.json|/dataList/9/levelList/2/desc",
+        "Skills_Ego_Personality-04.json|/dataList/8/levelList/2/desc"
+      ],
+      "newline-space": [
+        "Personalities.json|/dataList/137/title",
+        "Personalities.json|/dataList/160/title",
+        "Personalities.json|/dataList/167/title",
+        "Personalities.json|/dataList/187/title",
+        "Personalities.json|/dataList/188/title",
+        "Personalities.json|/dataList/19/title",
+        "Personalities.json|/dataList/193/title",
+        "Personalities.json|/dataList/29/title",
+        "Personalities.json|/dataList/57/title"
+      ],
+      "page-count": [
+        "AbEvents_Mirror.json|/dataList/50/successDesc/0",
+        "AbEvents_Mirror.json|/dataList/52/successDesc/0",
+        "AbEvents_Refraction2.json|/dataList/0/failureDesc/0",
+        "ActionEvents.json|/dataList/16/options/0/result/0",
+        "ActionEvents_Mirror.json|/dataList/29/options/2/result/0"
       ],
       "term-missing": [
         "AbEvents-a1c5p3.json|/dataList/9/successDesc/0",
@@ -480,8 +538,8 @@
     "shown": {
       "claude": 19833,
       "copy": 91934,
-      "human": 162,
-      "paratranz": 163920
+      "human": 193,
+      "paratranz": 163889
     },
     "misaligned": [
       {
@@ -1305,24 +1363,6 @@
       "counts": [
         2,
         6
-      ],
-      "units": 8
-    },
-    {
-      "family": "story-main",
-      "field": "teller",
-      "kr": "이단심문관 2",
-      "zh": [
-        "異端審判官2",
-        "一旁的異端審判官"
-      ],
-      "keys": [
-        "StoryData/3D301B.json|/dataList/19/teller",
-        "StoryData/S315B.json|/dataList/4/teller"
-      ],
-      "counts": [
-        4,
-        4
       ],
       "units": 8
     },
@@ -2749,24 +2789,6 @@
       "units": 5
     },
     {
-      "family": "story-main",
-      "field": "teller",
-      "kr": "이단심문관 1",
-      "zh": [
-        "異端審判官1",
-        "某異端審判官"
-      ],
-      "keys": [
-        "StoryData/3D301B.json|/dataList/18/teller",
-        "StoryData/S315B.json|/dataList/3/teller"
-      ],
-      "counts": [
-        4,
-        1
-      ],
-      "units": 5
-    },
-    {
       "family": "ui",
       "field": "content",
       "kr": "[보상 교환] 페이지에서 보상을 수령할 수 있는 기간이 표시됩니다.",
@@ -3740,24 +3762,6 @@
       "keys": [
         "StoryData/E605B.json|/dataList/7/teller",
         "StoryData/E605B.json|/dataList/23/teller"
-      ],
-      "counts": [
-        3,
-        1
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-main",
-      "field": "place",
-      "kr": "칼프 마을 광장",
-      "zh": [
-        "卡爾夫鎮 廣場",
-        "卡爾夫鎮 廣場 "
-      ],
-      "keys": [
-        "StoryData/S313A.json|/dataList/0/place",
-        "StoryData/S316B.json|/dataList/0/place"
       ],
       "counts": [
         3,
@@ -9825,24 +9829,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "그건 말이지. 이미 이곳을 발견했기 때문도, 열쇠를 복사했기 때문도 아냐.",
-      "zh": [
-        "那個啊。既不是因為我已經找到了這裡，也不是因為我複製了鑰匙。",
-        "那個啊。既不是因為我已經找到了這裡，也不是因為我打了備用鑰匙。"
-      ],
-      "keys": [
-        "StoryData/3D308B.json|/dataList/7/content",
-        "StoryData/3D309I1.json|/dataList/7/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "그렇게 필사적으로 나를 떠나서, 어디로 가려는 거야?",
       "zh": [
         "你這麼拚命地離開我，是想去哪裡？",
@@ -9915,24 +9901,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "그렇지만 크로머는 아직도 의기양양한 채로, 사형선고라도 내리듯 손을 뻗어 싱클레어의 코트 안주머니를 뒤진다.",
-      "zh": [
-        "但是克羅默依舊得意洋洋，伸出手在辛克萊的外套口袋中摸索著，彷彿在宣佈死刑一般。",
-        "但是克羅默依舊得意洋洋，伸出手在辛克萊的外套內袋中摸索著，彷彿在宣布死刑一般。"
-      ],
-      "keys": [
-        "StoryData/3D308B.json|/dataList/1/content",
-        "StoryData/3D309I1.json|/dataList/1/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "그중에서 한 아이는… 사람의 모습을 했지만, ■■ ■■ ■…",
       "zh": [
         "其中一個孩子……雖然有著人的模樣，卻■■ ■■ ■……",
@@ -9977,24 +9945,6 @@
       "keys": [
         "StoryData/S1039I.json|/dataList/30/content",
         "StoryData/S1040A.json|/dataList/1/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "나는 말이지, 벌어질 수많은 미래를 들여다보는 방법을 알고 있어.",
-      "zh": [
-        "我啊，可是知道某種能夠窺視無窮可能的未來的方法。",
-        "我啊，知道某種能夠窺視無窮可能的未來的方法。"
-      ],
-      "keys": [
-        "StoryData/3D308B.json|/dataList/9/content",
-        "StoryData/3D309I1.json|/dataList/9/content"
       ],
       "counts": [
         1,
@@ -10121,24 +10071,6 @@
       "keys": [
         "StoryData/S1039I2.json|/dataList/64/content",
         "StoryData/S1041B.json|/dataList/64/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "네가 나의 열쇠였기 때문이야.",
-      "zh": [
-        "而因為你就是我的鑰匙啊。",
-        "因為你就是我的鑰匙啊。"
-      ],
-      "keys": [
-        "StoryData/3D308B.json|/dataList/8/content",
-        "StoryData/3D309I1.json|/dataList/8/content"
       ],
       "counts": [
         1,
@@ -10391,24 +10323,6 @@
       "keys": [
         "StoryData/S1039I2.json|/dataList/27/content",
         "StoryData/S1041B.json|/dataList/27/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "싱클레어, 내가 왜 지하실 열쇠를 순순히 돌려줬는지 알아?",
-      "zh": [
-        "辛克萊，知道為什麼我老實地將地下室的鑰匙還給你了嗎？",
-        "辛克萊，知道為什麼我老實地將地下室的鑰匙還給你嗎？"
-      ],
-      "keys": [
-        "StoryData/3D308B.json|/dataList/6/content",
-        "StoryData/3D309I1.json|/dataList/6/content"
       ],
       "counts": [
         1,

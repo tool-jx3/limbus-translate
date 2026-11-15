@@ -1,0 +1,903 @@
+{
+  "tag": "zh-TW-20261112.5",
+  "prev_tag": "zh-TW-20261112.4",
+  "released_at": "2026-11-15T13:21:42Z",
+  "prev_released_at": "2026-11-14T01:00:28Z",
+  "raw_tag": "raw-20261112",
+  "prev_raw_tag": "raw-20261112",
+  "rules_commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c",
+  "prev_rules_commit": "d183740168907053d3a04bb2ec245a67b5eebae0",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 43
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "EventVerificationUIText.json",
+      "field": "content",
+      "ptr": "/dataList/0/content",
+      "kind": "zh-changed",
+      "new_kr": "프로젝트문 10주년 패스 인증",
+      "old_zh": "Project Moon 10周年驗證",
+      "new_zh": "Project Moon 10週年通行證驗證",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-15-event-verification.yaml",
+          "reason": "「프로젝트문 10주년 패스 인증」補上漏譯的 패스（通行證），「周年」寫臺灣多數的「週年」（現有 週年 73 處、周年 16 處）"
+        }
+      ]
+    },
+    {
+      "file": "EventVerificationUIText.json",
+      "field": "content",
+      "ptr": "/dataList/1/content",
+      "kind": "zh-changed",
+      "new_kr": "프로젝트문 10주년 패스 인증",
+      "old_zh": "Project Moon 10周年驗證",
+      "new_zh": "Project Moon 10週年通行證驗證",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-15-event-verification.yaml",
+          "reason": "「프로젝트문 10주년 패스 인증」補上漏譯的 패스（通行證），「周年」寫臺灣多數的「週年」（現有 週年 73 處、周年 16 處）"
+        }
+      ]
+    },
+    {
+      "file": "EventVerificationUIText.json",
+      "field": "content",
+      "ptr": "/dataList/2/content",
+      "kind": "zh-changed",
+      "new_kr": "현장 스태프분에게 이 화면을 보여 주세요.\n인증 코드는 스태프분이 직접 입력합니다.\n\n<b><color=#990000>관리자께서 임의로 인증한 계정은 재인증할 수 없어\n현장에서 입장 팔찌 교환 및 공연장 입장이 불가합니다.</color></b>",
+      "old_zh": "請向會場的工作人員出示此畫面。\n由工作人員輸入驗證碼。\n\n<b><color=#990000>請經理注意，如果您自行完成了此帳戶的驗證，則無法再次於活動現場進行驗證。\n這代表您將無法在現場領取入場手環，也無法進入公演會場。</color></b>",
+      "new_zh": "請向會場的工作人員出示此畫面。\n由工作人員輸入驗證碼。\n\n<b><color=#990000>請經理注意，如果您自行完成了此帳號的驗證，則無法再次於活動現場進行驗證。\n這代表您將無法在現場領取入場手環，也無法進入公演會場。</color></b>",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-15-event-verification.yaml",
+          "reason": "「계정」寫「帳號」，與同檔 #7、#9 一致（現有 帳號 75 處、帳戶 38 處）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D102A.json",
+      "field": "content",
+      "ptr": "/dataList/1/content",
+      "kind": "zh-changed",
+      "new_kr": "…관리자님. 앞으로는 확인 사살을 기본 전투 계획에 넣는 것이 어떠신지 건의드립니다.",
+      "old_zh": "……執行經理。我建議您今後將確認目標存活作為基礎作戰計畫的一部分。",
+      "new_zh": "……執行經理。我建議您今後將確認擊殺作為基礎作戰計畫的一部分。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0297：KR「확인 사살」是「確認擊殺（補刀確保對方已死）」，JP「とどめを刺す」、EN「confirm that our foes are dead」相同；現行 TW 寫成「確認目標存活」，意思相反（下一刻被認為已死的圭多又出現了）。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D102A.json",
+      "field": "content",
+      "ptr": "/dataList/2/content",
+      "kind": "zh-changed",
+      "new_kr": "아예 학습이 된 듯 온몸에는 소름이 돋아난다.",
+      "old_zh": " 一想到他又一次死而復生，我便覺得毛骨悚然。",
+      "new_zh": "彷彿身體已經徹底記住了一般，渾身起了雞皮疙瘩。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0298：KR「아예 학습이 된 듯 온몸에는 소름이 돋아난다.」是「彷彿身體已經記住了似的，渾身起雞皮疙瘩」，JP「すっかり体が覚えてしまったようで」相同；現行 TW 照 EN 寫成「一想到他又一次死而復生」，加入原文沒有的原因，並丟掉「身體已經記住（條件反射）」的意思。；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D102A.json",
+      "field": "content",
+      "ptr": "/dataList/75/content",
+      "kind": "zh-changed",
+      "new_kr": "아… 이거 진짜 구질구질한 장면인 거 알아요? 기껏 멋있는 구도가 잡혔잖아요.",
+      "old_zh": " 啊……再讓我說下去就太囉嗦了哦？我可是好不容易才說了句帥氣的臺詞。",
+      "new_zh": "啊……你們知道這場面有多難看嗎？我好不容易才營造出帥氣的畫面耶。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0299：KR「이거 진짜 구질구질한 장면인 거 알아요? 기껏 멋있는 구도가 잡혔잖아요.」是「你們知道這場面有多難看嗎？好不容易才有了帥氣的畫面」，JP「ぐだぐだになってます」「カッコイイシーン」相同；現行 TW 寫成「再讓我說下去就太囉嗦了」「說了句帥氣的臺詞」，把「場面拖泥帶水」變成「自己話太多」，「構圖」也變成「臺"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D301B.json",
+      "field": "content",
+      "ptr": "/dataList/23/content",
+      "kind": "zh-changed",
+      "new_kr": "가서 죽어라! 그걸 두려워하지 마라!",
+      "old_zh": "去吧！殺了他們！無須畏懼死亡！",
+      "new_zh": "去赴死吧！無須畏懼死亡！",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0300：KR「가서 죽어라! 그걸 두려워하지 마라!」是「去赴死吧！不要畏懼它（死亡）！」，JP「行って死ね！」、EN「Go forth and die!」相同，下一句接「有黃金祭品就能無限復活」；現行 TW 寫成「去吧！殺了他們！」，變成要人去殺敵。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D301B.json",
+      "field": "content",
+      "ptr": "/dataList/37/content",
+      "kind": "zh-changed",
+      "new_kr": "조금만 가까이서 보면, 떠들썩한 시간이 시샘과 과시, 우월감과 간교 등으로\n뒤섞여 있다는걸.",
+      "old_zh": "只要再靠近些看，和諧的交流就會撕下表皮，暴露出充滿嫉妒、虛榮、傲慢和算計的本質。",
+      "new_zh": "只要再靠近些看，就會發現那段喧鬧的時間其實是由嫉妒、炫耀、優越感與狡詐\n混雜而成的。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0301：KR「떠들썩한 시간이 시샘과 과시, 우월감과 간교 등으로／뒤섞여 있다는걸」是「（大人不知道）那段喧鬧的時間裡混雜著嫉妒、炫耀、優越感與狡詐」，JP「騒がしい時間に妬みと誇示…が入り交じっている」相同；現行 TW 把「喧鬧的時間」寫成「和諧的交流」，又加了「撕下表皮、暴露本質」，也少了 KR 的換行。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D301B.json",
+      "field": "content",
+      "ptr": "/dataList/39/content",
+      "kind": "zh-changed",
+      "new_kr": "옆 반의 라훌은 아버지가 직접 양팔 시술을 해주신대. 심지어 아직 제대로 공개한 적도 없는 최신 기술 이래지?",
+      "old_zh": "我聽隔壁班的拉爾夫說，他父親會親自給他做雙臂手術。甚至還會用上沒公開的最新技術來著？",
+      "new_zh": "隔壁班的拉胡爾，聽說他父親會親自給他做雙臂手術。甚至還會用上沒公開的最新技術來著？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0302：KR「라훌」是 Rahul（JP ラーフル、EN Rahul），中文應寫「拉胡爾」；現行 TW 寫成「拉爾夫」（Ralph），是另一個名字。另外 KR「해주신대」只是「聽說」，沒說消息來自拉胡爾本人，TW「我聽隔壁班的拉爾夫說」把來源寫成他本人。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D301B.json",
+      "field": "content",
+      "ptr": "/dataList/42/content",
+      "kind": "zh-changed",
+      "new_kr": "너는 뭐 없어? 라면서 쳐다보는 눈동자들은,\n금방이라도 비웃음과 멸시로 바뀔 것 같았다.",
+      "old_zh": "我能說些什麼呢？他們看向我的期待的眼神隨時都可能轉為嘲笑和輕蔑。",
+      "new_zh": "「你沒有什麼要說的嗎？」那些看著我的眼神，\n彷彿隨時都會轉為嘲笑與輕蔑。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0303：KR「너는 뭐 없어? 라면서 쳐다보는 눈동자들은」是同學們用眼神問「你呢，沒什麼可說的嗎？」，JP「君は何かない？と問いかけながら見つめてくる瞳」相同，#45「뭐 없냐는 말」也回指這句；現行 TW 照 EN 寫成辛克萊自問「我能說些什麼呢？」，指涉改變，也少了 KR 的換行。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D301B.json",
+      "field": "content",
+      "ptr": "/dataList/54/content",
+      "kind": "zh-changed",
+      "new_kr": "P사면 그 날개 말하는 거야?! 와… 완전 부럽다.",
+      "old_zh": "P公司？你是說「世界之翼」？！哇……太羨慕了。",
+      "new_zh": "P公司？你是說那片翼嗎？！哇……太羨慕了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0304：KR「그 날개」是「那片翼」（都市的巨企），JP「あの翼」、EN「that Wing」相同，詞彙表 날개＝「翼」（量詞「片」）；現行 TW 寫成「世界之翼」，是不存在的名稱。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D301B.json",
+      "field": "content",
+      "ptr": "/dataList/56/content",
+      "kind": "zh-changed",
+      "new_kr": "우쭐함. 그건 꽤 달콤한 맛이었다.",
+      "old_zh": "我感到心神恍惚，受到簇擁喜愛的感覺原來是如此甘美的嗎？",
+      "new_zh": "自鳴得意。那是相當甜美的滋味。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0305：KR「우쭐함. 그건 꽤 달콤한 맛이었다.」是「得意。那是相當甜美的滋味。」，JP「自惚れ。それはとても甘かった。」相同，是陳述句；現行 TW 寫成「我感到心神恍惚」，並改成疑問句、加了「受到簇擁喜愛」。；譯法由使用者決定（「우쭐함」寫「自鳴得意」）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D301B.json",
+      "field": "content",
+      "ptr": "/dataList/75/content",
+      "kind": "zh-changed",
+      "new_kr": "경쾌한 휘파람 소리와 함께 책상 위로 조그만 그늘이 진다.",
+      "old_zh": "伴隨著奇怪的口哨聲，一個嬌小的身影出現在我的課桌前。",
+      "new_zh": "伴隨著輕快的口哨聲，一個嬌小的身影出現在我的課桌前。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0306：KR「경쾌한 휘파람 소리」是「輕快的口哨聲」，JP「軽快な口笛の音」相同；現行 TW 寫成「奇怪的口哨聲」，語感不同。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D306B.json",
+      "field": "content",
+      "ptr": "/dataList/0/content",
+      "kind": "zh-changed",
+      "new_kr": "그날은 크리스마스이브로, 온 마을에 종소리와 기쁨으로 가득 차 있을 때였다.",
+      "old_zh": "那天是聖誕節，鎮上充斥著鐘聲與喜悅。",
+      "new_zh": "那天是聖誕夜，鎮上充斥著鐘聲與喜悅。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0307：KR「크리스마스이브」是聖誕夜，JP「クリスマスイブ」、EN「Christmas Eve」相同，下一句也接「성야（聖夜）」；現行 TW 寫成「聖誕節」，把日子寫錯一天。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D308B.json",
+      "field": "content",
+      "ptr": "/dataList/1/content",
+      "kind": "zh-changed",
+      "new_kr": "그렇지만 크로머는 아직도 의기양양한 채로, 사형선고라도 내리듯 손을 뻗어 싱클레어의 코트 안주머니를 뒤진다.",
+      "old_zh": "但是克羅默依舊得意洋洋，伸出手在辛克萊的外套口袋中摸索著，彷彿在宣佈死刑一般。",
+      "new_zh": "但是克羅默依舊得意洋洋，伸出手在辛克萊的外套內袋中摸索著，彷彿在宣布死刑一般。",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g529-kromer-inner-pocket"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D308B.json",
+      "field": "content",
+      "ptr": "/dataList/6/content",
+      "kind": "zh-changed",
+      "new_kr": "싱클레어, 내가 왜 지하실 열쇠를 순순히 돌려줬는지 알아?",
+      "old_zh": "辛克萊，知道為什麼我老實地將地下室的鑰匙還給你了嗎？",
+      "new_zh": "辛克萊，知道我為什麼那麼乾脆地把地下室的鑰匙還給你嗎？",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g640-kromer-returned-key"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D308B.json",
+      "field": "content",
+      "ptr": "/dataList/7/content",
+      "kind": "zh-changed",
+      "new_kr": "그건 말이지. 이미 이곳을 발견했기 때문도, 열쇠를 복사했기 때문도 아냐.",
+      "old_zh": "那個啊。既不是因為我已經找到了這裡，也不是因為我複製了鑰匙。",
+      "new_zh": "那個啊。既不是因為我已經找到了這裡，也不是因為我打了備用鑰匙。",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g668-kromer-spare-key"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D308B.json",
+      "field": "content",
+      "ptr": "/dataList/8/content",
+      "kind": "zh-changed",
+      "new_kr": "네가 나의 열쇠였기 때문이야.",
+      "old_zh": "而因為你就是我的鑰匙啊。",
+      "new_zh": "因為你就是我的鑰匙啊。",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g836-kromer-my-key"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D308B.json",
+      "field": "content",
+      "ptr": "/dataList/9/content",
+      "kind": "zh-changed",
+      "new_kr": "나는 말이지, 벌어질 수많은 미래를 들여다보는 방법을 알고 있어.",
+      "old_zh": "我啊，可是知道某種能夠窺視無窮可能的未來的方法。",
+      "new_zh": "我啊，知道某種能夠窺視無窮可能的未來的方法。",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g837-kromer-futures"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D309A.json",
+      "field": "content",
+      "ptr": "/dataList/80/content",
+      "kind": "zh-changed",
+      "new_kr": "벌… 아니, 기껏 카론이라고 불렀더니!",
+      "old_zh": "但……不是，我一直都叫你卡戎的吧！",
+      "new_zh": "蟲……不對，我可是特地叫了你卡戎！",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0308：KR「벌… 아니, 기껏 카론이라고 불렀더니!」是格里高爾被叫「벌레 양반」後，差點脫口回一句「蟲」，改口說「我可是特地叫了妳卡戎！」（EN「Bu— I called you by your name for once!」）；現行 TW 開頭寫成「但……」，丟了「蟲」，「기껏」（特地）也寫成「一直都」，變成他向來都叫"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D309B.json",
+      "field": "content",
+      "ptr": "/dataList/4/content",
+      "kind": "zh-changed",
+      "new_kr": "널 죽여보고 싶잖아.",
+      "old_zh": "我說不定會想殺了你。",
+      "new_zh": "你這樣，我會忍不住想把你殺了看看的嘛。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0309：KR「널 죽여보고 싶잖아.」接在「別那樣瞪著我，時機還沒到……」之後，是「（你那樣）會讓我想殺了你看看嘛」，JP「君を殺してみたくなるでしょ」、EN「You're making me want to kill you」都是肯定語氣；現行 TW「我說不定會想殺了你」多了「說不定」，把克羅默的殺意說成不確定。；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D309I1.json",
+      "field": "content",
+      "ptr": "/dataList/6/content",
+      "kind": "zh-changed",
+      "new_kr": "싱클레어, 내가 왜 지하실 열쇠를 순순히 돌려줬는지 알아?",
+      "old_zh": "辛克萊，知道為什麼我老實地將地下室的鑰匙還給你嗎？",
+      "new_zh": "辛克萊，知道我為什麼那麼乾脆地把地下室的鑰匙還給你嗎？",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g640-kromer-returned-key"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D309I2.json",
+      "field": "content",
+      "ptr": "/dataList/15/content",
+      "kind": "zh-changed",
+      "new_kr": "살점을 채우고, 피를 쏟고! 가장 인간다운 것을 매 순간 늘려가면서!",
+      "old_zh": "剝離肉體，流淌鮮血！其每一刻都在變得更像人類啊！",
+      "new_zh": "填滿血肉，流淌鮮血！讓最像人類的東西每一刻都不斷增加！",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0310：KR「살점을 채우고, 피를 쏟고! 가장 인간다운 것을 매 순간 늘려가면서!」是「填滿血肉，傾灑鮮血！每一刻都讓最像人的東西不斷增加！」，JP「肉を満たし」、EN「Bloat the flesh」相同；現行 TW「剝離肉體」方向相反，後半「其每一刻都在變得更像人類」也不是原意。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/3D309I2.json",
+      "field": "content",
+      "ptr": "/dataList/59/content",
+      "kind": "zh-changed",
+      "new_kr": "세상 후련해 보이는 사람 같기도 했지만 반대로 그가 걸어오는 공기마다 모두를 가라앉게 만드는 것 같기도 했다.",
+      "old_zh": "他看上去宛如領悟了這世間一般，但與此相反，隨著他的靠近，似乎湧現出了一股壓抑的氣息。",
+      "new_zh": "他看起來似乎是個無比輕鬆自在的人，但與此相反，他每走近一步，周遭的空氣又似乎讓所有人都感到越發沉重。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0311：KR「세상 후련해 보이는 사람」的「세상」是加強語氣的副詞（非常、無比），整句是「看起來像個無比暢快的人」，JP「この上なく晴れやかな人」相同；現行 TW 把「세상」讀成「世間」，寫成「宛如領悟了這世間一般」。；譯法由使用者決定（「세상 후련」寫「無比輕鬆自在」，「걸어오는…가라앉게」寫「每走近一步……越發沉重」）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S301B.json",
+      "field": "content",
+      "ptr": "/dataList/39/content",
+      "kind": "zh-changed",
+      "new_kr": "…치, 침 고인다~ 그렇지 않아, 료슈?",
+      "old_zh": "……是、是不是已經口水直流了？對吧，良秀？",
+      "new_zh": "……口、口水都要流出來了～你說是不是，良秀？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0038：KR「…치, 침 고인다~ 그렇지 않아, 료슈?」是羅佳說自己「口、口水都要流出來了～」，再問良秀是不是也一樣；TW「是、是不是已經口水直流了？」變成在問別人是否流口水，主語不清。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S301B.json",
+      "field": "content",
+      "ptr": "/dataList/70/content",
+      "kind": "zh-changed",
+      "new_kr": "히스클리프는 방망이를 부들거리며 파우스트에게로 나아가려 했지만…",
+      "old_zh": "當希斯克利夫揮著球棒，向浮士德走去時……",
+      "new_zh": "希斯克利夫氣得手中的球棒都在顫抖，想要朝浮士德走去，但……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0039：KR 是希斯克利夫「부들거리며（顫抖著）…나아가려 했지만」，即『想要走向浮士德，但是……』，後一句辛克萊嘔吐打斷了他。TW 寫成『揮著球棒走去時……』，把『嘗試／轉折』與『顫抖』都漏掉，變成單純的同時動作。；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S302B.json",
+      "field": "content",
+      "ptr": "/dataList/1/content",
+      "kind": "zh-changed",
+      "new_kr": "그나저나, 아까는 11구 뒷골목으로 간다는 걸 K사라고 잘못 말한 거지?",
+      "old_zh": "順便一提，你說的K公司後巷，就是指11區的後巷吧？",
+      "new_zh": "順便一提，剛才是要去11區後巷，卻說成K公司了吧？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0040：KR：格里高爾問『剛才說要去11區後巷，卻說成K公司了吧？』（把『11區後巷』誤說成『K公司』）。EN 同。TW 寫成『你說的K公司後巷，就是指11區的後巷吧』，變成K公司後巷＝11區後巷，語意完全不同，也看不出『說錯』。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S303B.json",
+      "field": "content",
+      "ptr": "/dataList/56/content",
+      "kind": "zh-changed",
+      "new_kr": "소속 그룹, 이유를 말씀해주세요.",
+      "old_zh": "請提供您的身分證明和入境目的。",
+      "new_zh": "請報上您所屬的組織和入境目的。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0041（同句一併修改）：KR「소속 그룹, 이유」＝所屬團體與（入境）理由，後面回答的也是『從邊獄公司來、因公務』。TW 寫成『身分證明和入境目的』，『身分證明』並非『所屬團體』。；譯法由使用者決定（「말씀해주세요」寫「報上」）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S303B.json",
+      "field": "content",
+      "ptr": "/dataList/75/content",
+      "kind": "zh-changed",
+      "new_kr": "소속 그룹, 이유를 말씀해주세요.",
+      "old_zh": "請提供您的身分證明和入境目的。",
+      "new_zh": "請報上您所屬的組織和入境目的。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0041（同句一併修改）：KR「소속 그룹, 이유」＝所屬團體與（入境）理由，後面回答的也是『從邊獄公司來、因公務』。TW 寫成『身分證明和入境目的』，『身分證明』並非『所屬團體』。；譯法由使用者決定（「말씀해주세요」寫「報上」）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S303B.json",
+      "field": "content",
+      "ptr": "/dataList/82/content",
+      "kind": "zh-changed",
+      "new_kr": "…소속 그룹, 이유를 말씀해주세요.",
+      "old_zh": "……請提供您的身分證明和入境目的。",
+      "new_zh": "……請報上您所屬的組織和入境目的。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0043：同 S303B#56：KR「소속 그룹, 이유」是所屬團體與理由，TW 寫成『身分證明』。；譯法同 S0041（使用者決定）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S303B.json",
+      "field": "content",
+      "ptr": "/dataList/102/content",
+      "kind": "zh-changed",
+      "new_kr": "저들을 의미하나 보군요. K사와 어울리네요.",
+      "old_zh": "似乎就是如此。非常適合K公司的稱呼。",
+      "new_zh": "似乎指的就是那些人。非常適合K公司的稱呼。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0045：KR「저들을 의미하나 보군요」是「似乎指的就是那些人」，下一句大家就望向浮士德手指的保全；TW「似乎就是如此」漏了「指那些人」，前後接不上。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S308B.json",
+      "field": "content",
+      "ptr": "/dataList/42/content",
+      "kind": "zh-changed",
+      "new_kr": "풉… 소드, 저 시계 시침 바르르 떨리는 거 보여? 저러다가 울기라도 하겠어.",
+      "old_zh": "噗……索德，你有看到那個時鐘的秒針在顫抖嗎？就像要哭了一樣。",
+      "new_zh": "噗……索德，你有看到那個時鐘的時針在顫抖嗎？就像要哭了一樣。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0049：KR「시침」是時針（JP 作「短針」，EN 為 hand）。TW 寫成『秒針』，錯了。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S311B.json",
+      "field": "content",
+      "ptr": "/dataList/12/content",
+      "kind": "zh-changed",
+      "new_kr": "…그들이 또 온 거예요. 잊지 않았던 거죠. 그렇게, 찾아와서…",
+      "old_zh": "……他們還會再來的。他們並沒有忘記。就像這樣，他們還會回來找我……",
+      "new_zh": "……他們又來了。原來他們一直都沒有忘記。就這樣，找上門來……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0051：KR「그들이 또 온 거예요」是已經來了（過去完成：他們又來了，沒有忘記，這樣找上門來），JP「また来たんです」、EN「They’re back」同。TW 寫成『還會再來』，把已發生變成將發生。；譯法由使用者決定（「-았던 거죠」寫「原來……一直都」）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S311B.json",
+      "field": "content",
+      "ptr": "/dataList/38/content",
+      "kind": "zh-changed",
+      "new_kr": "<뭐라고?>",
+      "old_zh": "<為什麼？>",
+      "new_zh": "<你說什麼？>",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0052：KR「뭐라고?」是『什麼？／你說什麼？』（EN <What?>），TW 寫成『為什麼？』，問的內容不同。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S313A.json",
+      "field": "content",
+      "ptr": "/dataList/28/content",
+      "kind": "zh-changed",
+      "new_kr": "…싱클레어, 이웃들이야?",
+      "old_zh": "……辛克萊，你認識他？",
+      "new_zh": "……辛克萊，是你的鄰居們嗎？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0053：KR「이웃들이야?」是問『是你的鄰居們嗎？』，TW 寫成『你認識他？』，漏掉『鄰居』，且從複數變單數（看的是多顆義體頭）。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S313A.json",
+      "field": "content",
+      "ptr": "/dataList/37/content",
+      "kind": "zh-changed",
+      "new_kr": "거룩한 밤…",
+      "old_zh": "午夜中……",
+      "new_zh": "聖善夜……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0054：KR「거룩한 밤」（Holy night，JP『聖なる夜』）是《平安夜》歌詞（上一句 TW 作『平安……』，對應 고요한 밤）。TW 寫成『午夜中……』，與 KR 不符。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S315B.json",
+      "field": "teller",
+      "ptr": "/dataList/3/teller",
+      "kind": "zh-changed",
+      "new_kr": "이단심문관 1",
+      "old_zh": "某異端審判官",
+      "new_zh": "異端審判官1",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g117-inquisitor-1"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S315B.json",
+      "field": "teller",
+      "ptr": "/dataList/4/teller",
+      "kind": "zh-changed",
+      "new_kr": "이단심문관 2",
+      "old_zh": "一旁的異端審判官",
+      "new_zh": "異端審判官2",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g116-inquisitor-2"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S315B.json",
+      "field": "teller",
+      "ptr": "/dataList/5/teller",
+      "kind": "zh-changed",
+      "new_kr": "이단심문관 2",
+      "old_zh": "一旁的異端審判官",
+      "new_zh": "異端審判官2",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g116-inquisitor-2"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S315B.json",
+      "field": "teller",
+      "ptr": "/dataList/8/teller",
+      "kind": "zh-changed",
+      "new_kr": "이단심문관 2",
+      "old_zh": "一旁的異端審判官",
+      "new_zh": "異端審判官2",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g116-inquisitor-2"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S315B.json",
+      "field": "teller",
+      "ptr": "/dataList/9/teller",
+      "kind": "zh-changed",
+      "new_kr": "이단심문관 2",
+      "old_zh": "一旁的異端審判官",
+      "new_zh": "異端審判官2",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g116-inquisitor-2"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S316B.json",
+      "field": "place",
+      "ptr": "/dataList/0/place",
+      "kind": "zh-changed",
+      "new_kr": "칼프 마을 광장",
+      "old_zh": "卡爾夫鎮 廣場 ",
+      "new_zh": "卡爾夫鎮 廣場",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-15-rs-g087-karlf-square-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S320B.json",
+      "field": "content",
+      "ptr": "/dataList/7/content",
+      "kind": "zh-changed",
+      "new_kr": "뭐? 그럼 우리를 어떻게 알고 지하실로 안내한 건데?",
+      "old_zh": "哈？那你為啥要帶我們來地下室啊？",
+      "new_zh": "哈？那你是怎麼知道要帶我們來地下室的？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0057：KR「그럼 우리를 어떻게 알고 지하실로 안내한 건데?」是「那你是怎麼知道要帶我們到地下室的？」（어떻게 알고＝憑什麼知道），EN「how'd you know we oughta go to the basement」、JP「何を頼りに」也一樣；TW「你為啥要帶我們來地下室」問的是理由，不是「怎麼知道」。辛克萊接"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-13-storydata-review.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-13-storydata-review.yaml",
+      "path": "rules/adjustments/2026-11-13-storydata-review.yaml",
+      "title": "2026-11-13-storydata-review.yaml",
+      "commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c"
+    },
+    "adjustment:2026-11-15-event-verification.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-15-event-verification.yaml",
+      "path": "rules/adjustments/2026-11-15-event-verification.yaml",
+      "title": "2026-11-15-event-verification.yaml",
+      "commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c"
+    },
+    "rewrite:2026-11-15-rs-g087-karlf-square-space": {
+      "kind": "rewrite",
+      "id": "2026-11-15-rs-g087-karlf-square-space",
+      "path": "rules/rewrite/2026-11-15-rs-g087-karlf-square-space.yaml",
+      "title": "「칼프 마을 광장」刪去譯文尾端的空格（規則建議 G087）",
+      "commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c"
+    },
+    "rewrite:2026-11-15-rs-g116-inquisitor-2": {
+      "kind": "rewrite",
+      "id": "2026-11-15-rs-g116-inquisitor-2",
+      "path": "rules/rewrite/2026-11-15-rs-g116-inquisitor-2.yaml",
+      "title": "「이단심문관 2」照 KR 編號統一寫「異端審判官2」（規則建議 G116）",
+      "commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c"
+    },
+    "rewrite:2026-11-15-rs-g117-inquisitor-1": {
+      "kind": "rewrite",
+      "id": "2026-11-15-rs-g117-inquisitor-1",
+      "path": "rules/rewrite/2026-11-15-rs-g117-inquisitor-1.yaml",
+      "title": "「이단심문관 1」照 KR 編號統一寫「異端審判官1」（規則建議 G117）",
+      "commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c"
+    },
+    "rewrite:2026-11-15-rs-g529-kromer-inner-pocket": {
+      "kind": "rewrite",
+      "id": "2026-11-15-rs-g529-kromer-inner-pocket",
+      "path": "rules/rewrite/2026-11-15-rs-g529-kromer-inner-pocket.yaml",
+      "title": "「안주머니」寫「內袋」、「宣佈」改「宣布」，與 3D309I1#1 一致（規則建議 G529）",
+      "commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c"
+    },
+    "rewrite:2026-11-15-rs-g640-kromer-returned-key": {
+      "kind": "rewrite",
+      "id": "2026-11-15-rs-g640-kromer-returned-key",
+      "path": "rules/rewrite/2026-11-15-rs-g640-kromer-returned-key.yaml",
+      "title": "「순순히 돌려줬는지」寫「那麼乾脆地把…還給你」，3D308B、3D309I1 統一（規則建議 G640）",
+      "commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c"
+    },
+    "rewrite:2026-11-15-rs-g668-kromer-spare-key": {
+      "kind": "rewrite",
+      "id": "2026-11-15-rs-g668-kromer-spare-key",
+      "path": "rules/rewrite/2026-11-15-rs-g668-kromer-spare-key.yaml",
+      "title": "「열쇠를 복사했기」統一寫「打了備用鑰匙」，與 3D309I1#7 一致（規則建議 G668）",
+      "commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c"
+    },
+    "rewrite:2026-11-15-rs-g836-kromer-my-key": {
+      "kind": "rewrite",
+      "id": "2026-11-15-rs-g836-kromer-my-key",
+      "path": "rules/rewrite/2026-11-15-rs-g836-kromer-my-key.yaml",
+      "title": "刪去 KR、JP 都沒有的「而」，與 3D309I1#8 一致（規則建議 G836）",
+      "commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c"
+    },
+    "rewrite:2026-11-15-rs-g837-kromer-futures": {
+      "kind": "rewrite",
+      "id": "2026-11-15-rs-g837-kromer-futures",
+      "path": "rules/rewrite/2026-11-15-rs-g837-kromer-futures.yaml",
+      "title": "刪去 KR、JP 都沒有的「可是」，與 3D309I1#9 一致（規則建議 G837）",
+      "commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c"
+    }
+  }
+}

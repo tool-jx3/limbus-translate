@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261112",
   "prev_raw_tag": "raw-20261105",
-  "rules_commit": "d183740168907053d3a04bb2ec245a67b5eebae0",
+  "rules_commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c",
   "changes": {
     "unchanged": 272865,
     "moved": 2138,
@@ -82,23 +82,43 @@
   "copy": 0,
   "reused": 0,
   "adjustments": {
-    "applied": 162,
+    "applied": 193,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
   "rewrite_applied": [
     {
-      "id": "2026-11-14-rs-g765-iron-union-warming-up",
+      "id": "2026-11-15-rs-g087-karlf-square-space",
+      "units": 1
+    },
+    {
+      "id": "2026-11-15-rs-g116-inquisitor-2",
+      "units": 4
+    },
+    {
+      "id": "2026-11-15-rs-g117-inquisitor-1",
+      "units": 1
+    },
+    {
+      "id": "2026-11-15-rs-g529-kromer-inner-pocket",
+      "units": 1
+    },
+    {
+      "id": "2026-11-15-rs-g640-kromer-returned-key",
       "units": 2
     },
     {
-      "id": "2026-11-14-rs-g766-iron-union-threatening",
-      "units": 3
+      "id": "2026-11-15-rs-g668-kromer-spare-key",
+      "units": 1
     },
     {
-      "id": "2026-11-14-rs-g796-vulgar-veteran",
-      "units": 9
+      "id": "2026-11-15-rs-g836-kromer-my-key",
+      "units": 1
+    },
+    {
+      "id": "2026-11-15-rs-g837-kromer-futures",
+      "units": 1
     }
   ],
   "frozen_changed": [],
