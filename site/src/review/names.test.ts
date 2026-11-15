@@ -15,6 +15,7 @@ describe('names', () => {
       const info = warningInfo(code, 'message of the check')
       expect(info.name).not.toBe(code)
       expect(info.desc).not.toBe('message of the check')
+      if (code !== 'stray-brace' && code !== 'bullet-count') expect(info.desc).toContain('依遊戲程式推算')
     }
   })
 })

@@ -53,6 +53,8 @@ func TestGameChecksPerUnit(t *testing.T) {
 		{"brackets outside the processed fields", "Bufs.json", "/dataList/0/desc", "설명", "說明[肉]", nil},
 		{"fewer pages", "AbEvents.json", "/dataList/0/successDesc/0", "가\n\n나\n\n다", "甲\n\n乙", []string{CodePageCount}},
 		{"more pages", "ActionEvents.json", "/dataList/0/options/1/result/0", "가", "甲\n\n乙", []string{CodePageCount}},
+		{"KR Error counts no page", "AbEvents.json", "/dataList/0/eventDesc", "Error", "甲", []string{CodePageCount}},
+		{"both one page", "AbEvents.json", "/dataList/0/eventDesc", "가", "甲", nil},
 		{"same pages", "AbEvents.json", "/dataList/0/eventDesc", "가\n\n나", "甲\n\n乙", nil},
 		{"only result/0 is paged", "ActionEvents.json", "/dataList/0/options/1/result/1", "가", "甲\n\n乙", nil},
 		{"not AbEventsResultLog", "AbEventsResultLog.json", "/dataList/0/content", "가", "甲\n\n乙", nil},

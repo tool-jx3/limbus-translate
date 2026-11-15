@@ -650,13 +650,16 @@ func ValidateTermsIn(r *rules.Rules, provisional []rules.Term, file, kr string) 
 // what Submit holds a translation to: the structure of kr, and the wording
 // rules with the glossary terms kr contains in file (see
 // rules.Rules.GlossaryHits), content issues being hard. zh is checked as it
-// is; Submit normalizes a translation first.
+// is; Submit normalizes a translation first. It passes no pointer, so the
+// checks that look at the field are skipped and only the hard issues matter to
+// its callers.
 func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
 	return CheckNewTerms(r, nil, file, kr, zh)
 }
 
 // CheckNewTerms is CheckNew with the provisional terms that occur in kr held
-// to as well, weighed with the glossary terms (TermsIn).
+// to as well, weighed with the glossary terms (TermsIn). Like CheckNew it
+// passes no pointer, so the checks that look at the field are skipped.
 func CheckNewTerms(r *rules.Rules, provisional []rules.Term, file, kr, zh string) []validate.Issue {
 	return checkNewTerms(r.GlossaryHits(file, kr), provisional, file, "", kr, zh, r.ScriptRenderings(file))
 }

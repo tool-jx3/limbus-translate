@@ -60,7 +60,7 @@ func isDigits(s string) bool {
 	return s != ""
 }
 
-// inField reports whether the unit is a field fieldPaths lists for family fam.
+// inField reports whether field is one of the fields scope lists for family fam.
 func inField(fam, field string, scope map[string][]string) bool {
 	for _, f := range scope[fam] {
 		if f == field {
