@@ -43,7 +43,7 @@ type Game struct {
 	krName    map[string]string   // by id, its KR name
 	resonance []rune
 	perfect   []rune
-	prevLevel map[string]LevelText
+	prev      map[string]LevelText // PrevLevel, see prevLevel
 }
 
 // NewGame builds a Game. An id listed more than once keeps its first entry.
@@ -57,7 +57,7 @@ func NewGame(in GameInput) *Game {
 		krName:    map[string]string{},
 		resonance: []rune(in.Resonance),
 		perfect:   []rune(in.PerfectResonance),
-		prevLevel: in.PrevLevel,
+		prev:      in.PrevLevel,
 	}
 	var order []string
 	excluded := map[string]bool{}

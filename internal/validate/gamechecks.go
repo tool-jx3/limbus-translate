@@ -160,6 +160,13 @@ func checkGame(kr, zh string, ctx Context) []Issue {
 			add(CodeKeywordLink, "by the game's code these words are linked to states KR does not name: %s", strings.Join(links, ", "))
 		}
 	}
+	if known && ctx.Game != nil {
+		if prev, ok := ctx.Game.prevLevel(ctx.File, ctx.Pointer); ok {
+			if msg := levelDiff(kr, zh, prev); msg != "" {
+				add(CodeLevelDiff, "%s", msg)
+			}
+		}
+	}
 	return issues
 }
 
