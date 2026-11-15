@@ -105,7 +105,7 @@ families:
     guide: guides/families/ui.md
     include: [guides/shared/korean-brackets.md]
   - id: events
-    nodes: ["Event*", "*EventText", "DailyLoginEvent", "CultivationEvent", "RecordMemoryEvent", "TwiningThreadsEvent", "NightCleanUpEvent", "AttendanceCheckS", "AttendanceRewardsText", "DawnOfGreenEventText", "BossRaidUI", "PilgrimageUIText", "CouponUIText"]
+    nodes: ["Event*", "*EventText", "DailyLoginEvent", "CultivationEvent", "RecordMemoryEvent", "TwiningThreadsEvent", "NightCleanUpEvent", "AttendanceCheckS", "AttendanceRewardsText", "DawnOfGreenEventText", "BossRaidUI", "PilgrimageUIText", "CouponUIText", "EventVerificationUIText"]
     guide: guides/families/events.md
     include: [guides/shared/korean-brackets.md]
   - id: unsorted

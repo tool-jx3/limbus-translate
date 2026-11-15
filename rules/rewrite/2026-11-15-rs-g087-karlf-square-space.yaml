@@ -1,0 +1,8 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G087：地點「칼프 마을 광장」S316B 的譯文尾端多一個空格，KR 沒有；刪掉，與 S313A、S313B、S315B 一致。
+# 使用者同意 2026-11-15。
+reason: '「칼프 마을 광장」刪去譯文尾端的空格（規則建議 G087）'
+files: ['StoryData/S316B.json']
+origins: [paratranz]
+pattern: '^卡爾夫鎮 廣場 $'
+replace: '卡爾夫鎮 廣場'
+kr_pattern: '^칼프 마을 광장$'

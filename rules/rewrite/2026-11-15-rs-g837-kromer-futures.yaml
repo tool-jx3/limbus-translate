@@ -1,0 +1,8 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G837：3D308B#9 與 3D309I1#9 是同一句 KR。3D308B 多了 KR、JP 都沒有的「可是」；統一成 3D309I1#9 的寫法。
+# 使用者同意 2026-11-15。
+reason: '刪去 KR、JP 都沒有的「可是」，與 3D309I1#9 一致（規則建議 G837）'
+files: ['StoryData/3D308B.json']
+origins: [paratranz]
+pattern: '^我啊，可是知道某種能夠窺視無窮可能的未來的方法。$'
+replace: '我啊，知道某種能夠窺視無窮可能的未來的方法。'
+kr_pattern: '^나는 말이지, 벌어질 수많은 미래를 들여다보는 방법을 알고 있어\.$'
