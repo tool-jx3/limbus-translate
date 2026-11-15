@@ -448,27 +448,31 @@
   zh: 去赴死吧！無須畏懼死亡！
   reason: StoryData 審查 S0300：KR「가서 죽어라! 그걸 두려워하지 마라!」是「去赴死吧！不要畏懼它（死亡）！」，JP「行って死ね！」、EN「Go forth and die!」相同，下一句接「有黃金祭品就能無限復活」；現行 TW 寫成「去吧！殺了他們！」，變成要人去殺敵。
   rule: one-off
-- key: StoryData/3D301B.json|/dataList/37/content
-  raw: raw-20261112
-  kr_sha: dcb5f1e297bf7a086dba6b777141bf015a662ba31c889a47f7e6f1ef57ba0ef9
-  zh: 只要再靠近些看，就會發現那段喧鬧的時間其實是由嫉妒、炫耀、優越感與狡詐⏎混雜而成的。
-  reason: StoryData 審查 S0301：KR「떠들썩한 시간이 시샘과 과시, 우월감과 간교 등으로⏎뒤섞여 있다는걸」是「（大人不知道）那段喧鬧的時間裡混雜著嫉妒、炫耀、優越感與狡詐」，JP「騒がしい時間に妬みと誇示…が入り交じっている」相同；現行 TW 把「喧鬧的時間」寫成「和諧的交流」，又加了「撕下表皮、暴露本質」，也少了 KR 的換行。
-  rule: one-off
 - key: StoryData/3D301B.json|/dataList/39/content
   raw: raw-20261112
   kr_sha: 7b496d091deba48751a9aed43bce11f5390bdbc1da07e449cb292fe3fa1e1c3f
   zh: 隔壁班的拉胡爾，聽說他父親會親自給他做雙臂手術。甚至還會用上沒公開的最新技術來著？
   reason: StoryData 審查 S0302：KR「라훌」是 Rahul（JP ラーフル、EN Rahul），中文應寫「拉胡爾」；現行 TW 寫成「拉爾夫」（Ralph），是另一個名字。另外 KR「해주신대」只是「聽說」，沒說消息來自拉胡爾本人，TW「我聽隔壁班的拉爾夫說」把來源寫成他本人。
   rule: one-off
-- key: StoryData/3D301B.json|/dataList/42/content
-  raw: raw-20261112
-  kr_sha: 547e38b1e5f9efbd9ff5141d1a63dc09a7d6b81d01f985ca742f1f8426c404b2
-  zh: 「你沒有什麼要說的嗎？」那些看著我的眼神，⏎彷彿隨時都會轉為嘲笑與輕蔑。
-  reason: StoryData 審查 S0303：KR「너는 뭐 없어? 라면서 쳐다보는 눈동자들은」是同學們用眼神問「你呢，沒什麼可說的嗎？」，JP「君は何かない？と問いかけながら見つめてくる瞳」相同，#45「뭐 없냐는 말」也回指這句；現行 TW 照 EN 寫成辛克萊自問「我能說些什麼呢？」，指涉改變，也少了 KR 的換行。
-  rule: one-off
 - key: StoryData/3D301B.json|/dataList/54/content
   raw: raw-20261112
   kr_sha: ed4acd4913997f073cb34734ffd4ab01819a55ff26e6e596bd8f009074e063d8
   zh: P公司？你是說那片翼嗎？！哇……太羨慕了。
   reason: StoryData 審查 S0304：KR「그 날개」是「那片翼」（都市的巨企），JP「あの翼」、EN「that Wing」相同，詞彙表 날개＝「翼」（量詞「片」）；現行 TW 寫成「世界之翼」，是不存在的名稱。
+  rule: one-off
+- key: StoryData/3D301B.json|/dataList/37/content
+  raw: raw-20261112
+  kr_sha: dcb5f1e297bf7a086dba6b777141bf015a662ba31c889a47f7e6f1ef57ba0ef9
+  zh: |-
+    只要再靠近些看，就會發現那段喧鬧的時間其實是由嫉妒、炫耀、優越感與狡詐
+    混雜而成的。
+  reason: StoryData 審查 S0301：KR「떠들썩한 시간이 시샘과 과시, 우월감과 간교 등으로／뒤섞여 있다는걸」是「（大人不知道）那段喧鬧的時間裡混雜著嫉妒、炫耀、優越感與狡詐」，JP「騒がしい時間に妬みと誇示…が入り交じっている」相同；現行 TW 把「喧鬧的時間」寫成「和諧的交流」，又加了「撕下表皮、暴露本質」，也少了 KR 的換行。
+  rule: one-off
+- key: StoryData/3D301B.json|/dataList/42/content
+  raw: raw-20261112
+  kr_sha: 547e38b1e5f9efbd9ff5141d1a63dc09a7d6b81d01f985ca742f1f8426c404b2
+  zh: |-
+    「你沒有什麼要說的嗎？」那些看著我的眼神，
+    彷彿隨時都會轉為嘲笑與輕蔑。
+  reason: StoryData 審查 S0303：KR「너는 뭐 없어? 라면서 쳐다보는 눈동자들은」是同學們用眼神問「你呢，沒什麼可說的嗎？」，JP「君は何かない？と問いかけながら見つめてくる瞳」相同，#45「뭐 없냐는 말」也回指這句；現行 TW 照 EN 寫成辛克萊自問「我能說些什麼呢？」，指涉改變，也少了 KR 的換行。
   rule: one-off
