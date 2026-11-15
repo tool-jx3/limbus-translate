@@ -364,3 +364,15 @@
   zh: 順便一提，剛才是要去11區後巷，卻說成K公司了吧？
   reason: StoryData 審查 S0040：KR：格里高爾問『剛才說要去11區後巷，卻說成K公司了吧？』（把『11區後巷』誤說成『K公司』）。EN 同。TW 寫成『你說的K公司後巷，就是指11區的後巷吧』，變成K公司後巷＝11區後巷，語意完全不同，也看不出『說錯』。
   rule: one-off
+- key: StoryData/S303B.json|/dataList/56/content
+  raw: raw-20261112
+  kr_sha: 3d2857a115fb61a915e68dadde9752b5cdaa74504dae001d1ca83fd0daa58703
+  zh: 請報上您所屬的組織和入境目的。
+  reason: StoryData 審查 S0041：KR「소속 그룹, 이유」＝所屬團體與（入境）理由，後面回答的也是『從邊獄公司來、因公務』。TW 寫成『身分證明和入境目的』，『身分證明』並非『所屬團體』。；譯法由使用者決定（「말씀해주세요」寫「報上」）
+  rule: one-off
+- key: StoryData/S303B.json|/dataList/75/content
+  raw: raw-20261112
+  kr_sha: 3d2857a115fb61a915e68dadde9752b5cdaa74504dae001d1ca83fd0daa58703
+  zh: 請報上您所屬的組織和入境目的。
+  reason: StoryData 審查 S0041（同句一併修改）：KR「소속 그룹, 이유」＝所屬團體與（入境）理由，後面回答的也是『從邊獄公司來、因公務』。TW 寫成『身分證明和入境目的』，『身分證明』並非『所屬團體』。；譯法由使用者決定（「말씀해주세요」寫「報上」）
+  rule: one-off
