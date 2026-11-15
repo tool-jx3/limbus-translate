@@ -346,3 +346,9 @@
   zh: 我有時會在思緒混亂的時候來這裡。哪怕沒有妳喜歡的安樂椅和威士忌……
   reason: StoryData 審查 S0296：KR「안락의자」是安樂椅（扶手椅），JP「安楽椅子」、EN「armchairs」相同；現行 TW 寫成「搖椅」，是另一種椅子。
   rule: one-off
+- key: StoryData/S301B.json|/dataList/39/content
+  raw: raw-20261112
+  kr_sha: 33c318eada3673bdbb13deaf7145ef5545fffaf9ca8b978b3c014370f17d855a
+  zh: ……口、口水都要流出來了～你說是不是，良秀？
+  reason: StoryData 審查 S0038：KR「…치, 침 고인다~ 그렇지 않아, 료슈?」是羅佳說自己「口、口水都要流出來了～」，再問良秀是不是也一樣；TW「是、是不是已經口水直流了？」變成在問別人是否流口水，主語不清。
+  rule: one-off
