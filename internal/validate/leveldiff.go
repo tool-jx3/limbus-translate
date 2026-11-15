@@ -18,8 +18,8 @@ func (g *Game) prevLevel(file, pointer string) (LevelText, bool) {
 
 // levelDiff returns the message of the level-diff issue, or "" when there is
 // none: a line that is the same in KR at the lower level and now, but differs
-// in the translation. A line missing on either side of the translation counts
-// as different.
+// in the translation. A line that only one level of the translation has counts
+// as different; one that neither has does not.
 func levelDiff(kr, zh string, prev LevelText) string {
 	prevKR, prevZH := strings.Split(prev.KR, "\n"), strings.Split(prev.ZH, "\n")
 	curKR, curZH := strings.Split(kr, "\n"), strings.Split(zh, "\n")
@@ -36,7 +36,7 @@ func levelDiff(kr, zh string, prev LevelText) string {
 		}
 		a, aok := line(prevZH, i)
 		b, bok := line(curZH, i)
-		if aok && bok && a == b {
+		if aok == bok && a == b {
 			continue
 		}
 		if first < 0 {

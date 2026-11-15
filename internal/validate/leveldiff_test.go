@@ -30,6 +30,7 @@ func TestLevelDiff(t *testing.T) {
 		{"only the changed line differs", same, "가\n나 4", "甲\n乙 4", 0},
 		{"identical", same, "가\n나 3", "甲\n乙3 ", 0},
 		{"the lower level lacks the line in zh", LevelText{Level: 1, KR: "가\n나", ZH: "甲"}, "가\n나", "甲\n乙", 1},
+		{"both levels lack the line in zh", LevelText{Level: 1, KR: "가\n나", ZH: "甲"}, "가\n나", "甲", 0},
 		{"KR has more lines now", same, "가\n나 3\n다", "甲\n乙3 \n丙", 0},
 		{"a trailing space counts", same, "가\n나 3", "甲\n乙3", 1},
 	} {
