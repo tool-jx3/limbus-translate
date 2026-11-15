@@ -303,7 +303,7 @@ func (p *Previewer) unit(fd *fileData, pos int) (*UnitPreview, error) {
 		return pv, nil
 	}
 	pv.Record = &rec
-	v := Judge(p.env, provisionalOf(b.Glossary, p.env.Provisional), fd.file, u.KR, rec.ZH, strings.Join(noteTexts, "\n"))
+	v := Judge(p.env, provisionalOf(b.Glossary, p.env.Provisional), fd.file, u.Pointer, u.KR, rec.ZH, strings.Join(noteTexts, "\n"))
 	c := &Check{Verdict: "accept", ZH: v.ZH, Origin: rec.Origin, StaleKR: rec.KRSha != krSha, Issues: v.Issues}
 	if c.Issues == nil {
 		c.Issues = []validate.Issue{}

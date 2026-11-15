@@ -14,7 +14,7 @@ import (
 func init() {
 	cli.Register(cli.Command{
 		Name:  "validate",
-		Usage: "normalize and check one translation against the glossary: --kr S --zh S [--file F]",
+		Usage: "normalize and check one translation against the glossary: --kr S --zh S [--file F] [--pointer P]",
 		Run:   runValidate,
 	})
 }
@@ -53,6 +53,7 @@ func runValidate(ctx *cli.Context, args []string) error {
 	kr := flags.String("kr", "", "the Korean text")
 	zh := flags.String("zh", "", "the translation")
 	file := flags.String("file", "", "the pack file the text is from, such as StoryData/S1001B.json: glossary terms that apply to some files only are enforced when it matches, and half-width brackets are reported in the labels of RPGSystem/")
+	pointer := flags.String("pointer", "", "the JSON pointer of the unit inside --file, such as /dataList/0/desc: the checks that depend on the field of the unit are skipped without it")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("validate: " + err.Error())
 	}
@@ -62,7 +63,7 @@ func runValidate(ctx *cli.Context, args []string) error {
 	given := map[string]bool{}
 	flags.Visit(func(f *flag.Flag) { given[f.Name] = true })
 	if !given["kr"] || !given["zh"] {
-		return cli.UserError("validate: usage: lct validate --kr TEXT --zh TEXT [--file FILE]")
+		return cli.UserError("validate: usage: lct validate --kr TEXT --zh TEXT [--file FILE] [--pointer POINTER]")
 	}
 
 	// The glossary terms the KR text contains are enforced on the translation.
@@ -71,7 +72,7 @@ func runValidate(ctx *cli.Context, args []string) error {
 		return err
 	}
 	normalized := validate.Normalize(*kr, *zh)
-	issues := validate.Check(*kr, normalized, validate.Context{Terms: r.ValidateTerms(*file, *kr), File: *file, ScriptOK: r.ScriptRenderings(*file)})
+	issues := validate.Check(*kr, normalized, validate.Context{Terms: r.ValidateTerms(*file, *kr), File: *file, Pointer: *pointer, ScriptOK: r.ScriptRenderings(*file)})
 	if issues == nil {
 		issues = []validate.Issue{}
 	}

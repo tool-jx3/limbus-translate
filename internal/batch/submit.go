@@ -497,7 +497,7 @@ func (s *submission) unit(o OutUnit) error {
 		return nil
 	}
 
-	v := Judge(s.env, s.provisional(), file, kr, o.ZH, o.Note)
+	v := Judge(s.env, s.provisional(), file, pointer, kr, o.ZH, o.Note)
 	zh, issues := v.ZH, v.Issues
 	existing, hasRecord := s.records[o.Key]
 	since := s.since(o.Key)

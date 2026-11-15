@@ -658,17 +658,18 @@ func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
 // CheckNewTerms is CheckNew with the provisional terms that occur in kr held
 // to as well, weighed with the glossary terms (TermsIn).
 func CheckNewTerms(r *rules.Rules, provisional []rules.Term, file, kr, zh string) []validate.Issue {
-	return checkNewTerms(r.GlossaryHits(file, kr), provisional, file, kr, zh, r.ScriptRenderings(file))
+	return checkNewTerms(r.GlossaryHits(file, kr), provisional, file, "", kr, zh, r.ScriptRenderings(file))
 }
 
 // checkNewTerms is CheckNewTerms on the glossary hits of kr and the script
-// renderings of file, which the caller has worked out.
-func checkNewTerms(hits []rules.Term, provisional []rules.Term, file, kr, zh string, scriptOK []string) []validate.Issue {
+// renderings of file, which the caller has worked out, for the unit at
+// pointer in file ("" when not known: the checks of the field are skipped).
+func checkNewTerms(hits []rules.Term, provisional []rules.Term, file, pointer, kr, zh string, scriptOK []string) []validate.Issue {
 	var terms []validate.Term
 	for _, t := range termsIn(hits, provisional, kr) {
 		terms = append(terms, t.ToValidate())
 	}
-	return validate.Check(kr, zh, validate.Context{Terms: terms, File: file, ScriptOK: scriptOK})
+	return validate.Check(kr, zh, validate.Context{Terms: terms, File: file, Pointer: pointer, ScriptOK: scriptOK})
 }
 
 // ProvisionalKRs returns the KR of the provisional terms that are listed for a

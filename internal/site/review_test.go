@@ -259,6 +259,78 @@ func TestReviewWarningsLikeTheBuild(t *testing.T) {
 	}
 }
 
+// gameFixture is a pack whose checks need the whole pack: a buf name the
+// translation of skill 2 holds while its KR does not mention it (keyword-link),
+// and two levels of skill 1 whose KR lines match while their translations
+// differ (level-diff).
+var gameFixture = struct {
+	kr, zh  map[string]string
+	records []struct{ file, ptr, kr, zh string }
+}{
+	kr: map[string]string{
+		"Bufs.json":   `{"dataList":[{"id":"Laceration","name":"출혈"}]}`,
+		"Skills.json": `{"dataList":[{"id":1,"levelList":[{"level":1,"desc":"가\n나 3"},{"level":2,"desc":"가\n나 4"}]},{"id":2,"levelList":[{"level":1,"desc":"설명"}]}]}`,
+	},
+	zh: map[string]string{
+		"Bufs.json":   `{"dataList":[{"id":"Laceration","name":"流血"}]}`,
+		"Skills.json": `{"dataList":[{"id":1,"levelList":[{"level":1,"desc":"甲\n乙3"},{"level":2,"desc":"甲 \n乙4"}]},{"id":2,"levelList":[{"level":1,"desc":"流血 "}]}]}`,
+	},
+	records: []struct{ file, ptr, kr, zh string }{
+		{"Bufs.json", "/dataList/0/name", "출혈", "流血"},
+		{"Skills.json", "/dataList/0/levelList/0/desc", "가\n나 3", "甲\n乙3"},
+		{"Skills.json", "/dataList/0/levelList/1/desc", "가\n나 4", "甲 \n乙4"},
+		{"Skills.json", "/dataList/1/levelList/0/desc", "설명", "流血 "},
+	},
+}
+
+var (
+	gameLinkKey  = units.Key("Skills.json", "/dataList/1/levelList/0/desc")
+	gameLevelKey = units.Key("Skills.json", "/dataList/0/levelList/1/desc")
+)
+
+func TestReviewGameWarnings(t *testing.T) {
+	fr, err := fields.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var recs []store.Record
+	for _, r := range gameFixture.records {
+		recs = append(recs, withSha(record(r.file, r.ptr, r.zh, store.OriginClaude), r.kr))
+	}
+	in := Inputs{
+		KR:      writePack(t, "KR_", gameFixture.kr),
+		EN:      writePack(t, "EN_", map[string]string{}),
+		JP:      writePack(t, "JP_", map[string]string{}),
+		ZH:      writePack(t, "", gameFixture.zh),
+		Records: recordsOf(recs...),
+		Rules:   testRules(),
+	}
+	in.Review = &ReviewInputs{RawTag: "t1", Fields: fr, Build: &build.Info{RawTag: "t1"}}
+	r, err := BuildReview(in, []string{"Bufs.json", "Skills.json"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, c := range []struct{ code, key string }{
+		{validate.CodeKeywordLink, gameLinkKey},
+		{validate.CodeLevelDiff, gameLevelKey},
+	} {
+		var got []WarningItem
+		for _, w := range r.Warnings {
+			if w.Code == c.code {
+				got = append(got, w)
+			}
+		}
+		if len(got) != 1 {
+			t.Errorf("%s warnings = %+v, want one", c.code, got)
+			continue
+		}
+		w := got[0]
+		if !slices.Equal(w.Keys, []string{c.key}) || w.Message == "" || !strings.HasPrefix(w.ID, "warning/"+c.code+"/") {
+			t.Errorf("%s warning = %+v, want Keys [%s], a message and an id of the code", c.code, w, c.key)
+		}
+	}
+}
+
 // A frozen file's record is used whatever its KR sha is.
 func TestReviewFrozenFileChecksStaleRecord(t *testing.T) {
 	in, files := reviewInputs(t)
