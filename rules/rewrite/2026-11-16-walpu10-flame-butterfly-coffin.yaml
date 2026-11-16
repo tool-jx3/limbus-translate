@@ -1,0 +1,9 @@
+# 規則建議 inconsistent/keywords/name/a7940676：狀態名「불꽃나비의 관」舊譯 6 個單位（BattleKeywords.json、Bufs.json 的
+# StigmaWorkshopCelloCase*，paratranz）寫「炎蝶之棺」（Passives.json 的摘要也是），2026-11-12 更新新譯的 walpu10
+# 6 個單位（DawnOfficeStigmaY*，claude）寫「火蝶之棺」。新譯照舊譯統一。使用者決定 2026-11-16。
+reason: '「불꽃나비의 관」照舊譯統一寫「炎蝶之棺」'
+files: ['BattleKeywords-walpu10.json', 'Bufs-walpu10.json']
+origins: [claude]
+pattern: '^火蝶之棺$'
+replace: '炎蝶之棺'
+kr_pattern: '^불꽃나비의 관$'
