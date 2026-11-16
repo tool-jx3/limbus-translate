@@ -56,6 +56,7 @@
 語言包生效時（只有自訂語言會做，見 [01-custom-language.md](01-custom-language.md)），`AbEvents*` 的 `eventDesc`、`prevDesc`、`successDesc[i]`、`failureDesc[i]` 與 `ActionEvents*` 的 `desc`、`options[i].result[0]` 會跟靜態資料裡的應有頁數比較（`ChoiceEventLocalizeCheckStaticData.ReplaceText` 0x17A58A0）：
 
 - 頁數不夠 → 後面補 `...` 當作一頁，補到夠為止；陣列太短也補。
+- 分頁顯示的與會補頁的不是同一組（2026-11-16 補充）：`AbEvents*` 的 `behaveDesc` 也分頁顯示，但不在補頁的清單裡；`prevDesc` 會被補頁，但它顯示在戰鬥的預兆橫幅上，不分頁，而且會轉成大寫。各欄位出現的順序見 [07-field-display.md](07-field-display.md) 第 4 節。
 - 頁數太多 → 不處理（推定：演出與文字會對不上）。
 - 計算頁數時，空字串與剛好是 `Error` 的文字算 0 頁。
 
@@ -86,15 +87,15 @@
 | `Bufs*` | `excludeAutoLink` | 見 [03-keywords.md](03-keywords.md)；可以依譯名需要自行增加 |
 | `EGOgift*` | `simpleDesc[].abilityID` | 以數值查找；找不到時畫面顯示一段韓文除錯訊息 |
 | `AbEvents*` | `successDesc[]`、`failureDesc[]` 的長度 | 依位置 |
-| `ActionEvents*` | `options[]`、`result[]` | 依位置；超出範圍回傳空字串，選項會沒有文字 |
-| `AbDlg_*` | `personalityid`、`voicefile`、`usage` | `usage` 會被解析成事件編號與成功率 |
-| `AbnormalityGuides*` | `storyList[].level` | 放進字典，**同一筆裡 `level` 重複會丟出例外** |
+| `ActionEvents*` | `options[]`、`result[]` | 依位置；`result[j]` 超出範圍是空字串，結果框會被跳過；少了一個選項時按鈕上是一段韓文除錯字串 |
+| `AbDlg_*` | `personalityid`、`voicefile`、`usage` | `usage` 會被解析成「事件 id、類型」；事件 id 必須是數字但從不用來挑台詞，只有類型（成功率級距或 `SUCCESS`／`FAILURE`）有作用 |
+| `AbnormalityGuides*` | `storyList[].level` | 決定哪一段在什麼研究等級解鎖。重複不會出錯：放進字典的函式沒有人呼叫（2026-11-16 修正） |
 | `BgmLyrics/*` | `id`、`vocalid` | `id` 是行號 |
 | `BattleAnnouncerDlg/*` | `imgStr`、`isHide`、`playWeight` | 資料 |
 | 劇情檔 | `id`、`model` | 見 [01-custom-language.md](01-custom-language.md) |
 | `ScenarioModelCodes*` | `id` | 劇情的 `model` |
 
-另外，「KR 是空字串的欄位，譯文也要是空字串；KR 有內容的，譯文也要有」：被動的 `summary`、硬幣的 `summary` 是空的時會改用 `desc`；狀態的 `summary` 是 null 時改用 `desc`。「沒有這個欄位」與「空字串」不同，沒有欄位時多半是 `Unknown`。
+另外，「KR 是空字串的欄位，譯文也要是空字串；KR 有內容的，譯文也要有」：被動的 `summary`、硬幣的 `summary` 是空的時會改用 `desc`；狀態的 `summary` 是**沒有這個 key** 時改用 `desc`，寫成空字串則只顯示名稱（2026-11-16 修正）。「沒有這個欄位」與「空字串」不同，沒有欄位時多半是 `Unknown`。
 
 ## 6. 換行與特殊字元
 
@@ -122,10 +123,10 @@
 1. `{n}` 的集合與 KR 相同；沒有其他的 `{`、`}`（KR 同一欄位有的具名 `{…}` 逐字相同）。
 2. `ChoiceEventEffect*.content`：大括號以外的每一段是合法的正規表示式片段（最簡單的做法：禁止 KR 沒有的半形 `(`、`)`、`[`、`]`、`\`、`+`、`*`、`|`）。
 3. `AbEventsResultLog*`：`%`、`/%` 的數量與順序和 KR 相同。
-4. 選擇事件的六種欄位：`\n\n` 切出的頁數與 KR 相同；沒有連續三個以上的換行；沒有「反斜線＋n」。
+4. 選擇事件會分頁的欄位（第 3 節）：`\n\n` 切出的頁數與 KR 相同；沒有連續三個以上的換行；沒有「反斜線＋n」。
 5. 人格 `title`、E.G.O `name`：`\n` 前後沒有空白。
 6. 名字含半形 `?` 的敵人：`?` 個數與 KR 相同。
 7. 技能、被動相鄰等級：KR 相同的行譯文也相同（含結尾空格）；KR 只差數字的行譯文也只差數字；行數相同。
-8. `AbnormalityGuides*` 的 `storyList[].level` 不重複；所有陣列長度、非字串值與 KR 相同；KR 為空的欄位譯文為空。
+8. 所有陣列長度、非字串值與 KR 相同；KR 為空的欄位譯文為空；KR 沒有的 key 譯文也不要加（狀態的 `summary` 有沒有 key 結果不同）。
 9. 但丁筆記：`\n-` 的數量與 KR 相同。
 10. 技能名稱、狀態名稱不含標籤與方括號。

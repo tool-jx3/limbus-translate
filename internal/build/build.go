@@ -315,8 +315,9 @@ type builder struct {
 	nameDiffs map[string]*NameDiff
 	termDiffs []*termDiff
 	tally     *existing.OldTally
-	// game is the information of the whole KR pack that the keyword-link and
-	// level-diff checks need, with the translations the build uses.
+	// game is the information of the whole KR pack that the keyword-link,
+	// level-diff, shared-line and cross-group checks need, with the
+	// translations the build uses.
 	game *validate.Game
 }
 
@@ -419,7 +420,12 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	if err != nil {
 		return nil, err
 	}
-	game, err := gametext.Load(src.KR, gametext.UsedText(records, opt.Frozen))
+	// Without rules every file is of one family, as familyOf has it.
+	var familyOf func(file string) string
+	if opt.Rules != nil {
+		familyOf = opt.Rules.Family
+	}
+	game, err := gametext.Load(src.KR, gametext.UsedText(records, opt.Frozen), familyOf)
 	if err != nil {
 		return nil, err
 	}

@@ -929,3 +929,18 @@
 - id: "inconsistent/story-main/content/850ad13b"
   reason: G873：依前後文而不同，兩種都對：接在「為什麼」之後、下一句才說原因的寫「<那是因為……>」（S001B#44、1D306A#86），其餘寫「<那是……>」（S830I1#46 下一句已有「因為」；5D302B#26、S823B#53 是遲疑）（使用者決定 2026-11-14：保留）
   date: 2026-11-14
+- id: "inconsistent/ally/name/1ca3cf82"
+  reason: G124：EN 對應不同：多數是 Guard/Defend 的「防禦」，一筆 EN 為 Shield Bash 的「持盾猛擊」，是不同技能（使用者決定 2026-11-13：I2 保留）（2026-11-16：Skills.json 改歸 ally 後同一組的新 id，原為 inconsistent/enemy/name/1ca3cf82）
+  date: 2026-11-13
+- id: "inconsistent/ally/name/035fbb69"
+  reason: G125：EN 對應不同（Bludgeon／Baton／Hit），三種譯名各對應一種（使用者決定 2026-11-13：I2 保留）（2026-11-16：Skills.json 改歸 ally 後同一組的新 id，原為 inconsistent/enemy/name/035fbb69）
+  date: 2026-11-13
+- id: "inconsistent/ally/name/e172cc45"
+  reason: G127：EN 對應不同（Shank／Jag），各對應一種譯名（使用者決定 2026-11-13：I2 保留）（2026-11-16：Skills.json 改歸 ally 後同一組的新 id，原為 inconsistent/enemy/name/e172cc45）
+  date: 2026-11-13
+- id: "inconsistent/ally/name/918f4a4c"
+  reason: G129：EN 對應不同（Axe Combo／Halberd Combo），各自是針對武器的技能名（使用者決定 2026-11-13：I2 保留）（2026-11-16：Skills.json 改歸 ally 後同一組的新 id，原為 inconsistent/enemy/name/918f4a4c）
+  date: 2026-11-13
+- id: "inconsistent/ally/name/1dac12a9"
+  reason: G130：JP 同為「牽制」但 EN 一為 Careful Obstruction、一為 Wary Move，是不同招式，各自譯名成立（使用者決定 2026-11-13：I2 保留）（2026-11-16：Skills.json 改歸 ally 後同一組的新 id，原為 inconsistent/enemy/name/1dac12a9）
+  date: 2026-11-13

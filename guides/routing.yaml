@@ -74,15 +74,15 @@ families:
     guide: guides/families/rpg.md
     include: [guides/shared/korean-brackets.md]
   - id: ally
-    nodes: ["Skills_personality", "Skills_Ego_Personality", "Skills_Ego", "Skills_Assist", "Passives_Assist", "Passive", "Passives", "Personalit*", "Egos", "Assist", "EGO"]
+    nodes: ["Skills", "Skills_personality", "Skills_Ego_Personality", "Skills_Ego", "Skills_Assist", "Passives_Assist", "Passive_Ego", "Passives", "Personalit*", "Egos", "Assist", "EGO"]
     guide: guides/families/ally.md
     include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
   - id: enemy
-    nodes: ["Enemies", "Skills", "Skills_Enemy*", "Skills_Abnormality*", "Passives_Enemy*", "Passives_Abnormality*"]
+    nodes: ["Enemies", "Skills_Enemy*", "Skills_Abnormality*", "Skills_Tutorial", "Skills_fools", "Passive", "Passives_Enemy*", "Passives_Abnormality*", "Passives_fools"]
     guide: guides/families/enemy.md
     include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
   - id: keywords
-    nodes: ["Bufs", "Bufs_*", "BattleKeywords", "BattleKeywords_*", "UnitKeyword", "SynergyKeyword", "SkillTag", "BuffAbilities", "KeywordDictionary", "MentalCondition", "PanicInfo", "ResistText", "AttributeText", "ChoiceEventKeyword"]
+    nodes: ["Bufs", "Bufs_*", "BattleKeywords", "BattleKeywords_*", "UnitKeyword", "SynergyKeyword", "SkillTag", "BuffAbilities", "KeywordDictionary", "MentalCondition", "PanicInfo", "ResistText", "AttributeText"]
     guide: guides/families/keywords.md
     include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
   - id: abnormality
