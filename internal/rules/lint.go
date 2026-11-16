@@ -43,6 +43,7 @@ func Lint(root string) []error {
 	l.routing()
 	l.foreignIgnore()
 	l.npcs()
+	l.rubyCustomize()
 	l.adjustments()
 	return l.errs
 }

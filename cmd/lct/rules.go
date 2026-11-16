@@ -84,6 +84,7 @@ func runRulesLint(ctx *cli.Context, args []string) error {
 	krFiles := krPackFiles(ctx.Root)
 	report.Warnings = append(report.Warnings, rules.LintScopeWarnings(ctx.Root, krFiles)...)
 	report.Warnings = append(report.Warnings, rules.LintRoutingWarnings(ctx.Root, krFiles)...)
+	report.Warnings = append(report.Warnings, rules.LintRubyCustomizeWarnings(ctx.Root, krFiles)...)
 	if err := ctx.Emit(report); err != nil {
 		return err
 	}

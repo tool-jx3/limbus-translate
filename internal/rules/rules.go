@@ -34,6 +34,8 @@ type Rules struct {
 	ForeignIgnore []string
 	// NPCs are the speakers who need no character guide (NPCsFile).
 	NPCs []NPC
+	// RubyCustomize is the whitelist of <rubycustomize> (RubyCustomizeFile).
+	RubyCustomize RubyCustomize
 }
 
 // Load reads the rules under root, the repo root. It fails when a file is
@@ -97,6 +99,16 @@ func Load(root string) (*Rules, error) {
 	if err == nil {
 		if r.NPCs, _, err = parseNPCs(data); err != nil {
 			return nil, fmt.Errorf("%s: %w", NPCsFile, err)
+		}
+	}
+
+	data, err = os.ReadFile(filepath.Join(root, filepath.FromSlash(RubyCustomizeFile)))
+	if err != nil && !errors.Is(err, fs.ErrNotExist) {
+		return nil, err
+	}
+	if err == nil {
+		if r.RubyCustomize, _, _, err = parseRubyCustomize(data); err != nil {
+			return nil, fmt.Errorf("%s: %w", RubyCustomizeFile, err)
 		}
 	}
 	return r, nil
