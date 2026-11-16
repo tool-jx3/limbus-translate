@@ -367,7 +367,7 @@ func TestGuidesFor(t *testing.T) {
 	}{
 		{
 			"story with speakers", "StoryData/S1037B.json", []string{"faust", "dante"},
-			[]string{"guides/base.md", "guides/families/story-main.md", "guides/characters/faust.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/story-main.md", "guides/shared/ruby.md", "guides/characters/faust.md", "guides/characters/dante.md"},
 		},
 		{
 			"no speakers", "MainUIText.json", nil,
@@ -376,11 +376,11 @@ func TestGuidesFor(t *testing.T) {
 		{
 			"character of the file comes before the speakers and is not repeated",
 			"PersonalityVoiceDlg/Voice_Meursalut_xxx_10511.json", []string{"dante", "meursault"},
-			[]string{"guides/base.md", "guides/families/identity.md", "guides/characters/meursault.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/identity.md", "guides/shared/ruby.md", "guides/characters/meursault.md", "guides/characters/dante.md"},
 		},
 		{
 			"repeated speakers", "StoryData/S1037B.json", []string{"faust", "dante", "faust"},
-			[]string{"guides/base.md", "guides/families/story-main.md", "guides/characters/faust.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/story-main.md", "guides/shared/ruby.md", "guides/characters/faust.md", "guides/characters/dante.md"},
 		},
 		{
 			"skill file has no character guide", "Skills_personality-08.json", nil,
@@ -388,7 +388,7 @@ func TestGuidesFor(t *testing.T) {
 		},
 		{
 			"unknown speaker is skipped", "StoryData/S1037B.json", []string{"nobody", "dante"},
-			[]string{"guides/base.md", "guides/families/story-main.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/story-main.md", "guides/shared/ruby.md", "guides/characters/dante.md"},
 		},
 	}
 	for _, tc := range tests {
@@ -2287,6 +2287,7 @@ func TestGuidesForLayers(t *testing.T) {
 	want := []string{
 		"guides/base.md", "guides/families/identity.md",
 		"guides/families/node-sub.md", "guides/families/node-top.md",
+		"guides/shared/ruby.md", // the repo's own node entry, after those put before it
 		"guides/families/tag.md",
 		"guides/characters/meursault.md", "guides/characters/dante.md",
 	}
@@ -2297,7 +2298,7 @@ func TestGuidesForLayers(t *testing.T) {
 	// same guide list it once
 	// chapter:10 has a guide of its own: chapter:1 (chapter.md) must not fit
 	// chapter 10 and chapter:10 must fit.
-	if got, want := r.GuidesFor("StoryData/S1037B.json", nil), []string{"guides/base.md", "guides/families/story-main.md", "guides/families/ch10.md"}; !reflect.DeepEqual(got, want) {
+	if got, want := r.GuidesFor("StoryData/S1037B.json", nil), []string{"guides/base.md", "guides/families/story-main.md", "guides/shared/ruby.md", "guides/families/ch10.md"}; !reflect.DeepEqual(got, want) {
 		t.Errorf("GuidesFor(chapter:10 file) = %v, want %v", got, want)
 	}
 	// The event: tag and the node both name tag.md (listed once, at the first

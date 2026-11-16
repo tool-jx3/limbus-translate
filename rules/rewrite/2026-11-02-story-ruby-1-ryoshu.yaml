@@ -1,4 +1,4 @@
-# 劇情的 ruby 改為保留（guides/base.md「ruby（劇情與其他檔案）」），良秀的讀音
+# 劇情的 ruby 改為保留（guides/shared/ruby.md），良秀的讀音
 # 照 JP 寫假名。story-ruby-1 到 5 依檔名順序套用：先處理良秀的各種讀音，
 # 再處理其他「Y(X)」。這個檔：和 ヨシヒデ 對比的「良秀(Ryōshū)」（E914B，
 # JP 寫 <ruby=りょうしゅう>良秀</ruby>）。

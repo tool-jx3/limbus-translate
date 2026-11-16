@@ -173,7 +173,8 @@ func TestGuideResolve(t *testing.T) {
 	if err := json.Unmarshal([]byte(out), &got); err != nil {
 		t.Fatalf("output is not JSON: %v\n%s", err, out)
 	}
-	want := []string{"guides/base.md", "guides/families/story-main.md", "guides/characters/faust.md", "guides/characters/dante.md"}
+	// A story file gets the ruby guide (routing.yaml guides:), before the characters.
+	want := []string{"guides/base.md", "guides/families/story-main.md", "guides/shared/ruby.md", "guides/characters/faust.md", "guides/characters/dante.md"}
 	if got.File != "StoryData/S1037B.json" || got.Family != "story-main" || strings.Join(got.Guides, ",") != strings.Join(want, ",") {
 		t.Errorf("resolved = %+v", got)
 	}
@@ -186,6 +187,9 @@ func TestGuideResolve(t *testing.T) {
 		if !strings.Contains(text, want) {
 			t.Errorf("text output lacks %q:\n%s", want, text)
 		}
+	}
+	if strings.Contains(text, "guides/shared/ruby.md") {
+		t.Errorf("an AbDlg file has no position for ruby but gets its guide:\n%s", text)
 	}
 }
 

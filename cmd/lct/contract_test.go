@@ -648,7 +648,8 @@ func TestBatchSchemaDeclaresHint(t *testing.T) {
 // A unit whose position allows <rubycustomize> (rules/ruby-customize.yaml) is
 // marked: the schema declares the optional mark, and the shared prompt says
 // that only marked units may write the tag and points to the section of the
-// base guide that says when, which the guide has.
+// ruby guide (guides/shared/ruby.md, which the files with such positions get)
+// that says when, which the guide has.
 func TestBatchSchemaDeclaresRubyCustomize(t *testing.T) {
 	_, content := readRepoFile(t, filepath.Join(repoRoot, "schemas", "batch.schema.json"))
 	var schema struct {
@@ -672,13 +673,13 @@ func TestBatchSchemaDeclaresRubyCustomize(t *testing.T) {
 	}
 	const section = "白名單位置的注音"
 	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
-	for _, want := range []string{"`ruby_customize`", "`<rubycustomize=注音>本文</rubycustomize>`", "「" + section + "」"} {
+	for _, want := range []string{"`ruby_customize`", "`<rubycustomize=注音>本文</rubycustomize>`", "`guides/shared/ruby.md` 的「" + section + "」"} {
 		if !strings.Contains(prompt, want) {
 			t.Errorf("prompts/translate.md does not say %s", want)
 		}
 	}
-	if _, guide := readRepoFile(t, filepath.Join(repoRoot, "guides", "base.md")); !strings.Contains(guide, "**"+section+"**") {
-		t.Errorf("guides/base.md has no section **%s**, which prompts/translate.md points to", section)
+	if _, guide := readRepoFile(t, filepath.Join(repoRoot, "guides", "shared", "ruby.md")); !strings.Contains(guide, "**"+section+"**") {
+		t.Errorf("guides/shared/ruby.md has no section **%s**, which prompts/translate.md points to", section)
 	}
 }
 
