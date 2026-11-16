@@ -9,6 +9,8 @@ import (
 	"sync"
 	"unicode"
 	"unicode/utf8"
+
+	"github.com/tool-jx3/limbus-translate/internal/rubyx"
 )
 
 // Severity says whether an issue blocks a translation.
@@ -79,6 +81,10 @@ const (
 	CodeQmarkCount     = "qmark-count"
 	CodeBulletCount    = "bullet-count"
 	CodeRubyForm       = "ruby-form"
+	// CodeRubyCustomize marks a <rubycustomize=reading>body</rubycustomize>
+	// that is badly formed or sits at a position rules/ruby-customize.yaml
+	// does not list.
+	CodeRubyCustomize = "rubycustomize"
 	CodeKeywordLink    = "keyword-link"
 	CodeLevelDiff      = "level-diff"
 	CodeSharedLine     = "shared-line"
@@ -163,6 +169,9 @@ type Context struct {
 	// Game is the data of the whole KR pack that some game checks need; nil
 	// skips keyword-link, level-diff, shared-line and cross-group.
 	Game *Game
+	// RubyCustomize is true when the position of this unit is on the
+	// whitelist (rules.Rules.RubyCustomizeAt); the caller fills it.
+	RubyCustomize bool
 }
 
 // issue builds an Issue with the severity its class has in this context.
@@ -225,6 +234,17 @@ func Check(kr, zh string, ctx Context) []Issue {
 		return []Issue{ctx.issue(CodeEmpty, ClassStructural, "the translation is empty but the KR text is not")}
 	}
 	var issues []Issue
+	if rubyx.Has(zh) {
+		if !ctx.RubyCustomize {
+			issues = append(issues, ctx.issue(CodeRubyCustomize, ClassStructural,
+				"<rubycustomize> is not allowed here: this position is not in rules/ruby-customize.yaml"))
+		} else if problems := rubyx.Problems(zh); len(problems) > 0 {
+			issues = append(issues, ctx.issue(CodeRubyCustomize, ClassStructural,
+				"<rubycustomize> is malformed: %s", strings.Join(problems, "; ")))
+		} else {
+			zh = rubyx.Strip(zh) // every other check looks at the body only
+		}
+	}
 	issues = append(issues, checkStructure(kr, zh, ctx)...)
 	issues = append(issues, checkContent(kr, zh, ctx)...)
 	issues = append(issues, checkStyle(kr, zh, ctx)...)
@@ -242,7 +262,7 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 		issues = append(issues, ctx.issue(CodePlaceholderMismatch, ClassStructural,
 			"placeholders differ from KR%s", describeDiff(missing, extra)))
 	}
-	if missing, extra := tagDiff(kr, zh, isStory(ctx.File)); len(missing)+len(extra) > 0 {
+	if missing, extra := tagDiff(kr, zh, isStoryContent(ctx.File)); len(missing)+len(extra) > 0 {
 		issues = append(issues, ctx.issue(CodeTagMismatch, ClassStructural,
 			"tags differ from KR%s; opening tags must keep their attributes", describeDiff(missing, extra)))
 	}
@@ -361,6 +381,10 @@ func tagDiff(kr, zh string, addRuby bool) (missing, extra []string) {
 // lines may carry a ruby KR does not have (see tagDiff): a file of StoryData/
 // or the dialogue of the RPG (guides/base.md).
 func isStory(file string) bool { return strings.HasPrefix(file, "StoryData/") || isRPGDialogue(file) }
+
+// isStoryContent reports whether file is a StoryData/ file: the only text
+// whose lines may carry a ruby KR does not have. RPG dialogue takes none.
+func isStoryContent(file string) bool { return strings.HasPrefix(file, "StoryData/") }
 
 // isRPGDialogue reports whether file is a dialogue file of the RPG: a file
 // under RPGSystem/ whose name holds "dialogue". The other files of RPGSystem/

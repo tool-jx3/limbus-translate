@@ -587,9 +587,9 @@ func TestStoryMayAddRuby(t *testing.T) {
 	if issues := Check(kr, zh, Context{File: story}); HasHard(issues) {
 		t.Errorf("a story line with added ruby is rejected: %+v", issues)
 	}
-	// RPG dialogue is story text too (guides/base.md).
-	if issues := Check(kr, zh, Context{File: "RPGSystem/rpg-loc-dialogue-floor-2.json"}); HasHard(issues) {
-		t.Errorf("an RPG dialogue line with added ruby is rejected: %+v", issues)
+	// RPG dialogue takes no ruby that KR lacks.
+	if issues := Check(kr, zh, Context{File: "RPGSystem/rpg-loc-dialogue-floor-2.json"}); !hasCode(issues, CodeTagMismatch) {
+		t.Errorf("an RPG dialogue line with added ruby is accepted: %+v", issues)
 	}
 	const one = `還有，別叫我良秀，叫我<ruby=Ryōshū>良秀</ruby>。`
 	const krRuby = `베라, <ruby=천퇴성>삽시호</ruby>.`
