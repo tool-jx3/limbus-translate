@@ -9,6 +9,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/existing"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -34,6 +35,10 @@ type Inputs struct {
 	// Records are the stored translations, by unit key.
 	Records map[string]store.Record
 	Rules   *rules.Rules
+	// Fields are the field rules. Export searches a copy unit only when they
+	// leave it untranslated because KR, EN and JP share its text
+	// (fields.ReasonIdenticalValue); nil searches no copy unit.
+	Fields *fields.Rules
 	// Review is what BuildReview needs besides the packs; BuildFile and the
 	// export of the files do not look at it.
 	Review *ReviewInputs

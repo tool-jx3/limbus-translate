@@ -105,7 +105,7 @@ site/（Preact＋Vite 原始碼）───────────────�
 
 ### 5.4 `data/search/keys.json` 與 `data/search/<lang>.json`
 
-全文搜尋用，`copy` 單位不收（多是 id、數字）。
+全文搜尋用。`copy` 單位只收 KR、EN、JP 三語相同而照抄的（欄位規則 `identical-value`，例如官方保留原文的名稱 `UNGEZIEFER KAISER`）；識別欄位、空白等其他照抄單位不收（多是 id、數字）。（2026-11-16 修訂：原本 `copy` 單位一律不收）
 
 - `keys.json`：`[[檔案編號, "指標"], …]`
 - `<lang>.json`（`kr`、`jp`、`en`、`zh`）：字串陣列，長度與 `keys.json` 相同、位置一一對應；該語言沒有對應時為空字串
@@ -187,7 +187,7 @@ Settings → Pages → Source 選「GitHub Actions」。README 的設定說明�
   - JP／EN 依對齊而非位置（測試資料讓 JP 的順序與 KR 不同）；沒有對應時省略鍵、`missing` 計數正確
   - `o` 的判斷：有紀錄且語言包字串相同時是紀錄的 `origin`；語言包字串不同時是 `stand-in`
   - 族群與檔名順序（自然排序）；`label`、`speakers`
-  - 搜尋 corpus 不含 `copy` 單位、各語言長度與 `keys.json` 相同
+  - 搜尋 corpus 的 `copy` 單位只有三語相同的（`identical-value`），沒有欄位規則時一律不收；各語言長度與 `keys.json` 相同
   - `lct site --json` 的輸出欄位；`--out` 已存在時先清空再寫
 - **前端（Vitest）**：標籤解析與渲染（含惡意字串不產生 HTML 元素）、路由解析、單位分組成段、檔案篩選、搜尋 worker 的比對（子字串、regex、去標籤）
 - **workflow 合約測試**：`pages.yml` 的觸發、權限、concurrency、步驟順序、action 版本；README 列出網站設定
