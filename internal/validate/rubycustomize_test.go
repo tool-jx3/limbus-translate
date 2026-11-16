@@ -45,3 +45,27 @@ func TestRPGDialogueTakesNoRubyKRLacks(t *testing.T) {
 		t.Errorf("story content: %v", is)
 	}
 }
+
+func TestStoryRubyOnlyInContent(t *testing.T) {
+	const f = "StoryData/S001A.json"
+	const zh = "<ruby=ヨシヒデ>良秀</ruby>"
+	tests := []struct {
+		name, pointer, kr string
+		want              bool
+	}{
+		{"content", "/dataList/0/content", "요시히데", false},
+		{"teller", "/dataList/0/teller", "요시히데", true},
+		{"title", "/dataList/0/title", "요시히데", true},
+		{"place", "/dataList/0/place", "요시히데", true},
+		{"pointer unknown", "", "요시히데", false},
+		{"KR has the ruby", "/dataList/0/teller", "<ruby=요시히데>료슈</ruby>", false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			_, got := find(Check(tt.kr, zh, Context{File: f, Pointer: tt.pointer}), CodeTagMismatch)
+			if got != tt.want {
+				t.Errorf("tag-mismatch = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

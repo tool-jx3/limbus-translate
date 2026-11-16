@@ -262,7 +262,7 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 		issues = append(issues, ctx.issue(CodePlaceholderMismatch, ClassStructural,
 			"placeholders differ from KR%s", describeDiff(missing, extra)))
 	}
-	if missing, extra := tagDiff(kr, zh, isStoryContent(ctx.File)); len(missing)+len(extra) > 0 {
+	if missing, extra := tagDiff(kr, zh, storyRubyAllowed(ctx)); len(missing)+len(extra) > 0 {
 		issues = append(issues, ctx.issue(CodeTagMismatch, ClassStructural,
 			"tags differ from KR%s; opening tags must keep their attributes", describeDiff(missing, extra)))
 	}
@@ -304,7 +304,7 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 // (base.md): per tag name, as many extra openings as KR has closings without
 // an opening, less the openings zh leaves unclosed.
 //
-// With addRuby, the text of a story file (StoryData/ or RPG dialogue), zh may also hold <ruby=…>…</ruby>
+// With addRuby, the dialogue of a story file (StoryData/, field content), zh may also hold <ruby=…>…</ruby>
 // pairs KR does not have (base.md: the ruby of a story line is kept even
 // where KR writes no ruby, such as 良秀 read Yoshihide or Ryōshū), as long as
 // the ruby tags of zh, taken alone, open and close in turn. A ruby of KR still
@@ -377,14 +377,17 @@ func tagDiff(kr, zh string, addRuby bool) (missing, extra []string) {
 	return missing, extra
 }
 
-// isStory reports whether file, a pack file name, holds story text, whose
-// lines may carry a ruby KR does not have (see tagDiff): a file of StoryData/
-// or the dialogue of the RPG (guides/base.md).
-func isStory(file string) bool { return strings.HasPrefix(file, "StoryData/") || isRPGDialogue(file) }
-
 // isStoryContent reports whether file is a StoryData/ file: the only text
 // whose lines may carry a ruby KR does not have. RPG dialogue takes none.
 func isStoryContent(file string) bool { return strings.HasPrefix(file, "StoryData/") }
+
+// storyRubyAllowed reports whether the unit of ctx may carry a <ruby> KR does
+// not have: StoryData dialogue (the content field), since the game ignores
+// ruby in teller, title and place. An unknown pointer keeps the file-level
+// answer.
+func storyRubyAllowed(ctx Context) bool {
+	return isStoryContent(ctx.File) && (ctx.Pointer == "" || fieldPath(ctx.Pointer) == "content")
+}
 
 // isRPGDialogue reports whether file is a dialogue file of the RPG: a file
 // under RPGSystem/ whose name holds "dialogue". The other files of RPGSystem/
