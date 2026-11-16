@@ -1,8 +1,11 @@
 package rules_test
 
 import (
+	"maps"
 	"os"
 	"path/filepath"
+	"slices"
+	"strings"
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -66,7 +69,7 @@ func TestRubyCustomizeMissingFile(t *testing.T) {
 	if errs := rules.Lint(root); len(errs) != 0 {
 		t.Errorf("lint without the file: %v", errs)
 	}
-	if w := rules.LintRubyCustomizeWarnings(root, []string{"Skills.json"}); len(w) != 0 {
+	if w := rules.LintRubyCustomizeWarnings(root, []string{"Skills.json"}, nil); len(w) != 0 {
 		t.Errorf("warnings without the file: %v", w)
 	}
 }
@@ -108,10 +111,37 @@ func TestRubyCustomizeWarnings(t *testing.T) {
 		t.Fatal(err)
 	}
 	writeRuby(t, root, string(data))
-	if w := rules.LintRubyCustomizeWarnings(root, []string{"Skills.json"}); len(w) != 5 {
+	if w := rules.LintRubyCustomizeWarnings(root, []string{"Skills.json"}, nil); len(w) != 5 {
 		t.Errorf("warnings = %v, want 5", w)
 	}
-	if w := rules.LintRubyCustomizeWarnings(root, []string{"StoryData/P1.json", "ScenarioModelCodes-A.json", "PersonalityVoiceDlg/a.json", "BattleAnnouncerDlg/a.json", "BattleSpeechBubbleDlg-x.json"}); len(w) != 0 {
+	shipped := map[string]string{
+		"StoryData/P1.json": "teller", "ScenarioModelCodes-A.json": "name", "PersonalityVoiceDlg/a.json": "dlg",
+		"BattleAnnouncerDlg/a.json": "dlg", "BattleSpeechBubbleDlg-x.json": "dlg",
+	}
+	krFiles := slices.Sorted(maps.Keys(shipped))
+	has := func(file, field string) bool { return shipped[file] == field }
+	if w := rules.LintRubyCustomizeWarnings(root, krFiles, has); len(w) != 0 {
 		t.Errorf("warnings = %v, want none", w)
+	}
+	if w := rules.LintRubyCustomizeWarnings(root, krFiles, nil); len(w) != 0 {
+		t.Errorf("warnings without hasField = %v, want none", w)
+	}
+}
+
+// An entry whose files match KR files none of which has a unit of its field
+// (a misspelled field) allows nothing: it gets a warning that names it.
+func TestRubyCustomizeWarnsOfAFieldNoUnitHas(t *testing.T) {
+	root := copyRules(t)
+	writeRuby(t, root, "size: 50%\nvoffset: 1em\nfields:\n"+
+		"  - files: ['StoryData/**']\n    field: teller\n"+
+		"  - files: ['StoryData/**']\n    field: tellr\n")
+	krFiles := []string{"StoryData/P1.json", "StoryData/P2.json"}
+	has := func(file, field string) bool { return file == "StoryData/P2.json" && field == "teller" }
+	w := rules.LintRubyCustomizeWarnings(root, krFiles, has)
+	if len(w) != 1 || w[0].File != rules.RubyCustomizeFile || !strings.Contains(w[0].Message, "fields entry 2") || !strings.Contains(w[0].Message, `"tellr"`) {
+		t.Errorf("warnings = %v, want one of fields entry 2 that names tellr", w)
+	}
+	if w := rules.LintRubyCustomizeWarnings(root, krFiles, nil); len(w) != 0 {
+		t.Errorf("warnings without hasField = %v, want none: the files match", w)
 	}
 }

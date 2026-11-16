@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/config"
@@ -134,10 +135,14 @@ func (l *linter) rubyCustomize() {
 }
 
 // LintRubyCustomizeWarnings returns a warning for each entry of the whitelist
-// whose files match no file of the KR pack krFiles (a misspelled pattern, or
-// a file the game has dropped). krFiles empty means the pack is not at hand,
-// and there are no warnings. A file that does not parse is Lint's to report.
-func LintRubyCustomizeWarnings(root string, krFiles []string) []LintError {
+// that allows no unit of the KR pack: its files match no file of krFiles (a
+// misspelled pattern, or a file the game has dropped), or none of the files
+// they match has a unit of its field, as hasField(file, field) tells (a
+// misspelled field, which would otherwise disable the position without a
+// word). krFiles empty means the pack is not at hand, and there are no
+// warnings; hasField nil leaves the fields unchecked. A file that does not
+// parse, and an entry without files or field, are Lint's to report.
+func LintRubyCustomizeWarnings(root string, krFiles []string, hasField func(file, field string) bool) []LintError {
 	if len(krFiles) == 0 {
 		return nil
 	}
@@ -154,15 +159,17 @@ func LintRubyCustomizeWarnings(root string, krFiles []string) []LintError {
 		if len(f.Files) == 0 || hasInvalidPattern(f.Files) {
 			continue // Lint reports it
 		}
-		hit := false
+		var matched []string
 		for _, k := range krFiles {
 			if config.MatchAny(f.Files, k) {
-				hit = true
-				break
+				matched = append(matched, k)
 			}
 		}
-		if !hit {
+		switch {
+		case len(matched) == 0:
 			out = append(out, LintError{File: RubyCustomizeFile, Message: fmt.Sprintf("fields entry %d (%s): files %v match no file of the KR pack", i+1, f.Field, f.Files)})
+		case hasField != nil && strings.TrimSpace(f.Field) != "" && !slices.ContainsFunc(matched, func(k string) bool { return hasField(k, f.Field) }):
+			out = append(out, LintError{File: RubyCustomizeFile, Message: fmt.Sprintf("fields entry %d: no unit of the %d KR file(s) that files %v match has the field %q", i+1, len(matched), f.Files, f.Field)})
 		}
 	}
 	return out
