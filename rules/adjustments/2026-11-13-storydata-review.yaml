@@ -560,3 +560,15 @@
   zh: <要拿給人試吃的料理，你們自己都沒吃過是想怎樣啊！>
   reason: StoryData 審查 S0427：KR「음식을 시식시켜야 하는데 본인들이 안 먹어 보면 어떡하자는 거야!」只說「要讓人試吃，自己卻不吃要怎樣！」，JP 相同；現行 TW 照 EN 多出「我們是在努力取悅這裡的人哎」，KR 沒有。；譯法由使用者決定
   rule: one-off
+- key: StoryData/E304A.json|/dataList/48/content
+  raw: raw-20261112
+  kr_sha: 37194d9fe9aac9d5f24dc885126da4d2d9feb0f67fbddb27686dda8fd11ada70
+  zh: 味道又鹹又淡，甜又不甜，不能煮太熟卻又要有點焦的料理，到底要怎麼做啊！
+  reason: StoryData 審查 S0428：KR「너무 익혀서는 안 되지만 적당히 탄」是「不能煮得太熟，卻又要適度燒焦」，JP 相同；現行 TW「又軟又脆」與原意不同。
+  rule: one-off
+- key: StoryData/E305A.json|/dataList/35/content
+  raw: raw-20261112
+  kr_sha: 54d52e5c511a25aa062b506c04963d95f406f9ad38ff030e08c1b05a82005e9a
+  zh: <我們的機會來了！店長身上的扭曲或者別的什麼東西正在減弱！>
+  reason: StoryData 審查 S0429：KR「사장의 뒤틀림이라는 게 약화되고 있어」是「店長的扭曲正在減弱」，JP「弱くなってる」、EN「weakening」相同；現行 TW「正在甦醒」意思相反，而且 KR 說的是店長。
+  rule: one-off
