@@ -11,6 +11,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
@@ -268,6 +269,55 @@ func TestExportSearchCorpus(t *testing.T) {
 		if corpus["jp"][n] != "" || corpus["kr"][n] == "" || corpus["en"][n] == "" {
 			t.Errorf("entry %d: jp %q kr %q en %q, want an empty jp and the other texts", n, corpus["jp"][n], corpus["kr"][n], corpus["en"][n])
 		}
+	}
+}
+
+// A copy whose text KR, EN and JP all share (field rule identical-value) is
+// text a player sees, such as a name the official packs keep in Latin
+// letters, so it is searched; a copy of an identifier field is not. Without
+// field rules no copy is searched.
+func TestExportSearchCorpusKeepsCopiesOfTextAllLanguagesShare(t *testing.T) {
+	const f = "ScenarioModelCodes-AutoCreated.json"
+	fr, err := fields.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	in := Inputs{
+		KR: writePack(t, "KR_", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","name":"UNGEZIEFER KAISER","nickName":"구 G사"}]}`}),
+		EN: writePack(t, "EN_", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","name":"UNGEZIEFER KAISER","nickName":"Old G Corp."}]}`}),
+		JP: writePack(t, "JP_", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","name":"UNGEZIEFER KAISER","nickName":"旧G社"}]}`}),
+		ZH: writePack(t, "", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","name":"UNGEZIEFER KAISER","nickName":"舊G公司"}]}`}),
+		Records: recordsOf(
+			record(f, "/dataList/0/id", "그레고르왕그림자", store.OriginCopy),
+			record(f, "/dataList/0/name", "UNGEZIEFER KAISER", store.OriginCopy),
+			record(f, "/dataList/0/nickName", "舊G公司", store.OriginParatranz),
+		),
+		Rules: testRules(),
+	}
+	searched := func(in Inputs) []string {
+		t.Helper()
+		out := filepath.Join(t.TempDir(), "data")
+		if _, err := Export(in, Meta{}, out); err != nil {
+			t.Fatal(err)
+		}
+		var keys [][]any
+		readJSON(t, out, "search/keys.json", &keys)
+		var zh []string
+		readJSON(t, out, "search/zh.json", &zh)
+		var got []string
+		for n, key := range keys {
+			got = append(got, key[1].(string)+"="+zh[n])
+		}
+		return got
+	}
+
+	in.Fields = fr
+	if got, want := searched(in), []string{"/dataList/0/name=UNGEZIEFER KAISER", "/dataList/0/nickName=舊G公司"}; !slices.Equal(got, want) {
+		t.Errorf("with field rules, searched %v, want %v", got, want)
+	}
+	in.Fields = nil
+	if got, want := searched(in), []string{"/dataList/0/nickName=舊G公司"}; !slices.Equal(got, want) {
+		t.Errorf("without field rules, searched %v, want %v", got, want)
 	}
 }
 

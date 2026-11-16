@@ -9,6 +9,8 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/tool-jx3/limbus-translate/internal/align"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
@@ -163,7 +165,15 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		}
 	}
 	for n, p := range paths {
-		file, sum, aligner, err := buildFile(in, p, nil)
+		// The copy units whose text KR, EN and JP share are searched: they are
+		// what a player sees, such as a name the official packs keep as it is.
+		// The other copies are identifiers and empty texts.
+		searchedCopy := map[string]bool{} // by pointer
+		file, sum, aligner, err := buildFile(in, p, func(u Unit, ku units.Unit, en, jp *align.LangAligned) {
+			if u.O == store.OriginCopy && in.Fields != nil && in.Fields.Classify(ku, en, jp).Reason == fields.ReasonIdenticalValue {
+				searchedCopy[u.P] = true
+			}
+		})
 		if err != nil {
 			return Result{}, err
 		}
@@ -213,7 +223,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		}
 		total += len(file.Units)
 		for _, u := range file.Units {
-			if u.O == store.OriginCopy {
+			if u.O == store.OriginCopy && !searchedCopy[u.P] {
 				continue
 			}
 			keys = append(keys, [2]any{n, u.P})
