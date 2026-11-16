@@ -518,3 +518,39 @@
   zh: 他看起來似乎是個無比輕鬆自在的人，但與此相反，他每走近一步，周遭的空氣又似乎讓所有人都感到越發沉重。
   reason: StoryData 審查 S0311：KR「세상 후련해 보이는 사람」的「세상」是加強語氣的副詞（非常、無比），整句是「看起來像個無比暢快的人」，JP「この上なく晴れやかな人」相同；現行 TW 把「세상」讀成「世間」，寫成「宛如領悟了這世間一般」。；譯法由使用者決定（「세상 후련」寫「無比輕鬆自在」，「걸어오는…가라앉게」寫「每走近一步……越發沉重」）
   rule: one-off
+- key: StoryData/E301A.json|/dataList/81/content
+  raw: raw-20261112
+  kr_sha: b20878917ae73ccdff6b0e946f8e280da6769aaa910c71c594e520eec6ad270c
+  zh: 果然是這樣吧？呼……我還以為浮士德小姐一時發瘋了，心想是不是得由我親自出手讓她清醒過來呢。
+  reason: StoryData 審查 S0421：KR「제가 직접 나서서 정신을 차리게 해야 하나 싶었잖아요」是以實瑪利以為浮士德一時發瘋，想著是不是得親自出手讓她清醒過來，JP「私が直接正気に戻してあげなきゃ」、EN「knock some sense back into you」相同；現行 TW「自己不得不振作起來帶領大家」意思完全不同，下一句格里高爾吐槽她緊
+  rule: one-off
+- key: StoryData/E301B.json|/dataList/15/content
+  raw: raw-20261112
+  kr_sha: 52852dfa5b46cd21b89d0e8deb0d07539f930f2d84884c1a576d82d2b1784661
+  zh: 哎呀，那些在店門口徘徊的是什麼東西？看上去不太正常啊。
+  reason: StoryData 審查 S0422：KR「썩 정상으로 보이진 않는데」是「看起來不太正常」，JP「あまりまともには見えません」、EN「don't appear very normal」相同；現行 TW「不太友好」意思偏了。
+  rule: one-off
+- key: StoryData/E302B.json|/dataList/33/content
+  raw: raw-20261112
+  kr_sha: 688231ad112ae1c48a5094acd8c53d86556dba7db3ca7ea96edf3aabc9869a49
+  zh: 什麼叫那跟那都一樣啊？！
+  reason: StoryData 審查 S0423：良秀上一行「그. 그.」是「그게 그거」（都一樣）的縮略，現行譯「那．那。」；辛克萊的 KR「그게 그거라니요?!」是「什麼叫都一樣？！」，JP「どっちもどっち、ですか！？」、EN「Same difference?!」相同；現行 TW「那就那樣嗎？！」看不出「一樣」的意思，良秀下一句「時鐘頭和雞頭還能有什麼差異」也接不
+  rule: one-off
+- key: StoryData/E302B.json|/dataList/56/content
+  raw: raw-20261112
+  kr_sha: c927bcf315529befe39ca17a3405eb88dbb56d48b65e09367f1069481dceeee3
+  zh: 真是夠了。就算臉皮被剝掉，有經理在這裡就沒關係。
+  reason: StoryData 審查 S0424：KR「답답하군」是奧提斯對羅佳瞻前顧後的不耐煩（JP「焦れったいな」、EN「Grow a backbone.」）；現行 TW「不用慌」變成安撫，語氣不同。；譯法由使用者決定
+  rule: one-off
+- key: StoryData/E303A.json|/dataList/9/content
+  raw: raw-20261112
+  kr_sha: 0ea75bb33a88d9c99e7e0104e09a522fb1acb851f86dc107d8415796caac0838
+  zh: 嗯……我的房間裡沒有廚房那種東西呢。不過我小時候為了討點心吃，倒是偷偷溜進過我家二樓的大餐廳。
+  reason: StoryData 審查 S0425：KR「몰래 간 적은 있긴 했죠」是「倒是曾經偷偷去過」，JP 相同（EN「a few times」）；現行 TW「經常偷偷溜進」多了「經常」，另外也少了 KR 的「為了討點心吃」只寫成「找零食」，可一併調整。
+  rule: one-off
+- key: StoryData/E303B.json|/dataList/5/content
+  raw: raw-20261112
+  kr_sha: d5a834132d1426cf86d3b5ee25eb636d7b7aff729e13d65d7fbf69f9bd215115
+  zh: 格里高爾一改往日的鎮定，用變得尖銳的語氣發起了脾氣。
+  reason: StoryData 審查 S0426：KR「예민해진 말투로 짜증을 냈다」是「用變得敏感尖銳的語氣發脾氣」，JP「神経を尖らせていた」、EN「snapped at me」相同；現行 TW「掩飾著他的緊張」是 KR 沒有的內容，和「發脾氣」不同。
+  rule: one-off
