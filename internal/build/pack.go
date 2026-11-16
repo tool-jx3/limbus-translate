@@ -15,7 +15,9 @@ import (
 	"strings"
 	"time"
 
+	"golang.org/x/image/font"
 	"golang.org/x/image/font/sfnt"
+	"golang.org/x/image/math/fixed"
 )
 
 const (
@@ -294,4 +296,21 @@ func copyFile(w io.Writer, path string) error {
 	defer src.Close()
 	_, err = io.Copy(w, src)
 	return err
+}
+
+// advance is the width of r in the font, in em: its advance at a size of one
+// em per unit, over the units per em. A character the font lacks counts 1,
+// as the game's fallback glyph is about a full em wide.
+func (in *inputs) advance(r rune) float64 {
+	var buf sfnt.Buffer
+	idx, err := in.face.GlyphIndex(&buf, r)
+	if err != nil || idx == 0 {
+		return 1
+	}
+	upem := fixed.Int26_6(in.face.UnitsPerEm())
+	adv, err := in.face.GlyphAdvance(&buf, idx, upem<<6, font.HintingNone)
+	if err != nil {
+		return 1
+	}
+	return float64(adv) / float64(upem<<6)
 }

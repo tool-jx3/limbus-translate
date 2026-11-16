@@ -7,6 +7,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"io"
 	"io/fs"
@@ -29,6 +30,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/rubyx"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/translate"
@@ -481,6 +483,27 @@ func TestBuildKeepsCopyRecordOfTranslateIdenticalUnit(t *testing.T) {
 	}
 	if got := e.pending(); len(got) != 0 {
 		t.Errorf("pending = %v, want none", got)
+	}
+
+	// A human translation with a reading is converted with the width of the font.
+	r, err := rules.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	e.opt.Rules = r
+	e.save(rec("ScenarioModelCodes-AutoCreated.json", "/dataList/0/name", "UNGEZIEFER KAISER",
+		"<rubycustomize=UNGEZIEFER KAISER>害蟲皇帝</rubycustomize>"))
+	rep = e.run()
+	got := e.out("ScenarioModelCodes-AutoCreated.json")
+	var name string
+	if _, err := fmt.Sscanf(strings.TrimSpace(got[strings.Index(got, `"name": `):]), `"name": %q`, &name); err != nil {
+		t.Fatalf("pack =\n%s\n%v", got, err)
+	}
+	if rep.RubyConverted != 1 || strings.Contains(name, "<rubycustomize") || !strings.HasPrefix(name, "<nobr>害蟲皇帝<space=") {
+		t.Fatalf("RubyConverted=%d name=%q, want the converted string", rep.RubyConverted, name)
+	}
+	if want := "<rubycustomize=UNGEZIEFER KAISER>害蟲皇帝</rubycustomize>"; rubyx.Restore(name) != want {
+		t.Errorf("Restore(%q) = %q, want %q", name, rubyx.Restore(name), want)
 	}
 }
 
