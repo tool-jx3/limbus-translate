@@ -668,6 +668,8 @@ func TestClassifyTranslateIdentical(t *testing.T) {
 	r := loadRules(t, "")
 	same := &align.LangAligned{Value: "UNGEZIEFER KAISER", Method: align.MethodPointer}
 	lcd := &align.LangAligned{Value: "LCD", Method: align.MethodPointer}
+	marks := &align.LangAligned{Value: "???", Method: align.MethodPointer}
+	other := &align.LangAligned{Value: "Ungeziefer", Method: align.MethodPointer}
 	cases := []struct {
 		name   string
 		unit   units.Unit
@@ -676,7 +678,16 @@ func TestClassifyTranslateIdentical(t *testing.T) {
 	}{
 		{"listed name is translated although all three languages agree",
 			units.Unit{File: "ScenarioModelCodes-AutoCreated.json", Field: "name", KR: "UNGEZIEFER KAISER"},
-			same, same, Decision{Translate: true}},
+			same, same, Decision{Translate: true, IdenticalExempt: true}},
+		{"listed name without letters stays a copy (pattern)",
+			units.Unit{File: "ScenarioModelCodes-AutoCreated.json", Field: "name", KR: "???"},
+			marks, marks, Decision{Reason: ReasonIdenticalValue}},
+		{"listed name that the languages do not share is translated, not exempt",
+			units.Unit{File: "ScenarioModelCodes-AutoCreated.json", Field: "name", KR: "UNGEZIEFER KAISER"},
+			other, same, Decision{Translate: true}},
+		{"translated unit outside the list is not exempt",
+			units.Unit{File: "Other.json", Field: "name", KR: "UNGEZIEFER KAISER"},
+			other, other, Decision{Translate: true}},
 		{"other field of the same file still skips",
 			units.Unit{File: "ScenarioModelCodes-AutoCreated.json", Field: "nickName", KR: "LCD"},
 			lcd, lcd, Decision{Reason: ReasonIdenticalValue}},
@@ -701,6 +712,7 @@ func TestLoadManualRejectsBadTranslateIdentical(t *testing.T) {
 		"empty file_glob": "translate_identical: [{file_glob: '', field: name}]\n",
 		"empty field":     "translate_identical: [{file_glob: 'A*', field: ''}]\n",
 		"bad glob":        "translate_identical: [{file_glob: '[', field: name}]\n",
+		"bad pattern":     "translate_identical: [{file_glob: 'A*', field: name, pattern: '['}]\n",
 	} {
 		t.Run(name, func(t *testing.T) {
 			root := t.TempDir()

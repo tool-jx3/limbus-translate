@@ -182,9 +182,11 @@ fields:
 translate_identical:            # 即使 KR、EN、JP 三語相同也照樣翻譯的欄位
   - file_glob: 'ScenarioModelCodes*'
     field: name                 # 說話者名稱：官方保留原文的名字也要能加注音，例如 UNGEZIEFER KAISER
+    pattern: '\p{L}'            # 選填：KR 符合這個正規表示式才適用；沒有字母的名稱（???）維持照抄
 ```
 
 - `fields.Classify` 的第 7 條（`identical-value`）不適用於清單上的欄位。其他條（空白、識別欄位等）照舊。
+- `pattern` 是選填的 Go 正規表示式，比對 KR；有寫時，KR 符合才適用例外。寫錯是規則錯誤，`lct rules lint` 會報出。
 - 清單上的照抄單位會變成「要翻譯」，影響如下：
   - 已有的照抄紀錄（`origin: copy`，KR 雜湊相同）在建置時會被當成可用的紀錄，文字等於 KR，不會自動重排。實作者要確認這個行為，並把它寫成測試。
   - 人工調整可以覆蓋它，不會再被第 7 條擋下。

@@ -1604,6 +1604,51 @@ func TestPlanRewriteUpdatesPendingPrevZH(t *testing.T) {
 	e.again()
 }
 
+// A unit the field rules translate only because translate_identical lists its
+// file and field (fields.Decision.IdenticalExempt) keeps the copy record of its
+// KR text from when it was not translated (spec §9, step 4): that copy is what
+// shipped, and it is not queued. A copy record of another KR text of such a
+// unit goes and the unit is queued, as is the copy record of a unit that is
+// translated for any other reason.
+func TestPlanKeepsTheCopyOfAnIdenticalExemptUnit(t *testing.T) {
+	e := newPlanEnv(t)
+	e.rule("rules/fields.manual.yaml", testFieldRules+"translate_identical: [{file_glob: 'ScenarioModelCodes*', field: name, pattern: '\\p{L}'}]\n")
+	const smc = "ScenarioModelCodes-AutoCreated.json"
+	names := dataList(obj{"id": "a", "name": "UNGEZIEFER KAISER"}, obj{"id": "b", "name": "UNGEZIEFER KAISER"})
+	e.snapshotLangs(
+		map[string]string{smc: names, "Skills_A.json": dataList(obj{"id": 1, "desc": "피해를 준다"})},
+		map[string]string{smc: names},
+		map[string]string{smc: names},
+	)
+	same, other, desc := at(smc, "/dataList/0/name"), at(smc, "/dataList/1/name"), descKey("Skills_A.json", 0)
+	kept := copied(same, "UNGEZIEFER KAISER")
+	e.seed([]store.Record{kept, copied(other, "UNGEZIEFER"), copied(desc, "피해를 준다")}, nil)
+
+	sum := e.run("")
+
+	recs := e.records()
+	if got := recs[same]; !reflect.DeepEqual(got, kept) {
+		t.Errorf("exempt unit record = %+v, want the copy kept unchanged %+v", got, kept)
+	}
+	for _, key := range []string{other, desc} {
+		if rec, has := recs[key]; has {
+			t.Errorf("%s has the record %+v, want the copy gone", key, rec)
+		}
+	}
+	want := map[string]store.PendingItem{
+		other: {Key: other, Reason: ReasonNew},
+		desc:  {Key: desc, Reason: ReasonNew},
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %v\nwant %v", got, want)
+	}
+	if sum.Pending != 2 {
+		t.Errorf("Pending = %d, want 2", sum.Pending)
+	}
+
+	e.again()
+}
+
 // A unit the field rules translate and that has no translation of its KR text
 // is queued (spec 8.2, step 6), and a copy is no translation: it goes.
 func TestPlanQueuesUnitsWithoutASource(t *testing.T) {

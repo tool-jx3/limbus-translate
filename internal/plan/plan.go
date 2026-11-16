@@ -295,7 +295,10 @@ func (in Inputs) check() error {
 //     queue. Of two adjustments of one unit, the one at its own key wins over
 //     one that moved, and of equals the later one in file order. An
 //     adjustment of a unit that steps 1 or 2 decide is not applied;
-//  4. it has a record of its KR text (not a copy): the record stays;
+//  4. it has a record of its KR text (not a copy): the record stays. So
+//     does a copy record of its KR text when the field rules translate the
+//     unit only because translate_identical lists it
+//     (fields.Decision.IdenticalExempt): that copy is what shipped;
 //  5. it is queued as new or changed without what a person wrote for it (a
 //     hint or an expired adjustment as a reference, batch.CarriesInput:
 //     only a translator can act on that), and a unit of the same text
@@ -311,7 +314,7 @@ func (in Inputs) check() error {
 //     new, or, when it has a record of another KR text, as kr-changed with
 //     that record's text as the previous translation (as a transition would
 //     have queued it), and a copy record it has goes (a copy is no
-//     translation). A unit whose adjustment expired (its KR text changed; see
+//     translation, unless step 4 keeps it). A unit whose adjustment expired (its KR text changed; see
 //     expiredUnit for how the unit is found) is queued as adjustment-expired,
 //     with the adjustment as a reference, unless it has a record of its KR
 //     text already that is not human: the unit is queued once, and no more
@@ -819,19 +822,19 @@ func (p *planner) settle(claims map[string]*claim) error {
 			if err != nil {
 				return fmt.Errorf("plan: %w", err)
 			}
-			p.unit(key, ref, p.in.Fields.Classify(u, en, jp).Translate, claims[key])
+			p.unit(key, ref, p.in.Fields.Classify(u, en, jp), claims[key])
 		}
 	}
 	return nil
 }
 
-// unit settles one unit: translate is what the field rules say, c the
-// adjustment that applies to it (nil if none).
-func (p *planner) unit(key string, ref unitRef, translate bool, c *claim) {
+// unit settles one unit: d is what the field rules say, c the adjustment
+// that applies to it (nil if none).
+func (p *planner) unit(key string, ref unitRef, d fields.Decision, c *claim) {
 	u := ref.unit()
 	rec, hasRec := p.records[key]
 	switch {
-	case !translate: // 1
+	case !d.Translate: // 1
 		p.settled[key] = true
 		copyRec := store.Record{Key: key, KRSha: ref.sha, ZH: u.KR, Origin: store.OriginCopy, Since: p.sum.RawTag, Rules: p.in.RulesCommit}
 		if !hasRec || !sameRecord(rec, copyRec) {
@@ -856,10 +859,11 @@ func (p *planner) unit(key string, ref unitRef, translate bool, c *claim) {
 		}
 		delete(p.pending, key)
 		return
-	case hasRec && rec.KRSha == ref.sha && rec.Origin != store.OriginCopy: // 4
+	case hasRec && rec.KRSha == ref.sha && (rec.Origin != store.OriginCopy || d.IdenticalExempt): // 4
 		return
 	}
-	// 6, unless step 5 finds the same text later.
+	// 6, unless step 5 finds the same text later. A copy record that step 4
+	// did not keep goes.
 	if hasRec && rec.Origin == store.OriginCopy {
 		delete(p.records, key)
 		hasRec = false
