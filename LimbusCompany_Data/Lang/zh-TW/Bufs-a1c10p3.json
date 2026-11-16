@@ -142,8 +142,8 @@
     },
     {
       "id": "ConfessionThirdPhase",
-      "name": "～",
-      "desc": "- 以下效果統稱為～\n．釘 [Exception]\n．釘 [Breakpoint]\n．釘 [Console]",
+      "name": "〜",
+      "desc": "- 以下效果統稱為〜\n．釘 [Exception]\n．釘 [Breakpoint]\n．釘 [Console]",
       "summary": "牧師施加之釘的總稱",
       "flavor": "「我很確定了，你們是不該存在於這個系統裡的異物。所以……就算現在才看也好，得翻翻手冊了。規律與規則裡可是無所不包的。」"
     },

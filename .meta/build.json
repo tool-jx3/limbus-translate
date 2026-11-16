@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261112",
   "raw_token": "l20261112_5pAcdxbyP1RC08yIrdPw",
-  "rules_commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c",
-  "built_at": "2026-11-15T13:21:03Z",
+  "rules_commit": "a9342421f71a5212088bb2ec7786783ed80e56b3",
+  "built_at": "2026-11-16T08:05:21Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,15 +10,15 @@
   },
   "notes_seen": 1058,
   "zips": {
-    "zh-TW_complete_raw-20261112.zip": "e95332e2464bf91a3b043c8d8ee33b558ef1ffb7d852ffc6b9b628965de6df96",
-    "zh-TW_text_raw-20261112.zip": "34447cfee21bf0058043bb63e9218e6dd0e80a67e2609c5fd988d2b7f35362fe"
+    "zh-TW_complete_raw-20261112.zip": "6f6f450066863b0f4440b59401a66d80818a902bd79ebe98022e14d4d0f1fb9e",
+    "zh-TW_text_raw-20261112.zip": "a981b027334148f0db0cda1595789563f3e1a294ee8198f9f62b033a0f2ed151"
   },
   "report": {
     "origins": {
-      "claude": 19833,
+      "claude": 19832,
       "copy": 91934,
-      "human": 193,
-      "paratranz": 163889
+      "human": 210,
+      "paratranz": 163873
     },
     "pending": 0,
     "needs_review": 0,
@@ -34,7 +34,7 @@
       "forbidden-term": 3,
       "halfwidth-punct": 9,
       "kana": 7,
-      "keyword-link": 130,
+      "keyword-link": 62,
       "length-ratio": 2,
       "level-diff": 61,
       "newline-space": 9,
@@ -98,16 +98,16 @@
         "TutorialRenewalDesc.json|/dataList/70/content"
       ],
       "keyword-link": [
-        "EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/38/desc",
         "EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/42/desc",
-        "EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/43/desc",
         "EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/54/simpleDesc/0/simpleDesc",
-        "EGOgift_MirrorDungeon-StoryTheme.json|/dataList/6/desc",
-        "EGOgift_MirrorDungeon-StoryTheme.json|/dataList/6/simpleDesc/0/simpleDesc",
-        "EGOgift_MirrorDungeon-StoryTheme.json|/dataList/9/desc",
-        "EGOgift_MirrorDungeon-StoryTheme.json|/dataList/9/simpleDesc/0/simpleDesc",
         "EGOgift_MirrorDungeon-mowe.json|/dataList/4/desc",
-        "EGOgift_MirrorDungeon.json|/dataList/301/desc"
+        "EGOgift_MirrorDungeon.json|/dataList/360/simpleDesc/1/simpleDesc",
+        "EGOgift_MirrorDungeon.json|/dataList/59/desc",
+        "EGOgift_StoryDungeon.json|/dataList/3/desc",
+        "EGOgift_StoryDungeon.json|/dataList/3/simpleDesc/0/simpleDesc",
+        "EGOgift_a1c8p2.json|/dataList/15/desc",
+        "EGOgift_a1c8p2.json|/dataList/15/simpleDesc/1/simpleDesc",
+        "EGOgift_walpu10.json|/dataList/6/simpleDesc/0/simpleDesc"
       ],
       "length-ratio": [
         "BattleKeywords.json|/dataList/98/name",
@@ -338,42 +338,6 @@
         "units": 12
       },
       {
-        "family": "keywords",
-        "field": "name",
-        "kr": "불꽃나비의 관",
-        "zh": [
-          "火蝶之棺",
-          "炎蝶之棺"
-        ],
-        "keys": [
-          "BattleKeywords-walpu10.json|/dataList/12/name",
-          "BattleKeywords.json|/dataList/562/name"
-        ],
-        "counts": [
-          6,
-          6
-        ],
-        "units": 12
-      },
-      {
-        "family": "keywords",
-        "field": "name",
-        "kr": "새벽불",
-        "zh": [
-          "黎明之火",
-          "曉光之火"
-        ],
-        "keys": [
-          "BattleKeywords-walpu10.json|/dataList/9/name",
-          "BattleKeywords.json|/dataList/551/name"
-        ],
-        "counts": [
-          6,
-          6
-        ],
-        "units": 12
-      },
-      {
         "family": "ally",
         "field": "desc",
         "kr": "[OnSucceedAttack] [Laceration] 횟수 <style=\"highlight\">2</style> 증가",
@@ -531,15 +495,51 @@
           1
         ],
         "units": 10
+      },
+      {
+        "family": "mirror",
+        "field": "messageDesc",
+        "kr": "선택 시, 충전 E.G.O GIFT 획득",
+        "zh": [
+          "選擇後，獲得1件充能E.G.O 飾品",
+          "選擇後，獲得1件充能E.G.O飾品"
+        ],
+        "keys": [
+          "ActionEvents-walpu4.json|/dataList/1/options/1/messageDesc",
+          "ActionEvents_Mirror.json|/dataList/58/options/1/messageDesc"
+        ],
+        "counts": [
+          2,
+          8
+        ],
+        "units": 10
+      },
+      {
+        "family": "abnormality",
+        "field": "story",
+        "kr": "그 컨테이너에서 이상한 놈들이 나왔어요.\n깡통 같은 걸 머리에 쓰고, 몸통도 플라스틱 같은 재질에…\n설명하기 어렵네요. 마치 장난감 조각들을 어디서 찾아와서 제멋대로 이어 붙인 것 같이 생겼어요.\n색도 뒤죽박죽에, 심지어 어떤 건 외장도 없어서, 구동부가 전부 보이더라고요.\n그렇다고 그냥 기계들인가 하면, 그것도 아니에요.\n이어 붙인 부위 중간 중간에 보이는 살점 끼인 자국, 말라 붙은 피…\n대체 그 컨테이너에서는 무슨 일이 일어나는 걸까요?\n→ 어… 아마, 자동 의체 시술 장치가 아닐까요? 제 아버지가 인수하시길 고려했던 회사가… 아, 아니다. 그냥 잊으세요.\n→ 환상체는 실존하는 장치가 아니에요. 실재하는 것과 결부 지으려 하지 않는 걸 추천해요.",
+        "zh": [
+          "一群穿著怪異的人從那收容箱中走了出來。\n它們頭上戴著錫製的罐頭，而軀體則是由某種塑膠製成的……\n這很難說，就好似某人隨意堆積起來的玩具一樣。\n在那些不和諧的色調之上，是直接暴露在外的機械結構。\n它們也並不是僅由機器組成，\n在組成部位之間，我看到了一些早已乾枯的血肉……\n那收容箱裡到底發生了什麼？\n→嗯……也許那是某種自動化義體手術裝置？就像我父親要收購的那家公司一樣……算、算了。忘了我剛剛說的吧。\n→異想體從來都不是什麼普通設備一樣的東西。我十分反對與那些跑出來的東西進行接觸。",
+          "一群穿著怪異的人從那收容箱中走了出來。\n它們頭上戴著錫製的罐頭，而軀體則是由某種塑膠製成的……\n這很難說，就好是某人隨意堆積起來的玩具一樣。\n在那些不和諧的色調之上，是直接暴露在外的機械結構。\n它們也並不是僅由機器組成，\n在組成部位之間，我看到了一些早已乾枯的血肉……\n那收容箱裡到底發生了什麼？\n→嗯……也許那是某種自動化義體手術裝置？就像我父親要收購的那家公司一樣……算、算了。忘了我剛剛說的吧。\n→異想體從來都不是什麼普通設備一樣的東西。我十分反對與那些跑出來的東西進行接觸。"
+        ],
+        "keys": [
+          "AbnormalityGuides.json|/dataList/12/storyList/0/story",
+          "AbnormalityGuides.json|/dataList/14/storyList/0/story"
+        ],
+        "counts": [
+          8,
+          1
+        ],
+        "units": 9
       }
     ],
     "notes": [],
     "new_translated": 1763,
     "shown": {
-      "claude": 19833,
+      "claude": 19832,
       "copy": 91934,
-      "human": 193,
-      "paratranz": 163889
+      "human": 210,
+      "paratranz": 163873
     },
     "misaligned": [
       {
@@ -820,42 +820,6 @@
       "counts": [
         11,
         1
-      ],
-      "units": 12
-    },
-    {
-      "family": "keywords",
-      "field": "name",
-      "kr": "불꽃나비의 관",
-      "zh": [
-        "火蝶之棺",
-        "炎蝶之棺"
-      ],
-      "keys": [
-        "BattleKeywords-walpu10.json|/dataList/12/name",
-        "BattleKeywords.json|/dataList/562/name"
-      ],
-      "counts": [
-        6,
-        6
-      ],
-      "units": 12
-    },
-    {
-      "family": "keywords",
-      "field": "name",
-      "kr": "새벽불",
-      "zh": [
-        "黎明之火",
-        "曉光之火"
-      ],
-      "keys": [
-        "BattleKeywords-walpu10.json|/dataList/9/name",
-        "BattleKeywords.json|/dataList/551/name"
-      ],
-      "counts": [
-        6,
-        6
       ],
       "units": 12
     },
@@ -7705,6 +7669,24 @@
     {
       "family": "keywords",
       "field": "desc",
+      "kr": "- 다음 효과를 아울러 〜로 지칭함\n· 못[Exception]\n· 못[Breakpoint]\n· 못[Console]",
+      "zh": [
+        "- 以下效果統稱為～\n．釘 [Exception]\n．釘 [Breakpoint]\n．釘 [Console]",
+        "- 以下效果統稱為〜\n．釘 [Exception]\n．釘 [Breakpoint]\n．釘 [Console]"
+      ],
+      "keys": [
+        "BattleKeywords-a1c10p3.json|/dataList/20/desc",
+        "Bufs-a1c10p3.json|/dataList/20/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "keywords",
+      "field": "desc",
       "kr": "전투 시작 시 현재 편성 순서가 가장 빠른 아군 3명이 호흡 위력 10 얻음",
       "zh": [
         "戰鬥開始時，使最先編入的3名友方單位增加10級呼吸法強度",
@@ -7731,6 +7713,24 @@
       "keys": [
         "BattleKeywords.json|/dataList/159/desc",
         "BattleKeywords_Refraction2.json|/dataList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "keywords",
+      "field": "name",
+      "kr": "〜",
+      "zh": [
+        "～",
+        "〜"
+      ],
+      "keys": [
+        "BattleKeywords-a1c10p3.json|/dataList/20/name",
+        "Bufs-a1c10p3.json|/dataList/20/name"
       ],
       "counts": [
         1,
@@ -9423,24 +9423,6 @@
       "keys": [
         "StoryData/E714B.json|/dataList/77/content",
         "StoryData/E923I.json|/dataList/32/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "그렇게.",
-      "zh": [
-        "於是乎……",
-        "於是乎。"
-      ],
-      "keys": [
-        "StoryData/E303A.json|/dataList/4/content",
-        "StoryData/E519A.json|/dataList/146/content"
       ],
       "counts": [
         1,

@@ -1,0 +1,620 @@
+{
+  "tag": "zh-TW-20261112.6",
+  "prev_tag": "zh-TW-20261112.5",
+  "released_at": "2026-11-16T08:06:09Z",
+  "prev_released_at": "2026-11-15T13:21:42Z",
+  "raw_tag": "raw-20261112",
+  "prev_raw_tag": "raw-20261112",
+  "rules_commit": "a9342421f71a5212088bb2ec7786783ed80e56b3",
+  "prev_rules_commit": "29ee90f0b32d1d9b554811b5d5dcf7cf2d3ef46c",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 30
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "BattleKeywords-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/9/name",
+      "kind": "zh-changed",
+      "new_kr": "새벽불",
+      "old_zh": "黎明之火",
+      "new_zh": "曉光之火",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-dawn-fire"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/10/name",
+      "kind": "zh-changed",
+      "new_kr": "새벽불",
+      "old_zh": "黎明之火",
+      "new_zh": "曉光之火",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-dawn-fire"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/11/name",
+      "kind": "zh-changed",
+      "new_kr": "새벽불",
+      "old_zh": "黎明之火",
+      "new_zh": "曉光之火",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-dawn-fire"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/12/name",
+      "kind": "zh-changed",
+      "new_kr": "불꽃나비의 관",
+      "old_zh": "火蝶之棺",
+      "new_zh": "炎蝶之棺",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-flame-butterfly-coffin"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/13/name",
+      "kind": "zh-changed",
+      "new_kr": "불꽃나비의 관",
+      "old_zh": "火蝶之棺",
+      "new_zh": "炎蝶之棺",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-flame-butterfly-coffin"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/14/name",
+      "kind": "zh-changed",
+      "new_kr": "불꽃나비의 관",
+      "old_zh": "火蝶之棺",
+      "new_zh": "炎蝶之棺",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-flame-butterfly-coffin"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-a1c10p3.json",
+      "field": "name",
+      "ptr": "/dataList/20/name",
+      "kind": "zh-changed",
+      "new_kr": "〜",
+      "old_zh": "～",
+      "new_zh": "〜",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-16-keyword-link.yaml",
+          "reason": "「ConfessionThirdPhase」的名稱照 KR、EN 寫「〜」（U+301C）；寫成「～」（U+FF5E）時，技能等說明裡「1～2層」這類範圍會被遊戲當成這個狀態而變成關鍵字連結（keyword-link 68 個欄位）"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-a1c10p3.json",
+      "field": "desc",
+      "ptr": "/dataList/20/desc",
+      "kind": "zh-changed",
+      "new_kr": "- 다음 효과를 아울러 〜로 지칭함\n· 못[Exception]\n· 못[Breakpoint]\n· 못[Console]",
+      "old_zh": "- 以下效果統稱為～\n．釘 [Exception]\n．釘 [Breakpoint]\n．釘 [Console]",
+      "new_zh": "- 以下效果統稱為〜\n．釘 [Exception]\n．釘 [Breakpoint]\n．釘 [Console]",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-16-keyword-link.yaml",
+          "reason": "說明裡的名稱跟著狀態名稱改寫「〜」（U+301C），與 KR「〜로 지칭함」一致"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/9/name",
+      "kind": "zh-changed",
+      "new_kr": "새벽불",
+      "old_zh": "黎明之火",
+      "new_zh": "曉光之火",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-dawn-fire"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/10/name",
+      "kind": "zh-changed",
+      "new_kr": "새벽불",
+      "old_zh": "黎明之火",
+      "new_zh": "曉光之火",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-dawn-fire"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/11/name",
+      "kind": "zh-changed",
+      "new_kr": "새벽불",
+      "old_zh": "黎明之火",
+      "new_zh": "曉光之火",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-dawn-fire"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/12/name",
+      "kind": "zh-changed",
+      "new_kr": "불꽃나비의 관",
+      "old_zh": "火蝶之棺",
+      "new_zh": "炎蝶之棺",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-flame-butterfly-coffin"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/13/name",
+      "kind": "zh-changed",
+      "new_kr": "불꽃나비의 관",
+      "old_zh": "火蝶之棺",
+      "new_zh": "炎蝶之棺",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-flame-butterfly-coffin"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/14/name",
+      "kind": "zh-changed",
+      "new_kr": "불꽃나비의 관",
+      "old_zh": "火蝶之棺",
+      "new_zh": "炎蝶之棺",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-walpu10-flame-butterfly-coffin"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E301A.json",
+      "field": "content",
+      "ptr": "/dataList/81/content",
+      "kind": "zh-changed",
+      "new_kr": "역시 그렇죠? 휴… 파우스트 씨가 잠깐 회까닥 하신 줄 알고 제가 직접 나서서 정신을 차리게 해야 하나 싶었잖아요.",
+      "old_zh": "果然是這樣？呼……我還以為浮士德小姐有點發瘋，以致於自己不得不振作起來帶領大家了。",
+      "new_zh": "果然是這樣吧？呼……我還以為浮士德小姐一時發瘋了，心想是不是得由我親自出手讓她清醒過來呢。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0421：KR「제가 직접 나서서 정신을 차리게 해야 하나 싶었잖아요」是以實瑪利以為浮士德一時發瘋，想著是不是得親自出手讓她清醒過來，JP「私が直接正気に戻してあげなきゃ」、EN「knock some sense back into you」相同；現行 TW「自己不得不振作起來帶領大家」意思完全不同，下一句格里高爾吐槽她緊"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E301B.json",
+      "field": "content",
+      "ptr": "/dataList/15/content",
+      "kind": "zh-changed",
+      "new_kr": "앗 저런, 가게 앞을 돌아다니고 있는 저건 무엇일까요? 썩 정상으로 보이진 않는데 말이죠.",
+      "old_zh": "哎呀，那些在店門口徘徊的是什麼東西？看上去似乎不太友好啊。",
+      "new_zh": "哎呀，那些在店門口徘徊的是什麼東西？看上去不太正常啊。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0422：KR「썩 정상으로 보이진 않는데」是「看起來不太正常」，JP「あまりまともには見えません」、EN「don't appear very normal」相同；現行 TW「不太友好」意思偏了。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E302B.json",
+      "field": "content",
+      "ptr": "/dataList/33/content",
+      "kind": "zh-changed",
+      "new_kr": "그게 그거라니요?!",
+      "old_zh": "那就那樣嗎？！",
+      "new_zh": "什麼叫那跟那都一樣啊？！",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0423：良秀上一行「그. 그.」是「그게 그거」（都一樣）的縮略，現行譯「那．那。」；辛克萊的 KR「그게 그거라니요?!」是「什麼叫都一樣？！」，JP「どっちもどっち、ですか！？」、EN「Same difference?!」相同；現行 TW「那就那樣嗎？！」看不出「一樣」的意思，良秀下一句「時鐘頭和雞頭還能有什麼差異」也接不"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E302B.json",
+      "field": "content",
+      "ptr": "/dataList/56/content",
+      "kind": "zh-changed",
+      "new_kr": "답답하군. 설사 얼굴 가죽이 벗겨져도, 관리자님이 계시니까 괜찮은 거다.",
+      "old_zh": "不用慌。就算臉皮被剝掉，有經理在這裡就沒關係。",
+      "new_zh": "真是夠了。就算臉皮被剝掉，有經理在這裡就沒關係。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0424：KR「답답하군」是奧提斯對羅佳瞻前顧後的不耐煩（JP「焦れったいな」、EN「Grow a backbone.」）；現行 TW「不用慌」變成安撫，語氣不同。；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E303A.json",
+      "field": "content",
+      "ptr": "/dataList/4/content",
+      "kind": "zh-changed",
+      "new_kr": "그렇게.",
+      "old_zh": "於是乎……",
+      "new_zh": "於是乎。",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-16-rs-g868-so-then-period"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E303A.json",
+      "field": "content",
+      "ptr": "/dataList/9/content",
+      "kind": "zh-changed",
+      "new_kr": "음, 제 방에는 부엌이라는 게 따로 없었어요. 어렸을 땐 간식 얻어먹으려고 집 2층에 있던 대식당에 몰래 간 적은 있긴 했죠.",
+      "old_zh": "嗯……我的房間裡沒有廚房那種東西呢。不過我小時候倒是經常偷偷溜進我家二樓的大餐廳找零食。",
+      "new_zh": "嗯……我的房間裡沒有廚房那種東西呢。不過我小時候為了討點心吃，倒是偷偷溜進過我家二樓的大餐廳。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0425：KR「몰래 간 적은 있긴 했죠」是「倒是曾經偷偷去過」，JP 相同（EN「a few times」）；現行 TW「經常偷偷溜進」多了「經常」，另外也少了 KR 的「為了討點心吃」只寫成「找零食」，可一併調整。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E303B.json",
+      "field": "content",
+      "ptr": "/dataList/5/content",
+      "kind": "zh-changed",
+      "new_kr": "어지간한 일에는 평정을 유지하는 그레고르가 예민해진 말투로 짜증을 냈다.",
+      "old_zh": "格里高爾一改往日的鎮定，用稍顯尖酸的語氣掩飾著他的緊張。",
+      "new_zh": "格里高爾一改往日的鎮定，用變得尖銳的語氣發起了脾氣。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0426：KR「예민해진 말투로 짜증을 냈다」是「用變得敏感尖銳的語氣發脾氣」，JP「神経を尖らせていた」、EN「snapped at me」相同；現行 TW「掩飾著他的緊張」是 KR 沒有的內容，和「發脾氣」不同。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E304A.json",
+      "field": "content",
+      "ptr": "/dataList/11/content",
+      "kind": "zh-changed",
+      "new_kr": "<음식을 시식시켜야 하는데 본인들이 안 먹어 보면 어떡하자는 거야!>",
+      "old_zh": "<說是讓人試吃料理，但製作者自己都不吃算怎麼回事啊，我們是在努力取悅這裡的人哎！>",
+      "new_zh": "<要拿給人試吃的料理，你們自己都沒吃過是想怎樣啊！>",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0427：KR「음식을 시식시켜야 하는데 본인들이 안 먹어 보면 어떡하자는 거야!」只說「要讓人試吃，自己卻不吃要怎樣！」，JP 相同；現行 TW 照 EN 多出「我們是在努力取悅這裡的人哎」，KR 沒有。；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E304A.json",
+      "field": "content",
+      "ptr": "/dataList/48/content",
+      "kind": "zh-changed",
+      "new_kr": "대체 짜면서도 싱거워야 하고, 너무 달진 않아야 하지만 달콤해야 하고 너무 익혀서는 안 되지만 적당히 탄 음식은 대체 어떻게 만들어야 하는 건데요!",
+      "old_zh": "味道又鹹又淡，甜又不甜，又軟又脆的料理，到底要怎麼做啊！",
+      "new_zh": "味道又鹹又淡，甜又不甜，不能煮太熟卻又要有點焦的料理，到底要怎麼做啊！",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0428：KR「너무 익혀서는 안 되지만 적당히 탄」是「不能煮得太熟，卻又要適度燒焦」，JP 相同；現行 TW「又軟又脆」與原意不同。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E305A.json",
+      "field": "content",
+      "ptr": "/dataList/35/content",
+      "kind": "zh-changed",
+      "new_kr": "<지금이야! 사장의 뒤틀림이라는 게 약화되고 있어!>",
+      "old_zh": "<我們的機會來了！它身上的扭曲或者別的什麼東西正在甦醒！>",
+      "new_zh": "<我們的機會來了！店長身上的扭曲或者別的什麼東西正在減弱！>",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0429：KR「사장의 뒤틀림이라는 게 약화되고 있어」是「店長的扭曲正在減弱」，JP「弱くなってる」、EN「weakening」相同；現行 TW「正在甦醒」意思相反，而且 KR 說的是店長。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E306A.json",
+      "field": "content",
+      "ptr": "/dataList/22/content",
+      "kind": "zh-changed",
+      "new_kr": "나와 이 애… 소년만이 눈치챈 기류지. 잘 따라와 줬다.",
+      "old_zh": "手法很巧妙，這個菜……年輕人能夠意識到暗示。幹得好。",
+      "new_zh": "那是只有我和這個菜……少年才察覺到的風向。你配合得很好。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0430：KR「나와 이 애… 소년만이 눈치챈 기류지. 잘 따라와 줬다.」是「這是只有我和這個小……少年察覺到的風向。你跟得很好。」；現行 TW 的「這個菜……年輕人」是刻意寫出的口誤（差點說成「菜鳥」），下一行但丁才問「你剛才是不是想說『菜鳥』？」，這部分正確、要保留；真正的問題是漏了「只有我和他」察覺，又多了 KR 沒；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E306A.json",
+      "field": "content",
+      "ptr": "/dataList/26/content",
+      "kind": "zh-changed",
+      "new_kr": "중요한 건 레시피가 아니었어요… 누군가를 위하는 마음… 설사 그 형태가 피자… 일지라도… 정성만 담겨 있다면 손님들은 좋아해 줄 거예요.",
+      "old_zh": "我並不需要什麼食譜……只要我能記得，我是為了那些關心我的人下廚……即使它的形狀……像披薩一樣……我的顧客仍然會感謝這些發自內心的服務。",
+      "new_zh": "重要的不是食譜……是為某個人著想的心意……就算做出來的形狀是披薩……只要用心去做，客人們一定會喜歡的。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0431：KR 是「重要的不是食譜……是為某個人著想的心……就算做成的形狀是披薩……只要用心，客人們就會喜歡」，JP 相同；現行 TW 照 EN 寫成「我是為了那些關心我的人下廚」，「為他人著想」變成「關心我的人」，對象反了，「顧客會感謝這些發自內心的服務」也偏離「客人會喜歡」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E306A.json",
+      "field": "content",
+      "ptr": "/dataList/66/content",
+      "kind": "zh-changed",
+      "new_kr": "그럼 이만. ",
+      "old_zh": "我會再來看你的。",
+      "new_zh": "那就先這樣。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0432：KR「그럼 이만.」只是告別語「那就先這樣」，JP「では、これで。」相同；現行 TW 照 EN 寫成「我會再來看你的。」，多了 KR 沒有的「會再來」，聽起來像威脅。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E306B.json",
+      "field": "content",
+      "ptr": "/dataList/18/content",
+      "kind": "zh-changed",
+      "new_kr": "네?",
+      "old_zh": "那是什麼？",
+      "new_zh": "咦？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0433：KR「네?」是以實瑪利被格里高爾說「看你的表情就不想問了」時的反問（咦？），JP「はい？」、EN「Pardon?」相同；現行 TW「那是什麼？」變成以實瑪利在問概念焚化爐是什麼，但這個詞正是她自己先說的。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E306B.json",
+      "field": "content",
+      "ptr": "/dataList/26/content",
+      "kind": "zh-changed",
+      "new_kr": "그래…! 매운 양념이었는지 간장 양념이었는지… 설탕이 주재료였는지 아니면 소금이었는지 아무것도 남지 않아! 심지어… 가게를 찾아왔던 수많은 손님들조차도!",
+      "old_zh": "就是這樣……！我不記得這個調味汁是用胡椒還是醬油做的了……我該放多少糖或者多少鹽……我腦海裡什麼都不剩了！我的顧客也都把它的味道給忘完了！",
+      "new_zh": "就是這樣……！是辣味醬料還是醬油醬料……主料是糖還是鹽……什麼都沒留下！就連……來過店裡的那麼多客人，也什麼都不記得了！",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0434：KR 是「不記得是辣味醬料還是醬油醬料……主料是糖還是鹽」，JP 相同；現行 TW 照 EN 把「매운 양념」寫成「胡椒」，把「主料是糖還是鹽」寫成「該放多少糖或者多少鹽」。；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E306B.json",
+      "field": "content",
+      "ptr": "/dataList/28/content",
+      "kind": "zh-changed",
+      "new_kr": "흥, 마음부터 물러 터졌군. 은봉? 그딴 촌스런 이름이나 걸고 하니까 장사가 안되는 거다.",
+      "old_zh": "哼，你真是軟弱啊。銀鳳？你應該把那個俗氣名字給去了，給你的餐廳起個更好的名稱。",
+      "new_zh": "哼，你真是軟弱啊。銀鳳？就是掛著那種俗氣的名字，生意才會做不起來。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0435：KR「그딴 촌스런 이름이나 걸고 하니까 장사가 안되는 거다」是「掛著那種俗氣的名字，難怪生意不好」，把俗氣的店名說成生意差的原因，JP 相同；現行 TW 照 EN 寫成「你應該把那個俗氣名字給去了，給你的餐廳起個更好的名稱」，從批評變成建議改名。"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-13-storydata-review.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-13-storydata-review.yaml",
+      "path": "rules/adjustments/2026-11-13-storydata-review.yaml",
+      "title": "2026-11-13-storydata-review.yaml",
+      "commit": "a9342421f71a5212088bb2ec7786783ed80e56b3"
+    },
+    "adjustment:2026-11-16-keyword-link.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-16-keyword-link.yaml",
+      "path": "rules/adjustments/2026-11-16-keyword-link.yaml",
+      "title": "2026-11-16-keyword-link.yaml",
+      "commit": "a9342421f71a5212088bb2ec7786783ed80e56b3"
+    },
+    "rewrite:2026-11-16-rs-g868-so-then-period": {
+      "kind": "rewrite",
+      "id": "2026-11-16-rs-g868-so-then-period",
+      "path": "rules/rewrite/2026-11-16-rs-g868-so-then-period.yaml",
+      "title": "「그렇게.」照 KR 的句號寫「於是乎。」，與 E519A#146 一致（規則建議 G868）",
+      "commit": "a9342421f71a5212088bb2ec7786783ed80e56b3"
+    },
+    "rewrite:2026-11-16-walpu10-dawn-fire": {
+      "kind": "rewrite",
+      "id": "2026-11-16-walpu10-dawn-fire",
+      "path": "rules/rewrite/2026-11-16-walpu10-dawn-fire.yaml",
+      "title": "「새벽불」照舊譯統一寫「曉光之火」",
+      "commit": "a9342421f71a5212088bb2ec7786783ed80e56b3"
+    },
+    "rewrite:2026-11-16-walpu10-flame-butterfly-coffin": {
+      "kind": "rewrite",
+      "id": "2026-11-16-walpu10-flame-butterfly-coffin",
+      "path": "rules/rewrite/2026-11-16-walpu10-flame-butterfly-coffin.yaml",
+      "title": "「불꽃나비의 관」照舊譯統一寫「炎蝶之棺」",
+      "commit": "a9342421f71a5212088bb2ec7786783ed80e56b3"
+    }
+  }
+}
