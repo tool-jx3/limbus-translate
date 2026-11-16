@@ -5520,3 +5520,67 @@ func TestBatchMarksRubyCustomizeUnits(t *testing.T) {
 		t.Errorf("content has ruby_customize = %v, want no such key", v)
 	}
 }
+
+// The texts a batch takes from records (prev_zh, draft and the references,
+// same_text among them) show a unit off the whitelist of <rubycustomize> the
+// body only: a translator who copies them must not write the tag where it may
+// not stand. A unit on the whitelist sees them as they are. The same-text
+// renderings are told apart by what the unit is shown, so a reading does not
+// make a second line of the same body.
+func TestBatchRefsOfUnmarkedUnitsHaveNoRubyCustomize(t *testing.T) {
+	const kr = "요시히데가 말했다"
+	const tagged = "<rubycustomize=ヨシヒデ>良秀</rubycustomize>說"
+	const body = "良秀說"
+	for _, marked := range []bool{false, true} {
+		t.Run(fmt.Sprintf("marked=%v", marked), func(t *testing.T) {
+			env := newEnv(t, map[string]string{"A.json": oneLine(t, kr)}, nil, nil)
+			more := map[string]string{}
+			if marked {
+				more[rules.RubyCustomizeFile] = "fields:\n  - files: ['A.json']\n    field: content\n"
+			}
+			env.Rules = testRulesWithFiles(t, testRouting, testGlossary, more)
+			seed(t, env, store.PendingItem{
+				Key: key("A.json", 0), Reason: "kr_changed", PrevKR: "요시히데", PrevZH: tagged, Draft: tagged,
+				Refs: map[string]string{store.RefAdjustment: tagged, "llc": "舊"},
+			})
+			if err := env.Store.SaveRecords(map[string]store.Record{
+				key("B.json", 0): translated(key("B.json", 0), kr, tagged),
+				key("D.json", 0): translated(key("D.json", 0), kr, body),
+			}); err != nil {
+				t.Fatal(err)
+			}
+			env.SameText = existing.CollectSameText(testTag, []existing.TextUnit{
+				{Key: key("A.json", 0), Group: "other|content|", KR: kr},
+				{Key: key("B.json", 0), Group: "other|content|faust", Speaker: "faust", KR: kr},
+				{Key: key("D.json", 0), Group: "other|content|philip", Speaker: "philip", KR: kr},
+			})
+			b := mustNext(t, env, NextOptions{})
+			if b == nil || len(b.Units) != 1 {
+				t.Fatalf("batch = %+v, want A.json's line", b)
+			}
+			u := b.Units[0]
+			if u.RubyCustomize != marked {
+				t.Fatalf("RubyCustomize = %v, want %v", u.RubyCustomize, marked)
+			}
+			want, wantSame := body, "B.json（faust）："+body
+			if marked {
+				want, wantSame = tagged, "B.json（faust）："+tagged+"\nD.json（philip）："+body
+			}
+			for name, got := range map[string]string{
+				"prev_zh": u.PrevZH, "draft": u.Draft,
+				"refs.adjustment": u.Refs[store.RefAdjustment], "refs.same_text": u.Refs[RefSameText],
+			} {
+				w := want
+				if name == "refs.same_text" {
+					w = wantSame
+				}
+				if got != w {
+					t.Errorf("%s = %q, want %q", name, got, w)
+				}
+			}
+			if u.Refs["llc"] != "舊" || u.PrevKR != "요시히데" {
+				t.Errorf("refs.llc = %q, prev_kr = %q: the other texts must stay as they are", u.Refs["llc"], u.PrevKR)
+			}
+		})
+	}
+}

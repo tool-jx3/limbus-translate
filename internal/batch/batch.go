@@ -281,7 +281,8 @@ type BatchUnit struct {
 	Refs map[string]string `json:"refs,omitempty"`
 	// RubyCustomize is true when the unit's position is on the whitelist of
 	// <rubycustomize> (rules.Rules.RubyCustomizeAt): only there may the
-	// translation write it.
+	// translation write it. A unit without it is shown the texts taken from
+	// records (PrevZH, Draft, Refs) with the body of each tag only.
 	RubyCustomize bool        `json:"ruby_customize,omitempty"`
 	Keep          Constraints `json:"keep"`
 }
