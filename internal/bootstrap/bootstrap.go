@@ -354,7 +354,7 @@ func (b *builder) unit(u units.Unit, a alignedFile, frozen bool) {
 // check validates zh as a new translation of kr, the text at pointer in
 // file, under the approved glossary terms kr contains in that file.
 func (b *builder) check(file, pointer, kr, zh string) []validate.Issue {
-	return validate.Check(kr, zh, validate.Context{Terms: b.rules.ValidateTerms(file, kr), File: file, Pointer: pointer, ScriptOK: b.scripts.For(file)})
+	return validate.Check(kr, zh, validate.Context{Terms: b.rules.ValidateTerms(file, kr), File: file, Pointer: pointer, ScriptOK: b.scripts.For(file), RubyCustomize: b.rules.RubyCustomizeAt(file, pointer)})
 }
 
 // settle records zh as the translation of u.

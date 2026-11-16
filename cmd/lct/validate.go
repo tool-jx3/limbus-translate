@@ -72,7 +72,7 @@ func runValidate(ctx *cli.Context, args []string) error {
 		return err
 	}
 	normalized := validate.Normalize(*kr, *zh)
-	issues := validate.Check(*kr, normalized, validate.Context{Terms: r.ValidateTerms(*file, *kr), File: *file, Pointer: *pointer, ScriptOK: r.ScriptRenderings(*file)})
+	issues := validate.Check(*kr, normalized, validate.Context{Terms: r.ValidateTerms(*file, *kr), File: *file, Pointer: *pointer, ScriptOK: r.ScriptRenderings(*file), RubyCustomize: r.RubyCustomizeAt(*file, *pointer)})
 	if issues == nil {
 		issues = []validate.Issue{}
 	}

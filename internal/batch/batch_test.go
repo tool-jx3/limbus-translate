@@ -5397,3 +5397,57 @@ func TestSubmitCountsOnlyOldUnits(t *testing.T) {
 		t.Errorf("terms = %+v, want one without Old", terms)
 	}
 }
+
+func TestCheckNewAtRubyCustomize(t *testing.T) {
+	r, err := rules.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	const zh = "<rubycustomize=ヨシヒデ>良秀</rubycustomize>"
+	if issues := CheckNewAt(r, "StoryData/P10916.json", "/dataList/3/teller", "요시히데", zh); validate.HasHard(issues) {
+		t.Errorf("issues at a whitelisted teller = %v, want no hard issue", issues)
+	}
+	if issues := CheckNewAt(r, "StoryData/P10916.json", "/dataList/3/content", "요시히데", zh); !hasCode(issues, validate.CodeRubyCustomize) || !validate.HasHard(issues) {
+		t.Errorf("issues at content = %v, want a hard rubycustomize issue", issues)
+	}
+	if issues := CheckNewTermsAt(r, nil, "StoryData/P10916.json", "/dataList/3/teller", "요시히데", zh); validate.HasHard(issues) {
+		t.Errorf("CheckNewTermsAt at a whitelisted teller = %v, want no hard issue", issues)
+	}
+}
+
+// The twins of a unit take its translation only where the tag may stand: the
+// position of each twin decides, not the position of the unit it comes from.
+func TestTwinsDoNotCarryRubyCustomizeOutOfTheWhitelist(t *testing.T) {
+	root := t.TempDir()
+	writeFile(t, filepath.Join(root, "guides/routing.yaml"), testRouting)
+	writeFile(t, filepath.Join(root, "glossary/terms.yaml"), testGlossary)
+	writeFile(t, filepath.Join(root, "guides/characters/faust.md"), testFaust)
+	writeFile(t, filepath.Join(root, rules.RubyCustomizeFile), "fields:\n  - files: ['A.json', 'C.json']\n    field: content\n")
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	kr := map[string]string{"A.json": oneLine(t, twinText), "B.json": oneLine(t, twinText), "C.json": oneLine(t, twinText)}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = r
+	seed(t, env, append(append(items("A.json", 0, 1), items("B.json", 0, 1)...), items("C.json", 0, 1)...)...)
+
+	b := mustNext(t, env, NextOptions{MaxUnits: 1})
+	if b == nil || b.File != "A.json" {
+		t.Fatalf("batch = %+v, want A.json's line", b)
+	}
+	zh := "<rubycustomize=ドウイツ>同一</rubycustomize>句話"
+	res, err := Submit(env, b, []OutUnit{{Key: key("A.json", 0), ZH: zh}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !slices.Equal(res.Accepted, []string{key("A.json", 0)}) {
+		t.Fatalf("accepted = %v, want the whitelisted line accepted", res.Accepted)
+	}
+	if want := []string{key("C.json", 0)}; !slices.Equal(res.Reused, want) {
+		t.Errorf("reused = %v, want %v: only C.json may carry the tag", res.Reused, want)
+	}
+	if _, queued := pendingMap(t, env)[key("B.json", 0)]; !queued {
+		t.Error("B.json's line was filled in with a translation that has the tag out of the whitelist")
+	}
+}

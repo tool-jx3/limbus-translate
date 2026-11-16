@@ -1977,3 +1977,29 @@ func TestPlanLeavesUnusableRecordsOutOfTheTable(t *testing.T) {
 		t.Errorf("For(long) = %+v, want only the usable 好句", rs)
 	}
 }
+
+// A rewrite that puts <rubycustomize> into a unit is held to the whitelist
+// with the position of that unit: it lands in a teller and is refused in a
+// content.
+func TestApplyRewritesKeepsRubyCustomizeInTheWhitelist(t *testing.T) {
+	e := newPlanEnv(t)
+	const f = "StoryData/S1.json"
+	teller, content := at(f, "/dataList/0/teller"), at(f, "/dataList/1/content")
+	e.snapshot(map[string]string{f: dataList(obj{"id": 1, "teller": "요시히데"}, obj{"id": 2, "content": "요시히데"})})
+	e.seed([]store.Record{translated(teller, "요시히데", "良秀"), translated(content, "요시히데", "良秀")}, nil)
+	e.rule(rules.RubyCustomizeFile, "fields:\n  - files: ['StoryData/**']\n    field: teller\n")
+	e.rule("rules/rewrite/2026-11-16-ruby.yaml", "reason: 加注音\nfiles: [\"StoryData/**\"]\npattern: '良秀'\nreplace: '<rubycustomize=ヨシヒデ>良秀</rubycustomize>'\n")
+
+	sum := e.run("")
+
+	recs := e.records()
+	if got, want := recs[teller].ZH, "<rubycustomize=ヨシヒデ>良秀</rubycustomize>"; got != want {
+		t.Errorf("teller zh = %q, want %q", got, want)
+	}
+	if got := recs[content].ZH; got != "良秀" {
+		t.Errorf("content zh = %q, want 良秀 unchanged: the tag is not allowed there", got)
+	}
+	if want := []Applied{{ID: "2026-11-16-ruby", Units: 1}}; !reflect.DeepEqual(sum.RewriteApplied, want) {
+		t.Errorf("RewriteApplied = %+v, want %+v", sum.RewriteApplied, want)
+	}
+}

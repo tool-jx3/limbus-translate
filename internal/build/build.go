@@ -625,7 +625,7 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 	}
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
-	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File, Pointer: u.Pointer, ScriptOK: b.scriptOK(u.File), Terms: b.terms(u.File, u.KR), Game: b.game})
+	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File, Pointer: u.Pointer, ScriptOK: b.scriptOK(u.File), Terms: b.terms(u.File, u.KR), Game: b.game, RubyCustomize: b.rubyCustomizeAt(u.File, u.Pointer)})
 	if named := b.nameIssue(u, key, rec, en, jp); named != nil {
 		issues = append(issues, *named)
 	}
@@ -878,6 +878,12 @@ func (b *builder) addRendering(u units.Unit, key, zh string, isNew bool) {
 // the approved renderings for file with kana or Hangul; none without rules.
 func (b *builder) scriptOK(file string) []string {
 	return b.scripts.For(file)
+}
+
+// rubyCustomizeAt is whether <rubycustomize> may stand at the unit at pointer
+// in file; never without rules.
+func (b *builder) rubyCustomizeAt(file, pointer string) bool {
+	return b.opt.Rules != nil && b.opt.Rules.RubyCustomizeAt(file, pointer)
 }
 
 // terms are the glossary terms u.KR contains in file, weighed with the

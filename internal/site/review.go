@@ -430,7 +430,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			scopeUnits = append(scopeUnits, scope.Unit{Key: key, File: path, KR: ku.KR, ZH: rec.ZH, Origin: rec.Origin, EN: alignedValue(en), JP: alignedValue(jp)})
 			seen := map[string]bool{}
 			terms := batch.ValidateTermsIn(in.Rules, inForce, path, ku.KR)
-			issues := validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, Pointer: ku.Pointer, ScriptOK: scriptOK, Terms: terms, Game: game})
+			issues := validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, Pointer: ku.Pointer, ScriptOK: scriptOK, Terms: terms, Game: game, RubyCustomize: in.Rules.RubyCustomizeAt(path, ku.Pointer)})
 			if rec.Origin == store.OriginClaude && rv.Names.IsName(ku.Field, ku.KR) {
 				// As the build does: the notes made from this KR text, the JP and
 				// EN text aligned to the unit.

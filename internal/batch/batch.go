@@ -661,18 +661,32 @@ func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
 // to as well, weighed with the glossary terms (TermsIn). Like CheckNew it
 // passes no pointer, so the checks that look at the field are skipped.
 func CheckNewTerms(r *rules.Rules, provisional []rules.Term, file, kr, zh string) []validate.Issue {
-	return checkNewTerms(r.GlossaryHits(file, kr), provisional, file, "", kr, zh, r.ScriptRenderings(file))
+	return CheckNewTermsAt(r, provisional, file, "", kr, zh)
+}
+
+// CheckNewAt is CheckNew for the unit at pointer in file. The pointer only
+// tells whether <rubycustomize> may stand there (rules.Rules.RubyCustomizeAt):
+// the checks that look at the field are still skipped, as in CheckNew.
+func CheckNewAt(r *rules.Rules, file, pointer, kr, zh string) []validate.Issue {
+	return CheckNewTermsAt(r, nil, file, pointer, kr, zh)
+}
+
+// CheckNewTermsAt is CheckNewTerms for the unit at pointer in file; the
+// pointer is used as CheckNewAt uses it.
+func CheckNewTermsAt(r *rules.Rules, provisional []rules.Term, file, pointer, kr, zh string) []validate.Issue {
+	return checkNewTerms(r.GlossaryHits(file, kr), provisional, file, "", kr, zh, r.ScriptRenderings(file), r.RubyCustomizeAt(file, pointer))
 }
 
 // checkNewTerms is CheckNewTerms on the glossary hits of kr and the script
 // renderings of file, which the caller has worked out, for the unit at
 // pointer in file ("" when not known: the checks of the field are skipped).
-func checkNewTerms(hits []rules.Term, provisional []rules.Term, file, pointer, kr, zh string, scriptOK []string) []validate.Issue {
+// rubyOK is whether <rubycustomize> may stand at that unit.
+func checkNewTerms(hits []rules.Term, provisional []rules.Term, file, pointer, kr, zh string, scriptOK []string, rubyOK bool) []validate.Issue {
 	var terms []validate.Term
 	for _, t := range termsIn(hits, provisional, kr) {
 		terms = append(terms, t.ToValidate())
 	}
-	return validate.Check(kr, zh, validate.Context{Terms: terms, File: file, Pointer: pointer, ScriptOK: scriptOK})
+	return validate.Check(kr, zh, validate.Context{Terms: terms, File: file, Pointer: pointer, ScriptOK: scriptOK, RubyCustomize: rubyOK})
 }
 
 // ProvisionalKRs returns the KR of the provisional terms that are listed for a

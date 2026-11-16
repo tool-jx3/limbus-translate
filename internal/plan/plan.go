@@ -1198,7 +1198,7 @@ func (p *planner) reuse(queued map[string]bool) error {
 		if it := p.pending[key]; !reuseTarget(it.Reason) || batch.CarriesInput(it) {
 			continue
 		}
-		s, ok := p.pick(sources[g], ref.file.name, g.FileBound(), u.KR)
+		s, ok := p.pick(sources[g], ref.file.name, u.Pointer, g.FileBound(), u.KR)
 		if !ok {
 			continue
 		}
@@ -1233,7 +1233,7 @@ func (p *planner) reuse(queued map[string]bool) error {
 // pick chooses the translation a unit of file with the KR text kr takes from
 // cands: the first that passes the checks of a new translation, from the same
 // file first, and from no other file when fileBound.
-func (p *planner) pick(cands []source, file string, fileBound bool, kr string) (source, bool) {
+func (p *planner) pick(cands []source, file, pointer string, fileBound bool, kr string) (source, bool) {
 	for _, sameFile := range []bool{true, false} {
 		if !sameFile && fileBound {
 			break
@@ -1242,7 +1242,7 @@ func (p *planner) pick(cands []source, file string, fileBound bool, kr string) (
 			if (c.file == file) != sameFile {
 				continue
 			}
-			if !validate.HasHard(batch.CheckNew(p.in.Rules, file, kr, c.rec.ZH)) {
+			if !validate.HasHard(batch.CheckNewAt(p.in.Rules, file, pointer, kr, c.rec.ZH)) {
 				return c, true
 			}
 		}
@@ -1284,8 +1284,8 @@ func (p *planner) held(key string) bool { return p.settled[key] }
 // adds their ids to it.
 func (p *planner) applyRewrites(applied *store.Applied, files []rewrite.File) {
 	ok := func(key, kr, zh string) bool {
-		file, _, _ := strings.Cut(key, "|")
-		return !p.held(key) && !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNew(p.in.Rules, file, kr, zh))
+		file, pointer, _ := units.SplitKey(key)
+		return !p.held(key) && !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNewAt(p.in.Rules, file, pointer, kr, zh))
 	}
 	for _, f := range files {
 		if slices.Contains(applied.Rewrite, f.ID) {
@@ -1335,8 +1335,8 @@ func (p *planner) rewriteDeleted(f rewrite.File) {
 		return
 	}
 	ok := func(key, kr, zh string) bool {
-		file, _, _ := strings.Cut(key, "|")
-		return !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNew(p.in.Rules, file, kr, zh))
+		file, pointer, _ := units.SplitKey(key)
+		return !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNewAt(p.in.Rules, file, pointer, kr, zh))
 	}
 	for _, key := range rewrite.Apply(f, gone, p.oldKR, ok) {
 		d := byKey[key]
