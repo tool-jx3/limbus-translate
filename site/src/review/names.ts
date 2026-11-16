@@ -23,6 +23,7 @@ export const WARNING_NAMES: Record<string, { name: string; desc: string }> = {
   'qmark-count': { name: '問號個數', desc: '依遊戲程式推算，罪孽型敵人名字的半形 ? 個數決定「N型」，要和 KR 相同' },
   'bullet-count': { name: '條列符號', desc: '但丁筆記裡「換行後接 -」的數量和 KR 不同' },
   'ruby-form': { name: 'ruby 寫法', desc: '依遊戲程式推算，對話框只轉換 <ruby=注音>本文</ruby> 這一種寫法' },
+  'shared-line': { name: '同一句譯文對應不同原文', desc: '戰鬥氣泡與人格語音裡，另一句不同的 KR 也是這句 TW：可能是貼錯句子；KR 只差語氣就沒問題' },
 }
 
 /** What to call a check code: the known ones by name, any other by its code and the message of its first unit. */

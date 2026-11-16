@@ -32,10 +32,14 @@ type GameInput struct {
 	// Skills desc or coin desc; a unit without a lower level, or whose lower
 	// level has no usable record, has no entry.
 	PrevLevel map[string]LevelText
+	// SharedLines is, by the translation the pack ships, the KR texts of the
+	// battle lines (the dlg of the files of BattleLineFile) that have it, each
+	// once.
+	SharedLines map[string][]string
 }
 
-// Game is the data of the whole KR pack that the keyword-link and
-// level-diff checks need.
+// Game is the data of the whole KR pack that the keyword-link, level-diff
+// and shared-line checks need.
 type Game struct {
 	ids       map[string][]string // by shipped name, the ids that have it, in input order
 	byFirst   map[rune][]string   // the names that are matched, by their first rune
@@ -44,6 +48,7 @@ type Game struct {
 	resonance []rune
 	perfect   []rune
 	prev      map[string]LevelText // PrevLevel, see prevLevel
+	shared    map[string][]string  // SharedLines, see otherLines
 }
 
 // NewGame builds a Game. An id listed more than once keeps its first entry.
@@ -58,6 +63,7 @@ func NewGame(in GameInput) *Game {
 		resonance: []rune(in.Resonance),
 		perfect:   []rune(in.PerfectResonance),
 		prev:      in.PrevLevel,
+		shared:    in.SharedLines,
 	}
 	var order []string
 	excluded := map[string]bool{}

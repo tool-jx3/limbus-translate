@@ -1,5 +1,5 @@
 // Package gametext builds the whole-pack data (validate.Game) that the
-// keyword-link and level-diff checks need, from the KR pack files and the
+// keyword-link, level-diff and shared-line checks need, from the KR pack files and the
 // translation records.
 package gametext
 
@@ -51,9 +51,12 @@ func Load(kr *pack.Pack, text Text) (*validate.Game, error) {
 
 // Input is Load before NewGame, for tests.
 func Input(kr *pack.Pack, text Text) (validate.GameInput, error) {
-	in := validate.GameInput{PrevLevel: map[string]validate.LevelText{}}
-	var bufFiles, skillFiles []string
+	in := validate.GameInput{PrevLevel: map[string]validate.LevelText{}, SharedLines: map[string][]string{}}
+	var bufFiles, skillFiles, lineFiles []string
 	for _, file := range kr.Files() {
+		if validate.BattleLineFile(file) {
+			lineFiles = append(lineFiles, file)
+		}
 		switch family(file) {
 		case "Bufs":
 			bufFiles = append(bufFiles, file)
@@ -61,6 +64,7 @@ func Input(kr *pack.Pack, text Text) (validate.GameInput, error) {
 			skillFiles = append(skillFiles, file)
 		}
 	}
+	slices.Sort(lineFiles)
 	// Name order ignoring ".json", as names.KeywordTable reads them.
 	slices.SortFunc(bufFiles, func(a, b string) int {
 		return strings.Compare(strings.TrimSuffix(a, ".json"), strings.TrimSuffix(b, ".json"))
@@ -78,6 +82,13 @@ func Input(kr *pack.Pack, text Text) (validate.GameInput, error) {
 			return in, err
 		}
 		prevLevels(file, doc, text, in.PrevLevel)
+	}
+	for _, file := range lineFiles {
+		doc, err := kr.Doc(file)
+		if err != nil {
+			return in, err
+		}
+		sharedLines(file, doc, text, in.SharedLines)
 	}
 	if kr.Has(uiFile) {
 		doc, err := kr.Doc(uiFile)
@@ -154,6 +165,22 @@ func bufs(file string, doc *jsonx.Node, text Text) []validate.GameBuf {
 		out = append(out, b)
 	}
 	return out
+}
+
+// sharedLines adds to shared, under the translation of each dlg of file with
+// a usable record, its KR text; a KR text is listed once.
+func sharedLines(file string, doc *jsonx.Node, text Text, shared map[string][]string) {
+	for i, entry := range dataList(doc) {
+		dlg := member(entry, "dlg")
+		if dlg == nil || dlg.Kind != jsonx.String {
+			continue
+		}
+		zh, ok := text(file, "/dataList/"+strconv.Itoa(i)+"/dlg", dlg.Str)
+		if !ok || slices.Contains(shared[zh], dlg.Str) {
+			continue
+		}
+		shared[zh] = append(shared[zh], dlg.Str)
+	}
 }
 
 func resonance(doc *jsonx.Node, text Text) (res, perfect string) {

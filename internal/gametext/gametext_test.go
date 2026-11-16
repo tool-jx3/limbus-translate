@@ -192,3 +192,34 @@ func TestUsedText(t *testing.T) {
 		}
 	}
 }
+
+func TestInputSharedLines(t *testing.T) {
+	p := openPack(t, map[string]string{
+		"KR_BattleSpeechBubbleDlg.json":                 `{"dataList":[{"id":"a","desc":"메모","dlg":"가"},{"id":"b","dlg":"나"},{"id":"c","dlg":"다"},{"id":"d"}]}`,
+		"PersonalityVoiceDlg/KR_Voice_Faust_10201.json": `{"dataList":[{"id":"e","desc":"제목","dlg":"나"},{"id":"f","dlg":"라"}]}`,
+		"EGOVoiceDig/KR_Voice_EGO_Faust.json":           `{"dataList":[{"id":"g","dlg":"마"}]}`,
+		"StoryData/KR_S1.json":                          `{"dataList":[{"id":0,"content":"가"}]}`,
+		"KR_BattleSpeechBubbleDlg-x.json":               `{"dataList":[{"id":"h","dlg":"바"}]}`,
+	})
+	records := map[string]store.Record{
+		units.Key("BattleSpeechBubbleDlg.json", "/dataList/0/dlg"):                 rec("가", "甲", store.OriginClaude),
+		units.Key("BattleSpeechBubbleDlg.json", "/dataList/0/desc"):                rec("메모", "甲", store.OriginClaude),
+		units.Key("BattleSpeechBubbleDlg.json", "/dataList/1/dlg"):                 rec("나", "甲", store.OriginClaude),
+		units.Key("BattleSpeechBubbleDlg.json", "/dataList/2/dlg"):                 rec("old", "甲", store.OriginClaude),
+		units.Key("PersonalityVoiceDlg/Voice_Faust_10201.json", "/dataList/0/dlg"): rec("나", "甲", store.OriginClaude),
+		units.Key("PersonalityVoiceDlg/Voice_Faust_10201.json", "/dataList/1/dlg"): rec("라", "乙", store.OriginClaude),
+		units.Key("EGOVoiceDig/Voice_EGO_Faust.json", "/dataList/0/dlg"):           rec("마", "甲", store.OriginClaude),
+		units.Key("StoryData/S1.json", "/dataList/0/content"):                      rec("가", "甲", store.OriginClaude),
+		units.Key("BattleSpeechBubbleDlg-x.json", "/dataList/0/dlg"):               rec("바", "바", store.OriginCopy),
+	}
+	in, err := Input(p, UsedText(records, nil))
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Only the dlg of the bubbles and the voice lines with a usable record,
+	// each KR text once, in order.
+	want := map[string][]string{"甲": {"가", "나"}, "乙": {"라"}}
+	if !reflect.DeepEqual(in.SharedLines, want) {
+		t.Errorf("SharedLines = %v, want %v", in.SharedLines, want)
+	}
+}
