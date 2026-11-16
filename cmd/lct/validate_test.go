@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"path/filepath"
+	"slices"
 	"strings"
 	"testing"
 
@@ -224,5 +225,37 @@ func TestValidateCheckOff(t *testing.T) {
 	out, err = validateIn(t, root, true, "--kr", "패키지 구매", "--zh", "購買禮包")
 	if !errors.Is(err, cli.ErrFindings) || !strings.Contains(out, "forbidden-term") {
 		t.Errorf("forbidden rendering: err %v, output %s; want forbidden-term", err, out)
+	}
+}
+
+// Without --pointer the position of the text is unknown, so <rubycustomize>
+// is still a hard issue, but its message says why: it names the missing
+// --pointer instead of saying the position is off the whitelist. With the
+// pointer the whitelist decides.
+func TestValidateRubyCustomizeWithoutPointer(t *testing.T) {
+	const kr, zh, file = "요시히데", "<rubycustomize=ヨシヒデ>良秀</rubycustomize>", "StoryData/P10916.json"
+	const offList = "this position is not in rules/ruby-customize.yaml"
+	out, err := validateOut(t, false, "--kr", kr, "--zh", zh, "--file", file)
+	if !errors.Is(err, cli.ErrFindings) || !strings.Contains(out, "rubycustomize") || !strings.Contains(out, "--pointer was not given") || strings.Contains(out, offList) {
+		t.Errorf("no --pointer: err = %v, output:\n%s\nwant a hard rubycustomize issue that names the missing --pointer", err, out)
+	}
+	out, err = validateOut(t, true, "--kr", kr, "--zh", zh, "--file", file)
+	var got struct {
+		Issues []struct{ Code, Severity, Message string } `json:"issues"`
+	}
+	if jerr := json.Unmarshal([]byte(out), &got); jerr != nil {
+		t.Fatalf("output is not JSON: %v\n%s", jerr, out)
+	}
+	i := slices.IndexFunc(got.Issues, func(is struct{ Code, Severity, Message string }) bool { return is.Code == "rubycustomize" })
+	if !errors.Is(err, cli.ErrFindings) || i < 0 || got.Issues[i].Severity != "hard" ||
+		!strings.Contains(got.Issues[i].Message, "--pointer was not given") || strings.Contains(got.Issues[i].Message, offList) {
+		t.Errorf("no --pointer, --json: err = %v, issues = %+v", err, got.Issues)
+	}
+	if out, err := validateOut(t, false, "--kr", kr, "--zh", zh, "--file", file, "--pointer", "/dataList/3/teller"); err != nil {
+		t.Errorf("a whitelisted teller: err = %v, output:\n%s", err, out)
+	}
+	out, err = validateOut(t, false, "--kr", kr, "--zh", zh, "--file", file, "--pointer", "/dataList/3/content")
+	if !errors.Is(err, cli.ErrFindings) || !strings.Contains(out, offList) || strings.Contains(out, "--pointer was not given") {
+		t.Errorf("content: err = %v, output:\n%s\nwant the issue that the position is off the whitelist", err, out)
 	}
 }
