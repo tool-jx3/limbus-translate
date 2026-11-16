@@ -130,4 +130,29 @@ describe('restoreRubyCustomize', () => {
   it('parses the converted structure as a ruby node', () => {
     expect(parseTMP(converted)).toEqual([{ t: 'tag', name: 'ruby', value: 'ヨシヒデ', kids: [text('良秀')] }])
   })
+
+  it('turns the rubycustomize tag of a record into a ruby tag, its reading quoted or not', () => {
+    expect(restoreRubyCustomize('就算<rubycustomize=ヨシヒデ>良秀</rubycustomize>姊姊')).toBe('就算<ruby=ヨシヒデ>良秀</ruby>姊姊')
+    expect(restoreRubyCustomize('<rubycustomize="UNGEZIEFER KAISER">害蟲皇帝</rubycustomize>')).toBe('<ruby=UNGEZIEFER KAISER>害蟲皇帝</ruby>')
+    expect(parseTMP('<rubycustomize="UNGEZIEFER KAISER">害蟲皇帝</rubycustomize>')).toEqual([
+      { t: 'tag', name: 'ruby', value: 'UNGEZIEFER KAISER', kids: [text('害蟲皇帝')] },
+    ])
+  })
+
+  it('leaves a malformed rubycustomize tag as text', () => {
+    for (const s of [
+      '<rubycustomize>良秀</rubycustomize>', // no =
+      '<rubycustomize=>良秀</rubycustomize>', // empty reading
+      '<rubycustomize=ヨシヒデ></rubycustomize>', // empty body
+      '<RubyCustomize=ヨシヒデ>良秀</RubyCustomize>', // not lower-case
+      '<rubycustomize=ヨシ\nヒデ>良秀</rubycustomize>', // line break in the reading
+      '<rubycustomize=ヨシヒデ>良\n秀</rubycustomize>', // line break in the body
+      '<rubycustomize=ヨシヒデ>良<b>秀</b></rubycustomize>', // a tag in the body
+      '<rubycustomize="ヨシ"ヒデ>良秀</rubycustomize>', // a quote in the reading
+      '<rubycustomize=ヨシヒデ>良秀', // not closed
+    ]) {
+      expect(restoreRubyCustomize(s)).toBe(s)
+    }
+    expect(parseTMP('<rubycustomize=>良秀</rubycustomize>')).toEqual([text('<rubycustomize=>良秀</rubycustomize>')])
+  })
 })

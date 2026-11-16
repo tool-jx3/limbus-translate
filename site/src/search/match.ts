@@ -33,13 +33,14 @@ function plain(nodes: TmpNode[]): string {
 /**
  * The text of a game string: its tags are gone (a <ruby> keeps the text it is
  * over, not its reading, except that the converted <rubycustomize> keeps both,
- * as its string does in the pack; a sprite is gone with the rest) and what the game
- * fills in, [ID] and {n}, stays. A line ending is a "\n".
+ * as its string does in the pack, with a space between them so that a query
+ * does not match across the two; a sprite is gone with the rest) and what the
+ * game fills in, [ID] and {n}, stays. A line ending is a "\n".
  */
 export function stripTags(s: string): string {
   // Without a < there is no tag, and a \r is the one thing the parser would change.
   if (!s.includes('<') && !s.includes('\r')) return s
-  return plain(parseTMP(s.replace(CONVERTED_RUBY, '$1$2')))
+  return plain(parseTMP(s.replace(CONVERTED_RUBY, '$1 $2')))
 }
 
 const LATIN = /^\p{Script=Latin}$/u

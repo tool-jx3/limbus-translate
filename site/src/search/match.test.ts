@@ -9,10 +9,13 @@ function matcher(q: string, regex = false): (s: string) => [number, number][] {
 }
 
 describe('stripTags', () => {
-  it('keeps both the text and the reading of the converted rubycustomize structure', () => {
+  it('keeps both the text and the reading of the converted rubycustomize structure, apart', () => {
     const out = stripTags('<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>')
-    expect(out).toContain('良秀')
-    expect(out).toContain('ヨシヒデ')
+    expect(out).toBe('良秀 ヨシヒデ')
+    expect(matcher('良秀')(out)).toEqual([[0, 2]])
+    expect(matcher('ヨシヒデ')(out)).toEqual([[3, 7]])
+    // A query across the boundary of the text and its reading finds nothing.
+    expect(matcher('秀ヨ')(out)).toEqual([])
   })
 
   it('drops the tags and keeps the text and the [ID] and {n} the game fills in', () => {

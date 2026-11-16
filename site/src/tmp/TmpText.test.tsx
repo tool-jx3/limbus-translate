@@ -44,6 +44,13 @@ describe('TmpText', () => {
     expect(ruby?.firstChild?.textContent).toBe('良秀')
   })
 
+  it('shows the rubycustomize tag of a record as ruby', () => {
+    const el = show('<rubycustomize="ヨシヒデ">良秀</rubycustomize>')
+    const ruby = el.querySelector('ruby')
+    expect(ruby?.querySelector('rt')?.textContent).toBe('ヨシヒデ')
+    expect(ruby?.firstChild?.textContent).toBe('良秀')
+  })
+
   it('shows ruby with the reading above the text', () => {
     const el = show('<ruby=天退星>插翅虎</ruby>')
     const ruby = el.querySelector('ruby')
