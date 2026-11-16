@@ -554,3 +554,9 @@
   zh: 格里高爾一改往日的鎮定，用變得尖銳的語氣發起了脾氣。
   reason: StoryData 審查 S0426：KR「예민해진 말투로 짜증을 냈다」是「用變得敏感尖銳的語氣發脾氣」，JP「神経を尖らせていた」、EN「snapped at me」相同；現行 TW「掩飾著他的緊張」是 KR 沒有的內容，和「發脾氣」不同。
   rule: one-off
+- key: StoryData/E304A.json|/dataList/11/content
+  raw: raw-20261112
+  kr_sha: 6aa9150fb884b6f0d8a1b3e05874522f30a4998a84bd2bae890d98962850d64c
+  zh: <要拿給人試吃的料理，你們自己都沒吃過是想怎樣啊！>
+  reason: StoryData 審查 S0427：KR「음식을 시식시켜야 하는데 본인들이 안 먹어 보면 어떡하자는 거야!」只說「要讓人試吃，自己卻不吃要怎樣！」，JP 相同；現行 TW 照 EN 多出「我們是在努力取悅這裡的人哎」，KR 沒有。；譯法由使用者決定
+  rule: one-off
