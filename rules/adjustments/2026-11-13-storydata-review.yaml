@@ -578,3 +578,21 @@
   zh: 那是只有我和這個菜……少年才察覺到的風向。你配合得很好。
   reason: StoryData 審查 S0430：KR「나와 이 애… 소년만이 눈치챈 기류지. 잘 따라와 줬다.」是「這是只有我和這個小……少年察覺到的風向。你跟得很好。」；現行 TW 的「這個菜……年輕人」是刻意寫出的口誤（差點說成「菜鳥」），下一行但丁才問「你剛才是不是想說『菜鳥』？」，這部分正確、要保留；真正的問題是漏了「只有我和他」察覺，又多了 KR 沒；譯法由使用者決定
   rule: one-off
+- key: StoryData/E306A.json|/dataList/26/content
+  raw: raw-20261112
+  kr_sha: 1f198dc20634c73393d3b1488b41e7b7736f38b55dec59783690c7dca5f097a5
+  zh: 重要的不是食譜……是為某個人著想的心意……就算做出來的形狀是披薩……只要用心去做，客人們一定會喜歡的。
+  reason: StoryData 審查 S0431：KR 是「重要的不是食譜……是為某個人著想的心……就算做成的形狀是披薩……只要用心，客人們就會喜歡」，JP 相同；現行 TW 照 EN 寫成「我是為了那些關心我的人下廚」，「為他人著想」變成「關心我的人」，對象反了，「顧客會感謝這些發自內心的服務」也偏離「客人會喜歡」。
+  rule: one-off
+- key: StoryData/E306A.json|/dataList/66/content
+  raw: raw-20261112
+  kr_sha: 28bc73b2ec7a941dae04e5c54952ae35e9749dc4637e50605d07fabd0c6e733f
+  zh: 那就先這樣。
+  reason: StoryData 審查 S0432：KR「그럼 이만.」只是告別語「那就先這樣」，JP「では、これで。」相同；現行 TW 照 EN 寫成「我會再來看你的。」，多了 KR 沒有的「會再來」，聽起來像威脅。
+  rule: one-off
+- key: StoryData/E306B.json|/dataList/18/content
+  raw: raw-20261112
+  kr_sha: e90774397330b356f02b6151396edc31d5a7be718de0c4a01f9a2248aa98da3f
+  zh: 咦？
+  reason: StoryData 審查 S0433：KR「네?」是以實瑪利被格里高爾說「看你的表情就不想問了」時的反問（咦？），JP「はい？」、EN「Pardon?」相同；現行 TW「那是什麼？」變成以實瑪利在問概念焚化爐是什麼，但這個詞正是她自己先說的。
+  rule: one-off
