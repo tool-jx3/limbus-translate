@@ -3,8 +3,8 @@
 ## 文本類型
 
 - 敵人名稱與說明 `Enemies*`（46 檔，`name`、`desc`）（routing.yaml；raw-20261105 檔數）
-- 敵人與異想體戰鬥的技能 `Skills_Enemy*`（34 檔）、`Skills_Abnormality*`（50 檔）、`Skills`／`Skills_Tutorial`／`Skills_fools`（3 檔）：技能與硬幣說明 `desc`、技能名 `name`（routing.yaml；raw-20261105 檔數）
-- 被動 `Passives_Enemy*`（26 檔）、`Passives_Abnormality*`（46 檔）：`name`、`desc`，另有 `flavor`（routing.yaml；raw-20261105 檔數）
+- 敵人與異想體戰鬥的技能 `Skills_Enemy*`（34 檔）、`Skills_Abnormality*`（50 檔）、`Skills_Tutorial`／`Skills_fools`（2 檔）：技能與硬幣說明 `desc`、技能名 `name`（routing.yaml；raw-20261105 檔數）
+- 被動 `Passives_Enemy*`（26 檔）、`Passives_Abnormality*`（46 檔）、`Passive-*`（2 檔）、`Passives_fools`（1 檔）：`name`、`desc`，另有 `flavor`（routing.yaml；raw-20261105 檔數）
 
 ## 語氣與人稱
 

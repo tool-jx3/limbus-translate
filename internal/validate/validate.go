@@ -44,7 +44,8 @@ const (
 // curly-quotes, length-ratio and term-missing, and the game-text codes of
 // gamechecks.go (bracket-text, page-count, story-comment, stray-brace,
 // regex-char, literal-newline, reserved-value, newline-space, qmark-count,
-// bullet-count, ruby-form, keyword-link and level-diff).
+// bullet-count, ruby-form, keyword-link, level-diff, shared-line and
+// cross-group).
 const (
 	CodeEmpty               = "empty"
 	CodeIDMismatch          = "id-mismatch"
@@ -80,6 +81,8 @@ const (
 	CodeRubyForm       = "ruby-form"
 	CodeKeywordLink    = "keyword-link"
 	CodeLevelDiff      = "level-diff"
+	CodeSharedLine     = "shared-line"
+	CodeCrossGroup     = "cross-group"
 )
 
 // Issue is one problem Check found in a translation.
@@ -158,7 +161,7 @@ type Context struct {
 	// game check that looks at the field.
 	Pointer string
 	// Game is the data of the whole KR pack that some game checks need; nil
-	// skips keyword-link and level-diff.
+	// skips keyword-link, level-diff, shared-line and cross-group.
 	Game *Game
 }
 

@@ -2,8 +2,8 @@
 
 ## 文本類型
 
-- 人格技能 `Skills_personality-YY`（15 檔）、E.G.O 技能 `Skills_Ego_Personality-YY`（14 檔）與 `Skills_Ego*`（2 檔）：技能與硬幣說明 `desc`、技能名 `name`、E.G.O 的異想體名 `abName`（routing.yaml；raw-20261105 檔數）
-- 被動 `Passive*`（16 檔）、協助者 `Skills_Assist*`／`Passives_Assist*`／`Assist*`（26 檔）、人格與 E.G.O 的名稱與取得條件 `Personalit*`、`Egos*`、`EGO*`（7 檔）（routing.yaml；raw-20261105 檔數）
+- 人格的基本技能 `Skills.json`（1 檔，另含防禦、迴避、反擊 3 筆通用技能）、人格技能 `Skills_personality-YY`（15 檔）、E.G.O 技能 `Skills_Ego_Personality-YY`（14 檔）與 `Skills_Ego*`（2 檔）：技能與硬幣說明 `desc`、技能名 `name`、E.G.O 的異想體名 `abName`（routing.yaml；raw-20261105 檔數）
+- 被動 `Passives*`、`Passive_Ego*`（13 檔；`Passive-*` 與 `Passives_fools` 是敵方的，歸 enemy）、協助者 `Skills_Assist*`／`Passives_Assist*`／`Assist*`（26 檔）、人格與 E.G.O 的名稱與取得條件 `Personalit*`、`Egos*`、`EGO*`（7 檔）（routing.yaml；raw-20261105 檔數）
 
 ## 語氣與人稱
 

@@ -167,6 +167,16 @@ func checkGame(kr, zh string, ctx Context) []Issue {
 			}
 		}
 	}
+	if known && ctx.Game != nil && field == "dlg" && BattleLineFile(ctx.File) {
+		if msg := sharedLine(kr, zh, ctx.Game); msg != "" {
+			add(CodeSharedLine, "%s", msg)
+		}
+	}
+	if known && ctx.Game != nil {
+		if msg := crossGroup(zh, ctx.Game.crossGroups(ctx.File, ctx.Pointer)); msg != "" {
+			add(CodeCrossGroup, "%s", msg)
+		}
+	}
 	return issues
 }
 
