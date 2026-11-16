@@ -12,7 +12,7 @@
 - **有五個檔案（節點）放錯族群**，建議改：`Skills.json`、`Passive-*`、三個 `Passives-*`、`Passives_fools`、`ChoiceEventKeyword`（第 1 節）。影響不大，因為 `ally` 與 `enemy` 的指引幾乎相同，差別只在翻譯順序與下面這一點。
 - **比搬檔案更有用的是改「不一致的譯法」的分組方式。** 它現在以「族群＋欄位＋KR」分組；遊戲的一張表被切成兩個族群時，同一句 KR 在兩邊的譯法不會互相比較。現況有 **43 句**同欄位、同 KR、兩個族群各自一致但彼此不同，目前看不到（第 4 節）。
 - `identity` 裡的戰鬥氣泡有一半是敵人與 NPC 的台詞，指引裡「從 id 的 `1XXYY` 看是哪位罪人」對它們不適用。建議補指引，不建議搬（第 3 節）。
-- 順帶發現：約 2,000 個已翻譯的單位在**遊戲不讀的欄位**裡（第 5 節）。
+- 順帶發現：有一批已翻譯的單位在**遊戲不讀的欄位**裡（第 5 節；完整的清單與數字見 [07-field-display.md](07-field-display.md) 第 6 節，約 3,340 個單位）。
 
 ## 族群在專案裡決定什麼
 
@@ -104,7 +104,7 @@
 |---|---|---|---|
 | 取代方式 | 整個檔，列依位置配對 | 整個檔 | 以 id 為單位 |
 | ruby | 可以 | 不行 | 不行 |
-| 顯示 | 劇情對話框，逐字顯示 | 大廳、結算、抽卡，以及戰鬥氣泡 | 戰鬥氣泡，整句出現，時間跟語音走 |
+| 顯示 | 劇情對話框，逐字顯示 | 語音清單（`desc` 是每一格的標題）、大廳、結算、抽卡、同步演出、判定事件，以及戰鬥氣泡 | 戰鬥氣泡，整句出現，時間跟語音走 |
 | 說話者 | 罪人與劇情角色 | 罪人 | **1,555 筆裡 737 筆是敵人、NPC 的台詞**（`<章>SV-…`） |
 
 - 十個分章、分活動的氣泡檔（`-a1c9p1`～`-a1c10p3`、`-exme`、`-twth`、`-walpu10`、`_mowe`）**全部是敵人與 NPC 的台詞**，只有 `-a1c10p2` 有 19 筆罪人的。`_Cultivation` 有 23 筆協助者的台詞。
@@ -164,18 +164,9 @@
 
 **遊戲不讀的欄位**
 
-官方檔案裡有些 key 不是對應類別的欄位，所以不會被載入、不會顯示（類別的欄位是確認；Unity 的 `JsonUtility` 會忽略多出來的 key 是推定）：
+2026-11-16 更新：這一節原本只列了「不是類別欄位的 key」，數字也把照抄的紀錄算了進去。逐欄位追過之後，還有一批「是類別的欄位、但沒有顯示它的地方」，例如 `Enemies*`／`Assist*` 的 `desc`（1,277 個單位）、`EGOVoiceDig` 的 `desc`（335）、`StageNode*` 的 `place`（208）、`ActionEvents*` 的 `name`（171）。完整的清單、數字與依據在 [07-field-display.md](07-field-display.md) 第 6 節，合計約 3,340 個已翻譯的單位。
 
-| 欄位 | 已有翻譯紀錄的單位 |
-|---|---|
-| `BattleKeywords*` 的 `summary` | 1,456 |
-| `AbEvents*` 的 `title` | 321 |
-| `Personalities*` 的 `nameWithTitle` | 209 |
-| `ActionEvents*` 的 `title`、`prevDesc` | 12 |
-| `AbnormalityGuides*` 的 `desc` | 9 |
-| `BuffAbilities` 的 `name`、`summary` | 4 |
-
-翻譯它們沒有壞處，但不會出現在遊戲裡。可以考慮在 `rules/` 的欄位規則裡把這些欄位排到最後或不送翻譯。`AbEvents.title` 與 `ActionEvents.name` 有 30 句相同，是 `abnormality`↔`mirror` 之間相同句子的主要來源，而前者根本不顯示。
+翻譯它們沒有壞處，但不會出現在遊戲裡。可以考慮在 `rules/` 的欄位規則裡把這些欄位排到最後或不送翻譯。`AbEvents.title` 與 `ActionEvents.name` 有 30 句相同，是 `abnormality`↔`mirror` 之間相同句子的主要來源，而這兩個欄位都不顯示。
 
 **同一張表裡 id 相同、文字不同的檔**
 
@@ -202,6 +193,6 @@
 ## 讀不到、沒有確認的部分
 
 - 官方三份檔案清單的內容：是不是每個 KR 檔都有被列進去、同一張表裡檔案的先後、id 重複的檔哪一個有效。
-- `SynergyKeyword`、`ChapterBannerConfig`（空的）與四個 `Tutorial*` 檔屬於哪張表；鏡牢節點表（`MirrorDungeonNode1-1`、`HellsChickenDungeonNode`）與 `LobbyBGMCategory` 由誰讀。
-- `ChoiceEventKeyword`、`ChoiceEventTarget` 屬於選擇事件結果表，是從「讀這張表的類別名稱就是這兩個檔的 id」推的，沒有逐行確認。
+- `SynergyKeyword`、`ChapterBannerConfig`（空的）與四個 `Tutorial*` 檔屬於哪張表；`LobbyBGMCategory` 由誰讀。（鏡牢節點表 `MirrorDungeonNode1-1`、`HellsChickenDungeonNode` 已確認沒有人讀，見 [07-field-display.md](07-field-display.md)。）
+- `ChoiceEventKeyword`、`ChoiceEventTarget` 屬於選擇事件結果表：原本是推定，2026-11-16 已確認讀這張表的是各個結果類別的建構式。
 - 介面文字表 98 個節點裡有 32 個是只憑類別與檔名歸進去的。

@@ -19,10 +19,12 @@
 | 檔案 | 欄位 | 標籤 | `[ID]` | 名稱 | 顯示在 |
 |---|---|:-:|:-:|:-:|---|
 | `Skills*.json` | `levelList[].desc` | ✔ | ✔ | ✔ | 技能說明（人格資訊、戰鬥選技、E.G.O 選擇、同步比較） |
-| `Skills*.json` | `levelList[].coinlist[].coindescs[].desc`、`.summary` | ✔ | ✔ | ✔ | 硬幣效果 |
-| `Passives*.json`、`Passive*.json` | `desc`、`summary` | ✔ | ✔ | ✔ | 被動說明、被動摘要、共鳴階段說明 |
+| `Skills*.json` | `levelList[].coinlist[].coindescs[].desc` | ✔ | ✔ | ✔ | 硬幣效果（人格資訊、戰鬥選技、E.G.O 選擇、同步比較） |
+| `Skills*.json` | `levelList[].coinlist[].coindescs[].summary` | ✔ | ✔ | ✔ | 只在戰鬥中單位執行技能時的技能面板；空的時候改用 `desc` |
+| `Passives*.json`、`Passive*.json` | `desc` | ✔ | ✔ | ✔ | 被動說明（人格資訊、提示框、敵人資訊等） |
+| `Passives*.json`、`Passive*.json` | `summary` | ✔ | ✔ | ✔ | 戰鬥中技能面板裡觸發的被動（只有異想體戰顯示說明）、共鳴階段說明 |
 | `EGOgift*.json` | `desc` | ✘ | ✔ | ✔ | 所有 E.G.O 飾品說明介面 |
-| `EGOgift*.json` | `simpleDesc[].simpleDesc` | ✘ | ✔ | ✔ | 戰鬥中飾品發動的文字 |
+| `EGOgift*.json` | `simpleDesc[].simpleDesc` | ✘ | ✔ | ✔ | 戰鬥中技能面板裡觸發的飾品（只有異想體戰顯示）；單位頭上的發動文字只有名稱 |
 | `PanicInfo*.json` | `lowMoraleDescription`、`panicDescription` | ✘ | ✔ | ✔ | 人格資訊的精神分頁 |
 | 其他全部 | — | ✘ | ✘ | ✘ | 原樣顯示 |
 
@@ -101,7 +103,7 @@
 
 - 句子裡看到的名稱來自 `Bufs*.json` 的 `name`，點開後的標題來自 `BattleKeywords*.json` 的 `name`。兩個檔的同一個 id 名稱應該一致（KR 有 1,924 個共同 id，其中 14 個名稱不同）。
 - `BattleKeywords*.json` 沒有這個 id → 標題與說明都顯示 `Unknown`。
-- 戰鬥中滑過狀態圖示看到的是 `Bufs*.json` 的 `desc`／`summary`，會以層數等數值做 `string.Format`（見 [04-other.md](04-other.md)）。
+- 戰鬥中滑過狀態圖示看到的是 `Bufs*.json` 的 `name`、`desc`（以層數等數值做 `string.Format`，見 [04-other.md](04-other.md)）與 `flavor`。`summary` 沒有任何提示框使用，只出現在戰鬥中技能面板裡觸發的狀態那一列（2026-11-16 修正，見 [07-field-display.md](07-field-display.md)）。
 
 ## 擋住自動連結的方法比較
 

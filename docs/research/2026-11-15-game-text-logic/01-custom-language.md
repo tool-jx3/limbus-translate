@@ -124,10 +124,11 @@
 - 所以劇情檔的列數與順序必須與官方完全相同，包含 `id: -1` 的註解列。增、刪、對調任何一列，之後的演出都會錯位。
 - 從語言包讀的欄位只有 `id`、`place`、`model`、`teller`、`title`、`content`；其他都來自演出檔。
 - **`content` 裡 `//` 之後的文字會被丟掉**（`Dialog` 建構子 0x209B990 取 `Split("//")` 的第一段；官方用它寫註解，例如 `SE // 와장창!`）。
-- 說話者名稱（`Dialog.GetTellerName`，確認）：
-  - `model` 有值：`teller` 有值就顯示 `teller`；否則用 `model` 去查名稱。
-  - `model` 是空的：`teller` **與 `title` 都有值**才顯示 `teller`，否則不顯示名稱。
-  - `model`、`teller`、`title` 全空的列當成旁白樣式。把原本空的欄位填上、或把有值的清空，會改變呈現方式。
+- 說話者名稱與稱號（`StoryPlayData` 的建構式 0x2139280，確認；2026-11-16 修正：原本引用的 `Dialog.GetTellerName` 沒有人呼叫）：
+  - `model` 有值：名稱是列上的 `teller`，空的話用 `model` 去查名稱；稱號是列上的 `title`，空的話用 `model` 去查稱號。**兩者各自決定。**
+  - `model` 是空的：`teller` **與 `title` 都有值**才顯示，否則名稱與稱號都不顯示。
+  - `model`、`teller`、`title` 全空的列當成旁白樣式；演出檔把這一列標成獨白時也是，列上寫的名稱與稱號不顯示。把原本空的欄位填上、或把有值的清空，會改變呈現方式。
+  - 各欄位顯示的時機見 [07-field-display.md](07-field-display.md) 第 2 節。
 - 語言包生效時，用 `model` 查名稱查的是**語言包的 `ScenarioModelCodes*.json`**（`name` 是名稱、`nickName` 是稱號；`StoryAssetLoader.GetTellerName` 0x20AFCD0），不是遊戲內建的 KR／EN／JP 名稱。`model` 是韓文代碼，同時是立繪、名牌顏色的 key，**不可以翻譯**。
 - 劇情檔用 SimpleJSON 解析，格式錯誤時的行為沒有查。
 
