@@ -128,8 +128,8 @@
   - **白名單位置的注音**：`rules/ruby-customize.yaml` 列出的位置（說話者名稱、人格語音、播報員、戰鬥氣泡）寫 `<rubycustomize=X>Y</rubycustomize>`，建置時換成遊戲能顯示的標籤，不手寫 `nobr`、`space`；只有批次單位帶 `ruby_customize: true` 的可以寫，其他位置會退回
     - 時機同劇情台詞的 ruby（良秀的兩種讀音、外語原文、雙關、扭曲的台詞），KR 沒有也可以加：KR `요시히데` 寫 `<rubycustomize=ヨシヒデ>良秀</rubycustomize>`
     - X 要簡短，只寫讀音、原文或原意（太長會撐寬那一行）；X、Y 只放文字，不巢狀，不和 `<ruby>` 寫在同一組
-  - **說話者名稱、稱號、地點**：遊戲在 `teller`、`title`、`place` 不處理 `<ruby>`。說話者名稱（`teller`、`ScenarioModelCodes` 的 `name`）用 `<rubycustomize>`（三語都是 `UNGEZIEFER KAISER` 的寫 `<rubycustomize=UNGEZIEFER KAISER>害蟲皇帝</rubycustomize>`）；稱號（`title`、`nickName`）與地點（`place`）不加注音，照詞彙表
-  - **RPG 對話**（`RPGSystem/*dialogue*`）：遊戲不處理 `<ruby>`，比照「其他檔案」寫「Y(X)」；在遊戲裡測過後可能加入白名單
+  - **說話者名稱、稱號、地點**：遊戲在 `teller`、`title`、`place` 不處理 `<ruby>`。說話者名稱（`teller`、`ScenarioModelCodes` 的 `name`）需要注音時（時機同上）用 `<rubycustomize>`（三語都是 `UNGEZIEFER KAISER` 的寫 `<rubycustomize=UNGEZIEFER KAISER>害蟲皇帝</rubycustomize>`），否則照詞彙表；稱號（`title`、`nickName`）與地點（`place`）不加注音，照詞彙表
+  - **RPG 對話**（`RPGSystem/*dialogue*`）：遊戲不處理 `<ruby>`，比照「其他檔案」寫「Y(X)」
   - **其他檔案**（技能、語音、播報員、戰鬥氣泡、RPG 的標籤等）：KR 沒有 `<ruby>` 標籤時，譯文也不加。參考譯文的 `<ruby=X>Y</ruby>` 改寫成「Y(X)」（半形括號，例如「沒有異常(李箱)」），不可直接刪掉；只有 X 單純是外語原文或讀音、沒有雙關時（例如 `<ruby=YoshiHide>良秀</ruby>`）才只留 Y；白名單位置改用 `<rubycustomize>`
     - 口齒不清或扭曲的台詞，參考譯文用 ruby 標出原意時，寫成「Y(X)」
     - X 只是解釋 Y 的字義、沒有雙關時（例如 `<ruby=明亮>玲瓏</ruby>`），把意思融入句子，不加括號
