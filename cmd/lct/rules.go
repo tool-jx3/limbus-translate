@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"os"
 	"path/filepath"
 	"slices"
 	"strings"
@@ -59,6 +60,8 @@ func (r lintReport) String() string {
 	return b.String()
 }
 
+const fieldsManualFile = "rules/fields.manual.yaml"
+
 func runRulesLint(ctx *cli.Context, args []string) error {
 	if len(args) > 0 {
 		return cli.UserError("rules lint: unexpected argument " + args[0])
@@ -81,13 +84,19 @@ func runRulesLint(ctx *cli.Context, args []string) error {
 	if _, err := gold.Load(ctx.Root); err != nil {
 		report.Errors = append(report.Errors, rules.LintError{File: gold.File, Message: strings.TrimPrefix(err.Error(), gold.File+": ")})
 	}
-	// The field rules are loaded by lct build; a mistake in them stops it.
-	if _, err := fields.LoadManual(ctx.Root); err != nil {
-		var re *fields.RuleError
-		if !errors.As(err, &re) {
-			return err
+	// The field rules are loaded by lct build; a mistake in them stops it. A
+	// repo without the file has nothing to check here: the commands that need
+	// field rules say so themselves.
+	if _, err := os.Stat(filepath.Join(ctx.Root, fieldsManualFile)); err == nil {
+		if _, err := fields.LoadManual(ctx.Root); err != nil {
+			var re *fields.RuleError
+			if !errors.As(err, &re) {
+				return err
+			}
+			report.Errors = append(report.Errors, rules.LintError{File: fieldsManualFile, Message: strings.TrimPrefix(err.Error(), "fields: "+fieldsManualFile+": ")})
 		}
-		report.Errors = append(report.Errors, rules.LintError{File: "rules/fields.manual.yaml", Message: strings.TrimPrefix(err.Error(), "fields: rules/fields.manual.yaml: ")})
+	} else if !errors.Is(err, os.ErrNotExist) {
+		return err
 	}
 	report.OK = len(report.Errors) == 0
 	krFiles := krPackFiles(ctx.Root)
