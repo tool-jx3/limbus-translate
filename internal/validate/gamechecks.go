@@ -172,6 +172,11 @@ func checkGame(kr, zh string, ctx Context) []Issue {
 			add(CodeSharedLine, "%s", msg)
 		}
 	}
+	if known && ctx.Game != nil {
+		if msg := crossGroup(zh, ctx.Game.crossGroups(ctx.File, ctx.Pointer)); msg != "" {
+			add(CodeCrossGroup, "%s", msg)
+		}
+	}
 	return issues
 }
 

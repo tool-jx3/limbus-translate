@@ -36,10 +36,22 @@ type GameInput struct {
 	// battle lines (the dlg of the files of BattleLineFile) that have it, each
 	// once.
 	SharedLines map[string][]string
+	// Cross is, by unit key (units.Key), the other groups (family and field)
+	// that have the KR text of the unit, each with its translations; a unit
+	// whose text no other group has has no entry.
+	Cross map[string][]CrossText
 }
 
-// Game is the data of the whole KR pack that the keyword-link, level-diff
-// and shared-line checks need.
+// CrossText is the translations a KR text has in one group: the units of a
+// family and a field.
+type CrossText struct {
+	Family, Field string
+	ZH            []string // each translation once, in the order met
+	Key           string   // the first unit of the group with the text
+}
+
+// Game is the data of the whole KR pack that the keyword-link, level-diff,
+// shared-line and cross-group checks need.
 type Game struct {
 	ids       map[string][]string // by shipped name, the ids that have it, in input order
 	byFirst   map[rune][]string   // the names that are matched, by their first rune
@@ -47,8 +59,9 @@ type Game struct {
 	krName    map[string]string   // by id, its KR name
 	resonance []rune
 	perfect   []rune
-	prev      map[string]LevelText // PrevLevel, see prevLevel
-	shared    map[string][]string  // SharedLines, see otherLines
+	prev      map[string]LevelText   // PrevLevel, see prevLevel
+	shared    map[string][]string    // SharedLines, see otherLines
+	cross     map[string][]CrossText // Cross, see crossGroup
 }
 
 // NewGame builds a Game. An id listed more than once keeps its first entry.
@@ -64,6 +77,7 @@ func NewGame(in GameInput) *Game {
 		perfect:   []rune(in.PerfectResonance),
 		prev:      in.PrevLevel,
 		shared:    in.SharedLines,
+		cross:     in.Cross,
 	}
 	var order []string
 	excluded := map[string]bool{}

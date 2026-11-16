@@ -1,5 +1,5 @@
 // Package gametext builds the whole-pack data (validate.Game) that the
-// keyword-link, level-diff and shared-line checks need, from the KR pack files and the
+// keyword-link, level-diff, shared-line and cross-group checks need, from the KR pack files and the
 // translation records.
 package gametext
 
@@ -40,9 +40,11 @@ func UsedText(records map[string]store.Record, frozen []string) Text {
 	}
 }
 
-// Load builds the game information of the pack kr with the translations text gives.
-func Load(kr *pack.Pack, text Text) (*validate.Game, error) {
-	in, err := Input(kr, text)
+// Load builds the game information of the pack kr with the translations text
+// gives. familyOf is the family of a file (rules.Family), which with the field
+// makes the groups of the cross-group check; nil puts every file in one family.
+func Load(kr *pack.Pack, text Text, familyOf func(file string) string) (*validate.Game, error) {
+	in, err := Input(kr, text, familyOf)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +52,7 @@ func Load(kr *pack.Pack, text Text) (*validate.Game, error) {
 }
 
 // Input is Load before NewGame, for tests.
-func Input(kr *pack.Pack, text Text) (validate.GameInput, error) {
+func Input(kr *pack.Pack, text Text, familyOf func(file string) string) (validate.GameInput, error) {
 	in := validate.GameInput{PrevLevel: map[string]validate.LevelText{}, SharedLines: map[string][]string{}}
 	var bufFiles, skillFiles, lineFiles []string
 	for _, file := range kr.Files() {
@@ -89,6 +91,10 @@ func Input(kr *pack.Pack, text Text) (validate.GameInput, error) {
 			return in, err
 		}
 		sharedLines(file, doc, text, in.SharedLines)
+	}
+	var err error
+	if in.Cross, err = cross(kr, text, familyOf); err != nil {
+		return in, err
 	}
 	if kr.Has(uiFile) {
 		doc, err := kr.Doc(uiFile)

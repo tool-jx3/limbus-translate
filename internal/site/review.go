@@ -367,7 +367,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 
 	// The information of the whole KR pack that some checks need, with the
 	// translations the build uses.
-	game, err := gametext.Load(in.KR, gametext.UsedText(in.Records, rv.Frozen))
+	game, err := gametext.Load(in.KR, gametext.UsedText(in.Records, rv.Frozen), in.Rules.Family)
 	if err != nil {
 		return Review{}, err
 	}

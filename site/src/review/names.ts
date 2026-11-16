@@ -24,6 +24,7 @@ export const WARNING_NAMES: Record<string, { name: string; desc: string }> = {
   'bullet-count': { name: '條列符號', desc: '但丁筆記裡「換行後接 -」的數量和 KR 不同' },
   'ruby-form': { name: 'ruby 寫法', desc: '依遊戲程式推算，對話框只轉換 <ruby=注音>本文</ruby> 這一種寫法' },
   'shared-line': { name: '同一句譯文對應不同原文', desc: '戰鬥氣泡與人格語音裡，另一句不同的 KR 也是這句 TW：可能是貼錯句子；KR 只差語氣就沒問題' },
+  'cross-group': { name: '別處譯法不同', desc: '同一句 KR 在另一個族群或欄位有不同的 TW（「不一致的譯法」只比同族群同欄位）：同一個東西就統一，語境不同就確認沒問題' },
 }
 
 /** What to call a check code: the known ones by name, any other by its code and the message of its first unit. */
