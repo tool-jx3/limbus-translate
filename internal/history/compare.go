@@ -96,7 +96,7 @@ func load(s State, file string) (side, error) {
 // origin follows the rule of the site: the record's origin where the built
 // string is the record's, a stand-in otherwise.
 func (s side) origin(pointer string) string {
-	if rec, ok := s.state.Records[units.Key(s.file, pointer)]; ok && (rec.ZH == s.zh[pointer] || rec.ZH == rubyx.Restore(s.zh[pointer])) {
+	if rec, ok := s.state.Records[units.Key(s.file, pointer)]; ok && rubyx.Shipped(rec.ZH, s.zh[pointer]) {
 		return rec.Origin
 	}
 	return OriginStandIn

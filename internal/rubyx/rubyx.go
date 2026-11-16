@@ -110,6 +110,12 @@ func Restore(s string) string {
 	return converted.ReplaceAllString(s, "<"+Tag+"=$2>$1</"+Tag+">")
 }
 
+// Shipped 回報語言包字串 pack 是否就是紀錄的譯文 record：兩者相同，或 record
+// 的讀音去掉引號後等於 Restore(pack)（轉換不保留引號）。
+func Shipped(record, pack string) bool {
+	return record == pack || group.ReplaceAllString(record, "<"+Tag+"=$1$2>$3</"+Tag+">") == Restore(pack)
+}
+
 func width(s string, advance func(rune) float64) float64 {
 	var w float64
 	for _, r := range s {

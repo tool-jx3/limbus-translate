@@ -256,17 +256,19 @@ func TestCompareOriginsCopyAndCause(t *testing.T) {
 }
 
 // The built string of a <rubycustomize> record is the converted structure; it
-// is still the record's, so its origin is the record's.
+// is still the record's, its reading quoted or not, so its origin is the
+// record's.
 func TestOriginSeesThroughRubyCustomize(t *testing.T) {
 	const f = "F.json"
 	const converted = "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>"
 	oneKR := list(`{"id":1,"desc":"a"}`)
 	p := "/dataList/0/desc"
-	e := compare(t,
-		state(t, oneKR, list(`{"id":1,"desc":"甲"}`), rec(f, p, "甲", store.OriginClaude)),
-		state(t, oneKR, list(`{"id":1,"desc":"`+converted+`"}`),
-			rec(f, p, "<rubycustomize=ヨシヒデ>良秀</rubycustomize>", store.OriginHuman)))[0]
-	if e.NewOrigin != store.OriginHuman || e.Cause != CauseAdjustment {
-		t.Errorf("got %+v, want origin human and an adjustment", e)
+	for _, zh := range []string{"<rubycustomize=ヨシヒデ>良秀</rubycustomize>", `<rubycustomize="ヨシヒデ">良秀</rubycustomize>`} {
+		e := compare(t,
+			state(t, oneKR, list(`{"id":1,"desc":"甲"}`), rec(f, p, "甲", store.OriginClaude)),
+			state(t, oneKR, list(`{"id":1,"desc":"`+converted+`"}`), rec(f, p, zh, store.OriginHuman)))[0]
+		if e.NewOrigin != store.OriginHuman || e.Cause != CauseAdjustment {
+			t.Errorf("record %s: got %+v, want origin human and an adjustment", zh, e)
+		}
 	}
 }

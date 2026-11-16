@@ -166,7 +166,7 @@ func buildFile(in Inputs, path string, visit func(u Unit, ku units.Unit, en, jp 
 			sum.Missing.JP++
 		}
 		if rec, ok := in.Records[units.Key(path, ku.Pointer)]; ok {
-			if rec.ZH == u.ZH || rec.ZH == rubyx.Restore(u.ZH) {
+			if rubyx.Shipped(rec.ZH, u.ZH) {
 				u.O = rec.Origin
 			}
 			if len(rec.Flags) > 0 {

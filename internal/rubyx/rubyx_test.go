@@ -68,6 +68,31 @@ func TestStripAndRestore(t *testing.T) {
 	}
 }
 
+func TestShipped(t *testing.T) {
+	st := Style{"50%", 0.5, "1em"}
+	one := func(rune) float64 { return 1 }
+	plain := "<rubycustomize=ヨシヒデ>良秀</rubycustomize>說"
+	quoted := "<rubycustomize=\"ヨシヒデ\">良秀</rubycustomize>說"
+	cases := []struct {
+		name, record, pack string
+		want               bool
+	}{
+		{"plain text, equal", "良秀說", "良秀說", true},
+		{"plain text, different", "良秀說", "良秀講", false},
+		{"converted", plain, Convert(plain, st, one), true},
+		{"quoted reading, converted", quoted, Convert(quoted, st, one), true},
+		{"the tag shipped as it is", quoted, quoted, true},
+		{"different body", plain, Convert("<rubycustomize=ヨシヒデ>良</rubycustomize>說", st, one), false},
+		{"different reading", quoted, Convert("<rubycustomize=よしひで>良秀</rubycustomize>說", st, one), false},
+		{"stand-in", plain, "Yoshihide said", false},
+	}
+	for _, c := range cases {
+		if got := Shipped(c.record, c.pack); got != c.want {
+			t.Errorf("%s: Shipped(%q, %q) = %v, want %v", c.name, c.record, c.pack, got, c.want)
+		}
+	}
+}
+
 func TestParseStyle(t *testing.T) {
 	st, err := ParseStyle("50%", "1em")
 	if err != nil || st != (Style{"50%", 0.5, "1em"}) {

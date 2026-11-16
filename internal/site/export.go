@@ -186,7 +186,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 			key := units.Key(p, u.P)
 			if goldWanted[key] {
 				gu := GoldUnit{Path: p, Ptr: u.P, KR: u.KR, JP: u.JP, EN: u.EN, ZH: in.Records[key].ZH}
-				if u.ZH != gu.ZH && rubyx.Restore(u.ZH) != gu.ZH {
+				if !rubyx.Shipped(gu.ZH, u.ZH) {
 					gu.Shipped = u.ZH
 				}
 				goldUnits[key] = gu

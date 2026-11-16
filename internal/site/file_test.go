@@ -480,31 +480,35 @@ func TestBuildFileUnknownFile(t *testing.T) {
 }
 
 // The pack ships the converted form of a <rubycustomize> string while the
-// record keeps the tag; the unit is still the record's.
+// record keeps the tag, its reading quoted or not; the unit is still the
+// record's.
 func TestUnitOriginSeesThroughRubyCustomize(t *testing.T) {
 	const file = "Sample.json"
 	const converted = "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>"
-	in := Inputs{
-		KR:      writePack(t, "KR_", map[string]string{file: `{"dataList":[{"id":1,"content":"가"}]}`}),
-		EN:      writePack(t, "EN_", nil),
-		JP:      writePack(t, "JP_", nil),
-		ZH:      writePack(t, "", map[string]string{file: `{"dataList":[{"id":1,"content":"` + converted + `"}]}`}),
-		Records: recordsOf(record(file, "/dataList/0/content", "<rubycustomize=ヨシヒデ>良秀</rubycustomize>", store.OriginHuman)),
-		Rules:   testRules(),
-	}
-	f, _, err := BuildFile(in, file)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if got := unitAt(t, f, "/dataList/0/content"); got.O != store.OriginHuman {
-		t.Errorf("O = %q, want %q", got.O, store.OriginHuman)
+	for _, zh := range []string{"<rubycustomize=ヨシヒデ>良秀</rubycustomize>", `<rubycustomize="ヨシヒデ">良秀</rubycustomize>`} {
+		in := Inputs{
+			KR:      writePack(t, "KR_", map[string]string{file: `{"dataList":[{"id":1,"content":"가"}]}`}),
+			EN:      writePack(t, "EN_", nil),
+			JP:      writePack(t, "JP_", nil),
+			ZH:      writePack(t, "", map[string]string{file: `{"dataList":[{"id":1,"content":"` + converted + `"}]}`}),
+			Records: recordsOf(record(file, "/dataList/0/content", zh, store.OriginHuman)),
+			Rules:   testRules(),
+		}
+		f, _, err := BuildFile(in, file)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if got := unitAt(t, f, "/dataList/0/content"); got.O != store.OriginHuman {
+			t.Errorf("record %s: O = %q, want %q", zh, got.O, store.OriginHuman)
+		}
 	}
 }
 
-// Gold: the shipped text is shown only where it differs from the record.
+// Gold: the shipped text is shown only where it differs from the record. The
+// record's reading is quoted, which the converted pack string does not keep.
 func TestExportGoldShippedSeesThroughRubyCustomize(t *testing.T) {
 	const file = "Sample.json"
-	const tag = "<rubycustomize=ヨシヒデ>良秀</rubycustomize>"
+	const tag = `<rubycustomize="ヨシヒデ">良秀</rubycustomize>`
 	const converted = "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>"
 	in := Inputs{
 		KR:      writePack(t, "KR_", map[string]string{file: `{"dataList":[{"id":1,"content":"가"}]}`}),
