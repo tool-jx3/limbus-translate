@@ -1304,6 +1304,10 @@ func TestMatchText(t *testing.T) {
 		{`(턴 당 <style=x>2</style>회)`, `(턴 당 2회)`},
 		{`<color=#fff>x</color>`, `x`},
 		{`plain`, `plain`},
+		// rubycustomize: only the body is text (spec 7), quoted reading or not
+		{`<rubycustomize=ヨシヒデ>良秀</rubycustomize>說`, `良秀說`},
+		{`<rubycustomize="UNGEZIEFER KAISER">害蟲皇帝</rubycustomize>`, `害蟲皇帝`},
+		{`<b><rubycustomize=ヨシヒデ>良秀</rubycustomize></b>`, `良秀`},
 	} {
 		if got := MatchText(c.in); got != c.want {
 			t.Errorf("MatchText(%q) = %q, want %q", c.in, got, c.want)
