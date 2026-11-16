@@ -13,6 +13,7 @@
 | `characters/<id>.md` | 角色語言風格 | 該批出現此角色時（劇情看每行的 `model`，RPG 對話看該行的 `speaker` 欄位，對得上角色 id 才套用；語音／`AbDlg` 看檔名） |
 | `npcs.yaml` | 不需要指引的路人：`model`、性別、一句身分（見「新說話者」） | 批次中有這些 `model` 說話時（單位或前後文），批次的 `npcs` 帶上他們的性別與身分；審核 Issue 與規則建議不再把這些 `model` 列為新說話者 |
 | `../glossary/terms.yaml` | 譯名統一列表（預設譯名；`check: hard` 的條目缺譯名才退回，`check: off` 的一般用語缺譯名也不警告，禁用譯法一律退回） | 每一批注入命中的條目 |
+| `../rules/ruby-customize.yaml` | 可以寫 `<rubycustomize=注音>本文</rubycustomize>` 的位置（檔案＋欄位，每個都在遊戲裡測過）與轉換參數；`lct build` 把它換成遊戲能顯示的標籤，其他位置寫了會退回。什麼時候寫見 `base.md`「白名單位置的注音」 | 白名單上的單位在批次帶 `ruby_customize: true` |
 
 疊加順序：`base` → 族群 → 該族群的 `include`（共用指引，依序）→ 依節點或標記疊加的指引（`routing.yaml` 的 `guides:`）→ 角色 → 單檔備註。`base.md` 的格式規則是硬性規定；詞彙表的譯名是預設（`check: hard` 的條目與 `forbidden` 除外），角色風格不能推翻它們。
 

@@ -53,7 +53,8 @@
 
 ## 必須保留的內容 `keep`
 
-- `ids`（`[ID]`）、`placeholders`（`{0}`、`<0>`、`{Slot}` 等）、`tags`（TextMeshPro 標籤）要原樣出現在譯文：不翻譯、不改寫，種類與數量都和 KR 相同。位置可以依中文語序調整；標籤要包住對應的文字、成對、正確巢狀，屬性值不改（例外：`<ruby=…>` 的注音要翻譯；劇情台詞可以加 KR 沒有的成對 ruby，也不可把 ruby 改寫成括號。見 `guides/base.md` 的「ruby」；`<noparse>` 的位置與數量可以和 KR 不同，draft 已有的不要刪，見 `guides/base.md` 的「`<noparse>`」）
+- `ids`（`[ID]`）、`placeholders`（`{0}`、`<0>`、`{Slot}` 等）、`tags`（TextMeshPro 標籤）要原樣出現在譯文：不翻譯、不改寫，種類與數量都和 KR 相同。位置可以依中文語序調整；標籤要包住對應的文字、成對、正確巢狀，屬性值不改（例外：`<ruby=…>` 的注音要翻譯；劇情（`StoryData/`）台詞可以加 KR 沒有的成對 ruby，也不可把 ruby 改寫成括號。見 `guides/base.md` 的「ruby」；`<noparse>` 的位置與數量可以和 KR 不同，draft 已有的不要刪，見 `guides/base.md` 的「`<noparse>`」）
+- `ruby_customize` 為 true 的單位，譯文可以寫 `<rubycustomize=注音>本文</rubycustomize>`（KR 沒有也可以，不算進 `tags`），什麼時候寫依 `guides/base.md` 的「白名單位置的注音」；沒有 `ruby_customize` 的單位不可以寫，寫了會退回
 - `dante_wrapper` 為 true 時，譯文整句包在 `<…>` 裡（見 `guides/characters/dante.md`）
 
 ## 輸出

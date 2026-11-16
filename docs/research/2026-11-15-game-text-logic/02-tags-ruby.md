@@ -16,6 +16,7 @@
 
 - ✘ 的地方沒有任何程式轉換或移除 `<ruby>`，文字會原樣交給 TextMeshPro。TextMeshPro 遇到不認識的標籤會把它當一般文字畫出來（這一點是 TextMeshPro 的一般行為，不是從這一版程式讀到的），所以玩家會看到 `<ruby=…>本文</ruby>`。
 - 現行譯文的 ruby 共 155 處，全部在 `StoryData` 的 `content`，格式都正確。
+- 後續（2026-11-16）：✘ 的位置裡，在遊戲裡測過能顯示注音的（說話者名稱、人格語音、播報員、戰鬥氣泡），譯文改寫 `<rubycustomize=注音>本文</rubycustomize>`，`lct build` 換成下面「ruby 怎麼變成畫面」那組 TextMeshPro 標籤。位置見 `rules/ruby-customize.yaml`，設計見 `docs/superpowers/specs/2026-11-16-ruby-customize-design.md`。
 
 ## ruby 的語法
 

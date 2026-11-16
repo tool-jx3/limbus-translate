@@ -279,7 +279,11 @@ type BatchUnit struct {
 	// Refs are other translations to look at, such as "llc" and "ltm". They
 	// are references, not answers.
 	Refs map[string]string `json:"refs,omitempty"`
-	Keep Constraints       `json:"keep"`
+	// RubyCustomize is true when the unit's position is on the whitelist of
+	// <rubycustomize> (rules.Rules.RubyCustomizeAt): only there may the
+	// translation write it.
+	RubyCustomize bool        `json:"ruby_customize,omitempty"`
+	Keep          Constraints `json:"keep"`
 }
 
 // Constraints are what a translation must keep from KR; validation compares

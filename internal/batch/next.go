@@ -518,20 +518,21 @@ func assemble(
 				}
 			}
 			b.Units = append(b.Units, BatchUnit{
-				Key:     item.Key,
-				File:    fd.file,
-				Field:   u.Field,
-				Speaker: who,
-				KR:      u.KR,
-				Reason:  item.Reason,
-				PrevKR:  item.PrevKR,
-				PrevZH:  item.PrevZH,
-				Draft:   item.Draft,
-				Hint:    item.Hint,
-				EN:      en,
-				JP:      jp,
-				Refs:    cleanRefs(item.Refs),
-				Keep:    constraints(u.KR),
+				Key:           item.Key,
+				File:          fd.file,
+				Field:         u.Field,
+				Speaker:       who,
+				KR:            u.KR,
+				Reason:        item.Reason,
+				PrevKR:        item.PrevKR,
+				PrevZH:        item.PrevZH,
+				Draft:         item.Draft,
+				Hint:          item.Hint,
+				EN:            en,
+				JP:            jp,
+				Refs:          cleanRefs(item.Refs),
+				Keep:          constraints(u.KR),
+				RubyCustomize: env.Rules.RubyCustomizeAt(fd.file, u.Pointer),
 			})
 			texts = append(texts, unitText{fd.file, u.KR, item.Key})
 			needRecords = needRecords || len(b.Units[len(b.Units)-1].Keep.IDs) > 0

@@ -100,11 +100,22 @@ func testRulesWith(t *testing.T, glossary string) *rules.Rules {
 // replaced.
 func testRulesWithRouting(t *testing.T, routing, glossary string) *rules.Rules {
 	t.Helper()
+	return testRulesWithFiles(t, routing, glossary, nil)
+}
+
+// testRulesWithFiles is testRulesWithRouting with more files in the rules
+// root: a path relative to the root (such as rules.RubyCustomizeFile) to its
+// content.
+func testRulesWithFiles(t *testing.T, routing, glossary string, more map[string]string) *rules.Rules {
+	t.Helper()
 	root := t.TempDir()
 	writeFile(t, filepath.Join(root, "guides/routing.yaml"), routing)
 	writeFile(t, filepath.Join(root, "glossary/terms.yaml"), glossary)
 	writeFile(t, filepath.Join(root, "guides/characters/faust.md"), testFaust)
 	writeFile(t, filepath.Join(root, "guides/characters/sinclair.md"), testSinclair)
+	for p, content := range more {
+		writeFile(t, filepath.Join(root, filepath.FromSlash(p)), content)
+	}
 	r, err := rules.Load(root)
 	if err != nil {
 		t.Fatal(err)
@@ -2215,8 +2226,10 @@ func TestSchemasMatchTheTypes(t *testing.T) {
  {"id":2,"model":"파우스트","content":"終"}
 ]}`}
 	env := newEnv(t, kr, en, jp)
-	// A term for some files, so that the term's files are in the batch.
-	env.Rules = testRulesWith(t, "- kr: 위력\n  zh: 威力\n  status: approved\n  forbidden: [力量]\n  files: [\"StoryData/S*\"]\n")
+	// A term for some files, so that the term's files are in the batch, and a
+	// whitelist of <rubycustomize> that has the units, so that they are marked.
+	env.Rules = testRulesWithFiles(t, testRouting, "- kr: 위력\n  zh: 威力\n  status: approved\n  forbidden: [力量]\n  files: [\"StoryData/S*\"]\n",
+		map[string]string{rules.RubyCustomizeFile: "fields:\n  - files: ['StoryData/S001A.json']\n    field: content\n"})
 	pending := items(file, 0, 2)
 	pending[0].Refs = map[string]string{"llc": "a", "ltm": "b"}
 	pending[0].PrevKR, pending[0].PrevZH, pending[0].Draft = "p", "q", "r"
@@ -5449,5 +5462,61 @@ func TestTwinsDoNotCarryRubyCustomizeOutOfTheWhitelist(t *testing.T) {
 	}
 	if _, queued := pendingMap(t, env)[key("B.json", 0)]; !queued {
 		t.Error("B.json's line was filled in with a translation that has the tag out of the whitelist")
+	}
+}
+
+// A unit at a position of the whitelist (rules/ruby-customize.yaml, the
+// project's own file) is marked, so that the translator knows that
+// <rubycustomize> may stand there; a unit elsewhere has no mark. The batch
+// still matches its schema.
+func TestBatchMarksRubyCustomizeUnits(t *testing.T) {
+	const file = "StoryData/S001A.json"
+	whitelist, err := os.ReadFile(filepath.Join("..", "..", filepath.FromSlash(rules.RubyCustomizeFile)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	kr := map[string]string{file: `{"dataList":[{"id":0,"model":"파우스트","teller":"요시히데","content":"요시히데."}]}`}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWithFiles(t, testRouting, testGlossary, map[string]string{rules.RubyCustomizeFile: string(whitelist)})
+	teller, content := file+"|/dataList/0/teller", key(file, 0)
+	seed(t, env, store.PendingItem{Key: teller, Reason: "new"}, store.PendingItem{Key: content, Reason: "new"})
+
+	b := mustNext(t, env, NextOptions{})
+	if b == nil {
+		t.Fatal("no batch")
+	}
+	data, err := json.Marshal(b)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var top map[string]any
+	if err := json.Unmarshal(data, &top); err != nil {
+		t.Fatal(err)
+	}
+	schema := loadSchema(t, "batch.schema.json")
+	checkObject(t, "batch", top, schema)
+	props, _ := schemaProps(t, schema)
+	unitSchema := props["units"]["items"].(map[string]any)
+	unitProps, _ := schemaProps(t, unitSchema)
+	if p, ok := unitProps["ruby_customize"]; !ok || p["type"] != "boolean" {
+		t.Errorf("the unit schema's ruby_customize = %v (declared %v), want a boolean property", p, ok)
+	}
+	byKey := map[string]map[string]any{}
+	for i, u := range top["units"].([]any) {
+		um := u.(map[string]any)
+		checkObject(t, fmt.Sprintf("unit %d", i), um, unitSchema)
+		byKey[um["key"].(string)] = um
+	}
+	if _, ok := byKey[teller]; !ok {
+		t.Fatalf("units = %v, want the teller in the batch", keysOf(b))
+	}
+	if _, ok := byKey[content]; !ok {
+		t.Fatalf("units = %v, want the content in the batch", keysOf(b))
+	}
+	if v, ok := byKey[teller]["ruby_customize"]; !ok || v != true {
+		t.Errorf("teller ruby_customize = %v (present %v), want true", v, ok)
+	}
+	if v, ok := byKey[content]["ruby_customize"]; ok {
+		t.Errorf("content has ruby_customize = %v, want no such key", v)
 	}
 }
