@@ -213,7 +213,7 @@ id 不是由氣泡的程式組出來的，而是**呼叫者播放的語音事件
 |---|---|---|
 | `PersonalityVoiceDlg/*` 的戰鬥語音（`battle_kill_…`、`battle_break_…`、`battle_enemy_break_…`、`battle_dead_…`、`battle_allydead_…`、`battle_endcommand_…`、`battle_select_…`） | **同一個氣泡**（以及中央字幕） | `BattleSpeechBubbleDlg` 沒有這個 id 時的後備。顯示規則完全相同。進場語音（`battleentry`）不顯示氣泡 |
 | `BattleAnnouncerDlg/*` | `BattleAnnouncerUI`（播報員的對話框，有自己的捲動） | 不同元件。播報員的語音也會走到氣泡的流程，但播報員不是場上的單位，找不到顯示物件，所以沒有氣泡（推定） |
-| `AbDlg_*`（異想體事件裡的角色台詞） | `AbnormalityChoiceDialogController` | 不同元件 |
+| `AbDlg_*`（判定事件裡罪人的對話框，地牢事件也有） | `AbnormalityChoiceDialogController` | 不同元件。判定之後先用 `PersonalityVoiceDlg` 的 `choice_…`，沒有才用 `AbDlg` |
 | `EGOVoiceDig/*` | 技能演出的台詞框；演出字幕（優先於氣泡文字） | 不走氣泡 |
 | `BgmLyrics/*` 在戰鬥中 | 主歌詞是另一個元件；「上方歌詞」用的是演出字幕同一個控制器的另一個文字物件 | 不同文字物件 |
 

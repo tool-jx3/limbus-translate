@@ -75,7 +75,7 @@
 
 - 對話框與劇情紀錄的 ruby 設定值（大小、高度、行高、對齊方式）在 prefab 裡。
 - 對話框依行數把字級改成 40 或 38 時，沒有找到同步 ruby 轉換元件字級的程式；4 行以上的句子裡，注音的位置可能略偏（推定，沒有在遊戲中確認）。
-- JP 官方 `ActionEvents_exme.json` 有一個 `name` 帶 `<ruby>`，沒有追到它顯示在哪裡；依上面的結論它不會被轉換。
+- JP 官方 `ActionEvents_exme.json` 有一個 `name` 帶 `<ruby>`：`ActionEvents*` 的 `name` 沒有任何讀取者，根本不顯示（2026-11-16 補充，見 [07-field-display.md](07-field-display.md)）。
 - 劇情對話裡的 `<link>` 點了有沒有反應，沒有追。
 
 ## 建議的檢查

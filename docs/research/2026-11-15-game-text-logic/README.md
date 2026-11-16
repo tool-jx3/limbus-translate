@@ -9,6 +9,7 @@
 | [03-keywords.md](03-keywords.md) | 關鍵字的觸發規則；`[標籤]`、`<noparse>`、`[TabExplain]`、`excludeAutoLink`；哪些欄位會處理 |
 | [04-other.md](04-other.md) | 佔位符、選擇事件分頁、名稱、結構欄位、換行等其他注意事項 |
 | [05-battle-speech-bubble.md](05-battle-speech-bubble.md) | 戰鬥氣泡文字（`BattleSpeechBubbleDlg`）：怎麼查、顯示在哪三種元件、顯示時間、版面、可用的標籤（2026-11-16 補充） |
+| [07-field-display.md](07-field-display.md) | 各類檔案的每個欄位在什麼時候、哪個畫面顯示；遊戲不讀或不顯示的欄位；同一樣東西有兩份文字時誰優先；對前面各章的修正（2026-11-16 補充） |
 | [06-families.md](06-families.md) | 遊戲自己怎麼分文字檔（77 份清單對 77 張表），與專案族群的比較；哪些檔放錯、不一致比較的分組（2026-11-16 補充） |
 | [method/](method/README.md) | 怎麼讀出來的，以及解密、反編譯、分析用的腳本；`kwsim.py` 是關鍵字比對的重現腳本，`packcheck.py` 是結構比對 |
 
@@ -65,7 +66,16 @@
 - 放錯的檔案：`Skills.json`（258 筆罪人技能，卻在 `enemy`）、`Passive-*` 與三個 `Passives-*`（敵人的被動，卻在 `ally`）、`Passives_fools`、`ChoiceEventKeyword`。除了三個 `Passives-*`（節點分不開），已在同日改好 `guides/routing.yaml`。
 - 技能、被動在遊戲裡各只有一張表，卻分在 `ally` 與 `enemy`；「不一致的譯法」只在族群內比，所以有 43 句同欄位、同 KR、跨族群譯法不同的句子目前看不到。建議加跨族群的比較，而不是合併族群（已做成警告 `cross-group`）。
 - 戰鬥氣泡有一半是敵人與 NPC 的台詞，建議在 `identity` 的指引補說明。
-- 約 2,000 個已翻譯的單位在遊戲不讀的欄位裡（`BattleKeywords.summary`、`AbEvents.title`、`Personalities.nameWithTitle` 等）。
+- 有一批已翻譯的單位在遊戲不讀的欄位裡，見下一題。
+
+### 7. 各欄位什麼時候顯示（2026-11-16 補充）
+
+- 硬幣、被動、狀態的 `summary` 與飾品的 `simpleDesc` 是「短說明」，**只在戰鬥中單位執行技能時的技能面板出現**；其他地方一律用 `desc`。被動、狀態、飾品的短說明只有異想體戰才顯示，一般戰鬥只列名稱。
+- 硬幣的 `summary` 會套用完整的關鍵字處理；空的時候改用 `desc`。狀態的 `summary`「沒有這個 key」會改用 `desc`，「空字串」只顯示名稱。
+- 狀態圖示的提示框與人格資訊用 `Bufs*`；點關鍵字連結的說明用 `BattleKeywords*`。
+- 劇情的名稱與稱號各自決定：列上的 `teller`、`title` 有寫就用，空的才查 `ScenarioModelCodes*`。大部分的名稱與稱號其實來自 `ScenarioModelCodes*`。
+- `PersonalityVoiceDlg` 的 `desc` 會顯示（語音清單每一格的標題）；`EGOVoiceDig` 與 `BattleSpeechBubbleDlg` 的 `desc` 不會。
+- **約 3,340 個已翻譯的單位在遊戲不顯示的欄位裡**：`Enemies*`／`Assist*` 的 `desc`（1,277）、`EGOVoiceDig` 的 `desc`（335）、`BattleKeywords*` 的 `summary`（236）、`Personalities*` 的 `desc`（208）與 `nameWithTitle`（207）、`StageNode*` 的 `place`（208）、`AbnormalityGuides*` 的 `clue`（183）、`ActionEvents*` 的 `name`（171）、`AbEvents*` 的 `title`（170）、`AbDlg_*` 的 `teller`（169）、`Egos*` 的 `desc`（122）等。
 
 ## 現行譯文需要看的地方
 
