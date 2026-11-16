@@ -18,7 +18,7 @@
 - **劇情的說話者名稱與稱號各自決定**：列上有寫就用列上的，空的才用 `ScenarioModelCodes*`。
 - **約 3,300 個已翻譯的單位在遊戲不顯示的欄位裡**（第 6 節）。最大的是 `Enemies*`／`Assist*` 的 `desc`（1,277）、`EGOVoiceDig` 的 `desc`（335）、`BattleKeywords*` 的 `summary`（236）。
 - **會顯示、容易被當成標籤而忽略的**：`PersonalityVoiceDlg` 的 `desc`（語音清單每一格的標題）、`LobbyBGM` 的 `songWriter`、`UnlockCode` 的各欄位。
-- 過去報告有 9 處需要修正或補充，已一併改好（第 8 節）。
+- 過去報告有 13 處需要修正或補充，已一併改好（第 8 節）。
 
 ## 1. 技能、被動、狀態、飾品
 
