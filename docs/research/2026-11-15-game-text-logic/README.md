@@ -9,6 +9,7 @@
 | [03-keywords.md](03-keywords.md) | 關鍵字的觸發規則；`[標籤]`、`<noparse>`、`[TabExplain]`、`excludeAutoLink`；哪些欄位會處理 |
 | [04-other.md](04-other.md) | 佔位符、選擇事件分頁、名稱、結構欄位、換行等其他注意事項 |
 | [05-battle-speech-bubble.md](05-battle-speech-bubble.md) | 戰鬥氣泡文字（`BattleSpeechBubbleDlg`）：怎麼查、顯示在哪三種元件、顯示時間、版面、可用的標籤（2026-11-16 補充） |
+| [06-families.md](06-families.md) | 遊戲自己怎麼分文字檔（77 份清單對 77 張表），與專案族群的比較；哪些檔放錯、不一致比較的分組（2026-11-16 補充） |
 | [method/](method/README.md) | 怎麼讀出來的，以及解密、反編譯、分析用的腳本；`kwsim.py` 是關鍵字比對的重現腳本，`packcheck.py` 是結構比對 |
 
 ## 各題的短答
@@ -57,6 +58,14 @@
 - 氣泡的寬度、自動換行、字級都是 prefab 的設定，讀不到；程式不插入換行，譯文能決定的換行只有 `\n`（官方各語言的 `\n` 數量本來就不一致）。官方 CJK 最長 111 字。
 - `dlg` 是空字串時這句話會消失；腳本直接取用的十個 id 則會出現 6 秒的空氣泡框。這份文字不會出現 `Unknown`。
 - `PersonalityVoiceDlg` 的戰鬥語音台詞（擊殺、混亂、死亡等）用同一個氣泡，規則相同。
+
+### 6. 族群（分類）需不需要調整（2026-11-16 補充）
+
+- 不需要重劃。遊戲依資料表分（77 份清單對 77 張表），專案依內容與語氣分，目的不同；依欄位的檢查也不看族群。
+- 放錯的檔案：`Skills.json`（258 筆罪人技能，卻在 `enemy`）、`Passive-*` 與三個 `Passives-*`（敵人的被動，卻在 `ally`）、`Passives_fools`、`ChoiceEventKeyword`。
+- 技能、被動在遊戲裡各只有一張表，卻分在 `ally` 與 `enemy`；「不一致的譯法」只在族群內比，所以有 43 句同欄位、同 KR、跨族群譯法不同的句子目前看不到。建議加跨族群的比較，而不是合併族群。
+- 戰鬥氣泡有一半是敵人與 NPC 的台詞，建議在 `identity` 的指引補說明。
+- 約 2,000 個已翻譯的單位在遊戲不讀的欄位裡（`BattleKeywords.summary`、`AbEvents.title`、`Personalities.nameWithTitle` 等）。
 
 ## 現行譯文需要看的地方
 
