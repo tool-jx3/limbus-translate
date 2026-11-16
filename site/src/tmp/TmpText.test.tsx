@@ -37,6 +37,13 @@ describe('TmpText', () => {
     expect(el.textContent).toBe('x')
   })
 
+  it('shows the converted rubycustomize structure as ruby', () => {
+    const el = show('<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>')
+    const ruby = el.querySelector('ruby')
+    expect(ruby?.querySelector('rt')?.textContent).toBe('ヨシヒデ')
+    expect(ruby?.firstChild?.textContent).toBe('良秀')
+  })
+
   it('shows ruby with the reading above the text', () => {
     const el = show('<ruby=天退星>插翅虎</ruby>')
     const ruby = el.querySelector('ruby')

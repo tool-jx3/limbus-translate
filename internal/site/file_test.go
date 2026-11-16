@@ -10,6 +10,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -475,5 +476,62 @@ func TestBuildFileUnknownFile(t *testing.T) {
 	in.KR = writePack(t, "KR_", map[string]string{"A.json": `{"dataList":[]}`, "B.json": `{"dataList":[]}`})
 	if _, _, err := BuildFile(in, "B.json"); err == nil {
 		t.Error("BuildFile of a file the built pack lacks: want an error")
+	}
+}
+
+// The pack ships the converted form of a <rubycustomize> string while the
+// record keeps the tag; the unit is still the record's.
+func TestUnitOriginSeesThroughRubyCustomize(t *testing.T) {
+	const file = "Sample.json"
+	const converted = "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>"
+	in := Inputs{
+		KR:      writePack(t, "KR_", map[string]string{file: `{"dataList":[{"id":1,"content":"가"}]}`}),
+		EN:      writePack(t, "EN_", nil),
+		JP:      writePack(t, "JP_", nil),
+		ZH:      writePack(t, "", map[string]string{file: `{"dataList":[{"id":1,"content":"` + converted + `"}]}`}),
+		Records: recordsOf(record(file, "/dataList/0/content", "<rubycustomize=ヨシヒデ>良秀</rubycustomize>", store.OriginHuman)),
+		Rules:   testRules(),
+	}
+	f, _, err := BuildFile(in, file)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := unitAt(t, f, "/dataList/0/content"); got.O != store.OriginHuman {
+		t.Errorf("O = %q, want %q", got.O, store.OriginHuman)
+	}
+}
+
+// Gold: the shipped text is shown only where it differs from the record.
+func TestExportGoldShippedSeesThroughRubyCustomize(t *testing.T) {
+	const file = "Sample.json"
+	const tag = "<rubycustomize=ヨシヒデ>良秀</rubycustomize>"
+	const converted = "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>"
+	in := Inputs{
+		KR:      writePack(t, "KR_", map[string]string{file: `{"dataList":[{"id":1,"content":"가"}]}`}),
+		EN:      writePack(t, "EN_", nil),
+		JP:      writePack(t, "JP_", nil),
+		ZH:      writePack(t, "", map[string]string{file: `{"dataList":[{"id":1,"content":"` + converted + `"}]}`}),
+		Records: recordsOf(record(file, "/dataList/0/content", tag, store.OriginHuman)),
+		Rules:   testRules(),
+		Gold: &gold.Sample{Seed: 1, PerFamily: 1, Units: []gold.Unit{
+			{Key: file + "|/dataList/0/content", Family: "other", Origin: "human", Verdict: "correct", JudgedZH: tag},
+		}},
+	}
+	out := filepath.Join(t.TempDir(), "data")
+	if _, err := Export(in, Meta{}, out); err != nil {
+		t.Fatal(err)
+	}
+	var got struct {
+		Units []struct{ ZH, Shipped string }
+	}
+	b, err := os.ReadFile(filepath.Join(out, "gold.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := json.Unmarshal(b, &got); err != nil {
+		t.Fatal(err)
+	}
+	if len(got.Units) != 1 || got.Units[0].ZH != tag || got.Units[0].Shipped != "" {
+		t.Errorf("gold units = %+v, want zh %q and no shipped text", got.Units, tag)
 	}
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseTMP, type TmpNode } from './parse'
+import { parseTMP, restoreRubyCustomize, type TmpNode } from './parse'
 
 const text = (s: string): TmpNode => ({ t: 'text', s })
 
@@ -112,5 +112,22 @@ describe('parseTMP', () => {
 
   it('returns no node for an empty string', () => {
     expect(parseTMP('')).toEqual([])
+  })
+})
+
+describe('restoreRubyCustomize', () => {
+  const converted = '<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>'
+
+  it('turns the converted structure back into a ruby tag', () => {
+    expect(restoreRubyCustomize(converted)).toBe('<ruby=ヨシヒデ>良秀</ruby>')
+    expect(restoreRubyCustomize(`前${converted}後`)).toBe('前<ruby=ヨシヒデ>良秀</ruby>後')
+  })
+
+  it('leaves other nobr text as it is', () => {
+    expect(restoreRubyCustomize('<nobr>甲乙</nobr>')).toBe('<nobr>甲乙</nobr>')
+  })
+
+  it('parses the converted structure as a ruby node', () => {
+    expect(parseTMP(converted)).toEqual([{ t: 'tag', name: 'ruby', value: 'ヨシヒデ', kids: [text('良秀')] }])
   })
 })

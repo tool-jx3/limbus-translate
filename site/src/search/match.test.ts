@@ -9,6 +9,12 @@ function matcher(q: string, regex = false): (s: string) => [number, number][] {
 }
 
 describe('stripTags', () => {
+  it('keeps both the text and the reading of the converted rubycustomize structure', () => {
+    const out = stripTags('<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>')
+    expect(out).toContain('良秀')
+    expect(out).toContain('ヨシヒデ')
+  })
+
   it('drops the tags and keeps the text and the [ID] and {n} the game fills in', () => {
     expect(stripTags('<color=#fff>甲</color>[Burn]')).toBe('甲[Burn]')
     expect(stripTags('[OnSucceedAttack] 賦予目標 {0} [Burn]')).toBe('[OnSucceedAttack] 賦予目標 {0} [Burn]')

@@ -323,6 +323,44 @@ func TestExportSearchCorpusKeepsCopiesOfTextAllLanguagesShare(t *testing.T) {
 	}
 }
 
+// translate_identical sends the name of ScenarioModelCodes to be translated
+// even where KR, EN and JP share it, so Classify no longer calls it an
+// identical-value skip. A record that is still a copy is searched all the same.
+func TestExportSearchCorpusKeepsCopiesOfTranslateIdenticalUnits(t *testing.T) {
+	const f = "ScenarioModelCodes-AutoCreated.json"
+	fr, err := fields.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	doc := `{"dataList":[{"id":"그레고르왕그림자","name":"UNGEZIEFER KAISER"}]}`
+	in := Inputs{
+		KR:      writePack(t, "KR_", map[string]string{f: doc}),
+		EN:      writePack(t, "EN_", map[string]string{f: doc}),
+		JP:      writePack(t, "JP_", map[string]string{f: doc}),
+		ZH:      writePack(t, "", map[string]string{f: doc}),
+		Records: recordsOf(record(f, "/dataList/0/name", "UNGEZIEFER KAISER", store.OriginCopy)),
+		Rules:   testRules(),
+		Fields:  fr,
+	}
+	out := filepath.Join(t.TempDir(), "data")
+	if _, err := Export(in, Meta{}, out); err != nil {
+		t.Fatal(err)
+	}
+	var keys [][]any
+	readJSON(t, out, "search/keys.json", &keys)
+	var zh []string
+	readJSON(t, out, "search/zh.json", &zh)
+	found := false
+	for n, key := range keys {
+		if key[1] == "/dataList/0/name" && zh[n] == "UNGEZIEFER KAISER" {
+			found = true
+		}
+	}
+	if !found {
+		t.Errorf("searched keys %v zh %v, want the name copy among them", keys, zh)
+	}
+}
+
 func TestExportDoesNotEscapeHTML(t *testing.T) {
 	out := filepath.Join(t.TempDir(), "data")
 	if _, err := Export(exportInputs(t), Meta{}, out); err != nil {

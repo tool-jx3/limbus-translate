@@ -33,8 +33,19 @@ const PIECE = new RegExp(
   'gi',
 )
 
+// The structure lct build writes for a <rubycustomize=R>B</rubycustomize>: the
+// same pattern as rubyx.Restore in Go.
+export const CONVERTED_RUBY =
+  /<nobr>([^<>\r\n]+)<space=-?[0-9.]+em><voffset=[^<>]+><size=[^<>]+>([^<>\r\n]+)<\/size><\/voffset><space=-?[0-9.]+em><\/nobr>/g
+
+/** Turns the converted rubycustomize structure back into a <ruby=R>B</ruby>, which the parser knows. */
+export function restoreRubyCustomize(s: string): string {
+  return s.replace(CONVERTED_RUBY, '<ruby=$2>$1</ruby>')
+}
+
 /** Parses s into nodes. Closing tags with no opening tag are dropped; tags left open close at the end. */
 export function parseTMP(s: string): TmpNode[] {
+  s = restoreRubyCustomize(s)
   const root: TmpNode[] = []
   const open: TagNode[] = []
   const kids = (): TmpNode[] => open[open.length - 1]?.kids ?? root

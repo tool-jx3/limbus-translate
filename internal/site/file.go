@@ -12,6 +12,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/rubyx"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -165,7 +166,7 @@ func buildFile(in Inputs, path string, visit func(u Unit, ku units.Unit, en, jp 
 			sum.Missing.JP++
 		}
 		if rec, ok := in.Records[units.Key(path, ku.Pointer)]; ok {
-			if rec.ZH == u.ZH {
+			if rec.ZH == u.ZH || rec.ZH == rubyx.Restore(u.ZH) {
 				u.O = rec.Origin
 			}
 			if len(rec.Flags) > 0 {
