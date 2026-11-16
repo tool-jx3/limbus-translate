@@ -596,3 +596,9 @@
   zh: 咦？
   reason: StoryData 審查 S0433：KR「네?」是以實瑪利被格里高爾說「看你的表情就不想問了」時的反問（咦？），JP「はい？」、EN「Pardon?」相同；現行 TW「那是什麼？」變成以實瑪利在問概念焚化爐是什麼，但這個詞正是她自己先說的。
   rule: one-off
+- key: StoryData/E306B.json|/dataList/26/content
+  raw: raw-20261112
+  kr_sha: c5144e90849caa9d256d6a39db54aa6e7c96b1ece60c4cfdb01e6e4ce0b49ee4
+  zh: 就是這樣……！是辣味醬料還是醬油醬料……主料是糖還是鹽……什麼都沒留下！就連……來過店裡的那麼多客人，也什麼都不記得了！
+  reason: StoryData 審查 S0434：KR 是「不記得是辣味醬料還是醬油醬料……主料是糖還是鹽」，JP 相同；現行 TW 照 EN 把「매운 양념」寫成「胡椒」，把「主料是糖還是鹽」寫成「該放多少糖或者多少鹽」。；譯法由使用者決定
+  rule: one-off
