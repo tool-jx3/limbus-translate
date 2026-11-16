@@ -1,0 +1,8 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G868：旁白「그렇게.」E303A#4 寫「於是乎……」，E519A#146 寫「於是乎。」。
+# KR 以句號單獨成句，「……」是照 EN（And just like that…）；統一成「於是乎。」。使用者同意 2026-11-16。
+reason: '「그렇게.」照 KR 的句號寫「於是乎。」，與 E519A#146 一致（規則建議 G868）'
+files: ['StoryData/E303A.json']
+origins: [paratranz]
+pattern: '^於是乎……$'
+replace: '於是乎。'
+kr_pattern: '^그렇게\.$'
