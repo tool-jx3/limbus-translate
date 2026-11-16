@@ -1,0 +1,16 @@
+- key: Bufs-a1c10p3.json|/dataList/20/name
+  raw: raw-20261112
+  kr_sha: 861b60d11baa294bd9c004577cb33cf03445162643cb093c6a21ffb84d85725a
+  zh: 〜
+  reason: 「ConfessionThirdPhase」的名稱照 KR、EN 寫「〜」（U+301C）；寫成「～」（U+FF5E）時，技能等說明裡「1～2層」這類範圍會被遊戲當成這個狀態而變成關鍵字連結（keyword-link 68 個欄位）
+  rule: guides/families/keywords.md
+- key: Bufs-a1c10p3.json|/dataList/20/desc
+  raw: raw-20261112
+  kr_sha: 0130e886b2e602cd5d08d05643187030c70a5ef60267354ea9fd23d76badb2b4
+  zh: |-
+    - 以下效果統稱為〜
+    ．釘 [Exception]
+    ．釘 [Breakpoint]
+    ．釘 [Console]
+  reason: 說明裡的名稱跟著狀態名稱改寫「〜」（U+301C），與 KR「〜로 지칭함」一致
+  rule: guides/families/keywords.md

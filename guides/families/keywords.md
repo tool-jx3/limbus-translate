@@ -20,4 +20,4 @@
 
 ## 常見錯誤
 
-（目前無足夠證據）
+- 狀態名稱裡的符號照 KR 寫，不換成外觀相近的字元：`ConfessionThirdPhase` 的名稱是「〜」（U+301C），不是數值範圍用的「～」（U+FF5E）。遊戲會把技能、被動、E.G.O飾品、恐慌說明裡與狀態名稱相同、後面接數字或空白的字串變成關鍵字連結；名稱寫成「～」，「1～2層」這類範圍就會多出圖示（docs/research/2026-11-15-game-text-logic/03-keywords.md；`Bufs-a1c10p3.json|/dataList/20/name`）
