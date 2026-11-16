@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseTMP, restoreRubyCustomize, type TmpNode } from './parse'
+import { parseTMP, restoreRubyCustomize, toRecordForm, type TmpNode } from './parse'
 
 const text = (s: string): TmpNode => ({ t: 'text', s })
 
@@ -154,5 +154,38 @@ describe('restoreRubyCustomize', () => {
       expect(restoreRubyCustomize(s)).toBe(s)
     }
     expect(parseTMP('<rubycustomize=>良秀</rubycustomize>')).toEqual([text('<rubycustomize=>良秀</rubycustomize>')])
+  })
+})
+
+describe('toRecordForm', () => {
+  const converted = '<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>'
+
+  it('writes the converted structure as the rubycustomize tag of a record, with no quotes', () => {
+    expect(toRecordForm(converted)).toBe('<rubycustomize=ヨシヒデ>良秀</rubycustomize>')
+    expect(toRecordForm(`就算${converted}姊姊，${converted}`)).toBe(
+      '就算<rubycustomize=ヨシヒデ>良秀</rubycustomize>姊姊，<rubycustomize=ヨシヒデ>良秀</rubycustomize>',
+    )
+    expect(toRecordForm('<nobr>害蟲皇帝<space=-3.5em><voffset=1em><size=40%>UNGEZIEFER KAISER</size></voffset><space=0.5em></nobr>')).toBe(
+      '<rubycustomize=UNGEZIEFER KAISER>害蟲皇帝</rubycustomize>',
+    )
+  })
+
+  it('reads as the converted structure does', () => {
+    expect(restoreRubyCustomize(toRecordForm(converted))).toBe(restoreRubyCustomize(converted))
+  })
+
+  it('leaves a lone nobr or space, the other tags and plain text as they are', () => {
+    for (const s of [
+      '<nobr>甲乙</nobr>',
+      '甲<space=1em>乙',
+      '<nobr>良秀<space=-2em></nobr>',
+      '<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset></nobr>', // no closing space
+      '<color=#923838>良秀</color>',
+      '<rubycustomize=ヨシヒデ>良秀</rubycustomize>',
+      '就算良秀姊姊',
+      '',
+    ]) {
+      expect(toRecordForm(s), s).toBe(s)
+    }
   })
 })

@@ -223,6 +223,19 @@ describe('FileView: table', () => {
     expect(raw.querySelector('.tmp-raw')?.textContent).toBeTruthy()
   })
 
+  it('shows the converted rubycustomize structure as ruby, and as a record writes it in raw mode', async () => {
+    const DESC = '/dataList/0/levelList/0/coinlist/0/coindescs/0/desc'
+    const file = fixture<FileData>(`files/${SKILLS}`)
+    const converted = '<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>'
+    const units = file.units.map((u) => (u.p === DESC ? { ...u, zh: `就算${converted}姊姊` } : u))
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ [`files/${SKILLS}`]: { ...file, units } })))
+    clearDataCache()
+    const drawn = await open(SKILLS)
+    expect(cell(drawn, DESC, 'zh')?.querySelector('ruby rt')?.textContent).toBe('ヨシヒデ')
+    const raw = await open(SKILLS, { settings: { ...defaultSettings(), rawTags: true } })
+    expect(cell(raw, DESC, 'zh')?.querySelector('.tmp-raw')?.textContent).toBe('就算<rubycustomize=ヨシヒデ>良秀</rubycustomize>姊姊')
+  })
+
   it('has no raw-tag switch of its own: it is in the header, next to the languages', async () => {
     const el = await open(STORY)
     expect(el.querySelector('input[data-setting="rawTags"]')).toBeNull()

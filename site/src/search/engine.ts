@@ -1,13 +1,18 @@
 // The search itself, without the Worker around it: the messages, the cache of
 // what was downloaded, and the matching of a corpus. The worker script and the
 // tests both drive this.
+import { toRecordForm } from '../tmp/parse'
 import type { Lang } from '../types'
 import { makeMatcher, stripTags, type Matcher, type Ranges } from './match'
 
-/** A search, as the page sends it. `base` is where data/ is, as an absolute URL ending in a slash. */
-export type Query = { id: number; q: string; lang: Lang; re: boolean; base: string }
+/**
+ * A search, as the page sends it. `base` is where data/ is, as an absolute URL
+ * ending in a slash. With `raw`, the strings are matched with their tags, as
+ * the raw tags show them; without it, with their tags stripped.
+ */
+export type Query = { id: number; q: string; lang: Lang; re: boolean; raw: boolean; base: string }
 
-/** A string that holds the query: `ranges` are offsets in `text`, the string with its tags stripped. */
+/** A string that holds the query: `ranges` are offsets in `text`, the string as it was matched (stripped, or raw). */
 export type Hit = { file: number; ptr: string; text: string; ranges: Ranges }
 
 /** The answer to the query of the same id. */
@@ -27,7 +32,7 @@ export type WorkerMessage = Matching | Reply
 export const LIMIT = 1000
 
 /**
- * The strings of `texts` (already stripped of tags) that hold the query, in the
+ * The strings of `texts` (already in the form that is matched) that hold the query, in the
  * order of the corpus: `keys[k]` is the file number and the pointer of
  * `texts[k]`. Only the first `limit` come back, and `total` counts all.
  */
@@ -65,15 +70,18 @@ function unusable(url: string): Error {
   return new Error(`${url}：資料格式不符，請重新整理後再試`)
 }
 
+/** A corpus as it was downloaded, and the forms of it that are matched, each made at the first query that needs it. */
+type Corpus = { source: string[]; stripped?: string[]; raw?: string[] }
+
 /**
  * Answers queries. The first search of a language downloads search/keys.json
- * and the corpus of that language; both stay in memory, the corpus already
- * stripped of tags, so a query only matches.
+ * and the corpus of that language; both stay in memory, and so does each form
+ * of the corpus once made (stripped of tags, or raw), so a query only matches.
  */
 export class SearchEngine {
   private readonly get: FetchJson
   private readonly keys = new Map<string, Promise<[number, string][]>>()
-  private readonly corpora = new Map<string, Promise<string[]>>()
+  private readonly corpora = new Map<string, Promise<Corpus>>()
 
   constructor(get: FetchJson = fetchJson) {
     this.get = get
@@ -91,7 +99,7 @@ export class SearchEngine {
     try {
       const keysUrl = `${msg.base}search/keys.json`
       const textsUrl = `${msg.base}search/${msg.lang}.json`
-      const [keys, texts] = await Promise.all([this.keysOf(keysUrl), this.textsOf(textsUrl)])
+      const [keys, texts] = await Promise.all([this.keysOf(keysUrl), this.textsOf(textsUrl, msg.raw)])
       if (texts.length !== keys.length) throw unusable(textsUrl)
       matching({ id: msg.id, matching: true })
       return { id: msg.id, ...searchCorpus(keys, texts, match) }
@@ -107,15 +115,18 @@ export class SearchEngine {
     })
   }
 
-  private textsOf(url: string): Promise<string[]> {
-    return this.once(this.corpora, url, (doc) => {
-      if (!Array.isArray(doc)) throw unusable(url)
-      // Strip once, here, and keep only the stripped strings.
-      return doc.map((s: unknown) => {
-        if (typeof s !== 'string') throw unusable(url)
-        return stripTags(s)
-      })
+  /**
+   * The corpus at url in the form a query matches: stripped of its tags, or
+   * (raw) as it is, with the converted rubycustomize in record form.
+   */
+  private async textsOf(url: string, raw: boolean): Promise<string[]> {
+    const corpus = await this.once(this.corpora, url, (doc): Corpus => {
+      if (!Array.isArray(doc) || !doc.every((s: unknown) => typeof s === 'string')) throw unusable(url)
+      return { source: doc as string[] }
     })
+    // Each form is made once, here, and kept.
+    if (raw) return (corpus.raw ??= corpus.source.map((s) => toRecordForm(s)))
+    return (corpus.stripped ??= corpus.source.map((s) => stripTags(s)))
   }
 
   /** What `make` gives for the JSON at url, downloaded once: a failure is not kept, so the next query tries again. */

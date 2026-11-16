@@ -111,8 +111,8 @@ describe('searchCorpus', () => {
   })
 })
 
-function query(q: string, lang: Lang, re = false, id = 1): Query {
-  return { id, q, lang, re, base: './data/' }
+function query(q: string, lang: Lang, re = false, id = 1, raw = false): Query {
+  return { id, q, lang, re, raw, base: './data/' }
 }
 
 describe('SearchEngine', () => {
@@ -222,6 +222,67 @@ describe('SearchEngine', () => {
     const e = new SearchEngine(async () => ({ not: 'an array' }))
     expect(await e.run(query('x', 'zh'))).toMatchObject({ error: expect.stringMatching(/格式.*請重新整理後再試/) })
   })
+  describe('with raw tags', () => {
+    const CONVERTED = '<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>'
+    const rawKeys: [number, string][] = [
+      [0, '/dataList/0/content'],
+      [0, '/dataList/1/content'],
+      [0, '/dataList/2/content'],
+    ]
+    const rawTexts = [`就算${CONVERTED}姊姊`, '<color=#923838>紅色</color>的字', '良秀的畫']
+    let raw: SearchEngine
+    let get: ReturnType<typeof vi.fn<(url: string) => Promise<unknown>>>
+
+    beforeEach(() => {
+      get = vi.fn(async (url: string) => (url.endsWith('keys.json') ? rawKeys : rawTexts))
+      raw = new SearchEngine(get)
+    })
+
+    it('matches the text with its tags, the converted rubycustomize in record form, and gives the ranges in it', async () => {
+      expect(await raw.run(query('rubycustomize', 'zh', false, 1, true))).toEqual({
+        id: 1,
+        total: 1,
+        hits: [{ file: 0, ptr: '/dataList/0/content', text: '就算<rubycustomize=ヨシヒデ>良秀</rubycustomize>姊姊', ranges: [[3, 16], [26, 39]] }],
+      })
+      expect(await raw.run(query('<color', 'zh', false, 2, true))).toEqual({
+        id: 2,
+        total: 1,
+        hits: [{ file: 0, ptr: '/dataList/1/content', text: '<color=#923838>紅色</color>的字', ranges: [[0, 6]] }],
+      })
+      const both = await raw.run(query('良秀', 'zh', false, 3, true))
+      expect('hits' in both && both.hits.map((h) => h.ptr)).toEqual(['/dataList/0/content', '/dataList/2/content'])
+      // the parts of the converted structure are not there to find
+      expect(await raw.run(query('nobr', 'zh', false, 4, true))).toEqual({ id: 4, hits: [], total: 0 })
+    })
+
+    it('matches the text without its tags when raw is off', async () => {
+      expect(await raw.run(query('rubycustomize', 'zh'))).toEqual({ id: 1, hits: [], total: 0 })
+      expect(await raw.run(query('<color', 'zh'))).toEqual({ id: 1, hits: [], total: 0 })
+      const reply = await raw.run(query('良秀', 'zh'))
+      expect('hits' in reply && reply.hits.map((h) => [h.ptr, h.text])).toEqual([
+        ['/dataList/0/content', '就算良秀 ヨシヒデ姊姊'],
+        ['/dataList/2/content', '良秀的畫'],
+      ])
+    })
+
+    it('downloads the corpus once for both, and makes each form of it once', async () => {
+      vi.mocked(stripTags).mockClear()
+      await raw.run(query('良秀', 'zh'))
+      await raw.run(query('rubycustomize', 'zh', false, 2, true))
+      await raw.run(query('<color', 'zh', false, 3, true))
+      const back = await raw.run(query('紅色', 'zh', false, 4))
+      expect(get).toHaveBeenCalledTimes(2)
+      expect(stripTags).toHaveBeenCalledTimes(rawTexts.length)
+      expect(back).toMatchObject({ id: 4, total: 1, hits: [{ text: '紅色的字' }] })
+    })
+
+    it('makes no stripped form for a raw query', async () => {
+      vi.mocked(stripTags).mockClear()
+      await raw.run(query('良秀', 'zh', false, 1, true))
+      expect(stripTags).not.toHaveBeenCalled()
+    })
+  })
+
   describe('the message that it begins to match', () => {
     it('is sent once the corpus is in, and before the answer', async () => {
       const events: string[] = []

@@ -50,6 +50,7 @@ afterEach(() => {
 interface Options {
   lang?: Lang
   re?: boolean
+  raw?: boolean
   client?: SearchClient
 }
 
@@ -58,7 +59,7 @@ function mount(q: string, opts: Options = {}): HTMLElement {
   document.body.append(container)
   containers.push(container)
   const client = opts.client ?? createSearchClient(() => new InProcessWorker())
-  render(<SearchView q={q} lang={opts.lang ?? 'zh'} re={opts.re ?? false} index={index} client={client} />, container)
+  render(<SearchView q={q} lang={opts.lang ?? 'zh'} re={opts.re ?? false} raw={opts.raw ?? false} index={index} client={client} />, container)
   return container
 }
 
@@ -249,6 +250,59 @@ describe('SearchView', () => {
     const el = await search('數值達', { lang: 'zh' })
     expect(el.querySelector('.is-hit mark')?.textContent).toBe('數值達')
     expect(text(el.querySelector('.is-hit .hit-text'))).toBe('警告\n[Burn] 數值達 {0} 以上時很危險。')
+  })
+
+  describe('with raw tags', () => {
+    const CONVERTED = '<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>'
+    const unit = { p: '/dataList/0/content', f: 'content', i: 0, kr: '<color=#923838>요시히데</color>라도', zh: `就算${CONVERTED}姊姊`, o: 'claude' }
+
+    beforeEach(() => {
+      stubFetch({
+        'search/keys.json': [[0, '/dataList/0/content']],
+        'search/zh.json': [unit.zh],
+        'search/kr.json': [unit.kr],
+        [`files/${STORY}`]: { path: STORY, family: 'story-main', units: [unit] },
+      })
+    })
+
+    it('finds the converted rubycustomize by its name, and shows the strings as they are, the converted structure in record form', async () => {
+      const el = await search('rubycustomize', { raw: true })
+      expect(text(el.querySelector('.search-status'))).toContain('共 1 筆')
+      expect([...el.querySelectorAll('.is-hit mark')].map((m) => m.textContent)).toEqual(['rubycustomize', 'rubycustomize'])
+      expect(el.querySelector('.is-hit .hit-text .tmp-raw')?.textContent).toBe('就算<rubycustomize=ヨシヒデ>良秀</rubycustomize>姊姊')
+      // the KR of the unit is shown as it is too
+      await vi.waitFor(() => expect(el.querySelector('.hit-kr .hit-text .tmp-raw')?.textContent).toBe('<color=#923838>요시히데</color>라도'))
+    })
+
+    it('finds a tag in the language searched', async () => {
+      const el = await search('<color', { lang: 'kr', raw: true })
+      expect(el.querySelector('.is-hit mark')?.textContent).toBe('<color')
+    })
+
+    it('finds neither without raw tags, and the text still', async () => {
+      expect(text((await search('rubycustomize')).querySelector('.search-status'))).toContain('沒有找到')
+      expect(text((await search('<color', { lang: 'kr' })).querySelector('.search-status'))).toContain('沒有找到')
+      const el = await search('良秀')
+      expect(el.querySelector('.is-hit mark')?.textContent).toBe('良秀')
+      expect(text(el.querySelector('.is-hit .hit-text'))).toBe('就算良秀 ヨシヒデ姊姊')
+      expect(el.querySelector('.tmp-raw')).toBeNull()
+    })
+
+    it('follows the switch while the results are shown, with what it has downloaded', async () => {
+      const client = createSearchClient(() => new InProcessWorker())
+      const container = document.createElement('div')
+      document.body.append(container)
+      containers.push(container)
+      const view = (raw: boolean) => <SearchView q="rubycustomize" lang="zh" re={false} raw={raw} index={index} client={client} />
+      render(view(false), container)
+      await vi.waitFor(() => expect(text(container.querySelector('.search-status'))).toContain('沒有找到'))
+      act(() => render(view(true), container))
+      await vi.waitFor(() => expect(container.querySelector('.is-hit mark')?.textContent).toBe('rubycustomize'))
+      act(() => render(view(false), container))
+      await vi.waitFor(() => expect(text(container.querySelector('.search-status'))).toContain('沒有找到'))
+      expect(container.querySelector('.hit-group')).toBeNull()
+      expect(fetched().filter((f) => f.startsWith('search/'))).toEqual(['search/keys.json', 'search/zh.json'])
+    })
   })
 
   it('shows what is in a hit as text: no string of the data becomes markup', async () => {

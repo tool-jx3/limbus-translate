@@ -17,8 +17,8 @@ export interface SearchWorker {
 }
 
 export interface SearchClient {
-  /** Search language `lang` for q, as text or (re) as a regular expression. Never rejects. */
-  search(q: string, lang: Lang, re: boolean): Promise<SearchResult>
+  /** Search language `lang` for q, as text or (re) as a regular expression, in the strings with their tags (raw) or without. Never rejects. */
+  search(q: string, lang: Lang, re: boolean, raw?: boolean): Promise<SearchResult>
   /** Whether the worker holds the corpus of `lang`: a search of it has been answered, so it downloads nothing. */
   has(lang: Lang): boolean
 }
@@ -50,7 +50,7 @@ export function createSearchClient(make: () => SearchWorker = defaultWorker): Se
   let worker: SearchWorker | undefined
   let nextId = 0
   /** The search that has no answer yet and was not replaced. */
-  let current: { id: number; q: string; lang: Lang; re: boolean; resolve: (result: SearchResult) => void } | undefined
+  let current: { id: number; q: string; lang: Lang; re: boolean; raw: boolean; resolve: (result: SearchResult) => void } | undefined
   /** The language of each query that has no answer yet, by id. */
   const asked = new Map<number, Lang>()
   const loaded = new Set<Lang>()
@@ -138,16 +138,16 @@ export function createSearchClient(make: () => SearchWorker = defaultWorker): Se
       return
     }
     asked.set(search.id, search.lang)
-    w.postMessage({ id: search.id, q: search.q, lang: search.lang, re: search.re, base: dataBase() })
+    w.postMessage({ id: search.id, q: search.q, lang: search.lang, re: search.re, raw: search.raw, base: dataBase() })
   }
 
   return {
-    search(q, lang, re) {
+    search(q, lang, re, raw = false) {
       // A worker that is matching the search being replaced cannot be told to stop: end it.
       if (current !== undefined && busy?.id === current.id) discard()
       settle({ superseded: true })
       return new Promise((resolve) => {
-        current = { id: ++nextId, q, lang, re, resolve }
+        current = { id: ++nextId, q, lang, re, raw, resolve }
         send(current)
       })
     },

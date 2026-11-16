@@ -52,6 +52,15 @@ export function restoreRubyCustomize(s: string): string {
   return s.replace(CONVERTED_RUBY, '<ruby=$2>$1</ruby>').replace(RUBY_CUSTOMIZE, '<ruby=$1$2>$3</ruby>')
 }
 
+/**
+ * Writes the converted rubycustomize structure of the pack as a record writes
+ * it, <rubycustomize=R>B</rubycustomize> with no quotes: how the raw tags show
+ * it, and what a search of them matches. Nothing else of s changes.
+ */
+export function toRecordForm(s: string): string {
+  return s.replace(CONVERTED_RUBY, '<rubycustomize=$2>$1</rubycustomize>')
+}
+
 /** Parses s into nodes. Closing tags with no opening tag are dropped; tags left open close at the end. */
 export function parseTMP(s: string): TmpNode[] {
   s = restoreRubyCustomize(s)

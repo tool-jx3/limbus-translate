@@ -1,7 +1,7 @@
 import type { ComponentChildren } from 'preact'
 import { useMemo } from 'preact/hooks'
 import { LANG_ATTR, type Lang } from '../types'
-import { parseTMP, type TmpNode } from './parse'
+import { parseTMP, toRecordForm, type TmpNode } from './parse'
 
 // Everything is built with Preact elements, so a string can only become text:
 // no tag of it, known or not, ever reaches the DOM as markup.
@@ -86,11 +86,11 @@ function renderNodes(nodes: TmpNode[], mark: RegExp | undefined): ComponentChild
 
 export interface TmpTextProps {
   text: string
-  /** Show the string as it is, in a monospace font, tags and all. */
+  /** Show the string as it is, in a monospace font, tags and all (the converted rubycustomize as a record writes it). */
   raw: boolean
   /** The language of the text: it sets the lang attribute. */
   lang: Lang
-  /** Wrap each match of it, in the text of the string and not in the tags, in a <mark>; in raw mode, in the string as it is. */
+  /** Wrap each match of it, in the text of the string and not in the tags, in a <mark>; in raw mode, in the string as it is shown. */
   mark?: RegExp
 }
 
@@ -98,7 +98,7 @@ export interface TmpTextProps {
 export function TmpText({ text, raw, lang, mark }: TmpTextProps) {
   const nodes = useMemo(() => (raw ? [] : parseTMP(text)), [raw, text])
   if (raw) {
-    return <span class="tmp tmp-raw" lang={LANG_ATTR[lang]}>{markText(text, mark)}</span>
+    return <span class="tmp tmp-raw" lang={LANG_ATTR[lang]}>{markText(toRecordForm(text), mark)}</span>
   }
   return <span class="tmp" lang={LANG_ATTR[lang]}>{renderNodes(nodes, mark)}</span>
 }

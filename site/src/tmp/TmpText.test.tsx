@@ -127,6 +127,17 @@ describe('TmpText', () => {
     expect(el.querySelector('.tmp-raw')).not.toBeNull()
   })
 
+  it('shows the converted rubycustomize structure as a record writes it when raw, in any language', () => {
+    const converted = '<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>'
+    for (const lang of ['kr', 'jp', 'en', 'zh'] as const) {
+      const el = show(`就算${converted}姊姊`, { raw: true, lang })
+      expect(el.querySelector('.tmp-raw')?.textContent, lang).toBe('就算<rubycustomize=ヨシヒデ>良秀</rubycustomize>姊姊')
+      expect(el.querySelector('ruby'), lang).toBeNull()
+    }
+    // a lone nobr stays as it is
+    expect(show('<nobr>甲乙</nobr>', { raw: true }).textContent).toBe('<nobr>甲乙</nobr>')
+  })
+
   it('sets the lang attribute of its language', () => {
     expect(show('x', { lang: 'kr' }).firstElementChild?.getAttribute('lang')).toBe('ko')
     expect(show('x', { lang: 'jp' }).firstElementChild?.getAttribute('lang')).toBe('ja')

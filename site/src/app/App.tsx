@@ -140,7 +140,7 @@ function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: Pag
     case 'preview':
       return <PreviewView route={route} />
     case 'search':
-      return <SearchView q={route.q} lang={route.lang} re={route.re} index={index} />
+      return <SearchView q={route.q} lang={route.lang} re={route.re} raw={settings.rawTags} index={index} />
     case 'review':
       return <ReviewView route={route} index={index} meta={meta} settings={settings} />
     case 'gold':

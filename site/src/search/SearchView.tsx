@@ -17,20 +17,20 @@ const LANG_NAME: Record<Lang, string> = { kr: '韓文', jp: '日文', en: '英�
 type Outcome = { key: string } & ({ status: 'done'; hits: Hit[]; total: number } | { status: 'error'; message: string })
 
 /** The outcome of searching `lang` for q; undefined while the search is on its way (and for an empty q, which is not searched). */
-function useSearch(client: SearchClient, q: string, lang: Lang, re: boolean): Outcome | undefined {
-  const key = `${lang}\n${re ? 1 : 0}\n${q}`
+function useSearch(client: SearchClient, q: string, lang: Lang, re: boolean, raw: boolean): Outcome | undefined {
+  const key = `${lang}\n${re ? 1 : 0}\n${raw ? 1 : 0}\n${q}`
   const [outcome, setOutcome] = useState<Outcome>()
   useEffect(() => {
     if (q === '') return
     let live = true
-    client.search(q, lang, re).then((result) => {
+    client.search(q, lang, re, raw).then((result) => {
       if (!live || 'superseded' in result) return
       setOutcome('error' in result ? { key, status: 'error', message: result.error } : { key, status: 'done', ...result })
     })
     return () => {
       live = false
     }
-  }, [client, q, lang, re])
+  }, [client, q, lang, re, raw])
   return outcome?.key === key ? outcome : undefined
 }
 
@@ -93,13 +93,15 @@ interface HitRowProps {
   hit: Hit
   /** The language that was searched. */
   lang: Lang
+  /** The strings are shown as they are, tags and all, as the hit was matched. */
+  raw: boolean
   /** The units of the file; undefined while it loads. */
   units?: Map<string, Unit>
   failed: boolean
 }
 
 /** One hit: the string that holds the query, marked, and the KR and the TW of the same unit. */
-function HitRow({ path, hit, lang, units, failed }: HitRowProps) {
+function HitRow({ path, hit, lang, raw, units, failed }: HitRowProps) {
   const unit = units?.get(hit.ptr)
   const shown: Lang[] = lang === 'kr' || lang === 'zh' ? ['kr', 'zh'] : ['kr', lang, 'zh']
   // The field of the unit, once the file is in; until then (and where it cannot be loaded) the last segment of the pointer.
@@ -114,8 +116,10 @@ function HitRow({ path, hit, lang, units, failed }: HitRowProps) {
         {shown.map((l) => {
           const found = l === lang
           let body: ComponentChildren
-          if (found) body = <Marked text={hit.text} ranges={hit.ranges} />
-          else if (unit?.[l] !== undefined) body = <TmpText text={unit[l] ?? ''} raw={false} lang={l} />
+          if (found) {
+            const marked = <Marked text={hit.text} ranges={hit.ranges} />
+            body = raw ? <span class="tmp tmp-raw">{marked}</span> : marked
+          } else if (unit?.[l] !== undefined) body = <TmpText text={unit[l] ?? ''} raw={raw} lang={l} />
           else if (units === undefined && !failed) body = <span class="hit-wait">…</span>
           else body = <span class="missing">—</span>
           return (
@@ -136,10 +140,11 @@ interface GroupProps {
   summary: FileSummary
   hits: Hit[]
   lang: Lang
+  raw: boolean
 }
 
 /** The hits in one file. The file is loaded once the group is on screen. */
-function Group({ summary, hits, lang }: GroupProps) {
+function Group({ summary, hits, lang, raw }: GroupProps) {
   const [ref, seen] = useSeen()
   const { units, failed } = useUnits(summary.path, seen)
   return (
@@ -154,7 +159,7 @@ function Group({ summary, hits, lang }: GroupProps) {
       {failed && <p class="group-error">無法載入這個檔案，只顯示命中的字串。</p>}
       <ul class="hits">
         {hits.map((hit) => (
-          <HitRow key={hit.ptr} path={summary.path} hit={hit} lang={lang} units={units} failed={failed} />
+          <HitRow key={hit.ptr} path={summary.path} hit={hit} lang={lang} raw={raw} units={units} failed={failed} />
         ))}
       </ul>
     </section>
@@ -180,14 +185,16 @@ export interface SearchViewProps {
   lang: Lang
   /** Take q as a regular expression. */
   re: boolean
+  /** Match and show the strings with their tags, as the raw-tag switch of the header shows them. */
+  raw?: boolean
   index: Index
   /** The search worker's client; the page's own by default. */
   client?: SearchClient
 }
 
 /** The result of a full-text search: its options, the count, and the hits grouped by file. */
-export function SearchView({ q, lang, re, index, client = searchClient }: SearchViewProps) {
-  const outcome = useSearch(client, q, lang, re)
+export function SearchView({ q, lang, re, raw = false, index, client = searchClient }: SearchViewProps) {
+  const outcome = useSearch(client, q, lang, re, raw)
   const groups = useMemo(() => (outcome?.status === 'done' ? groupByFile(outcome.hits, index) : []), [outcome, index])
   const go = (nextLang: Lang, nextRe: boolean) => {
     location.hash = searchHref(q, nextLang, nextRe)
@@ -244,7 +251,7 @@ export function SearchView({ q, lang, re, index, client = searchClient }: Search
         </p>
       )}
       {groups.map((g) => (
-        <Group key={g.summary.path} summary={g.summary} hits={g.hits} lang={lang} />
+        <Group key={g.summary.path} summary={g.summary} hits={g.hits} lang={lang} raw={raw} />
       ))}
     </section>
   )

@@ -24,7 +24,7 @@ Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內
 
 譯文對照網站：https://tool-jx3.github.io/limbus-translate/
 
-網站把每個檔案的 KR、JP、EN 原文與 TW 譯文並排顯示（表格與劇本兩種模式），標出每句譯文的來源並可依來源篩選，也能全文搜尋（子字串或正規表示式）。資料只放最新一次建置，由 CI 產生並部署，不 commit 到任何分支。網站用每頁的 `<meta name="robots" content="noindex, nofollow">` 要求搜尋引擎不收錄。`site/public/robots.txt`（`Disallow: /`）也會一起部署，但網站是專案網站（網址帶 `/limbus-translate/`），爬蟲只讀主機根目錄的 `robots.txt`，所以這個檔案在這個網址上不起作用，有效的是 `<meta>`；只有改放在自訂網域的根目錄時它才會被讀到。網站不收集使用者資料，也不使用外部 CDN。
+網站把每個檔案的 KR、JP、EN 原文與 TW 譯文並排顯示（表格與劇本兩種模式），標出每句譯文的來源並可依來源篩選，也能全文搜尋（子字串或正規表示式）。勾選頁首的「顯示原始標籤」時，全文搜尋比對含標籤的原文（rubycustomize 也照紀錄的寫法 `<rubycustomize=讀音>本文</rubycustomize>`），例如搜尋 `rubycustomize` 就列出用到它的所有位置。資料只放最新一次建置，由 CI 產生並部署，不 commit 到任何分支。網站用每頁的 `<meta name="robots" content="noindex, nofollow">` 要求搜尋引擎不收錄。`site/public/robots.txt`（`Disallow: /`）也會一起部署，但網站是專案網站（網址帶 `/limbus-translate/`），爬蟲只讀主機根目錄的 `robots.txt`，所以這個檔案在這個網址上不起作用，有效的是 `<meta>`；只有改放在自訂網域的根目錄時它才會被讀到。網站不收集使用者資料，也不使用外部 CDN。
 
 網站另有「審核」頁（`#/r/<suggestions|warnings|notes|todo|scope>`），把人需要看的項目集中成五個分頁（四個加上「詞彙範圍」），網頁唯讀：
 
