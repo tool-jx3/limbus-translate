@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261112",
   "raw_token": "l20261112_5pAcdxbyP1RC08yIrdPw",
-  "rules_commit": "a9342421f71a5212088bb2ec7786783ed80e56b3",
-  "built_at": "2026-11-16T08:05:21Z",
+  "rules_commit": "baa606a20e04c817f6dd8bb6815acb0d9c7ebbb2",
+  "built_at": "2026-11-16T11:12:49Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,8 +10,8 @@
   },
   "notes_seen": 1058,
   "zips": {
-    "zh-TW_complete_raw-20261112.zip": "6f6f450066863b0f4440b59401a66d80818a902bd79ebe98022e14d4d0f1fb9e",
-    "zh-TW_text_raw-20261112.zip": "a981b027334148f0db0cda1595789563f3e1a294ee8198f9f62b033a0f2ed151"
+    "zh-TW_complete_raw-20261112.zip": "1b85ad84d352c607c32d0b3238b2de6de34fa80e995da0ffcb3c1a0264a5a6df",
+    "zh-TW_text_raw-20261112.zip": "e78c56fe77d79fbee41556975f4fc1fbf6dd2984df070af513edf0aea2927a48"
   },
   "report": {
     "origins": {
@@ -30,6 +30,7 @@
       "ascii-ellipsis": 13,
       "bracket-text": 4,
       "bullet-count": 2,
+      "cross-group": 234,
       "curly-quotes": 4,
       "forbidden-term": 3,
       "halfwidth-punct": 9,
@@ -39,6 +40,7 @@
       "level-diff": 61,
       "newline-space": 9,
       "page-count": 5,
+      "shared-line": 10,
       "term-missing": 798
     },
     "missing_glyphs": [],
@@ -65,6 +67,18 @@
       "bullet-count": [
         "StoryTheaterDanteNoteDetail.json|/dataList/10/desc",
         "StoryTheaterDanteNoteDetail.json|/dataList/5/desc"
+      ],
+      "cross-group": [
+        "BattleAnnouncerDlg/Announcer_Walpu10_90008.json|/dataList/5/dlg",
+        "BattleHint.json|/dataList/24/content",
+        "BattleKeywords-walpu6.json|/dataList/16/name",
+        "BattleKeywords.json|/dataList/625/name",
+        "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/258/dlg",
+        "Bufs-walpu6.json|/dataList/16/name",
+        "Bufs.json|/dataList/340/name",
+        "Bufs.json|/dataList/709/name",
+        "DungeonNode91-15.json|/dataList/0/stageList/0/desc",
+        "DungeonNode91-15.json|/dataList/0/stageList/1/desc"
       ],
       "curly-quotes": [
         "Skills_personality-01.json|/dataList/43/levelList/0/desc",
@@ -143,6 +157,18 @@
         "ActionEvents.json|/dataList/16/options/0/result/0",
         "ActionEvents_Mirror.json|/dataList/29/options/2/result/0"
       ],
+      "shared-line": [
+        "BattleSpeechBubbleDlg-a1c9p1.json|/dataList/6/dlg",
+        "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/202/dlg",
+        "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/212/dlg",
+        "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/253/dlg",
+        "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/254/dlg",
+        "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/258/dlg",
+        "BattleSpeechBubbleDlg.json|/dataList/543/dlg",
+        "BattleSpeechBubbleDlg.json|/dataList/547/dlg",
+        "BattleSpeechBubbleDlg.json|/dataList/548/dlg",
+        "BattleSpeechBubbleDlg.json|/dataList/549/dlg"
+      ],
       "term-missing": [
         "AbEvents-a1c5p3.json|/dataList/9/successDesc/0",
         "AbEvents-a1c6p2.json|/dataList/0/successDesc/0",
@@ -194,40 +220,22 @@
         "units": 54
       },
       {
-        "family": "enemy",
-        "field": "desc",
-        "kr": "[OnSucceedAttack] 파열 2 부여",
+        "family": "ally",
+        "field": "name",
+        "kr": "회피",
         "zh": [
-          "[OnSucceedAttack] 使目標增加2級破裂 強度",
-          "[OnSucceedAttack] 使目標增加2級破裂強度"
+          "閃避",
+          "迴避"
         ],
         "keys": [
-          "Skills.json|/dataList/23/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Abnormality_Refraction6.json|/dataList/22/levelList/0/coinlist/0/coindescs/0/desc"
+          "Skills.json|/dataList/1/levelList/0/name",
+          "Skills_personality-01.json|/dataList/49/levelList/0/name"
         ],
         "counts": [
           28,
           2
         ],
         "units": 30
-      },
-      {
-        "family": "enemy",
-        "field": "desc",
-        "kr": "[OnSucceedAttack] 파열 횟수 2 증가",
-        "zh": [
-          "[OnSucceedAttack] 使目標增加2回破裂 ",
-          "[OnSucceedAttack] 使目標增加2回破裂"
-        ],
-        "keys": [
-          "Skills.json|/dataList/177/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills_Abnormality_Refraction6.json|/dataList/21/levelList/0/coinlist/1/coindescs/2/desc"
-        ],
-        "counts": [
-          24,
-          1
-        ],
-        "units": 25
       },
       {
         "family": "enemy",
@@ -249,21 +257,39 @@
       },
       {
         "family": "enemy",
-        "field": "name",
-        "kr": "제압",
+        "field": "desc",
+        "kr": "[OnSucceedAttack] 파열 횟수 2 증가",
         "zh": [
-          "鎮壓",
-          "制服"
+          "[OnSucceedAttack] 使目標增加2回破裂 ",
+          "[OnSucceedAttack] 使目標增加2回破裂"
         ],
         "keys": [
-          "Skills.json|/dataList/101/levelList/0/name",
-          "Skills_Abnormality_Refraction.json|/dataList/21/levelList/0/name"
+          "Skills_Abnormality.json|/dataList/168/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality_Refraction6.json|/dataList/21/levelList/0/coinlist/1/coindescs/2/desc"
         ],
         "counts": [
-          10,
-          4
+          19,
+          1
         ],
-        "units": 14
+        "units": 20
+      },
+      {
+        "family": "enemy",
+        "field": "desc",
+        "kr": "[OnSucceedAttack] 파열 2 부여",
+        "zh": [
+          "[OnSucceedAttack] 使目標增加2級破裂 強度",
+          "[OnSucceedAttack] 使目標增加2級破裂強度"
+        ],
+        "keys": [
+          "Skills_Abnormality.json|/dataList/167/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality_Refraction6.json|/dataList/22/levelList/0/coinlist/0/coindescs/0/desc"
+        ],
+        "counts": [
+          11,
+          2
+        ],
+        "units": 13
       },
       {
         "family": "enemy",
@@ -320,24 +346,6 @@
         "units": 12
       },
       {
-        "family": "enemy",
-        "field": "desc",
-        "kr": "[OnSucceedAttack] 진동 3 부여",
-        "zh": [
-          "[OnSucceedAttack] 使目標增加3級震顫 強度",
-          "[OnSucceedAttack] 使目標增加3級震顫強度"
-        ],
-        "keys": [
-          "Skills.json|/dataList/75/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Abnormality-a1c10p1.json|/dataList/49/levelList/0/coinlist/0/coindescs/0/desc"
-        ],
-        "counts": [
-          11,
-          1
-        ],
-        "units": 12
-      },
-      {
         "family": "ally",
         "field": "desc",
         "kr": "[OnSucceedAttack] [Laceration] 횟수 <style=\"highlight\">2</style> 증가",
@@ -354,6 +362,24 @@
         "counts": [
           9,
           1,
+          1
+        ],
+        "units": 11
+      },
+      {
+        "family": "ally",
+        "field": "desc",
+        "kr": "[OnSucceedAttack] 진동 횟수 2 증가",
+        "zh": [
+          "[OnSucceedAttack] 使目標增加2回震顫 ",
+          "[OnSucceedAttack] 對目標施加2回震顫 "
+        ],
+        "keys": [
+          "Skills.json|/dataList/53/levelList/1/coinlist/3/coindescs/0/desc",
+          "Skills_personality-02.json|/dataList/4/levelList/0/coinlist/0/coindescs/1/desc"
+        ],
+        "counts": [
+          10,
           1
         ],
         "units": 11
@@ -411,24 +437,6 @@
           1
         ],
         "units": 11
-      },
-      {
-        "family": "ally",
-        "field": "name",
-        "kr": "회피",
-        "zh": [
-          "閃避",
-          "迴避"
-        ],
-        "keys": [
-          "Skills_personality-01.json|/dataList/11/levelList/0/name",
-          "Skills_personality-01.json|/dataList/49/levelList/0/name"
-        ],
-        "counts": [
-          8,
-          2
-        ],
-        "units": 10
       },
       {
         "family": "enemy",
@@ -525,6 +533,24 @@
         "keys": [
           "AbnormalityGuides.json|/dataList/12/storyList/0/story",
           "AbnormalityGuides.json|/dataList/14/storyList/0/story"
+        ],
+        "counts": [
+          8,
+          1
+        ],
+        "units": 9
+      },
+      {
+        "family": "abnormality",
+        "field": "story",
+        "kr": "어떻게 싸워야 할지 알 것 같네요.\n쓰러진 깡통들에게 가까이 갔더니, 안에서 기계가 이것저것 고치는 소리가 났었어요.\n아마도… 자동으로 몸을 수복 하는 장치가 안에 달려있는 것 같아요.\n그런데, 그 장치에 한계가 있는 건지 다섯 번 이상은 수리 되지 않았어요.\n문제는 되살아 날 때 마다 점점 강해진다는 건데…\n아무래도 자동으로 수복 하지 못하게 처리하는 방법을 찾아야 할 것 같아요. 그때까진 다섯 번이나 버티는 수 밖엔 없겠지만…\n아, 그런데.\n대체 안에 들어있는 ‘인간’은 어떻게 수복 되고 있는 걸까요?\n→ 환상체에게 물리적 의심을 가지지 마세요.",
+        "zh": [
+          "我想我知道該如何戰鬥了。\n當我靠近那些暈過去的罐頭人時，裡面響起了機器運作修復東西的聲音。\n也許……它們體內裝有自動修復身體的裝置。\n但是，那裝置似乎有限制，無法修復五次以上。\n問題是它們每次復活之後都會變得比之前更強……\n我們最好找到讓它們停止自動修復的方法。在那之前，我們就不得不堅持五回了……\n啊，不過。\n那裡面人類的部分是如何被修復的呢？\n→ 不要對異想體產生物理上的懷疑。",
+          "我想我明白了什麼。\n當我靠近那些暈過去的罐頭人時，我聽到了機器運作的聲音。聽上去就好像內部構造正在被修復。\n如果非要我猜的話……它們體內應該是裝有什麼自動修復設備。\n但是，那設備似乎最多只能修復五處受損點。\n問題是，每次它們被修好之後，都會變得比之前更強……\n我們應該找個方法完全解決它們，並讓那修復機器停下來。在那之前，我們不得不承受住他們的五次自我修復。\n噢，對了，\n你覺得那裡面人類的部分要怎麼修復？\n→不要懷疑異想體的身體構造。"
+        ],
+        "keys": [
+          "AbnormalityGuides.json|/dataList/12/storyList/2/story",
+          "AbnormalityGuides.json|/dataList/60/storyList/2/story"
         ],
         "counts": [
           8,
@@ -680,40 +706,22 @@
       "units": 54
     },
     {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 파열 2 부여",
+      "family": "ally",
+      "field": "name",
+      "kr": "회피",
       "zh": [
-        "[OnSucceedAttack] 使目標增加2級破裂 強度",
-        "[OnSucceedAttack] 使目標增加2級破裂強度"
+        "閃避",
+        "迴避"
       ],
       "keys": [
-        "Skills.json|/dataList/23/levelList/1/coinlist/0/coindescs/0/desc",
-        "Skills_Abnormality_Refraction6.json|/dataList/22/levelList/0/coinlist/0/coindescs/0/desc"
+        "Skills.json|/dataList/1/levelList/0/name",
+        "Skills_personality-01.json|/dataList/49/levelList/0/name"
       ],
       "counts": [
         28,
         2
       ],
       "units": 30
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 파열 횟수 2 증가",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加2回破裂 ",
-        "[OnSucceedAttack] 使目標增加2回破裂"
-      ],
-      "keys": [
-        "Skills.json|/dataList/177/levelList/2/coinlist/1/coindescs/0/desc",
-        "Skills_Abnormality_Refraction6.json|/dataList/21/levelList/0/coinlist/1/coindescs/2/desc"
-      ],
-      "counts": [
-        24,
-        1
-      ],
-      "units": 25
     },
     {
       "family": "enemy",
@@ -735,21 +743,39 @@
     },
     {
       "family": "enemy",
-      "field": "name",
-      "kr": "제압",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 파열 횟수 2 증가",
       "zh": [
-        "鎮壓",
-        "制服"
+        "[OnSucceedAttack] 使目標增加2回破裂 ",
+        "[OnSucceedAttack] 使目標增加2回破裂"
       ],
       "keys": [
-        "Skills.json|/dataList/101/levelList/0/name",
-        "Skills_Abnormality_Refraction.json|/dataList/21/levelList/0/name"
+        "Skills_Abnormality.json|/dataList/168/levelList/0/coinlist/0/coindescs/0/desc",
+        "Skills_Abnormality_Refraction6.json|/dataList/21/levelList/0/coinlist/1/coindescs/2/desc"
       ],
       "counts": [
-        10,
-        4
+        19,
+        1
       ],
-      "units": 14
+      "units": 20
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 파열 2 부여",
+      "zh": [
+        "[OnSucceedAttack] 使目標增加2級破裂 強度",
+        "[OnSucceedAttack] 使目標增加2級破裂強度"
+      ],
+      "keys": [
+        "Skills_Abnormality.json|/dataList/167/levelList/0/coinlist/1/coindescs/0/desc",
+        "Skills_Abnormality_Refraction6.json|/dataList/22/levelList/0/coinlist/0/coindescs/0/desc"
+      ],
+      "counts": [
+        11,
+        2
+      ],
+      "units": 13
     },
     {
       "family": "enemy",
@@ -806,24 +832,6 @@
       "units": 12
     },
     {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 진동 3 부여",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加3級震顫 強度",
-        "[OnSucceedAttack] 使目標增加3級震顫強度"
-      ],
-      "keys": [
-        "Skills.json|/dataList/75/levelList/1/coinlist/0/coindescs/0/desc",
-        "Skills_Abnormality-a1c10p1.json|/dataList/49/levelList/0/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        11,
-        1
-      ],
-      "units": 12
-    },
-    {
       "family": "ally",
       "field": "desc",
       "kr": "[OnSucceedAttack] [Laceration] 횟수 <style=\"highlight\">2</style> 증가",
@@ -840,6 +848,24 @@
       "counts": [
         9,
         1,
+        1
+      ],
+      "units": 11
+    },
+    {
+      "family": "ally",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 진동 횟수 2 증가",
+      "zh": [
+        "[OnSucceedAttack] 使目標增加2回震顫 ",
+        "[OnSucceedAttack] 對目標施加2回震顫 "
+      ],
+      "keys": [
+        "Skills.json|/dataList/53/levelList/1/coinlist/3/coindescs/0/desc",
+        "Skills_personality-02.json|/dataList/4/levelList/0/coinlist/0/coindescs/1/desc"
+      ],
+      "counts": [
+        10,
         1
       ],
       "units": 11
@@ -897,24 +923,6 @@
         1
       ],
       "units": 11
-    },
-    {
-      "family": "ally",
-      "field": "name",
-      "kr": "회피",
-      "zh": [
-        "閃避",
-        "迴避"
-      ],
-      "keys": [
-        "Skills_personality-01.json|/dataList/11/levelList/0/name",
-        "Skills_personality-01.json|/dataList/49/levelList/0/name"
-      ],
-      "counts": [
-        8,
-        2
-      ],
-      "units": 10
     },
     {
       "family": "enemy",
@@ -1051,6 +1059,27 @@
       "counts": [
         7,
         2
+      ],
+      "units": 9
+    },
+    {
+      "family": "ally",
+      "field": "name",
+      "kr": "베어내기",
+      "zh": [
+        "斬草除根",
+        "臂斬掃蕩",
+        "刨除切割"
+      ],
+      "keys": [
+        "Skills.json|/dataList/67/levelList/0/name",
+        "Skills.json|/dataList/152/levelList/0/name",
+        "Skills_personality-02.json|/dataList/31/levelList/0/name"
+      ],
+      "counts": [
+        3,
+        3,
+        3
       ],
       "units": 9
     },
@@ -1255,42 +1284,6 @@
         6,
         1,
         1
-      ],
-      "units": 8
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "크리티컬 피해량 +50%",
-      "zh": [
-        "使本硬幣暴擊時造成的傷害+50%",
-        "本硬幣暴擊時造成的傷害+50%"
-      ],
-      "keys": [
-        "Skills.json|/dataList/13/levelList/0/coinlist/2/coindescs/0/desc",
-        "Skills_Abnormality-a1c9p3.json|/dataList/81/levelList/0/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        6,
-        2
-      ],
-      "units": 8
-    },
-    {
-      "family": "enemy",
-      "field": "name",
-      "kr": "베어내기",
-      "zh": [
-        "斬草除根",
-        "臂斬掃蕩"
-      ],
-      "keys": [
-        "Skills.json|/dataList/67/levelList/0/name",
-        "Skills.json|/dataList/152/levelList/0/name"
-      ],
-      "counts": [
-        5,
-        3
       ],
       "units": 8
     },
@@ -1602,6 +1595,42 @@
     },
     {
       "family": "ally",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 수비 위력 감소 2 부여",
+      "zh": [
+        "[OnSucceedAttack] 對目標施加2層破綻",
+        "[OnSucceedAttack] 對目標施加2層破綻 "
+      ],
+      "keys": [
+        "Skills.json|/dataList/113/levelList/0/coinlist/1/coindescs/0/desc",
+        "Skills_Ego.json|/dataList/22/levelList/0/coinlist/0/coindescs/0/desc"
+      ],
+      "counts": [
+        1,
+        6
+      ],
+      "units": 7
+    },
+    {
+      "family": "ally",
+      "field": "name",
+      "kr": "내려베기",
+      "zh": [
+        "縱斬",
+        "縱向斬擊"
+      ],
+      "keys": [
+        "Skills.json|/dataList/15/levelList/0/name",
+        "Skills_Assist-a1c9p3.json|/dataList/43/levelList/0/name"
+      ],
+      "counts": [
+        6,
+        1
+      ],
+      "units": 7
+    },
+    {
+      "family": "ally",
       "field": "name",
       "kr": "즉저살 [蝍蛆殺]",
       "zh": [
@@ -1639,24 +1668,6 @@
     {
       "family": "enemy",
       "field": "desc",
-      "kr": "[OnSucceedAttack] 피해량의 50%만큼 흐트러짐 회복",
-      "zh": [
-        "[OnSucceedAttack] 使自身的混亂閾值後移本硬幣傷害量的50%",
-        "[OnSucceedAttack] 使自身混亂閾值後移本硬幣傷害量的50%"
-      ],
-      "keys": [
-        "Skills.json|/dataList/130/levelList/1/coinlist/0/coindescs/0/desc",
-        "Skills_Abnormality_Refraction2.json|/dataList/75/levelList/0/coinlist/0/coindescs/1/desc"
-      ],
-      "counts": [
-        1,
-        6
-      ],
-      "units": 7
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
       "kr": "크리티컬 피해량 +100%",
       "zh": [
         "使本硬幣暴擊時造成的傷害+100%",
@@ -1677,6 +1688,24 @@
     },
     {
       "family": "enemy",
+      "field": "desc",
+      "kr": "크리티컬 피해량 +50%",
+      "zh": [
+        "使本硬幣暴擊時造成的傷害+50%",
+        "本硬幣暴擊時造成的傷害+50%"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c8p3.json|/dataList/17/levelList/0/coinlist/0/coindescs/0/desc",
+        "Skills_Abnormality-a1c9p3.json|/dataList/81/levelList/0/coinlist/0/coindescs/0/desc"
+      ],
+      "counts": [
+        5,
+        2
+      ],
+      "units": 7
+    },
+    {
+      "family": "enemy",
       "field": "name",
       "kr": "사람",
       "zh": [
@@ -1690,6 +1719,24 @@
       "counts": [
         6,
         1
+      ],
+      "units": 7
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "제압",
+      "zh": [
+        "鎮壓",
+        "制服"
+      ],
+      "keys": [
+        "Skills_Abnormality-exme.json|/dataList/5/levelList/0/name",
+        "Skills_Abnormality_Refraction.json|/dataList/21/levelList/0/name"
+      ],
+      "counts": [
+        3,
+        4
       ],
       "units": 7
     },
@@ -1897,6 +1944,24 @@
     {
       "family": "ally",
       "field": "desc",
+      "kr": "[OnSucceedAttack] 다음 턴에 호흡 2 얻음",
+      "zh": [
+        "[OnSucceedAttack] 下回合使自身增加2級呼吸法 強度",
+        "[OnSucceedAttack] 下回合使自身獲得2級呼吸法 強度"
+      ],
+      "keys": [
+        "Skills.json|/dataList/35/levelList/1/coinlist/0/coindescs/0/desc",
+        "Skills_personality-x1p1c1.json|/dataList/12/levelList/0/coinlist/0/coindescs/0/desc"
+      ],
+      "counts": [
+        4,
+        2
+      ],
+      "units": 6
+    },
+    {
+      "family": "ally",
+      "field": "desc",
       "kr": "[OnSucceedAttack] 대상의 화상 수치만큼 진동 부여",
       "zh": [
         "[OnSucceedAttack] 根據目標帶有的燒傷 強度，相應增加震顫 強度",
@@ -1914,19 +1979,19 @@
     },
     {
       "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 진동 횟수 2 증가",
+      "field": "name",
+      "kr": "돌파",
       "zh": [
-        "[OnSucceedAttack] 使目標增加2回震顫 ",
-        "[OnSucceedAttack] 對目標施加2回震顫 "
+        "正拳突破",
+        "突破"
       ],
       "keys": [
-        "Skills_personality-01.json|/dataList/0/levelList/1/coinlist/1/coindescs/0/desc",
-        "Skills_personality-02.json|/dataList/4/levelList/0/coinlist/0/coindescs/1/desc"
+        "Skills.json|/dataList/55/levelList/0/name",
+        "Skills_personality-03.json|/dataList/36/levelList/0/name"
       ],
       "counts": [
-        5,
-        1
+        3,
+        3
       ],
       "units": 6
     },
@@ -2077,24 +2142,6 @@
       "counts": [
         2,
         4
-      ],
-      "units": 6
-    },
-    {
-      "family": "enemy",
-      "field": "name",
-      "kr": "발경",
-      "zh": [
-        "發勁",
-        "猛勁斬擊"
-      ],
-      "keys": [
-        "Skills.json|/dataList/47/levelList/0/name",
-        "Skills_Enemy-ycgd.json|/dataList/1/levelList/0/name"
-      ],
-      "counts": [
-        3,
-        3
       ],
       "units": 6
     },
@@ -2443,6 +2490,24 @@
     {
       "family": "ally",
       "field": "desc",
+      "kr": "[OnSucceedAttack] 피해량의 50%만큼 체력 회복",
+      "zh": [
+        "[OnSucceedAttack] 使自身恢復本硬幣傷害量50%的體力",
+        "[OnSucceedAttack] 使自身恢復造成傷害量50%的體力"
+      ],
+      "keys": [
+        "Skills.json|/dataList/152/levelList/2/coinlist/0/coindescs/0/desc",
+        "Skills_Ego_Personality-a1c9p3.json|/dataList/1/levelList/0/coinlist/0/coindescs/1/desc"
+      ],
+      "counts": [
+        4,
+        1
+      ],
+      "units": 5
+    },
+    {
+      "family": "ally",
+      "field": "desc",
       "kr": "크리티컬 피해량 +30%<style=\"highlight\"></style>",
       "zh": [
         "本硬幣暴擊時造成的傷害+30%<style=\"highlight\"></style>",
@@ -2455,6 +2520,42 @@
       "counts": [
         4,
         1
+      ],
+      "units": 5
+    },
+    {
+      "family": "ally",
+      "field": "name",
+      "kr": "꿰뚫기",
+      "zh": [
+        "穿刺釘刑",
+        "貫穿"
+      ],
+      "keys": [
+        "Skills.json|/dataList/159/levelList/0/name",
+        "Skills_personality-11.json|/dataList/51/levelList/0/name"
+      ],
+      "counts": [
+        3,
+        2
+      ],
+      "units": 5
+    },
+    {
+      "family": "ally",
+      "field": "name",
+      "kr": "정신 채찍",
+      "zh": [
+        "精神鞭撻",
+        "精神鞭韃"
+      ],
+      "keys": [
+        "Skills.json|/dataList/93/levelList/0/name",
+        "Skills_personality-06.json|/dataList/29/levelList/0/name"
+      ],
+      "counts": [
+        2,
+        3
       ],
       "units": 5
     },
@@ -2491,6 +2592,24 @@
       "counts": [
         2,
         3
+      ],
+      "units": 5
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 진동 3 부여",
+      "zh": [
+        "[OnSucceedAttack] 使目標增加3級震顫強度",
+        "[OnSucceedAttack] 使目標增加3級震顫 強度"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c10p1.json|/dataList/49/levelList/0/coinlist/0/coindescs/0/desc",
+        "Skills_Enemy-a1c5p2.json|/dataList/13/levelList/0/coinlist/0/coindescs/0/desc"
+      ],
+      "counts": [
+        1,
+        4
       ],
       "units": 5
     },
@@ -3046,24 +3165,6 @@
     {
       "family": "enemy",
       "field": "desc",
-      "kr": "[WhenUse] 자신의 충전 횟수 1 증가",
-      "zh": [
-        "[WhenUse]  使自身獲得1回充能 ",
-        "[WhenUse] 使自身獲得1回充能 "
-      ],
-      "keys": [
-        "Skills.json|/dataList/86/levelList/1/desc",
-        "Skills_Abnormality_Refraction2.json|/dataList/51/levelList/0/desc"
-      ],
-      "counts": [
-        1,
-        3
-      ],
-      "units": 4
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
       "kr": "[WhenUse] 체력 20 회복",
       "zh": [
         "[WhenUse] 使自身恢復20點體力值",
@@ -3205,24 +3306,6 @@
         2,
         1,
         1
-      ],
-      "units": 4
-    },
-    {
-      "family": "enemy",
-      "field": "name",
-      "kr": "신선도 유지",
-      "zh": [
-        "保持新鮮",
-        "食材保鮮"
-      ],
-      "keys": [
-        "Passives_Abnormality.json|/dataList/123/name",
-        "Skills.json|/dataList/188/levelList/0/name"
-      ],
-      "counts": [
-        1,
-        3
       ],
       "units": 4
     },
@@ -4078,6 +4161,24 @@
     {
       "family": "ally",
       "field": "desc",
+      "kr": "이전 턴에 피해를 받지 않은 경우 코인 위력 +1",
+      "zh": [
+        "若上回合自身未受到傷害，則使本技能的硬幣威力+1",
+        "若自身在上回合未受到傷害，則使本技能的硬幣威力+1"
+      ],
+      "keys": [
+        "Skills.json|/dataList/64/levelList/1/desc",
+        "Skills_personality-x1p1c1.json|/dataList/21/levelList/0/desc"
+      ],
+      "counts": [
+        2,
+        1
+      ],
+      "units": 3
+    },
+    {
+      "family": "ally",
+      "field": "desc",
       "kr": "크리티컬 피해량 +40%",
       "zh": [
         "使本技能暴擊時造成的傷害+40%",
@@ -4414,24 +4515,6 @@
       "counts": [
         1,
         2
-      ],
-      "units": 3
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "이전 턴에 피해를 받지 않은 경우 코인 위력 +1",
-      "zh": [
-        "若上回合自身未受到傷害，則使本技能的硬幣威力+1",
-        "若自身在上回合未受到傷害，則使本技能的硬幣威力+1"
-      ],
-      "keys": [
-        "Skills.json|/dataList/64/levelList/1/desc",
-        "Skills_Enemy.json|/dataList/147/levelList/0/desc"
-      ],
-      "counts": [
-        2,
-        1
       ],
       "units": 3
     },
@@ -6049,6 +6132,24 @@
     {
       "family": "ally",
       "field": "desc",
+      "kr": "[OnSucceedAttackHead] 다음 코인 위력 +2",
+      "zh": [
+        "[OnSucceedAttackHead] 使本技能下一枚硬幣的威力+2",
+        "[OnSucceedAttackHead] 下回合使本技能硬幣威力+2"
+      ],
+      "keys": [
+        "Skills.json|/dataList/77/levelList/0/coinlist/0/coindescs/0/desc",
+        "Skills_personality-x1p1c1.json|/dataList/26/levelList/0/coinlist/0/coindescs/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ally",
+      "field": "desc",
       "kr": "[OnSucceedAttack] 대상의 [Vibration] 횟수가 3 이상이면, [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소<style=\"highlight\"></style>",
       "zh": [
         "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>",
@@ -6085,14 +6186,14 @@
     {
       "family": "ally",
       "field": "desc",
-      "kr": "[OnSucceedAttack] 피해량의 50%만큼 체력 회복",
+      "kr": "[OnSucceedAttack] 진동 폭발. 타격 취약 1 부여",
       "zh": [
-        "[OnSucceedAttack] 使自身恢復本硬幣傷害量50%的體力",
-        "[OnSucceedAttack] 使自身恢復造成傷害量50%的體力"
+        "[OnSucceedAttack] 使目標震顫引爆 ；對目標施加1層打擊易損 ",
+        "[OnSucceedAttack] 使目標震顫引爆，並對目標施加1層打擊易損 "
       ],
       "keys": [
-        "Skills_Ego.json|/dataList/10/levelList/2/coinlist/0/coindescs/1/desc",
-        "Skills_Ego_Personality-a1c9p3.json|/dataList/1/levelList/0/coinlist/0/coindescs/1/desc"
+        "Skills.json|/dataList/89/levelList/0/coinlist/0/coindescs/0/desc",
+        "Skills_personality-x1p1c1.json|/dataList/30/levelList/0/coinlist/0/coindescs/0/desc"
       ],
       "counts": [
         1,
@@ -6129,6 +6230,24 @@
       "keys": [
         "Skills_personality-09.json|/dataList/22/levelList/0/desc",
         "Skills_personality-12.json|/dataList/24/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "ally",
+      "field": "desc",
+      "kr": "[WinDuel] 다음 턴에 마비 3 부여",
+      "zh": [
+        "[WinDuel] 下回合對目標施加3層麻痺 ",
+        "[WinDuel] 下回合對目標施加3層 麻痺"
+      ],
+      "keys": [
+        "Skills.json|/dataList/9/levelList/0/desc",
+        "Skills.json|/dataList/9/levelList/1/desc"
       ],
       "counts": [
         1,
@@ -6913,24 +7032,6 @@
     {
       "family": "enemy",
       "field": "desc",
-      "kr": "[WinDuel] 다음 턴에 마비 3 부여",
-      "zh": [
-        "[WinDuel] 下回合對目標施加3層麻痺 ",
-        "[WinDuel] 下回合對目標施加3層 麻痺"
-      ],
-      "keys": [
-        "Skills.json|/dataList/9/levelList/0/desc",
-        "Skills.json|/dataList/9/levelList/1/desc"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
       "kr": "[WinDuel] 자신에게 부여된 부정적 효과를 절반으로 감소시킴",
       "zh": [
         "[WinDuel] 使自身的負面狀態減半",
@@ -7047,6 +7148,24 @@
       "keys": [
         "Passives_Abnormality-a1c9p3.json|/dataList/17/desc",
         "Passives_Abnormality-mr7.json|/dataList/36/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "이 캐릭터가 살아있으면 턴 종료 시 적이 생성되지 않는다.",
+      "zh": [
+        "若自身存活，則在回合結束時不生成敵方單位。",
+        "若自身存活，則回合結束時不會生成敵方單位。"
+      ],
+      "keys": [
+        "Passive-walpu2.json|/dataList/5/desc",
+        "Passives_Enemy-walpu5.json|/dataList/6/desc"
       ],
       "counts": [
         1,

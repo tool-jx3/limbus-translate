@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261112",
   "prev_raw_tag": "raw-20261105",
-  "rules_commit": "a9342421f71a5212088bb2ec7786783ed80e56b3",
+  "rules_commit": "baa606a20e04c817f6dd8bb6815acb0d9c7ebbb2",
   "changes": {
     "unchanged": 272865,
     "moved": 2138,
@@ -87,20 +87,7 @@
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [
-    {
-      "id": "2026-11-16-rs-g868-so-then-period",
-      "units": 1
-    },
-    {
-      "id": "2026-11-16-walpu10-dawn-fire",
-      "units": 6
-    },
-    {
-      "id": "2026-11-16-walpu10-flame-butterfly-coffin",
-      "units": 6
-    }
-  ],
+  "rewrite_applied": [],
   "frozen_changed": [],
   "new_speakers": [
     "다친필립",
