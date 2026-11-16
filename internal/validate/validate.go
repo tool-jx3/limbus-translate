@@ -85,10 +85,10 @@ const (
 	// that is badly formed or sits at a position rules/ruby-customize.yaml
 	// does not list.
 	CodeRubyCustomize = "rubycustomize"
-	CodeKeywordLink    = "keyword-link"
-	CodeLevelDiff      = "level-diff"
-	CodeSharedLine     = "shared-line"
-	CodeCrossGroup     = "cross-group"
+	CodeKeywordLink   = "keyword-link"
+	CodeLevelDiff     = "level-diff"
+	CodeSharedLine    = "shared-line"
+	CodeCrossGroup    = "cross-group"
 )
 
 // Issue is one problem Check found in a translation.
