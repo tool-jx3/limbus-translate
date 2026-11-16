@@ -462,6 +462,28 @@ func TestBuildDoesNotCheckCopyRecords(t *testing.T) {
 	}
 }
 
+// A copy record of a unit that translate_identical lets through is still used
+// as is: the pack string is KR and the unit is not queued. Task 6 extends this
+// with a human translation that carries a rubycustomize tag.
+func TestBuildKeepsCopyRecordOfTranslateIdenticalUnit(t *testing.T) {
+	kr := `{"dataList":[{"id":"x","name":"UNGEZIEFER KAISER"}]}`
+	e := newEnv(t, map[string]string{"ScenarioModelCodes-AutoCreated.json": kr}, nil)
+	c := rec("ScenarioModelCodes-AutoCreated.json", "/dataList/0/name", "UNGEZIEFER KAISER", "UNGEZIEFER KAISER")
+	c.Origin = store.OriginCopy
+	e.save(c)
+
+	rep := e.run()
+	if got := e.out("ScenarioModelCodes-AutoCreated.json"); !strings.Contains(got, `"name": "UNGEZIEFER KAISER"`) {
+		t.Errorf("pack =\n%s\nwant the KR name", got)
+	}
+	if want := map[string]int{"copy": 1}; !reflect.DeepEqual(rep.Origins, want) {
+		t.Errorf("Origins = %v, want %v", rep.Origins, want)
+	}
+	if got := e.pending(); len(got) != 0 {
+		t.Errorf("pending = %v, want none", got)
+	}
+}
+
 // A record that falls back structurally is still a used record: its warnings
 // are counted with its origin and its review flag, so that all three cover the
 // same set of records.

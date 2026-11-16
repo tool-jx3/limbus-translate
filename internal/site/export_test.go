@@ -277,19 +277,21 @@ func TestExportSearchCorpus(t *testing.T) {
 // letters, so it is searched; a copy of an identifier field is not. Without
 // field rules no copy is searched.
 func TestExportSearchCorpusKeepsCopiesOfTextAllLanguagesShare(t *testing.T) {
+	// title, not name: translate_identical sends the name of this file to be
+	// translated, so a copy of it is no longer an identical-value skip.
 	const f = "ScenarioModelCodes-AutoCreated.json"
 	fr, err := fields.Load("../..")
 	if err != nil {
 		t.Fatal(err)
 	}
 	in := Inputs{
-		KR: writePack(t, "KR_", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","name":"UNGEZIEFER KAISER","nickName":"구 G사"}]}`}),
-		EN: writePack(t, "EN_", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","name":"UNGEZIEFER KAISER","nickName":"Old G Corp."}]}`}),
-		JP: writePack(t, "JP_", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","name":"UNGEZIEFER KAISER","nickName":"旧G社"}]}`}),
-		ZH: writePack(t, "", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","name":"UNGEZIEFER KAISER","nickName":"舊G公司"}]}`}),
+		KR: writePack(t, "KR_", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","title":"UNGEZIEFER KAISER","nickName":"구 G사"}]}`}),
+		EN: writePack(t, "EN_", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","title":"UNGEZIEFER KAISER","nickName":"Old G Corp."}]}`}),
+		JP: writePack(t, "JP_", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","title":"UNGEZIEFER KAISER","nickName":"旧G社"}]}`}),
+		ZH: writePack(t, "", map[string]string{f: `{"dataList":[{"id":"그레고르왕그림자","title":"UNGEZIEFER KAISER","nickName":"舊G公司"}]}`}),
 		Records: recordsOf(
 			record(f, "/dataList/0/id", "그레고르왕그림자", store.OriginCopy),
-			record(f, "/dataList/0/name", "UNGEZIEFER KAISER", store.OriginCopy),
+			record(f, "/dataList/0/title", "UNGEZIEFER KAISER", store.OriginCopy),
 			record(f, "/dataList/0/nickName", "舊G公司", store.OriginParatranz),
 		),
 		Rules: testRules(),
@@ -312,7 +314,7 @@ func TestExportSearchCorpusKeepsCopiesOfTextAllLanguagesShare(t *testing.T) {
 	}
 
 	in.Fields = fr
-	if got, want := searched(in), []string{"/dataList/0/name=UNGEZIEFER KAISER", "/dataList/0/nickName=舊G公司"}; !slices.Equal(got, want) {
+	if got, want := searched(in), []string{"/dataList/0/title=UNGEZIEFER KAISER", "/dataList/0/nickName=舊G公司"}; !slices.Equal(got, want) {
 		t.Errorf("with field rules, searched %v, want %v", got, want)
 	}
 	in.Fields = nil

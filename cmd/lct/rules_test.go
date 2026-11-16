@@ -90,6 +90,33 @@ func TestRulesLintReportsFindings(t *testing.T) {
 	}
 }
 
+func TestRulesLintReportsBadFieldsManual(t *testing.T) {
+	root := cleanRules(t)
+	p := filepath.Join(root, "rules/fields.manual.yaml")
+	if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(p, []byte("translate_identical: [{file_glob: '', field: name}]\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	out, err := runIn(t, runRulesLint, root, true)
+	if !errors.Is(err, cli.ErrFindings) {
+		t.Fatalf("err = %v, want cli.ErrFindings", err)
+	}
+	var got struct {
+		Errors []struct {
+			File    string `json:"file"`
+			Message string `json:"message"`
+		} `json:"errors"`
+	}
+	if err := json.Unmarshal([]byte(out), &got); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	if len(got.Errors) != 1 || got.Errors[0].File != "rules/fields.manual.yaml" || !strings.Contains(got.Errors[0].Message, "translate_identical") {
+		t.Errorf("errors = %+v", got.Errors)
+	}
+}
+
 func TestRulesLintJSON(t *testing.T) {
 	out, err := runIn(t, runRulesLint, brokenRules(t), true)
 	if !errors.Is(err, cli.ErrFindings) {

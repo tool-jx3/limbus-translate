@@ -11,6 +11,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
@@ -79,6 +80,14 @@ func runRulesLint(ctx *cli.Context, args []string) error {
 	// lct site loads rules/gold.yaml and stops on a file that does not parse.
 	if _, err := gold.Load(ctx.Root); err != nil {
 		report.Errors = append(report.Errors, rules.LintError{File: gold.File, Message: strings.TrimPrefix(err.Error(), gold.File+": ")})
+	}
+	// The field rules are loaded by lct build; a mistake in them stops it.
+	if _, err := fields.LoadManual(ctx.Root); err != nil {
+		var re *fields.RuleError
+		if !errors.As(err, &re) {
+			return err
+		}
+		report.Errors = append(report.Errors, rules.LintError{File: "rules/fields.manual.yaml", Message: strings.TrimPrefix(err.Error(), "fields: rules/fields.manual.yaml: ")})
 	}
 	report.OK = len(report.Errors) == 0
 	krFiles := krPackFiles(ctx.Root)

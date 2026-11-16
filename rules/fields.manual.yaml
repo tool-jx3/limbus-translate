@@ -3,3 +3,5 @@ group_fields: { BattleSpeechBubbleDlg: [desc] }   # PersonalityVoiceDlg 的 desc
 source_comment_prefixes: ["//", "SE //"]
 name_only: { file_glob: "Items*", field: desc, pattern: 'name\s*만\s*번역' }
 notinclude_substring: notinclude
+translate_identical:   # KR、EN、JP 三語相同也照樣翻譯的欄位；理由見 docs/superpowers/specs/2026-11-16-ruby-customize-design.md 第 9 節
+  - { file_glob: 'ScenarioModelCodes*', field: name }   # 說話者名稱：官方保留原文的名字也要能加注音（UNGEZIEFER KAISER）
