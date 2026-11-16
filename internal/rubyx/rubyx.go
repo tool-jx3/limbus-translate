@@ -14,14 +14,14 @@ import (
 const Tag = "rubycustomize"
 
 // group 比對一組完整的標籤；名稱區分大小寫。
-// 讀音可用雙引號包住（引號不屬於讀音）；讀音不得含標籤符號或換行；本文不得含標籤符號。
-var group = regexp.MustCompile(`<rubycustomize=(?:"([^"<>\r\n]+)"|([^<>"\r\n]+))>([^<>]+)</rubycustomize>`)
+// 讀音可用雙引號包住（引號不屬於讀音）；讀音與本文都不得含標籤符號或換行。
+var group = regexp.MustCompile(`<rubycustomize=(?:"([^"<>\r\n]+)"|([^<>"\r\n]+))>([^<>\r\n]+)</rubycustomize>`)
 
 // anyTag 找出任何寫法（不分大小寫）的開頭或結尾標籤起點。
 var anyTag = regexp.MustCompile(`(?i)<(/?)rubycustomize`)
 
 // converted 只認 Convert 輸出的完整結構。
-var converted = regexp.MustCompile(`<nobr>([^<>]+)<space=-?[0-9.]+em><voffset=[^<>]+><size=[^<>]+>([^<>]+)</size></voffset><space=-?[0-9.]+em></nobr>`)
+var converted = regexp.MustCompile(`<nobr>([^<>\r\n]+)<space=-?[0-9.]+em><voffset=[^<>]+><size=[^<>]+>([^<>\r\n]+)</size></voffset><space=-?[0-9.]+em></nobr>`)
 
 var (
 	sizeRe    = regexp.MustCompile(`^([0-9]+)%$`)

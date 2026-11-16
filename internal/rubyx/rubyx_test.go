@@ -33,6 +33,7 @@ func TestProblems(t *testing.T) {
 		"<rubycustomize=ヨシヒデ></rubycustomize>",                                // 空的本文
 		"<rubycustomize=ヨシヒデ>良<b>秀</b></rubycustomize>",                       // 本文有標籤
 		"<rubycustomize=ヨシ\nヒデ>良秀</rubycustomize>",                            // 換行
+		"<rubycustomize=ヨシヒデ>良\n秀</rubycustomize>",                            // 本文換行
 		"<rubycustomize=ヨシヒデ>良秀",                                              // 沒有閉合
 		"良秀</rubycustomize>",                                                  // 多出的閉合
 		"<RubyCustomize=ヨシヒデ>良秀</RubyCustomize>",                              // 大寫
