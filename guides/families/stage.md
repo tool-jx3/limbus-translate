@@ -3,7 +3,7 @@
 ## 文本類型
 
 - 關卡節點 `StageNode*`（42 檔）：關卡名 `title`、地點 `place`、說明 `desc`（routing.yaml；raw-20261105 檔數）
-- 劇情說話者名稱 `ScenarioModelCodes`（`name`、`nickName`）；選擇事件 `ChoiceEvent*`（8 檔）；戰鬥提示 `BattleResultHint*`、`BattleHint*`（11 檔）；地牢區域 `DungeonArea*`、`DungeonName`（7 檔）；劇情目錄 `StoryTheater*`（4 檔）與其他（routing.yaml；raw-20261105 檔數）
+- 劇情說話者名稱 `ScenarioModelCodes`（`name`、`nickName`）；選擇事件 `ChoiceEvent*`（9 檔，含 `ChoiceEventKeyword`）；戰鬥提示 `BattleResultHint*`、`BattleHint*`（11 檔）；地牢區域 `DungeonArea*`、`DungeonName`（7 檔）；劇情目錄 `StoryTheater*`（4 檔）與其他（routing.yaml；raw-20261105 檔數）
 
 ## 語氣與人稱
 

@@ -154,7 +154,7 @@
 
 - 另外還有**跨欄位**的：劇情 `content` 與氣泡 `dlg`（9 句相同）、與人格語音 `dlg`（8 句），其中 5 句譯法不同。`9SV-BAT17-26-3` 屬於這一種。
 
-建議（都還沒做）：
+建議（第 1、2 項已在同日做成警告 `cross-group`：KR 8 字以上，現況 67 句、234 個單位）：
 
 1. 加一層**跨族群**的比較：同欄位、同 KR、在不同族群的譯法不同就列出來。現況會多 43 組，量很小。
 2. 台詞類再加**跨欄位**的比較：劇情 `content`、氣泡 `dlg`、人格語音 `dlg`、E.G.O 語音 `dlg` 視為同一類。現況多 5 組左右。
@@ -184,6 +184,13 @@
 - `Announcer-a1c10p1` 與 `-a1c10p3`、`Announcer.json`：5 個 id。
 
 官方清單實際列了哪一個讀不到。語言包是後列的檔蓋掉先列的（[01-custom-language.md](01-custom-language.md)），所以這些 id 在每個檔裡的譯文最好一致，或至少知道它們互相會蓋。
+
+## 已做的調整（2026-11-16）
+
+- `guides/routing.yaml`：`Skills.json` 改歸 `ally`；`Passive-a1c971`、`Passive-walpu2`、`Passives_fools` 改歸 `enemy`；`ChoiceEventKeyword` 改歸 `stage`。只有這五個檔換族群。三個 `Passives-*` 沒有動。
+- 換族群後「不一致的譯法」的組會跟著變：`enemy` 少 12 組、`ally` 多 17 組。少掉的 12 組裡有 5 組是先前確認保留的（`견제`、`방어`、`연속 베기`、`타격`、`후비기`），它們在 `ally` 以新的 id 出現，已在 `rules/declined.yaml` 補上同樣的決定；舊的 5 筆留著。其餘是新出現、要看的建議。
+- 過渡期：網站的建議清單來自上一次建置。下一次建置之前，網站匯出會回報 15 個「建議與單位對不上」的組（`review_mismatches`），建置後消失。
+- 既有譯文、其他警告、`rules/accepted.yaml`、`rules/gold.yaml` 都不受影響；`ally.md`、`enemy.md`、`stage.md` 的檔案清單已更新。
 
 ## 調整要付的代價
 
