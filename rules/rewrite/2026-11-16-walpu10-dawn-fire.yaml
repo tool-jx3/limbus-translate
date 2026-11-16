@@ -1,0 +1,9 @@
+# 規則建議 inconsistent/keywords/name/9ba29b85：狀態名「새벽불」舊譯 6 個單位（BattleKeywords.json、Bufs.json 的
+# StigmaWorkshopHandStep1–3，paratranz）寫「曉光之火」，2026-11-12 更新新譯的 walpu10 6 個單位（DawnOfficeStigmaS*，
+# claude）寫「黎明之火」。新譯照舊譯統一。使用者決定 2026-11-16。
+reason: '「새벽불」照舊譯統一寫「曉光之火」'
+files: ['BattleKeywords-walpu10.json', 'Bufs-walpu10.json']
+origins: [claude]
+pattern: '^黎明之火$'
+replace: '曉光之火'
+kr_pattern: '^새벽불$'
