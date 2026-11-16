@@ -206,16 +206,21 @@ func storyLabel(path string, us []Unit) string {
 }
 
 // speakers lists the TW texts of the "teller" fields, each once in order of
-// first appearance, at most maxSpeakers of them.
+// first appearance, at most maxSpeakers of them. A teller the build gave a
+// reading is listed by its body, so that it is the same speaker as one without.
 func speakers(us []Unit) []string {
 	out := []string{}
 	seen := make(map[string]bool)
 	for _, u := range us {
-		if u.F != "teller" || u.ZH == "" || seen[u.ZH] {
+		if u.F != "teller" {
 			continue
 		}
-		seen[u.ZH] = true
-		out = append(out, u.ZH)
+		zh := rubyx.Strip(rubyx.Restore(u.ZH))
+		if zh == "" || seen[zh] {
+			continue
+		}
+		seen[zh] = true
+		out = append(out, zh)
 		if len(out) == maxSpeakers {
 			break
 		}

@@ -374,6 +374,15 @@ func TestBuildFileStoryLabelAndSpeakers(t *testing.T) {
 		}
 	})
 
+	t.Run("a teller with a reading is its body", func(t *testing.T) {
+		const converted = "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>"
+		kr := storyDoc(nil, []string{"요시히데", "요시히데"})
+		zh := storyDoc(nil, []string{converted, "良秀"})
+		if _, sum := build(t, story, kr, zh); !slices.Equal(sum.Speakers, []string{"良秀"}) {
+			t.Errorf("Speakers = %v, want [良秀]", sum.Speakers)
+		}
+	})
+
 	t.Run("the label falls back to KR", func(t *testing.T) {
 		kr := storyDoc([]string{"장소"}, nil)
 		zh := storyDoc([]string{""}, nil)
