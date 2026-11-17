@@ -115,11 +115,11 @@ var weeklyUpdateTools = []string{
 // or request file, or publishes the rules PR, and the only way it reaches
 // origin is lct proposal publish, which pushes a rules-proposal/* branch and
 // touches nothing but guides/, glossary/, rules/ and docs/guides-evidence/.
-// lct impact is pinned to the one file it writes (and refuses one outside work/ and out/ anyway). lct
-// accept is granted only with --dry-run, which reads (the JP/EN of the variants
-// of an inconsistent group): it refuses --dry-run turned off again
-// (TestAcceptDryRunCannotBeTurnedOff), and reads a --file, whose lines it
-// prints back, only inside the repo and outside .git
+// lct impact is pinned to the one file it writes (and refuses one outside
+// work/ and out/ anyway). lct accept is granted only with --dry-run, which
+// reads (the JP/EN of the variants of an inconsistent group): it refuses
+// --dry-run turned off again (TestAcceptDryRunCannotBeTurnedOff), and reads a
+// --file, whose lines it prints back, only inside the repo and outside .git
 // (TestAcceptFileStaysInTheRepo), so the grant writes nothing and reads
 // nothing that Read(./**) without .git/ does not. rules-proposal.yml hands
 // the same list to the action (TestWorkflowContract); a tool added to one and
