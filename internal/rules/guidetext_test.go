@@ -68,6 +68,33 @@ func TestLintGuideTextWarnings(t *testing.T) {
 
 // An unreadable guide (a dangling symlink, or a directory for base.md) is a lint error and a warning, not
 // a silent skip.
+func TestUnlistableGuideDir(t *testing.T) {
+	// A file in place of guides/shared: listing the guides fails, so lint
+	// reports an error and the text check a warning for "guides".
+	root := t.TempDir()
+	if err := os.MkdirAll(filepath.Join(root, "guides"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(root, filepath.FromSlash(rules.SharedGuidesDir)), nil, 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	found := false
+	for _, err := range rules.Lint(root) {
+		if le, ok := err.(rules.LintError); ok && le.File == "guides" {
+			found = true
+		}
+	}
+	if !found {
+		t.Errorf("lint reports no error for guides when %s cannot be listed", rules.SharedGuidesDir)
+	}
+
+	got := rules.LintGuideTextWarnings(root)
+	if len(got) != 1 || got[0].File != "guides" {
+		t.Errorf("warnings = %+v", got)
+	}
+}
+
 func TestUnreadableGuide(t *testing.T) {
 	for _, rel := range []string{
 		"guides/base.md",
