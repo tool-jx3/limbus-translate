@@ -1,0 +1,9 @@
+# 說話者名稱 KR 寫 요시히데（良秀的本名唸法，JP 寫 ヨシヒデ）時，良秀加注音 ヨシヒデ。
+# 遊戲在 teller、ScenarioModelCodes 的 name 不處理 <ruby>，這兩個位置在 rules/ruby-customize.yaml
+# 的白名單上，所以寫 <rubycustomize>，建置時換成遊戲能顯示的標籤（設計 2026-11-16 第 12 節）。
+# KR 剛好是 요시히데 的只有劇情 teller 62 個、ScenarioModelCodes name 3 個（#583、#584、#603）。
+reason: '說話者名稱 KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ，白名單位置寫 <rubycustomize>'
+files: ['StoryData/**', 'ScenarioModelCodes*']
+pattern: '^良秀$'
+replace: '<rubycustomize=ヨシヒデ>良秀</rubycustomize>'
+kr_pattern: '^요시히데$'
