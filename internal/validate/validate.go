@@ -709,7 +709,7 @@ func checkStyle(kr, zh string, ctx Context) []Issue {
 	}
 	if ids := extraKeywordIDs(kr, zh); len(ids) > 0 {
 		issues = append(issues, ctx.issue(CodeExtraKeywordID, ClassStyle,
-			"%s is not in KR; where KR names a state in Hangul, write its Chinese name, not an [ID] (guides/base.md)", quoteList(ids)))
+			"%s is not in KR; where KR names a state in Hangul, write its Chinese name, not an [ID] (guides/shared/skill-text.md)", quoteList(ids)))
 	}
 	if asciiEllRe.MatchString(zh) {
 		issues = append(issues, ctx.issue(CodeASCIIEllipsis, ClassStyle, `"..." should be "……"`))

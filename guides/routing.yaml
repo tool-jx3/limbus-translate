@@ -124,12 +124,16 @@ guides:
     guide: guides/shared/ruby.md
   - when: "BattleSpeechBubbleDlg*"
     guide: guides/shared/ruby.md
-  # 劇情標籤欄位（說話者名稱、稱號、地點）的寫法只給有這些欄位的檔：StoryData/ 的 teller、title、place，ScenarioModelCodes 的 name、nickName，StageNode 的 place
+  # 劇情標籤欄位（說話者名稱、稱號、地點）的寫法只給有這些欄位的檔：StoryData/ 的 teller、title、place，ScenarioModelCodes 的 name、nickName，StageNode 的 place，RPGSystem/ 的 speaker、displayName，AbDlg 的 teller
   - when: "StoryData/"
     guide: guides/shared/story-labels.md
   - when: "ScenarioModelCodes*"
     guide: guides/shared/story-labels.md
   - when: "StageNode*"
+    guide: guides/shared/story-labels.md
+  - when: "RPGSystem/"
+    guide: guides/shared/story-labels.md
+  - when: "AbDlg"
     guide: guides/shared/story-labels.md
   # 技能文字的寫法：ally、enemy、keywords、mirror 以 include: 引入；這四個族群以外、技能文字（[ID] 加強度／回數、소모、<noparse>）的單位至少 30 個的節點在這裡加
   - when: "TutorialMainUIText"
