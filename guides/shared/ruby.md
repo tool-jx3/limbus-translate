@@ -1,6 +1,6 @@
 # ruby 與注音（共用指引）
 
-本檔只管劇情台詞（`StoryData/` 的 `content`）與帶 `ruby_customize: true` 的單位；這些檔的其他欄位（`title`、`place` 與沒有標記的欄位）照 base.md「其他位置」與下面的「說話者名稱、稱號、地點」（自 base.md 移入）。
+本檔只管劇情台詞（`StoryData/` 的 `content`）與帶 `ruby_customize: true` 的單位；這些檔的 `title`、`place` 照下面的「說話者名稱、稱號、地點」，其他沒有標記的欄位照 base.md「其他位置」（規則自 base.md 移入）。
 
 ## 格式慣例
 
@@ -11,5 +11,5 @@
   - 不加：中文的詞（第八章的「怡紅院」）直接寫；韓語的詞照常翻譯，不加韓文讀音（譯文不放韓文字；詞彙表核准的「하나協會」除外）；臺灣也常用的外來語（All In、Email、cosplay）與專有名詞（協會、公司、人名、地名照詞彙表：Zwei 協會、Nagel und Hammer）照常寫；JP 只是標漢字讀音（`<ruby=くつわ>轡</ruby>`、`<ruby=エゴ>E.G.O</ruby>`）或著重點、EN 只是為英文讀者解釋拼音（`<ruby=thatch-roofed house>choga</ruby>` → 茅屋）、X 只是 Y 的外語原文而中文已寫出意思（`<ruby=Nice catch>接得好</ruby>` → 接得好）
 - **白名單位置的注音**：帶 `ruby_customize: true` 的單位（`rules/ruby-customize.yaml` 的位置）寫 `<rubycustomize=X>Y</rubycustomize>`，建置時換成遊戲能顯示的標籤，不手寫 `nobr`、`space`；沒帶的單位寫了會退回
   - 時機與 X 同劇情台詞的 ruby，KR 沒有也可以加：KR `요시히데` 寫 `<rubycustomize=ヨシヒデ>良秀</rubycustomize>`
-  - X 要簡短（太長會撐寬那一行），只寫讀音、原文或原意；X、Y 不可空白，只放文字，不含 `<`、`>` 或換行，X 可加雙引號；不巢狀，不和 `<ruby>` 寫在同一組
+  - X 要簡短（太長會撐寬那一行），只寫讀音、原文或原意；X、Y 不可為空，只放文字，不含 `<`、`>` 或換行，X 可加雙引號；不巢狀，不和 `<ruby>` 寫在同一組
 - **說話者名稱、稱號、地點**：說話者名稱（`StoryData/` 的 `teller`、`ScenarioModelCodes` 的 `name`）需要注音時（時機同上）用 `<rubycustomize>`（三語都是 `UNGEZIEFER KAISER` 的寫 `<rubycustomize=UNGEZIEFER KAISER>害蟲皇帝</rubycustomize>`），否則照詞彙表；稱號（`title`、`nickName`）與地點（`place`）不加注音，照詞彙表

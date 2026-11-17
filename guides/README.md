@@ -65,7 +65,7 @@
 
 ## 共用指引（`shared/<主題>.md`）
 
-- 幾個族群都用、但不是所有族群都用的規則寫在共用指引，只寫一份；用到的族群在 `routing.yaml` 以 `include:` 引入。不必另立四節，只寫用得到的節（節名與族群指引相同）
+- 幾個族群都用、但不是所有族群都用的規則寫在共用指引，只寫一份；用到的族群在 `routing.yaml` 以 `include:` 引入（依位置給的例外以 `guides:` 引入，例如 `ruby.md`）。不必另立四節，只寫用得到的節（節名與族群指引相同）
 - 「既有 a／b」是引入它的族群合計，同樣要 ≥ 80% 且 b ≥ 30；每個引入的族群自己有單位時，比例也不低於 80%（腳本逐族群列出）。規則只在部分族群成立時，不引入其他族群
 - 現有：`battle-text.md`（ally、enemy、keywords、mirror：效果文字的括號用半形、`(턴당 N회)`、`최종 위력`、`정신력／체력 N 회복`、`아군`、`처치 시`）；`korean-brackets.md`（ui、events、stage、rpg、ally、enemy、keywords、mirror：方括號裡的韓文照譯）；`ruby.md`（以 `guides:` 給 `StoryData/`、`ScenarioModelCodes`、`PersonalityVoiceDlg/`、`BattleAnnouncerDlg/`、`BattleSpeechBubbleDlg`：劇情台詞的 ruby 與白名單位置的 `<rubycustomize>`，規則自 `base.md` 移入；其他檔照 `base.md`「ruby 的位置」）
 - 只在兩三個族群成立、不另立共用檔的，仍寫在各族群的檔：`[X] N 부여`（ally、enemy）、`피해량 +N%`（ally、enemy、mirror；keywords 只有 79%）。改其中一份時，其他族群的同一條要一起改
