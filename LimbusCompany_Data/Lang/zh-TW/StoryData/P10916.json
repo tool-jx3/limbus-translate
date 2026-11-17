@@ -147,21 +147,21 @@
     {
       "id": 22,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "……"
     },
     {
       "id": 23,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "……還在想妳在做什麼，沒想到竟然在這裡灌酒。"
     },
     {
       "id": 24,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "那些酒……放那麼久了，都不會壞嗎？"
     },
@@ -180,7 +180,7 @@
     {
       "id": 27,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "……"
     },
@@ -233,14 +233,14 @@
     {
       "id": 36,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "……隨妳怎麼想。要不然等死了以後，到地獄去聊聊吧。"
     },
     {
       "id": 37,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "比起那個……小指父輩？這段時間，除了你們以外又有別的父輩加入了嗎？"
     },
@@ -259,14 +259,14 @@
     {
       "id": 40,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "……我認為不能用巴勒莫跟妳這傢伙交手。"
     },
     {
       "id": 41,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "所以學了新的劍術。這把刀，就是那時候拿到的。"
     },
@@ -279,7 +279,7 @@
     {
       "id": 43,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "如果打算報復，那也沒用。雖然……記不太清楚了，但那人已經死了。"
     },
@@ -622,7 +622,7 @@
     {
       "id": 101,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "好痛……"
     },
@@ -655,7 +655,7 @@
     {
       "id": 108,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "全部……全部都得剜掉。"
     },
@@ -670,7 +670,7 @@
     {
       "id": 111,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "得隨心所欲地把一切，斬斷，燒盡才行！！"
     },
@@ -757,14 +757,14 @@
     {
       "id": 131,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "我錯……了……"
     },
     {
       "id": 132,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "拜託……至少告訴我理由……告訴我理由就好……"
     },
@@ -1055,7 +1055,7 @@
     {
       "id": 190,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "閉嘴……我才不想聽妳這傢伙說那種建議。"
     },
@@ -1074,14 +1074,14 @@
     {
       "id": 193,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "……妳現在不是能這樣游刃有餘的處境吧？"
     },
     {
       "id": 194,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "妳……那隻眼睛應該撐不了多久了吧。"
     },
@@ -1436,7 +1436,7 @@
     {
       "id": 270,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "……"
     },
@@ -1455,28 +1455,28 @@
     {
       "id": 273,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "我……知道。所以……才要斬。"
     },
     {
       "id": 274,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "這裡……什麼都不該留下。"
     },
     {
       "id": 275,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "無論是記憶、時間，還是心，都不能留下。"
     },
     {
       "id": 276,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "這就是把我養大的你們與我所面臨的結局。"
     },
@@ -1587,7 +1587,7 @@
     {
       "id": 301,
       "model": "료슈",
-      "teller": "良秀",
+      "teller": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "title": "蜘蛛巢",
       "content": "啊……"
     },

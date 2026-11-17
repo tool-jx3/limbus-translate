@@ -1,0 +1,1349 @@
+{
+  "tag": "zh-TW-20261112.7",
+  "prev_tag": "zh-TW-20261112.6",
+  "released_at": "2026-11-17T00:53:47Z",
+  "prev_released_at": "2026-11-16T08:06:10Z",
+  "raw_tag": "raw-20261112",
+  "prev_raw_tag": "raw-20261112",
+  "rules_commit": "c37673d50c3235596bafb7660156cc9ec7f06c3c",
+  "prev_rules_commit": "a9342421f71a5212088bb2ec7786783ed80e56b3",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 76
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "BattleAnnouncerDlg/Announcer_RienSora_54.json",
+      "field": "dlg",
+      "ptr": "/dataList/1/dlg",
+      "kind": "zh-changed",
+      "new_kr": "요시히데 언니가 도, 돌아와도… 가끔 이렇게 뤼엔 씨랑 외, 외출할 수 있을까요?\n지금 생각하기엔 너무 이른 의문 같구나. 하지만… 안 될 이유는 없지 않겠니.\n그건 기, 기쁘네요. 헤헤.",
+      "old_zh": "就算良秀姊姊回、回來了……我偶爾還可以像這樣跟禮恩先生一起外、外出嗎？\n現在思考這個問題似乎還太早了。不過……也沒有不行的理由吧。\n那真、真令人高興呢。嘿嘿。",
+      "new_zh": "就算<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>姊姊回、回來了……我偶爾還可以像這樣跟禮恩先生一起外、外出嗎？\n現在思考這個問題似乎還太早了。不過……也沒有不行的理由吧。\n那真、真令人高興呢。嘿嘿。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-rubycustomize-backfill.yaml",
+          "reason": "KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "BattleAnnouncerDlg/Announcer_ValencinaLucio_52.json",
+      "field": "dlg",
+      "ptr": "/dataList/27/dlg",
+      "kind": "zh-changed",
+      "new_kr": "후우… 요시히데는 열네 살 때부터 이 정돈 밥 먹듯이 했지. 쯧, 어떤 머저리 같은 교본이랑 다르게.\n죄송합니다. 빠른 시일 내에 그분과 똑같아질 수…\n아가리. 아직 10년은 일러.",
+      "old_zh": "呼……良秀從十四歲起，做這種事就跟吃飯一樣稀鬆平常。嘖，跟某本蠢教材可不一樣。\n抱歉。我會盡快變得跟那位一樣……\n閉嘴。你還早了十年。",
+      "new_zh": "呼……<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>從十四歲起，做這種事就跟吃飯一樣稀鬆平常。嘖，跟某本蠢教材可不一樣。\n抱歉。我會盡快變得跟那位一樣……\n閉嘴。你還早了十年。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-rubycustomize-backfill.yaml",
+          "reason": "KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "BattleSpeechBubbleDlg-a1c9p3.json",
+      "field": "dlg",
+      "ptr": "/dataList/89/dlg",
+      "kind": "zh-changed",
+      "new_kr": "…이, 이번 시련만 이겨낼 수 있다면, 저도 요, 요시히데 언니처럼, 뤼엔 씨의 딸이 될 수 있어요.",
+      "old_zh": "……只、只要能挺過這次試煉，我也能像良、良秀姊姊一樣，成為禮恩先生的女兒。",
+      "new_zh": "……只、只要能挺過這次試煉，我也能像<nobr>良、良秀<space=-3.5em><voffset=1em><size=50%>ヨ、ヨシヒデ</size></voffset><space=0.5em></nobr>姊姊一樣，成為禮恩先生的女兒。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-rubycustomize-backfill.yaml",
+          "reason": "KR 結巴地唸出 요시히데：良秀照 JP 加注音，結巴的片段一起包住（白名單位置寫 <rubycustomize>）；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "BattleSpeechBubbleDlg-a1c9p3.json",
+      "field": "dlg",
+      "ptr": "/dataList/275/dlg",
+      "kind": "zh-changed",
+      "new_kr": "그 운명은, 네 운명이 아니야. 그러니 거기서 빠져나오렴, 요시히데.",
+      "old_zh": "那個命運，並非妳的命運。所以離開那裡吧，良秀。",
+      "new_zh": "那個命運，並非妳的命運。所以離開那裡吧，<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-rubycustomize-backfill.yaml",
+          "reason": "KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "BattleSpeechBubbleDlg.json",
+      "field": "dlg",
+      "ptr": "/dataList/683/dlg",
+      "kind": "zh-changed",
+      "new_kr": "지긋, 지긋해! 요시히데, 그 새끼도, 너도 전부 다!!!",
+      "old_zh": "煩死了、煩死了！不管是良秀那臭小鬼，還是你們這些傢伙全都是！！！",
+      "new_zh": "煩死了、煩死了！不管是<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>那臭小鬼，還是你們這些傢伙全都是！！！",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-rubycustomize-backfill.yaml",
+          "reason": "KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "PersonalityVoiceDlg/Voice_Heathcliff_KumoThumb_10716.json",
+      "field": "dlg",
+      "ptr": "/dataList/5/dlg",
+      "kind": "zh-changed",
+      "new_kr": "매번 티켓은 훨씬 잘 했다고 갈구더니… 쯧. 뭐가 뭔지 모르겠네. 싱클레어 그 자식 가르쳐주는 거 보니까 아예 다른 검술이잖아?\n…뭐, 됐나. 어차피 집 나가신 요시히데, 그자의 검술만 배끼면 되니까. 시킨 대로만 하자. 시킨 대로만.",
+      "old_zh": "明明每次都挑我毛病，說門票做得比我好多了……嘖。還真是搞不懂。看她教辛克萊那傢伙時，用的根本就是完全不同的劍術啊？\n……算了，隨便。反正只要複製出離家出走的良秀用的劍術就好了。就照著被吩咐的去做吧。只照著被吩咐的。",
+      "new_zh": "明明每次都挑我毛病，說門票做得比我好多了……嘖。還真是搞不懂。看她教辛克萊那傢伙時，用的根本就是完全不同的劍術啊？\n……算了，隨便。反正只要複製出離家出走的<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>用的劍術就好了。就照著被吩咐的去做吧。只照著被吩咐的。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-rubycustomize-backfill.yaml",
+          "reason": "KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "PersonalityVoiceDlg/Voice_Heathcliff_KumoThumb_10716.json",
+      "field": "dlg",
+      "ptr": "/dataList/6/dlg",
+      "kind": "zh-changed",
+      "new_kr": "요시히데, 그자와 협력하고 있는 회사랑 해결사 사무소 목록은 어떻게든 손에 넣었습니다… 그런데 치른 값에 비해 내용이 너무 자세합니다. 정보를 일부러 풀어둔 것처럼… <color=#923838>뭐, 어때. 허술하면 잘 된 거지. 또 감이니 뭐니, 염병 떨지 말고 훈련이나 열심히 해.</color> …알겠습니다.",
+      "old_zh": "我已經設法獲得和良秀合作的公司和收尾人事務所列表了……但是，比起付出的代價，獲得的內容實在是過於詳細了。就像是有人刻意將情報流出一樣……<color=#923838>嘛，隨便啦。有漏洞不是正好嗎。別再鬼扯什麼直覺之類的話，給我滾去好好訓練。</color>……我知道了。",
+      "new_zh": "我已經設法獲得和<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>合作的公司和收尾人事務所列表了……但是，比起付出的代價，獲得的內容實在是過於詳細了。就像是有人刻意將情報流出一樣……<color=#923838>嘛，隨便啦。有漏洞不是正好嗎。別再鬼扯什麼直覺之類的話，給我滾去好好訓練。</color>……我知道了。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-rubycustomize-backfill.yaml",
+          "reason": "KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "PersonalityVoiceDlg/Voice_Rodion_KumoThumb_10916.json",
+      "field": "dlg",
+      "ptr": "/dataList/5/dlg",
+      "kind": "zh-changed",
+      "new_kr": "도망치면서 벤 게 있잖아. 그게 아까워서라도 요시히데는 천살성도… 그 유물을 포기 못해.\n…쯧. 그래도 교본 하나는 있는 게 낫겠네. 뭔 듣도 보도 못한 검술을 배웠거나, 자세가 엉망이 됐을지도 모르니까.",
+      "old_zh": "她逃跑的時候斬掉了不少東西吧。光是捨不得那些代價，良秀也放不下天殺星刀……那件遺物。\n……嘖。不過，還是留個教材比較好吧。她說不定學了什麼聞所未聞的劍術，或是姿勢已經亂七八糟了。",
+      "new_zh": "她逃跑的時候斬掉了不少東西吧。光是捨不得那些代價，<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>也放不下天殺星刀……那件遺物。\n……嘖。不過，還是留個教材比較好吧。她說不定學了什麼聞所未聞的劍術，或是姿勢已經亂七八糟了。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-rubycustomize-backfill.yaml",
+          "reason": "KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "PersonalityVoiceDlg/Voice_Rodion_KumoThumb_10916.json",
+      "field": "dlg",
+      "ptr": "/dataList/7/dlg",
+      "kind": "zh-changed",
+      "new_kr": "요시히데, 너만 완성되면 보상 받을 수 있다니까? 바닥에 처박혀버린 내 계급도, 시궁창에서 썩어 문드러진 내 세월도! 그 꼬라지로 빌빌거리고 있는 내 티켓도! 전부! 전부 다! 보상 받을 수 있어!",
+      "old_zh": "良秀，只要妳完成了，我就能得到回報，懂嗎？跌到谷底的我的階級、在臭水溝裡爛透的我的歲月！還有變成那副德性、要死不活的我的門票！全部！全部都！能得到回報！",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>，只要妳完成了，我就能得到回報，懂嗎？跌到谷底的我的階級、在臭水溝裡爛透的我的歲月！還有變成那副德性、要死不活的我的門票！全部！全部都！能得到回報！",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-rubycustomize-backfill.yaml",
+          "reason": "KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "ScenarioModelCodes-AutoCreated.json",
+      "field": "name",
+      "ptr": "/dataList/583/name",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "ScenarioModelCodes-AutoCreated.json",
+      "field": "name",
+      "ptr": "/dataList/584/name",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "ScenarioModelCodes-AutoCreated.json",
+      "field": "name",
+      "ptr": "/dataList/603/name",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "ScenarioModelCodes-AutoCreated.json",
+      "field": "name",
+      "ptr": "/dataList/628/name",
+      "kind": "zh-changed",
+      "new_kr": "UNGEZIEFER KAISER",
+      "old_zh": "UNGEZIEFER KAISER",
+      "new_zh": "<nobr>害蟲皇帝<space=-4.542em><voffset=1em><size=50%>UNGEZIEFER KAISER</size></voffset><space=-0.542em></nobr>",
+      "old_origin": "copy",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-rubycustomize-backfill.yaml",
+          "reason": "UNGEZIEFER KAISER（그레고르왕）本文寫中文「害蟲皇帝」，原名寫在注音（白名單位置寫 <rubycustomize>）；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "ScenarioModelCodes-AutoCreated.json",
+      "field": "name",
+      "ptr": "/dataList/630/name",
+      "kind": "zh-changed",
+      "new_kr": "UNGEZIEFER KAISER",
+      "old_zh": "UNGEZIEFER KAISER",
+      "new_zh": "<nobr>害蟲皇帝<space=-4.542em><voffset=1em><size=50%>UNGEZIEFER KAISER</size></voffset><space=-0.542em></nobr>",
+      "old_origin": "copy",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-rubycustomize-backfill.yaml",
+          "reason": "UNGEZIEFER KAISER（그레고르왕）本文寫中文「害蟲皇帝」，原名寫在注音（白名單位置寫 <rubycustomize>）；譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/0/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/1/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/2/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/3/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/4/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/17/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/18/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/19/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/20/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/21/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/22/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/25/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/74/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/96/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/122/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/123/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/129/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/130/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10415.json",
+      "field": "teller",
+      "ptr": "/dataList/131/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/15/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/16/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/17/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/86/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/87/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/103/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/104/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/105/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/106/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/107/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/109/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10716.json",
+      "field": "teller",
+      "ptr": "/dataList/110/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/24/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/25/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/26/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/29/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/38/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/39/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/42/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/43/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/45/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/103/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/110/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/113/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/133/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/134/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/192/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/195/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/196/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/272/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/275/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/276/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/277/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/278/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10916.json",
+      "field": "teller",
+      "ptr": "/dataList/303/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P11115.json",
+      "field": "teller",
+      "ptr": "/dataList/188/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P11115.json",
+      "field": "teller",
+      "ptr": "/dataList/192/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P11115.json",
+      "field": "teller",
+      "ptr": "/dataList/194/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P11115.json",
+      "field": "teller",
+      "ptr": "/dataList/195/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P11115.json",
+      "field": "teller",
+      "ptr": "/dataList/196/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P11115.json",
+      "field": "teller",
+      "ptr": "/dataList/197/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P11115.json",
+      "field": "teller",
+      "ptr": "/dataList/198/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P11115.json",
+      "field": "teller",
+      "ptr": "/dataList/199/teller",
+      "kind": "zh-changed",
+      "new_kr": "요시히데",
+      "old_zh": "良秀",
+      "new_zh": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "other"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-17-rubycustomize-backfill.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-17-rubycustomize-backfill.yaml",
+      "path": "rules/adjustments/2026-11-17-rubycustomize-backfill.yaml",
+      "title": "2026-11-17-rubycustomize-backfill.yaml",
+      "commit": "c37673d50c3235596bafb7660156cc9ec7f06c3c"
+    }
+  }
+}

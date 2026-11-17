@@ -2917,12 +2917,12 @@
     },
     {
       "id": "과거료슈2",
-      "name": "良秀",
+      "name": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "nickName": "蜘蛛巢"
     },
     {
       "id": "과거료슈3",
-      "name": "良秀",
+      "name": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "nickName": "蜘蛛巢"
     },
     {
@@ -3017,7 +3017,7 @@
     },
     {
       "id": "과거료슈1",
-      "name": "良秀",
+      "name": "<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>",
       "nickName": "蜘蛛巢"
     },
     {
@@ -3142,7 +3142,7 @@
     },
     {
       "id": "그레고르왕",
-      "name": "UNGEZIEFER KAISER",
+      "name": "<nobr>害蟲皇帝<space=-4.542em><voffset=1em><size=50%>UNGEZIEFER KAISER</size></voffset><space=-0.542em></nobr>",
       "nickName": "舊G公司"
     },
     {
@@ -3152,7 +3152,7 @@
     },
     {
       "id": "그레고르왕그림자",
-      "name": "UNGEZIEFER KAISER",
+      "name": "<nobr>害蟲皇帝<space=-4.542em><voffset=1em><size=50%>UNGEZIEFER KAISER</size></voffset><space=-0.542em></nobr>",
       "nickName": "舊G公司"
     },
     {

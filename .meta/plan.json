@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261112",
   "prev_raw_tag": "raw-20261105",
-  "rules_commit": "d8a2f3ebc32f65217e0a149f1cfbf4f0656b7b05",
+  "rules_commit": "c37673d50c3235596bafb7660156cc9ec7f06c3c",
   "changes": {
     "unchanged": 272865,
     "moved": 2138,
@@ -82,12 +82,17 @@
   "copy": 0,
   "reused": 0,
   "adjustments": {
-    "applied": 210,
+    "applied": 221,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [],
+  "rewrite_applied": [
+    {
+      "id": "2026-11-17-yoshihide-speaker-rubycustomize",
+      "units": 65
+    }
+  ],
   "frozen_changed": [],
   "new_speakers": [
     "다친필립",
