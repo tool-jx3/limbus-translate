@@ -1,6 +1,6 @@
 # 調查用分析腳本
 
-產生 `docs/research/2026-10-30-reference-survey.md` 與 `guides/` 裡統計數字的一次性 Python 腳本。之後會由 Go CLI 取代，這裡保留是為了能重算、核對。
+產生 `docs/research/2026-10-30-reference-survey.md` 與 `docs/guides-evidence/` 裡統計數字的一次性 Python 腳本。之後會由 Go CLI 取代，這裡保留是為了能重算、核對。
 
 ## 資料目錄
 
@@ -36,7 +36,7 @@ python3 -I examples.py DATA      # 挑選角色例句
 
 ## 族群指引的統計
 
-`guides/families/*.md`、`guides/shared/*.md` 的「既有 a／b」（共用指引是引入族群的合計，另逐族群列出）、「KR 含此樣式的單位全在本族群」與 `guides/base.md` 第 7 條的各族群括號數字由 `family_guides.py` 重算。它讀 `lct site --out DIR` 寫出的網站資料（不是上面的 `DATA`），數字對應 raw-20261105 與當時的 tw：
+`guides/families/*.md`、`guides/shared/*.md` 的「既有 a／b」（共用指引是引入族群的合計，另逐族群列出）、「KR 含此樣式的單位全在本族群」與 `guides/base.md` 第 7 條的各族群括號數字由 `family_guides.py` 重算。它讀 `lct site --out DIR` 寫出的網站資料（不是上面的 `DATA`），數字對應 raw-20261105 與當時的 tw。重算的數字寫進 `docs/guides-evidence/` 的對應檔（`guides/families/keywords.md` → `docs/guides-evidence/families/keywords.md`），不寫進指引：
 
 ```bash
 bin/lct site --out site/public/data

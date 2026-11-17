@@ -8,7 +8,7 @@
 |---|---|---|
 | `base.md` | 共通原則、程式格式須知、標點 | 每一批都套用 |
 | `families/<id>.md` | 各族群的文本類型、語氣與人稱、格式慣例、常見錯誤（每份 ≤ 4096 bytes） | 依檔名判斷族群（`routing.yaml` 的 `guide:`） |
-| `shared/<主題>.md` | 跨族群、但不是所有族群都用的規則（每份 ≤ 4096 bytes，附出處） | 用到的族群在 `routing.yaml` 以 `include:` 引入；只給部分檔案的（如 `ruby.md`）以 `guides:` 依節點疊加 |
+| `shared/<主題>.md` | 跨族群、但不是所有族群都用的規則（每份 ≤ 4096 bytes） | 用到的族群在 `routing.yaml` 以 `include:` 引入；只給部分檔案的（如 `ruby.md`）以 `guides:` 依節點疊加 |
 | `families.md` | 給人看的參考：檔名規律、檔案族群、翻譯優先序、凍結項目 | 不送給譯者 |
 | `characters/<id>.md` | 角色語言風格 | 該批出現此角色時（劇情看每行的 `model`，RPG 對話看該行的 `speaker` 欄位，對得上角色 id 才套用；語音／`AbDlg` 看檔名） |
 | `npcs.yaml` | 不需要指引的路人：`model`、性別、一句身分（見「新說話者」） | 批次中有這些 `model` 說話時（單位或前後文），批次的 `npcs` 帶上他們的性別與身分；審核 Issue 與規則建議不再把這些 `model` 列為新說話者 |
@@ -55,17 +55,45 @@
 
 例句的「既有繁中」是現有譯文，用來示範語氣，不代表每句都是定稿。
 
+## 寫法規範
+
+會送給譯者的指引（`base.md`、`families/*.md`、`shared/*.md`、`characters/*.md`）只寫譯者照著做的規則。統計、來源、經過寫進依據檔（見「依據檔」）；`lct rules lint` 會檢查譯者讀的指引有沒有指向依據檔，並對統計樣式發出警告。
+
+**指引裡寫什麼**
+
+- 每條：粗體標題、規則、例子（KR → 譯文）。一條規則只在一個檔、一個地方寫
+- 原因只在它決定「什麼時候適用」時寫一句（例如「遊戲只在劇情台詞處理 `<ruby>`」）
+- 「既有譯文不必為此改」這類指示照寫，不附數字
+- 例子只寫 KR 與譯文；需要時寫欄位（`place`、`teller`），不寫 key
+- 常見錯誤寫錯誤的樣子與正確寫法，不寫次數與發生經過
+- 只適用於單一族群的規則寫在該族群的檔，不寫進 `base.md`；`base.md` 只放各族群共通的規則
+
+**指引裡不寫什麼（都進依據檔）**
+
+- 統計：次數、比例、「既有 a／b」、行數、檔數
+- 來源：「使用者決定 YYYY-MM-DD」、調整檔或改寫檔名、研究報告路徑、出處 key、「自 base.md 移入」
+- 經過：舊譯曾經怎麼錯、哪次匯入怎麼處理
+- 工具行為：只在它改變譯者該寫什麼時才寫，否則不寫
+
+**新增慣例的門檻**：「既有 a／b ≥ 80% 且 b ≥ 30」是把慣例寫進指引的條件，數字記在依據檔。a／b 是 raw-20261105 該族群 KR 符合條件、已有譯文紀錄（Paratranz、Claude、人工，不含照抄）的 b 個單位中，a 個照這個寫法。
+
 ## 族群指引（`families/<id>.md`）
 
-- 固定四節：文本類型；語氣與人稱；格式慣例（標籤、`[ID]`、數字、標點、換行）；常見錯誤。沒有證據的節寫「（目前無足夠證據）」
-- 每條規則句末的括號是出處：從 `base.md`、`families.md`、`rules/adjustments/` 搬來或摘要的寫明原處；依統計寫的標「既有 a／b」與例子 key
-- 「既有 a／b」：raw-20261105 該族群 KR 符合條件、已有譯文紀錄（Paratranz、Claude、人工，不含照抄）的 b 個單位中，a 個照這個寫法；只收 a／b ≥ 80% 且 b ≥ 30 的慣例
-- 只適用於單一族群的規則寫在該族群的檔，不寫進 `base.md`；`base.md` 只放各族群共通的規則
-- 統計數字由 `docs/research/scripts/family_guides.py` 重算（讀 `lct site` 的輸出）；改了寫法或重算時，指引裡的數字與腳本的樣式一起改
+- 固定四節：文本類型；語氣與人稱；格式慣例（標籤、`[ID]`、數字、標點、換行）；常見錯誤。沒有內容的節不寫，不寫「（目前無足夠證據）」
+- 統計數字由 `docs/research/scripts/family_guides.py` 重算（讀 `lct site` 的輸出），重算的數字寫進依據檔；改了寫法時，腳本的樣式一起改
 
 ## 共用指引（`shared/<主題>.md`）
 
 - 幾個族群都用、但不是所有族群都用的規則寫在共用指引，只寫一份；用到的族群在 `routing.yaml` 以 `include:` 引入（依位置給的例外以 `guides:` 引入，例如 `ruby.md`）。不必另立四節，只寫用得到的節（節名與族群指引相同）
-- 「既有 a／b」是引入它的族群合計，同樣要 ≥ 80% 且 b ≥ 30；每個引入的族群自己有單位時，比例也不低於 80%（腳本逐族群列出）。規則只在部分族群成立時，不引入其他族群
-- 現有：`battle-text.md`（ally、enemy、keywords、mirror：效果文字的括號用半形、`(턴당 N회)`、`최종 위력`、`정신력／체력 N 회복`、`아군`、`처치 시`）；`korean-brackets.md`（ui、events、stage、rpg、ally、enemy、keywords、mirror：方括號裡的韓文照譯）；`ruby.md`（以 `guides:` 給 `StoryData/`、`ScenarioModelCodes`、`PersonalityVoiceDlg/`、`BattleAnnouncerDlg/`、`BattleSpeechBubbleDlg`：劇情台詞的 ruby 與白名單位置的 `<rubycustomize>`，規則自 `base.md` 移入；其他檔照 `base.md`「ruby 的位置」）
-- 只在兩三個族群成立、不另立共用檔的，仍寫在各族群的檔：`[X] N 부여`（ally、enemy）、`피해량 +N%`（ally、enemy、mirror；keywords 只有 79%）。改其中一份時，其他族群的同一條要一起改
+- 門檻（≥ 80% 且 b ≥ 30）以引入它的族群合計計算，每個引入的族群自己有單位時，比例也不低於 80%（腳本逐族群列出）；數字記在依據檔。規則只在部分族群成立時，不引入其他族群
+- 現有：`battle-text.md`（ally、enemy、keywords、mirror：效果文字的括號用半形、`(턴당 N회)`、`최종 위력`、`정신력／체력 N 회복`、`아군`、`처치 시`）；`korean-brackets.md`（ui、events、stage、rpg、ally、enemy、keywords、mirror：方括號裡的韓文照譯）；`ruby.md`（以 `guides:` 給 `StoryData/`、`ScenarioModelCodes`、`PersonalityVoiceDlg/`、`BattleAnnouncerDlg/`、`BattleSpeechBubbleDlg`：劇情台詞的 ruby 與白名單位置的 `<rubycustomize>`；其他檔照 `base.md`「ruby 的位置」）
+- 只在兩三個族群成立、不另立共用檔的，仍寫在各族群的檔：`[X] N 부여`（ally、enemy）、`피해량 +N%`（ally、enemy、mirror）。改其中一份時，其他族群的同一條要一起改
+
+## 依據檔
+
+統計、決定來源、經過與出處放在 `docs/guides-evidence/`，路徑與指引對應：`guides/base.md` → `docs/guides-evidence/base.md`，`guides/families/keywords.md` → `docs/guides-evidence/families/keywords.md`，`guides/characters/sinclair.md` → `docs/guides-evidence/characters/sinclair.md`。只有有依據的指引才有對應檔。格式見 `docs/guides-evidence/README.md`。
+
+- 翻譯時不讀：依據檔在 `guides/` 以外，批次的 `guides` 只列 `routing.yaml` 選出的 `guides/` 底下的檔；`prompts/translate.md` 與 `translate-pending` 技能不提依據檔；譯者讀的指引內不寫指向依據檔的連結（只有這份 README 與 `families.md` 寫它在哪裡）
+- 新增或修改規則時，依據寫進對應的依據檔，不寫進指引；維護規則的技能（`adjust`、`review`、`review-page`、`rules-review`）可以編輯它
+- 依據檔只改動不觸發 `rebuild.yml`（它只看 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`），這是預期的
+- 被刪掉的原指引條文不搬進依據檔，git 歷史可查

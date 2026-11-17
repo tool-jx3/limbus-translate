@@ -89,6 +89,7 @@ var adjustTools = []string{
 	"Bash(go build -o bin/lct ./cmd/lct)",
 	"Read(./**)",
 	"Edit(./guides/**)",
+	"Edit(./docs/guides-evidence/**)",
 	"Edit(./glossary/**)",
 	"Edit(./rules/**)",
 }
@@ -136,6 +137,7 @@ var rulesReviewTools = []string{
 	"Bash(go build -o bin/lct ./cmd/lct)",
 	"Read(./**)",
 	"Edit(./guides/**)",
+	"Edit(./docs/guides-evidence/**)",
 	"Edit(./glossary/**)",
 	"Edit(./rules/**)",
 	"Edit(./work/**)",
@@ -158,6 +160,7 @@ var reviewTools = []string{
 	"Bash(go build -o bin/lct ./cmd/lct)",
 	"Read(./**)",
 	"Edit(./guides/**)",
+	"Edit(./docs/guides-evidence/**)",
 	"Edit(./glossary/**)",
 	"Edit(./rules/**)",
 	"Edit(./lct.yaml)",
@@ -201,6 +204,7 @@ var reviewPageTools = []string{
 	"Bash(go build -o bin/lct ./cmd/lct)",
 	"Read(./**)",
 	"Edit(./guides/**)",
+	"Edit(./docs/guides-evidence/**)",
 	"Edit(./glossary/**)",
 	"Edit(./rules/**)",
 }
@@ -5267,6 +5271,23 @@ func TestNameSuggestionIsHandledBySkills(t *testing.T) {
 			if !strings.Contains(content, want) {
 				t.Errorf("%s/SKILL.md does not mention %q", skill, want)
 			}
+		}
+	}
+}
+
+// The translator never reads the evidence files: neither the translation
+// prompt nor the translate-pending skill mentions them. Only the skills that
+// maintain the rules may write them.
+func TestTranslationDoesNotMentionGuidesEvidence(t *testing.T) {
+	for _, rel := range []string{"prompts/translate.md", ".claude/skills/translate-pending/SKILL.md"} {
+		_, content := readRepoFile(t, filepath.Join(repoRoot, rel))
+		if strings.Contains(content, "guides-evidence") {
+			t.Errorf("%s mentions guides-evidence; the translator does not read the evidence files", rel)
+		}
+	}
+	for _, skill := range []string{"adjust", "review", "review-page", "rules-review"} {
+		if !slices.Contains(skillAllowedTools(t, skill), "Edit(./docs/guides-evidence/**)") {
+			t.Errorf("%s: allowed-tools has no Edit(./docs/guides-evidence/**)", skill)
 		}
 	}
 }

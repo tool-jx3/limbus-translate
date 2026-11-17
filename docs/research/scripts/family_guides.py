@@ -6,6 +6,8 @@ DIR 是 `lct site --out DIR` 寫出的網站資料（含 files/<路徑>，每檔
 「既有 a／b」：該族群 KR 符合條件、來源是 paratranz／claude／human（不含 copy）的 b 個單位中，
 a 個的譯文符合寫法。只有 a/b >= 80% 且 b >= 30 的才寫進指引（印出時標 OK）。
 共用指引（SHARED）的 a／b 是引入它的族群合計，另逐族群列出；每個族群有單位時也都要 >= 80%。
+重算的數字寫進 docs/guides-evidence/ 的對應檔（guides/families/keywords.md → docs/guides-evidence/families/keywords.md），
+不寫進 guides/。
 """
 
 import json
