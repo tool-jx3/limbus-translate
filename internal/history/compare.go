@@ -9,6 +9,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/rubyx"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
@@ -95,7 +96,7 @@ func load(s State, file string) (side, error) {
 // origin follows the rule of the site: the record's origin where the built
 // string is the record's, a stand-in otherwise.
 func (s side) origin(pointer string) string {
-	if rec, ok := s.state.Records[units.Key(s.file, pointer)]; ok && rec.ZH == s.zh[pointer] {
+	if rec, ok := s.state.Records[units.Key(s.file, pointer)]; ok && rubyx.Shipped(rec.ZH, s.zh[pointer]) {
 		return rec.Origin
 	}
 	return OriginStandIn

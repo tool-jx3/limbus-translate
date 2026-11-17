@@ -645,6 +645,44 @@ func TestBatchSchemaDeclaresHint(t *testing.T) {
 	}
 }
 
+// A unit whose position allows <rubycustomize> (rules/ruby-customize.yaml) is
+// marked: the schema declares the optional mark, and the shared prompt says
+// that only marked units may write the tag and points to the section of the
+// ruby guide (guides/shared/ruby.md, which the files with such positions get)
+// that says when, which the guide has.
+func TestBatchSchemaDeclaresRubyCustomize(t *testing.T) {
+	_, content := readRepoFile(t, filepath.Join(repoRoot, "schemas", "batch.schema.json"))
+	var schema struct {
+		Properties struct {
+			Units struct {
+				Items struct {
+					Required   []string `json:"required"`
+					Properties map[string]struct {
+						Type string `json:"type"`
+					} `json:"properties"`
+				} `json:"items"`
+			} `json:"units"`
+		} `json:"properties"`
+	}
+	if err := json.Unmarshal([]byte(content), &schema); err != nil {
+		t.Fatalf("schemas/batch.schema.json does not parse: %v", err)
+	}
+	unit := schema.Properties.Units.Items
+	if p, ok := unit.Properties["ruby_customize"]; !ok || p.Type != "boolean" || slices.Contains(unit.Required, "ruby_customize") {
+		t.Errorf("schemas/batch.schema.json: units.items.properties.ruby_customize = %+v (declared %v, required %v), want an optional boolean", p, ok, unit.Required)
+	}
+	const section = "白名單位置的注音"
+	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
+	for _, want := range []string{"`ruby_customize`", "`<rubycustomize=注音>本文</rubycustomize>`", "`guides/shared/ruby.md` 的「" + section + "」"} {
+		if !strings.Contains(prompt, want) {
+			t.Errorf("prompts/translate.md does not say %s", want)
+		}
+	}
+	if _, guide := readRepoFile(t, filepath.Join(repoRoot, "guides", "shared", "ruby.md")); !strings.Contains(guide, "**"+section+"**") {
+		t.Errorf("guides/shared/ruby.md has no section **%s**, which prompts/translate.md points to", section)
+	}
+}
+
 // A batch can list the NPCs among its speakers (guides/npcs.yaml): the schema
 // declares the list, with the fields of an entry, and the shared prompt tells
 // the translator what to do with it.

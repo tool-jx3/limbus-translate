@@ -33,8 +33,37 @@ const PIECE = new RegExp(
   'gi',
 )
 
+// The structure lct build writes for a <rubycustomize=R>B</rubycustomize>: the
+// same pattern as rubyx.Restore in Go.
+export const CONVERTED_RUBY =
+  /<nobr>([^<>\r\n]+)<space=-?[0-9.]+em><voffset=[^<>]+><size=[^<>]+>([^<>\r\n]+)<\/size><\/voffset><space=-?[0-9.]+em><\/nobr>/g
+
+// A <rubycustomize=R>B</rubycustomize> as a record writes it: the same pattern
+// as the group of rubyx in Go (a lower-case name, = and a reading that may be
+// in double quotes, no <, > or line break in the reading or the body).
+const RUBY_CUSTOMIZE = /<rubycustomize=(?:"([^"<>\r\n]+)"|([^<>"\r\n]+))>([^<>\r\n]+)<\/rubycustomize>/g
+
+/**
+ * Turns the converted rubycustomize structure of the pack, and the
+ * rubycustomize tag of a record, into a <ruby=R>B</ruby>, which the parser
+ * knows. A tag that is not well formed stays as it is.
+ */
+export function restoreRubyCustomize(s: string): string {
+  return s.replace(CONVERTED_RUBY, '<ruby=$2>$1</ruby>').replace(RUBY_CUSTOMIZE, '<ruby=$1$2>$3</ruby>')
+}
+
+/**
+ * Writes the converted rubycustomize structure of the pack as a record writes
+ * it, <rubycustomize=R>B</rubycustomize> with no quotes: how the raw tags show
+ * it, and what a search of them matches. Nothing else of s changes.
+ */
+export function toRecordForm(s: string): string {
+  return s.replace(CONVERTED_RUBY, '<rubycustomize=$2>$1</rubycustomize>')
+}
+
 /** Parses s into nodes. Closing tags with no opening tag are dropped; tags left open close at the end. */
 export function parseTMP(s: string): TmpNode[] {
+  s = restoreRubyCustomize(s)
   const root: TmpNode[] = []
   const open: TagNode[] = []
   const kids = (): TmpNode[] => open[open.length - 1]?.kids ?? root

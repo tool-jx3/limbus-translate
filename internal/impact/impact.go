@@ -106,11 +106,11 @@ func Run(in Inputs) (*Result, error) {
 			res.Checked++
 			// The old rules are asked only about a unit the new rules reject:
 			// that is almost none, and each question costs as much as the first.
-			added := hardIssues(batch.CheckNew(in.New, file, u.KR, rec.ZH))
+			added := hardIssues(batch.CheckNewAt(in.New, file, u.Pointer, u.KR, rec.ZH))
 			if len(added) == 0 {
 				continue
 			}
-			before := hardIssues(batch.CheckNew(in.Old, file, u.KR, rec.ZH))
+			before := hardIssues(batch.CheckNewAt(in.Old, file, u.Pointer, u.KR, rec.ZH))
 			added = slices.DeleteFunc(added, func(is issue) bool { return slices.Contains(before, is) })
 			if len(added) == 0 {
 				continue

@@ -113,6 +113,17 @@ families:
     guide: guides/families/unsorted.md
 
 guides:
+  # ruby 與注音的指引只給用得到的檔：劇情台詞（StoryData/ 的 content）與 rules/ruby-customize.yaml 的白名單位置所在的檔
+  - when: "StoryData/"
+    guide: guides/shared/ruby.md
+  - when: "ScenarioModelCodes*"
+    guide: guides/shared/ruby.md
+  - when: "PersonalityVoiceDlg/"
+    guide: guides/shared/ruby.md
+  - when: "BattleAnnouncerDlg/"
+    guide: guides/shared/ruby.md
+  - when: "BattleSpeechBubbleDlg*"
+    guide: guides/shared/ruby.md
   # 良秀的播報員語音：檔名不在 CharacterByFile 的前綴裡，以節點掛角色指引（Announcer_Charon 另有非卡戎的 90002，不用通用前綴）
   - when: "BattleAnnouncerDlg/Announcer_Ryoshu"
     guide: guides/characters/ryoshu.md

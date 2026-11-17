@@ -7,6 +7,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"io"
 	"io/fs"
@@ -29,6 +30,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/rubyx"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/translate"
@@ -459,6 +461,49 @@ func TestBuildDoesNotCheckCopyRecords(t *testing.T) {
 	}
 	if want := map[string]int{"hangul": 1}; !reflect.DeepEqual(rep.Warnings, want) {
 		t.Errorf("Warnings = %v, want %v: only the claude record", rep.Warnings, want)
+	}
+}
+
+// A copy record of a unit that translate_identical lets through is still used
+// as is: the pack string is KR and the unit is not queued. Task 6 extends this
+// with a human translation that carries a rubycustomize tag.
+func TestBuildKeepsCopyRecordOfTranslateIdenticalUnit(t *testing.T) {
+	kr := `{"dataList":[{"id":"x","name":"UNGEZIEFER KAISER"}]}`
+	e := newEnv(t, map[string]string{"ScenarioModelCodes-AutoCreated.json": kr}, nil)
+	c := rec("ScenarioModelCodes-AutoCreated.json", "/dataList/0/name", "UNGEZIEFER KAISER", "UNGEZIEFER KAISER")
+	c.Origin = store.OriginCopy
+	e.save(c)
+
+	rep := e.run()
+	if got := e.out("ScenarioModelCodes-AutoCreated.json"); !strings.Contains(got, `"name": "UNGEZIEFER KAISER"`) {
+		t.Errorf("pack =\n%s\nwant the KR name", got)
+	}
+	if want := map[string]int{"copy": 1}; !reflect.DeepEqual(rep.Origins, want) {
+		t.Errorf("Origins = %v, want %v", rep.Origins, want)
+	}
+	if got := e.pending(); len(got) != 0 {
+		t.Errorf("pending = %v, want none", got)
+	}
+
+	// A human translation with a reading is converted with the width of the font.
+	r, err := rules.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	e.opt.Rules = r
+	e.save(rec("ScenarioModelCodes-AutoCreated.json", "/dataList/0/name", "UNGEZIEFER KAISER",
+		"<rubycustomize=UNGEZIEFER KAISER>害蟲皇帝</rubycustomize>"))
+	rep = e.run()
+	got := e.out("ScenarioModelCodes-AutoCreated.json")
+	var name string
+	if _, err := fmt.Sscanf(strings.TrimSpace(got[strings.Index(got, `"name": `):]), `"name": %q`, &name); err != nil {
+		t.Fatalf("pack =\n%s\n%v", got, err)
+	}
+	if rep.RubyConverted != 1 || strings.Contains(name, "<rubycustomize") || !strings.HasPrefix(name, "<nobr>害蟲皇帝<space=") {
+		t.Fatalf("RubyConverted=%d name=%q, want the converted string", rep.RubyConverted, name)
+	}
+	if want := "<rubycustomize=UNGEZIEFER KAISER>害蟲皇帝</rubycustomize>"; rubyx.Restore(name) != want {
+		t.Errorf("Restore(%q) = %q, want %q", name, rubyx.Restore(name), want)
 	}
 }
 

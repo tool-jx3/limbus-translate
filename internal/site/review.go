@@ -17,6 +17,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/gametext"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/rubyx"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -430,7 +431,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			scopeUnits = append(scopeUnits, scope.Unit{Key: key, File: path, KR: ku.KR, ZH: rec.ZH, Origin: rec.Origin, EN: alignedValue(en), JP: alignedValue(jp)})
 			seen := map[string]bool{}
 			terms := batch.ValidateTermsIn(in.Rules, inForce, path, ku.KR)
-			issues := validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, Pointer: ku.Pointer, ScriptOK: scriptOK, Terms: terms, Game: game})
+			issues := validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, Pointer: ku.Pointer, ScriptOK: scriptOK, Terms: terms, Game: game, RubyCustomize: in.Rules.RubyCustomizeAt(path, ku.Pointer)})
 			if rec.Origin == store.OriginClaude && rv.Names.IsName(ku.Field, ku.KR) {
 				// As the build does: the notes made from this KR text, the JP and
 				// EN text aligned to the unit.
@@ -767,13 +768,14 @@ func jpenClass(variants []Variant) string {
 
 // evidenceAdds reports whether every counted row of the evidence has a variant
 // with the same translation and the same number of units. The build keeps only
-// some variants, so a variant the evidence lacks is not a mismatch.
+// some variants, so a variant the evidence lacks is not a mismatch. A row holds
+// the text of a record, a variant the pack string (rubyx.Shipped).
 func evidenceAdds(ev []suggest.Evidence, vs []Variant) bool {
 	for _, e := range ev {
 		if e.Count == 0 {
 			continue
 		}
-		i := slices.IndexFunc(vs, func(v Variant) bool { return v.ZH == e.ZH })
+		i := slices.IndexFunc(vs, func(v Variant) bool { return rubyx.Shipped(e.ZH, v.ZH) })
 		if i < 0 || vs[i].Count != e.Count {
 			return false
 		}

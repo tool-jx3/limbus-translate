@@ -5,12 +5,14 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"os"
 	"path/filepath"
 	"slices"
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
@@ -18,6 +20,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/rewrite"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/suggest"
+	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
 func init() {
@@ -58,6 +61,8 @@ func (r lintReport) String() string {
 	return b.String()
 }
 
+const fieldsManualFile = "rules/fields.manual.yaml"
+
 func runRulesLint(ctx *cli.Context, args []string) error {
 	if len(args) > 0 {
 		return cli.UserError("rules lint: unexpected argument " + args[0])
@@ -80,10 +85,29 @@ func runRulesLint(ctx *cli.Context, args []string) error {
 	if _, err := gold.Load(ctx.Root); err != nil {
 		report.Errors = append(report.Errors, rules.LintError{File: gold.File, Message: strings.TrimPrefix(err.Error(), gold.File+": ")})
 	}
+	// The field rules are loaded by lct build; a mistake in them stops it. A
+	// repo without the file has nothing to check here: the commands that need
+	// field rules say so themselves.
+	if _, err := os.Stat(filepath.Join(ctx.Root, fieldsManualFile)); err == nil {
+		if _, err := fields.LoadManual(ctx.Root); err != nil {
+			var re *fields.RuleError
+			if !errors.As(err, &re) {
+				return err
+			}
+			report.Errors = append(report.Errors, rules.LintError{File: fieldsManualFile, Message: strings.TrimPrefix(err.Error(), "fields: "+fieldsManualFile+": ")})
+		}
+	} else if !errors.Is(err, os.ErrNotExist) {
+		return err
+	}
 	report.OK = len(report.Errors) == 0
-	krFiles := krPackFiles(ctx.Root)
+	var krFiles []string
+	var krHasField func(file, field string) bool
+	if kr := krPack(ctx.Root); kr != nil {
+		krFiles, krHasField = kr.Files(), hasField(kr)
+	}
 	report.Warnings = append(report.Warnings, rules.LintScopeWarnings(ctx.Root, krFiles)...)
 	report.Warnings = append(report.Warnings, rules.LintRoutingWarnings(ctx.Root, krFiles)...)
+	report.Warnings = append(report.Warnings, rules.LintRubyCustomizeWarnings(ctx.Root, krFiles, krHasField)...)
 	if err := ctx.Emit(report); err != nil {
 		return err
 	}
@@ -93,10 +117,10 @@ func runRulesLint(ctx *cli.Context, args []string) error {
 	return nil
 }
 
-// krPackFiles lists the files of the KR pack in the raw worktree, or nil when
-// there is none (no lct.yaml, no worktree, no snapshot): lint then has nothing
-// to compare the glossary's file patterns with and says nothing of them.
-func krPackFiles(root string) []string {
+// krPack opens the KR pack in the raw worktree, or returns nil when there is
+// none (no lct.yaml, no worktree, no snapshot): lint then has nothing to
+// compare the file patterns of the rules with and says nothing of them.
+func krPack(root string) *pack.Pack {
 	cfg, err := config.Load(root)
 	if err != nil || cfg.Worktrees.Raw == "" {
 		return nil
@@ -109,7 +133,21 @@ func krPackFiles(root string) []string {
 	if err != nil {
 		return nil
 	}
-	return set.KR.Files()
+	return set.KR
+}
+
+// hasField reports whether a file of kr has a unit of a field (units.Extract,
+// whose Field is what the whitelist of <rubycustomize> names). A file that
+// cannot be read counts as having it: lint judges the rule files, not the
+// pack.
+func hasField(kr *pack.Pack) func(file, field string) bool {
+	return func(file, field string) bool {
+		doc, err := kr.Doc(file)
+		if err != nil {
+			return true
+		}
+		return slices.ContainsFunc(units.Extract(file, doc), func(u units.Unit) bool { return u.Field == field })
+	}
 }
 
 // resolveReport is what "guide resolve" prints.

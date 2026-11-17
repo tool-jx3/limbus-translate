@@ -103,6 +103,25 @@ func TestCollectStripsTags(t *testing.T) {
 	}
 }
 
+// A rendering with a reading (<rubycustomize>) is stored as its body, and Has
+// finds the body in a text with or without the reading.
+func TestCollectAndHasSeeTheBodyOfRubyCustomize(t *testing.T) {
+	const zh = "<rubycustomize=UNGEZIEFER KAISER>害蟲皇帝</rubycustomize>"
+	tbl := Collect("r", nameFields, []Source{src("a", "UNGEZIEFER KAISER", zh, "UNGEZIEFER KAISER", "UNGEZIEFER KAISER")})
+	if len(tbl.Names) != 1 {
+		t.Fatalf("names = %+v, want one", tbl.Names)
+	}
+	n := tbl.Names[0]
+	if got := n.Variants[0].Renderings[0].ZH; got != "害蟲皇帝" {
+		t.Errorf("stored %q, want 害蟲皇帝", got)
+	}
+	for _, text := range []string{zh, "害蟲皇帝來了", `<rubycustomize="UNGEZIEFER KAISER">害蟲皇帝</rubycustomize>`} {
+		if !n.Has(text) {
+			t.Errorf("Has(%q) = false, want true", text)
+		}
+	}
+}
+
 func TestCollectIsDeterministic(t *testing.T) {
 	var units []Source
 	for i := 0; i < 30; i++ {

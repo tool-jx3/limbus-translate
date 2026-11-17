@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 )
 
 // repoRoot is the repo itself: the commands read its real rule files.
@@ -90,6 +91,40 @@ func TestRulesLintReportsFindings(t *testing.T) {
 	}
 }
 
+func TestRulesLintReportsBadFieldsManual(t *testing.T) {
+	for name, yml := range map[string]string{
+		"empty file_glob": "translate_identical: [{file_glob: '', field: name}]\n",
+		"bad pattern":     "translate_identical: [{file_glob: 'A*', field: name, pattern: '['}]\n",
+	} {
+		t.Run(name, func(t *testing.T) {
+			root := cleanRules(t)
+			p := filepath.Join(root, "rules/fields.manual.yaml")
+			if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+				t.Fatal(err)
+			}
+			if err := os.WriteFile(p, []byte(yml), 0o644); err != nil {
+				t.Fatal(err)
+			}
+			out, err := runIn(t, runRulesLint, root, true)
+			if !errors.Is(err, cli.ErrFindings) {
+				t.Fatalf("err = %v, want cli.ErrFindings", err)
+			}
+			var got struct {
+				Errors []struct {
+					File    string `json:"file"`
+					Message string `json:"message"`
+				} `json:"errors"`
+			}
+			if err := json.Unmarshal([]byte(out), &got); err != nil {
+				t.Fatalf("output is not JSON: %v\n%s", err, out)
+			}
+			if len(got.Errors) != 1 || got.Errors[0].File != "rules/fields.manual.yaml" || !strings.Contains(got.Errors[0].Message, "translate_identical") {
+				t.Errorf("errors = %+v", got.Errors)
+			}
+		})
+	}
+}
+
 func TestRulesLintJSON(t *testing.T) {
 	out, err := runIn(t, runRulesLint, brokenRules(t), true)
 	if !errors.Is(err, cli.ErrFindings) {
@@ -138,7 +173,8 @@ func TestGuideResolve(t *testing.T) {
 	if err := json.Unmarshal([]byte(out), &got); err != nil {
 		t.Fatalf("output is not JSON: %v\n%s", err, out)
 	}
-	want := []string{"guides/base.md", "guides/families/story-main.md", "guides/characters/faust.md", "guides/characters/dante.md"}
+	// A story file gets the ruby guide (routing.yaml guides:), before the characters.
+	want := []string{"guides/base.md", "guides/families/story-main.md", "guides/shared/ruby.md", "guides/characters/faust.md", "guides/characters/dante.md"}
 	if got.File != "StoryData/S1037B.json" || got.Family != "story-main" || strings.Join(got.Guides, ",") != strings.Join(want, ",") {
 		t.Errorf("resolved = %+v", got)
 	}
@@ -151,6 +187,9 @@ func TestGuideResolve(t *testing.T) {
 		if !strings.Contains(text, want) {
 			t.Errorf("text output lacks %q:\n%s", want, text)
 		}
+	}
+	if strings.Contains(text, "guides/shared/ruby.md") {
+		t.Errorf("an AbDlg file has no position for ruby but gets its guide:\n%s", text)
 	}
 }
 
@@ -335,5 +374,64 @@ func TestRulesLintWarnsOfUnmatchedPatterns(t *testing.T) {
 	}
 	if !got.OK || !found {
 		t.Errorf("report = %+v", got)
+	}
+}
+
+// Each entry of the whitelist of <rubycustomize> must allow a unit of the KR
+// pack: an entry whose field no unit of its files has (a misspelled field)
+// would allow nothing without a word, so lint warns of it. The shipped
+// whitelist allows a unit in each of the files of a small pack that has them.
+func TestRulesLintWarnsOfARubyCustomizeFieldNoUnitHas(t *testing.T) {
+	root := cleanRules(t)
+	copyFile(t, filepath.Join(repoRoot, filepath.FromSlash(rules.RubyCustomizeFile)), filepath.Join(root, filepath.FromSlash(rules.RubyCustomizeFile)))
+	writeTestFile(t, root, "lct.yaml", "lang_dir: zh-TW\nworktrees: { raw: .work/raw, tw: .work/tw }\n")
+	writeTestFile(t, root, ".work/raw/meta/source.json", `{"tag":"raw-20261029","token":"t","created_at":"2026-10-29 00:00:00","fetched_at":"2026-11-01T00:00:00Z","files":{}}`)
+	for file, text := range map[string]string{
+		"KR_ScenarioModelCodes-A.json":    `{"dataList":[{"id":"yoshihide","name":"요시히데","nickName":""}]}`,
+		"StoryData/KR_P1.json":            `{"dataList":[{"id":0,"teller":"요시히데","content":"가자."}]}`,
+		"PersonalityVoiceDlg/KR_a.json":   `{"dataList":[{"id":"1","desc":"입장","dlg":"가자."}]}`,
+		"BattleAnnouncerDlg/KR_a.json":    `{"dataList":[{"id":"1","dlg":"가자."}]}`,
+		"KR_BattleSpeechBubbleDlg-x.json": `{"dataList":[{"id":"1","dlg":"가자."}]}`,
+		"KR_AbDlg_Faust.json":             `{"dataList":[{"id":"1","teller":"파우스트","dialog":"가자."}]}`,
+	} {
+		writeTestFile(t, root, ".work/raw/kr/"+file, text)
+	}
+	writeTestFile(t, root, ".work/raw/en/EN_Passives.json", "{}")
+	writeTestFile(t, root, ".work/raw/jp/JP_Passives.json", "{}")
+
+	rubyWarnings := func() []string {
+		t.Helper()
+		out, err := runIn(t, runRulesLint, root, true)
+		if err != nil {
+			t.Fatalf("lint: %v\n%s", err, out)
+		}
+		var got struct {
+			Warnings []struct{ File, Message string } `json:"warnings"`
+		}
+		if err := json.Unmarshal([]byte(out), &got); err != nil {
+			t.Fatalf("output is not JSON: %v\n%s", err, out)
+		}
+		var ws []string
+		for _, w := range got.Warnings {
+			if w.File == rules.RubyCustomizeFile {
+				ws = append(ws, w.Message)
+			}
+		}
+		return ws
+	}
+	if ws := rubyWarnings(); len(ws) != 0 {
+		t.Errorf("the shipped whitelist: warnings %q, want none", ws)
+	}
+
+	p := filepath.Join(root, filepath.FromSlash(rules.RubyCustomizeFile))
+	data, err := os.ReadFile(p)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(p, append(data, "  - files: ['StoryData/**']\n    field: tellr\n"...), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if ws := rubyWarnings(); len(ws) != 1 || !strings.Contains(ws[0], `"tellr"`) || !strings.Contains(ws[0], "StoryData/**") {
+		t.Errorf("an entry of the field tellr: warnings %q, want one that names it", ws)
 	}
 }

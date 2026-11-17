@@ -373,6 +373,15 @@ describe('App', () => {
       expect(String(made[0]?.url)).toMatch(/worker\.ts/)
     })
 
+    it('searches the text with its tags while the raw-tag switch of the header is on', async () => {
+      location.hash = '#/s?q=%3Ccolor&lang=zh'
+      const el = mount()
+      await vi.waitFor(() => expect(el.querySelector('.search-status')?.textContent).toContain('沒有找到'))
+      act(() => el.querySelector<HTMLInputElement>('header.top input[data-setting="rawTags"]')?.click())
+      await vi.waitFor(() => expect(el.querySelector('.search-view mark')?.textContent).toBe('<color'))
+      expect(el.querySelector('.search-status')?.textContent).toContain('共 1 筆')
+    })
+
     it('keeps the language and the pattern when the box in the header searches again, and lets the reader turn the pattern off', async () => {
       location.hash = '#/s?q=%5B%5Cw%2B%5D&lang=en&re=1'
       const el = mount()

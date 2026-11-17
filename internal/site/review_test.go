@@ -16,6 +16,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/rubyx"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -194,6 +195,31 @@ func TestReviewVariantsTheEvidenceLacks(t *testing.T) {
 	}
 	if len(r.Mismatches) != 0 {
 		t.Errorf("Mismatches = %v, want none", r.Mismatches)
+	}
+}
+
+// The build's evidence holds the text of the records, the variants the pack
+// strings: a variant the build converted (<rubycustomize>) is the same
+// rendering, not a mismatch.
+func TestReviewConvertedVariantIsNoMismatch(t *testing.T) {
+	in, files := reviewInputs(t)
+	const tag = "<rubycustomize=いち>壹</rubycustomize>"
+	converted := rubyx.Convert(tag, rubyx.Style{Size: "50%", Scale: 0.5, VOffset: "1em"}, func(rune) float64 { return 1 })
+	in.ZH = writePack(t, "", map[string]string{
+		rvA: `{"dataList":[{"id":1,"content":"一"},{"id":2,"content":"` + converted + `"},{"id":3,"content":"し協會 希斯克利夫"},{"id":4,"content":"か"},{"id":5,"content":"五か"}]}`,
+		rvB: `{"dataList":[{"id":1,"content":"一"},{"id":2,"content":"し協會 希斯克利夫"}]}`,
+	})
+	in.Records[k(rvA, 1)] = withSha(record(rvA, "/dataList/1/content", tag, store.OriginParatranz), rvKR)
+	in.Review.Build.InconsistentAll[0].ZH = []string{"一", tag}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(r.Mismatches) != 0 {
+		t.Errorf("Mismatches = %v, want none", r.Mismatches)
+	}
+	if got := len(findSuggestion(t, r, rvIncID).Variants); got != 2 {
+		t.Errorf("%d variants, want 2", got)
 	}
 }
 

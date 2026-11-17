@@ -12,6 +12,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/existing"
 	"github.com/tool-jx3/limbus-translate/internal/names"
+	"github.com/tool-jx3/limbus-translate/internal/rubyx"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -517,22 +518,28 @@ func assemble(
 					uses = append(uses, nameUse{name: n, key: item.Key})
 				}
 			}
-			b.Units = append(b.Units, BatchUnit{
-				Key:     item.Key,
-				File:    fd.file,
-				Field:   u.Field,
-				Speaker: who,
-				KR:      u.KR,
-				Reason:  item.Reason,
-				PrevKR:  item.PrevKR,
-				PrevZH:  item.PrevZH,
-				Draft:   item.Draft,
-				Hint:    item.Hint,
-				EN:      en,
-				JP:      jp,
-				Refs:    cleanRefs(item.Refs),
-				Keep:    constraints(u.KR),
-			})
+			bu := BatchUnit{
+				Key:           item.Key,
+				File:          fd.file,
+				Field:         u.Field,
+				Speaker:       who,
+				KR:            u.KR,
+				Reason:        item.Reason,
+				PrevKR:        item.PrevKR,
+				PrevZH:        item.PrevZH,
+				Draft:         item.Draft,
+				Hint:          item.Hint,
+				EN:            en,
+				JP:            jp,
+				Refs:          cleanRefs(item.Refs),
+				Keep:          constraints(u.KR),
+				RubyCustomize: env.Rules.RubyCustomizeAt(fd.file, u.Pointer),
+			}
+			bu.PrevZH, bu.Draft = bu.shown(bu.PrevZH), bu.shown(bu.Draft)
+			for name, text := range bu.Refs { // a copy: cleanRefs made it
+				bu.Refs[name] = bu.shown(text)
+			}
+			b.Units = append(b.Units, bu)
 			texts = append(texts, unitText{fd.file, u.KR, item.Key})
 			needRecords = needRecords || len(b.Units[len(b.Units)-1].Keep.IDs) > 0
 		}
@@ -614,13 +621,14 @@ func inOtherGroup(s *existing.SameText, kr, group string) bool {
 
 // sameTextRef puts into the refs of u, a unit of group, the renderings of its
 // KR in other groups: the translations their units have now in recs, when
-// those are usable (existing.UsableSHA). So a translation submitted earlier in
-// this update counts. It adds nothing when no other group has one.
+// those are usable (existing.UsableSHA), as u may be shown them (shown). So a
+// translation submitted earlier in this update counts. It adds nothing when no
+// other group has one.
 func sameTextRef(s *existing.SameText, u *BatchUnit, group string, recs map[string]store.Record) {
 	sha := units.KRSha(u.KR)
 	rs := s.For(u.KR, group, func(key string) (string, bool) {
 		rec, ok := recs[key]
-		return rec.ZH, ok && existing.UsableSHA(rec, sha)
+		return u.shown(rec.ZH), ok && existing.UsableSHA(rec, sha)
 	})
 	if len(rs) == 0 {
 		return
@@ -629,6 +637,17 @@ func sameTextRef(s *existing.SameText, u *BatchUnit, group string, recs map[stri
 		u.Refs = map[string]string{}
 	}
 	u.Refs[RefSameText] = existing.SameTextRef(rs)
+}
+
+// shown is text, taken from records (the unit's PrevZH, Draft and Refs, the
+// same-text renderings), as u may be shown it: as it is on the whitelist of
+// <rubycustomize> (u.RubyCustomize), else the body only (rubyx.Strip), so that
+// a translator who copies it does not write the tag where it may not stand.
+func (u *BatchUnit) shown(text string) string {
+	if u.RubyCustomize {
+		return text
+	}
+	return rubyx.Strip(text)
 }
 
 // contextReach is how many dataList elements on each side of the element of

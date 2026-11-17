@@ -65,6 +65,9 @@ func Group(file string) string {
 type Decision struct {
 	Translate bool
 	Reason    string // one of the Reason constants; "" when Translate is true
+	// IdenticalExempt is true when Translate is true only because the file and
+	// field are in translate_identical (KR, EN and JP share the text).
+	IdenticalExempt bool
 }
 
 // NameOnly describes the files and fields whose text is a note asking that
@@ -75,6 +78,21 @@ type NameOnly struct {
 	Pattern  string `yaml:"pattern"` // regular expression matched against the KR text
 }
 
+// FieldGlob names a field in the files whose name matches a glob and, with a
+// Pattern, only its units whose KR text matches the pattern.
+type FieldGlob struct {
+	FileGlob string `yaml:"file_glob"` // matched against the file name without its directory
+	Field    string `yaml:"field"`
+	Pattern  string `yaml:"pattern"` // optional regular expression matched against the KR text
+}
+
+// identicalRule is an entry of translate_identical with its pattern compiled
+// (nil when it has none).
+type identicalRule struct {
+	FieldGlob
+	re *regexp.Regexp
+}
+
 // Rules holds the merged field rules.
 type Rules struct {
 	identifiers     map[string]bool
@@ -82,6 +100,7 @@ type Rules struct {
 	commentPrefixes []string
 	nameOnly        *NameOnly
 	nameOnlyRe      *regexp.Regexp
+	translateSame   []identicalRule
 	notInclude      string // lowercase; "" disables the check
 }
 
@@ -92,6 +111,7 @@ type manualRules struct {
 	SourceCommentPrefixes []string            `yaml:"source_comment_prefixes"`
 	NameOnly              *NameOnly           `yaml:"name_only"`
 	NotIncludeSubstring   string              `yaml:"notinclude_substring"`
+	TranslateIdentical    []FieldGlob         `yaml:"translate_identical"`
 }
 
 // RuleError is a mistake in the content of a rule file: an unknown key, an
@@ -166,6 +186,23 @@ func LoadManual(root string) (*Rules, error) {
 		if err := r.setNameOnly(*m.NameOnly); err != nil {
 			return nil, ruleErrorf("fields: %s: name_only: %v", manualFile, err)
 		}
+	}
+	for _, g := range m.TranslateIdentical {
+		if g.FileGlob == "" || g.Field == "" {
+			return nil, ruleErrorf("fields: %s: translate_identical: file_glob and field are both required", manualFile)
+		}
+		if _, err := path.Match(g.FileGlob, ""); err != nil {
+			return nil, ruleErrorf("fields: %s: translate_identical: file_glob %q: %v", manualFile, g.FileGlob, err)
+		}
+		rule := identicalRule{FieldGlob: g}
+		if g.Pattern != "" {
+			re, err := regexp.Compile(g.Pattern)
+			if err != nil {
+				return nil, ruleErrorf("fields: %s: translate_identical: pattern %q: %v", manualFile, g.Pattern, err)
+			}
+			rule.re = re
+		}
+		r.translateSame = append(r.translateSame, rule)
 	}
 	return r, nil
 }
@@ -242,7 +279,10 @@ func isEmptyValue(kr string) bool {
 //  4. the field is a group field of the file's group;
 //  5. the KR text starts with a source comment prefix;
 //  6. the file, field and KR text match the name-only rule;
-//  7. EN and JP are both present and both equal the KR text.
+//  7. EN and JP are both present and both equal the KR text, unless the file
+//     and field are listed in translate_identical (and the KR text matches
+//     the entry's pattern, when it has one): such a unit is translated, with
+//     IdenticalExempt set.
 func (r *Rules) Classify(u units.Unit, en, jp *align.LangAligned) Decision {
 	skip := func(reason string) Decision { return Decision{Reason: reason} }
 	switch {
@@ -259,7 +299,10 @@ func (r *Rules) Classify(u units.Unit, en, jp *align.LangAligned) Decision {
 	case r.isNameOnly(u):
 		return skip(ReasonNameOnly)
 	case en != nil && jp != nil && en.Value == u.KR && jp.Value == u.KR:
-		return skip(ReasonIdenticalValue)
+		if !r.translatesIdentical(u) {
+			return skip(ReasonIdenticalValue)
+		}
+		return Decision{Translate: true, IdenticalExempt: true}
 	}
 	return Decision{Translate: true}
 }
@@ -268,6 +311,19 @@ func (r *Rules) hasCommentPrefix(kr string) bool {
 	t := strings.TrimSpace(kr)
 	for _, p := range r.commentPrefixes {
 		if strings.HasPrefix(t, p) {
+			return true
+		}
+	}
+	return false
+}
+
+// translatesIdentical reports whether u is in a file and field, and has a KR
+// text, that are translated even when KR, EN and JP are the same.
+func (r *Rules) translatesIdentical(u units.Unit) bool {
+	base := path.Base(u.File)
+	for _, g := range r.translateSame {
+		// The glob was checked when the rules were loaded, so Match cannot fail.
+		if ok, _ := path.Match(g.FileGlob, base); ok && g.Field == u.Field && (g.re == nil || g.re.MatchString(u.KR)) {
 			return true
 		}
 	}

@@ -1,0 +1,24 @@
+# 可以寫 <rubycustomize=注音>本文</rubycustomize> 的位置。每個位置都在遊戲裡測過才加入
+# （見 docs/superpowers/specs/2026-11-16-ruby-customize-design.md 第 1 節）。
+# files 比對語言包內的路徑（不含語言前綴），寫法同其他規則檔；
+# field 必須和單位的欄位名完全相同，同一個檔裡的其他欄位不在白名單內。
+size: 50%        # 注音的字級
+voffset: 1em     # 注音上移的高度
+fields:
+  # 2026-11-16 實測：劇情名牌、劇情紀錄。ScenarioModelCodes* 包含所有同名開頭的檔，
+  # 它們都是說話者名稱表。
+  - files: ['ScenarioModelCodes*']
+    field: name
+  # 2026-11-16 實測：同上（列上的說話者名稱優先於 ScenarioModelCodes）。
+  - files: ['StoryData/**']
+    field: teller
+  # 2026-11-16 實測：大廳卡片、語音分頁、戰鬥氣泡。語音分頁每一格的標題 desc 不在白名單內。
+  - files: ['PersonalityVoiceDlg/**']
+    field: dlg
+  # 2026-11-16 實測：播報員試聽、戰鬥中的播報員對話框。
+  - files: ['BattleAnnouncerDlg/**']
+    field: dlg
+  # 2026-11-16 實測：角色頭上的戰鬥氣泡。中央字幕、演出字幕沒有另外測，
+  # 但三種元件都把 dlg 原樣交給顯示元件（研究報告 05-battle-speech-bubble.md），所以一併列入。
+  - files: ['BattleSpeechBubbleDlg*']
+    field: dlg

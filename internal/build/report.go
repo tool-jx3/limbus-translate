@@ -377,6 +377,7 @@ func infoTranslations(b *strings.Builder, opt Options, info Info, sum *plan.Summ
 		}
 	}
 	fmt.Fprintf(b, "\n- 這次新翻（origin claude，Since 為 `%s`）：%d 個單位\n", info.RawTag, rep.NewTranslated)
+	fmt.Fprintf(b, "- 轉換成 TextMeshPro 標籤的 rubycustomize：%d 個單位\n", rep.RubyConverted)
 	if sum != nil {
 		if sum.PrevRawTag != sum.RawTag {
 			// A frozen unit whose KR changed keeps its translation.

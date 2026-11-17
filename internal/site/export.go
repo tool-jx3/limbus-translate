@@ -12,6 +12,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gold"
+	"github.com/tool-jx3/limbus-translate/internal/rubyx"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -170,8 +171,11 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		// The other copies are identifiers and empty texts.
 		searchedCopy := map[string]bool{} // by pointer
 		file, sum, aligner, err := buildFile(in, p, func(u Unit, ku units.Unit, en, jp *align.LangAligned) {
-			if u.O == store.OriginCopy && in.Fields != nil && in.Fields.Classify(ku, en, jp).Reason == fields.ReasonIdenticalValue {
-				searchedCopy[u.P] = true
+			if u.O == store.OriginCopy && in.Fields != nil {
+				// A unit translate_identical sends to be translated may still be a copy.
+				if d := in.Fields.Classify(ku, en, jp); d.Translate || d.Reason == fields.ReasonIdenticalValue {
+					searchedCopy[u.P] = true
+				}
 			}
 		})
 		if err != nil {
@@ -182,7 +186,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 			key := units.Key(p, u.P)
 			if goldWanted[key] {
 				gu := GoldUnit{Path: p, Ptr: u.P, KR: u.KR, JP: u.JP, EN: u.EN, ZH: in.Records[key].ZH}
-				if u.ZH != gu.ZH {
+				if !rubyx.Shipped(gu.ZH, u.ZH) {
 					gu.Shipped = u.ZH
 				}
 				goldUnits[key] = gu

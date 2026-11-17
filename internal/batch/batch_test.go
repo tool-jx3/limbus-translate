@@ -100,11 +100,22 @@ func testRulesWith(t *testing.T, glossary string) *rules.Rules {
 // replaced.
 func testRulesWithRouting(t *testing.T, routing, glossary string) *rules.Rules {
 	t.Helper()
+	return testRulesWithFiles(t, routing, glossary, nil)
+}
+
+// testRulesWithFiles is testRulesWithRouting with more files in the rules
+// root: a path relative to the root (such as rules.RubyCustomizeFile) to its
+// content.
+func testRulesWithFiles(t *testing.T, routing, glossary string, more map[string]string) *rules.Rules {
+	t.Helper()
 	root := t.TempDir()
 	writeFile(t, filepath.Join(root, "guides/routing.yaml"), routing)
 	writeFile(t, filepath.Join(root, "glossary/terms.yaml"), glossary)
 	writeFile(t, filepath.Join(root, "guides/characters/faust.md"), testFaust)
 	writeFile(t, filepath.Join(root, "guides/characters/sinclair.md"), testSinclair)
+	for p, content := range more {
+		writeFile(t, filepath.Join(root, filepath.FromSlash(p)), content)
+	}
 	r, err := rules.Load(root)
 	if err != nil {
 		t.Fatal(err)
@@ -2215,8 +2226,10 @@ func TestSchemasMatchTheTypes(t *testing.T) {
  {"id":2,"model":"파우스트","content":"終"}
 ]}`}
 	env := newEnv(t, kr, en, jp)
-	// A term for some files, so that the term's files are in the batch.
-	env.Rules = testRulesWith(t, "- kr: 위력\n  zh: 威力\n  status: approved\n  forbidden: [力量]\n  files: [\"StoryData/S*\"]\n")
+	// A term for some files, so that the term's files are in the batch, and a
+	// whitelist of <rubycustomize> that has the units, so that they are marked.
+	env.Rules = testRulesWithFiles(t, testRouting, "- kr: 위력\n  zh: 威力\n  status: approved\n  forbidden: [力量]\n  files: [\"StoryData/S*\"]\n",
+		map[string]string{rules.RubyCustomizeFile: "fields:\n  - files: ['StoryData/S001A.json']\n    field: content\n"})
 	pending := items(file, 0, 2)
 	pending[0].Refs = map[string]string{"llc": "a", "ltm": "b"}
 	pending[0].PrevKR, pending[0].PrevZH, pending[0].Draft = "p", "q", "r"
@@ -5395,5 +5408,179 @@ func TestSubmitCountsOnlyOldUnits(t *testing.T) {
 	terms, _ := env.Store.LoadTerms()
 	if len(terms) != 1 || terms[0].Old != nil {
 		t.Errorf("terms = %+v, want one without Old", terms)
+	}
+}
+
+func TestCheckNewAtRubyCustomize(t *testing.T) {
+	r, err := rules.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	const zh = "<rubycustomize=ヨシヒデ>良秀</rubycustomize>"
+	if issues := CheckNewAt(r, "StoryData/P10916.json", "/dataList/3/teller", "요시히데", zh); validate.HasHard(issues) {
+		t.Errorf("issues at a whitelisted teller = %v, want no hard issue", issues)
+	}
+	if issues := CheckNewAt(r, "StoryData/P10916.json", "/dataList/3/content", "요시히데", zh); !hasCode(issues, validate.CodeRubyCustomize) || !validate.HasHard(issues) {
+		t.Errorf("issues at content = %v, want a hard rubycustomize issue", issues)
+	}
+	if issues := CheckNewTermsAt(r, nil, "StoryData/P10916.json", "/dataList/3/teller", "요시히데", zh); validate.HasHard(issues) {
+		t.Errorf("CheckNewTermsAt at a whitelisted teller = %v, want no hard issue", issues)
+	}
+}
+
+// The twins of a unit take its translation only where the tag may stand: the
+// position of each twin decides, not the position of the unit it comes from.
+func TestTwinsDoNotCarryRubyCustomizeOutOfTheWhitelist(t *testing.T) {
+	root := t.TempDir()
+	writeFile(t, filepath.Join(root, "guides/routing.yaml"), testRouting)
+	writeFile(t, filepath.Join(root, "glossary/terms.yaml"), testGlossary)
+	writeFile(t, filepath.Join(root, "guides/characters/faust.md"), testFaust)
+	writeFile(t, filepath.Join(root, rules.RubyCustomizeFile), "fields:\n  - files: ['A.json', 'C.json']\n    field: content\n")
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	kr := map[string]string{"A.json": oneLine(t, twinText), "B.json": oneLine(t, twinText), "C.json": oneLine(t, twinText)}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = r
+	seed(t, env, append(append(items("A.json", 0, 1), items("B.json", 0, 1)...), items("C.json", 0, 1)...)...)
+
+	b := mustNext(t, env, NextOptions{MaxUnits: 1})
+	if b == nil || b.File != "A.json" {
+		t.Fatalf("batch = %+v, want A.json's line", b)
+	}
+	zh := "<rubycustomize=ドウイツ>同一</rubycustomize>句話"
+	res, err := Submit(env, b, []OutUnit{{Key: key("A.json", 0), ZH: zh}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !slices.Equal(res.Accepted, []string{key("A.json", 0)}) {
+		t.Fatalf("accepted = %v, want the whitelisted line accepted", res.Accepted)
+	}
+	if want := []string{key("C.json", 0)}; !slices.Equal(res.Reused, want) {
+		t.Errorf("reused = %v, want %v: only C.json may carry the tag", res.Reused, want)
+	}
+	if _, queued := pendingMap(t, env)[key("B.json", 0)]; !queued {
+		t.Error("B.json's line was filled in with a translation that has the tag out of the whitelist")
+	}
+}
+
+// A unit at a position of the whitelist (rules/ruby-customize.yaml, the
+// project's own file) is marked, so that the translator knows that
+// <rubycustomize> may stand there; a unit elsewhere has no mark. The batch
+// still matches its schema.
+func TestBatchMarksRubyCustomizeUnits(t *testing.T) {
+	const file = "StoryData/S001A.json"
+	whitelist, err := os.ReadFile(filepath.Join("..", "..", filepath.FromSlash(rules.RubyCustomizeFile)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	kr := map[string]string{file: `{"dataList":[{"id":0,"model":"파우스트","teller":"요시히데","content":"요시히데."}]}`}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWithFiles(t, testRouting, testGlossary, map[string]string{rules.RubyCustomizeFile: string(whitelist)})
+	teller, content := file+"|/dataList/0/teller", key(file, 0)
+	seed(t, env, store.PendingItem{Key: teller, Reason: "new"}, store.PendingItem{Key: content, Reason: "new"})
+
+	b := mustNext(t, env, NextOptions{})
+	if b == nil {
+		t.Fatal("no batch")
+	}
+	data, err := json.Marshal(b)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var top map[string]any
+	if err := json.Unmarshal(data, &top); err != nil {
+		t.Fatal(err)
+	}
+	schema := loadSchema(t, "batch.schema.json")
+	checkObject(t, "batch", top, schema)
+	props, _ := schemaProps(t, schema)
+	unitSchema := props["units"]["items"].(map[string]any)
+	unitProps, _ := schemaProps(t, unitSchema)
+	if p, ok := unitProps["ruby_customize"]; !ok || p["type"] != "boolean" {
+		t.Errorf("the unit schema's ruby_customize = %v (declared %v), want a boolean property", p, ok)
+	}
+	byKey := map[string]map[string]any{}
+	for i, u := range top["units"].([]any) {
+		um := u.(map[string]any)
+		checkObject(t, fmt.Sprintf("unit %d", i), um, unitSchema)
+		byKey[um["key"].(string)] = um
+	}
+	if _, ok := byKey[teller]; !ok {
+		t.Fatalf("units = %v, want the teller in the batch", keysOf(b))
+	}
+	if _, ok := byKey[content]; !ok {
+		t.Fatalf("units = %v, want the content in the batch", keysOf(b))
+	}
+	if v, ok := byKey[teller]["ruby_customize"]; !ok || v != true {
+		t.Errorf("teller ruby_customize = %v (present %v), want true", v, ok)
+	}
+	if v, ok := byKey[content]["ruby_customize"]; ok {
+		t.Errorf("content has ruby_customize = %v, want no such key", v)
+	}
+}
+
+// The texts a batch takes from records (prev_zh, draft and the references,
+// same_text among them) show a unit off the whitelist of <rubycustomize> the
+// body only: a translator who copies them must not write the tag where it may
+// not stand. A unit on the whitelist sees them as they are. The same-text
+// renderings are told apart by what the unit is shown, so a reading does not
+// make a second line of the same body.
+func TestBatchRefsOfUnmarkedUnitsHaveNoRubyCustomize(t *testing.T) {
+	const kr = "요시히데가 말했다"
+	const tagged = "<rubycustomize=ヨシヒデ>良秀</rubycustomize>說"
+	const body = "良秀說"
+	for _, marked := range []bool{false, true} {
+		t.Run(fmt.Sprintf("marked=%v", marked), func(t *testing.T) {
+			env := newEnv(t, map[string]string{"A.json": oneLine(t, kr)}, nil, nil)
+			more := map[string]string{}
+			if marked {
+				more[rules.RubyCustomizeFile] = "fields:\n  - files: ['A.json']\n    field: content\n"
+			}
+			env.Rules = testRulesWithFiles(t, testRouting, testGlossary, more)
+			seed(t, env, store.PendingItem{
+				Key: key("A.json", 0), Reason: "kr_changed", PrevKR: "요시히데", PrevZH: tagged, Draft: tagged,
+				Refs: map[string]string{store.RefAdjustment: tagged, "llc": "舊"},
+			})
+			if err := env.Store.SaveRecords(map[string]store.Record{
+				key("B.json", 0): translated(key("B.json", 0), kr, tagged),
+				key("D.json", 0): translated(key("D.json", 0), kr, body),
+			}); err != nil {
+				t.Fatal(err)
+			}
+			env.SameText = existing.CollectSameText(testTag, []existing.TextUnit{
+				{Key: key("A.json", 0), Group: "other|content|", KR: kr},
+				{Key: key("B.json", 0), Group: "other|content|faust", Speaker: "faust", KR: kr},
+				{Key: key("D.json", 0), Group: "other|content|philip", Speaker: "philip", KR: kr},
+			})
+			b := mustNext(t, env, NextOptions{})
+			if b == nil || len(b.Units) != 1 {
+				t.Fatalf("batch = %+v, want A.json's line", b)
+			}
+			u := b.Units[0]
+			if u.RubyCustomize != marked {
+				t.Fatalf("RubyCustomize = %v, want %v", u.RubyCustomize, marked)
+			}
+			want, wantSame := body, "B.json（faust）："+body
+			if marked {
+				want, wantSame = tagged, "B.json（faust）："+tagged+"\nD.json（philip）："+body
+			}
+			for name, got := range map[string]string{
+				"prev_zh": u.PrevZH, "draft": u.Draft,
+				"refs.adjustment": u.Refs[store.RefAdjustment], "refs.same_text": u.Refs[RefSameText],
+			} {
+				w := want
+				if name == "refs.same_text" {
+					w = wantSame
+				}
+				if got != w {
+					t.Errorf("%s = %q, want %q", name, got, w)
+				}
+			}
+			if u.Refs["llc"] != "舊" || u.PrevKR != "요시히데" {
+				t.Errorf("refs.llc = %q, prev_kr = %q: the other texts must stay as they are", u.Refs["llc"], u.PrevKR)
+			}
+		})
 	}
 }

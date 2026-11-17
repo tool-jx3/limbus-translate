@@ -45,7 +45,7 @@ func Judge(env Env, prov []rules.Term, file, pointer, kr, zh, note string) Verdi
 	} else {
 		scriptOK = env.Rules.ScriptRenderings(file)
 	}
-	issues := checkNewTerms(hits, prov, file, pointer, kr, zh, scriptOK)
+	issues := checkNewTerms(hits, prov, file, pointer, kr, zh, scriptOK, env.Rules.RubyCustomizeAt(file, pointer))
 	entries := append(slices.Clip(hits), prov...)
 	warnOnly := env.Rules.GlossaryWarnOnly(file)
 	for j := range issues {

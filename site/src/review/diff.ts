@@ -1,5 +1,6 @@
 // How a translation differs from another one: the pieces of the other, each
 // told apart from what the two share (longest common subsequence).
+import { toRecordForm } from '../tmp/parse'
 
 /**
  * One unit of a text: an [ID] or one character. A piece with missing is not in the
@@ -15,9 +16,11 @@ const CLOSE_STYLE = /^<\/style>$/i
 
 /**
  * The units of a text; the tags are not units, but a highlight style marks the units inside it.
- * With raw, the tags are units too (as [ID]s are), so a tag one text has and the other lacks shows.
+ * With raw, the tags are units too (as [ID]s are), so a tag one text has and the other lacks shows,
+ * and the converted rubycustomize is written as a record writes it.
  */
 function units(s: string, raw: boolean): Unit[] {
+  if (raw) s = toRecordForm(s)
   const out: Unit[] = []
   let depth = 0
   let pos = 0

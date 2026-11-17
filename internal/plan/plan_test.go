@@ -1604,6 +1604,51 @@ func TestPlanRewriteUpdatesPendingPrevZH(t *testing.T) {
 	e.again()
 }
 
+// A unit the field rules translate only because translate_identical lists its
+// file and field (fields.Decision.IdenticalExempt) keeps the copy record of its
+// KR text from when it was not translated (spec §9, step 4): that copy is what
+// shipped, and it is not queued. A copy record of another KR text of such a
+// unit goes and the unit is queued, as is the copy record of a unit that is
+// translated for any other reason.
+func TestPlanKeepsTheCopyOfAnIdenticalExemptUnit(t *testing.T) {
+	e := newPlanEnv(t)
+	e.rule("rules/fields.manual.yaml", testFieldRules+"translate_identical: [{file_glob: 'ScenarioModelCodes*', field: name, pattern: '\\p{L}'}]\n")
+	const smc = "ScenarioModelCodes-AutoCreated.json"
+	names := dataList(obj{"id": "a", "name": "UNGEZIEFER KAISER"}, obj{"id": "b", "name": "UNGEZIEFER KAISER"})
+	e.snapshotLangs(
+		map[string]string{smc: names, "Skills_A.json": dataList(obj{"id": 1, "desc": "피해를 준다"})},
+		map[string]string{smc: names},
+		map[string]string{smc: names},
+	)
+	same, other, desc := at(smc, "/dataList/0/name"), at(smc, "/dataList/1/name"), descKey("Skills_A.json", 0)
+	kept := copied(same, "UNGEZIEFER KAISER")
+	e.seed([]store.Record{kept, copied(other, "UNGEZIEFER"), copied(desc, "피해를 준다")}, nil)
+
+	sum := e.run("")
+
+	recs := e.records()
+	if got := recs[same]; !reflect.DeepEqual(got, kept) {
+		t.Errorf("exempt unit record = %+v, want the copy kept unchanged %+v", got, kept)
+	}
+	for _, key := range []string{other, desc} {
+		if rec, has := recs[key]; has {
+			t.Errorf("%s has the record %+v, want the copy gone", key, rec)
+		}
+	}
+	want := map[string]store.PendingItem{
+		other: {Key: other, Reason: ReasonNew},
+		desc:  {Key: desc, Reason: ReasonNew},
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %v\nwant %v", got, want)
+	}
+	if sum.Pending != 2 {
+		t.Errorf("Pending = %d, want 2", sum.Pending)
+	}
+
+	e.again()
+}
+
 // A unit the field rules translate and that has no translation of its KR text
 // is queued (spec 8.2, step 6), and a copy is no translation: it goes.
 func TestPlanQueuesUnitsWithoutASource(t *testing.T) {
@@ -1975,5 +2020,31 @@ func TestPlanLeavesUnusableRecordsOutOfTheTable(t *testing.T) {
 	}
 	if rs := idx.For(long, "", zhOf); len(rs) != 1 || rs[0].ZH != "好句" {
 		t.Errorf("For(long) = %+v, want only the usable 好句", rs)
+	}
+}
+
+// A rewrite that puts <rubycustomize> into a unit is held to the whitelist
+// with the position of that unit: it lands in a teller and is refused in a
+// content.
+func TestApplyRewritesKeepsRubyCustomizeInTheWhitelist(t *testing.T) {
+	e := newPlanEnv(t)
+	const f = "StoryData/S1.json"
+	teller, content := at(f, "/dataList/0/teller"), at(f, "/dataList/1/content")
+	e.snapshot(map[string]string{f: dataList(obj{"id": 1, "teller": "요시히데"}, obj{"id": 2, "content": "요시히데"})})
+	e.seed([]store.Record{translated(teller, "요시히데", "良秀"), translated(content, "요시히데", "良秀")}, nil)
+	e.rule(rules.RubyCustomizeFile, "fields:\n  - files: ['StoryData/**']\n    field: teller\n")
+	e.rule("rules/rewrite/2026-11-16-ruby.yaml", "reason: 加注音\nfiles: [\"StoryData/**\"]\npattern: '良秀'\nreplace: '<rubycustomize=ヨシヒデ>良秀</rubycustomize>'\n")
+
+	sum := e.run("")
+
+	recs := e.records()
+	if got, want := recs[teller].ZH, "<rubycustomize=ヨシヒデ>良秀</rubycustomize>"; got != want {
+		t.Errorf("teller zh = %q, want %q", got, want)
+	}
+	if got := recs[content].ZH; got != "良秀" {
+		t.Errorf("content zh = %q, want 良秀 unchanged: the tag is not allowed there", got)
+	}
+	if want := []Applied{{ID: "2026-11-16-ruby", Units: 1}}; !reflect.DeepEqual(sum.RewriteApplied, want) {
+		t.Errorf("RewriteApplied = %+v, want %+v", sum.RewriteApplied, want)
 	}
 }

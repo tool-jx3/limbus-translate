@@ -587,9 +587,9 @@ func TestStoryMayAddRuby(t *testing.T) {
 	if issues := Check(kr, zh, Context{File: story}); HasHard(issues) {
 		t.Errorf("a story line with added ruby is rejected: %+v", issues)
 	}
-	// RPG dialogue is story text too (guides/base.md).
-	if issues := Check(kr, zh, Context{File: "RPGSystem/rpg-loc-dialogue-floor-2.json"}); HasHard(issues) {
-		t.Errorf("an RPG dialogue line with added ruby is rejected: %+v", issues)
+	// RPG dialogue takes no ruby that KR lacks.
+	if issues := Check(kr, zh, Context{File: "RPGSystem/rpg-loc-dialogue-floor-2.json"}); !hasCode(issues, CodeTagMismatch) {
+		t.Errorf("an RPG dialogue line with added ruby is accepted: %+v", issues)
 	}
 	const one = `還有，別叫我良秀，叫我<ruby=Ryōshū>良秀</ruby>。`
 	const krRuby = `베라, <ruby=천퇴성>삽시호</ruby>.`
@@ -1304,6 +1304,10 @@ func TestMatchText(t *testing.T) {
 		{`(턴 당 <style=x>2</style>회)`, `(턴 당 2회)`},
 		{`<color=#fff>x</color>`, `x`},
 		{`plain`, `plain`},
+		// rubycustomize: only the body is text (spec 7), quoted reading or not
+		{`<rubycustomize=ヨシヒデ>良秀</rubycustomize>說`, `良秀說`},
+		{`<rubycustomize="UNGEZIEFER KAISER">害蟲皇帝</rubycustomize>`, `害蟲皇帝`},
+		{`<b><rubycustomize=ヨシヒデ>良秀</rubycustomize></b>`, `良秀`},
 	} {
 		if got := MatchText(c.in); got != c.want {
 			t.Errorf("MatchText(%q) = %q, want %q", c.in, got, c.want)

@@ -1,7 +1,7 @@
 // What the search reads and how it matches: the text of a game string without
 // its tags, and a matcher that gives the ranges of a query in a text. Pure, so
 // the worker and the tests share it.
-import { parseTMP, type TmpNode } from '../tmp/parse'
+import { CONVERTED_RUBY, parseTMP, type TmpNode } from '../tmp/parse'
 
 /** [start, end) offsets in UTF-16 code units of the string that was matched. */
 export type Ranges = [number, number][]
@@ -32,13 +32,15 @@ function plain(nodes: TmpNode[]): string {
 
 /**
  * The text of a game string: its tags are gone (a <ruby> keeps the text it is
- * over, not its reading, and a sprite is gone with the rest) and what the game
- * fills in, [ID] and {n}, stays. A line ending is a "\n".
+ * over, not its reading, except that the converted <rubycustomize> keeps both,
+ * as its string does in the pack, with a space between them so that a query
+ * does not match across the two; a sprite is gone with the rest) and what the
+ * game fills in, [ID] and {n}, stays. A line ending is a "\n".
  */
 export function stripTags(s: string): string {
   // Without a < there is no tag, and a \r is the one thing the parser would change.
   if (!s.includes('<') && !s.includes('\r')) return s
-  return plain(parseTMP(s))
+  return plain(parseTMP(s.replace(CONVERTED_RUBY, '$1 $2')))
 }
 
 const LATIN = /^\p{Script=Latin}$/u

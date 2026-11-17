@@ -53,7 +53,7 @@ func runValidate(ctx *cli.Context, args []string) error {
 	kr := flags.String("kr", "", "the Korean text")
 	zh := flags.String("zh", "", "the translation")
 	file := flags.String("file", "", "the pack file the text is from, such as StoryData/S1001B.json: glossary terms that apply to some files only are enforced when it matches, and half-width brackets are reported in the labels of RPGSystem/")
-	pointer := flags.String("pointer", "", "the JSON pointer of the unit inside --file, such as /dataList/0/desc: the checks that depend on the field of the unit are skipped without it")
+	pointer := flags.String("pointer", "", "the JSON pointer of the unit inside --file, such as /dataList/0/desc: the checks that depend on the field of the unit are skipped without it, and <rubycustomize> is rejected, since its position is unknown")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("validate: " + err.Error())
 	}
@@ -72,9 +72,12 @@ func runValidate(ctx *cli.Context, args []string) error {
 		return err
 	}
 	normalized := validate.Normalize(*kr, *zh)
-	issues := validate.Check(*kr, normalized, validate.Context{Terms: r.ValidateTerms(*file, *kr), File: *file, Pointer: *pointer, ScriptOK: r.ScriptRenderings(*file)})
+	issues := validate.Check(*kr, normalized, validate.Context{Terms: r.ValidateTerms(*file, *kr), File: *file, Pointer: *pointer, ScriptOK: r.ScriptRenderings(*file), RubyCustomize: r.RubyCustomizeAt(*file, *pointer)})
 	if issues == nil {
 		issues = []validate.Issue{}
+	}
+	if *pointer == "" {
+		unknownPosition(issues)
 	}
 	hard := validate.HasHard(issues)
 	if err := ctx.Emit(validateReport{Normalized: normalized, OK: !hard, Issues: issues}); err != nil {
@@ -84,4 +87,18 @@ func runValidate(ctx *cli.Context, args []string) error {
 		return cli.ErrFindings
 	}
 	return nil
+}
+
+// unknownPosition rewords the rubycustomize issue of a check made without
+// --pointer: the position of the text is unknown, so the tag cannot be
+// allowed, which is not the same as a position off the whitelist. Without a
+// pointer the tag is never allowed (rules.Rules.RubyCustomizeAt), so the issue
+// is always that one.
+func unknownPosition(issues []validate.Issue) {
+	for i := range issues {
+		if issues[i].Code == validate.CodeRubyCustomize {
+			issues[i].Message = "<rubycustomize> is not allowed here: the position is unknown because --pointer was not given; " +
+				"give --file and --pointer, and the tag may stand only at a position in " + rules.RubyCustomizeFile
+		}
+	}
 }

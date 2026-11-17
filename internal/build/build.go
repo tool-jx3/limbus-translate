@@ -26,6 +26,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/gametext"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/rubyx"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -165,6 +166,9 @@ type Report struct {
 	// records that were replaced because they break the structure of KR
 	// (structural and frozen fallbacks). Each unit counts once.
 	StandIn int `json:"stand_in"`
+	// RubyConverted counts the units whose <rubycustomize> was converted to
+	// TextMeshPro tags in the pack.
+	RubyConverted int `json:"ruby_converted"`
 	// WarningSamples holds, for each code of Warnings, the first 10 of the
 	// keys of the units that warn, in sorted order.
 	WarningSamples map[string][]string `json:"warning_samples"`
@@ -293,6 +297,10 @@ type builder struct {
 	rep     *Report
 	glyphs  runeSet
 	scripts *rules.ScriptCache
+	// in measures the width of the characters the ruby conversion needs;
+	// rubyStyle is the style of that conversion (set with the rules).
+	in        *inputs
+	rubyStyle rubyx.Style
 	// warnKeys are the keys of the units that warn, by code, in the order
 	// they were met; renders groups the translations by the text they render.
 	warnKeys   map[string][]string
@@ -432,6 +440,7 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	b := &builder{
 		opt: opt, src: src, fr: fr, game: game,
 		scripts: rules.NewScriptCache(opt.Rules),
+		in:      in,
 		records: records,
 		queued:  make(map[string]bool, len(pending)),
 		rep: &Report{
@@ -447,6 +456,12 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	}
 	for _, it := range pending {
 		b.queued[it.Key] = true
+	}
+	// Without a whitelist nothing converts, and there is no style to parse.
+	if opt.Rules != nil && len(opt.Rules.RubyCustomize.Fields) > 0 {
+		if b.rubyStyle, err = opt.Rules.RubyStyle(); err != nil {
+			return nil, fmt.Errorf("build: %w", err)
+		}
 	}
 	if opt.Rules != nil {
 		all, err := st.LoadTerms()
@@ -517,6 +532,15 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	return b.rep, nil
 }
 
+// ensureNoRubyCustomize is the last guard before a unit enters the pack: the
+// game shows <rubycustomize> as it is, so none may be left, converted or not.
+func ensureNoRubyCustomize(file, pointer, text string) error {
+	if strings.Contains(text, "<rubycustomize") || strings.Contains(text, "</rubycustomize") {
+		return fmt.Errorf("build: %s %s: <rubycustomize> left in the pack", file, pointer)
+	}
+	return nil
+}
+
 // buildFile returns the output of one KR file: the KR tree with every unit
 // filled in.
 func (b *builder) buildFile(file string) ([]byte, error) {
@@ -531,6 +555,13 @@ func (b *builder) buildFile(file string) ([]byte, error) {
 		text, err := b.fill(u, frozen, al)
 		if err != nil {
 			return nil, fmt.Errorf("build: %s: %w", file, err)
+		}
+		if rubyx.Has(text) && b.rubyCustomizeAt(file, u.Pointer) {
+			text = rubyx.Convert(text, b.rubyStyle, b.in.advance)
+			b.rep.RubyConverted++
+		}
+		if err := ensureNoRubyCustomize(file, u.Pointer, text); err != nil {
+			return nil, err
 		}
 		b.glyphs.addString(text)
 		if text == u.KR {
@@ -625,7 +656,7 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 	}
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
-	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File, Pointer: u.Pointer, ScriptOK: b.scriptOK(u.File), Terms: b.terms(u.File, u.KR), Game: b.game})
+	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File, Pointer: u.Pointer, ScriptOK: b.scriptOK(u.File), Terms: b.terms(u.File, u.KR), Game: b.game, RubyCustomize: b.rubyCustomizeAt(u.File, u.Pointer)})
 	if named := b.nameIssue(u, key, rec, en, jp); named != nil {
 		issues = append(issues, *named)
 	}
@@ -878,6 +909,12 @@ func (b *builder) addRendering(u units.Unit, key, zh string, isNew bool) {
 // the approved renderings for file with kana or Hangul; none without rules.
 func (b *builder) scriptOK(file string) []string {
 	return b.scripts.For(file)
+}
+
+// rubyCustomizeAt is whether <rubycustomize> may stand at the unit at pointer
+// in file; never without rules.
+func (b *builder) rubyCustomizeAt(file, pointer string) bool {
+	return b.opt.Rules != nil && b.opt.Rules.RubyCustomizeAt(file, pointer)
 }
 
 // terms are the glossary terms u.KR contains in file, weighed with the

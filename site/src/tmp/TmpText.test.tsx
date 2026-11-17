@@ -37,6 +37,20 @@ describe('TmpText', () => {
     expect(el.textContent).toBe('x')
   })
 
+  it('shows the converted rubycustomize structure as ruby', () => {
+    const el = show('<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>')
+    const ruby = el.querySelector('ruby')
+    expect(ruby?.querySelector('rt')?.textContent).toBe('ヨシヒデ')
+    expect(ruby?.firstChild?.textContent).toBe('良秀')
+  })
+
+  it('shows the rubycustomize tag of a record as ruby', () => {
+    const el = show('<rubycustomize="ヨシヒデ">良秀</rubycustomize>')
+    const ruby = el.querySelector('ruby')
+    expect(ruby?.querySelector('rt')?.textContent).toBe('ヨシヒデ')
+    expect(ruby?.firstChild?.textContent).toBe('良秀')
+  })
+
   it('shows ruby with the reading above the text', () => {
     const el = show('<ruby=天退星>插翅虎</ruby>')
     const ruby = el.querySelector('ruby')
@@ -111,6 +125,17 @@ describe('TmpText', () => {
     expect(el.textContent).toBe(s)
     expect(el.querySelector('color, script, br, .tok')).toBeNull()
     expect(el.querySelector('.tmp-raw')).not.toBeNull()
+  })
+
+  it('shows the converted rubycustomize structure as a record writes it when raw, in any language', () => {
+    const converted = '<nobr>良秀<space=-2em><voffset=1em><size=50%>ヨシヒデ</size></voffset><space=0em></nobr>'
+    for (const lang of ['kr', 'jp', 'en', 'zh'] as const) {
+      const el = show(`就算${converted}姊姊`, { raw: true, lang })
+      expect(el.querySelector('.tmp-raw')?.textContent, lang).toBe('就算<rubycustomize=ヨシヒデ>良秀</rubycustomize>姊姊')
+      expect(el.querySelector('ruby'), lang).toBeNull()
+    }
+    // a lone nobr stays as it is
+    expect(show('<nobr>甲乙</nobr>', { raw: true }).textContent).toBe('<nobr>甲乙</nobr>')
   })
 
   it('sets the lang attribute of its language', () => {

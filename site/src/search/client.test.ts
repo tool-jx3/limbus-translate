@@ -55,6 +55,13 @@ describe('createSearchClient', () => {
     expect(await result).toEqual({ hits: [hit], total: 1 })
   })
 
+  it('asks for the text with its tags only with raw', () => {
+    const client = createSearchClient(make)
+    void client.search('<color', 'zh', false, true)
+    void client.search('警告', 'zh', false)
+    expect(worker.sent.map((q) => q.raw)).toEqual([true, false])
+  })
+
   it('resolves with the error of the worker', async () => {
     const client = createSearchClient(make)
     const result = client.search('(', 'zh', true)

@@ -332,3 +332,32 @@ func mapsEqual[V comparable](a, b map[string]V) bool {
 	}
 	return true
 }
+
+// A tag the whitelist allows is not a violation: the old rules allow the tag
+// in a teller and in a content, the new ones in a teller only, so only the
+// content is a new violation.
+func TestImpactAcceptsWhitelistedRubyCustomize(t *testing.T) {
+	const f = "StoryData/S1.json"
+	kr := krPack(t, map[string]string{f: `{"dataList":[{"id":0,"teller":"요시히데","content":"요시히데"}]}`})
+	const zh = "<rubycustomize=ヨシヒデ>良秀</rubycustomize>"
+	teller, content := units.Key(f, "/dataList/0/teller"), units.Key(f, "/dataList/0/content")
+	recs := records(record(teller, "요시히데", zh, store.OriginClaude), record(content, "요시히데", zh, store.OriginClaude))
+	allow := func(fields ...string) *rules.Rules {
+		r := &rules.Rules{}
+		for _, field := range fields {
+			r.RubyCustomize.Fields = append(r.RubyCustomize.Fields, rules.RubyField{Files: []string{"StoryData/**"}, Field: field})
+		}
+		return r
+	}
+
+	got, err := Run(Inputs{Old: allow("teller", "content"), New: allow("teller"), Records: recs, KR: kr})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Checked != 2 || got.Units != 1 {
+		t.Errorf("Checked = %d, Units = %d, want 2 and 1 (the content only)", got.Checked, got.Units)
+	}
+	if want := []string{content}; !slices.Equal(got.Samples["rubycustomize"], want) {
+		t.Errorf("Samples = %v, want the key %v", got.Samples, want)
+	}
+}
