@@ -20,6 +20,6 @@
 
 ## 常見錯誤
 
-- 漏掉 KR 的標籤：有 205 行 KR 帶某種標籤（如 `<style>`）而舊譯少了，多在 `EGOgift_MirrorDungeon*`（base.md「補充規則」的「標籤」）
-- 舊譯曾把 `[ID]` 改寫成「中文＋空格」，`EGOgift*` 有 56 處；KR 寫 `[ID]` 的地方一律保留（base.md「資料補充」第 5 條、「補充規則」）
-- 修正 draft 時刪掉了中文關鍵字名稱上的 `<noparse>`，後由人工還原；規則見 base.md「`<noparse>`」（rules/adjustments/2026-11-04-noparse.yaml，本族群 3 筆，例 `EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/25/desc`）
+- 漏掉 KR 的標籤：有 205 行 KR 帶某種標籤（如 `<style>`）而舊譯少了，多在 `EGOgift_MirrorDungeon*`（base.md「代碼與標籤」的「種類與數量同 KR」）
+- 舊譯曾把 `[ID]` 改寫成「中文＋空格」，`EGOgift*` 有 56 處；KR 寫 `[ID]` 的地方一律保留（base.md「`[ID]` 一律保留」）
+- 修正 draft 時刪掉了中文關鍵字名稱上的 `<noparse>`，後由人工還原；規則見 `guides/shared/skill-text.md`「`<noparse>`」（rules/adjustments/2026-11-04-noparse.yaml，本族群 3 筆，例 `EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/25/desc`）

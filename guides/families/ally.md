@@ -16,5 +16,5 @@
 
 ## 常見錯誤
 
-- 舊譯曾把 `[ID]` 改寫成「中文＋空格」：共 1,088 處，幾乎都在 `Skills*`（842）、`Passives*`（157）；KR 寫 `[ID]` 的地方一律保留（base.md「資料補充」第 5 條、「補充規則」）
-- 修正 draft 時刪掉了中文關鍵字名稱上的 `<noparse>`，後由人工還原；規則見 base.md「`<noparse>`」（rules/adjustments/2026-11-04-noparse.yaml，本族群 8 筆，例 `Passives.json|/dataList/259/desc`）
+- 舊譯曾把 `[ID]` 改寫成「中文＋空格」：共 1,088 處，幾乎都在 `Skills*`（842）、`Passives*`（157）；KR 寫 `[ID]` 的地方一律保留（base.md「`[ID]` 一律保留」）
+- 修正 draft 時刪掉了中文關鍵字名稱上的 `<noparse>`，後由人工還原；規則見 `guides/shared/skill-text.md`「`<noparse>`」（rules/adjustments/2026-11-04-noparse.yaml，本族群 8 筆，例 `Passives.json|/dataList/259/desc`）

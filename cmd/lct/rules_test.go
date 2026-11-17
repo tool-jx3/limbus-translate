@@ -173,8 +173,8 @@ func TestGuideResolve(t *testing.T) {
 	if err := json.Unmarshal([]byte(out), &got); err != nil {
 		t.Fatalf("output is not JSON: %v\n%s", err, out)
 	}
-	// A story file gets the ruby guide (routing.yaml guides:), before the characters.
-	want := []string{"guides/base.md", "guides/families/story-main.md", "guides/shared/ruby.md", "guides/characters/faust.md", "guides/characters/dante.md"}
+	// A story file gets the ruby and story label guides (routing.yaml guides:), before the characters.
+	want := []string{"guides/base.md", "guides/families/story-main.md", "guides/shared/ruby.md", "guides/shared/story-labels.md", "guides/characters/faust.md", "guides/characters/dante.md"}
 	if got.File != "StoryData/S1037B.json" || got.Family != "story-main" || strings.Join(got.Guides, ",") != strings.Join(want, ",") {
 		t.Errorf("resolved = %+v", got)
 	}

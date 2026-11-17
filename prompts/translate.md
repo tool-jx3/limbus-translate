@@ -13,15 +13,15 @@
 - `en`、`jp` 的 `method` 是對齊方式。`sequence` 是依序列比對推定的，可能對到別句：與 KR 對不上時就不用它。`pointer`、`id` 較可靠，但仍以 KR 為準。沒有 `en`／`jp` 時只依 KR
 - `field` 是文字所在的欄位（如 `content`、`dlg`、`name`、`desc`），可據以判斷是台詞、名稱還是說明
 - `file` 是單位所在的檔案。劇情批次只有一個檔案；其他批次可能含同族群的多個檔案（批次的 `files`），各單位依自己的 `file` 判斷
-- KR 只有數字或符號、或是有換行時，依 `guides/base.md`「標點與書寫」的補充規則
+- KR 只有數字或符號、或是有換行時，依 `guides/base.md` 的「標點與書寫」
 
 ## 說話者、上下文與語氣
 
 - `speaker` 是角色 id 時，`guides` 含有該角色的指引（`guides/characters/<id>.md`）：依它決定自稱、第二人稱、稱謂與語氣。指引依檔名或人格區分語氣時，以單位的 `file` 判斷
 - `speaker` 是其他字串時，那是指引沒收錄的說話者（那一行的 `model`，或 RPG 對話的 `speaker` 欄位的原值），依 KR 語體與劇情判斷；空字串是旁白、說明或系統文字
 - 批次的 `npcs` 列出單位與 `context` 中、在路人名單（`guides/npcs.yaml`）上的說話者：`model` 對到 `speaker`，`gender` 是這個人的性別（文本沒說就沒有），`note` 說明身分與出處
-- 「您／你」依 `guides/base.md` 的「第二人稱：您／你」；「你／妳」「他／她」依「性別：你／妳、他／她」與角色指引或 `npcs` 的 `gender`。聽者是誰要從劇情判斷
-- 標點依 `guides/base.md` 的「標點與書寫」與「與程式語言有關的翻譯須知」
+- 「您／你」依 `guides/base.md`「人稱與稱呼」的「第二人稱：您／你」；「你／妳」「他／她」依同節的「性別：你／妳、他／她」與角色指引或 `npcs` 的 `gender`。聽者是誰要從劇情判斷
+- 標點依 `guides/base.md` 的「標點與書寫」；`[ID]`、佔位符與標籤依「代碼與標籤」
 - 劇情批次的 `context` 是已經翻好的前後行（`kr` 與 `zh`）：用來掌握語氣、稱呼、名稱與劇情的連貫，譯文要與它一致。只翻 `units`，不輸出 `context` 的行
 
 ## 名稱與詞彙
@@ -53,7 +53,7 @@
 
 ## 必須保留的內容 `keep`
 
-- `ids`（`[ID]`）、`placeholders`（`{0}`、`<0>`、`{Slot}` 等）、`tags`（TextMeshPro 標籤）要原樣出現在譯文：不翻譯、不改寫，種類與數量都和 KR 相同。位置可以依中文語序調整；標籤要包住對應的文字、成對、正確巢狀，屬性值不改（例外：`<ruby=…>` 的注音要翻譯；劇情（`StoryData/`）台詞可以加 KR 沒有的成對 ruby，也不可把 ruby 改寫成括號。見 `guides/base.md` 的「ruby 的位置」與 `guides/shared/ruby.md`；`<noparse>` 的位置與數量可以和 KR 不同，draft 已有的不要刪，見 `guides/base.md` 的「`<noparse>`」）
+- `ids`（`[ID]`）、`placeholders`（`{0}`、`<0>`、`{Slot}` 等）、`tags`（TextMeshPro 標籤）要原樣出現在譯文：不翻譯、不改寫，種類與數量都和 KR 相同。位置可以依中文語序調整；標籤要包住對應的文字、成對、正確巢狀，屬性值不改（例外：`<ruby=…>` 的注音要翻譯；劇情（`StoryData/`）台詞可以加 KR 沒有的成對 ruby，也不可把 ruby 改寫成括號。見 `guides/base.md` 的「ruby 的位置」與 `guides/shared/ruby.md`；`<noparse>` 的位置與數量可以和 KR 不同，draft 已有的不要刪，見 `guides/shared/skill-text.md` 的「`<noparse>`」）
 - `ruby_customize` 為 true 的單位，譯文可以寫 `<rubycustomize=注音>本文</rubycustomize>`（KR 沒有也可以，不算進 `tags`），什麼時候寫依 `guides/shared/ruby.md` 的「白名單位置的注音」；沒有 `ruby_customize` 的單位不可以寫，寫了會退回
 - `dante_wrapper` 為 true 時，譯文整句包在 `<…>` 裡（見 `guides/characters/dante.md`）
 

@@ -6,9 +6,9 @@
 
 | 路徑 | 內容 | 何時套用 |
 |---|---|---|
-| `base.md` | 共通原則、程式格式須知、標點 | 每一批都套用 |
+| `base.md` | 共通原則：原則、代碼與標籤、標點與書寫、用語、人稱與稱呼 | 每一批都套用 |
 | `families/<id>.md` | 各族群的文本類型、語氣與人稱、格式慣例、常見錯誤（每份 ≤ 4096 bytes） | 依檔名判斷族群（`routing.yaml` 的 `guide:`） |
-| `shared/<主題>.md` | 跨族群、但不是所有族群都用的規則（每份 ≤ 4096 bytes） | 用到的族群在 `routing.yaml` 以 `include:` 引入；只給部分檔案的（如 `ruby.md`）以 `guides:` 依節點疊加 |
+| `shared/<主題>.md` | 跨族群、但不是所有族群都用的規則（每份 ≤ 4096 bytes），例如 `skill-text.md`（技能文字）、`story-labels.md`（劇情標籤欄位） | 用到的族群在 `routing.yaml` 以 `include:` 引入；只給部分檔案的（如 `ruby.md`、`story-labels.md`）以 `guides:` 依節點疊加 |
 | `families.md` | 給人看的參考：檔名規律、檔案族群、翻譯優先序、凍結項目 | 不送給譯者 |
 | `characters/<id>.md` | 角色語言風格 | 該批出現此角色時（劇情看每行的 `model`，RPG 對話看該行的 `speaker` 欄位，對得上角色 id 才套用；語音／`AbDlg` 看檔名） |
 | `npcs.yaml` | 不需要指引的路人：`model`、性別、一句身分（見「新說話者」） | 批次中有這些 `model` 說話時（單位或前後文），批次的 `npcs` 帶上他們的性別與身分；審核 Issue 與規則建議不再把這些 `model` 列為新說話者 |
@@ -86,7 +86,7 @@
 
 - 幾個族群都用、但不是所有族群都用的規則寫在共用指引，只寫一份；用到的族群在 `routing.yaml` 以 `include:` 引入（依位置給的例外以 `guides:` 引入，例如 `ruby.md`）。不必另立四節，只寫用得到的節（節名與族群指引相同）
 - 門檻（≥ 80% 且 b ≥ 30）以引入它的族群合計計算，每個引入的族群自己有單位時，比例也不低於 80%（腳本逐族群列出）；數字記在依據檔。規則只在部分族群成立時，不引入其他族群
-- 現有：`battle-text.md`（ally、enemy、keywords、mirror：效果文字的括號用半形、`(턴당 N회)`、`최종 위력`、`정신력／체력 N 회복`、`아군`、`처치 시`）；`korean-brackets.md`（ui、events、stage、rpg、ally、enemy、keywords、mirror：方括號裡的韓文照譯）；`ruby.md`（以 `guides:` 給 `StoryData/`、`ScenarioModelCodes`、`PersonalityVoiceDlg/`、`BattleAnnouncerDlg/`、`BattleSpeechBubbleDlg`：劇情台詞的 ruby 與白名單位置的 `<rubycustomize>`；其他檔照 `base.md`「ruby 的位置」）
+- 現有：`battle-text.md`（ally、enemy、keywords、mirror：效果文字的括號用半形、`(턴당 N회)`、`최종 위력`、`정신력／체력 N 회복`、`아군`、`처치 시`）；`korean-brackets.md`（ui、events、stage、rpg、ally、enemy、keywords、mirror：方括號裡的韓文照譯）；`skill-text.md`（ally、enemy、keywords、mirror 接在 `battle-text.md` 之後引入，另以 `guides:` 給 `TutorialMainUIText`：強度／回數／層數的格式、韓文狀態名加空格、技能文字的動詞、消耗數值、斜線與除法、`<noparse>`）；`story-labels.md`（以 `guides:` 給 `StoryData/`、`ScenarioModelCodes`、`StageNode`：地點欄位、稱號與說話者名稱的空格、百貨公司的店名、標籤欄位不留結尾空格）；`ruby.md`（以 `guides:` 給 `StoryData/`、`ScenarioModelCodes`、`PersonalityVoiceDlg/`、`BattleAnnouncerDlg/`、`BattleSpeechBubbleDlg`：劇情台詞的 ruby 與白名單位置的 `<rubycustomize>`；其他檔照 `base.md`「ruby 的位置」）
 - 只在兩三個族群成立、不另立共用檔的，仍寫在各族群的檔：`[X] N 부여`（ally、enemy）、`피해량 +N%`（ally、enemy、mirror）。改其中一份時，其他族群的同一條要一起改
 
 ## 依據檔
