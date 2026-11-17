@@ -1,0 +1,625 @@
+{
+  "tag": "zh-TW-20261112.8",
+  "prev_tag": "zh-TW-20261112.7",
+  "released_at": "2026-11-17T06:35:31Z",
+  "prev_released_at": "2026-11-17T00:53:48Z",
+  "raw_tag": "raw-20261112",
+  "prev_raw_tag": "raw-20261112",
+  "rules_commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5",
+  "prev_rules_commit": "c37673d50c3235596bafb7660156cc9ec7f06c3c",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 30
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "BattleAnnouncerDlg/Announcer_Ryoshu_42.json",
+      "field": "dlg",
+      "ptr": "/dataList/11/dlg",
+      "kind": "zh-changed",
+      "new_kr": "아라야시키는 내게 있어 완소인 검이다. 잃어버린 것에 닿을 실마리도, 이 검에 있을 테지.\n그러니 이딴 시답잖은 일은 알아서 해결해라. 괜한 이유로 내 검이 뽑히면, 네놈들도 완.소. 확정이다.",
+      "old_zh": "阿賴耶識對我來說是珍愛的刀。連接失去之物的線索，理應就在這把刀上。\n所以這種不值一提的破事就自己處理吧。如果讓我因為這種荒唐的理由拔刀，你們也確定真．哀了。",
+      "new_zh": "阿賴耶識對我來說是最愛的刀。連接失去之物的線索，理應就在這把刀上。\n所以這種不值一提的破事就自己處理吧。如果讓我因為這種荒唐的理由拔刀，你們也確定最．哀了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-17-ryoshu-proposals.yaml",
+          "reason": "완소 照阿賴耶的譯法寫「最愛」，後半 완.소. 寫「最．哀」保留愛／哀雙關（提案 22，使用者採用 2026-11-17）"
+        }
+      ]
+    },
+    {
+      "file": "ScenarioModelCodes-AutoCreated.json",
+      "field": "name",
+      "ptr": "/dataList/38/name",
+      "kind": "zh-changed",
+      "new_kr": "콩콩이파보스",
+      "old_zh": "豆豆幫老大",
+      "new_zh": "豆豆幫 老大",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-gang-boss-space-2"
+        }
+      ]
+    },
+    {
+      "file": "ScenarioModelCodes-AutoCreated.json",
+      "field": "name",
+      "ptr": "/dataList/42/name",
+      "kind": "zh-changed",
+      "new_kr": "철공회보스",
+      "old_zh": "鐵工會老大",
+      "new_zh": "鐵工會 老大",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-gang-boss-space-2"
+        }
+      ]
+    },
+    {
+      "file": "ScenarioModelCodes-AutoCreated.json",
+      "field": "name",
+      "ptr": "/dataList/235/name",
+      "kind": "zh-changed",
+      "new_kr": "데드레빗츠보스",
+      "old_zh": "死兔幫老大",
+      "new_zh": "死兔幫 老大",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-gang-boss-space-2"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D101B.json",
+      "field": "place",
+      "ptr": "/dataList/0/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 내부 1층",
+      "old_zh": "會場內部 1樓",
+      "new_zh": "會場 內部 1樓",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D102B.json",
+      "field": "place",
+      "ptr": "/dataList/0/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 내부 1층",
+      "old_zh": "會場內部 1樓",
+      "new_zh": "會場 內部 1樓",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D102B.json",
+      "field": "place",
+      "ptr": "/dataList/127/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 내부 1층",
+      "old_zh": "會場內部 1樓",
+      "new_zh": "會場 內部 1樓",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D103B.json",
+      "field": "place",
+      "ptr": "/dataList/0/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 내부 1층",
+      "old_zh": "會場內部 1樓",
+      "new_zh": "會場 內部 1樓",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D104A.json",
+      "field": "place",
+      "ptr": "/dataList/0/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 1층 실험실 폐허",
+      "old_zh": "會場內部1樓 實驗室廢墟",
+      "new_zh": "會場 1樓 實驗室廢墟",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space-2"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D104A.json",
+      "field": "place",
+      "ptr": "/dataList/81/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 1층 실험실 폐허",
+      "old_zh": "會場內部1樓 實驗室廢墟",
+      "new_zh": "會場 1樓 實驗室廢墟",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space-2"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D104A.json",
+      "field": "place",
+      "ptr": "/dataList/93/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 내부 1층",
+      "old_zh": "會場內部 1樓",
+      "new_zh": "會場 內部 1樓",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D104B.json",
+      "field": "place",
+      "ptr": "/dataList/0/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 1층 실험실 폐허",
+      "old_zh": "會場內部1樓 實驗室廢墟",
+      "new_zh": "會場 1樓 實驗室廢墟",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space-2"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D105B.json",
+      "field": "place",
+      "ptr": "/dataList/0/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 내부 1층",
+      "old_zh": "會場內部 1樓",
+      "new_zh": "會場 內部 1樓",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D105B.json",
+      "field": "place",
+      "ptr": "/dataList/119/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 내부 1층",
+      "old_zh": "會場內部 1樓",
+      "new_zh": "會場 內部 1樓",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D106B.json",
+      "field": "place",
+      "ptr": "/dataList/0/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 내부 1층",
+      "old_zh": "會場內部 1樓",
+      "new_zh": "會場 內部 1樓",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D106B.json",
+      "field": "place",
+      "ptr": "/dataList/7/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 내부 1층",
+      "old_zh": "會場內部 1樓",
+      "new_zh": "會場 內部 1樓",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D107A.json",
+      "field": "place",
+      "ptr": "/dataList/0/place",
+      "kind": "zh-changed",
+      "new_kr": "1층 실험실 폐허",
+      "old_zh": "會場內部1樓 實驗室廢墟",
+      "new_zh": "1樓 實驗室廢墟",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space-4"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D107B.json",
+      "field": "place",
+      "ptr": "/dataList/0/place",
+      "kind": "zh-changed",
+      "new_kr": "1층 실험실 폐허",
+      "old_zh": "會場內部1樓 實驗室廢墟",
+      "new_zh": "1樓 實驗室廢墟",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space-4"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D108B.json",
+      "field": "place",
+      "ptr": "/dataList/2/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 내부 지하 1층",
+      "old_zh": "會場內部 地下1樓",
+      "new_zh": "會場 內部 地下1樓",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D201A.json",
+      "field": "place",
+      "ptr": "/dataList/54/place",
+      "kind": "zh-changed",
+      "new_kr": "심사장 내부 지하 1층",
+      "old_zh": "會場內部 地下1樓",
+      "new_zh": "會場 內部 地下1樓",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/8D201B.json",
+      "field": "place",
+      "ptr": "/dataList/0/place",
+      "kind": "zh-changed",
+      "new_kr": "지하 1층 실험실 폐허",
+      "old_zh": "會場內部1樓 實驗室廢墟",
+      "new_zh": "地下1樓 實驗室廢墟",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space-5"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E916B.json",
+      "field": "place",
+      "ptr": "/dataList/48/place",
+      "kind": "zh-changed",
+      "new_kr": "14구, 폐건물 안, 뒤틀림 의뢰 장소",
+      "old_zh": "14區，廢棄建築物內部 扭曲委託現場",
+      "new_zh": "14區，廢棄建築物 內部，扭曲委託現場",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-place-naibu-space-3"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S207A.json",
+      "field": "teller",
+      "ptr": "/dataList/0/teller",
+      "kind": "zh-changed",
+      "new_kr": "콩콩이파 보스",
+      "old_zh": "豆豆幫老大",
+      "new_zh": "豆豆幫 老大",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-gang-boss-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S207A.json",
+      "field": "teller",
+      "ptr": "/dataList/1/teller",
+      "kind": "zh-changed",
+      "new_kr": "콩콩이파 보스",
+      "old_zh": "豆豆幫老大",
+      "new_zh": "豆豆幫 老大",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-gang-boss-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S207A.json",
+      "field": "teller",
+      "ptr": "/dataList/5/teller",
+      "kind": "zh-changed",
+      "new_kr": "콩콩이파 보스",
+      "old_zh": "豆豆幫老大",
+      "new_zh": "豆豆幫 老大",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-gang-boss-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S207A.json",
+      "field": "teller",
+      "ptr": "/dataList/7/teller",
+      "kind": "zh-changed",
+      "new_kr": "콩콩이파 보스",
+      "old_zh": "豆豆幫老大",
+      "new_zh": "豆豆幫 老大",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-gang-boss-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S207B.json",
+      "field": "teller",
+      "ptr": "/dataList/0/teller",
+      "kind": "zh-changed",
+      "new_kr": "콩콩이파 보스",
+      "old_zh": "豆豆幫老大",
+      "new_zh": "豆豆幫 老大",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-gang-boss-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S207B.json",
+      "field": "teller",
+      "ptr": "/dataList/2/teller",
+      "kind": "zh-changed",
+      "new_kr": "콩콩이파 보스",
+      "old_zh": "豆豆幫老大",
+      "new_zh": "豆豆幫 老大",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-gang-boss-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S207B.json",
+      "field": "teller",
+      "ptr": "/dataList/3/teller",
+      "kind": "zh-changed",
+      "new_kr": "콩콩이파 보스",
+      "old_zh": "豆豆幫老大",
+      "new_zh": "豆豆幫 老大",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-gang-boss-space"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S207B.json",
+      "field": "teller",
+      "ptr": "/dataList/7/teller",
+      "kind": "zh-changed",
+      "new_kr": "콩콩이파 보스",
+      "old_zh": "豆豆幫老大",
+      "new_zh": "豆豆幫 老大",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-17-gang-boss-space"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-17-ryoshu-proposals.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-17-ryoshu-proposals.yaml",
+      "path": "rules/adjustments/2026-11-17-ryoshu-proposals.yaml",
+      "title": "2026-11-17-ryoshu-proposals.yaml",
+      "commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5"
+    },
+    "rewrite:2026-11-17-gang-boss-space": {
+      "kind": "rewrite",
+      "id": "2026-11-17-gang-boss-space",
+      "path": "rules/rewrite/2026-11-17-gang-boss-space.yaml",
+      "title": "說話者名稱的組織與職稱之間空一格（使用者決定 2026-11-17 照現行規則）",
+      "commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5"
+    },
+    "rewrite:2026-11-17-gang-boss-space-2": {
+      "kind": "rewrite",
+      "id": "2026-11-17-gang-boss-space-2",
+      "path": "rules/rewrite/2026-11-17-gang-boss-space-2.yaml",
+      "title": "說話者名稱的組織與職稱之間空一格（使用者決定 2026-11-17 照現行規則）",
+      "commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5"
+    },
+    "rewrite:2026-11-17-place-naibu-space": {
+      "kind": "rewrite",
+      "id": "2026-11-17-place-naibu-space",
+      "path": "rules/rewrite/2026-11-17-place-naibu-space.yaml",
+      "title": "地點欄位「內部」前空一格（使用者決定 2026-11-17）",
+      "commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5"
+    },
+    "rewrite:2026-11-17-place-naibu-space-2": {
+      "kind": "rewrite",
+      "id": "2026-11-17-place-naibu-space-2",
+      "path": "rules/rewrite/2026-11-17-place-naibu-space-2.yaml",
+      "title": "地點欄位照 KR：심사장 1층 실험실 폐허 沒有「內部」，各層之間空一格（使用者決定 2026-11-17 統一地點空格）",
+      "commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5"
+    },
+    "rewrite:2026-11-17-place-naibu-space-3": {
+      "kind": "rewrite",
+      "id": "2026-11-17-place-naibu-space-3",
+      "path": "rules/rewrite/2026-11-17-place-naibu-space-3.yaml",
+      "title": "地點欄位「內部」前空一格、KR 的逗號寫全形「，」（使用者決定 2026-11-17 統一地點空格）",
+      "commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5"
+    },
+    "rewrite:2026-11-17-place-naibu-space-4": {
+      "kind": "rewrite",
+      "id": "2026-11-17-place-naibu-space-4",
+      "path": "rules/rewrite/2026-11-17-place-naibu-space-4.yaml",
+      "title": "地點欄位照 KR：1층 실험실 폐허 沒有「會場內部」（使用者決定 2026-11-17 統一地點空格時一併照 KR 修正）",
+      "commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5"
+    },
+    "rewrite:2026-11-17-place-naibu-space-5": {
+      "kind": "rewrite",
+      "id": "2026-11-17-place-naibu-space-5",
+      "path": "rules/rewrite/2026-11-17-place-naibu-space-5.yaml",
+      "title": "地點欄位照 KR：지하 1층 실험실 폐허 是地下 1 樓，沒有「會場內部」（使用者決定 2026-11-17 統一地點空格時一併照 KR 修正）",
+      "commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5"
+    }
+  }
+}

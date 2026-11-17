@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261112",
   "raw_token": "l20261112_5pAcdxbyP1RC08yIrdPw",
-  "rules_commit": "c37673d50c3235596bafb7660156cc9ec7f06c3c",
-  "built_at": "2026-11-17T00:52:55Z",
+  "rules_commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5",
+  "built_at": "2026-11-17T06:34:45Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,15 +10,15 @@
   },
   "notes_seen": 1058,
   "zips": {
-    "zh-TW_complete_raw-20261112.zip": "ff93a17336d1bc46c6f5e5f2dc35ef0c6091e6a530edfb2a4f23126d3a04d2ef",
-    "zh-TW_text_raw-20261112.zip": "108573c0a02e0ae7b634f5beae9c4f194ab3dc2d4329f9905354bbf739b06275"
+    "zh-TW_complete_raw-20261112.zip": "74edd2d2dee5faa61b66ca470f202e91af1c824d881ebd9e6b74ae7b0c1f8063",
+    "zh-TW_text_raw-20261112.zip": "753f1e4420d00c7ecdeffd00c6c156f8a31da0352dcba91bce23bdeabaab7f06"
   },
   "report": {
     "origins": {
       "claude": 19824,
       "copy": 91932,
-      "human": 221,
-      "paratranz": 163872
+      "human": 222,
+      "paratranz": 163871
     },
     "pending": 0,
     "needs_review": 0,
@@ -565,8 +565,8 @@
     "shown": {
       "claude": 19824,
       "copy": 91932,
-      "human": 221,
-      "paratranz": 163872
+      "human": 222,
+      "paratranz": 163871
     },
     "misaligned": [
       {

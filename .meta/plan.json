@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261112",
   "prev_raw_tag": "raw-20261105",
-  "rules_commit": "c37673d50c3235596bafb7660156cc9ec7f06c3c",
+  "rules_commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5",
   "changes": {
     "unchanged": 272865,
     "moved": 2138,
@@ -82,15 +82,39 @@
   "copy": 0,
   "reused": 0,
   "adjustments": {
-    "applied": 221,
+    "applied": 222,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
   "rewrite_applied": [
     {
-      "id": "2026-11-17-yoshihide-speaker-rubycustomize",
-      "units": 65
+      "id": "2026-11-17-gang-boss-space-2",
+      "units": 3
+    },
+    {
+      "id": "2026-11-17-gang-boss-space",
+      "units": 8
+    },
+    {
+      "id": "2026-11-17-place-naibu-space-2",
+      "units": 3
+    },
+    {
+      "id": "2026-11-17-place-naibu-space-3",
+      "units": 1
+    },
+    {
+      "id": "2026-11-17-place-naibu-space-4",
+      "units": 2
+    },
+    {
+      "id": "2026-11-17-place-naibu-space-5",
+      "units": 1
+    },
+    {
+      "id": "2026-11-17-place-naibu-space",
+      "units": 11
     }
   ],
   "frozen_changed": [],
