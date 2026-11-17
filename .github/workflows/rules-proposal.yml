@@ -1,8 +1,8 @@
 name: rules-proposal
 
 # After an update or a rebuild that ended green, the rules-review skill turns
-# what the build found (lct suggest) into changes to guides/, glossary/ and
-# rules/ and opens the rules PR, or adds the new suggestions to the one that is
+# what the build found (lct suggest) into changes to guides/, glossary/, rules/
+# and docs/guides-evidence/ and opens the rules PR, or adds the new suggestions to the one that is
 # open (spec 11.2). A person reviews the PR; main is never pushed to. The run
 # ends before the action when there is nothing new to suggest.
 on:

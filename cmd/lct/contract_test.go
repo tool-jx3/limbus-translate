@@ -114,8 +114,8 @@ var weeklyUpdateTools = []string{
 // files in work/; every lct command it runs either reads, writes a rule file
 // or request file, or publishes the rules PR, and the only way it reaches
 // origin is lct proposal publish, which pushes a rules-proposal/* branch and
-// touches nothing but guides/, glossary/ and rules/. lct impact is pinned to
-// the one file it writes (and refuses one outside work/ and out/ anyway). lct
+// touches nothing but guides/, glossary/, rules/ and docs/guides-evidence/.
+// lct impact is pinned to the one file it writes (and refuses one outside work/ and out/ anyway). lct
 // accept is granted only with --dry-run, which reads (the JP/EN of the variants
 // of an inconsistent group): it refuses --dry-run turned off again
 // (TestAcceptDryRunCannotBeTurnedOff), and reads a --file, whose lines it

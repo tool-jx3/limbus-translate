@@ -93,7 +93,7 @@
 
 統計、決定來源、經過與出處放在 `docs/guides-evidence/`，路徑與指引對應：`guides/base.md` → `docs/guides-evidence/base.md`，`guides/families/keywords.md` → `docs/guides-evidence/families/keywords.md`，`guides/characters/sinclair.md` → `docs/guides-evidence/characters/sinclair.md`。只有有依據的指引才有對應檔。格式見 `docs/guides-evidence/README.md`。
 
-- 翻譯時不讀：依據檔在 `guides/` 以外，批次的 `guides` 只列 `routing.yaml` 選出的 `guides/` 底下的檔；`prompts/translate.md` 與 `translate-pending` 技能不提依據檔；譯者讀的指引內不寫指向依據檔的連結（只有這份 README 與 `families.md` 寫它在哪裡）
+- 翻譯時不讀：依據檔在 `guides/` 以外，批次的 `guides` 只列 `routing.yaml` 選出的 `guides/` 底下的檔；`prompts/translate.md` 與 `translate-pending` 技能不提依據檔；譯者讀的指引內不寫指向依據檔的連結（只有這份 README 寫它在哪裡）
 - 新增或修改規則時，依據寫進對應的依據檔，不寫進指引；維護規則的技能（`adjust`、`review`、`review-page`、`rules-review`）可以編輯它
 - 依據檔只改動不觸發 `rebuild.yml`（它只看 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`），這是預期的
 - 被刪掉的原指引條文不搬進依據檔，git 歷史可查

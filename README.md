@@ -163,7 +163,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 
 ## 收到規則 PR 怎麼處理
 
-每次 `update.yml` 或 `rebuild.yml` 成功之後，`rules-proposal.yml` 會看建置與 plan 發現了什麼規則還沒回答的事：同一句 KR 的不同譯法、新說話者、新欄位、新檔案、譯者的備註、詞彙候選，以及 key 已移動或過期的人工調整。有新建議就由 `rules-review` skill 改 `guides/`、`glossary/`、`rules/`，開一個規則 PR：
+每次 `update.yml` 或 `rebuild.yml` 成功之後，`rules-proposal.yml` 會看建置與 plan 發現了什麼規則還沒回答的事：同一句 KR 的不同譯法、新說話者、新欄位、新檔案、譯者的備註、詞彙候選，以及 key 已移動或過期的人工調整。有新建議就由 `rules-review` skill 改 `guides/`、`glossary/`、`rules/`（指引的依據寫進 `docs/guides-evidence/`），開一個規則 PR：
 
 - 分支 `rules-proposal/<日期>`（同一天用過就接 `-2`、`-3`），label `rules-proposal`，標題「規則建議：YYYY-MM-DD」，目標分支 `main`。
 - 說明逐項列出建議的內容、理由、證據（key、KR、現行譯文、出現次數），最後是影響評估。要重翻的範圍附在 `rules/requeue/*.yaml`。
