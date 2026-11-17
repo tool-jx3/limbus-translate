@@ -1,0 +1,7 @@
+# 同一次統一（2026-11-17-gang-boss-space）：ScenarioModelCodes 的 name 也是說話者名稱，
+# 豆豆幫老大、鐵工會老大、死兔幫老大 各 1 個（KR 콩콩이파보스、철공회보스、데드레빗츠보스）。
+reason: '說話者名稱的組織與職稱之間空一格（使用者決定 2026-11-17 照現行規則）'
+files: ['ScenarioModelCodes*']
+pattern: '^(豆豆幫|鐵工會|死兔幫)老大$'
+replace: '${1} 老大'
+kr_pattern: '^(콩콩이파|철공회|데드레빗츠)보스$'
