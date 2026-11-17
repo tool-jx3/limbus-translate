@@ -39,6 +39,7 @@ func Lint(root string) []error {
 	l := &linter{root: root}
 	l.glossary()
 	l.baseGuide()
+	l.guideEvidenceLinks()
 	l.characters()
 	l.routing()
 	l.foreignIgnore()

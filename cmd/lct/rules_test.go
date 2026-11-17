@@ -435,3 +435,27 @@ func TestRulesLintWarnsOfARubyCustomizeFieldNoUnitHas(t *testing.T) {
 		t.Errorf("an entry of the field tellr: warnings %q, want one that names it", ws)
 	}
 }
+
+// A guide the translator reads that carries statistics is only warned of.
+func TestRulesLintWarnsOfEvidenceInAGuide(t *testing.T) {
+	root := cleanRules(t)
+	writeTestFile(t, root, "guides/families/zz-test.md", "# 測試\n\n（既有 2,073 處）\n")
+	out, err := runIn(t, runRulesLint, root, true)
+	if err != nil {
+		t.Fatalf("a warning must not fail the lint: %v\n%s", err, out)
+	}
+	var got struct {
+		OK       bool                             `json:"ok"`
+		Warnings []struct{ File, Message string } `json:"warnings"`
+	}
+	if err := json.Unmarshal([]byte(out), &got); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	found := false
+	for _, w := range got.Warnings {
+		found = found || w.File == "guides/families/zz-test.md" && strings.Contains(w.Message, "line 3")
+	}
+	if !got.OK || !found {
+		t.Errorf("report = %+v", got)
+	}
+}
