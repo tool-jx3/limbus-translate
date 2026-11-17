@@ -22,3 +22,4 @@
 ## 例句
 
 - **出處**（依表格順序）：`StoryData/S724B.json#5`、`StoryData/S710B.json#34`、`StoryData/7D106B.json#15`、`StoryData/S731B.json#12`
+- **經過**：第一個例句（`S724B.json#5`）的 KR 原文結尾帶一個看不見的 CR（`…오셨습니까? \r`），指引的表格已去掉

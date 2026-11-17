@@ -17,6 +17,7 @@
 ### 俚語
 
 - **出處**：社群原指引「會使用俚語，處理方式暫同『希斯克利夫』」；括號內是 `guides/characters/heathcliff.md`「俚語」的做法
+- **經過**：`ishmael.md` 的俚語規則刻意重寫了一份與 `heathcliff.md` 相同的內容，因為只有以實瑪利的批次不會帶到 `heathcliff.md`；兩份要一起改
 
 ## 稱呼
 
