@@ -1,6 +1,7 @@
 package rules_test
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -58,9 +59,51 @@ func TestLintGuideTextWarnings(t *testing.T) {
 		t.Fatalf("warnings = %+v", got)
 	}
 	for i, w := range got {
-		if w.File != "guides/families/x.md" || !strings.Contains(w.Message, "line "+string(rune('1'+i))) ||
+		if w.File != "guides/families/x.md" || !strings.Contains(w.Message, fmt.Sprintf("line %d ", i+1)) ||
 			!strings.Contains(w.Message, "docs/guides-evidence/<same path>") {
 			t.Errorf("warning %d = %+v", i, w)
 		}
+	}
+}
+
+// An unreadable guide (a dangling symlink, or a directory for base.md) is a lint error and a warning, not
+// a silent skip.
+func TestUnreadableGuide(t *testing.T) {
+	for _, rel := range []string{
+		"guides/base.md",
+		"guides/families/x.md",
+		"guides/shared/x.md",
+		"guides/characters/x.md",
+	} {
+		t.Run(rel, func(t *testing.T) {
+			root := t.TempDir()
+			path := filepath.Join(root, filepath.FromSlash(rel))
+			if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+				t.Fatal(err)
+			}
+			if rel == rules.BaseGuide {
+				// A directory in place of the file: Stat finds it, reading fails.
+				if err := os.Mkdir(path, 0o755); err != nil {
+					t.Fatal(err)
+				}
+			} else if err := os.Symlink(filepath.Join(root, "missing.md"), path); err != nil {
+				t.Skip("symlinks unavailable:", err)
+			}
+
+			found := false
+			for _, err := range rules.Lint(root) {
+				if le, ok := err.(rules.LintError); ok && le.File == rel {
+					found = true
+				}
+			}
+			if !found {
+				t.Errorf("lint reports no error for unreadable %s", rel)
+			}
+
+			got := rules.LintGuideTextWarnings(root)
+			if len(got) != 1 || got[0].File != rel {
+				t.Errorf("warnings = %+v", got)
+			}
+		})
 	}
 }
