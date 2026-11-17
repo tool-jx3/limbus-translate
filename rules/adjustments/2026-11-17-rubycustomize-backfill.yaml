@@ -1,0 +1,76 @@
+- key: PersonalityVoiceDlg/Voice_Heathcliff_KumoThumb_10716.json|/dataList/5/dlg
+  raw: raw-20261112
+  kr_sha: b1d2dbe3d642ac2d18e401db1e09a2eb930ab570238a74c08cfdafd01d3fd6db
+  zh: |-
+    明明每次都挑我毛病，說門票做得比我好多了……嘖。還真是搞不懂。看她教辛克萊那傢伙時，用的根本就是完全不同的劍術啊？
+    ……算了，隨便。反正只要複製出離家出走的<rubycustomize=ヨシヒデ>良秀</rubycustomize>用的劍術就好了。就照著被吩咐的去做吧。只照著被吩咐的。
+  reason: KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定
+  rule: guides/shared/ruby.md
+- key: PersonalityVoiceDlg/Voice_Heathcliff_KumoThumb_10716.json|/dataList/6/dlg
+  raw: raw-20261112
+  kr_sha: d62bb0835a0097a57a7a9034fd238cc12f3f11d5fec6c38e0514298880d7ab60
+  zh: 我已經設法獲得和<rubycustomize=ヨシヒデ>良秀</rubycustomize>合作的公司和收尾人事務所列表了……但是，比起付出的代價，獲得的內容實在是過於詳細了。就像是有人刻意將情報流出一樣……<color=#923838>嘛，隨便啦。有漏洞不是正好嗎。別再鬼扯什麼直覺之類的話，給我滾去好好訓練。</color>……我知道了。
+  reason: KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定
+  rule: guides/shared/ruby.md
+- key: PersonalityVoiceDlg/Voice_Rodion_KumoThumb_10916.json|/dataList/5/dlg
+  raw: raw-20261112
+  kr_sha: 68299104e560aa9d3633ba6b4ac91297e0950e78a72807abd144de34dda9c7f3
+  zh: |-
+    她逃跑的時候斬掉了不少東西吧。光是捨不得那些代價，<rubycustomize=ヨシヒデ>良秀</rubycustomize>也放不下天殺星刀……那件遺物。
+    ……嘖。不過，還是留個教材比較好吧。她說不定學了什麼聞所未聞的劍術，或是姿勢已經亂七八糟了。
+  reason: KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定
+  rule: guides/shared/ruby.md
+- key: PersonalityVoiceDlg/Voice_Rodion_KumoThumb_10916.json|/dataList/7/dlg
+  raw: raw-20261112
+  kr_sha: 8305db630dba0089b5f238c8e98148d590f30cea418a9471bee839a59c348774
+  zh: <rubycustomize=ヨシヒデ>良秀</rubycustomize>，只要妳完成了，我就能得到回報，懂嗎？跌到谷底的我的階級、在臭水溝裡爛透的我的歲月！還有變成那副德性、要死不活的我的門票！全部！全部都！能得到回報！
+  reason: KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定
+  rule: guides/shared/ruby.md
+- key: BattleAnnouncerDlg/Announcer_RienSora_54.json|/dataList/1/dlg
+  raw: raw-20261112
+  kr_sha: 0bb65afc91b1eacbbc723de87d283db9b63db65f033fad4471a1ef1ce0815653
+  zh: |-
+    就算<rubycustomize=ヨシヒデ>良秀</rubycustomize>姊姊回、回來了……我偶爾還可以像這樣跟禮恩先生一起外、外出嗎？
+    現在思考這個問題似乎還太早了。不過……也沒有不行的理由吧。
+    那真、真令人高興呢。嘿嘿。
+  reason: KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定
+  rule: guides/shared/ruby.md
+- key: BattleAnnouncerDlg/Announcer_ValencinaLucio_52.json|/dataList/27/dlg
+  raw: raw-20261112
+  kr_sha: 0802f3d42f93690cab812042b7b45f1fb9fd6b41026fad397dc5014209496c57
+  zh: |-
+    呼……<rubycustomize=ヨシヒデ>良秀</rubycustomize>從十四歲起，做這種事就跟吃飯一樣稀鬆平常。嘖，跟某本蠢教材可不一樣。
+    抱歉。我會盡快變得跟那位一樣……
+    閉嘴。你還早了十年。
+  reason: KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定
+  rule: guides/shared/ruby.md
+- key: BattleSpeechBubbleDlg-a1c9p3.json|/dataList/89/dlg
+  raw: raw-20261112
+  kr_sha: c2e3805e074f60f186bf3e54b6e7af6ef675317746d962211f4d9238df698bc1
+  zh: ……只、只要能挺過這次試煉，我也能像<rubycustomize=ヨ、ヨシヒデ>良、良秀</rubycustomize>姊姊一樣，成為禮恩先生的女兒。
+  reason: KR 結巴地唸出 요시히데：良秀照 JP 加注音，結巴的片段一起包住（白名單位置寫 <rubycustomize>）；譯法由使用者決定
+  rule: guides/shared/ruby.md
+- key: BattleSpeechBubbleDlg-a1c9p3.json|/dataList/275/dlg
+  raw: raw-20261112
+  kr_sha: 3e50d14bd12be077fd8f3263c918397792e14fa4fbc8118895ae74f02a030d10
+  zh: 那個命運，並非妳的命運。所以離開那裡吧，<rubycustomize=ヨシヒデ>良秀</rubycustomize>。
+  reason: KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定
+  rule: guides/shared/ruby.md
+- key: BattleSpeechBubbleDlg.json|/dataList/683/dlg
+  raw: raw-20261112
+  kr_sha: 75e749755f093a1fd4c0d81b51facfc8ead6f24f0fdac4382f2c4ba83ec4d278
+  zh: 煩死了、煩死了！不管是<rubycustomize=ヨシヒデ>良秀</rubycustomize>那臭小鬼，還是你們這些傢伙全都是！！！
+  reason: KR 寫 요시히데：良秀照 JP 加注音 ヨシヒデ（白名單位置寫 <rubycustomize>）；譯法由使用者決定
+  rule: guides/shared/ruby.md
+- key: ScenarioModelCodes-AutoCreated.json|/dataList/628/name
+  raw: raw-20261112
+  kr_sha: 6a316d8729efd6bbd321c5e0a6a499d53ed1ab466110b788a31690ca38752857
+  zh: <rubycustomize=UNGEZIEFER KAISER>害蟲皇帝</rubycustomize>
+  reason: UNGEZIEFER KAISER（그레고르왕）本文寫中文「害蟲皇帝」，原名寫在注音（白名單位置寫 <rubycustomize>）；譯法由使用者決定
+  rule: guides/shared/ruby.md
+- key: ScenarioModelCodes-AutoCreated.json|/dataList/630/name
+  raw: raw-20261112
+  kr_sha: 6a316d8729efd6bbd321c5e0a6a499d53ed1ab466110b788a31690ca38752857
+  zh: <rubycustomize=UNGEZIEFER KAISER>害蟲皇帝</rubycustomize>
+  reason: UNGEZIEFER KAISER（그레고르왕）本文寫中文「害蟲皇帝」，原名寫在注音（白名單位置寫 <rubycustomize>）；譯法由使用者決定
+  rule: guides/shared/ruby.md
