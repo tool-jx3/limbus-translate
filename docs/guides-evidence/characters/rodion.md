@@ -1,6 +1,6 @@
 # `guides/characters/rodion.md` 的依據
 
-統計是官方 2026-10-29 語言包與當時的既有繁中（見本目錄 `README.md`「資料依據」），由 `docs/research/scripts/charstats.py` 算出；例句由 `examples.py` 挑選。依據：既有繁中羅佳台詞 1,932 行（劇情 1,550 行＋語音 382 行）。
+統計是官方 2026-10-29 語言包與當時的既有繁中（見 `docs/guides-evidence/README.md`「資料依據」），由 `docs/research/scripts/charstats.py` 算出；例句由 `examples.py` 挑選。依據：既有繁中羅佳台詞 1,932 行（劇情 1,550 行＋語音 382 行）。
 
 ## 語氣與人稱
 

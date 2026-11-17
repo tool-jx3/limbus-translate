@@ -1,6 +1,6 @@
 # `guides/characters/outis.md` 的依據
 
-統計是官方 2026-10-29 語言包與當時的既有繁中（見本目錄 `README.md`「資料依據」），由 `docs/research/scripts/charstats.py` 算出；例句由 `examples.py` 挑選。依據：既有繁中奧提斯台詞 2,034 行（劇情 1,649 行＋語音 385 行）。
+統計是官方 2026-10-29 語言包與當時的既有繁中（見 `docs/guides-evidence/README.md`「資料依據」），由 `docs/research/scripts/charstats.py` 算出；例句由 `examples.py` 挑選。依據：既有繁中奧提斯台詞 2,034 行（劇情 1,649 行＋語音 385 行）。
 
 ## 語氣與人稱
 

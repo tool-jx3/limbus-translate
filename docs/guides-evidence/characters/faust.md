@@ -1,6 +1,6 @@
 # `guides/characters/faust.md` 的依據
 
-統計是官方 2026-10-29 語言包與當時的既有繁中（見本目錄 `README.md`「資料依據」），由 `docs/research/scripts/charstats.py` 算出；例句由 `examples.py` 挑選。依據：既有繁中浮士德台詞 2,603 行（劇情 2,192 行＋語音 411 行）。
+統計是官方 2026-10-29 語言包與當時的既有繁中（見 `docs/guides-evidence/README.md`「資料依據」），由 `docs/research/scripts/charstats.py` 算出；例句由 `examples.py` 挑選。依據：既有繁中浮士德台詞 2,603 行（劇情 2,192 行＋語音 411 行）。
 
 ## 語氣與人稱
 
