@@ -34,26 +34,9 @@
 - **有特色的新角色**：新增 `characters/<id>.md`
 - **一次性的路人**：不需要指引，在 `npcs.yaml` 加一筆。`model` 必填；`gender`（`male`／`female`／`unspecified`）看得出才寫；`note` 寫一句身分（出處、第幾章）。名單上的 `model` 不能同時列在角色檔裡（`lct rules lint` 會檢查）
 
-## 標記
-
-每份指引依需要分成以下段落：
-
-- **原指引**：既有的社群指引，保留原文
-- **資料補充**：依現有繁體譯文統計得出，附數字與出處
-- **決定**：資料和原指引對不上時，經人工決定的結果與理由（原則：依 KR 原文判斷）
-- **待確認**：還沒決定、需要人工確認的地方
-
 ## 資料依據
 
-- 原文：官方 2026-10-29 語言包（token `l20261029_…`），KR／EN／JP
-- 繁中：`user-unknown-0711/ParatranzUploader` release `1793285016`（2026-10-29）的 `localize_files.zip`
-- 對照：`LimbusTraditionalMandarin/storyline` release `1792667238`（2026-10-22）的 `Hant.zip`
-- 只統計「確實是中文譯文」的行：排除等於 EN 原文（ParatranzUploader 用英文填未翻條目）、等於 KR、仍含諺文的行
-- 角色統計只用本人的基本鍵值（例如 `model=이상`），加上該角色的語音、`AbDlg` 檔
-- KR 語體比例只計「以動詞語尾結束的句子」：합쇼체（~니다）、해요체（~요）、하오체（~오／~소）、반말（其他常體語尾）。這是粗略分類，用來看傾向
-- 統計腳本在 `docs/research/scripts/`
-
-例句的「既有繁中」是現有譯文，用來示範語氣，不代表每句都是定稿。
+統計用的原文、繁中與對照資料，以及計算方法，移到 `docs/guides-evidence/README.md`「資料依據」。
 
 ## 寫法規範
 
@@ -88,6 +71,15 @@
 - 門檻（≥ 80% 且 b ≥ 30）以引入它的族群合計計算，每個引入的族群自己有單位時，比例也不低於 80%（腳本逐族群列出）；數字記在依據檔。規則只在部分族群成立時，不引入其他族群
 - 現有：`battle-text.md`（ally、enemy、keywords、mirror：效果文字的括號用半形、`(턴당 N회)`、`최종 위력`、`정신력／체력 N 회복`、`아군`、`처치 시`）；`korean-brackets.md`（ui、events、stage、rpg、ally、enemy、keywords、mirror：方括號裡的韓文照譯）；`skill-text.md`（ally、enemy、keywords、mirror 接在 `battle-text.md` 之後引入，另以 `guides:` 給 `TutorialMainUIText`：強度／回數／層數的格式、韓文狀態名加空格、技能文字的動詞、消耗數值、斜線與除法、`<noparse>`）；`story-labels.md`（以 `guides:` 給 `StoryData/`、`ScenarioModelCodes`、`StageNode`、`RPGSystem/`、`AbDlg`：地點欄位、稱號與說話者名稱的空格、標籤欄位不留結尾空格）；`ruby.md`（以 `guides:` 給 `StoryData/`、`ScenarioModelCodes`、`PersonalityVoiceDlg/`、`BattleAnnouncerDlg/`、`BattleSpeechBubbleDlg`：劇情台詞的 ruby 與白名單位置的 `<rubycustomize>`；其他檔照 `base.md`「ruby 的位置」）
 - 只在兩三個族群成立、不另立共用檔的，仍寫在各族群的檔：`[X] N 부여`（ally、enemy）、`피해량 +N%`（ally、enemy、mirror）。改其中一份時，其他族群的同一條要一起改
+
+## 角色指引（`characters/<id>.md`）
+
+- 開頭的 YAML 是給程式用的對照資料（見「結構」）；內文只寫這個角色的寫法規則。社群原指引不保留原文：仍有效的說法改寫成規則，語體比例、行數等統計寫進依據檔
+- 節名依內容取用：**語氣與人稱**（說話風格、語體、自稱、第二人稱）、**稱呼**（怎麼稱呼但丁與其他人、別人怎麼叫他）、**用語**（角色特有的譯名與用詞）、**例句**；需要時另立一節（例如良秀的「縮略語」、但丁的「格式」）。沒有內容的節不寫
+- **例句**：表格只有 KR 與既有譯文兩欄，出處寫進依據檔。例句的「既有繁中」是現有譯文，用來示範語氣，不代表每句都是定稿
+- **待確認**：還沒決定的寫法另立一節，寫出決定前譯者照什麼寫（例如「決定前照既有最多的，同票用第一個」，並寫出照這條得出的目前寫法），有提案的寫「提案」；次數與出處寫進依據檔
+- 角色指引優先於族群指引與 `base.md`（見 `base.md`「原則」），推翻 base 的角色例外照寫在角色檔（例如辛克萊對他人全部尊稱、多用「您」；唐吉訶德用「汝」）；格式規則與詞彙表不能被角色風格推翻
+- 資料和既有說法對不上時，依 KR 原文判斷；決定的來源與日期寫進依據檔，指引只寫決定後的規則
 
 ## 依據檔
 

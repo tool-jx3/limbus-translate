@@ -26,6 +26,18 @@
 
 被刪掉的原指引條文不搬過來，git 歷史可查。
 
+## 資料依據
+
+依據檔裡沒有標資料版本的統計（例如角色指引的語體比例與行數），資料與算法如下：
+
+- 原文：官方 2026-10-29 語言包（token `l20261029_…`），KR／EN／JP
+- 繁中：`user-unknown-0711/ParatranzUploader` release `1793285016`（2026-10-29）的 `localize_files.zip`
+- 對照：`LimbusTraditionalMandarin/storyline` release `1792667238`（2026-10-22）的 `Hant.zip`
+- 只統計「確實是中文譯文」的行：排除等於 EN 原文（ParatranzUploader 用英文填未翻條目）、等於 KR、仍含諺文的行
+- 角色統計只用本人的基本鍵值（例如 `model=이상`），加上該角色的語音、`AbDlg` 檔
+- KR 語體比例只計「以動詞語尾結束的句子」：합쇼체（~니다）、해요체（~요）、하오체（~오／~소）、반말（其他常體語尾）。這是粗略分類，用來看傾向
+- 統計腳本在 `docs/research/scripts/`
+
 ## 不送給譯者
 
 - 依據檔放在 `guides/` 以外；批次的 `guides` 只列 `guides/routing.yaml` 選出的 `guides/` 底下的檔，不會帶到依據檔
