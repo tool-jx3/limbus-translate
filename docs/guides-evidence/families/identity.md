@@ -1,6 +1,6 @@
 # `guides/families/identity.md` 的依據
 
-標 raw-20261105 的統計由 `docs/research/scripts/family_guides.py` 算出（「既有 a／b」見 `guides/README.md`「新增慣例的門檻」）；沒有標資料版本的，是官方 2026-10-29 語言包與當時的既有繁中（`guides/README.md`「資料依據」）。
+標 raw-20261105 的「既有 a／b」與「全在本族群」檢查由 `docs/research/scripts/family_guides.py` 算出（「既有 a／b」的門檻見 `guides/README.md`「新增慣例的門檻」）；標 raw-20261105 的文本類型檔案數來自 `guides/routing.yaml` 與 `guides/families.md`；沒有標資料版本的，是官方 2026-10-29 語言包與當時的既有繁中（依寫入日期 2026-10-31～11-02 推定；`docs/guides-evidence/README.md`「資料依據」）。
 
 ## 文本類型
 

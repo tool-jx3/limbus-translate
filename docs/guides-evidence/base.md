@@ -1,6 +1,6 @@
 # `guides/base.md` 的依據
 
-除了另外註明 `raw-20261105` 的段落，統計的資料是官方 2026-10-29 語言包與當時的既有繁中（`guides/README.md`「資料依據」）。
+除了另外註明 `raw-20261105` 的段落，統計的資料是官方 2026-10-29 語言包與當時的既有繁中（`docs/guides-evidence/README.md`「資料依據」）。
 
 ## 原則
 
@@ -11,7 +11,7 @@
 ### 指引的優先順序
 
 - **決定**：寫明優先順序，讓角色指引推翻 base 的例外（例如辛克萊對所有人用「您」）保有優先權（指引整理設計 2026-11-17，6.1 節）；與 `prompts/translate.md` 的疊加順序、`guides/README.md` 的「疊加順序」相同
-- **決定**：「格式規則與詞彙表不能被角色風格推翻」照設計 6.1 的寫法，不限本檔；移到共用指引（`skill-text.md`、`story-labels.md`）的格式規則同樣是硬性規定，`prompts/translate.md` 與 `guides/README.md` 一併寫明（控制者裁定 2026-11-17）
+- **決定**：「格式規則與詞彙表不能被角色風格推翻」照設計 6.1 的寫法，不限本檔；移到共用指引的格式規則同樣是硬性規定，硬性規定的範圍限於 `base.md`、`shared/skill-text.md` 與 `shared/story-labels.md`（其他共用指引不是），`prompts/translate.md` 與 `guides/README.md` 一併寫明（控制者裁定 2026-11-17）
 
 ### 詞彙表
 

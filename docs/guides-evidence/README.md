@@ -10,7 +10,7 @@
 |---|---|
 | `guides/base.md` | `docs/guides-evidence/base.md` |
 | `guides/families/keywords.md` | `docs/guides-evidence/families/keywords.md` |
-| `guides/shared/ruby.md` | `docs/guides-evidence/shared/ruby.md` |
+| `guides/shared/skill-text.md` | `docs/guides-evidence/shared/skill-text.md` |
 | `guides/characters/sinclair.md` | `docs/guides-evidence/characters/sinclair.md` |
 
 只有有依據的指引才有對應檔；沒有依據可寫的指引不必建檔。

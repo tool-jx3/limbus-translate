@@ -1,6 +1,6 @@
 # `guides/families/stage.md` 的依據
 
-標 raw-20261105 的統計由 `docs/research/scripts/family_guides.py` 算出（「既有 a／b」見 `guides/README.md`「新增慣例的門檻」）。
+標 raw-20261105 的「既有 a／b」與「全在本族群」檢查由 `docs/research/scripts/family_guides.py` 算出（「既有 a／b」的門檻見 `guides/README.md`「新增慣例的門檻」）。
 
 ## 文本類型
 
