@@ -1,0 +1,8 @@
+- key: BattleAnnouncerDlg/Announcer_Ryoshu_42.json|/dataList/11/dlg
+  raw: raw-20261112
+  kr_sha: 8730add225f6d81cd070fdac69441c59032240916a0d6496d9ebbbee024a7b84
+  zh: |-
+    阿賴耶識對我來說是最愛的刀。連接失去之物的線索，理應就在這把刀上。
+    所以這種不值一提的破事就自己處理吧。如果讓我因為這種荒唐的理由拔刀，你們也確定最．哀了。
+  reason: 완소 照阿賴耶的譯法寫「最愛」，後半 완.소. 寫「最．哀」保留愛／哀雙關（提案 22，使用者採用 2026-11-17）
+  rule: guides/characters/ryoshu.md

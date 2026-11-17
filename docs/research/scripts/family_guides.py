@@ -1,4 +1,4 @@
-"""guides/families/*.md、guides/shared/*.md 與 base.md 第 7 條（括號）統計數字的重算腳本。
+"""guides/families/*.md、guides/shared/*.md 與 base.md「括號依文本類型」（括號）統計數字的重算腳本。
 
 用法：python3 -I family_guides.py DIR
 DIR 是 `lct site --out DIR` 寫出的網站資料（含 files/<路徑>，每檔有 family 與 units）。
@@ -6,6 +6,8 @@ DIR 是 `lct site --out DIR` 寫出的網站資料（含 files/<路徑>，每檔
 「既有 a／b」：該族群 KR 符合條件、來源是 paratranz／claude／human（不含 copy）的 b 個單位中，
 a 個的譯文符合寫法。只有 a/b >= 80% 且 b >= 30 的才寫進指引（印出時標 OK）。
 共用指引（SHARED）的 a／b 是引入它的族群合計，另逐族群列出；每個族群有單位時也都要 >= 80%。
+重算的數字寫進 docs/guides-evidence/ 的對應檔（guides/families/keywords.md → docs/guides-evidence/families/keywords.md），
+不寫進 guides/。
 """
 
 import json
@@ -66,7 +68,7 @@ SHARED = [
     ("korean-brackets", KOREAN_BRACKETS, "[韓文]", "", BRACKET_KR, BRACKET_ZH, ""),
 ]
 
-# 括號（base.md 第 7 條、shared/battle-text.md）：譯文去掉標籤後有括號的單位，分只用半形、只用全形、兩者都有。
+# 括號（base.md「括號依文本類型」、shared/battle-text.md）：譯文去掉標籤後有括號的單位，分只用半形、只用全形、兩者都有。
 # 括號依文本類型：說明戰鬥效果的文字（EFFECT）用半形，其他用全形。效果文字裡，KR 在韓文音譯後的括號附原文
 # （라 노제(la nausée)）時寫「中文意思（原文）」是例外。
 # 「半形括號」的 a：效果文字裡去掉這種「中文（原文）」後不剩全形括號的單位；「全形括號」的 a：其他文字裡沒有半形括號的單位。

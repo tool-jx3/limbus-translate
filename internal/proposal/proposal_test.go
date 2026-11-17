@@ -1017,6 +1017,40 @@ func TestProposalPublishLeavesUntrackedFilesOutsideRules(t *testing.T) {
 	}
 }
 
+// The evidence of the guides (docs/guides-evidence/) goes into the rules PR
+// with the guide it explains; any other file below docs/ stays outside.
+func TestProposalPublishTakesTheGuidesEvidence(t *testing.T) {
+	e := newEnv(t)
+	e.onBranch("rules-proposal/2026-11-05")
+	e.write("guides/README.md", "guides changed\n")
+	e.write("docs/guides-evidence/families/x.md", "evidence\n")
+	e.write("docs/other.md", "mine\n")
+
+	if _, err := Publish(e.opts("2026-11-05"), e.bodyFile()); err != nil {
+		t.Fatal(err)
+	}
+	files := strings.Split(e.git("show", "--name-only", "--format=", "HEAD"), "\n")
+	slices.Sort(files)
+	if want := []string{"docs/guides-evidence/families/x.md", "guides/README.md"}; !slices.Equal(files, want) {
+		t.Errorf("commit files = %q, want %q", files, want)
+	}
+	if st := e.statusLines(); st != "?? docs/other.md" {
+		t.Errorf("docs/other.md should stay untracked and nothing else is left:\n%s", st)
+	}
+}
+
+func TestProposalPublishRefusesOtherDocs(t *testing.T) {
+	e := newEnv(t)
+	e.onBranch("rules-proposal/2026-11-05")
+	e.write("docs/guides-evidence/x.md", "evidence\n")
+	e.write("docs/說明 文件.md", "changed\n")
+	_, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+	mustRefuse(t, err, "docs/說明 文件.md")
+	if strings.Contains(err.Error(), "guides-evidence/x.md") {
+		t.Errorf("the refusal lists an evidence file: %v", err)
+	}
+}
+
 func TestProposalPublishNeedsSuggestionMarkers(t *testing.T) {
 	for name, content := range map[string]string{
 		"none":      "規則建議，沒有標記\n",

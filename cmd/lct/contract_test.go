@@ -89,6 +89,7 @@ var adjustTools = []string{
 	"Bash(go build -o bin/lct ./cmd/lct)",
 	"Read(./**)",
 	"Edit(./guides/**)",
+	"Edit(./docs/guides-evidence/**)",
 	"Edit(./glossary/**)",
 	"Edit(./rules/**)",
 }
@@ -113,12 +114,12 @@ var weeklyUpdateTools = []string{
 // files in work/; every lct command it runs either reads, writes a rule file
 // or request file, or publishes the rules PR, and the only way it reaches
 // origin is lct proposal publish, which pushes a rules-proposal/* branch and
-// touches nothing but guides/, glossary/ and rules/. lct impact is pinned to
-// the one file it writes (and refuses one outside work/ and out/ anyway). lct
-// accept is granted only with --dry-run, which reads (the JP/EN of the variants
-// of an inconsistent group): it refuses --dry-run turned off again
-// (TestAcceptDryRunCannotBeTurnedOff), and reads a --file, whose lines it
-// prints back, only inside the repo and outside .git
+// touches nothing but guides/, glossary/, rules/ and docs/guides-evidence/.
+// lct impact is pinned to the one file it writes (and refuses one outside
+// work/ and out/ anyway). lct accept is granted only with --dry-run, which
+// reads (the JP/EN of the variants of an inconsistent group): it refuses
+// --dry-run turned off again (TestAcceptDryRunCannotBeTurnedOff), and reads a
+// --file, whose lines it prints back, only inside the repo and outside .git
 // (TestAcceptFileStaysInTheRepo), so the grant writes nothing and reads
 // nothing that Read(./**) without .git/ does not. rules-proposal.yml hands
 // the same list to the action (TestWorkflowContract); a tool added to one and
@@ -136,6 +137,7 @@ var rulesReviewTools = []string{
 	"Bash(go build -o bin/lct ./cmd/lct)",
 	"Read(./**)",
 	"Edit(./guides/**)",
+	"Edit(./docs/guides-evidence/**)",
 	"Edit(./glossary/**)",
 	"Edit(./rules/**)",
 	"Edit(./work/**)",
@@ -158,6 +160,7 @@ var reviewTools = []string{
 	"Bash(go build -o bin/lct ./cmd/lct)",
 	"Read(./**)",
 	"Edit(./guides/**)",
+	"Edit(./docs/guides-evidence/**)",
 	"Edit(./glossary/**)",
 	"Edit(./rules/**)",
 	"Edit(./lct.yaml)",
@@ -201,6 +204,7 @@ var reviewPageTools = []string{
 	"Bash(go build -o bin/lct ./cmd/lct)",
 	"Read(./**)",
 	"Edit(./guides/**)",
+	"Edit(./docs/guides-evidence/**)",
 	"Edit(./glossary/**)",
 	"Edit(./rules/**)",
 }
@@ -5267,6 +5271,23 @@ func TestNameSuggestionIsHandledBySkills(t *testing.T) {
 			if !strings.Contains(content, want) {
 				t.Errorf("%s/SKILL.md does not mention %q", skill, want)
 			}
+		}
+	}
+}
+
+// The translator never reads the evidence files: neither the translation
+// prompt nor the translate-pending skill mentions them. Only the skills that
+// maintain the rules may write them.
+func TestTranslationDoesNotMentionGuidesEvidence(t *testing.T) {
+	for _, rel := range []string{"prompts/translate.md", ".claude/skills/translate-pending/SKILL.md"} {
+		_, content := readRepoFile(t, filepath.Join(repoRoot, rel))
+		if strings.Contains(content, "guides-evidence") {
+			t.Errorf("%s mentions guides-evidence; the translator does not read the evidence files", rel)
+		}
+	}
+	for _, skill := range []string{"adjust", "review", "review-page", "rules-review"} {
+		if !slices.Contains(skillAllowedTools(t, skill), "Edit(./docs/guides-evidence/**)") {
+			t.Errorf("%s: allowed-tools has no Edit(./docs/guides-evidence/**)", skill)
 		}
 	}
 }

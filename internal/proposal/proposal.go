@@ -5,9 +5,9 @@
 //
 // These two functions are the only code that pushes a branch or touches a pull
 // request, so they refuse anything but a rules-proposal/* branch and anything
-// but the files of guides/, glossary/ and rules/. They run the git and gh
-// command lines in the repo, with explicit arguments and no shell, and never
-// force a push.
+// but the files of guides/, glossary/, rules/ and docs/guides-evidence/. They
+// run the git and gh command lines in the repo, with explicit arguments and no
+// shell, and never force a push.
 package proposal
 
 import (
@@ -66,7 +66,7 @@ const (
 
 // RuleFolders are the only folders a rules PR may change, relative to the
 // repo root.
-var RuleFolders = []string{"guides", "glossary", "rules"}
+var RuleFolders = []string{"guides", "glossary", "rules", "docs/guides-evidence"}
 
 // credentialPatterns are the beginnings of the credentials a description or a
 // rule file must not hold: the prefixes of GitHub's tokens, the user name a

@@ -1,6 +1,6 @@
 # ruby 與注音（共用指引）
 
-本檔只管劇情台詞（`StoryData/` 的 `content`）與帶 `ruby_customize: true` 的單位；這些檔的 `title`、`place` 照下面的「說話者名稱、稱號、地點」，其他沒有標記的欄位照 base.md「其他位置」（規則自 base.md 移入）。
+本檔只管劇情台詞（`StoryData/` 的 `content`）與帶 `ruby_customize: true` 的單位；這些檔的 `title`、`place` 照下面的「說話者名稱、稱號、地點」，其他沒有標記的欄位照 base.md「其他位置」。
 
 ## 格式慣例
 

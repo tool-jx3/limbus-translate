@@ -76,15 +76,15 @@ families:
   - id: ally
     nodes: ["Skills", "Skills_personality", "Skills_Ego_Personality", "Skills_Ego", "Skills_Assist", "Passives_Assist", "Passive_Ego", "Passives", "Personalit*", "Egos", "Assist", "EGO"]
     guide: guides/families/ally.md
-    include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
+    include: [guides/shared/battle-text.md, guides/shared/skill-text.md, guides/shared/korean-brackets.md]
   - id: enemy
     nodes: ["Enemies", "Skills_Enemy*", "Skills_Abnormality*", "Skills_Tutorial", "Skills_fools", "Passive", "Passives_Enemy*", "Passives_Abnormality*", "Passives_fools"]
     guide: guides/families/enemy.md
-    include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
+    include: [guides/shared/battle-text.md, guides/shared/skill-text.md, guides/shared/korean-brackets.md]
   - id: keywords
     nodes: ["Bufs", "Bufs_*", "BattleKeywords", "BattleKeywords_*", "UnitKeyword", "SynergyKeyword", "SkillTag", "BuffAbilities", "KeywordDictionary", "MentalCondition", "PanicInfo", "ResistText", "AttributeText"]
     guide: guides/families/keywords.md
-    include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
+    include: [guides/shared/battle-text.md, guides/shared/skill-text.md, guides/shared/korean-brackets.md]
   - id: abnormality
     nodes: ["AbnormalityGuides*", "AbDlg", "AbEvents*", "AbEventsResultLog*"]
     glossary: warn
@@ -92,7 +92,7 @@ families:
   - id: mirror
     nodes: ["MirrorDungeon*", "EGOgift", "EGOgift_*", "EgoGiftCategory", "ActionEvents", "ActionEvents_*", "DungeonStartBuffs", "TutorialMirrorDungeon", "StoryTheaterMirrorWorld*"]
     guide: guides/families/mirror.md
-    include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
+    include: [guides/shared/battle-text.md, guides/shared/skill-text.md, guides/shared/korean-brackets.md]
   - id: railway
     nodes: ["Railway*"]
     guide: guides/families/railway.md
@@ -124,6 +124,18 @@ guides:
     guide: guides/shared/ruby.md
   - when: "BattleSpeechBubbleDlg*"
     guide: guides/shared/ruby.md
+  # 劇情標籤欄位（說話者名稱、稱號、地點）的寫法只給有這些欄位的檔：StoryData/ 的 teller、title、place，ScenarioModelCodes 的 name、nickName，StageNode 的 place，RPGSystem/ 的 speaker、displayName，AbDlg 的 teller
+  - when: "StoryData/"
+    guide: guides/shared/story-labels.md
+  - when: "ScenarioModelCodes*"
+    guide: guides/shared/story-labels.md
+  - when: "StageNode*"
+    guide: guides/shared/story-labels.md
+  - when: "RPGSystem/"
+    guide: guides/shared/story-labels.md
+  - when: "AbDlg"
+    guide: guides/shared/story-labels.md
+  # 技能文字的寫法：ally、enemy、keywords、mirror 以 include: 引入；這四個族群以外、技能文字（[ID] 加強度／回數、소모、<noparse>）的單位至少 30 個的節點在這裡加
   # 良秀的播報員語音：檔名不在 CharacterByFile 的前綴裡，以節點掛角色指引（Announcer_Charon 另有非卡戎的 90002，不用通用前綴）
   - when: "BattleAnnouncerDlg/Announcer_Ryoshu"
     guide: guides/characters/ryoshu.md
