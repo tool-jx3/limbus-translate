@@ -1,0 +1,8 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G869：「꿀꺽…」是吞口水聲，E407B#9（唐吉訶德）寫「唔……」，
+# ES290B#134 寫「咕嚕……」；統一成「咕嚕……」。使用者同意 2026-11-18。
+reason: '「꿀꺽…」是吞嚥聲，寫「咕嚕……」，與 ES290B#134 一致（規則建議 G869）'
+files: ['StoryData/E407B.json']
+origins: [paratranz]
+pattern: '^唔……$'
+replace: '咕嚕……'
+kr_pattern: '^꿀꺽…$'

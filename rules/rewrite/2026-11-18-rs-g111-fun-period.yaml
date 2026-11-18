@@ -1,0 +1,8 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G111：4D105B#23 與 S448B#47 是同一句 KR（東朗），句尾一處「？」一處「。」。
+# KR 以句號結尾，也不是問句；照 guides/base.md「句末標點跟 KR」統一成「。」。使用者同意 2026-11-18。
+reason: '「재밌잖아.」照 KR 的句號寫「。」，與 S448B#47 一致（規則建議 G111）'
+files: ['StoryData/4D105B.json']
+origins: [paratranz]
+pattern: '^妳明明兩眼放光，言辭卻如此毒辣，這很有趣吧？$'
+replace: '妳明明兩眼放光，言辭卻如此毒辣，這很有趣吧。'
+kr_pattern: '^눈은 엄청 빛나고 있는데, 그렇게 표독스럽게 말하니까 재밌잖아\.$'

@@ -1,0 +1,8 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G649：4D105B#17 與 S448B#41 是同一句 KR（李箱）。
+# 4D105B#17 的「毫無模糊地，」是照 EN（without a blur），KR 沒有；統一成 S448B#41 的寫法。使用者同意 2026-11-18。
+reason: '「있는 그대로 비추고 싶었소」沒有「毫無模糊地」，與 S448B#41 一致（規則建議 G649）'
+files: ['StoryData/4D105B.json']
+origins: [paratranz]
+pattern: '^我只是想毫無模糊地，如實地映照出所有可能性。$'
+replace: '我只是想如實地映照出所有可能性。'
+kr_pattern: '^어떠한 가능성도 있는 그대로 비추고 싶었소\.$'
