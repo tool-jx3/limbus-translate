@@ -14,9 +14,10 @@
 | [`cond.py`](cond.py) | 把反編譯輸出去掉執行期雜訊，方便閱讀 |
 | [`kwsim.py`](kwsim.py) | 重現關鍵字自動連結的判斷；比較 KR 與譯文的連結差異 |
 | [`packcheck.py`](packcheck.py) | 把譯文與 KR 逐欄位比對結構問題（[04-other.md](../04-other.md) 的數字來源） |
+| [`fingerprint.py`](fingerprint.py) | 把報告依賴的程式事實抽成一份「指紋」（`fingerprints/<日期>.json`），遊戲更新後比對哪些變了、要重看哪幾章；`watch.json` 是要盯的方法清單 |
 | `re_common.py` | 共用：工作目錄、PE 檔讀取、方法位址索引 |
 
-前六個需要遊戲檔案與 `pip install iced-x86 numpy`；`kwsim.py`、`packcheck.py` 只需要 `raw`、`tw` 分支的資料。腳本一律用 `python3 -I` 執行。
+前六個與 `fingerprint.py` 的 `watch`、`make` 需要遊戲檔案與 `pip install iced-x86 numpy`；`kwsim.py`、`packcheck.py` 只需要 `raw`、`tw` 分支的資料。腳本一律用 `python3 -I` 執行。
 
 ## 步驟
 
@@ -53,6 +54,36 @@ python3 -I disasm.py 0x28649c8 0x2864a60                           # 對照反�
 python3 -I kwsim.py diff .work/raw/kr .work/tw/LimbusCompany_Data/Lang/zh-TW
 python3 -I packcheck.py .work/raw/kr .work/tw/LimbusCompany_Data/Lang/zh-TW 5
 ```
+
+## 遊戲更新之後：比對程式有沒有變
+
+報告是針對一個版本寫的。`fingerprint.py` 把報告依賴的事實抽出來存檔，新版出來後再抽一次，兩份一比就知道哪些結論要重看。
+
+指紋裡有三種東西：
+
+- **類別的欄位**：`TextDataSet` 的每張表、檔案清單的每個欄位、每個 `TextData_*` 類別的欄位（名稱、型別、位移）。多了欄位，代表原本不讀的 key 可能變成會讀了。
+- **enum 的成員**：例如 `BUFF_UNIQUE_KEYWORD`（會自動連結的狀態 id 名單）。
+- **方法的摘要**：`watch.json` 列的每個方法依序呼叫了什麼、用到哪些字串常值、讀了哪些浮點常數、比較了哪些數值，以及去掉位址之後的機器碼雜湊。例如關鍵字後接字元的清單 `・「」『』.,/&;`、氣泡的 3 秒與 6 秒，都會出現在摘要裡。
+
+`watch.json` 的方法來自三處：報告內文引用的位址、內文以「類別.方法」寫出的名稱、腳本裡 `EXTRA` 列的名稱。它以名稱記錄，所以新版不必重做。
+
+```bash
+# 新版的兩個遊戲檔案放進新的工作目錄，照上面的步驟跑 md_decrypt.py 與 ./lift.sh decls，然後：
+python3 -I fingerprint.py make fingerprints/2026-11-19.json
+python3 -I fingerprint.py diff fingerprints/2026-11-12.json fingerprints/2026-11-19.json
+```
+
+`diff` 印出 Markdown：類別欄位的增減、enum 成員的增減、行為有變的方法（呼叫、字串或常數不同）、找不到的方法、只有機器碼不同的方法，並列出要重看的章節。沒有差異時 exit 0，有差異 exit 1。
+
+限制：
+
+- 方法改名或被內嵌會列在「找不到」，要人工看。
+- 別的類別多了欄位會讓位移改變，機器碼雜湊就不同；呼叫、字串、常數都沒變時多半不影響結論，所以另外列一節。
+- 虛擬呼叫與委派不在「呼叫」裡。
+- 報告新增了引用之後，用舊版的工作目錄重跑 `python3 -I fingerprint.py watch` 更新清單。
+- 這套比對只在 2026-11-12 這一版上測試過（自己比自己、以及人為修改過的指紋），還沒有真的比過兩個版本。
+
+資料面的變化（新檔案、新的 key、新的 id）不需要遊戲程式，由 `lct` 從 `raw` 分支的快照算，顯示在網站的「資料變化」頁。
 
 ## 1. 還原 metadata
 
