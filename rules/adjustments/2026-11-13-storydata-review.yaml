@@ -734,3 +734,21 @@
   zh: 也許冬柏會來，李箱。
   reason: StoryData 審查 S0077：KR「어쩌면 동백이 올지도 모르겠어」是「說不定冬柏會來」（JP 来るかもしれない，EN Dongbaek might just come）；TW「也許冬柏說的是對的」意思完全不同。下一句東朗接著說「如果她臨死前來到了這個空間……她的意識可能也被捲進來」，說的正是她會來。
   rule: one-off
+- key: StoryData/4D105B.json|/dataList/36/content
+  raw: raw-20261112
+  kr_sha: f7172c09d1ff3fd7bf7652cff2edf6a59f57f57cc7fcdb3b28cce360ed1a6ca2
+  zh: 真是的……以前來這裡參觀的客人並不多，但之後我們大概得發號碼牌讓他們排隊了。
+  reason: StoryData 審查 S0312：KR「차례로 줄이라도 서라고 번호표를 뿌려야 할 판」是「得發號碼牌讓大家依序排隊」，JP「番号札を配らなきゃ」相同；現行 TW 照 EN 的 punching tickets 寫成「檢票」，動作與物品都不同。
+  rule: one-off
+- key: StoryData/4D105B.json|/dataList/49/content
+  raw: raw-20261112
+  kr_sha: c2a50a8a97518283685ef7a806bde56a985cb973378d1a9917acfb468fb56133
+  zh: 但不與對方直接對視，並不代表我對他們心存芥蒂。
+  reason: StoryData 審查 S0313：KR「고깝게 여긴다는 것은 아니오」是「並不代表我對他們心懷不滿／有芥蒂」，JP「快く思わぬということにはあらず」相同；現行 TW 寫成「薄情無義」，意思偏了。
+  rule: one-off
+- key: StoryData/4D202B.json|/dataList/9/content
+  raw: raw-20261112
+  kr_sha: b096b9c5940fb9aa2b6c49dba74bf0ef10ef8b6097c24c2c62136579d9130e27
+  zh: 聽說是靈之先生所屬的團體，我特地把忙碌的行程全推掉跑來……結果只看到一些像兒童玩具的東西。
+  reason: StoryData 審查 S0314：KR 羅佳（此處扮演訥人）稱「영지 님」，是敬稱，她稱東朗也是「동랑 씨」→「東朗先生」；現行 TW 寫成「靈之哥」，那是東朗等人用「형」時的稱呼。另外 KR「…라길래 기껏 바쁜 일정 다 빼고 왔더니」是「聽說是靈之所屬的團體，才特地推掉行程來（這裡）」，TW「先前……去看了看」「那裡只有」把地點與時間都改了。
+  rule: one-off
