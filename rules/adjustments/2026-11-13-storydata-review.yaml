@@ -704,3 +704,15 @@
   zh: 如果你想要的是情報，我現在就提供給你。我們原計劃明天出去員工聚餐，而且約好要去一家很好吃的烤肉店。
   reason: StoryData 審查 S0073：KR「맛있는 고깃집을 데려가기로 해서요」是「說好要帶（員工）去一家好吃的烤肉店」（JP 焼肉屋）；TW 寫成「預定的那家居酒屋提供非常美味的燒肉」，多了 KR 沒有的「居酒屋」。
   rule: one-off
+- key: StoryData/S433A.json|/dataList/7/content
+  raw: raw-20261112
+  kr_sha: c5b9bc59a1f6a957b069b903f638d70e250a45dddfcd9ea5e028980fa437682b
+  zh: 如果他們將異想體還原成卵的形態，然後像腦葉公司那樣找到了顯現E.G.O的方法……
+  reason: StoryData 審查 S0074：KR「E.G.O를 발현하는 방법」是「讓 E.G.O 顯現的方法」（JP 発現する、EN materialize），現行「發現E.G.O」照搬日文漢字；「알의 형태로 수복시킨」是讓異想體回到卵的形態（EN reduced … to an ovate form，同章 S429B 的 알로 되돌릴 寫「變回卵」），中文「修復」是修好壞掉的東西，改寫「還原」。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S445B.json|/dataList/18/content
+  raw: raw-20261112
+  kr_sha: 61e16147771cbc326d29e80e310b1d8fb76590488205d9cba9f353c369f4c8ee
+  zh: 呵，你也跟鄉巴佬沒兩樣嘛。不對，應該說是船巴佬？
+  reason: StoryData 審查 S0075：KR「너도 촌뜨기나 다름없구만」是希斯克利夫對以實瑪利說「你也跟鄉巴佬沒兩樣嘛」（JP オメェも土臭ぇのは同じだな）；TW「那要照你這麼說，你就是個鄉巴佬」多了「照你這麼說」的條件，也漏了「也」。
+  rule: one-off
