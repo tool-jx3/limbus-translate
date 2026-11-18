@@ -674,3 +674,33 @@
   zh: 這樣就對了，你就儘管活成只對眼前發生的事好奇的模樣吧。這才是一名研究人員應該有的樣子。
   reason: StoryData 審查 S0068：KR「그렇게 당장 눈앞에서 벌어지는 일에만 실컷 궁금해하면서 살아가」是蘭引爆前的反諷：「就那樣只對眼前發生的事好奇個夠地活下去吧」（에만＝只對，실컷＝儘管、個夠，살아가 是命令形）；現行「對你眼前所發生的事情懷有好奇心」少了「只」與「活下去」，變成正面勸勉。譯法由使用者決定
   rule: one-off
+- key: StoryData/S421B.json|/dataList/36/content
+  raw: raw-20261112
+  kr_sha: b0e138ffeef6fed9f0dd9c6ae0e4050fb0d530681b4db73e16028c779c78b838
+  zh: 我以為研究員的任務就是撰寫論文……看來你還挺擅長寫小說的嘛，你這瘋子。
+  reason: StoryData 審查 S0069：KR 句尾的辱罵是「미친 새끼」（瘋子、混帳，JP クソ野郎，EN you deranged maniac）；TW 寫成「四眼田雞」（嘲笑戴眼鏡），換成了 KR 沒有的另一種罵法。
+  rule: one-off
+- key: StoryData/S426B.json|/dataList/36/content
+  raw: raw-20261112
+  kr_sha: 040676bce2ef7617131c77f8c5ffb3808842be01c035380cca941b4c8722ee74
+  zh: 應該不是我們能隨意對抗的人。雖然委託方花了多少錢、派出哪一科的收尾人也很重要……
+  reason: StoryData 審查 S0070：KR「얼마로 어느 과의 해결사를 보냈는지」是「花了多少錢、派了哪一科的收尾人」，指委託的價碼（EN how much they were paid）；TW「派出了多少收尾人」變成人數。
+  rule: one-off
+- key: StoryData/S427B.json|/dataList/56/content
+  raw: raw-20261112
+  kr_sha: 96b32b30113860211b7836d8ff9d1c66b5719311341a026bd020b1a6539d2da2
+  zh: 照片，不過是被製成標本的瞬間罷了。
+  reason: StoryData 審查 S0071：KR「순간을 박제한 것」是「把瞬間製成的標本」（박제＝剝製標本，JP 瞬間を剥製したもの，EN a taxidermied moment），意思是照片只是被定住、失去生命的瞬間；TW「剝離瞬間所製成的物件」看起來是把「剝製」拆錯，標本的意象不見了，句意也含糊。
+  rule: one-off
+- key: StoryData/S430B.json|/dataList/35/content
+  raw: raw-20261112
+  kr_sha: f39937e16f7a8d0caadc396b41f6eaa4bef236e19cab9b82dabb695256047cd6
+  zh: 只需淋雨，便能徹底恢復健康的故事……
+  reason: StoryData 審查 S0072：KR「비를 맞으면 씻은 듯이 건강해진다는 게…」是「淋了雨就會完全恢復健康的（故事）……」，씻은 듯이 是「一下子全好、徹底」的慣用語，前文的童話說的是生病的家人恢復健康；TW「便能治癒萬物」把對象擴大成萬物。
+  rule: one-off
+- key: StoryData/S430B.json|/dataList/73/content
+  raw: raw-20261112
+  kr_sha: cefb8af9e66de99d8182c572e17b204d3c303f2c3ad967cdeebb6f82e714a624
+  zh: 如果你想要的是情報，我現在就提供給你。我們原計劃明天出去員工聚餐，而且約好要去一家很好吃的烤肉店。
+  reason: StoryData 審查 S0073：KR「맛있는 고깃집을 데려가기로 해서요」是「說好要帶（員工）去一家好吃的烤肉店」（JP 焼肉屋）；TW 寫成「預定的那家居酒屋提供非常美味的燒肉」，多了 KR 沒有的「居酒屋」。
+  rule: one-off
