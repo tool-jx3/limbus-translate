@@ -785,3 +785,27 @@
   zh: 啊，各位也許還不知道，但僅那一個奇點便拯救了數不清的生命。
   reason: StoryData 審查 S0317：KR「혹시 모르실 수도 있겠지만」是「也許還不知道，不過……」（JP ご存じないかもしれませんが），是客氣的陳述；現行寫成反問「你難道不知道嗎」，變成責備對方。KR 沒有主詞，東朗是對在場的罪人們說（#23 唐吉訶德、#24 浮士德、#27 羅佳），有禮貌的複數依 base.md 寫「各位」，與東朗在主線對罪人的稱呼一致。譯法由使用者決定
   rule: one-off
+- key: StoryData/4D301B.json|/dataList/12/content
+  raw: raw-20261112
+  kr_sha: 2c9520471ec77ab900a20379c1002909890ab8e15faa39049535e7d7bb7218b3
+  zh: 我若背過身去，你不也會陪我一同背過身去嗎。
+  reason: StoryData 審查 S0318：KR「내가 등을 돌리면 자네도 같이 등을 돌려주지 않는가.」是李箱對鏡中的自己說「我若背過身去，你不也會陪我一同背過身去嗎」（鏡像同步，-지 않는가 是反問），JP「そなたも共に背を向けずや」相同；現行「你也不會背過身去」意思相反。譯法由使用者決定
+  rule: one-off
+- key: StoryData/4D304B.json|/dataList/57/content
+  raw: raw-20261112
+  kr_sha: e8a163f9ded086a069a26ab97a9fbc32e23c267522e330d5061f3b0e215d7588
+  zh: 嗯，如你所說。我書櫃上那些最優秀獎的獎牌，全都只是空殼罷了。
+  reason: StoryData 審查 S0319：KR「제 책장에 있는 최우수 상패들」是「我書櫃上的最優秀獎獎牌」，JP「本棚にある最優秀賞の盾」相同；現行 TW 照 EN 寫成「桌上的獎盃和勳章」，位置與物品都不同。
+  rule: one-off
+- key: StoryData/4D305A.json|/dataList/4/content
+  raw: raw-20261112
+  kr_sha: 78f942412bf2ecf7eb51b075954f9a2d30e457c21ef99f5ad8ac3d3db984358a
+  zh: 鑑於恐怖組織的首領——是叫冬柏對吧？已經死掉了，組織轉眼間就會瓦解。那麼關於剩下的問題……
+  reason: StoryData 審查 S0320：KR「테러단체가 와해되는 건 순식간이겠어요」是「恐怖組織轉眼間就會瓦解」，JP「あっという間」、EN「in no time」相同；現行 TW 寫成「遲早的事」，變成時間不確定。
+  rule: one-off
+- key: StoryData/4D305A.json|/dataList/24/content
+  raw: raw-20261112
+  kr_sha: 1f60dcb0d0f61412d5488d55ccc079d5633b47f6e16160fd49df88347dddded0
+  zh: 我會進行記憶清除手續。
+  reason: StoryData 審查 S0321：KR「기억 소거 절차를 진행할게.」是阿方索說「我會進行記憶清除手續」，JP「進行するよ」、EN「I'll get your memories erased」相同；現行 TW「你們去辦記憶清除手續吧」，變成叫對方自己去辦。
+  rule: one-off
