@@ -193,6 +193,6 @@
 ## 讀不到、沒有確認的部分
 
 - 官方三份檔案清單的內容：是不是每個 KR 檔都有被列進去、同一張表裡檔案的先後、id 重複的檔哪一個有效。
-- `SynergyKeyword`、`ChapterBannerConfig`（空的）與四個 `Tutorial*` 檔屬於哪張表；`LobbyBGMCategory` 由誰讀。（鏡牢節點表 `MirrorDungeonNode1-1`、`HellsChickenDungeonNode` 已確認沒有人讀，見 [07-field-display.md](07-field-display.md)。）
+- `ChapterBannerConfig`（空的）與四個 `Tutorial*` 檔屬於哪張表；`LobbyBGMCategory` 由誰讀。`SynergyKeyword` 在 2026-11-18 查過：程式沒有對應的表，也沒有函式用共鳴關鍵字查文字（[07-field-display.md](07-field-display.md) 第 6 節）；官方清單有沒有把它列進某張表仍讀不到。（鏡牢節點表 `MirrorDungeonNode1-1`、`HellsChickenDungeonNode` 已確認沒有人讀，見 [07-field-display.md](07-field-display.md)。）
 - `ChoiceEventKeyword`、`ChoiceEventTarget` 屬於選擇事件結果表：原本是推定，2026-11-16 已確認讀這張表的是各個結果類別的建構式。
 - 介面文字表 98 個節點裡有 32 個是只憑類別與檔名歸進去的。

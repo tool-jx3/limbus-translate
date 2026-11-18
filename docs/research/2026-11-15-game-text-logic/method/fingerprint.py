@@ -46,7 +46,7 @@ TYPE_FILES = [
 # 收進指紋的 enum（型別名稱）
 ENUMS = [
     "BUFF_UNIQUE_KEYWORD", "LOCALIZE_LANGUAGE", "AB_DLG_EVENT_TYPE", "SCENE_STATE", "GROWTH_REWARD_CATEGORY",
-    "UNIT_KEYWORD", "STAGE_BATTLE_TYPE", "ATK_BEHAVIOUR", "ATTRIBUTE_TYPE", "SkillAndCoinUIType",
+    "UNIT_KEYWORD", "STAGE_BATTLE_TYPE", "ATK_BEHAVIOUR", "ATTRIBUTE_TYPE", "SkillAndCoinUIType", "SYNERGY_KEYWORD",
 ]
 
 TYPE_RE = re.compile(r"^(\s*)(?:public|private|protected|internal)?\s*(?:static |sealed |abstract |partial )*(class|struct|enum|interface) ([A-Za-z_]\w*)(?:<[^>]*>)?(?:\s*:\s*([^{]+?))?\s*$")
