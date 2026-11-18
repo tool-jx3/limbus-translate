@@ -106,7 +106,7 @@
 - **官方檔案清單**（`RemoteLocalizeFileList.json`）：77 張表、1,259 個檔名。第 6 章推出來的「哪個檔在哪張表」全部正確。**KR 有 17 個檔不在清單裡，遊戲不會載入**（594 個字串，譯文已翻 581 個），最大的是 `StoryTheaterPersonality`、`StoryTheaterMirrorWorldStoryTitle`、`StoryTheaterMirrorWorld`，以及 `DungeonStartBuffs`、`DungeonStartBuffs_MD6`（只有 `_MD7` 會載入）。見 [01](01-custom-language.md)、[07](07-field-display.md) 第 6 節。
 - **語音表**（`etc/VoiceTable.json`）：12 個前綴與 141 個語音 id，原意是限制哪些語音會帶出氣泡；但編譯出來的判斷永遠成立，這份表目前不擋任何句子。見 [05](05-battle-speech-bubble.md)。
 - **下載網址**：官方文字是下載後以檔案讀取的（確認）。`RemoteLocalizeFileList.json`、語音表、RPG 檔案清單都有固定的網址，實際下載確認過。
-- **啟動用清單**：五個檔，其中 `ErrorCodeMsgLocal`（16 句啟動階段的錯誤訊息）不在 `raw`，語言包沒有；內容和 `ErrorCodeMsg` 的同 id 相同，可以補。
+- **啟動用清單**：五個檔，其中 `ErrorCodeMsgLocal`（16 句啟動階段的錯誤訊息）不在 `raw`；內容和 `ErrorCodeMsg` 的同 id 相同，建置時已改為複製一份放進語言包（遊戲內的效果還沒確認）。
 - **樣式表**：31 個樣式。`highlight`、`upgradeHighlight` 是空的（黃字是程式換上去的）；`dkr`／`den`／`djp` 是該語言字型的發光材質，搭配語言包字型的效果還沒確認。
 - **換行**：遊戲自動避頭尾，譯文不用為此手動換行。
 - **靜態標籤**：1,862 個介面標籤直接綁定文字 id；估算後只有 2 個譯文可能超出框。

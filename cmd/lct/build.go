@@ -176,6 +176,7 @@ func runBuild(ctx *cli.Context, args []string) error {
 		BuiltAt:         builtAt,
 		Frozen:          cfg.Frozen,
 		MaxInconsistent: cfg.Build.MaxInconsistent,
+		Copies:          cfg.Build.Copies,
 		Rules:           r,
 		RepoURL:         repoURL(),
 		PrevTWCommit:    prevTW,

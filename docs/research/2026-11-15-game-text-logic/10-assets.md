@@ -11,7 +11,7 @@
 
 1. **官方文字是下載後以檔案讀取的**（設定值確認），每個檔都有固定的網址；`RemoteLocalizeFileList.json`、語音表、RPG 檔案清單都能直接下載。
 2. **官方檔案清單**：77 張表、1,259 個檔名；KR 有 17 個檔不在清單裡，遊戲不會載入（細節在 [01](01-custom-language.md)、[07](07-field-display.md) 第 6 節）。RPG 的清單列了 189 個檔，和 KR 的 `RPGSystem/` 完全一致。
-3. **啟動用清單**有四張表、五個檔；其中 `ErrorCodeMsgLocal` 不在 `raw` 裡，語言包沒有它，啟動階段的 16 句錯誤訊息推定不會是中文。這 16 句的 id 與文字和 `ErrorCodeMsg` 完全相同，語言包可以用既有的譯文補一個 `ErrorCodeMsgLocal.json`。
+3. **啟動用清單**有四張表、五個檔；其中 `ErrorCodeMsgLocal` 不在 `raw` 裡，語言包沒有它，啟動階段的 16 句錯誤訊息推定不會是中文。這 16 句的 id 與文字和 `ErrorCodeMsg` 完全相同；2026-11-18 起建置時會把建好的 `ErrorCodeMsg.json` 複製成 `ErrorCodeMsgLocal.json` 放進語言包（`lct.yaml` 的 `build.copies`）。
 4. **樣式表**有 31 個樣式。`highlight` 與 `upgradeHighlight` 是空的，顏色是程式另外加的；`dkr`／`den`／`djp` 系列是**切換到該語言字型專用的材質**，不是單純的顏色。
 5. **換行規則**是 TextMeshPro 的避頭尾字元表：開頭括號、`—`、`…` 後面不斷行；結尾括號與 `、。，！？：；` 前面不斷行。
 6. **靜態標籤**：`resources.assets` 裡有 1,862 個標籤直接綁定介面文字的 id（952 個不同的 id）。估算譯文寬度後，只有 2 個可能超出框。
@@ -61,7 +61,8 @@ Addressables 目錄也印證這一點：21,880 個資源裡沒有官方文字，
 
 - 這五個檔的官方文字在遊戲本體裡（每個語言一份）。`LoginUIText`、`UserAgreements`、`FileDownloadDesc` 和 `raw` 的 KR 完全相同；`BattleHint` 的筆數相同、內容不同（本體裡的是舊版）。
 - **`ErrorCodeMsgLocal` 不在下載的資料裡，所以 `raw` 沒有、語言包也沒有。** 它有 16 筆（伺服器錯誤、維護中、連線錯誤等），每一筆的 id 與 KR 文字都和 `ErrorCodeMsg.json` 的同一筆相同，其中 14 筆也在 `LoginUIText.json`。
-- 影響（推定）：遊戲啟動、還沒下載完資料之前跳出的錯誤訊息，會是遊戲內選的語言。語言包只要多一個 `ErrorCodeMsgLocal.json`，內容取自已經翻好的 `ErrorCodeMsg.json` 那 16 筆，就能補上。
+- 影響（推定）：遊戲啟動、還沒下載完資料之前跳出的錯誤訊息，會是遊戲內選的語言。
+- 處理：建置語言包時把建好的 `ErrorCodeMsg.json` 整個複製成 `ErrorCodeMsgLocal.json`（`lct.yaml` 的 `build.copies`）。`ErrorCodeMsg.json` 有 20 筆，多出的 4 筆啟動階段用不到，依合併規則無害。**「語言包放了這個檔遊戲就會讀」是從載入程式推定的，還沒有在遊戲裡確認**；確認方式是斷網啟動遊戲，看錯誤訊息是不是中文。
 
 ## 3. 樣式表（`<style="…">`）
 

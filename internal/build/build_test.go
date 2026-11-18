@@ -3100,3 +3100,78 @@ func TestInfoInconsistentAllKeepsTheReportGroupsUnderASmallCap(t *testing.T) {
 			len(rep.Inconsistent), len(info.InconsistentAll))
 	}
 }
+
+// A file the game reads under another name than the official packs have is a
+// copy of a built file (Options.Copies): the messages the game shows before it
+// has downloaded anything are those of ErrorCodeMsg.json.
+func TestBuildCopiesABuiltFileUnderAnotherName(t *testing.T) {
+	const kr = `{"dataList":[{"id":"servererror_content","content":"서버 에러"}]}`
+	e := newEnv(t, map[string]string{"ErrorCodeMsg.json": kr, "A.json": `{"dataList":[]}`}, nil)
+	e.save(rec("ErrorCodeMsg.json", "/dataList/0/content", "서버 에러", "伺服器錯誤"))
+	e.opt.Copies = map[string]string{"ErrorCodeMsgLocal.json": "ErrorCodeMsg.json", "Other.json": "NotInThePack.json"}
+	rep := e.run()
+
+	if got := e.out("ErrorCodeMsgLocal.json"); got != e.out("ErrorCodeMsg.json") || !strings.Contains(got, "伺服器錯誤") {
+		t.Errorf("ErrorCodeMsgLocal.json = %q, want the built ErrorCodeMsg.json with its translation", got)
+	}
+	// A copy whose source the pack has not is left out, and the report says which were made.
+	got := listFiles(t, filepath.Join(e.opt.TWRoot, dataDir, "Lang", "zh-TW"))
+	want := []string{"A.json", "ErrorCodeMsg.json", "ErrorCodeMsgLocal.json", "Info/LICENSE-CONTENT", "Info/version.json"}
+	if !slices.Equal(got, want) {
+		t.Errorf("files = %v, want %v", got, want)
+	}
+	if !slices.Equal(rep.Copied, []string{"ErrorCodeMsgLocal.json"}) {
+		t.Errorf("report copied = %v, want ErrorCodeMsgLocal.json", rep.Copied)
+	}
+	// The copy holds no unit of its own.
+	plain := newEnv(t, map[string]string{"ErrorCodeMsg.json": kr, "A.json": `{"dataList":[]}`}, nil)
+	plain.save(rec("ErrorCodeMsg.json", "/dataList/0/content", "서버 에러", "伺服器錯誤"))
+	if base := plain.run(); !reflect.DeepEqual(rep.Origins, base.Origins) || !reflect.DeepEqual(rep.Shown, base.Shown) {
+		t.Errorf("origins %v, shown %v; without the copy %v, %v", rep.Origins, rep.Shown, base.Origins, base.Shown)
+	}
+	// Both zips carry it.
+	matches, err := filepath.Glob(filepath.Join(e.opt.OutDir, "*.zip"))
+	if err != nil || len(matches) == 0 {
+		t.Fatalf("zips: %v, %v", matches, err)
+	}
+	for _, z := range matches {
+		names, _, _ := zipEntries(t, z)
+		if !slices.ContainsFunc(names, func(n string) bool { return strings.HasSuffix(n, "/zh-TW/ErrorCodeMsgLocal.json") }) {
+			t.Errorf("%s has no ErrorCodeMsgLocal.json: %v", filepath.Base(z), names)
+		}
+	}
+	// Built again, nothing changes; without the option the copy is removed.
+	e.run()
+	if got := e.out("ErrorCodeMsgLocal.json"); got != e.out("ErrorCodeMsg.json") {
+		t.Errorf("after a second build the copy is %q", got)
+	}
+	e.opt.Copies = nil
+	e.run()
+	if _, err := os.Stat(filepath.Join(e.opt.TWRoot, dataDir, "Lang", "zh-TW", "ErrorCodeMsgLocal.json")); !os.IsNotExist(err) {
+		t.Errorf("the copy of an earlier build is still there: %v", err)
+	}
+}
+
+func TestRunRejectsBadCopies(t *testing.T) {
+	for name, copies := range map[string]map[string]string{
+		"a name the pack has":       {"A.json": "B.json"},
+		"a copy of itself":          {"C.json": "C.json"},
+		"a path that climbs":        {"../C.json": "A.json"},
+		"an absolute path":          {"/C.json": "A.json"},
+		"no .json":                  {"C.txt": "A.json"},
+		"an empty source":           {"C.json": ""},
+		"a copy of a copy":          {"C.json": "A.json", "D.json": "C.json"},
+		"a file of the pack's info": {"Info/version.json": "A.json"},
+	} {
+		t.Run(name, func(t *testing.T) {
+			e := newEnv(t, map[string]string{"A.json": `{"dataList":[]}`, "B.json": `{"dataList":[]}`}, nil)
+			e.opt.Copies = copies
+			if _, err := Run(e.opt, e.src, e.fr); err == nil {
+				t.Fatal("Run succeeded")
+			}
+			if _, err := os.Stat(filepath.Join(e.opt.TWRoot, dataDir)); err == nil {
+				t.Error("the pack was written although the copies are bad")
+			}
+		})
+	}
+}

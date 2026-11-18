@@ -5,7 +5,9 @@ cdn_template: https://downloadcommon.limbuscompanycdn.org/{token}/Assets/Localiz
 cdn_file_template: https://downloadcommon.limbuscompanycdn.org/{token}/{path}
 worktrees: { raw: .work/raw, tw: .work/tw }
 batch: { max_units: 40, story_max_units: 120, max_names: 80, max_attempts: 3, lease_minutes: 120 }
-build: { max_inconsistent: 1000 }
+# copies：語言包多出來的檔，內容是另一個建好的檔的複本。遊戲啟動時（還沒下載資料前）的錯誤訊息讀的是 ErrorCodeMsgLocal，
+# 這個檔只在遊戲本體裡、官方語言包沒有，內容與 ErrorCodeMsg 的同 id 相同（docs/research/2026-11-15-game-text-logic/10-assets.md 第 2 節）
+build: { max_inconsistent: 1000, copies: { ErrorCodeMsgLocal.json: ErrorCodeMsg.json } }
 names: { fields: [name, abName, displayName, nickName] }
 # Sarasa Gothic TC Bold：be5invis/Sarasa-Gothic v1.0.43 release 的 SarasaGothicTC-TTF-1.0.43.7z 內的 SarasaGothicTC-Bold.ttf
 font: { path: assets/fonts/SarasaGothicTC-Bold.ttf, version: "1.0.43", sha256: "cddc7ff155199b59656c750f881f696ebd1b3a0baf053ec8333b712f8429c20a" }

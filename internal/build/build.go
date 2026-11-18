@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"path/filepath"
+	"regexp"
 	"slices"
 	"strings"
 	"time"
@@ -105,6 +106,12 @@ type Options struct {
 	// the provisional terms of this raw tag that differ from the old
 	// translations (Report.TermDiffs). With nil nothing is compared with them.
 	Names *existing.Index
+	// Copies are files the pack gets besides those of KR: each name (a path
+	// in the language directory, such as "ErrorCodeMsgLocal.json") is a copy,
+	// byte for byte, of the built file it maps to. The game reads some files
+	// under a name the official packs do not have. A copy whose source KR
+	// has not is left out (Report.Copied lists the ones made).
+	Copies map[string]string
 }
 
 const (
@@ -161,6 +168,8 @@ type Report struct {
 	// MissingGlyphs lists, sorted, the characters of the output that the font
 	// cannot show. It does not stop the build.
 	MissingGlyphs []rune `json:"missing_glyphs"`
+	// Copied lists, sorted, the files of Options.Copies that were written.
+	Copied []string `json:"copied,omitempty"`
 	// StandIn counts the units that show a stand-in text, EN or else KR: the
 	// pending units, the used records of origin fallback, and the used
 	// records that were replaced because they break the structure of KR
@@ -402,8 +411,23 @@ func checkOptions(opt Options) error {
 	if opt.BuiltAt.IsZero() || opt.BuiltAt.Year() < minBuiltYear {
 		return fmt.Errorf("build: option BuiltAt = %v is not set or is before %d, which zip files cannot store", opt.BuiltAt, minBuiltYear)
 	}
+	for name, source := range opt.Copies {
+		if !copyNameRe.MatchString(name) || strings.HasPrefix(name, "Info/") || strings.HasPrefix(name, "Font/") {
+			return fmt.Errorf("build: option Copies: %q is not the name of a .json file of the pack", name)
+		}
+		if source == "" || source == name {
+			return fmt.Errorf("build: option Copies: %q is a copy of %q", name, source)
+		}
+		if _, isCopy := opt.Copies[source]; isCopy {
+			return fmt.Errorf("build: option Copies: %q is a copy of %q, which is a copy itself", name, source)
+		}
+	}
 	return nil
 }
+
+// copyNameRe matches the name of a copy: a .json file, with plain names
+// separated by slashes.
+var copyNameRe = regexp.MustCompile(`^[A-Za-z0-9_-][A-Za-z0-9._-]*(/[A-Za-z0-9_-][A-Za-z0-9._-]*)*\.json$`)
 
 // buildLocked is Run's work, done under the store lock.
 func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fields.Rules) (*Report, error) {
@@ -479,6 +503,16 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 		}
 	}
 
+	// Refused before anything is written, like the other bad options.
+	for name := range opt.Copies {
+		if src.KR.Has(name) {
+			return nil, fmt.Errorf("build: option Copies: %q is a file of the KR pack", name)
+		}
+	}
+	copiesOf := map[string][]string{}
+	for name, source := range opt.Copies {
+		copiesOf[source] = append(copiesOf[source], name)
+	}
 	tree := newTree(opt.TWRoot)
 	for _, file := range src.KR.Files() {
 		data, err := b.buildFile(file)
@@ -488,7 +522,14 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 		if err := tree.write(langPath(opt, file), data); err != nil {
 			return nil, err
 		}
+		for _, name := range copiesOf[file] {
+			if err := tree.write(langPath(opt, name), data); err != nil {
+				return nil, err
+			}
+			b.rep.Copied = append(b.rep.Copied, name)
+		}
 	}
+	slices.Sort(b.rep.Copied)
 	if len(b.added) > 0 {
 		pending = append(pending, b.added...)
 		if err := st.SavePending(pending); err != nil {

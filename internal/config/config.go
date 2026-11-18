@@ -55,6 +55,9 @@ type Build struct {
 	// MaxInconsistent is how many "same KR, different renderings" groups the
 	// build record keeps, besides those with units of the update.
 	MaxInconsistent int `yaml:"max_inconsistent"`
+	// Copies are files the pack gets besides those of KR: each name is a
+	// copy of the built file it maps to (build.Options.Copies).
+	Copies map[string]string `yaml:"copies"`
 }
 
 // Names lists the fields whose current translations make up the table of
