@@ -598,3 +598,29 @@ func TestSortedTagsOrdersByDayThenNumber(t *testing.T) {
 		t.Errorf("SortedTags = %v, want %v", got, want)
 	}
 }
+
+func TestOpenAtReadsThePackOfALanguage(t *testing.T) {
+	wt := rawWorktree(t)
+	tag, _, err := Snapshot(wt, storyPack(t, "first"), Source{Token: token1, CreatedAt: created1})
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, lang := range []string{"kr", "en", "jp"} {
+		dir := filepath.Join(t.TempDir(), lang)
+		p, err := OpenAt(wt, tag, lang, dir)
+		if err != nil {
+			t.Fatal(err)
+		}
+		// The prefix of the language is cut from the names, and only its pack is exported.
+		if !p.Has("A.json") {
+			t.Errorf("%s: files = %v, want A.json", lang, p.Files())
+		}
+		entries, err := os.ReadDir(dir)
+		if err != nil || len(entries) != 1 || entries[0].Name() != lang {
+			t.Errorf("%s: dir holds %v (%v), want only %s", lang, entries, err, lang)
+		}
+	}
+	if _, err := OpenAt(wt, tag, "fr", t.TempDir()); err == nil || !strings.Contains(err.Error(), "fr") {
+		t.Errorf("OpenAt of fr: err = %v, want one that names the language", err)
+	}
+}

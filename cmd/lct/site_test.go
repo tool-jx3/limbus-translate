@@ -707,6 +707,14 @@ func TestDataChangesComparesEachSnapshotWithTheOneBefore(t *testing.T) {
 	if second.Diff.From != "raw-20261105" || second.Diff.To != "raw-20261112" || len(second.Diff.FilesAdded) != 1 || second.Diff.FilesAdded[0].Family != "ally" {
 		t.Errorf("second = %+v, want Skills-a1.json (ally) added from raw-20261105 to raw-20261112", second.Diff)
 	}
+	// The packs of the other languages come with each change, compared with KR.
+	if len(first.Others) != 2 || first.Others[0].Lang != "jp" || first.Others[1].Lang != "en" || first.Others[0].VsKR == nil ||
+		len(first.Others[0].VsKR.OnlyOther) != 1 || first.Others[0].VsKR.OnlyOther[0].Name != "Skills.json" {
+		t.Errorf("first: the other packs = %+v, want JP and EN, JP without the entry KR got", first.Others)
+	}
+	if jp := second.Others[0]; jp.From != "raw-20261105" || jp.To != "raw-20261112" || len(jp.FilesAdded) != 1 || jp.FilesAdded[0].File != "Skills.json" || len(jp.VsKR.OnlyHere) != 3 {
+		t.Errorf("second: JP = %+v (vs KR %+v), want Skills.json added, three changes KR has not", jp, jp.VsKR)
+	}
 	at, err := gitx.RevTime(filepath.Join(root, ".work", "raw"), "refs/tags/raw-20261112")
 	if err != nil || second.At != at.Format("2006-01-02T15:04:05Z") {
 		t.Errorf("at = %q, want the time of the commit of the tag (%v, %v)", second.At, at, err)

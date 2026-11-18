@@ -1,4 +1,4 @@
-import type { JPENClass, Lang, ReviewTab, UpdateKind } from './types'
+import type { DataLang, JPENClass, Lang, ReviewTab, UpdateKind } from './types'
 import type { UpdateFilter } from './updates/filter'
 
 /**
@@ -6,7 +6,7 @@ import type { UpdateFilter } from './updates/filter'
  * #/r/<tab>?family=…&kind=…&q=…&all=1&id=… (sub is the kind of the query: of a suggestion, the code of a warning),
  * #/gold (the gold sample to judge),
  * #/u, #/u/<tag>?k=<kinds>&o=<origin>&f=<file>&copy=1,
- * #/d, #/d/<tag> (what a snapshot of the raw branch changed in the KR pack as data),
+ * #/d, #/d/<tag>?l=<jp|en> (what a snapshot of the raw branch changed in the KR pack as data, or in the pack of another language),
  * #/n?q=…&only=…&sort=… (the existing names),
  * #/g?q=…&sort=…&only=…&family=…, #/g/<a>/<b>?family=…&group=…&chapter=…&character=…&event=…&origin=…&q=… (the entry glossary/<a>/<b>).
  */
@@ -19,7 +19,7 @@ export type Route =
   | { kind: 'updates' }
   | { kind: 'gold' }
   | { kind: 'datas' }
-  | { kind: 'data'; tag: string }
+  | { kind: 'data'; tag: string; lang: DataLang }
   | { kind: 'update'; tag: string; kinds: UpdateKind[]; origin: string; file: string; copy: boolean; cause: string; group: string }
   | { kind: 'glossary'; q: string; sort: GlossarySort; only: GlossaryOnly; family: string }
   | { kind: 'names'; q: string; only: NamesOnly; sort: NamesSort }
@@ -207,7 +207,8 @@ export function parseHash(hash: string): Route {
   if (pathname === '/d') return { kind: 'datas' }
   if (pathname.startsWith('/d/')) {
     const tag = decode(pathname.slice(3))
-    return DATA_TAG.test(tag) ? { kind: 'data', tag } : { kind: 'home' }
+    const l = query.get('l')
+    return DATA_TAG.test(tag) ? { kind: 'data', tag, lang: l === 'jp' || l === 'en' ? l : 'kr' } : { kind: 'home' }
   }
   if (pathname === '/u') return { kind: 'updates' }
   if (pathname.startsWith('/u/')) {
@@ -271,9 +272,9 @@ export function dataChangesHref(): string {
   return '#/d'
 }
 
-/** The hash of the data changes of a snapshot. */
-export function dataChangeHref(tag: string): string {
-  return `#/d/${encodeURIComponent(tag)}`
+/** The hash of the data changes of a snapshot, in the pack of a language (KR when none is given). */
+export function dataChangeHref(tag: string, lang: DataLang = 'kr'): string {
+  return `#/d/${encodeURIComponent(tag)}${lang === 'kr' ? '' : `?l=${lang}`}`
 }
 
 /** The hash of the list of updates. */

@@ -83,7 +83,7 @@ python3 -I fingerprint.py diff fingerprints/2026-11-12.json fingerprints/2026-11
 - 報告新增了引用之後，用舊版的工作目錄重跑 `python3 -I fingerprint.py watch` 更新清單。
 - 這套比對只在 2026-11-12 這一版上測試過（自己比自己、以及人為修改過的指紋），還沒有真的比過兩個版本。
 
-資料面的變化（新的檔案種類、新檔案、新的 JSON 欄位、新的條目 id、第一次出現的文字標記）不需要遊戲程式，由 `lct` 從 `raw` 分支的快照算：`bin/lct rawdiff [--from <raw tag>] [--to <raw tag>]`，網站的「資料變化」頁（`#/d`）列出每個快照的結果。兩邊互相對照著看：資料多了一個欄位（例如 2026-11-12 的 `excludeAutoLink`），指紋的類別欄位通常也會多一個，這時就要回頭讀那個類別的程式。
+資料面的變化（新的檔案種類、新檔案、新的 JSON 欄位、新的條目 id、第一次出現的文字標記）不需要遊戲程式，由 `lct` 從 `raw` 分支的快照算：`bin/lct rawdiff [--from <raw tag>] [--to <raw tag>] [--lang kr|jp|en]`，網站的「資料變化」頁（`#/d`）列出每個快照的結果（JP、EN 另外列出和 KR 不同的變化）。兩邊互相對照著看：資料多了一個欄位（例如 2026-11-12 的 `excludeAutoLink`），指紋的類別欄位通常也會多一個，這時就要回頭讀那個類別的程式。
 
 ## 1. 還原 metadata
 

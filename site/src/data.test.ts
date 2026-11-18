@@ -223,6 +223,15 @@ describe('data change loading', () => {
     expect(fetchMock.mock.calls[0]?.[0]).toBe(`./data/rawdiff/${tag}.json`)
   })
 
+  it('reads the pack of another language from data/rawdiff/<tag>.<lang>.json', async () => {
+    const fetchMock = serve({ [`rawdiff/${tag}.json`]: diff, [`rawdiff/${tag}.jp.json`]: { ...diff, lang: 'jp' } })
+    expect(await loadDataChange(tag, 'jp')).toEqual({ ...diff, lang: 'jp' })
+    expect(fetchMock.mock.calls[0]?.[0]).toBe(`./data/rawdiff/${tag}.jp.json`)
+    expect(await loadDataChange(tag, 'kr')).toEqual(diff)
+    expect(fetchMock.mock.calls[1]?.[0]).toBe(`./data/rawdiff/${tag}.json`)
+    expect(await kindOf(loadDataChange(tag, 'en'))).toBe('missing')
+  })
+
   it('rejects documents of another shape, and a missing one', async () => {
     serve({ 'rawdiff/index.json': { nope: 1 }, [`rawdiff/${tag}.json`]: { tokens: 1 } })
     expect(await kindOf(loadDataChanges())).toBe('format')

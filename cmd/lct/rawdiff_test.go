@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"testing"
 
@@ -10,8 +11,9 @@ import (
 )
 
 // rawdiffRepo is a repo with the rules the families come from and one
-// snapshot for each KR pack of packs (the files of kr/ to their JSON), a week
-// apart from 2026-10-29.
+// snapshot for each of packs, a week apart from 2026-10-29. A pack is its
+// files to their JSON: those of kr/ by their name, those of the other packs
+// with the directory ("en/EN_Skills.json").
 func rawdiffRepo(t *testing.T, packs ...map[string]string) string {
 	t.Helper()
 	root := snapshotRepo(t)
@@ -23,7 +25,10 @@ func rawdiffRepo(t *testing.T, packs ...map[string]string) string {
 	for i, files := range packs {
 		dir := t.TempDir()
 		for name, content := range files {
-			writeTestFile(t, dir, "kr/"+name, content)
+			if !strings.Contains(name, "/") {
+				name = "kr/" + name
+			}
+			writeTestFile(t, dir, name, content)
 		}
 		writeTestFile(t, dir, "en/EN_A.json", "{}\n")
 		writeTestFile(t, dir, "jp/JP_A.json", "{}\n")
@@ -37,7 +42,9 @@ func rawdiffRepo(t *testing.T, packs ...map[string]string) string {
 var rawdiffPacks = []map[string]string{
 	{"KR_Skills.json": `{"dataList":[{"id":1,"name":"가"}]}`},
 	{"KR_Skills.json": `{"dataList":[{"id":1,"name":"가"},{"id":2,"name":"나"}]}`},
-	{"KR_Skills.json": `{"dataList":[{"id":1,"name":"가"},{"id":2,"name":"나"}]}`, "KR_Skills-a1.json": `{"dataList":[{"id":3,"name":"[Storm]"}]}`},
+	{"KR_Skills.json": `{"dataList":[{"id":1,"name":"가"},{"id":2,"name":"나"}]}`, "KR_Skills-a1.json": `{"dataList":[{"id":3,"name":"[Storm]"}]}`,
+		// JP gets another file than KR, with a tag KR has not.
+		"jp/JP_Skills.json": `{"dataList":[{"id":1,"name":"あ <pause>"}]}`},
 }
 
 func runRawdiffJSON(t *testing.T, root string, args ...string) (rawdiff.Diff, error) {
@@ -59,8 +66,8 @@ func TestRawdiffComparesTheLastTwoSnapshots(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if d.From != "raw-20261105" || d.To != "raw-20261112" {
-		t.Errorf("compared %s with %s, want raw-20261105 with raw-20261112", d.From, d.To)
+	if d.From != "raw-20261105" || d.To != "raw-20261112" || d.Lang != "kr" || d.VsKR != nil {
+		t.Errorf("compared %s with %s of %q (vs KR: %v), want raw-20261105 with raw-20261112 of the KR pack", d.From, d.To, d.Lang, d.VsKR)
 	}
 	// The family is that of the routing rules of the repo.
 	if len(d.FilesAdded) != 1 || d.FilesAdded[0] != (rawdiff.File{File: "Skills-a1.json", Group: "Skills", Family: "ally", Entries: 1}) {
@@ -100,6 +107,8 @@ func TestRawdiffUsageErrors(t *testing.T) {
 		{"--to", "raw-20261029"}, // no snapshot before the first
 		{"extra"},
 		{"--nope"},
+		{"--lang", "fr"},
+		{"--lang", "KR"},
 	} {
 		if _, err := runRawdiffJSON(t, root, args...); !isUserError(err) {
 			t.Errorf("rawdiff %v: err = %v, want a user error", args, err)
@@ -117,7 +126,7 @@ func TestRawdiffTextOutput(t *testing.T) {
 	if err := runRawdiff(ctx, []string{"--from", "raw-20261029"}); err != nil {
 		t.Fatal(err)
 	}
-	want := "raw-20261029 -> raw-20261112\n" +
+	want := "raw-20261029 -> raw-20261112 (KR)\n" +
 		"files: +1 -0\n" +
 		"  + Skills-a1.json (ally, 1 entries)\n" +
 		"groups: +0 -0\n" +
@@ -128,5 +137,50 @@ func TestRawdiffTextOutput(t *testing.T) {
 		"  + bracket Storm (1; Skills-a1.json /dataList/0/name; defined in no group)\n"
 	if out.String() != want {
 		t.Errorf("output:\n%s\nwant:\n%s", out, want)
+	}
+}
+
+func TestRawdiffComparesThePackOfAnotherLanguage(t *testing.T) {
+	root := rawdiffRepo(t, rawdiffPacks...)
+	d, err := runRawdiffJSON(t, root, "--lang", "jp")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if d.Lang != "jp" || d.From != "raw-20261105" || d.To != "raw-20261112" {
+		t.Errorf("compared %s with %s of %q, want raw-20261105 with raw-20261112 of the JP pack", d.From, d.To, d.Lang)
+	}
+	if len(d.FilesAdded) != 1 || d.FilesAdded[0] != (rawdiff.File{File: "Skills.json", Group: "Skills", Family: "ally", Entries: 1}) {
+		t.Errorf("files added = %+v, want Skills.json, the name without the prefix of the language", d.FilesAdded)
+	}
+	// What JP changed and KR did not, and the reverse.
+	want := &rawdiff.Versus{
+		OnlyHere: []rawdiff.Item{
+			{Kind: rawdiff.ItemGroup, Change: rawdiff.Added, Name: "Skills"},
+			{Kind: rawdiff.ItemFile, Change: rawdiff.Added, Name: "Skills.json"},
+			{Kind: rawdiff.ItemToken, Change: rawdiff.Added, Name: "<pause>"},
+		},
+		OnlyOther: []rawdiff.Item{
+			{Kind: rawdiff.ItemFile, Change: rawdiff.Added, Name: "Skills-a1.json"},
+			{Kind: rawdiff.ItemToken, Change: rawdiff.Added, Name: "[Storm]"},
+		},
+	}
+	if !reflect.DeepEqual(d.VsKR, want) {
+		t.Errorf("vs KR = %+v, want %+v", d.VsKR, want)
+	}
+
+	ctx, out := testCtx(t, root, "", false)
+	if err := runRawdiff(ctx, []string{"--lang", "jp"}); err != nil {
+		t.Fatal(err)
+	}
+	for _, line := range []string{
+		"raw-20261105 -> raw-20261112 (JP)\n",
+		"differs from KR: 3 only in JP, 2 only in KR\n",
+		"  JP + file Skills.json\n",
+		"  JP + token <pause>\n",
+		"  KR + file Skills-a1.json\n",
+	} {
+		if !strings.Contains(out.String(), line) {
+			t.Errorf("output has no line %q:\n%s", line, out)
+		}
 	}
 }

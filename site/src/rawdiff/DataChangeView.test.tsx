@@ -11,6 +11,7 @@ const zeroCounts = ZERO_COUNTS
 const tag = 'raw-20261112'
 
 const empty: DataDiff = {
+  lang: 'kr',
   from: 'raw-20261105',
   to: tag,
   counts: zeroCounts,
@@ -101,12 +102,33 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 
-async function mount(doc: DataDiff | null = diff): Promise<HTMLElement> {
-  vi.stubGlobal('fetch', vi.fn(fixtureFetch(doc ? { [`rawdiff/${tag}.json`]: doc } : {})))
+// The JP pack of the same snapshot: one file of its own, and without two changes of KR.
+const jp: DataDiff = {
+  ...empty,
+  lang: 'jp',
+  counts: { ...zeroCounts, files_added: 1 },
+  files_added: [{ file: 'StoryData/S9999.json', group: 'StoryData', family: 'story-main', entries: 131 }],
+  vs_kr: {
+    only_here: [
+      { kind: 'group', change: 'added', name: 'MirrorDungeonEnemyBuffDesc' },
+      { kind: 'file', change: 'added', name: 'StoryData/S9999.json' },
+      { kind: 'entries', change: 'removed', name: 'Skills_personality-02.json', count: 2 },
+      { kind: 'token', change: 'added', name: '<pause>' },
+    ],
+    only_other: [
+      { kind: 'key', change: 'added', name: 'Bufs dataList[].excludeAutoLink' },
+      { kind: 'entries', change: 'added', name: 'UI.json', count: 6 },
+    ],
+  },
+}
+
+async function mount(doc: DataDiff | null = diff, lang: 'kr' | 'jp' | 'en' = 'kr'): Promise<HTMLElement> {
+  const rel = lang === 'kr' ? `rawdiff/${tag}.json` : `rawdiff/${tag}.${lang}.json`
+  vi.stubGlobal('fetch', vi.fn(fixtureFetch(doc ? { [rel]: doc } : {})))
   const container = document.createElement('div')
   document.body.append(container)
   containers.push(container)
-  render(<DataChangeView tag={tag} index={index} />, container)
+  render(<DataChangeView tag={tag} lang={lang} index={index} />, container)
   await vi.waitFor(() => expect(container.querySelector('.uv-head, .notice')).not.toBeNull())
   return container
 }
@@ -202,6 +224,58 @@ describe('DataChangeView', () => {
     el = await mount(empty)
     expect(el.querySelector('[data-section]')).toBeNull()
     expect(el.querySelector('.dv-none')?.textContent).toContain('結構沒有變化')
+  })
+
+  it('has a tab for the pack of each language, the one shown marked', async () => {
+    let el = await mount()
+    const tabs = (root: HTMLElement) => [...root.querySelectorAll('.dv-langs a')].map((a) => [a.textContent, a.getAttribute('href'), a.getAttribute('aria-current')])
+    expect(tabs(el)).toEqual([
+      ['KR', '#/d/raw-20261112', 'page'],
+      ['JP', '#/d/raw-20261112?l=jp', null],
+      ['EN', '#/d/raw-20261112?l=en', null],
+    ])
+    // The KR pack is what the others are compared with: it has no such section.
+    expect(section(el, 'vs-kr')).toBeNull()
+    clearDataCache()
+    el = await mount(jp, 'jp')
+    expect(tabs(el).map((t) => t[2])).toEqual([null, 'page', null])
+  })
+
+  it('lists, for the pack of another language, the changes only it has and those only KR has', async () => {
+    const el = await mount(jp, 'jp')
+    // Before the sections of the pack itself.
+    expect([...el.querySelectorAll('[data-section]')].map((s) => s.getAttribute('data-section'))).toEqual(['vs-kr', 'files'])
+    const vs = section(el, 'vs-kr')
+    expect(vs?.querySelector('h2')?.textContent?.replace(/\s+/g, ' ').trim()).toBe('和 KR 不同的變化 6')
+    expect(vs?.querySelector('.dv-why')?.textContent?.length).toBeGreaterThan(10)
+    expect(texts(vs, '[data-vs="here"] > h3')).toEqual(['只有 JP 有 4'])
+    expect(texts(vs, '[data-vs="here"] .dv-item')).toEqual([
+      '+ 檔案種類 MirrorDungeonEnemyBuffDesc',
+      '+ 檔案 StoryData/S9999.json',
+      '− 條目 Skills_personality-02.json 2 個 id',
+      '+ 標記 <pause>',
+    ])
+    expect(texts(vs, '[data-vs="kr"] > h3')).toEqual(['只有 KR 有 2'])
+    expect(texts(vs, '[data-vs="kr"] .dv-item')).toEqual(['+ 欄位 Bufs dataList[].excludeAutoLink', '+ 條目 UI.json 6 個 id'])
+    // A file the site has is a link.
+    expect([...(vs?.querySelectorAll('[data-vs="here"] .dv-item') ?? [])].map((i) => i.querySelector('a')?.getAttribute('href') ?? null)).toEqual([
+      null,
+      '#/f/StoryData/S9999.json',
+      '#/f/Skills_personality-02.json',
+      null,
+    ])
+  })
+
+  it('says so when the pack of another language changed just as KR did', async () => {
+    const el = await mount({ ...jp, vs_kr: { only_here: [], only_other: [] } }, 'jp')
+    const vs = section(el, 'vs-kr')
+    expect(vs?.querySelector('.dv-same')?.textContent).toContain('和 KR 完全相同')
+    expect(vs?.querySelector('[data-vs]')).toBeNull()
+    // Nothing changed at all: the note on the pack itself names nothing of KR.
+    clearDataCache()
+    const none = await mount({ ...empty, lang: 'en', vs_kr: { only_here: [], only_other: [] } }, 'en')
+    expect(none.querySelector('.dv-none')).not.toBeNull()
+    expect(section(none, 'vs-kr')?.querySelector('.dv-same')).not.toBeNull()
   })
 
   it('shows the same notice as the other pages when the load fails', async () => {

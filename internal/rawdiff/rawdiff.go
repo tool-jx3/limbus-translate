@@ -1,4 +1,4 @@
-// Package rawdiff compares two snapshots of the KR pack as data: the files,
+// Package rawdiff compares two snapshots of an official pack as data: the files,
 // the kinds of file (groups), the keys of their JSON, the entries and the
 // tokens of the text that one has and the other has not. What the text of an
 // entry says is not compared: that is the update record (internal/history).
@@ -21,6 +21,7 @@ import (
 // list is nil, and each is in a fixed order: files and groups by name, keys by
 // path, tokens by kind, then the added before the removed, then by name.
 type Diff struct {
+	Lang   string `json:"lang"` // of the pack ("kr", "jp" or "en"), which the caller sets
 	From   string `json:"from"` // the tags, which the caller sets
 	To     string `json:"to"`
 	Counts Counts `json:"counts"`
@@ -39,6 +40,9 @@ type Diff struct {
 	// Tokens are the tokens of the text that the whole pack of only one
 	// snapshot has.
 	Tokens []Token `json:"tokens"`
+	// VsKR is, for the pack of another language, how its changes differ from
+	// those of the KR pack; the caller sets it (Against).
+	VsKR *Versus `json:"vs_kr,omitempty"`
 }
 
 // Counts is the size of each list of a Diff. Keys, entries and tokens are
@@ -449,5 +453,146 @@ func onlyTokens(a, b *Summary, change string) []Token {
 		}
 		return strings.Compare(x.Name, y.Name)
 	})
+	return out
+}
+
+// Versus is how the Diff of one pack differs from the Diff of another pack
+// between the same two snapshots: what changed in only one of them. Neither
+// list is nil; each is ordered by kind (groups, files, keys, entries, tokens),
+// the added before the removed, then by name.
+type Versus struct {
+	OnlyHere  []Item `json:"only_here"`
+	OnlyOther []Item `json:"only_other"`
+}
+
+// Item is one change of a Diff, named so that two packs can be compared: a
+// group or a file by its name, a key as "<group> <path>", a token as the text
+// writes it (Token.Text). The ids of the entries of a file are counted
+// together: Name is the file, and Count how many of its ids only the one Diff
+// has.
+type Item struct {
+	Kind   string `json:"kind"`
+	Change string `json:"change"` // Added or Removed
+	Name   string `json:"name"`
+	Count  int    `json:"count,omitempty"` // of ItemEntries only
+}
+
+// The kinds of an Item, in their order.
+const (
+	ItemGroup   = "group"
+	ItemFile    = "file"
+	ItemKey     = "key"
+	ItemEntries = "entries"
+	ItemToken   = "token"
+)
+
+// Text is the token as the text writes it: [Name], {name}, <style="name">,
+// <name>.
+func (t Token) Text() string {
+	switch t.Kind {
+	case TokenBracket:
+		return "[" + t.Name + "]"
+	case TokenPlaceholder:
+		return "{" + t.Name + "}"
+	case TokenStyle:
+		return `<style="` + t.Name + `">`
+	}
+	return "<" + t.Name + ">"
+}
+
+// itemID is an Item without its count; an id of an entry is told apart by sub.
+type itemID struct{ kind, change, name, sub string }
+
+// items lists the changes of d, in the order of Versus; each id of an entry
+// is one.
+func (d *Diff) items() []itemID {
+	var out []itemID
+	both := func(kind string, added, removed []string) {
+		for _, n := range added {
+			out = append(out, itemID{kind, Added, n, ""})
+		}
+		for _, n := range removed {
+			out = append(out, itemID{kind, Removed, n, ""})
+		}
+	}
+	names := func(n int, name func(int) string) []string {
+		list := make([]string, n)
+		for i := range list {
+			list[i] = name(i)
+		}
+		slices.Sort(list)
+		return list
+	}
+	both(ItemGroup,
+		names(len(d.NewGroups), func(i int) string { return d.NewGroups[i].Group }),
+		names(len(d.GoneGroups), func(i int) string { return d.GoneGroups[i].Group }))
+	both(ItemFile,
+		names(len(d.FilesAdded), func(i int) string { return d.FilesAdded[i].File }),
+		names(len(d.FilesRemoved), func(i int) string { return d.FilesRemoved[i].File }))
+	var keysAdded, keysRemoved []string
+	for _, g := range d.Keys {
+		for _, k := range g.Added {
+			keysAdded = append(keysAdded, g.Group+" "+k.Path)
+		}
+		for _, k := range g.Removed {
+			keysRemoved = append(keysRemoved, g.Group+" "+k.Path)
+		}
+	}
+	slices.Sort(keysAdded)
+	slices.Sort(keysRemoved)
+	both(ItemKey, keysAdded, keysRemoved)
+	for _, change := range []string{Added, Removed} {
+		for _, e := range d.Entries {
+			ids := e.Added
+			if change == Removed {
+				ids = e.Removed
+			}
+			for _, id := range ids {
+				out = append(out, itemID{ItemEntries, change, e.File, id})
+			}
+		}
+	}
+	var tokensAdded, tokensRemoved []string
+	for _, t := range d.Tokens {
+		if t.Change == Added {
+			tokensAdded = append(tokensAdded, t.Text())
+		} else {
+			tokensRemoved = append(tokensRemoved, t.Text())
+		}
+	}
+	slices.Sort(tokensAdded)
+	slices.Sort(tokensRemoved)
+	both(ItemToken, tokensAdded, tokensRemoved)
+	return out
+}
+
+// Against compares d with other, the Diff of another pack between the same
+// two snapshots.
+func Against(d, other *Diff) Versus {
+	return Versus{OnlyHere: onlyItems(d, other), OnlyOther: onlyItems(other, d)}
+}
+
+// onlyItems is the changes of a that b has not.
+func onlyItems(a, b *Diff) []Item {
+	has := map[itemID]bool{}
+	for _, id := range b.items() {
+		has[id] = true
+	}
+	out := []Item{}
+	for _, id := range a.items() {
+		if has[id] {
+			continue
+		}
+		if id.kind == ItemEntries {
+			// The ids of a file follow each other.
+			if n := len(out); n > 0 && out[n-1].Kind == ItemEntries && out[n-1].Change == id.change && out[n-1].Name == id.name {
+				out[n-1].Count++
+				continue
+			}
+			out = append(out, Item{Kind: id.kind, Change: id.change, Name: id.name, Count: 1})
+			continue
+		}
+		out = append(out, Item{Kind: id.kind, Change: id.change, Name: id.name})
+	}
 	return out
 }

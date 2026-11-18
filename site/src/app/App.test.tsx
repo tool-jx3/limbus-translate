@@ -120,8 +120,23 @@ describe('App', () => {
       'fetch',
       vi.fn(
         fixtureFetch({
-          'rawdiff/index.json': { snapshots: [{ tag: 'raw-20261112', prev_tag: 'raw-20261105', at: '2026-11-12T03:00:00Z', counts }] },
+          'rawdiff/index.json': { snapshots: [{ tag: 'raw-20261112', prev_tag: 'raw-20261105', at: '2026-11-12T03:00:00Z', counts, vs_kr: { jp: 1, en: 0 } }] },
+          'rawdiff/raw-20261112.jp.json': {
+            lang: 'jp',
+            from: 'raw-20261105',
+            to: 'raw-20261112',
+            counts: { ...counts, files_added: 0 },
+            new_groups: [],
+            gone_groups: [],
+            files_added: [],
+            files_removed: [],
+            keys: [],
+            entries: [],
+            tokens: [],
+            vs_kr: { only_here: [], only_other: [{ kind: 'file', change: 'added', name: 'StoryData/S9999.json' }] },
+          },
           'rawdiff/raw-20261112.json': {
+            lang: 'kr',
             from: 'raw-20261105',
             to: 'raw-20261112',
             counts,
@@ -147,6 +162,12 @@ describe('App', () => {
     await loaded(el)
     // The page gets the index, so a file the site has is a link.
     await vi.waitFor(() => expect(el.querySelector('.data-change .dv-file a')?.getAttribute('href')).toBe('#/f/StoryData/S9999.json'))
+
+    // ?l=jp is the pack of that language, with what differs from KR.
+    location.hash = '#/d/raw-20261112?l=jp'
+    el = mount()
+    await loaded(el)
+    await vi.waitFor(() => expect(el.querySelector('.data-change [data-section="vs-kr"] .dv-item')?.textContent).toContain('StoryData/S9999.json'))
   })
 
   it('shows the list of updates on #/u and the page of the release on #/u/<tag>', async () => {

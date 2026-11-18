@@ -841,12 +841,33 @@ export interface DataCounts {
   tokens_removed: number
 }
 
+/** The official packs of a snapshot: KR, which the others are compared with, JP and EN. */
+export type DataLang = Exclude<Lang, 'zh'>
+
 /** One snapshot in data/rawdiff/index.json (newest first). */
 export interface DataSnapshot {
   tag: string
   prev_tag: string
   at: string
+  /** Of the KR pack. */
   counts: DataCounts
+  /** By the language of each other pack, how many changes only it or only KR has. */
+  vs_kr: Partial<Record<DataLang, number>>
+}
+
+/** One change, named so that two packs can be compared: a group or a file by its name, a key as "<group> <path>", a token as the text writes it. */
+export interface DataItem {
+  kind: 'group' | 'file' | 'key' | 'entries' | 'token'
+  change: 'added' | 'removed'
+  name: string
+  /** Of `entries`: how many ids of the file. */
+  count?: number
+}
+
+/** How the changes of a pack differ from those of the KR pack between the same two snapshots. */
+export interface DataVersus {
+  only_here: DataItem[]
+  only_other: DataItem[]
 }
 
 /** A file that only one of the two snapshots has. */
@@ -908,8 +929,9 @@ export interface DataToken {
   defined_in: string[]
 }
 
-/** data/rawdiff/<tag>.json: what the snapshot `to` has that `from` has not, and the reverse. */
+/** data/rawdiff/<tag>.json (KR) and <tag>.<lang>.json: what the pack of the snapshot `to` has that `from` has not, and the reverse. */
 export interface DataDiff {
+  lang: DataLang
   from: string
   to: string
   counts: DataCounts
@@ -920,4 +942,6 @@ export interface DataDiff {
   keys: DataGroupKeys[]
   entries: DataFileEntries[]
   tokens: DataToken[]
+  /** Of the pack of another language than KR. */
+  vs_kr?: DataVersus
 }

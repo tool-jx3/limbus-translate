@@ -1,4 +1,4 @@
-import type { DataDiff, DataSnapshot, FileData, GlossaryFile, GlossaryIndex, GoldData, Index, NamesData, Meta, PreviewFileWire, PreviewShared, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
+import type { DataDiff, DataLang, DataSnapshot, FileData, GlossaryFile, GlossaryIndex, GoldData, Index, NamesData, Meta, PreviewFileWire, PreviewShared, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
 
 /** The version of the layout and keys of the data that this page reads. */
 const FORMAT = 2
@@ -208,9 +208,9 @@ export function loadDataChanges(): Promise<{ snapshots: DataSnapshot[] }> {
   })
 }
 
-/** data/rawdiff/<tag>.json: what one snapshot changed in the KR pack as data. */
-export function loadDataChange(tag: string): Promise<DataDiff> {
-  const rel = `rawdiff/${encodeURIComponent(tag)}.json`
+/** data/rawdiff/<tag>.json (KR) or <tag>.<lang>.json: what one snapshot changed in the pack of a language as data. */
+export function loadDataChange(tag: string, lang: DataLang = 'kr'): Promise<DataDiff> {
+  const rel = `rawdiff/${encodeURIComponent(tag)}${lang === 'kr' ? '' : `.${lang}`}.json`
   return load(rel, (doc) => {
     if (!isRecord(doc) || !Array.isArray(doc.tokens) || !Array.isArray(doc.files_added)) throw new DataError('format', `${rel}: not a data change`)
     return doc as unknown as DataDiff

@@ -14,8 +14,9 @@ const snapshots: DataSnapshot[] = [
     prev_tag: 'raw-20261105',
     at: '2026-11-12T03:37:12Z',
     counts: { ...zeroCounts, files_added: 27, new_groups: 2, keys_added: 4, entries_added: 173, tokens_added: 29, files_removed: 1, tokens_removed: 3 },
+    vs_kr: { jp: 3, en: 0 },
   },
-  { tag: 'raw-20261105', prev_tag: 'raw-20261029', at: '2026-11-05T03:20:00Z', counts: zeroCounts },
+  { tag: 'raw-20261105', prev_tag: 'raw-20261029', at: '2026-11-05T03:20:00Z', counts: zeroCounts, vs_kr: { jp: 5 } },
 ]
 
 const containers: HTMLElement[] = []
@@ -77,6 +78,15 @@ describe('DataChangesView', () => {
     const row = (await mount()).querySelectorAll('.uv-row')[1]!
     expect(row.querySelector('.uv-count')).toBeNull()
     expect(row.textContent).toContain('結構沒有變化')
+  })
+
+  it('links to the pack of another language when its changes differ from those of KR', async () => {
+    const rows = (await mount()).querySelectorAll('.uv-row')
+    const links = (row: Element) => [...row.querySelectorAll('a.dv-vs')].map((a) => [a.textContent, a.getAttribute('href')])
+    // EN changed the same as KR: no link.
+    expect(links(rows[0]!)).toEqual([['JP 有 3 項和 KR 不同', '#/d/raw-20261112?l=jp']])
+    // A snapshot that changed nothing in KR can still have changed another pack.
+    expect(links(rows[1]!)).toEqual([['JP 有 5 項和 KR 不同', '#/d/raw-20261105?l=jp']])
   })
 
   it('says what the page is, and that the text changes are on the updates page', async () => {

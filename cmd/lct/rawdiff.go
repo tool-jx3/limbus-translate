@@ -19,8 +19,9 @@ import (
 func init() {
 	cli.Register(cli.Command{
 		Name: "rawdiff",
-		Usage: "compare the KR pack of two snapshots of the raw branch as data (the files, the kinds of file, the keys of the JSON, the entries and the tokens " +
-			"of the text that only one has; not what the text says): [--from TAG] [--to TAG]; --to defaults to the newest snapshot, --from to the one before --to; " +
+		Usage: "compare an official pack of two snapshots of the raw branch as data (the files, the kinds of file, the keys of the JSON, the entries and the tokens " +
+			"of the text that only one has; not what the text says): [--from TAG] [--to TAG] [--lang kr|jp|en]; --to defaults to the newest snapshot, " +
+			"--from to the one before --to, --lang to kr; for jp and en it also lists what changed in that pack and not in KR, and the reverse; " +
 			"reads the tags of the raw worktree and writes nothing",
 		Run: runRawdiff,
 	})
@@ -33,7 +34,7 @@ type rawdiffOutput struct{ *rawdiff.Diff }
 func (o rawdiffOutput) String() string {
 	d := o.Diff
 	var b strings.Builder
-	fmt.Fprintf(&b, "%s -> %s\n", d.From, d.To)
+	fmt.Fprintf(&b, "%s -> %s (%s)\n", d.From, d.To, strings.ToUpper(d.Lang))
 	file := func(sign string, f rawdiff.File) {
 		family := f.Family
 		if family == "" {
@@ -93,6 +94,27 @@ func (o rawdiffOutput) String() string {
 		}
 		b.WriteString(")\n")
 	}
+	if d.VsKR != nil {
+		lang := strings.ToUpper(d.Lang)
+		fmt.Fprintf(&b, "differs from KR: %d only in %s, %d only in KR\n", len(d.VsKR.OnlyHere), lang, len(d.VsKR.OnlyOther))
+		item := func(pack string, it rawdiff.Item) {
+			sign := "+"
+			if it.Change == rawdiff.Removed {
+				sign = "-"
+			}
+			fmt.Fprintf(&b, "  %s %s %s %s", pack, sign, it.Kind, it.Name)
+			if it.Kind == rawdiff.ItemEntries {
+				fmt.Fprintf(&b, " (%d)", it.Count)
+			}
+			b.WriteString("\n")
+		}
+		for _, it := range d.VsKR.OnlyHere {
+			item(lang, it)
+		}
+		for _, it := range d.VsKR.OnlyOther {
+			item("KR", it)
+		}
+	}
 	return strings.TrimSuffix(b.String(), "\n")
 }
 
@@ -101,11 +123,15 @@ func runRawdiff(ctx *cli.Context, args []string) error {
 	flags.SetOutput(io.Discard)
 	from := flags.String("from", "", "the older snapshot tag (default: the one before --to)")
 	to := flags.String("to", "", "the newer snapshot tag (default: the newest)")
+	lang := flags.String("lang", "kr", "the pack to compare: kr, jp or en")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("rawdiff: " + err.Error())
 	}
 	if flags.NArg() > 0 {
 		return cli.UserError("rawdiff: unexpected argument " + flags.Arg(0))
+	}
+	if !slices.Contains(rawLangs, *lang) {
+		return cli.UserError(fmt.Sprintf("rawdiff: --lang %s: the packs of a snapshot are %s", *lang, strings.Join(rawLangs, ", ")))
 	}
 	if ctx.Config.Worktrees.Raw == "" {
 		return cli.UserError("rawdiff: worktrees.raw must be set in lct.yaml")
@@ -138,30 +164,52 @@ func runRawdiff(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	old, err := rawSummary(rawRoot, *from)
+	d, err := rawDiff(rawRoot, *from, *to, *lang, r.Family)
 	if err != nil {
 		return err
 	}
-	cur, err := rawSummary(rawRoot, *to)
-	if err != nil {
-		return err
+	if *lang != rawLangs[0] {
+		kr, err := rawDiff(rawRoot, *from, *to, rawLangs[0], r.Family)
+		if err != nil {
+			return err
+		}
+		vs := rawdiff.Against(d, kr)
+		d.VsKR = &vs
 	}
-	d := rawdiff.Compare(old, cur, r.Family)
-	d.From, d.To = *from, *to
 	return ctx.Emit(rawdiffOutput{d})
 }
 
-// rawSummary summarizes the KR pack of the snapshot tag of the raw worktree at
-// rawRoot, which it does not touch.
-func rawSummary(rawRoot, tag string) (*rawdiff.Summary, error) {
+// rawLangs are the packs of a snapshot: KR, which the others are compared
+// with, first.
+var rawLangs = []string{"kr", "jp", "en"}
+
+// rawDiff compares the pack of lang of the snapshots from and to of the raw
+// worktree at rawRoot.
+func rawDiff(rawRoot, from, to, lang string, familyOf func(string) string) (*rawdiff.Diff, error) {
+	old, err := rawSummary(rawRoot, from, lang)
+	if err != nil {
+		return nil, err
+	}
+	cur, err := rawSummary(rawRoot, to, lang)
+	if err != nil {
+		return nil, err
+	}
+	d := rawdiff.Compare(old, cur, familyOf)
+	d.Lang, d.From, d.To = lang, from, to
+	return d, nil
+}
+
+// rawSummary summarizes the pack of lang of the snapshot tag of the raw
+// worktree at rawRoot, which it does not touch.
+func rawSummary(rawRoot, tag, lang string) (*rawdiff.Summary, error) {
 	tmp, err := os.MkdirTemp("", "lct-rawdiff-*")
 	if err != nil {
 		return nil, err
 	}
 	defer os.RemoveAll(tmp)
-	kr, err := raw.OpenKRAt(rawRoot, tag, tmp)
+	p, err := raw.OpenAt(rawRoot, tag, lang, tmp)
 	if err != nil {
 		return nil, err
 	}
-	return rawdiff.Summarize(kr)
+	return rawdiff.Summarize(p)
 }

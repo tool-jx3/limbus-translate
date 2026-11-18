@@ -185,7 +185,7 @@ func TestCompareTheSameSnapshot(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := `{"from":"","to":"","counts":{"files_added":0,"files_removed":0,"new_groups":0,"gone_groups":0,"keys_added":0,"keys_removed":0,"entries_added":0,"entries_removed":0,"tokens_added":0,"tokens_removed":0},` +
+	want := `{"lang":"","from":"","to":"","counts":{"files_added":0,"files_removed":0,"new_groups":0,"gone_groups":0,"keys_added":0,"keys_removed":0,"entries_added":0,"entries_removed":0,"tokens_added":0,"tokens_removed":0},` +
 		`"new_groups":[],"gone_groups":[],"files_added":[],"files_removed":[],"keys":[],"entries":[],"tokens":[]}`
 	if string(got) != want {
 		t.Errorf("JSON:\n got %s\nwant %s", got, want)
@@ -217,4 +217,66 @@ func TestSummarizeAFileWithoutADataList(t *testing.T) {
 	equal(t, "new groups", d.NewGroups, []Group{{Group: "List", Files: 1, Keys: []Key{
 		{Path: "[].id", Kinds: []string{"number"}, Count: 1, File: "List.json", Pointer: "/0/id"},
 	}}})
+}
+
+// Against lists what two packs changed differently between the same two
+// snapshots: here JP against KR.
+func TestAgainstListsWhatOnlyOneDiffHas(t *testing.T) {
+	krFrom := map[string]string{
+		"Skills.json": `{"dataList":[{"id":1,"desc":"가"}]}`,
+		"Bufs.json":   `{"dataList":[{"id":"Burn","name":"화상"}]}`,
+		"UI.json":     `{"dataList":[{"id":"a","content":"나"}]}`,
+	}
+	krTo := map[string]string{
+		"Skills.json":    `{"dataList":[{"id":1,"desc":"가"},{"id":2,"desc":"[Storm] {amount}"}]}`,
+		"Skills-a1.json": `{"dataList":[{"id":3,"desc":"다"}]}`,
+		"Bufs.json":      `{"dataList":[{"id":"Burn","name":"화상","excludeAutoLink":true},{"id":"Storm","name":"폭풍"}]}`,
+		"UI.json":        `{"dataList":[{"id":"a","content":"나"},{"id":"b","content":"라"},{"id":"c","content":"마"}]}`,
+		"New.json":       `{"dataList":[{"id":1,"name":"바"}]}`,
+	}
+	// JP had Skills-a1.json and the key a snapshot earlier, got another file
+	// and another tag, and has not got one of the entries of UI.json yet.
+	jpFrom := map[string]string{
+		"Skills.json":    `{"dataList":[{"id":1,"desc":"あ"}]}`,
+		"Skills-a1.json": `{"dataList":[{"id":3,"desc":"い"}]}`,
+		"Bufs.json":      `{"dataList":[{"id":"Burn","name":"火傷","excludeAutoLink":true}]}`,
+		"UI.json":        `{"dataList":[{"id":"a","content":"う"}]}`,
+	}
+	jpTo := map[string]string{
+		"Skills.json":    `{"dataList":[{"id":1,"desc":"あ"},{"id":2,"desc":"[Storm] {amount} <pause>"}]}`,
+		"Skills-a1.json": `{"dataList":[{"id":3,"desc":"い"}]}`,
+		"Bufs.json":      `{"dataList":[{"id":"Burn","name":"火傷","excludeAutoLink":true},{"id":"Storm","name":"嵐"}]}`,
+		"UI.json":        `{"dataList":[{"id":"a","content":"う"},{"id":"b","content":"え"},{"id":"z","content":"お"}]}`,
+		"New.json":       `{"dataList":[{"id":1,"name":"か"}]}`,
+		"Extra.json":     `{"dataList":[{"id":1,"name":"き"}]}`,
+	}
+	kr, jp := compare(t, krFrom, krTo), compare(t, jpFrom, jpTo)
+	equal(t, "JP against KR", Against(jp, kr), Versus{
+		OnlyHere: []Item{
+			{Kind: ItemGroup, Change: Added, Name: "Extra"},
+			{Kind: ItemFile, Change: Added, Name: "Extra.json"},
+			{Kind: ItemEntries, Change: Added, Name: "UI.json", Count: 1},
+			{Kind: ItemToken, Change: Added, Name: "<pause>"},
+		},
+		OnlyOther: []Item{
+			{Kind: ItemFile, Change: Added, Name: "Skills-a1.json"},
+			{Kind: ItemKey, Change: Added, Name: "Bufs dataList[].excludeAutoLink"},
+			{Kind: ItemEntries, Change: Added, Name: "UI.json", Count: 1},
+		},
+	})
+	// A diff differs in nothing from itself, and the lists are not nil.
+	equal(t, "KR against KR", Against(kr, kr), Versus{OnlyHere: []Item{}, OnlyOther: []Item{}})
+}
+
+func TestTokenTextIsTheTokenAsTheTextWritesIt(t *testing.T) {
+	for _, c := range []struct{ kind, name, want string }{
+		{TokenBracket, "Storm", "[Storm]"},
+		{TokenPlaceholder, "0:F1", "{0:F1}"},
+		{TokenStyle, "highlight", `<style="highlight">`},
+		{TokenTag, "mark", "<mark>"},
+	} {
+		if got := (Token{Kind: c.kind, Name: c.name}).Text(); got != c.want {
+			t.Errorf("Text of %s %s = %q, want %q", c.kind, c.name, got, c.want)
+		}
+	}
 }

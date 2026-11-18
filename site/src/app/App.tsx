@@ -154,7 +154,7 @@ function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: Pag
     case 'datas':
       return <DataChangesView />
     case 'data':
-      return <DataChangeView tag={route.tag} index={index} />
+      return <DataChangeView tag={route.tag} lang={route.lang} index={index} />
     case 'glossary':
       return <GlossaryView route={route} />
     case 'names':

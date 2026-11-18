@@ -47,6 +47,6 @@ describe('Header 資料變化 link', () => {
     expect(link.getAttribute('href')).toBe('#/d')
     expect(link.hasAttribute('aria-current')).toBe(false)
     expect(mount({ kind: 'datas' }).querySelector('a.data-link')?.getAttribute('aria-current')).toBe('page')
-    expect(mount({ kind: 'data', tag: 'raw-20261112' }).querySelector('a.data-link')?.getAttribute('aria-current')).toBe('page')
+    expect(mount({ kind: 'data', tag: 'raw-20261112', lang: 'jp' }).querySelector('a.data-link')?.getAttribute('aria-current')).toBe('page')
   })
 })

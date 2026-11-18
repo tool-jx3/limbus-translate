@@ -3384,3 +3384,40 @@ a.uc-cause:focus-visible {
   font-size: 0.9rem;
   overflow-wrap: anywhere;
 }
+
+.dv-langs {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.dv-langs a {
+  padding: 0.15em 0.9em;
+  border: 1px solid var(--border);
+  border-radius: 1em;
+  color: var(--fg);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.dv-langs a[aria-current="page"] {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
+}
+
+.dv-vs {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.dv-vs-list h3 {
+  margin: 0.5rem 0 0.15rem;
+  font-size: 0.95rem;
+}
+
+.dv-same {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}

@@ -2,33 +2,37 @@ import type { ComponentChildren } from 'preact'
 import { useEffect, useMemo, useState } from 'preact/hooks'
 import { Notice } from '../app/Notice'
 import { DataError, loadDataChange } from '../data'
-import { dataChangesHref, fileHref } from '../route'
-import type { DataDiff, DataFile, DataGroup, DataKey, DataToken, Index } from '../types'
+import { dataChangeHref, dataChangesHref, fileHref } from '../route'
+import type { DataDiff, DataFile, DataGroup, DataItem, DataKey, DataLang, DataToken, DataVersus, Index } from '../types'
 
 /** Where the report on the game's code is; the page names its chapters. */
 const REPORT = 'https://github.com/tool-jx3/limbus-translate/blob/main/docs/research/2026-11-15-game-text-logic/README.md'
 
 const KIND_NAMES: Record<DataKey['kinds'][number], string> = { bool: '布林', null: '空值', number: '數字', string: '文字' }
 
-type Loaded = { tag: string } & ({ status: 'ready'; diff: DataDiff } | { status: 'error'; error: DataError })
+const LANGS: DataLang[] = ['kr', 'jp', 'en']
 
-function useDataChange(tag: string): Loaded | undefined {
+const ITEM_NAMES: Record<DataItem['kind'], string> = { group: '檔案種類', file: '檔案', key: '欄位', entries: '條目', token: '標記' }
+
+type Loaded = { tag: string; lang: DataLang } & ({ status: 'ready'; diff: DataDiff } | { status: 'error'; error: DataError })
+
+function useDataChange(tag: string, lang: DataLang): Loaded | undefined {
   const [state, setState] = useState<Loaded>()
   useEffect(() => {
     let live = true
-    loadDataChange(tag).then(
+    loadDataChange(tag, lang).then(
       (diff) => {
-        if (live) setState({ tag, status: 'ready', diff })
+        if (live) setState({ tag, lang, status: 'ready', diff })
       },
       (e: unknown) => {
-        if (live) setState({ tag, status: 'error', error: e instanceof DataError ? e : new DataError('network', String(e)) })
+        if (live) setState({ tag, lang, status: 'error', error: e instanceof DataError ? e : new DataError('network', String(e)) })
       },
     )
     return () => {
       live = false
     }
-  }, [tag])
-  return state?.tag === tag ? state : undefined
+  }, [tag, lang])
+  return state?.tag === tag && state.lang === lang ? state : undefined
 }
 
 /** What the page knows of the site: which files it has, and the family that takes what no rule routes. */
@@ -138,9 +142,53 @@ function FileRow({ file: f, added, site }: { file: DataFile; added: boolean; sit
   )
 }
 
-/** The page of one snapshot: what it has that the snapshot before it has not, and the reverse, as data. */
-export function DataChangeView({ tag, index }: { tag: string; index: Index }) {
-  const state = useDataChange(tag)
+function ItemList({ name, title, items, site }: { name: string; title: string; items: DataItem[]; site: Site }) {
+  if (items.length === 0) return null
+  return (
+    <div class="dv-vs-list" data-vs={name}>
+      <h3>
+        {title} <span class="dv-n">{items.length}</span>
+      </h3>
+      <ul>
+        {items.map((it) => (
+          <li key={`${it.kind} ${it.change} ${it.name}`} class={`dv-item ${it.change === 'added' ? 'is-added' : 'is-removed'}`}>
+            <span class="dv-sign">{it.change === 'added' ? '+' : '−'}</span> <span class="dv-kinds">{ITEM_NAMES[it.kind]}</span>{' '}
+            {it.kind === 'file' || it.kind === 'entries' ? <FileName site={site} file={it.name} /> : <code>{it.name}</code>}
+            {it.kind === 'entries' && <span class="dv-count"> {it.count ?? 0} 個 id</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+/** For the pack of another language: the changes that only it has, and those that only KR has. */
+function VersusKR({ lang, vs, site }: { lang: DataLang; vs: DataVersus; site: Site }) {
+  const n = vs.only_here.length + vs.only_other.length
+  return (
+    <section class="dv-section" data-section="vs-kr">
+      <h2>
+        和 KR 不同的變化{n > 0 && <span class="dv-n"> {n}</span>}
+      </h2>
+      <p class="dv-why">
+        同一次更新裡，這個語言的資料和韓文原文變化不一樣的地方。常見的原因是其中一邊比較早或比較晚收到同一批內容：翻譯時參考的 {lang.toUpperCase()}{' '}
+        可能因此缺少對應的檔案或條目，也可能已經有韓文還沒有的內容。
+      </p>
+      {n === 0 ? (
+        <p class="dv-same">這個語言這一次的變化和 KR 完全相同。</p>
+      ) : (
+        <>
+          <ItemList name="here" title={`只有 ${lang.toUpperCase()} 有`} items={vs.only_here} site={site} />
+          <ItemList name="kr" title="只有 KR 有" items={vs.only_other} site={site} />
+        </>
+      )}
+    </section>
+  )
+}
+
+/** The page of one snapshot: what the pack of a language has that the snapshot before it has not, and the reverse, as data. */
+export function DataChangeView({ tag, lang, index }: { tag: string; lang: DataLang; index: Index }) {
+  const state = useDataChange(tag, lang)
   const site = useMemo<Site>(
     () => ({ files: new Set(index.files.map((f) => f.path)), fallback: index.families.find((f) => f.nodes.length === 0)?.id ?? '' }),
     [index],
@@ -161,7 +209,15 @@ export function DataChangeView({ tag, index }: { tag: string; index: Index }) {
           <a href={dataChangesHref()}>所有快照</a>
           <a href={REPORT}>遊戲程式研究報告</a>
         </p>
+        <nav class="dv-langs" aria-label="語言">
+          {LANGS.map((l) => (
+            <a key={l} href={dataChangeHref(tag, l)} {...(l === lang ? { 'aria-current': 'page' as const } : {})}>
+              {l.toUpperCase()}
+            </a>
+          ))}
+        </nav>
       </header>
+      {lang !== 'kr' && d.vs_kr && <VersusKR lang={lang} vs={d.vs_kr} site={site} />}
       {nothing && <p class="dv-none">和上一個快照相比，資料的結構沒有變化；文字內容的修改看更新頁。</p>}
 
       <Section

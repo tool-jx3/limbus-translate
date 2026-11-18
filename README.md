@@ -75,7 +75,11 @@ Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內
 - 檔案：新增與移除的檔案、族群與筆數；只被預設族群接手的檔案標示「沒有分流規則」。
 - 既有檔案的條目：兩個快照都有的檔案，條目多了或少了哪些 id。
 
-每一節都寫了這種變化對翻譯規則與遊戲程式研究報告（`docs/research/2026-11-15-game-text-logic/`）的意義。文字內容改了什麼不在這一頁，看「更新」頁。資料由 `lct site` 從 `raw` 的 tag 算出（`data/rawdiff/`）；本機用 `bin/lct rawdiff [--from <raw tag>] [--to <raw tag>] [--json]` 可以直接看任兩個快照的比對（預設是最新的兩個）。遊戲程式那一面的比對是另一個工具，見研究報告的 `method/README.md`（`fingerprint.py`）。
+每一節都寫了這種變化對翻譯規則與遊戲程式研究報告（`docs/research/2026-11-15-game-text-logic/`）的意義。文字內容改了什麼不在這一頁，看「更新」頁。
+
+快照頁上方可以切換 KR、JP、EN（`#/d/<raw tag>?l=jp`）：日文、英文的資料各自和前一個快照比一次。JP、EN 的頁面最上面多一節「和 KR 不同的變化」，列出同一次更新裡只有這個語言有、或只有 KR 有的變化（例如某一邊比較早或比較晚收到同一批檔案）；列表頁在有不同的快照旁標出「JP 有 n 項和 KR 不同」。
+
+資料由 `lct site` 從 `raw` 的 tag 算出（`data/rawdiff/`）；本機用 `bin/lct rawdiff [--from <raw tag>] [--to <raw tag>] [--lang kr|jp|en] [--json]` 可以直接看任兩個快照的比對（預設是最新的兩個、KR；`--lang jp`、`--lang en` 會一併列出和 KR 不同的變化）。遊戲程式那一面的比對是另一個工具，見研究報告的 `method/README.md`（`fingerprint.py`）。
 
 `pages.yml` 在 `update.yml` 或 `rebuild.yml` 於 `main` 上成功結束後執行（也可以手動執行）：取得 `raw`、`tw` 與 tag 並建 worktree → `go build` 出 `lct` → `bin/lct site --out site/public/data` 輸出網站資料 → 在 `site/` 執行 `npm ci`、`npm run build` → 部署 `site/dist`。`lct site` 失敗時（例如 `raw` 與 `tw` 不是同一個 snapshot）整個執行失敗，不會用缺的或舊的資料部署，網站維持上一次部署的樣子；`TestWorkflowContract` 要求 `pages.yml` 的任何一步都不能被略過或忽略失敗。
 

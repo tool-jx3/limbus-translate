@@ -459,10 +459,12 @@ func evalLoosely(p string) (string, error) {
 	}
 }
 
-// dataChanges compares the KR pack of each snapshot tag of the raw worktree
-// with that of the tag before it, the oldest first: nothing for a branch with
-// one snapshot. Each snapshot is read once. The families are those of r, the
-// rules of today, whatever the snapshot.
+// dataChanges compares the packs of each snapshot tag of the raw worktree
+// with those of the tag before it, the oldest first: nothing for a branch with
+// one snapshot. Each pack of each snapshot is read once. A change is that of
+// the KR pack, with those of the other packs (rawLangs) and how each differs
+// from KR. The families are those of r, the rules of today, whatever the
+// snapshot.
 func dataChanges(rawWorktree string, r *rules.Rules) ([]site.DataChange, error) {
 	names, err := gitx.Tags(rawWorktree, raw.TagPrefix)
 	if err != nil {
@@ -473,23 +475,34 @@ func dataChanges(rawWorktree string, r *rules.Rules) ([]site.DataChange, error) 
 		return nil, nil
 	}
 	var changes []site.DataChange
-	var prev *rawdiff.Summary
-	prevTag := ""
-	for _, tag := range tags {
-		cur, err := rawSummary(rawWorktree, tag)
-		if err != nil {
-			return nil, err
+	prev := map[string]*rawdiff.Summary{}
+	for i, tag := range tags {
+		cur := map[string]*rawdiff.Summary{}
+		for _, lang := range rawLangs {
+			if cur[lang], err = rawSummary(rawWorktree, tag, lang); err != nil {
+				return nil, err
+			}
 		}
-		if prev != nil {
+		if i > 0 {
 			at, err := gitx.RevTime(rawWorktree, "refs/tags/"+tag)
 			if err != nil {
 				return nil, err
 			}
-			d := rawdiff.Compare(prev, cur, r.Family)
-			d.From, d.To = prevTag, tag
-			changes = append(changes, site.DataChange{Diff: d, At: at.Format("2006-01-02T15:04:05Z")})
+			c := site.DataChange{At: at.Format("2006-01-02T15:04:05Z")}
+			for _, lang := range rawLangs {
+				d := rawdiff.Compare(prev[lang], cur[lang], r.Family)
+				d.Lang, d.From, d.To = lang, tags[i-1], tag
+				if lang == rawLangs[0] {
+					c.Diff = d
+					continue
+				}
+				vs := rawdiff.Against(d, c.Diff)
+				d.VsKR = &vs
+				c.Others = append(c.Others, d)
+			}
+			changes = append(changes, c)
 		}
-		prev, prevTag = cur, tag
+		prev = cur
 	}
 	return changes, nil
 }
