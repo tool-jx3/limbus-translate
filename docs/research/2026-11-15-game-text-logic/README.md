@@ -130,6 +130,8 @@
 | 稱號 `\n` 旁有空格 | 1 處 | 顯示成兩個空格 |
 | 戰鬥氣泡：內容與原文對不上 | 1 處 | `9SV-BAT17-26-3`，譯文是另一句話（[05](05-battle-speech-bubble.md)） |
 | 戰鬥氣泡：頭尾多了空格 | 4 處 | `9SV-BAT4-04`、`battle_s3_10514_1_1`，以及 `PersonalityVoiceDlg` 的 `battle_endcommand_10904_1`、`battle_clear_10904_1`。程式不會去掉 |
+| 演出字幕：單行可能超出螢幕寬 | 2 句 | `EGOVoiceDig` 的 `battle_erosion_20908_1`（譯文 42 個全形字，KR 27）、`battle_awaken_20209_1`（37 個；JP、EN 這句有加 `\n`）。演出字幕不換行也不縮字，16:9 時一行約 36 個全形字（[10](10-assets.md) 第 6 節）。2026-11-18 決定先不修改 |
+| 靜態標籤：譯文可能比框寬 | 3 個 | `equal_or_more`「或以上」（框只夠兩個字，KR「이상」、JP「以上」）、`connect_to_google_account`、`connect_to_apple_account`（[10](10-assets.md) 第 5 節）。2026-11-18 決定先不修改 |
 
 沒有問題的：ruby 的位置與格式（155 處都在劇情 `content`）、`[TabExplain]` 的位置（192 處與 KR 相同）、佔位符、劇情檔的列數與順序、欄位集合、陣列長度、檔名集合。
 
@@ -165,6 +167,8 @@
 15. 人格 `title`、E.G.O `name` 的 `\n` 前後沒有空白；罪孽型敵人名字的半形 `?` 個數與 KR 相同；但丁筆記 `\n-` 的數量相同。
 16. 劇情對話超過 3 行字級會縮小（只能用字數粗估）；劇情字幕有 `<` 時不會自動拆段。
 17. 戰鬥氣泡（`BattleSpeechBubbleDlg` 的 `dlg`、`PersonalityVoiceDlg` 裡 id 以 `battle` 開頭的 `dlg`）：頭尾沒有空白、沒有空行；長度超過 KR 與 JP 較長者的 1.3 倍或超過 111 字時提醒；KR 相同的變體（`-0N`）譯文也相同；同一句譯文不對應兩句不同的 KR。最後一點已做成檢查 `shared-line`，其餘還沒有（2026-11-16 補充，見 [05](05-battle-speech-bubble.md)）。
+18. `EGOVoiceDig/*` 的 `dlg`（顯示在不換行的演出字幕與技能演出的台詞框）：單行超過約 36 個全形字時提醒；官方 JP、EN 會在這類長句加 `\n`。2026-11-18 提出，指引與檢查都還沒有採行（[10](10-assets.md) 第 6 節）。
+19. 靜態標籤（`UITextDataLoader` 綁定的介面文字）：不換行、寬度固定的標籤，以字數乘字級估寬度，超過框寬而且比 KR 寬時提醒。對照表要從遊戲本體的檔案產生（`method/unityres.py labels`），不在 `raw` 裡。2026-11-18 提出，還沒有做成檢查。
 
 ## 可信度與限制
 
