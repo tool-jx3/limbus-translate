@@ -887,3 +887,33 @@
   zh: 我們都是為了實現自己的目的而與邊獄公司簽訂了合約。我簽了，上次的李箱先生也簽了，其他所有罪人也都簽了。
   reason: StoryData 審查 S0446：KR「이전 번의 이상 씨」是「上一次（先前）的李箱先生」（JP「この前のイサンさん」）；TW 漏掉「上次的」。
   rule: one-off
+- key: StoryData/E407B.json|/dataList/61/content
+  raw: raw-20261112
+  kr_sha: 27104cfa04d20c4300d7e225c4ee00c9871a19aea0323269c43b6b4510ed137b
+  zh: 您明明比誰都更出於個人動機在行動，為什麼還要裝作是為了所有人呢？
+  reason: 'StoryData 審查 S0447：KR「누구보다 개인적인 동기로 움직이면서, 왜 모두를 위하는 척이신 거죠?」是「明明比誰都更出於個人動機在行動，為什麼要裝作是為了所有人？」（JP 個人的な動機、全員のために）；現行照 EN 寫成「自私」，加重了批評，「為我們做些什麼」也丟了呼應 #53、#54、#56 的「所有人」。척이신 帶 -시-，對但丁依 characters/ishmael.md 寫「您」。譯法由使用者決定'
+  rule: one-off
+- key: StoryData/E407B.json|/dataList/59/content
+  raw: raw-20261112
+  kr_sha: 0c53221493cc8642234ee806b1c27937257948fbce5eab98b41288b6433e8d1e
+  zh: 還有您也是……
+  reason: 'StoryData 審查 S0447（同場稱呼一起改）：以實瑪利對但丁用「您」（characters/ishmael.md；KR 語尾一直帶敬語，是冷淡的反諷），同場 #61、#72 改為「您」，這句只把「你」換成「您」，其餘照現行。使用者決定'
+  rule: one-off
+- key: StoryData/E407B.json|/dataList/60/content
+  raw: raw-20261112
+  kr_sha: baae05291821639b504d80e2a8339814c011735e64266ff1422492d24a22d123
+  zh: 您強迫自己去四處尋找那些金枝，那些您也許一生中都不曾聽說過的東西，也只是為了找回您的記憶而已。
+  reason: 'StoryData 審查 S0447（同場稱呼一起改）：以實瑪利對但丁用「您」（characters/ishmael.md；KR 語尾一直帶敬語，是冷淡的反諷），同場 #61、#72 改為「您」，這句只把「你」換成「您」，其餘照現行。使用者決定'
+  rule: one-off
+- key: StoryData/E407B.json|/dataList/73/content
+  raw: raw-20261112
+  kr_sha: 8bd71b9704dc3d825a5b63c7c56319381ab9446965037874f05223e1f11c02d0
+  zh: 所以，從現在起如果您想從我這得到些什麼，那就說出來吧。說得清清楚楚。
+  reason: 'StoryData 審查 S0447（同場稱呼一起改）：以實瑪利對但丁用「您」（characters/ishmael.md；KR 語尾一直帶敬語，是冷淡的反諷），同場 #61、#72 改為「您」，這句只把「你」換成「您」，其餘照現行。使用者決定'
+  rule: one-off
+- key: StoryData/E407B.json|/dataList/76/content
+  raw: raw-20261112
+  kr_sha: 770700d497ecfd9855d112eb12eab098bb52a3f0f9226b4444c21ed34580a250
+  zh: 我們還在等什麼呢？您不是要命令我們去殺了那隻巨型甲殼生物嗎？我很樂意服從合約的規定，但丁經理。
+  reason: 'StoryData 審查 S0447（同場稱呼一起改）：以實瑪利對但丁用「您」（characters/ishmael.md；KR 語尾一直帶敬語，是冷淡的反諷），同場 #61、#72 改為「您」，這句只把「你」換成「您」，其餘照現行。使用者決定'
+  rule: one-off
