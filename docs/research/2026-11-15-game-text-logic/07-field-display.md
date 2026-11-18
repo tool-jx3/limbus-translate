@@ -382,21 +382,40 @@
 | `AbDlg_*` 的 `teller` | 169 | 169 | 只讀 `personalityid`、`usage`、`dialog`（確認） |
 | `Egos*` 的 `desc` | 122 | 122 | 讀取鏈的終點沒有呼叫者（確認） |
 | `HellsChickenDungeonNode`、`MirrorDungeonNode1-1` 整個檔 | 30 | 30 | 整張表沒有人讀（確認） |
-| `SynergyKeyword` 整個檔 | 1 | 1 | 沒有對應的表，也沒有任何函式用共鳴關鍵字查文字（見下，推定不顯示） |
 | `ActionEvents*` 的 `subDesc` | 40 | 5 | 同 `name` |
 | `EGOgift*` 的 `abnormalityName` | 1 | 1 | 推定 |
 | `BattleSpeechBubbleDlg*` 的 `desc` | 886 | 0 | [05](05-battle-speech-bubble.md) |
 
 兩張表合計，已翻譯的單位約 3,340 個。
 
+### 不在官方檔案清單裡的檔（整個檔不會被載入）
+
+2026-11-18 取得 2026-11-12 版的檔案清單後核對（[`method/filelist.py`](method/filelist.py)）。遊戲只讀清單列出的檔名，程式的字串常值裡也沒有這些檔名，所以下面 17 個檔的內容不會出現在遊戲裡（清單的內容是確認；「沒有別的載入路徑」是依字串常值與載入函式推定）。
+
+| 檔案 | KR 有內容的字串 | 譯文已改動的字串 | 說明 |
+|---|---|---|---|
+| `StoryTheaterPersonality` | 292 | 292 | 人格故事的標題（`P10102` 等 93 筆）、舊版的人格簡介與分析、幾個按鈕字 |
+| `StoryTheaterMirrorWorldStoryTitle` | 183 | 183 | 「남부 세븐 협회 6과, 이상 이야기」這類標題。遊戲顯示的標題是程式拼出來的（`StoryTheaterPersonalityInfo.GetStoryTitle` 0x18229F0，[09](09-assembled-text.md)），不讀這個檔 |
+| `StoryTheaterMirrorWorld` | 26 | 26 | `MirrorWorld_Name_1` 等世界名稱 |
+| `DungeonStartBuffs_MD6` | 44 | 44 | 清單只列 `DungeonStartBuffs_MD7`；44 個 id 在 `_MD7` 都有 |
+| `DungeonStartBuffs` | 25 | 25 | 同上；25 個 id 有 23 個在 `_MD7` |
+| `UserTicket-{L,R,EGOBg}-a1c10p1` | 各 6 | 各 3 | 名稱是「???」的暫定版；清單列的是 `-a1c10p3` |
+| `Announcer-a1c10p1`、`Announcer-a1c9p1` | 3、2 | 1、0 | 名稱是「??」的暫定版 |
+| `SynergyKeyword` | 1 | 1 | 見下 |
+| `ChapterBannerConfig`、`Items-BossRaid`、`Skills_Enemy-a1c9p2`、`UserTicket-{L,R,EGOBg}-a1c9p3` | 0 | 0 | 空檔 |
+
+合計 594 個字串，譯文已翻 581 個。這些檔翻不翻都不影響畫面；[06-families.md](06-families.md) 提到的 `mirror`↔`stage` 93 句跨族群相同（人格故事標題）就是前兩個檔之間的。
+
+`HellsChickenDungeonNode`、`MirrorDungeonNode1-1`、`LobbyBGMCategory` 在清單裡，會被載入；前兩個是載入之後沒有人讀。
+
 `SynergyKeyword.json`（2026-11-12 新增，一筆：`MAGICAL_GIRL`／「마법 소녀」）的依據：
 
-- 文字表與檔案清單的 77 個欄位裡沒有共鳴關鍵字的表（確認）；程式的字串常值裡也沒有這個檔名。它要被載入，只能是官方的檔案清單把它列進某一張既有的表，清單讀不到。
+- 文字表與檔案清單的 77 個欄位裡沒有共鳴關鍵字的表（確認）；程式的字串常值裡也沒有這個檔名。2026-11-12 版的官方檔案清單沒有把它列進任何一張表（確認），所以它不會被載入。
 - 程式裡的共鳴關鍵字是列舉 `SYNERGY_KEYWORD`（`NONE`、`MAGICAL_GIRL`），由單位與 E.G.O 的靜態資料帶著。讀它的函式都在 `SynergyAbilityManager`、`SynergyPassiveAbilityBase.CheckActiveCondition`（0x3222C50）、`SynergyUIDataBuilder`（`GetGroupList` 0xF4FF00、`GetUnsatisfiedConditionValue` 0xF4F970、`CollectActiveMember` 0xF4F630），用途是數人數、判斷條件；沒有一個把它轉成字串去查文字表（確認這些函式的呼叫；經由虛擬函式的讀取不能完全排除）。
 - 共鳴介面顯示的文字來自別處：標題是被動的 `name`（`SynergyUIDataBuilder.GetName` 0xF4FD60 → `PassiveStaticData.GetName`），說明是被動的 `summary`，成員是「`[`稱號`]` 名字」，人數條件是 `BattleUIText` 的 `PassiveSynergyConditionCount`。
 - 「마법 소녀」（中間有空格）在整包原文裡只出現在這個檔；被動名稱寫的是「마법소녀」。
 
-所以這一筆照常翻譯即可，目前不影響畫面；之後的版本如果多了讀它的表，`fingerprint.py` 會在 `TextDataSet` 的欄位差異裡列出來。
+所以這一筆照常翻譯即可，目前不影響畫面；之後的版本如果多了讀它的表，`fingerprint.py` 會在 `TextDataSet` 的欄位差異裡列出來，檔案清單也會多出它的檔名。
 
 ### 有條件才不顯示的
 

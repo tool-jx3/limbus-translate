@@ -98,6 +98,14 @@
 - 翻不到的字：`DISTRICT`、`WAVE`、`SEASON`、`Lv.` 等英文標籤，「缺少某狀態」的提示，信件與公告。
 - `AbEvents*` 的 `prevDesc` 會被轉成大寫，連標籤裡的字母也是。
 
+### 10. 官方檔案清單、語音表、資源目錄（2026-11-18 補充）
+
+取得了三份遊戲下載的資料（不在版控裡），補上先前讀不到的部分：
+
+- **官方檔案清單**（`RemoteLocalizeFileList.json`）：77 張表、1,259 個檔名。第 6 章推出來的「哪個檔在哪張表」全部正確。**KR 有 17 個檔不在清單裡，遊戲不會載入**（594 個字串，譯文已翻 581 個），最大的是 `StoryTheaterPersonality`、`StoryTheaterMirrorWorldStoryTitle`、`StoryTheaterMirrorWorld`，以及 `DungeonStartBuffs`、`DungeonStartBuffs_MD6`（只有 `_MD7` 會載入）。見 [01](01-custom-language.md)、[07](07-field-display.md) 第 6 節。
+- **語音表**（`etc/VoiceTable.json`）：12 個前綴與 141 個語音 id，原意是限制哪些語音會帶出氣泡；但編譯出來的判斷永遠成立，這份表目前不擋任何句子。見 [05](05-battle-speech-bubble.md)。
+- **資源目錄**（`catalog_S1.json`）：官方文字不走 Addressables，是下載後以檔案讀取（推定）。啟動用的五個文字檔、字型、TextMeshPro 的設定與樣式表都在遊戲本體的 `resources.assets`；戰鬥、劇情、主畫面的介面物件在本體的場景檔裡，不在下載的 bundle 裡。所以 prefab 的設定（氣泡寬度、字級、樣式表）要從遊戲安裝資料夾的 `LimbusCompany_Data` 讀，目前還沒讀。
+
 ## 現行譯文需要看的地方
 
 用規則推算出來的，**都還沒有在遊戲裡確認**。資料：`raw-20261112`、`tw` 分支 7fccf1d。
@@ -155,5 +163,5 @@
 - 結論來自**靜態分析**，沒有執行遊戲。每一章都分別標了「確認」（對照反組譯）與「推定」。
 - 反編譯器的輸出不完全可靠。影響結論的判斷式（關鍵字的後接字元、`excludeAutoLink`、找不到 id 的行為、英文為底、ruby 的轉換條件、劇情列的配對）都另外對照了反組譯。
 - 規則用資料驗證過：專案裡兩個在遊戲中確認過的關鍵字案例都重現；KR 官方擋關鍵字的 294 處裡，名稱後接字元符合規則的有 275 處（另有 9 處官方多擋了，其餘零星）。
-- **讀不到的東西**：prefab 與資源檔裡的設定（ruby 的大小與位置、各語言的字級、戰鬥氣泡的寬度與換行、樣式表、介面顏色表、官方檔案清單）、Unity 原生程式的行為（`JsonUtility` 對不嚴格 JSON 的容忍度、TextMeshPro 對未知標籤與缺字的處理）。
+- **讀不到的東西**：prefab 與資源檔裡的設定（ruby 的大小與位置、各語言的字級、戰鬥氣泡的寬度與換行、樣式表、介面顏色表）、Unity 原生程式的行為（`JsonUtility` 對不嚴格 JSON 的容忍度、TextMeshPro 對未知標籤與缺字的處理）。
 - 只分析了 Windows 版的這一個版本。遊戲更新後規則可能改變；enum 成員（哪些狀態 id 會自動連結）每次更新都會增加。

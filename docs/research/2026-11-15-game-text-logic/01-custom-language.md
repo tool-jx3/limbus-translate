@@ -71,13 +71,23 @@
 - 官方路徑：`<語言>/<LANG>_<名稱>.json`，例如 `en/EN_Skills.json`。
 - 語言包路徑：`Lang/<包>/<名稱>.json`；有子資料夾的是 `Lang/<包>/<子資料夾>/<名稱>.json`（`PersonalityVoiceDlg`、`BattleAnnouncerDlg`、`EGOVoiceDig`、`BgmLyrics`、`StoryData`、`RPGSystem`）。
 
-`Skills.json`、`Skills_personality-01.json`、`Bufs-walpu10.json` 這些分開的檔案，都是照官方清單列舉的，三種語言共用同一份清單。**語言包不能新增檔名**；清單以外的檔案（包括 `Info/`、`Font/OFL.txt`）遊戲不會讀。這份清單不在 `raw` 分支裡，沒有辦法逐一比對，但現行譯文各資料夾的檔名集合與 KR 完全相同（根目錄 964、`StoryData` 1,001、`PersonalityVoiceDlg` 197、`RPGSystem` 189、`BattleAnnouncerDlg` 67、`BgmLyrics` 17、`EGOVoiceDig` 14）。
+`Skills.json`、`Skills_personality-01.json`、`Bufs-walpu10.json` 這些分開的檔案，都是照官方清單列舉的，三種語言共用同一份清單。**語言包不能新增檔名**；清單以外的檔案（包括 `Info/`、`Font/OFL.txt`）遊戲不會讀。
+
+**清單的內容（2026-11-12 版，2026-11-18 取得）。** `RemoteLocalizeFileList.json` 在遊戲下載的在地化資料夾裡，和 `kr`、`en`、`jp`、`etc` 同一層；它不在 `raw` 分支裡。用 [`method/filelist.py`](method/filelist.py) 和 KR 的 2,449 個檔比對：
+
+- 77 張表、1,259 個檔名（不重複 1,255 個）。劇情（`StoryData/` 1,001 個檔）與 RPG（`RPGSystem/` 189 個檔）由各自的載入器讀，不在清單裡。
+- **KR 有 17 個檔不在任何一張表裡，遊戲不會載入**：`StoryTheaterPersonality`（292 筆）、`StoryTheaterMirrorWorldStoryTitle`（183 筆）、`StoryTheaterMirrorWorld`（26 筆）、`DungeonStartBuffs`（25 筆）、`DungeonStartBuffs_MD6`（44 筆）、`SynergyKeyword`（1 筆）、`Announcer-a1c9p1`、`Announcer-a1c10p1`、六個 `UserTicket-{L,R,EGOBg}-{a1c9p3,a1c10p1}`，以及三個空檔（`ChapterBannerConfig`、`Items-BossRaid`、`Skills_Enemy-a1c9p2`）。合計 594 個有內容的字串。細節見 [07-field-display.md](07-field-display.md) 第 6 節。
+- 清單裡有 17 個檔名 KR 沒有對應的檔（例如 `Egos-a1c9p2`、`UserBanner-a1c7p3`）；沒有檔就跳過，沒有影響。EN 少 18 個、JP 少 7 個。
+- `BattlePass_Banner`、`EventLCBCheckupText` 在介面表裡各列了兩次；`DungeonArea1-1`、`DungeonArea1-2` 同時列在介面表與地牢區域表，兩張表各讀一次。
+- 同一張表裡不同檔案的重複 id 只有 3 個（`Announcer` 與 `Announcer-a1c10p3`，內容相同）。語言包以清單裡排在後面的檔為準。
+
+現行譯文各資料夾的檔名集合與 KR 完全相同（根目錄 964、`StoryData` 1,001、`PersonalityVoiceDlg` 197、`RPGSystem` 189、`BattleAnnouncerDlg` 67、`BgmLyrics` 17、`EGOVoiceDig` 14）。
 
 ### 底是 EN
 
 `TextDataConverter.InitRemote<T>`（共用實作 0x3BC1EE0，確認）：語言包生效時，把要載入的官方語言**直接改成 1（EN）**，再另外準備一個「讀語言包」的函式。劇情（`StoryDataParser.GetScriptText` 0x20B2B40）與 RPG（`RpgLocalizationManager`）也一樣。
 
-例外是啟動時就要用的四張表（登入介面、檔案下載說明、戰鬥提示、錯誤代碼訊息；`TextDataSet.LoadLocal` 0x13C27B0）：底是遊戲內選的語言，語言包同樣以 id 覆蓋。這四張表對應哪些檔名寫在遊戲的資源檔裡，讀不到。
+例外是啟動時就要用的四張表（登入介面、檔案下載說明、戰鬥提示、錯誤代碼訊息；`TextDataSet.LoadLocal` 0x13C27B0）：底是遊戲內選的語言，語言包同樣以 id 覆蓋。這四張表的官方文字放在遊戲本體的 Resources 裡，每個語言五個檔：`BattleHint`、`FileDownloadDesc`、`LoginUIText`、`UserAgreements`、`ErrorCodeMsgLocal`（資源目錄 `catalog_S1.json` 的 `Localize/<語言>/…`，確認）。前四個在 `raw` 的 KR 裡也有同名的檔，所以語言包有翻；`ErrorCodeMsgLocal` 只在遊戲本體裡，`raw` 沒有，語言包目前沒有這個檔，啟動階段的錯誤訊息會是遊戲內選的語言（推定）。哪個檔對到哪張表寫在 `Localize/LocalizeFileList`（同樣在本體的 Resources），內容還沒讀。
 
 ### 合併規則：一般文字表
 
@@ -151,8 +161,8 @@
 
 ## 讀不到、沒有確認的部分
 
-- 遊戲實際用「檔案模式」還是「Addressables 模式」載入官方文字（設定在資源檔裡）。兩種模式都會帶上「讀語言包」的函式，只讀了檔案模式那一條。
-- `RemoteLocalizeFileList.json` 與啟動用檔案清單的內容。
+- 遊戲實際用「檔案模式」還是「Addressables 模式」載入官方文字：推定是檔案模式。資源目錄 `catalog_S1.json` 的 21,880 個資源裡沒有 `Assets/Resources_moved/Localize` 底下的東西，只有啟動用的 16 個 Resources 項目；`RemoteLocalizeFileList.json` 與各語言的文字檔則是下載後以檔案的形式存在。
+- 啟動用檔案清單 `Localize/LocalizeFileList` 的內容（在遊戲本體的 `resources.assets` 裡）。
 - `JsonUtility` 對不嚴格的 JSON（註解、結尾多的逗號、型別不符）容忍到什麼程度：那是 Unity 的原生程式。官方檔有把數字寫進字串欄位（`"id": 0`）的情形，表示這一種可以；其他不要依賴。
 - 某張表載入失敗後玩家實際看到什麼。
 

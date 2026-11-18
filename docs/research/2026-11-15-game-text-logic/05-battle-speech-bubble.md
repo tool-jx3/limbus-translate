@@ -43,9 +43,16 @@ id 不是由氣泡的程式組出來的，而是**呼叫者播放的語音事件
 
 1. 場景是戰鬥或 RPG（程式比對的是數值 1 與 9；名稱依 enum 宣告順序推定）。
 2. 玩家的遊戲設定「戰鬥台詞」（`_battleSpeech`）是開的。
-3. 語音表（`etc/VoiceTable.json`，遊戲本體資料，不在語言包裡）存在。表裡有一個前綴比對，但依編譯出來的程式它永遠成立，等於沒有過濾（程式的形狀是確認，實際效果是推定）。
+3. 語音表（`etc/VoiceTable.json`，遊戲本體資料，不在語言包裡）存在。表裡有一個「這個語音 id 可不可以顯示」的比對，但依編譯出來的程式它永遠成立，等於沒有過濾（程式的形狀是確認，實際效果是推定；表的內容見下）。
 4. 找得到這個單位在場上的顯示物件。
 5. 取到的文字不是空的。
+
+語音表的內容（2026-11-12 版，2026-11-18 取得）：
+
+- `prefixes` 12 個：`battle_break`、`battle_dead`、`battle_endcommand`、`battle_enemy_break`、`battle_kill`、`battle_s1`、`battle_s2`、`battle_s3`、`battle_select`、`battle_special`、`special`，以及拼錯的 `batlte_react`。
+- `voiceKeys` 141 個：`battle_react_10310_10` 等 11 個（因為前綴拼錯，逐一列出）與 `8SV-…`、`10SV-…`、`85SV-…` 這類 id。其中 7 個在 `BattleSpeechBubbleDlg*` 裡找不到。
+- 比對的原意是「id 在 `voiceKeys` 裡，或開頭是某個前綴」才顯示氣泡。照這個原意，`BattleSpeechBubbleDlg*` 的 1,555 個 id 有 841 個通過（134 個在 `voiceKeys`、707 個符合前綴），其餘 714 個（`9SV-BAT…`、多數 `…SV-…`、35 個 `battle_react_…`）不會通過；人格語音 4,704 個 id 有 1,163 個通過（戰鬥中的選擇、擊殺、混亂、死亡等），大廳、編隊、`battle_allydead` 等不會。
+- 但編譯出來的判斷是「在 `voiceKeys` 裡，或前綴搜尋的回傳值不是 null」，而前綴搜尋回傳的是一個列舉器物件，永遠不是 null（`VoiceGenerator.PrintSpeechBubble` 0x1777B70 與 `VoiceTable.CheckVoiceIsPrintable` 0x2BEFD30 都是這個形狀，確認）。所以這份表實際上不擋任何 id，**不能用它判斷哪些句子不會顯示**。官方仍在維護它（2026-11-12 新增的 `85SV-…` 氣泡 id 都加進去了），之後的版本如果把判斷修好，上面那些不通過的 id 就真的不會出現氣泡。
 
 取文字的是 `VoiceTable.GetVoiceTextData_SpeachBubble(unitId, voiceKey)`（0x2BEFDD0，確認）：
 
@@ -220,7 +227,6 @@ id 不是由氣泡的程式組出來的，而是**呼叫者播放的語音事件
 ## 讀不到、沒有確認的部分
 
 - 氣泡與演出字幕在 prefab 裡的全部設定：寬度、自動換行、溢出方式、字級與自動縮字範圍、對齊、留白。中央字幕在 prefab 裡實際的數值（只知道程式的預設值）。
-- `etc/VoiceTable.json` 的內容。
 - FMOD 事件名稱與時間軸字幕 id 都在資源檔裡，所以**哪些 id 真的會被播到、哪些已經是用不到的資料**，無法從程式判斷。
 - 誰呼叫 `ProduceBase_ShowVoice.SetDialog`（虛擬呼叫），以及每句語音走下方還是中間。
 - `UnitScript_1522` 用來判斷中央字幕的狀態值代表什麼。
