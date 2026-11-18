@@ -839,3 +839,21 @@
   zh: 有那麼一瞬間，希斯克利夫似乎佔了上風，他的拳頭擊中了以實瑪利的臉頰……
   reason: StoryData 審查 S0438：KR「뺨」是臉頰，JP「頬」相同；現行 TW 照 EN「jaw」寫成「下巴」，部位不同。
   rule: one-off
+- key: StoryData/E405A.json|/dataList/88/content
+  raw: raw-20261112
+  kr_sha: 14bee1ed2c219ab78ab5257cbdfc46dc64febc67b5c2a05f46367709fac8866a
+  zh: 辛克萊與唐吉訶德越說越小聲的勸阻，浮士德淡然的聲音，以及奧提斯為了袒護我而拔高的音量。
+  reason: 'StoryData 審查 S0439：現行「唐吉訶德緩嘗試緩和局勢」多了一個「緩」字。KR「기어들어가는 싱클레어와 돈키호테의 만류」是「辛克萊與唐吉訶德越說越小聲的勸阻」（兩人共有 만류，指 #86、#87；JP 尻すぼみのシンクレアとドンキホーテによる宥め），現行照 EN 拆成「辛克萊的猶豫」與「唐吉訶德緩和局勢」；담담한 是平淡（現行「冷漠」），언성을 높이는 沒有「逐漸」。譯法由使用者決定'
+  rule: one-off
+- key: StoryData/E405A.json|/dataList/101/content
+  raw: raw-20261112
+  kr_sha: b8ed5fb0283df71caea3ae0cd46902b2764736aab566c93318e1a4bb7d34303c
+  zh: 好了、好了……現在大概已經估計好要收集多少廢料了，差不多可以出發了。
+  reason: StoryData 審查 S0440：KR「슬슬 폐품을 모으러 가셔도 될 것 같네요」是「差不多可以去收集廢料了」，JP「そろそろ廃品を集めに行っても良さそう」、EN「feel free to go collecting」相同；現行 TW「慢慢來吧」變成叫大家不用急。
+  rule: one-off
+- key: StoryData/E406B.json|/dataList/34/content
+  raw: raw-20261112
+  kr_sha: 5f4b75749d9e7f2f412c61ef4a8aa57c68106e1760e60b2fbacaca2d1b3f617c
+  zh: 哇～格里高爾先生，這是要表演火焰秀嗎？
+  reason: StoryData 審查 S0441：KR「불 쇼라도 보여주시는 건가요?」是「是要表演火焰秀嗎？」，JP「ファイヤーショーでも披露してくださるんですか？」相同；現行 TW「炫耀你的烤肉技巧」意思不同，辛克萊下一句也是在說那只是燒起來了。
+  rule: one-off
