@@ -716,3 +716,21 @@
   zh: 呵，你也跟鄉巴佬沒兩樣嘛。不對，應該說是船巴佬？
   reason: StoryData 審查 S0075：KR「너도 촌뜨기나 다름없구만」是希斯克利夫對以實瑪利說「你也跟鄉巴佬沒兩樣嘛」（JP オメェも土臭ぇのは同じだな）；TW「那要照你這麼說，你就是個鄉巴佬」多了「照你這麼說」的條件，也漏了「也」。
   rule: one-off
+- key: StoryData/S448B.json|/dataList/77/content
+  raw: raw-20261112
+  kr_sha: 710cd7edadd7e451200918000c1e375678df8cb1f3ea652d2e71e40a048742bf
+  zh: 是啊……我們總以為是憑自己的意志……離開了九人會……
+  reason: StoryData 審查 S0076：KR「스스로의 발로 구인회를… 나간 거라고 생각하지만…」是「我們以為是憑自己的雙腳……離開了九人會……」，離開已經發生（JP 出て行ったと思ってた、EN we left）；現行「以為會……離開」變成未來。생각하지만 是現在式，寫「總以為」。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S448B.json|/dataList/78/content
+  raw: raw-20261112
+  kr_sha: 393d15e498938bde1bb21257cb3368ebf888ba4a30fa559ce69a3e98bc81ce59
+  zh: 但大家都知道……其實我們只不過是被撕得粉碎、撒落各處罷了……
+  reason: 'StoryData 審查 S0076（與 #77 一起改）：KR「사실은 갈기갈기 찢겨져 흩뿌려진 것에 지나지 않았다고」是「其實只不過是被撕得粉碎、撒散開來而已」（JP 引き裂かれてばら撒かれたのに過ぎなかった、EN torn apart and scattered away），是被動，和 #77 的「憑自己的意志離開」對比；現行「早已四分五裂、分崩離析」少了「被」與「只不過」。使用者決定'
+  rule: one-off
+- key: StoryData/S454B.json|/dataList/18/content
+  raw: raw-20261112
+  kr_sha: 9646da29712b9201068b9ab8802cab1f885dee470bba95b4183ffc3e57bcab63
+  zh: 也許冬柏會來，李箱。
+  reason: StoryData 審查 S0077：KR「어쩌면 동백이 올지도 모르겠어」是「說不定冬柏會來」（JP 来るかもしれない，EN Dongbaek might just come）；TW「也許冬柏說的是對的」意思完全不同。下一句東朗接著說「如果她臨死前來到了這個空間……她的意識可能也被捲進來」，說的正是她會來。
+  rule: one-off
