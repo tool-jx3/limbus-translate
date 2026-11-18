@@ -1,0 +1,8 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G678：見 2026-11-18-rs-g678-would-it-change.yaml；這個檔改 4D304B#19。
+# 譯法由使用者決定 2026-11-18。
+reason: '「그런다고 바뀌겠니? 여전히 구리고 엉망일걸.」照 KR 重寫，兩處統一（規則建議 G678）'
+files: ['StoryData/4D304B.json']
+origins: [paratranz]
+pattern: '^但……你覺得那能造成任何改變嗎？這個世界依舊充斥著汙穢。$'
+replace: '但……那樣做就會有所改變嗎？到頭來還是一樣又爛又亂吧。'
+kr_pattern: '^하지만… 그런다고 바뀌겠니\? 여전히 구리고 엉망일걸\.$'
