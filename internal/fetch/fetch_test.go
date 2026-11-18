@@ -4,12 +4,14 @@ import (
 	"archive/zip"
 	"bytes"
 	"context"
+	"fmt"
 	"net"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"testing"
 	"time"
@@ -371,5 +373,96 @@ func TestFetchStatusErrorsHideTheURL(t *testing.T) {
 				}
 			}
 		})
+	}
+}
+
+func TestFileURL(t *testing.T) {
+	got := FileURL("https://cdn.example/{token}/{path}", "l20261112_abc", "Assets/LocalizePatch/LocalizePatchInfo.json")
+	if want := "https://cdn.example/l20261112_abc/Assets/LocalizePatch/LocalizePatchInfo.json"; got != want {
+		t.Errorf("FileURL = %q, want %q", got, want)
+	}
+}
+
+// The files of the list that belong to no language are the common ones: the
+// file list of the game, the voice table, the file list of the RPG.
+func TestCommonFilesAreTheOnesOutsideTheLanguages(t *testing.T) {
+	info := `{"Version":"0.1","EncryptKey":"k","EncryptIV":"iv","Files":{
+		"Assets/Resources_moved/Localize/RemoteLocalizeFileList.json":{"Hash":"a","Size":1,"Crc":0},
+		"Assets/Resources_moved/Localize/kr/KR_Skills.json":{"Hash":"b","Size":1,"Crc":0},
+		"Assets/Resources_moved/Localize/kr/StoryData/KR_S1.json":{"Hash":"b","Size":1,"Crc":0},
+		"Assets/Resources_moved/Localize/en/EN_Skills.json":{"Hash":"c","Size":1,"Crc":0},
+		"Assets/Resources_moved/Localize/jp/JP_Skills.json":{"Hash":"d","Size":1,"Crc":0},
+		"Assets/Resources_moved/Localize/etc/VoiceTable.json":{"Hash":"e","Size":1,"Crc":0},
+		"Assets/Resources_moved/Localize/rpg-loc-file-list-a1c10p3.json":{"Hash":"f","Size":1,"Crc":0},
+		"Assets/Elsewhere/Other.json":{"Hash":"g","Size":1,"Crc":0}},
+		"SteamUpdateFiles":{}}`
+	got, err := CommonFiles([]byte(info))
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := []string{"RemoteLocalizeFileList.json", "etc/VoiceTable.json", "rpg-loc-file-list-a1c10p3.json"}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("CommonFiles = %v, want %v", got, want)
+	}
+}
+
+func TestCommonFilesRefusesWhatItCannotTrust(t *testing.T) {
+	files := func(names ...string) string {
+		var b strings.Builder
+		b.WriteString(`{"Files":{`)
+		for i, n := range names {
+			if i > 0 {
+				b.WriteString(",")
+			}
+			fmt.Fprintf(&b, `%q:{}`, n)
+		}
+		b.WriteString(`}}`)
+		return b.String()
+	}
+	var many []string
+	for i := 0; i <= MaxCommonFiles; i++ {
+		many = append(many, fmt.Sprintf("Assets/Resources_moved/Localize/list-%d.json", i))
+	}
+	for name, info := range map[string]string{
+		"not JSON":             `<!doctype html>`,
+		"no files":             `{"Version":"0.1"}`,
+		"a path that climbs":   files("Assets/Resources_moved/Localize/../../x.json"),
+		"an absolute path":     files("Assets/Resources_moved/Localize//etc/x.json"),
+		"a backslash":          files(`Assets/Resources_moved/Localize/etc\x.json`),
+		"a query":              files("Assets/Resources_moved/Localize/x.json?y=1"),
+		"more than is common":  files(many...),
+		"a language as a file": files("Assets/Resources_moved/Localize/kr"),
+	} {
+		if got, err := CommonFiles([]byte(info)); err == nil {
+			t.Errorf("%s: CommonFiles = %v, want an error", name, got)
+		}
+	}
+	// A list with packs only has no common file: that is no error.
+	if got, err := CommonFiles([]byte(files("Assets/Resources_moved/Localize/kr/KR_A.json"))); err != nil || len(got) != 0 {
+		t.Errorf("packs only: CommonFiles = %v, %v; want none", got, err)
+	}
+}
+
+func TestReadKeepsTheBodyInMemoryAndBoundsIt(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case "/ok.json":
+			w.Write([]byte(`{"a":1}`))
+		case "/big.json":
+			w.Write(bytes.Repeat([]byte("x"), 100))
+		default:
+			http.NotFound(w, r)
+		}
+	}))
+	defer srv.Close()
+	ctx := context.Background()
+	if got, err := Read(ctx, srv.URL+"/ok.json", 64); err != nil || string(got) != `{"a":1}` {
+		t.Errorf("Read = %q, %v", got, err)
+	}
+	if _, err := Read(ctx, srv.URL+"/big.json", 64); err == nil {
+		t.Error("a body over the limit: no error")
+	}
+	if _, err := Read(ctx, srv.URL+"/missing.json", 64); err == nil || !strings.Contains(err.Error(), "404") {
+		t.Errorf("a missing file: err = %v, want the HTTP status", err)
 	}
 }

@@ -96,6 +96,7 @@ jobs:
         if: inputs.fetch && (steps.check.outputs.new == 'true' || inputs.force)
         env:
           LIMBUS_CDN_TEMPLATE: ${{ vars.LIMBUS_CDN_TEMPLATE }}
+          LIMBUS_CDN_FILE_TEMPLATE: ${{ vars.LIMBUS_CDN_FILE_TEMPLATE }}
           TOKEN: ${{ steps.check.outputs.token }}
           CREATED_AT: ${{ steps.check.outputs.created_at }}
         run: |

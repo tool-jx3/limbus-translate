@@ -253,3 +253,11 @@ func hasWrongRuby(s string) bool {
 	}
 	return false
 }
+
+// KeywordField reports whether the unit at pointer in file is in a field
+// where the game links the names of statuses (the fields of the keyword-link
+// check): only there does a half-width space after a name matter. An unknown
+// pointer ("") is no such field.
+func KeywordField(file, pointer string) bool {
+	return pointer != "" && inField(family(file), fieldPath(pointer), keywordScope)
+}

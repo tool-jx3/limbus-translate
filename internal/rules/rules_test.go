@@ -2658,3 +2658,35 @@ func TestLintRoutingWarnsIncludeOfOwnGuide(t *testing.T) {
 		}
 	}
 }
+
+// The id of a battle speech bubble names the personality that says it.
+func TestCharacterByItemID(t *testing.T) {
+	r := loadRepo(t)
+	for id, want := range map[string]string{
+		"battle_s3_10514_1_1":          "meursault",
+		"battle_react_noVoice_10613_2": "honglu",
+		"battle_speechbubble_10408_1":  "ryoshu",
+		"battle_s3_11206_1_1_03_1":     "gregor",
+		"battle_eE_10415_1":            "ryoshu",
+		"battle_s3_10109_1_4-7":        "yisang",
+		// no personality id: enemy and NPC lines, other unit ids
+		"9SV-BAT17-26-3":        "",
+		"battle_1137_FirstKill": "",
+		"battle_react_400005_3": "",
+		"battle_select_30501_1": "",
+		"s1003V-416":            "",
+		"10SV-051_1":            "",
+		"":                      "",
+		// a code no sinner has, and two personalities in one id
+		"battle_s3_19901_1": "",
+		"x_10101_10201":     "",
+	} {
+		got := ""
+		if c, ok := r.CharacterByItemID(id); ok {
+			got = c.ID
+		}
+		if got != want {
+			t.Errorf("CharacterByItemID(%q) = %q, want %q", id, got, want)
+		}
+	}
+}

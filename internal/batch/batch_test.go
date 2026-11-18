@@ -22,6 +22,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/existing"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -2209,19 +2210,19 @@ func TestSchemasMatchTheTypes(t *testing.T) {
 	const file = "StoryData/S001A.json"
 	kr := map[string]string{
 		file: `{"dataList":[
- {"id":0,"model":"파우스트","content":"[Bleed] 위력 5 부여"},
+ {"id":0,"model":"파우스트","place":"로비","content":"[Bleed] 위력 5 부여"},
  {"id":1,"model":"파우스트","content":"<color=#f8c200>공격</color> {0}"},
  {"id":2,"model":"파우스트","content":"끝"}
 ]}`,
 		"Bufs.json": `{"dataList":[{"id":"Bleed","name":"출혈"}]}`,
 	}
 	en := map[string]string{file: `{"dataList":[
- {"id":0,"model":"파우스트","content":"Inflict 5 [Bleed] Potency"},
+ {"id":0,"model":"파우스트","place":"Lobby","content":"Inflict 5 [Bleed] Potency"},
  {"id":1,"model":"파우스트","content":"Attack {0}"},
  {"id":2,"model":"파우스트","content":"The end"}
 ]}`}
 	jp := map[string]string{file: `{"dataList":[
- {"id":0,"model":"파우스트","content":"[Bleed]を5付与"},
+ {"id":0,"model":"파우스트","place":"ロビー","content":"[Bleed]を5付与"},
  {"id":1,"model":"파우스트","content":"攻撃 {0}"},
  {"id":2,"model":"파우스트","content":"終"}
 ]}`}
@@ -2230,6 +2231,8 @@ func TestSchemasMatchTheTypes(t *testing.T) {
 	// whitelist of <rubycustomize> that has the units, so that they are marked.
 	env.Rules = testRulesWithFiles(t, testRouting, "- kr: 위력\n  zh: 威力\n  status: approved\n  forbidden: [力量]\n  files: [\"StoryData/S*\"]\n",
 		map[string]string{rules.RubyCustomizeFile: "fields:\n  - files: ['StoryData/S001A.json']\n    field: content\n"})
+	// A label field, so that the first unit has an item_id and a label.
+	env.Fields = labelRules(t, "group_fields: { StoryData: [place] }\n")
 	pending := items(file, 0, 2)
 	pending[0].Refs = map[string]string{"llc": "a", "ltm": "b"}
 	pending[0].PrevKR, pending[0].PrevZH, pending[0].Draft = "p", "q", "r"
@@ -2881,20 +2884,30 @@ func TestForeignNameIgnoreList(t *testing.T) {
 
 const keywordKR = "대상에게 파열 2레벨 부여"
 
-// The game shows the effect text of a status for "name + space", so a name
-// the translator wrote without an [ID] gets the space on submission.
+// passiveDesc is a passive file with one entry whose desc is text: a field
+// where the game links status names (validate.KeywordField); passiveKey is the
+// key of that desc.
+func passiveDesc(t *testing.T, text string) string {
+	t.Helper()
+	return `{"dataList":[{"id":1,"desc":` + q(t, text) + `}]}`
+}
+
+func passiveKey(file string) string { return file + "|/dataList/0/desc" }
+
+// The game links a status name that a space follows, so a name the translator
+// wrote without an [ID] gets the space on submission.
 func TestSubmitAddsKeywordSpace(t *testing.T) {
-	kr := map[string]string{"Other.json": oneLine(t, keywordKR)}
+	kr := map[string]string{"Passives.json": passiveDesc(t, keywordKR)}
 	env := newEnv(t, kr, nil, nil)
 	env.KeywordNames = []string{"破裂", "破裂易損", "強壯"}
-	seed(t, env, items("Other.json", 0, 1)...)
+	seed(t, env, store.PendingItem{Key: passiveKey("Passives.json"), Reason: "new"})
 	b := mustNext(t, env, NextOptions{})
 
-	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "使目標增加2級破裂強度"}}, "test-model", 3)
+	res, err := Submit(env, b, []OutUnit{{Key: passiveKey("Passives.json"), ZH: "使目標增加2級破裂強度"}}, "test-model", 3)
 	if err != nil || len(res.Accepted) != 1 || len(res.Rejected) != 0 {
 		t.Fatalf("Submit = %+v, %v", res, err)
 	}
-	if got, want := records(t, env)[key("Other.json", 0)].ZH, "使目標增加2級破裂 強度"; got != want {
+	if got, want := records(t, env)[passiveKey("Passives.json")].ZH, "使目標增加2級破裂 強度"; got != want {
 		t.Errorf("record ZH = %q, want %q", got, want)
 	}
 }
@@ -2917,19 +2930,19 @@ func TestSubmitWithoutKeywordNames(t *testing.T) {
 // A twin takes the translation as it was accepted, space included.
 func TestSubmitKeywordSpaceReachesTwins(t *testing.T) {
 	text := keywordKR + " 하고 있다"
-	kr := map[string]string{"A.json": oneLine(t, text), "B.json": oneLine(t, text)}
+	kr := map[string]string{"Passives-a.json": passiveDesc(t, text), "Passives-b.json": passiveDesc(t, text)}
 	env := newEnv(t, kr, nil, nil)
 	env.KeywordNames = []string{"破裂"}
-	seed(t, env, append(items("A.json", 0, 1), items("B.json", 0, 1)...)...)
+	seed(t, env, store.PendingItem{Key: passiveKey("Passives-a.json"), Reason: "new"}, store.PendingItem{Key: passiveKey("Passives-b.json"), Reason: "new"})
 	b := mustNext(t, env, NextOptions{MaxUnits: 1})
 
-	res, err := Submit(env, b, []OutUnit{{Key: key("A.json", 0), ZH: "使目標增加2級破裂強度"}}, "test-model", 3)
+	res, err := Submit(env, b, []OutUnit{{Key: b.Units[0].Key, ZH: "使目標增加2級破裂強度"}}, "test-model", 3)
 	if err != nil || len(res.Accepted) != 1 || len(res.Reused) != 1 {
 		t.Fatalf("Submit = %+v, %v, want one accepted and one reused", res, err)
 	}
 	recs := records(t, env)
-	for _, f := range []string{"A.json", "B.json"} {
-		if got, want := recs[key(f, 0)].ZH, "使目標增加2級破裂 強度"; got != want {
+	for _, f := range []string{"Passives-a.json", "Passives-b.json"} {
+		if got, want := recs[passiveKey(f)].ZH, "使目標增加2級破裂 強度"; got != want {
 			t.Errorf("record ZH of %s = %q, want %q", f, got, want)
 		}
 	}
@@ -5582,5 +5595,123 @@ func TestBatchRefsOfUnmarkedUnitsHaveNoRubyCustomize(t *testing.T) {
 				t.Errorf("refs.llc = %q, prev_kr = %q: the other texts must stay as they are", u.Refs["llc"], u.PrevKR)
 			}
 		})
+	}
+}
+
+// labelRules are field rules whose manual file is manual.
+func labelRules(t *testing.T, manual string) *fields.Rules {
+	t.Helper()
+	root := t.TempDir()
+	writeFile(t, filepath.Join(root, "rules/fields.manual.yaml"), manual)
+	fr, err := fields.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return fr
+}
+
+// A speech bubble has no model: its id names the personality that says it, and
+// the label field of its entry (a group field, never translated) who speaks
+// and when. The batch carries both, and the speaker the id names.
+func TestSpeechBubbleSpeakerItemIDAndLabel(t *testing.T) {
+	const bubbles = "BattleSpeechBubbleDlg-a1c9p3.json"
+	const skills = "Skills_Enemy.json"
+	kr := map[string]string{
+		bubbles: `{"dataList":[
+ {"id":"battle_s3_10204_1_2","desc":"파우스트 3스킬","dlg":"끝입니다."},
+ {"id":"9SV-BAT17-26-3","desc":"검지 아비 [2페이즈]","dlg":"미리 익숙해지는 게 낫지 않겠니."},
+ {"id":"9SV-BAT1-08","desc":"","dlg":"여기는 제가 맡겠습니다."},
+ {"id":"9SV-BAT1-09","dlg":"물러서세요."}
+]}`,
+		skills: `{"dataList":[{"id":8000101,"levelList":[{"level":1,"name":"베기","desc":"벤다"}]}]}`,
+	}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWithFiles(t, testRouting, testGlossary, map[string]string{
+		"guides/characters/faust.md": strings.Replace(testFaust, "models: [파우스트]", "code: \"02\"\nmodels: [파우스트]", 1),
+	})
+	env.Fields = labelRules(t, "group_fields: { BattleSpeechBubbleDlg: [desc] }\n")
+	seed(t, env,
+		store.PendingItem{Key: bubbles + "|/dataList/0/dlg", Reason: "new"},
+		store.PendingItem{Key: bubbles + "|/dataList/1/dlg", Reason: "new"},
+		store.PendingItem{Key: bubbles + "|/dataList/2/dlg", Reason: "new"},
+		store.PendingItem{Key: bubbles + "|/dataList/3/dlg", Reason: "new"},
+		store.PendingItem{Key: skills + "|/dataList/0/levelList/0/desc", Reason: "new"},
+	)
+	type want struct{ speaker, itemID, label string }
+	wants := map[string]want{
+		bubbles + "|/dataList/0/dlg":             {"faust", "battle_s3_10204_1_2", "파우스트 3스킬"},
+		bubbles + "|/dataList/1/dlg":             {"", "9SV-BAT17-26-3", "검지 아비 [2페이즈]"},
+		bubbles + "|/dataList/2/dlg":             {"", "9SV-BAT1-08", ""},
+		bubbles + "|/dataList/3/dlg":             {"", "9SV-BAT1-09", ""},
+		skills + "|/dataList/0/levelList/0/desc": {"", "", ""},
+	}
+	seen := 0
+	sawFaustGuide := false
+	for range 4 {
+		b, err := Next(env, NextOptions{})
+		if err != nil {
+			t.Fatalf("Next: %v", err)
+		}
+		if b == nil {
+			break
+		}
+		for _, u := range b.Units {
+			w, ok := wants[u.Key]
+			if !ok {
+				t.Fatalf("unexpected unit %s", u.Key)
+			}
+			seen++
+			if got := (want{u.Speaker, u.ItemID, u.Label}); got != w {
+				t.Errorf("%s: speaker, item_id, label = %+v, want %+v", u.Key, got, w)
+			}
+			if u.Speaker == "faust" && slices.Contains(b.Guides, "guides/characters/faust.md") {
+				sawFaustGuide = true
+			}
+		}
+	}
+	if seen != len(wants) {
+		t.Errorf("%d units handed out, want %d", seen, len(wants))
+	}
+	if !sawFaustGuide {
+		t.Error("the batch of the bubble of Faust does not list Faust's guide")
+	}
+
+	// Without the field rules there is no label and no item id, and the
+	// speaker is still the one the id names.
+	env2 := newEnv(t, kr, nil, nil)
+	env2.Rules = env.Rules
+	seed(t, env2, store.PendingItem{Key: bubbles + "|/dataList/0/dlg", Reason: "new"})
+	u := mustNext(t, env2, NextOptions{}).Units[0]
+	if got := (want{u.Speaker, u.ItemID, u.Label}); got != (want{"faust", "", ""}) {
+		t.Errorf("without field rules: %+v", got)
+	}
+}
+
+// The space after a keyword name is put only where the game links status
+// names (validate.KeywordField): the tooltip of a status and every other text
+// show the text as it is, and the space would stay there as a stray space.
+func TestSubmitKeywordSpaceOnlyInKeywordFields(t *testing.T) {
+	const zh = "使目標增加2級破裂強度"
+	kr := map[string]string{
+		"Passives.json": `{"dataList":[{"id":1,"name":"이름","desc":` + q(t, keywordKR) + `}]}`,
+		"Bufs.json":     `{"dataList":[{"id":"A","name":"이름","desc":` + q(t, keywordKR) + `}]}`,
+		"Other.json":    oneLine(t, keywordKR),
+	}
+	for key, want := range map[string]string{
+		"Passives.json|/dataList/0/desc": "使目標增加2級破裂 強度",
+		"Bufs.json|/dataList/0/desc":     zh,
+		key("Other.json", 0):             zh,
+	} {
+		env := newEnv(t, kr, nil, nil)
+		env.KeywordNames = []string{"破裂"}
+		seed(t, env, store.PendingItem{Key: key, Reason: "new"})
+		b := mustNext(t, env, NextOptions{})
+		res, err := Submit(env, b, []OutUnit{{Key: key, ZH: zh}}, "test-model", 3)
+		if err != nil || len(res.Accepted) != 1 {
+			t.Fatalf("%s: Submit = %+v, %v", key, res, err)
+		}
+		if got := records(t, env)[key].ZH; got != want {
+			t.Errorf("%s: record ZH = %q, want %q", key, got, want)
+		}
 	}
 }

@@ -20,6 +20,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/existing"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -83,7 +84,7 @@ const pvGlossary = `- kr: 위력
 `
 
 const (
-	pvFaust = "---\nid: faust\nname: 浮士德\nname_kr: 파우스트\nmodels: [파우스트]\nfile_names: [Faust]\n---\n\n# 浮士德\n"
+	pvFaust = "---\nid: faust\nname: 浮士德\nname_kr: 파우스트\ncode: \"02\"\nmodels: [파우스트]\nfile_names: [Faust]\n---\n\n# 浮士德\n"
 	pvSinc  = "---\nid: sinclair\nname: 辛克萊\nname_kr: 싱클레어\nmodels: [싱클레어]\nfile_names: [Sinclair]\n---\n\n# 辛克萊\n"
 )
 
@@ -117,6 +118,12 @@ var pvKR = map[string]string{
 ]}`,
 	"Frozen.json": `{"dataList":[{"id":0,"content":"얼린 문장"}]}`,
 	"Bufs.json":   `{"dataList":[{"id":"Bleed","name":"출혈"},{"id":"Burn","name":"화상"}]}`,
+	// The desc of a speech bubble is a label field (pvFieldRules): its units
+	// carry the id of the entry and that label, and the speaker the id names.
+	"BattleSpeechBubbleDlg.json": `{"dataList":[
+ {"id":"battle_s3_10204_1_2","desc":"파우스트 3스킬","dlg":"끝입니다."},
+ {"id":"9SV-BAT1-08","desc":"","dlg":"여기는 제가 맡겠습니다."}
+]}`,
 	// Rules.json: its EN is paired by id (the entries are in another order) and
 	// its JP by sequence (the ids are other ones); its records show which
 	// fields of a record are kept where they differ from the file's.
@@ -176,7 +183,11 @@ var pvZH = map[string]string{
 ]}`,
 	"Frozen.json": `{"dataList":[{"id":0,"content":"얼린 문장"}]}`,
 	"Bufs.json":   `{"dataList":[{"id":"Bleed","name":"流血"},{"id":"Burn","name":"화상"}]}`,
-	"Rules.json":  `{"dataList":[{"id":"A","content":"第一"},{"id":"B","content":"第二"},{"id":"C","content":"第三"}]}`,
+	"BattleSpeechBubbleDlg.json": `{"dataList":[
+ {"id":"battle_s3_10204_1_2","desc":"파우스트 3스킬","dlg":"結束了。"},
+ {"id":"9SV-BAT1-08","desc":"","dlg":"여기는 제가 맡겠습니다."}
+]}`,
+	"Rules.json": `{"dataList":[{"id":"A","content":"第一"},{"id":"B","content":"第二"},{"id":"C","content":"第三"}]}`,
 }
 
 // pvWorld is the test pack with its store, the Previewer over it and the
@@ -201,6 +212,19 @@ func writeTree(t *testing.T, root string, files map[string]string) {
 
 func pvRec(file, pointer, kr, zh, origin string) store.Record {
 	return store.Record{Key: units.Key(file, pointer), KRSha: units.KRSha(kr), ZH: zh, Origin: origin, Since: "raw-20261029"}
+}
+
+// pvFieldRules are the field rules of the test world: the desc of a speech
+// bubble is a label field.
+func pvFieldRules(t *testing.T) *fields.Rules {
+	t.Helper()
+	root := t.TempDir()
+	writeTree(t, root, map[string]string{"rules/fields.manual.yaml": "group_fields: { BattleSpeechBubbleDlg: [desc] }\n"})
+	fr, err := fields.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return fr
 }
 
 // newPvWorld builds the test pack, its store and a Previewer; frozen are the
@@ -343,6 +367,7 @@ func newPvWorld(t *testing.T, frozen ...string) pvWorld {
 		Now:      time.Date(2026, 11, 1, 3, 4, 5, 0, time.UTC),
 		Names:    existing.NewIndex(table, r, nil),
 		SameText: sameText,
+		Fields:   pvFieldRules(t),
 	}
 	pv, err := batch.NewPreviewer(env, frozen)
 	if err != nil {
@@ -403,7 +428,7 @@ func rebuildBatch(t *testing.T, file File, pf PreviewFile, shared PreviewShared,
 	}
 	ex := expandPreviewUnit(t, file, pf, i)
 	bu := batch.BatchUnit{
-		Key: key, File: file.Path, Field: u.F, Speaker: pu.SP, KR: u.KR,
+		Key: key, File: file.Path, Field: u.F, Speaker: pu.SP, ItemID: pu.ID, Label: pu.LB, KR: u.KR,
 		Reason: pu.It.Reason, PrevKR: pu.It.PrevKR, PrevZH: ex.PrevZH, Draft: pu.It.Draft, Hint: pu.It.Hint,
 		Refs: pu.It.Refs, Keep: ex.Keep,
 	}
@@ -825,6 +850,8 @@ var pvCases = []struct {
 	{"Rules.json", "/dataList/0/content", "EN aligned by id, JP by sequence; a record like the file's other records; a glossary entry with several jp and en forms"},
 	{"Rules.json", "/dataList/2/content", "a record with no rules commit and another since than the file's others; a check: off entry the record lacks, with no term-missing"},
 	{"Bufs.json", "/dataList/0/name", "a name unit: two name refs, the second with no jp, en or others"},
+	{"BattleSpeechBubbleDlg.json", "/dataList/0/dlg", "a speech bubble of a sinner: the speaker its id names, item_id and label"},
+	{"BattleSpeechBubbleDlg.json", "/dataList/1/dlg", "a speech bubble of another character: item_id, an empty label, no speaker"},
 }
 
 // pvGoldUnit is a unit of preview/<path> as the viewer works on it, with every
@@ -834,6 +861,8 @@ var pvCases = []struct {
 // decoder that puts a default back wrong is caught.
 type pvGoldUnit struct {
 	SP   string            `json:"sp"`
+	ID   string            `json:"id,omitempty"`
+	LB   string            `json:"lb,omitempty"`
 	G    []string          `json:"g"`
 	T    []rules.Term      `json:"t"`
 	K    []string          `json:"k"`
@@ -907,7 +936,7 @@ func goldenPreviewFile(t *testing.T, pv *batch.Previewer, file File) pvGoldFile 
 		out.Family, out.GlossaryCheck = b.Family, b.GlossaryCheck
 		maps.Copy(out.Keywords, b.Keywords)
 		bu := p.Batch.Units[0]
-		g := &pvGoldUnit{SP: bu.Speaker, G: nonNil(slices.Clone(b.Guides)), T: []rules.Term{}, K: nonNil(slices.Sorted(maps.Keys(b.Keywords))), N: []batch.NameRef{}, C: [][]any{}}
+		g := &pvGoldUnit{SP: bu.Speaker, ID: bu.ItemID, LB: bu.Label, G: nonNil(slices.Clone(b.Guides)), T: []rules.Term{}, K: nonNil(slices.Sorted(maps.Keys(b.Keywords))), N: []batch.NameRef{}, C: [][]any{}}
 		for _, ref := range b.Names {
 			ref.Units = nil
 			g.N = append(g.N, ref)

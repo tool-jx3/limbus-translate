@@ -1,0 +1,35 @@
+{
+  "id": "preview",
+  "family": "other",
+  "file": "BattleSpeechBubbleDlg.json",
+  "files": [
+    "BattleSpeechBubbleDlg.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md",
+    "guides/characters/faust.md"
+  ],
+  "glossary": [],
+  "keywords": {},
+  "names": [],
+  "units": [
+    {
+      "key": "BattleSpeechBubbleDlg.json|/dataList/0/dlg",
+      "file": "BattleSpeechBubbleDlg.json",
+      "field": "dlg",
+      "speaker": "faust",
+      "item_id": "battle_s3_10204_1_2",
+      "label": "파우스트 3스킬",
+      "kr": "끝입니다.",
+      "reason": "new",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": []
+}

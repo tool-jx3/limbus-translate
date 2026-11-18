@@ -2,6 +2,7 @@ package main
 
 import (
 	"archive/zip"
+	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
@@ -656,5 +657,35 @@ func TestBuildCommandUsesMaxInconsistentOfConfig(t *testing.T) {
 	writeTestFile(t, root, "lct.yaml", string(cfg)+"build: { max_inconsistent: -1 }\n")
 	if _, err := runBuildJSON(t, root); err == nil || !strings.Contains(err.Error(), "MaxInconsistent") {
 		t.Fatalf("build with max_inconsistent -1: err = %v, want one that mentions MaxInconsistent", err)
+	}
+}
+
+// build.copies of lct.yaml are the copies the pack gets (build.Options.Copies).
+func TestBuildCommandMakesTheCopiesOfTheConfig(t *testing.T) {
+	root := buildRepo(t)
+	cfg, err := os.ReadFile(filepath.Join(root, "lct.yaml"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, root, "lct.yaml", string(cfg)+"build: { copies: { BufsLocal.json: Bufs.json } }\n")
+	t.Setenv(sourceDateEpoch, "")
+	out, err := runBuildJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	lang := filepath.Join(root, ".work", "tw", siteLangRoot, "zh-TW")
+	src, err := os.ReadFile(filepath.Join(lang, "Bufs.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got, err := os.ReadFile(filepath.Join(lang, "BufsLocal.json")); err != nil || !bytes.Equal(got, src) {
+		t.Errorf("BufsLocal.json = %q, %v; want the bytes of the built Bufs.json", got, err)
+	}
+	if out.Report == nil || !slices.Equal(out.Report.Copied, []string{"BufsLocal.json"}) {
+		t.Errorf("report = %+v, want BufsLocal.json copied", out.Report)
+	}
+	// The site and the other commands that read tw take the extra file.
+	if _, err := runSiteJSON(t, root, "--out", "work/site"); err != nil {
+		t.Errorf("lct site with a copy in the pack: %v", err)
 	}
 }

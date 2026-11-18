@@ -246,6 +246,7 @@ input[type="search"] {
 }
 
 .update-link,
+.data-link,
 .glossary-link,
 .gold-link,
 .review-link {
@@ -1808,6 +1809,7 @@ button.chip {
 }
 
 .update-link[aria-current="page"],
+.data-link[aria-current="page"],
 .gold-link[aria-current="page"] {
   font-weight: 700;
 }
@@ -3258,4 +3260,173 @@ a.uc-cause:focus-visible {
   gap: 0.2rem 0.6rem;
   font-size: 0.85rem;
   white-space: nowrap;
+}
+
+/* The data changes (#/d): what a snapshot of the raw branch changed as data. */
+.dv-intro,
+.dv-empty,
+.dv-none,
+.dv-why {
+  max-width: 60rem;
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.dv-section h2 {
+  margin: 0 0 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  font-size: 1.05rem;
+}
+
+.dv-tokens h3 {
+  margin: 0.75rem 0 0.15rem;
+  font-size: 0.95rem;
+}
+
+.dv-n {
+  font-size: 0.85rem;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.dv-n.is-added,
+.is-added > .dv-sign {
+  color: var(--u-new-fg);
+}
+
+.dv-n.is-removed,
+.is-removed > .dv-sign,
+.dv-group.is-removed .dv-sign {
+  color: var(--u-del-fg);
+}
+
+.dv-group.is-added .dv-sign {
+  color: var(--u-new-fg);
+}
+
+.dv-sign {
+  display: inline-block;
+  width: 1em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.dv-section ul {
+  margin: 0 0 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.dv-section li {
+  padding: 0.2rem 0;
+  overflow-wrap: anywhere;
+}
+
+.dv-group {
+  margin: 0 0 0.6rem;
+}
+
+.dv-group-head {
+  margin: 0;
+}
+
+.dv-section .dv-keys {
+  padding-inline-start: 1.5em;
+}
+
+.dv-section code {
+  padding: 0.05em 0.35em;
+  border-radius: 0.25em;
+  background: var(--raw-bg);
+  font-size: 0.9em;
+}
+
+.dv-group-meta,
+.dv-kinds,
+.dv-count,
+.dv-family,
+.dv-defined {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.dv-flag,
+.dv-tokens.is-flagged h3 .dv-n {
+  padding: 0.05em 0.6em;
+  border-radius: 1em;
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.dv-tokens ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+}
+
+.dv-entries {
+  padding: 0.2rem 0;
+}
+
+.dv-entries > summary {
+  cursor: pointer;
+}
+
+.dv-ids {
+  margin: 0.15rem 0 0.15rem 1.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.dv-langs {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.dv-langs a {
+  padding: 0.15em 0.9em;
+  border: 1px solid var(--border);
+  border-radius: 1em;
+  color: var(--fg);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.dv-langs a[aria-current="page"] {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
+}
+
+.dv-vs {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.dv-vs-list h3 {
+  margin: 0.5rem 0 0.15rem;
+  font-size: 0.95rem;
+}
+
+.dv-same {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.uv-count.is-flag {
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+}
+
+.dv-names {
+  overflow-wrap: anywhere;
 }

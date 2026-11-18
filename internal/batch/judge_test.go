@@ -75,13 +75,17 @@ priority:
 		}
 	})
 	t.Run("ZH is normalized", func(t *testing.T) {
-		v := Judge(env, nil, "Other.json", "", "2단계 파열 강도", "2級破裂強度", "")
+		v := Judge(env, nil, "Passives.json", "/dataList/0/desc", "2단계 파열 강도", "2級破裂強度", "")
 		if v.ZH != "2級破裂 強度" {
 			t.Errorf("ZH = %q, want the space after the keyword name", v.ZH)
 		}
+		// Not where the game shows the text as it is.
+		if v := Judge(env, nil, "Bufs.json", "/dataList/0/desc", "2단계 파열 강도", "2級破裂強度", ""); v.ZH != "2級破裂強度" {
+			t.Errorf("ZH of a status description = %q, want no space", v.ZH)
+		}
 	})
 	t.Run("rejected: ZH still has the space after the keyword name", func(t *testing.T) {
-		v := Judge(env, nil, "Other.json", "", "2단계 파열 강도 시즌", "2級破裂強度", "")
+		v := Judge(env, nil, "Passives.json", "/dataList/0/desc", "2단계 파열 강도 시즌", "2級破裂強度", "")
 		if !v.Rejected {
 			t.Fatalf("not rejected: %+v", v.Issues)
 		}

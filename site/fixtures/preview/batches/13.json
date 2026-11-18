@@ -1,0 +1,33 @@
+{
+  "id": "preview",
+  "family": "other",
+  "file": "BattleSpeechBubbleDlg.json",
+  "files": [
+    "BattleSpeechBubbleDlg.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md"
+  ],
+  "glossary": [],
+  "keywords": {},
+  "names": [],
+  "units": [
+    {
+      "key": "BattleSpeechBubbleDlg.json|/dataList/1/dlg",
+      "file": "BattleSpeechBubbleDlg.json",
+      "field": "dlg",
+      "speaker": "",
+      "item_id": "9SV-BAT1-08",
+      "kr": "여기는 제가 맡겠습니다.",
+      "reason": "new",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": []
+}

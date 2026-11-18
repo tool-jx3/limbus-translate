@@ -155,7 +155,15 @@
           "file": { "description": "The pack file the unit is in, the <file> of its key; one of the batch's files.", "type": "string" },
           "field": { "description": "The name of the field the text is in, such as content.", "type": "string" },
           "speaker": {
-            "description": "Character id of the speaker. The speaker is named by the line's model, or by the speaker field of an RPG dialogue line; a name that is no known character is given as it is. \"\" when the line has none.",
+            "description": "Character id of the speaker. The speaker is named by the line's model, or by the speaker field of an RPG dialogue line; a battle speech bubble has neither, and its speaker is the sinner whose personality id (1XXYY) its item_id carries. A name that is no known character is given as it is. \"\" when the line has none: for a speech bubble, a line of an enemy or another character, whom label names.",
+            "type": "string"
+          },
+          "item_id": {
+            "description": "Present for a unit of an entry with label fields (rules/fields.manual.yaml group_fields; the battle speech bubbles): the id of the entry. For a speech bubble it is the name of the voice event: battle_<kind>_1XXYY_... is a line of personality 1XXYY, <chapter>SV-... a line of an enemy or another character of that chapter, and ids that differ only in a closing -01, -02 are takes of one line. Not translated.",
+            "type": "string"
+          },
+          "label": {
+            "description": "Present with item_id when the entry's label fields are not empty: their KR text, one per line. A developer's note of who speaks and when (for a speech bubble its desc, such as the speaker and the skill or the scene). The game never shows it; read it to tell the speaker and the situation. Not translated.",
             "type": "string"
           },
           "kr": { "description": "The Korean text to translate.", "type": "string" },

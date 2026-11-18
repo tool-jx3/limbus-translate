@@ -21,15 +21,18 @@ var ErrRootNotFound = errors.New(FileName + " not found")
 
 // Config is the content of lct.yaml.
 type Config struct {
-	LangDir     string    `yaml:"lang_dir"`
-	Frozen      []string  `yaml:"frozen"`
-	CDNTemplate string    `yaml:"cdn_template"`
-	Worktrees   Worktrees `yaml:"worktrees"`
-	Batch       Batch     `yaml:"batch"`
-	Build       Build     `yaml:"build"`
-	Names       Names     `yaml:"names"`
-	Font        Font      `yaml:"font"`
-	Bootstrap   Bootstrap `yaml:"bootstrap"`
+	LangDir     string   `yaml:"lang_dir"`
+	Frozen      []string `yaml:"frozen"`
+	CDNTemplate string   `yaml:"cdn_template"`
+	// CDNFileTemplate is the URL of a single file of an update, with {token}
+	// and {path}; lct fetch downloads the common files with it. Empty: none.
+	CDNFileTemplate string    `yaml:"cdn_file_template"`
+	Worktrees       Worktrees `yaml:"worktrees"`
+	Batch           Batch     `yaml:"batch"`
+	Build           Build     `yaml:"build"`
+	Names           Names     `yaml:"names"`
+	Font            Font      `yaml:"font"`
+	Bootstrap       Bootstrap `yaml:"bootstrap"`
 }
 
 // Worktrees holds the worktree directories, relative to the repo root.
@@ -52,6 +55,9 @@ type Build struct {
 	// MaxInconsistent is how many "same KR, different renderings" groups the
 	// build record keeps, besides those with units of the update.
 	MaxInconsistent int `yaml:"max_inconsistent"`
+	// Copies are files the pack gets besides those of KR: each name is a
+	// copy of the built file it maps to (build.Options.Copies).
+	Copies map[string]string `yaml:"copies"`
 }
 
 // Names lists the fields whose current translations make up the table of

@@ -19,6 +19,7 @@
 
 - `speaker` 是角色 id 時，`guides` 含有該角色的指引（`guides/characters/<id>.md`）：依它決定自稱、第二人稱、稱謂與語氣。指引依檔名或人格區分語氣時，以單位的 `file` 判斷
 - `speaker` 是其他字串時，那是指引沒收錄的說話者（那一行的 `model`，或 RPG 對話的 `speaker` 欄位的原值），依 KR 語體與劇情判斷；空字串是旁白、說明或系統文字
+- `item_id`、`label` 只有條目有標籤欄位的單位才有（目前是戰鬥泡泡 `BattleSpeechBubbleDlg*`）：`item_id` 是條目的 id，`label` 是條目標籤欄位（戰鬥泡泡的 `desc`）的 KR 原文。兩者都是用來判斷誰在說話、在什麼場合的資料，遊戲不顯示，不翻譯、不輸出。戰鬥泡泡的 `item_id` 含人格編號（`1XXYY`）時，`speaker` 已經是那位罪人；`speaker` 是空字串的是敵人或其他角色的台詞，看 `label` 判斷。怎麼讀見 `guides/families/identity.md`
 - 批次的 `npcs` 列出單位與 `context` 中、在路人名單（`guides/npcs.yaml`）上的說話者：`model` 對到 `speaker`，`gender` 是這個人的性別（文本沒說就沒有），`note` 說明身分與出處
 - 「您／你」依 `guides/base.md`「人稱與稱呼」的「第二人稱：您／你」；「你／妳」「他／她」依同節的「性別：你／妳、他／她」與角色指引或 `npcs` 的 `gender`。聽者是誰要從劇情判斷
 - 標點依 `guides/base.md` 的「標點與書寫」；`[ID]`、佔位符與標籤依「代碼與標籤」

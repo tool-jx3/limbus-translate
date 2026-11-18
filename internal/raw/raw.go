@@ -5,6 +5,10 @@
 // Layout of the raw worktree:
 //
 //	kr/ en/ jp/        the extracted packs, as they came out of the zips
+//	common/            the files of the update that belong to no language (the
+//	                   file list of the game, the voice table, the file list of
+//	                   the RPG), as they are on the CDN; a snapshot made
+//	                   without them has no such directory
 //	meta/source.json   what the snapshot was made from (see Source)
 //	.gitattributes     "* -text", so git never changes a line ending
 package raw
@@ -20,6 +24,9 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"regexp"
+	"slices"
+	"strconv"
 	"strings"
 	"time"
 
@@ -37,6 +44,11 @@ const (
 
 // langs are the pack directories of the worktree, in the order they are written.
 var langs = []string{"kr", "en", "jp"}
+
+// CommonDir is the directory of the files of an update that belong to no
+// language, in the worktree and as a key of the packs of Snapshot. Unlike the
+// packs it is optional.
+const CommonDir = "common"
 
 // ErrInvalidInput marks a Snapshot call refused because of its arguments (the
 // token, the date or the pack directories), before anything was written.
@@ -56,8 +68,9 @@ type Source struct {
 	CreatedAt string `json:"created_at"`
 	// FetchedAt is when the packs were downloaded (RFC 3339, UTC).
 	FetchedAt string `json:"fetched_at"`
-	// Files maps every file of the snapshot ("kr/KR_X.json") to the lowercase
-	// hex sha256 of its bytes.
+	// Files maps every file of the snapshot ("kr/KR_X.json",
+	// "common/RemoteLocalizeFileList.json") to the lowercase hex sha256 of its
+	// bytes.
 	Files map[string]string `json:"files"`
 }
 
@@ -111,7 +124,8 @@ func NextTag(existing []string, createdAt string) string {
 }
 
 // Snapshot writes the packs into the raw worktree, commits and tags them. packs
-// maps "kr", "en" and "jp" to the directories the packs were extracted to; src
+// maps "kr", "en" and "jp" to the directories the packs were extracted to, and
+// may map CommonDir to the directory of the common files; src
 // supplies Token, CreatedAt and optionally FetchedAt (default: now). Tag and
 // Files of src are ignored, as they are computed.
 //
@@ -157,17 +171,19 @@ func Snapshot(worktree string, packs map[string]string, src Source) (tag string,
 	tag = NextTag(existing, src.CreatedAt)
 
 	files := make(map[string]string)
-	for _, lang := range langs {
-		dst := filepath.Join(worktree, lang)
+	// The common directory is emptied too: a snapshot without common files
+	// keeps none of the snapshot before.
+	for _, dir := range append(slices.Clone(langs), CommonDir) {
+		dst := filepath.Join(worktree, dir)
 		if err := os.RemoveAll(dst); err != nil {
 			return "", false, err
 		}
-		for _, rel := range lists[lang] {
-			sum, err := copyFile(filepath.Join(packs[lang], filepath.FromSlash(rel)), filepath.Join(dst, filepath.FromSlash(rel)))
+		for _, rel := range lists[dir] {
+			sum, err := copyFile(filepath.Join(packs[dir], filepath.FromSlash(rel)), filepath.Join(dst, filepath.FromSlash(rel)))
 			if err != nil {
 				return "", false, err
 			}
-			files[lang+"/"+rel] = sum
+			files[dir+"/"+rel] = sum
 		}
 	}
 	if err := os.WriteFile(filepath.Join(worktree, attributesFile), []byte(attributes), 0o644); err != nil {
@@ -237,14 +253,17 @@ func validate(worktree string, packs map[string]string, src Source) (map[string]
 // as slash-separated paths relative to the pack directory.
 func listPacks(worktree string, packs map[string]string) (map[string][]string, error) {
 	for lang := range packs {
-		if !isLang(lang) {
-			return nil, invalid("unknown pack %q (want kr, en and jp)", lang)
+		if !isLang(lang) && lang != CommonDir {
+			return nil, invalid("unknown pack %q (want kr, en and jp, and maybe %s)", lang, CommonDir)
 		}
 	}
-	lists := make(map[string][]string, len(langs))
-	for _, lang := range langs {
+	lists := make(map[string][]string, len(langs)+1)
+	for _, lang := range append(slices.Clone(langs), CommonDir) {
 		dir, ok := packs[lang]
 		if !ok {
+			if lang == CommonDir {
+				continue
+			}
 			return nil, invalid("no %s pack", lang)
 		}
 		info, err := os.Stat(dir)
@@ -360,4 +379,45 @@ func writeSource(worktree string, s Source) error {
 		return err
 	}
 	return os.WriteFile(path, buf.Bytes(), 0o644)
+}
+
+// snapshotTagRe matches a snapshot tag: raw-YYYYMMDD, or raw-YYYYMMDD.N for
+// the Nth snapshot of a day (NextTag).
+var snapshotTagRe = regexp.MustCompile(`^` + regexp.QuoteMeta(TagPrefix) + `(\d{8})(?:\.(\d+))?$`)
+
+// SortedTags returns the snapshot tags among names, the oldest first: by day,
+// then by N as a number (the tag without one is the first of its day). Names
+// that are not snapshot tags are left out.
+func SortedTags(names []string) []string {
+	type snap struct {
+		name, day string
+		n         int
+	}
+	var snaps []snap
+	for _, name := range names {
+		m := snapshotTagRe.FindStringSubmatch(name)
+		if m == nil {
+			continue
+		}
+		n := 1
+		if m[2] != "" {
+			var err error
+			if n, err = strconv.Atoi(m[2]); err != nil {
+				continue
+			}
+		}
+		snaps = append(snaps, snap{name, m[1], n})
+	}
+	// The days have eight digits each, so they compare as text.
+	slices.SortStableFunc(snaps, func(a, b snap) int {
+		if a.day != b.day {
+			return strings.Compare(a.day, b.day)
+		}
+		return a.n - b.n
+	})
+	out := make([]string, len(snaps))
+	for i, s := range snaps {
+		out[i] = s.name
+	}
+	return out
 }

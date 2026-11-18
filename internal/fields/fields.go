@@ -13,10 +13,12 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"maps"
 	"os"
 	"path"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strings"
 
 	"gopkg.in/yaml.v3"
@@ -216,6 +218,17 @@ func (r *Rules) addGroupFields(group string, fields []string) {
 	for _, f := range fields {
 		set[f] = true
 	}
+}
+
+// GroupFields lists, by name, the label fields of the group of file: the
+// fields of its entries that say what the entry is and are never translated
+// (group_fields). A file whose group has none gets nil.
+func (r *Rules) GroupFields(file string) []string {
+	set := r.groupFields[Group(file)]
+	if len(set) == 0 {
+		return nil
+	}
+	return slices.Sorted(maps.Keys(set))
 }
 
 func (r *Rules) setNameOnly(n NameOnly) error {

@@ -590,3 +590,106 @@ func TestOpenKRAtUnknownTag(t *testing.T) {
 		}
 	}
 }
+
+func TestSortedTagsOrdersByDayThenNumber(t *testing.T) {
+	got := SortedTags([]string{"raw-20261105.10", "raw-20261112", "raw-20261105", "raw-latest", "raw-20261105.2", "zh-TW-20261029.1", "raw-20261029.x", "raw-2026110"})
+	want := []string{"raw-20261105", "raw-20261105.2", "raw-20261105.10", "raw-20261112"}
+	if !slices.Equal(got, want) {
+		t.Errorf("SortedTags = %v, want %v", got, want)
+	}
+}
+
+func TestOpenAtReadsThePackOfALanguage(t *testing.T) {
+	wt := rawWorktree(t)
+	tag, _, err := Snapshot(wt, storyPack(t, "first"), Source{Token: token1, CreatedAt: created1})
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, lang := range []string{"kr", "en", "jp"} {
+		dir := filepath.Join(t.TempDir(), lang)
+		p, err := OpenAt(wt, tag, lang, dir)
+		if err != nil {
+			t.Fatal(err)
+		}
+		// The prefix of the language is cut from the names, and only its pack is exported.
+		if !p.Has("A.json") {
+			t.Errorf("%s: files = %v, want A.json", lang, p.Files())
+		}
+		entries, err := os.ReadDir(dir)
+		if err != nil || len(entries) != 1 || entries[0].Name() != lang {
+			t.Errorf("%s: dir holds %v (%v), want only %s", lang, entries, err, lang)
+		}
+	}
+	if _, err := OpenAt(wt, tag, "fr", t.TempDir()); err == nil || !strings.Contains(err.Error(), "fr") {
+		t.Errorf("OpenAt of fr: err = %v, want one that names the language", err)
+	}
+}
+
+// The files of an update that belong to no language (the file lists, the voice
+// table) are a fourth directory, common, which a snapshot may have.
+func TestSnapshotKeepsTheCommonFiles(t *testing.T) {
+	wt := rawWorktree(t)
+	packs := storyPack(t, "first")
+	common := t.TempDir()
+	write(t, common, "RemoteLocalizeFileList.json", "{\r\n  \"ui\": [\"A\"]\r\n}")
+	write(t, common, "etc/VoiceTable.json", `{"prefixes":[]}`)
+	packs[CommonDir] = common
+
+	tag, changed, err := Snapshot(wt, packs, Source{Token: token1, CreatedAt: created1})
+	if err != nil || !changed {
+		t.Fatalf("Snapshot = %s, %v, %v", tag, changed, err)
+	}
+	// Byte for byte, and listed with their hashes like the files of the packs.
+	if got := read(t, wt, "common/RemoteLocalizeFileList.json"); got != "{\r\n  \"ui\": [\"A\"]\r\n}" {
+		t.Errorf("common/RemoteLocalizeFileList.json = %q", got)
+	}
+	src, err := LastSource(wt)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, rel := range []string{"common/RemoteLocalizeFileList.json", "common/etc/VoiceTable.json", "kr/KR_A.json"} {
+		if len(src.Files[rel]) != 64 {
+			t.Errorf("meta/source.json has no hash of %s: %q", rel, src.Files[rel])
+		}
+	}
+	if got := runGit(t, wt, "status", "--porcelain"); got != "" {
+		t.Errorf("the worktree is dirty after the snapshot:\n%s", got)
+	}
+
+	// A later snapshot without them has none: those of the update before are not its own.
+	if _, _, err := Snapshot(wt, storyPack(t, "second"), Source{Token: token2, CreatedAt: created2}); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := os.Stat(filepath.Join(wt, "common")); !os.IsNotExist(err) {
+		t.Errorf("common/ of the snapshot before is still there: %v", err)
+	}
+	src, err = LastSource(wt)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for rel := range src.Files {
+		if strings.HasPrefix(rel, "common/") {
+			t.Errorf("meta/source.json of a snapshot without common files lists %s", rel)
+		}
+	}
+}
+
+func TestSnapshotRefusesABadCommonDirectory(t *testing.T) {
+	wt := rawWorktree(t)
+	for name, dir := range map[string]string{
+		"missing": filepath.Join(t.TempDir(), "nope"),
+		"empty":   t.TempDir(),
+	} {
+		packs := storyPack(t, "first")
+		packs[CommonDir] = dir
+		if _, _, err := Snapshot(wt, packs, Source{Token: token1, CreatedAt: created1}); !errors.Is(err, ErrInvalidInput) {
+			t.Errorf("%s common directory: err = %v, want ErrInvalidInput", name, err)
+		}
+	}
+	// The packs are still all required, and nothing else is a pack.
+	packs := storyPack(t, "first")
+	packs["fr"] = t.TempDir()
+	if _, _, err := Snapshot(wt, packs, Source{Token: token1, CreatedAt: created1}); !errors.Is(err, ErrInvalidInput) {
+		t.Errorf("a pack fr: err = %v, want ErrInvalidInput", err)
+	}
+}

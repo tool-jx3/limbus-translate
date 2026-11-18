@@ -58,5 +58,15 @@
     "path": "Bufs.json",
     "index": 1,
     "batch": "batches/11.json"
+  },
+  {
+    "path": "BattleSpeechBubbleDlg.json",
+    "index": 2,
+    "batch": "batches/12.json"
+  },
+  {
+    "path": "BattleSpeechBubbleDlg.json",
+    "index": 5,
+    "batch": "batches/13.json"
   }
 ]

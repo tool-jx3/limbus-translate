@@ -1,0 +1,779 @@
+// Package rawdiff compares two snapshots of an official pack as data: the files,
+// the kinds of file (groups), the keys of their JSON, the entries and the
+// tokens of the text that one has and the other has not. What the text of an
+// entry says is not compared: that is the update record (internal/history).
+package rawdiff
+
+import (
+	"bytes"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io/fs"
+	"maps"
+	"os"
+	"path/filepath"
+	"regexp"
+	"slices"
+	"strconv"
+	"strings"
+
+	"github.com/tool-jx3/limbus-translate/internal/fields"
+	"github.com/tool-jx3/limbus-translate/internal/jsonx"
+	"github.com/tool-jx3/limbus-translate/internal/pack"
+)
+
+// Diff is what the snapshot To has that From has not, and the reverse. No
+// list is nil, and each is in a fixed order: files and groups by name, keys by
+// path, tokens by kind, then the added before the removed, then by name.
+type Diff struct {
+	Lang   string `json:"lang"` // of the pack ("kr", "jp" or "en"), which the caller sets
+	From   string `json:"from"` // the tags, which the caller sets
+	To     string `json:"to"`
+	Counts Counts `json:"counts"`
+	// NewGroups are the groups (fields.Group) no file of From belongs to, each
+	// with every key of its files; GoneGroups the reverse.
+	NewGroups    []Group `json:"new_groups"`
+	GoneGroups   []Group `json:"gone_groups"`
+	FilesAdded   []File  `json:"files_added"`
+	FilesRemoved []File  `json:"files_removed"`
+	// Keys is, for each group that both snapshots have, the keys that only one
+	// has.
+	Keys []GroupKeys `json:"keys"`
+	// Entries is the files that both snapshots have whose entries differ in
+	// number or in their ids.
+	Entries []FileEntries `json:"entries"`
+	// Tokens are the tokens of the text that the whole pack of only one
+	// snapshot has.
+	Tokens []Token `json:"tokens"`
+	// VsKR is, for the pack of another language, how its changes differ from
+	// those of the KR pack; the caller sets it (Against).
+	VsKR *Versus `json:"vs_kr,omitempty"`
+	// Lists is how the lists of the common files differ, when To has common
+	// files (SetLists); nil when it has none.
+	Lists *ListChanges `json:"lists,omitempty"`
+}
+
+// Counts is the size of each list of a Diff. Keys, entries and tokens are
+// counted one by one, not by group or file.
+type Counts struct {
+	FilesAdded     int `json:"files_added"`
+	FilesRemoved   int `json:"files_removed"`
+	NewGroups      int `json:"new_groups"`
+	GoneGroups     int `json:"gone_groups"`
+	KeysAdded      int `json:"keys_added"`
+	KeysRemoved    int `json:"keys_removed"`
+	EntriesAdded   int `json:"entries_added"` // ids; the entries of an added file are not among them
+	EntriesRemoved int `json:"entries_removed"`
+	TokensAdded    int `json:"tokens_added"`
+	TokensRemoved  int `json:"tokens_removed"`
+	ListsAdded     int `json:"lists_added"` // names of the lists of the common files
+	ListsRemoved   int `json:"lists_removed"`
+	UnlistedNew    int `json:"unlisted_new"` // files that no list names, and that had a list or were not there before
+}
+
+// Zero reports whether nothing differs.
+func (c Counts) Zero() bool { return c == Counts{} }
+
+// File is a file that only one snapshot has.
+type File struct {
+	File    string `json:"file"` // the pack file name (pack.Pack.Files)
+	Group   string `json:"group"`
+	Family  string `json:"family,omitempty"` // of the routing rules; "" when no family takes the file
+	Entries int    `json:"entries"`          // the elements of its dataList
+}
+
+// Group is a group that only one snapshot has.
+type Group struct {
+	Group string `json:"group"`
+	Files int    `json:"files"`
+	Keys  []Key  `json:"keys"`
+}
+
+// Key is a key of the JSON of a group, with the keys that lead to it: a value
+// that is no object and no array. An array adds "[]" to the path, so
+// "dataList[].levelList[].desc" is the desc of every level of every entry.
+type Key struct {
+	Path  string   `json:"path"`
+	Kinds []string `json:"kinds"` // the kinds of its values, sorted: "bool", "null", "number", "string"
+	Count int      `json:"count"` // how many values the group has under it
+	// File and Pointer are where the first of them is.
+	File    string `json:"file"`
+	Pointer string `json:"pointer"`
+}
+
+// GroupKeys is the keys of a group that only one snapshot has.
+type GroupKeys struct {
+	Group   string `json:"group"`
+	Added   []Key  `json:"added"`
+	Removed []Key  `json:"removed"`
+}
+
+// FileEntries is how the entries (the elements of dataList) of a file differ.
+// Added and Removed are ids, in the order of the file that has them; an entry
+// without an id only shows in Before and After.
+type FileEntries struct {
+	File    string   `json:"file"`
+	Group   string   `json:"group"`
+	Family  string   `json:"family,omitempty"`
+	Before  int      `json:"before"`
+	After   int      `json:"after"`
+	Added   []string `json:"added"`
+	Removed []string `json:"removed"`
+}
+
+// The kinds of a Token.
+const (
+	TokenBracket     = "bracket"     // [Name]
+	TokenPlaceholder = "placeholder" // {name}; one that is only a number, such as {0}, is not counted
+	TokenStyle       = "style"       // the name of <style="name">
+	TokenTag         = "tag"         // the name of <name>, <name=…> or </name>, in lower case
+)
+
+// The values of Token.Change.
+const (
+	Added   = "added"
+	Removed = "removed"
+)
+
+// Token is a token of the text that one snapshot has somewhere in the pack
+// and the other nowhere.
+type Token struct {
+	Kind   string `json:"kind"`
+	Name   string `json:"name"`
+	Change string `json:"change"`
+	Count  int    `json:"count"` // how often the snapshot that has it has it
+	// File and Pointer are the first text with it.
+	File    string `json:"file"`
+	Pointer string `json:"pointer"`
+	// DefinedIn is, for a bracket, the groups with an entry whose id is the
+	// name, sorted; empty when there is none, and for the other kinds.
+	DefinedIn []string `json:"defined_in"`
+}
+
+var (
+	bracketRe     = regexp.MustCompile(`\[([A-Za-z][A-Za-z0-9_]*)\]`)
+	placeholderRe = regexp.MustCompile(`\{([^{}\n]+)\}`)
+	styleRe       = regexp.MustCompile(`(?i)<style="?([^">]+)"?>`)
+	tagRe         = regexp.MustCompile(`</?([A-Za-z][A-Za-z0-9-]*)(?:=[^>]*)?(?: [^>]*)?>`)
+	// nameRe matches an id that a bracket could name.
+	nameRe = regexp.MustCompile(`^[A-Za-z][A-Za-z0-9_]*$`)
+)
+
+// Summary is what Compare needs of one snapshot.
+type Summary struct {
+	files  map[string]*fileSum
+	groups map[string]*groupSum
+	tokens map[tokenID]*seen
+	// defined is, by an id a bracket could name, the groups with an entry of
+	// that id.
+	defined map[string]map[string]bool
+	// lists is the lists of the common files (SetLists); nil when the
+	// snapshot has none.
+	lists Lists
+}
+
+type fileSum struct {
+	group   string
+	entries int
+	ids     []string // of the entries that have one, in document order
+}
+
+type groupSum struct {
+	files int
+	keys  map[string]*keySum
+}
+
+type keySum struct {
+	kinds map[string]bool
+	seen
+}
+
+// seen counts the places of something and keeps the first.
+type seen struct {
+	count         int
+	file, pointer string
+}
+
+func (s *seen) at(file, pointer string) {
+	if s.count == 0 {
+		s.file, s.pointer = file, pointer
+	}
+	s.count++
+}
+
+type tokenID struct{ kind, name string }
+
+// Summarize reads every file of the pack, in the order of Files.
+func Summarize(p *pack.Pack) (*Summary, error) {
+	s := &Summary{
+		files:   map[string]*fileSum{},
+		groups:  map[string]*groupSum{},
+		tokens:  map[tokenID]*seen{},
+		defined: map[string]map[string]bool{},
+	}
+	for _, file := range p.Files() {
+		doc, err := p.Doc(file)
+		if err != nil {
+			return nil, fmt.Errorf("rawdiff: %s: %w", file, err)
+		}
+		group := fields.Group(file)
+		g := s.groups[group]
+		if g == nil {
+			g = &groupSum{keys: map[string]*keySum{}}
+			s.groups[group] = g
+		}
+		g.files++
+		f := &fileSum{group: group}
+		s.files[file] = f
+		for _, item := range dataList(doc) {
+			f.entries++
+			id, ok := idOf(item)
+			if !ok {
+				continue
+			}
+			f.ids = append(f.ids, id)
+			if nameRe.MatchString(id) {
+				if s.defined[id] == nil {
+					s.defined[id] = map[string]bool{}
+				}
+				s.defined[id][group] = true
+			}
+		}
+		s.walk(file, g, doc, "", "")
+	}
+	return s, nil
+}
+
+// walk records the keys and the tokens under n, which is at pointer in file
+// and has path as its key.
+func (s *Summary) walk(file string, g *groupSum, n *jsonx.Node, path, pointer string) {
+	switch n.Kind {
+	case jsonx.Object:
+		for _, m := range n.Members {
+			sub := m.Key
+			if path != "" {
+				sub = path + "." + m.Key
+			}
+			s.walk(file, g, m.Value, sub, pointer+"/"+jsonx.EscapeToken(m.Key))
+		}
+		return
+	case jsonx.Array:
+		for i, item := range n.Items {
+			s.walk(file, g, item, path+"[]", pointer+"/"+strconv.Itoa(i))
+		}
+		return
+	}
+	k := g.keys[path]
+	if k == nil {
+		k = &keySum{kinds: map[string]bool{}}
+		g.keys[path] = k
+	}
+	k.kinds[kindName(n.Kind)] = true
+	k.at(file, pointer)
+	if n.Kind != jsonx.String {
+		return
+	}
+	for kind, re := range map[string]*regexp.Regexp{TokenBracket: bracketRe, TokenPlaceholder: placeholderRe, TokenStyle: styleRe, TokenTag: tagRe} {
+		for _, m := range re.FindAllStringSubmatch(n.Str, -1) {
+			name := m[1]
+			switch kind {
+			case TokenTag:
+				name = strings.ToLower(name)
+			case TokenPlaceholder:
+				if _, err := strconv.Atoi(name); err == nil {
+					continue
+				}
+			}
+			id := tokenID{kind, name}
+			if s.tokens[id] == nil {
+				s.tokens[id] = &seen{}
+			}
+			s.tokens[id].at(file, pointer)
+		}
+	}
+}
+
+func kindName(k jsonx.Kind) string {
+	switch k {
+	case jsonx.String:
+		return "string"
+	case jsonx.Number:
+		return "number"
+	case jsonx.Bool:
+		return "bool"
+	}
+	return "null"
+}
+
+// dataList is the elements of the dataList of a file; none when the file has
+// no such array.
+func dataList(doc *jsonx.Node) []*jsonx.Node {
+	if doc.Kind != jsonx.Object {
+		return nil
+	}
+	for _, m := range doc.Members {
+		if m.Key == "dataList" && m.Value.Kind == jsonx.Array {
+			return m.Value.Items
+		}
+	}
+	return nil
+}
+
+// idOf is the id of an entry as text: a string as it is, a number as it is
+// written.
+func idOf(item *jsonx.Node) (string, bool) {
+	if item.Kind != jsonx.Object {
+		return "", false
+	}
+	for _, m := range item.Members {
+		if m.Key != "id" {
+			continue
+		}
+		switch m.Value.Kind {
+		case jsonx.String:
+			return m.Value.Str, true
+		case jsonx.Number:
+			return m.Value.Lit, true
+		}
+		return "", false
+	}
+	return "", false
+}
+
+// Compare lists what to has that from has not, and the reverse. familyOf
+// gives the family of a file ("" for none); nil leaves every family empty.
+func Compare(from, to *Summary, familyOf func(file string) string) *Diff {
+	if familyOf == nil {
+		familyOf = func(string) string { return "" }
+	}
+	d := &Diff{
+		NewGroups: onlyGroups(to, from), GoneGroups: onlyGroups(from, to),
+		FilesAdded: onlyFiles(to, from, familyOf), FilesRemoved: onlyFiles(from, to, familyOf),
+		Keys: []GroupKeys{}, Entries: []FileEntries{}, Tokens: []Token{},
+	}
+	for _, group := range slices.Sorted(maps.Keys(to.groups)) {
+		old, ok := from.groups[group]
+		if !ok {
+			continue
+		}
+		gk := GroupKeys{Group: group, Added: onlyKeys(to.groups[group], old), Removed: onlyKeys(old, to.groups[group])}
+		if len(gk.Added)+len(gk.Removed) == 0 {
+			continue
+		}
+		d.Keys = append(d.Keys, gk)
+		d.Counts.KeysAdded += len(gk.Added)
+		d.Counts.KeysRemoved += len(gk.Removed)
+	}
+	for _, file := range slices.Sorted(maps.Keys(to.files)) {
+		old, ok := from.files[file]
+		if !ok {
+			continue
+		}
+		cur := to.files[file]
+		fe := FileEntries{File: file, Group: cur.group, Family: familyOf(file), Before: old.entries, After: cur.entries,
+			Added: onlyIDs(cur.ids, old.ids), Removed: onlyIDs(old.ids, cur.ids)}
+		if fe.Before == fe.After && len(fe.Added)+len(fe.Removed) == 0 {
+			continue
+		}
+		d.Entries = append(d.Entries, fe)
+		d.Counts.EntriesAdded += len(fe.Added)
+		d.Counts.EntriesRemoved += len(fe.Removed)
+	}
+	d.Tokens = append(append(d.Tokens, onlyTokens(to, from, Added)...), onlyTokens(from, to, Removed)...)
+	slices.SortStableFunc(d.Tokens, func(a, b Token) int { return strings.Compare(a.Kind, b.Kind) })
+	for _, t := range d.Tokens {
+		if t.Change == Added {
+			d.Counts.TokensAdded++
+		} else {
+			d.Counts.TokensRemoved++
+		}
+	}
+	if d.Lists = listChanges(from, to); d.Lists != nil {
+		for _, c := range d.Lists.Changes {
+			d.Counts.ListsAdded += len(c.Added)
+			d.Counts.ListsRemoved += len(c.Removed)
+		}
+		for _, u := range d.Lists.Unlisted {
+			if u.New {
+				d.Counts.UnlistedNew++
+			}
+		}
+	}
+	d.Counts.FilesAdded, d.Counts.FilesRemoved = len(d.FilesAdded), len(d.FilesRemoved)
+	d.Counts.NewGroups, d.Counts.GoneGroups = len(d.NewGroups), len(d.GoneGroups)
+	return d
+}
+
+// onlyGroups is the groups of a that b has not.
+func onlyGroups(a, b *Summary) []Group {
+	out := []Group{}
+	for _, group := range slices.Sorted(maps.Keys(a.groups)) {
+		if _, ok := b.groups[group]; ok {
+			continue
+		}
+		g := a.groups[group]
+		out = append(out, Group{Group: group, Files: g.files, Keys: onlyKeys(g, &groupSum{})})
+	}
+	return out
+}
+
+// onlyFiles is the files of a that b has not.
+func onlyFiles(a, b *Summary, familyOf func(string) string) []File {
+	out := []File{}
+	for _, file := range slices.Sorted(maps.Keys(a.files)) {
+		if _, ok := b.files[file]; ok {
+			continue
+		}
+		f := a.files[file]
+		out = append(out, File{File: file, Group: f.group, Family: familyOf(file), Entries: f.entries})
+	}
+	return out
+}
+
+// onlyKeys is the keys of a that b has not.
+func onlyKeys(a, b *groupSum) []Key {
+	out := []Key{}
+	for _, path := range slices.Sorted(maps.Keys(a.keys)) {
+		if _, ok := b.keys[path]; ok {
+			continue
+		}
+		k := a.keys[path]
+		out = append(out, Key{Path: path, Kinds: slices.Sorted(maps.Keys(k.kinds)), Count: k.count, File: k.file, Pointer: k.pointer})
+	}
+	return out
+}
+
+// onlyIDs is the ids of a that are not in b, each once, in the order of a.
+func onlyIDs(a, b []string) []string {
+	skip := make(map[string]bool, len(b))
+	for _, id := range b {
+		skip[id] = true
+	}
+	out := []string{}
+	for _, id := range a {
+		if !skip[id] {
+			skip[id] = true
+			out = append(out, id)
+		}
+	}
+	return out
+}
+
+// onlyTokens is the tokens of a that b has not, by kind and name.
+func onlyTokens(a, b *Summary, change string) []Token {
+	var out []Token
+	for id, at := range a.tokens {
+		if _, ok := b.tokens[id]; ok {
+			continue
+		}
+		t := Token{Kind: id.kind, Name: id.name, Change: change, Count: at.count, File: at.file, Pointer: at.pointer, DefinedIn: []string{}}
+		if id.kind == TokenBracket {
+			t.DefinedIn = append(t.DefinedIn, slices.Sorted(maps.Keys(a.defined[id.name]))...)
+		}
+		out = append(out, t)
+	}
+	slices.SortFunc(out, func(x, y Token) int {
+		if c := strings.Compare(x.Kind, y.Kind); c != 0 {
+			return c
+		}
+		return strings.Compare(x.Name, y.Name)
+	})
+	return out
+}
+
+// Versus is how the Diff of one pack differs from the Diff of another pack
+// between the same two snapshots: what changed in only one of them. Neither
+// list is nil; each is ordered by kind (groups, files, keys, entries, tokens),
+// the added before the removed, then by name.
+type Versus struct {
+	OnlyHere  []Item `json:"only_here"`
+	OnlyOther []Item `json:"only_other"`
+}
+
+// Item is one change of a Diff, named so that two packs can be compared: a
+// group or a file by its name, a key as "<group> <path>", a token as the text
+// writes it (Token.Text). The ids of the entries of a file are counted
+// together: Name is the file, and Count how many of its ids only the one Diff
+// has.
+type Item struct {
+	Kind   string `json:"kind"`
+	Change string `json:"change"` // Added or Removed
+	Name   string `json:"name"`
+	Count  int    `json:"count,omitempty"` // of ItemEntries only
+}
+
+// The kinds of an Item, in their order.
+const (
+	ItemGroup   = "group"
+	ItemFile    = "file"
+	ItemKey     = "key"
+	ItemEntries = "entries"
+	ItemToken   = "token"
+)
+
+// Text is the token as the text writes it: [Name], {name}, <style="name">,
+// <name>.
+func (t Token) Text() string {
+	switch t.Kind {
+	case TokenBracket:
+		return "[" + t.Name + "]"
+	case TokenPlaceholder:
+		return "{" + t.Name + "}"
+	case TokenStyle:
+		return `<style="` + t.Name + `">`
+	}
+	return "<" + t.Name + ">"
+}
+
+// itemID is an Item without its count; an id of an entry is told apart by sub.
+type itemID struct{ kind, change, name, sub string }
+
+// items lists the changes of d, in the order of Versus; each id of an entry
+// is one.
+func (d *Diff) items() []itemID {
+	var out []itemID
+	both := func(kind string, added, removed []string) {
+		for _, n := range added {
+			out = append(out, itemID{kind, Added, n, ""})
+		}
+		for _, n := range removed {
+			out = append(out, itemID{kind, Removed, n, ""})
+		}
+	}
+	names := func(n int, name func(int) string) []string {
+		list := make([]string, n)
+		for i := range list {
+			list[i] = name(i)
+		}
+		slices.Sort(list)
+		return list
+	}
+	both(ItemGroup,
+		names(len(d.NewGroups), func(i int) string { return d.NewGroups[i].Group }),
+		names(len(d.GoneGroups), func(i int) string { return d.GoneGroups[i].Group }))
+	both(ItemFile,
+		names(len(d.FilesAdded), func(i int) string { return d.FilesAdded[i].File }),
+		names(len(d.FilesRemoved), func(i int) string { return d.FilesRemoved[i].File }))
+	var keysAdded, keysRemoved []string
+	for _, g := range d.Keys {
+		for _, k := range g.Added {
+			keysAdded = append(keysAdded, g.Group+" "+k.Path)
+		}
+		for _, k := range g.Removed {
+			keysRemoved = append(keysRemoved, g.Group+" "+k.Path)
+		}
+	}
+	slices.Sort(keysAdded)
+	slices.Sort(keysRemoved)
+	both(ItemKey, keysAdded, keysRemoved)
+	for _, change := range []string{Added, Removed} {
+		for _, e := range d.Entries {
+			ids := e.Added
+			if change == Removed {
+				ids = e.Removed
+			}
+			for _, id := range ids {
+				out = append(out, itemID{ItemEntries, change, e.File, id})
+			}
+		}
+	}
+	var tokensAdded, tokensRemoved []string
+	for _, t := range d.Tokens {
+		if t.Change == Added {
+			tokensAdded = append(tokensAdded, t.Text())
+		} else {
+			tokensRemoved = append(tokensRemoved, t.Text())
+		}
+	}
+	slices.Sort(tokensAdded)
+	slices.Sort(tokensRemoved)
+	both(ItemToken, tokensAdded, tokensRemoved)
+	return out
+}
+
+// Against compares d with other, the Diff of another pack between the same
+// two snapshots.
+func Against(d, other *Diff) Versus {
+	return Versus{OnlyHere: onlyItems(d, other), OnlyOther: onlyItems(other, d)}
+}
+
+// onlyItems is the changes of a that b has not.
+func onlyItems(a, b *Diff) []Item {
+	has := map[itemID]bool{}
+	for _, id := range b.items() {
+		has[id] = true
+	}
+	out := []Item{}
+	for _, id := range a.items() {
+		if has[id] {
+			continue
+		}
+		if id.kind == ItemEntries {
+			// The ids of a file follow each other.
+			if n := len(out); n > 0 && out[n-1].Kind == ItemEntries && out[n-1].Change == id.change && out[n-1].Name == id.name {
+				out[n-1].Count++
+				continue
+			}
+			out = append(out, Item{Kind: id.kind, Change: id.change, Name: id.name, Count: 1})
+			continue
+		}
+		out = append(out, Item{Kind: id.kind, Change: id.change, Name: id.name})
+	}
+	return out
+}
+
+// Lists is the names that the common files of a snapshot list: by file (its
+// path under the common directory), by list, the names in the order of the
+// file. The file list of the game is {"ui": ["BattleUIText", …], …}; that of
+// the RPG has objects with the name under "file".
+type Lists map[string]map[string][]string
+
+// ListChanges is how the lists of the common files of To differ from those of
+// From. Neither list is nil.
+type ListChanges struct {
+	// Compared is false when From has no common files: then there is nothing
+	// to compare with, Changes is empty and no file is New.
+	Compared bool         `json:"compared"`
+	Changes  []ListChange `json:"changes"` // by file, then by list
+	// Unlisted are the files of the pack of To, outside its directories, that
+	// no list of any common file names: the game does not load them from the
+	// file list. (The files in a directory are named by other means: the
+	// story by its static data, the voices by the name of their character.)
+	Unlisted []UnlistedFile `json:"unlisted"`
+}
+
+// ListChange is the names that one list of one common file gained and lost.
+type ListChange struct {
+	File    string   `json:"file"`
+	List    string   `json:"list"`
+	Added   []string `json:"added"`
+	Removed []string `json:"removed"`
+}
+
+// UnlistedFile is a file of the pack that no list names. New: in From it had a
+// list, or was not there.
+type UnlistedFile struct {
+	File    string `json:"file"`
+	Entries int    `json:"entries"`
+	New     bool   `json:"new,omitempty"`
+}
+
+// ReadLists reads the lists of the common files under dir: of every .json
+// file that is an object, the members that are arrays, and of each array the
+// elements that are a string or an object with a string under "file". nil
+// when dir does not exist. A .json file that cannot be parsed is an error
+// naming it.
+func ReadLists(dir string) (Lists, error) {
+	if info, err := os.Stat(dir); errors.Is(err, fs.ErrNotExist) || err == nil && !info.IsDir() {
+		return nil, nil
+	}
+	lists := Lists{}
+	err := filepath.WalkDir(dir, func(p string, d fs.DirEntry, err error) error {
+		if err != nil || d.IsDir() || !strings.HasSuffix(p, ".json") {
+			return err
+		}
+		rel, err := filepath.Rel(dir, p)
+		if err != nil {
+			return err
+		}
+		rel = filepath.ToSlash(rel)
+		data, err := os.ReadFile(p)
+		if err != nil {
+			return err
+		}
+		var doc map[string]json.RawMessage
+		if err := json.Unmarshal(bytes.TrimPrefix(data, []byte("\xef\xbb\xbf")), &doc); err != nil {
+			return fmt.Errorf("rawdiff: %s: %w", rel, err)
+		}
+		file := map[string][]string{}
+		for name, raw := range doc {
+			var items []json.RawMessage
+			if json.Unmarshal(raw, &items) != nil {
+				continue
+			}
+			names := []string{}
+			for _, item := range items {
+				var s string
+				var obj struct {
+					File *string `json:"file"`
+				}
+				if json.Unmarshal(item, &s) == nil {
+					names = append(names, s)
+				} else if json.Unmarshal(item, &obj) == nil && obj.File != nil {
+					names = append(names, *obj.File)
+				}
+			}
+			file[name] = names
+		}
+		lists[rel] = file
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return lists, nil
+}
+
+// SetLists gives the summary the lists of the common files of its snapshot.
+func (s *Summary) SetLists(l Lists) { s.lists = l }
+
+// unlisted is the files of s outside a directory that no list of s names.
+func (s *Summary) unlisted() []string {
+	named := map[string]bool{}
+	for _, file := range s.lists {
+		for _, names := range file {
+			for _, n := range names {
+				named[n] = true
+			}
+		}
+	}
+	var out []string
+	for file := range s.files {
+		if !strings.Contains(file, "/") && !named[strings.TrimSuffix(file, ".json")] {
+			out = append(out, file)
+		}
+	}
+	slices.Sort(out)
+	return out
+}
+
+// listChanges compares the lists of from and to; nil when to has none.
+func listChanges(from, to *Summary) *ListChanges {
+	if to.lists == nil {
+		return nil
+	}
+	c := &ListChanges{Compared: from.lists != nil, Changes: []ListChange{}, Unlisted: []UnlistedFile{}}
+	was := map[string]bool{}
+	if c.Compared {
+		for _, f := range from.unlisted() {
+			was[f] = true
+		}
+		files := map[string]bool{}
+		for f := range from.lists {
+			files[f] = true
+		}
+		for f := range to.lists {
+			files[f] = true
+		}
+		for _, file := range slices.Sorted(maps.Keys(files)) {
+			names := map[string]bool{}
+			for n := range from.lists[file] {
+				names[n] = true
+			}
+			for n := range to.lists[file] {
+				names[n] = true
+			}
+			for _, list := range slices.Sorted(maps.Keys(names)) {
+				lc := ListChange{File: file, List: list, Added: onlyIDs(to.lists[file][list], from.lists[file][list]), Removed: onlyIDs(from.lists[file][list], to.lists[file][list])}
+				if len(lc.Added)+len(lc.Removed) > 0 {
+					c.Changes = append(c.Changes, lc)
+				}
+			}
+		}
+	}
+	for _, f := range to.unlisted() {
+		c.Unlisted = append(c.Unlisted, UnlistedFile{File: f, Entries: to.files[f].entries, New: c.Compared && !was[f]})
+	}
+	return c
+}

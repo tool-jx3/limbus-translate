@@ -111,3 +111,36 @@ func TestGameChecksAreWarningsAndLast(t *testing.T) {
 		t.Errorf("codes = %v, want ascii-ellipsis before literal-newline", codes(issues))
 	}
 }
+
+// KeywordField names the fields the game links status names in: only there
+// does "name + space" mean anything.
+func TestKeywordField(t *testing.T) {
+	for _, c := range []struct {
+		file, pointer string
+		want          bool
+	}{
+		{"Skills_personality-01.json", "/dataList/3/levelList/1/desc", true},
+		{"Skills.json", "/dataList/3/levelList/1/coinlist/0/coindescs/2/desc", true},
+		{"Skills_Enemy.json", "/dataList/3/levelList/1/coinlist/0/coindescs/2/summary", true},
+		{"Passives.json", "/dataList/0/desc", true},
+		{"Passive-a1c971.json", "/dataList/0/summary", true},
+		{"EGOgift_MirrorDungeon.json", "/dataList/0/desc", true},
+		{"EGOgift_MirrorDungeon.json", "/dataList/0/simpleDesc/1/simpleDesc", true},
+		{"PanicInfo.json", "/dataList/0/panicDescription", true},
+		// the names, and the tables the game shows as they are
+		{"Skills.json", "/dataList/3/levelList/1/name", false},
+		{"Passives.json", "/dataList/0/name", false},
+		{"Bufs.json", "/dataList/0/desc", false},
+		{"Bufs.json", "/dataList/0/summary", false},
+		{"BattleKeywords.json", "/dataList/0/desc", false},
+		{"PanicInfo.json", "/dataList/0/flavor", false},
+		{"StoryData/S001A.json", "/dataList/0/content", false},
+		{"Other.json", "/dataList/0/content", false},
+		// an unknown field
+		{"Passives.json", "", false},
+	} {
+		if got := KeywordField(c.file, c.pointer); got != c.want {
+			t.Errorf("KeywordField(%q, %q) = %v, want %v", c.file, c.pointer, got, c.want)
+		}
+	}
+}

@@ -108,11 +108,27 @@
 | `Personalities*.desc` | 208 | **只當 `skinItemDesc` 的後備**；目前的資料用不到（推定不顯示） | 內容是「이상의 첫번째 인격」這類註記 |
 | `Personalities*.skinItemTitle`、`skinItemDesc` | 各 1 | 獎勵道具的提示框標題與內文 | 只有造型道具；空的時候改用 `title`／`desc` |
 | `Personalities*.nameWithTitle` | 207 | **不讀**（不是類別的欄位；顯示名稱是程式組出來的） | |
+| `PersonalityCompanion.title`、`name` | 各 1 | 一起取得的人格組合（見下） | 2026-11-12 新增的表 |
 | `Egos*.name` | 122 | 所有顯示 E.G.O 名稱的地方 | |
 | `Egos*.desc` | 122 | **不顯示**：唯一的讀取鏈沒有人呼叫（確認） | 內容是「이상 전용 EGO 장비」 |
 | `Enemies*.name`、`Assist*.name` | 1,447 | 敵人、異想體、部位、協助者的名稱 | |
 | `Enemies*.desc`、`Assist*.desc` | 1,277 | **不讀**：連「取得說明」的函式回傳的都是 `name`（0x1861DD0，確認） | 內容是「본체」「부위」「적 잡몹」 |
 | `Characters.name` | 13 | 罪人的名字；很多介面句子的代入值 | |
+
+**一起取得的人格組合（`PersonalityCompanion`）**
+
+2026-11-12 新增的表（`TextDataSet` 位移 0x268，類別 `TextData_PersonalityCompanion`：`title` 0x18、`name` 0x20）。目前只有一筆：`id` 1 是楔事務所的唐吉訶德與辛克萊，`title` 是「쐐기 사무소\n해결사」，`name` 是「돈키호테·싱클레어」。整個程式讀這張表的只有四個函式（確認）：
+
+| 顯示在哪裡 | 讀什麼 | 處理 |
+|---|---|---|
+| 名牌：`NameTagDisplayData.FromPersonality`（0x1471560），由 `NameTag.SetData`、抽卡取得新人格的演出（`GetNewCardTimelineScriptBase.SetData`）、抽卡畫面的當期人格展示（`GachaUIPanel` 的 `StartDisplayPickup`）呼叫 | `title`、`name`，各一個文字框 | `title` 的 `\n` 換成半形空格；`name` 原樣（`\n` 會換行） |
+| 抽卡機率表：`RateInfoItem.SetData`（0x207D180）→ `BuildName`（0x207EA40） | `title`、`name` | 組成 `[`＋`title`＋`]`＋半形空格＋`name`，再把整串的 `\n` 換成半形空格 |
+| 抽卡保底兌換：`PityExchangeSlot.SetData`（0x2078930） | `title`、`name` | 兩個都把 `\n` 換成半形空格 |
+| 販賣機的人格商品格：`PersonalitySlotCoordinator.MakeUpCompanion`（0x14B9D80），由 `VendingMachineUIPersonalityGoodsSlot.SetData` 呼叫 | 只有 `title` | 原樣設進文字框（`ApplySlotView` 0x14BA320）；程式會先檢查 `title` 裡有沒有 `\n`，用途沒有追，推定是選版面 |
+
+- 規則和 `Personalities*` 的稱號相同：`title` 的 `\n` 兩旁不要有空格；`title` 不要自己帶方括號。
+- `name` 在名牌上是原樣顯示，在另外兩處 `\n` 會變成空格。官方 EN 的 `name` 是「Don Quixote\n& Sinclair」，KR、JP 沒有 `\n`；譯文沒有 `\n`，三處顯示一致。
+- 兩個人格各自的稱號與名字仍在 `Personalities*`（`10316`、`11017`），這張表只是組合的顯示名稱。
 
 **其他小表**
 
@@ -371,6 +387,35 @@
 | `BattleSpeechBubbleDlg*` 的 `desc` | 886 | 0 | [05](05-battle-speech-bubble.md) |
 
 兩張表合計，已翻譯的單位約 3,340 個。
+
+### 不在官方檔案清單裡的檔（整個檔不會被載入）
+
+2026-11-18 取得 2026-11-12 版的檔案清單後核對（[`method/filelist.py`](method/filelist.py)）。遊戲只讀清單列出的檔名，程式的字串常值裡也沒有這些檔名，所以下面 17 個檔的內容不會出現在遊戲裡（清單的內容是確認；「沒有別的載入路徑」是依字串常值與載入函式推定）。
+
+| 檔案 | KR 有內容的字串 | 譯文已改動的字串 | 說明 |
+|---|---|---|---|
+| `StoryTheaterPersonality` | 292 | 292 | 人格故事的標題（`P10102` 等 93 筆）、舊版的人格簡介與分析、幾個按鈕字 |
+| `StoryTheaterMirrorWorldStoryTitle` | 183 | 183 | 「남부 세븐 협회 6과, 이상 이야기」這類標題。遊戲顯示的標題是程式拼出來的（`StoryTheaterPersonalityInfo.GetStoryTitle` 0x18229F0，[09](09-assembled-text.md)），不讀這個檔 |
+| `StoryTheaterMirrorWorld` | 26 | 26 | `MirrorWorld_Name_1` 等世界名稱 |
+| `DungeonStartBuffs_MD6` | 44 | 44 | 清單只列 `DungeonStartBuffs_MD7`；44 個 id 在 `_MD7` 都有 |
+| `DungeonStartBuffs` | 25 | 25 | 同上；25 個 id 有 23 個在 `_MD7` |
+| `UserTicket-{L,R,EGOBg}-a1c10p1` | 各 6 | 各 3 | 名稱是「???」的暫定版；清單列的是 `-a1c10p3` |
+| `Announcer-a1c10p1`、`Announcer-a1c9p1` | 3、2 | 1、0 | 名稱是「??」的暫定版 |
+| `SynergyKeyword` | 1 | 1 | 見下 |
+| `ChapterBannerConfig`、`Items-BossRaid`、`Skills_Enemy-a1c9p2`、`UserTicket-{L,R,EGOBg}-a1c9p3` | 0 | 0 | 空檔 |
+
+合計 594 個字串，譯文已翻 581 個。這些檔翻不翻都不影響畫面；[06-families.md](06-families.md) 提到的 `mirror`↔`stage` 93 句跨族群相同（人格故事標題）就是前兩個檔之間的。
+
+`HellsChickenDungeonNode`、`MirrorDungeonNode1-1`、`LobbyBGMCategory` 在清單裡，會被載入；前兩個是載入之後沒有人讀。
+
+`SynergyKeyword.json`（2026-11-12 新增，一筆：`MAGICAL_GIRL`／「마법 소녀」）的依據：
+
+- 文字表與檔案清單的 77 個欄位裡沒有共鳴關鍵字的表（確認）；程式的字串常值裡也沒有這個檔名。2026-11-12 版的官方檔案清單沒有把它列進任何一張表（確認），所以它不會被載入。
+- 程式裡的共鳴關鍵字是列舉 `SYNERGY_KEYWORD`（`NONE`、`MAGICAL_GIRL`），由單位與 E.G.O 的靜態資料帶著。讀它的函式都在 `SynergyAbilityManager`、`SynergyPassiveAbilityBase.CheckActiveCondition`（0x3222C50）、`SynergyUIDataBuilder`（`GetGroupList` 0xF4FF00、`GetUnsatisfiedConditionValue` 0xF4F970、`CollectActiveMember` 0xF4F630），用途是數人數、判斷條件；沒有一個把它轉成字串去查文字表（確認這些函式的呼叫；經由虛擬函式的讀取不能完全排除）。
+- 共鳴介面顯示的文字來自別處：標題是被動的 `name`（`SynergyUIDataBuilder.GetName` 0xF4FD60 → `PassiveStaticData.GetName`），說明是被動的 `summary`，成員是「`[`稱號`]` 名字」，人數條件是 `BattleUIText` 的 `PassiveSynergyConditionCount`。
+- 「마법 소녀」（中間有空格）在整包原文裡只出現在這個檔；被動名稱寫的是「마법소녀」。
+
+所以這一筆照常翻譯即可，目前不影響畫面；之後的版本如果多了讀它的表，`fingerprint.py` 會在 `TextDataSet` 的欄位差異裡列出來，檔案清單也會多出它的檔名。
 
 ### 有條件才不顯示的
 

@@ -15,7 +15,7 @@
 | 分支 | 內容 | 誰寫入 |
 |---|---|---|
 | `main` | 程式、翻譯規則（`guides/`、`glossary/`、`rules/`）、workflow | 人 |
-| `raw` | 每次遊戲更新的官方原文快照，一次更新一個 commit 與 tag（`raw-YYYYMMDD`） | 只有 CI |
+| `raw` | 每次遊戲更新的官方原文快照，一次更新一個 commit 與 tag（`raw-YYYYMMDD`）：`kr/`、`en/`、`jp/` 三個語言包，以及 `common/`（不分語言的檔：官方檔案清單、語音表、RPG 檔案清單） | 只有 CI |
 | `tw` | 每個單位的譯文紀錄、待譯清單、報表、每個 Release 的比對紀錄（`.meta/history/<tag>.json`）與建置出來的語言包 | 只有 CI |
 
 Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內容和上一個 Release 不同時才建立（見「GitHub Actions 設定」）。人要改什麼，都經由 `main`（見「人工介入」）。CI 對 `main` 不直接 push，只開規則 PR 讓人審核（見「收到規則 PR 怎麼處理」）。
@@ -67,6 +67,21 @@ Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內
 
 原因由 `bin/lct publish` 寫紀錄時推斷，依據兩個 Release 的 `tw`（`.meta/applied.json`、`.meta/pending.jsonl` 與譯文紀錄）和 `main` 上該 Release `rules_commit` 那一版的規則檔，網站只讀取、分組。這個功能之前的紀錄沒有原因，網站照舊的分類顯示並註明「尚未補上原因」；下一次 CI 建置執行 `bin/lct publish` 時會補齊（見「各 workflow 何時執行」的比對紀錄）。不想等遊戲更新，可在合併後手動執行一次 `rebuild.yml` 並勾選 `dry_run`：只建置、發布，不翻譯，不花費（有待譯單位時照 `dry_run` 的規則以 EN 或 KR 暫代）。要在本機檢查某個 Release 會推斷出什麼，用唯讀的 `bin/lct history make <tag>`（見「在本機使用」）。
 
+網站還有「資料變化」頁（頁首的「資料變化」，`#/d`），列出 `raw` 分支每個快照和前一個快照相比，韓文原文在結構上的變化，最新的在最上面；點快照進到 `#/d/<raw tag>`，分五節：
+
+- 檔案種類：以前沒出現過（或整個消失）的檔名開頭，附它的檔案數、分到的族群和所有 JSON 欄位。
+- 欄位：既有的檔案種類多了或少了哪些 JSON 欄位（路徑、值的型別、出現幾處、第一處在哪個檔案）。
+- 文字標記：整包原文第一次出現或完全消失的方括號名稱、具名代入符號（`{名稱}`）、`<style>` 名稱與標籤；方括號名稱分成「有對應條目」和「沒有對應條目」（後者可能是原文筆誤）。
+- 檔案：新增與移除的檔案、族群與筆數；只被預設族群接手的檔案標示「沒有分流規則」。
+- 檔案清單（只有 KR）：官方檔案清單、語音表、RPG 檔案清單多了或少了哪些名稱，以及韓文語言包根目錄裡沒有任何清單列出的檔（遊戲不會載入）；這一版才變成未列入的另外標示。這一節要快照帶有 `common/` 才有，也就是 `lct fetch` 開始一併抓這些檔之後的快照。
+- 既有檔案的條目：兩個快照都有的檔案，條目多了或少了哪些 id。
+
+每一節都寫了這種變化對翻譯規則與遊戲程式研究報告（`docs/research/2026-11-15-game-text-logic/`）的意義。文字內容改了什麼不在這一頁，看「更新」頁。
+
+快照頁上方可以切換 KR、JP、EN（`#/d/<raw tag>?l=jp`）：日文、英文的資料各自和前一個快照比一次。JP、EN 的頁面最上面多一節「和 KR 不同的變化」，列出同一次更新裡只有這個語言有、或只有 KR 有的變化（例如某一邊比較早或比較晚收到同一批檔案）；列表頁在有不同的快照旁標出「JP 有 n 項和 KR 不同」。
+
+資料由 `lct site` 從 `raw` 的 tag 算出（`data/rawdiff/`）；本機用 `bin/lct rawdiff [--from <raw tag>] [--to <raw tag>] [--lang kr|jp|en] [--json]` 可以直接看任兩個快照的比對（預設是最新的兩個、KR；`--lang jp`、`--lang en` 會一併列出和 KR 不同的變化）。遊戲程式那一面的比對是另一個工具，見研究報告的 `method/README.md`（`fingerprint.py`）。
+
 `pages.yml` 在 `update.yml` 或 `rebuild.yml` 於 `main` 上成功結束後執行（也可以手動執行）：取得 `raw`、`tw` 與 tag 並建 worktree → `go build` 出 `lct` → `bin/lct site --out site/public/data` 輸出網站資料 → 在 `site/` 執行 `npm ci`、`npm run build` → 部署 `site/dist`。`lct site` 失敗時（例如 `raw` 與 `tw` 不是同一個 snapshot）整個執行失敗，不會用缺的或舊的資料部署，網站維持上一次部署的樣子；`TestWorkflowContract` 要求 `pages.yml` 的任何一步都不能被略過或忽略失敗。
 
 ### 一次性設定
@@ -89,6 +104,7 @@ fork 或搬到別的 repo 時，要設定下面的 secrets 與 variables，並�
 | `RULES_REVIEW_IN_CI` | Variable | 設成 `true` 時，`rules-proposal.yml` 在 CI 以 action 審查建議並開規則 PR | 選填；不是 `true` 時 CI 只數出待處理的建議，留給人在本機執行 `/rules-review`，維持成功 | 無（在本機審查） | 填 `true`。action 用的是 GitHub Actions 的用量，只適用 Agent SDK、API 等的促銷額度不能用 |
 | `LCT_MAX_USD` | Variable | 每次建置翻譯花費的上限（美元），到了就停止翻譯 | 否 | 30 | 自行決定；手動執行時可用 `max_usd` 輸入蓋過 |
 | `LIMBUS_CDN_TEMPLATE` | Variable | 下載官方語言包的 CDN 網址範本，含 `{token}` 與 `{lang}` | 否 | 同 `lct.yaml` 的 `cdn_template`：`https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip` | CDN 換了位置才需要設定 |
+| `LIMBUS_CDN_FILE_TEMPLATE` | Variable | 下載單一檔案的 CDN 網址範本，含 `{token}` 與 `{path}`；`lct fetch` 用它抓不分語言的檔（官方檔案清單、語音表、RPG 檔案清單） | 否 | 同 `lct.yaml` 的 `cdn_file_template`：`https://downloadcommon.limbuscompanycdn.org/{token}/{path}` | CDN 換了位置才需要設定，要和上一列的語言包網址範本一起設：只設了語言包的那一個時，`lct.yaml` 的 `cdn_file_template` 不會被採用（那是另一個 CDN 的），該次快照就沒有 `common/` |
 
 ### Workflow permissions
 
@@ -109,6 +125,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 - 翻譯最多進行 5 小時。每一輪執行到第 100 個回合後就不再領新批次，送出手上那批就結束（`--soft-turns 100`），接著開下一輪；130 個回合是硬上限（`--max-turns 130`），用完也是正常的結束。每輪結束時，這一輪領了卻沒送出的批次：結果檔已寫好的直接替它送出（照樣經過驗證），其餘馬上釋放，下一輪就能再領，不必等鎖定的 2 小時過去；開始翻譯前也先這樣處理一次，清掉上次中斷留下的批次。Actions 的記錄每輪印出開始時的花費與待譯數、結束時用了幾個回合與花費；每領一批印出批次 ID、單位數與檔案，每送出一批印出接受、沿用、退回（其中轉人工審核）、沒送出的單位數，每輪結束印出這輪共領了幾批、幾個單位與送出的結果，翻譯結束再印出所有輪的合計（`lct translate` 執行期間會建立 `work/batches/.log.jsonl`，`lct batch next` 與 `lct batch submit` 把每一批寫進去，`lct translate` 邊跑邊讀；平常手動執行批次指令時沒有這個檔，也不會記錄）；單輪另有 90 分鐘的上限，只用來擋住卡死的執行（被它終止算錯誤，整個翻譯迴圈就此結束）。到了花費上限或時間就停止，沒翻完的留在待譯清單，下次繼續，打包時暫以 EN 或 KR 顯示。翻譯失敗只發警告，已翻的照常 build 與發布。
 - 領批次的順序與合批：`BattleKeywords*` 與 `Bufs*` 是關鍵字檔，先發，之後的批次才看得到它們定下的譯名；關鍵字批次只併同一族群的關鍵字檔。非劇情的小檔會與同族群的其他小檔合成一批，單位數上限是 `lct.yaml` 的 `batch.max_units`；劇情批次仍然一個檔一批。批次愈合愈少，輪數與花費隨之下降。
 - 詞彙檢查與暫定詞：送出時，`lct batch submit` 依 `glossary/` 檢查譯文有沒有用詞條規定的譯名（詞條預設整詞比對，後接助詞也算，`match: substring` 才比對長詞裡的用法；`files`、`not_files` 限定或排除檔案，項目可寫檔名樣式、`family:<id>`（路由判為該族群的檔）、`group:<樣式>`（檔的節點）、`chapter:<數字>`、`character:<id>` 或 `event:<樣式>`（檔的章節、角色、活動標記）；`also` 列 `zh` 以外同樣正確的譯法，譯文含 `zh` 或任一 `also` 就算用了；同一處 KR 被另一個適用條目的更長命中完全蓋住時，那一處不算，長詞條優先；細節見 `glossary/README.md`）；漏用的 `term-missing` 預設只是內容警告，送出時照樣收下；只有詞條寫了 `check: hard` 才改成退回，而且 `guides/routing.yaml` 標 `glossary: warn` 的族群只警告不退回，`forbidden-term` 在這些族群照舊退回；`check: hard` 的詞條，該單位的註記（`note`）寫了這個詞條的 KR（例如說明為何在此不照詞條譯）就收下。寫了 `check: off` 的一般用語照樣注入批次，但缺譯名不警告（送出、建置、審核頁都沒有 `term-missing`，`lct audit` 與 `lct glossary scope` 也不因它產生訊號或建議），`forbidden-term` 照樣退回。暫定詞沒有 `check`，只警告。詞彙表沒有的詞，譯者可在結果檔的 `terms` 登記暫定譯名；暫定詞存在 `tw` 的 `.meta/terms.jsonl`，同一個 KR 以第一個登記的譯法為準，之後的批次會把它放進詞彙表欄位，送出時同樣檢查，審核頁也列為「暫定詞」供人決定。暫定詞只在送出批次時比對：整詞比對（KR 要以獨立的詞出現才算），KR 至少兩個字，不限檔案；對已有的譯文不產生警告。CI 的 `/rules-review` 不處理暫定詞，由人用 `term-decision` 或 `review-page` 決定。暫定詞不是規則，規則仍只在 `guides/`、`glossary/`、`rules/`。
+- 語言包多出來的檔：`lct.yaml` 的 `build.copies` 列的檔名不在官方語言包裡，建置時從另一個建好的檔逐位元組複製。目前只有 `ErrorCodeMsgLocal.json`（複製 `ErrorCodeMsg.json`）：遊戲啟動、還沒下載資料之前的錯誤訊息讀的是這個檔名，而它只存在遊戲本體裡。來源檔不在 KR 裡時略過；建置報告的 `copied` 列出實際寫出的檔。
 - 既有譯名表：`lct plan` 在每次更新（每個 raw tag）第一次執行時，從現行譯文的名稱欄位（`lct.yaml` 的 `names.fields`）整理既有譯名，寫進 `tw` 的 `.meta/names.json`，並把在不同族群、欄位或說話者出現的同一句 KR 與它的單位整理到 `.meta/same-text.json`；同一個 raw tag 之後的 plan 沿用，不重算。批次把單位用到的名稱放進 `names`、同句在其他組切批次當下的譯文放進 `refs.same_text`（同一次更新先送出的譯文也算），只是參考。送出時名稱欄位的譯法與既有譯名不同（JP 或 EN 對得上、`note` 沒寫出 KR）只警告 `name-differs`；暫定詞與名稱表或舊譯不同時照樣記下但不生效，送出結果附舊譯例句。建置報告與審核 issue 列出「與既有譯名不同的新譯」，`lct suggest` 提出 `name/<kr>`：人決定統一就加詞彙條目（以既有譯名為準）與改寫檔，決定保留就寫進 `rules/declined.yaml`。詞彙表的條目永遠優先於名稱表。網站的「詞彙」頁連到「既有譯名」頁，可以查這份表（只看，決定在審核頁做）
 - 翻譯時每一輪（Claude Code 的一次執行，最多 100 個回合）結束，`lct translate --push-each-run` 就把已翻的內容 commit 並推到 `tw`（commit 訊息 `translate: keep the progress of <raw tag>`，沒有變動就不 commit；推送失敗只發警告，下一輪再推）。所以 runner 中途掛掉，最多只損失正在進行的那一輪。翻譯一結束（包括失敗、被取消或逾時），再把剩下的（最後一輪、`.meta/translate.json`）commit 並推上去；沒有變動就不 commit，但照樣推一次，把前面推送失敗、還留在本地的 commit 推上去（沒有新東西時推送什麼都不做）。這次推送緊接在最後一輪的推送之後，GitHub 偶爾會拒絕（`missing necessary objects`：接收的伺服器還沒看到前一次推送），所以 pipeline 每次推 `tw` 失敗都會在 2、4、8、16 秒後重試，最後一次也失敗才讓步驟失敗。之後 build、發布或推送失敗，已付費翻好的內容也不會丟掉；build 與發布的 commit 接在它們後面。
 - 「沒事可做」還要看三件事，任何一件不成立就不算沒事可做：

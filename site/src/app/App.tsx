@@ -8,6 +8,8 @@ import { GoldView } from '../gold/GoldView'
 import { PreviewView } from '../preview/PreviewView'
 import { SearchView } from '../search/SearchView'
 import { ReviewView } from '../review/ReviewView'
+import { DataChangeView } from '../rawdiff/DataChangeView'
+import { DataChangesView } from '../rawdiff/DataChangesView'
 import { UpdateView } from '../updates/UpdateView'
 import { UpdatesView } from '../updates/UpdatesView'
 import { loadSettings, saveSettings, type Settings } from '../settings'
@@ -149,6 +151,10 @@ function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: Pag
       return <UpdatesView />
     case 'update':
       return <UpdateView route={route} settings={settings} onSettings={onSettings} />
+    case 'datas':
+      return <DataChangesView />
+    case 'data':
+      return <DataChangeView tag={route.tag} lang={route.lang} index={index} />
     case 'glossary':
       return <GlossaryView route={route} />
     case 'names':

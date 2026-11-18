@@ -577,6 +577,9 @@ export interface PreviewCheck {
 /** What the batch of one unit has that files/<path> and PreviewFile do not. */
 export interface PreviewUnit {
   sp: string
+  /** The item_id and the label of the batch unit; absent when the unit has none. */
+  id?: string
+  lb?: string
   /** Guides: numbers in PreviewShared.guides. */
   g: number[]
   /** Glossary entries: numbers in PreviewFile.terms. */
@@ -627,6 +630,9 @@ export interface BatchUnit {
   file: string
   field: string
   speaker: string
+  /** The id of the entry and the KR text of its label fields: present for an entry with label fields (a battle speech bubble). */
+  item_id?: string
+  label?: string
   kr: string
   reason: string
   prev_kr?: string
@@ -700,6 +706,8 @@ export interface PreviewCheckWire {
 /** PreviewUnit as written. */
 export interface PreviewUnitWire {
   sp: string
+  id?: string
+  lb?: string
   g: number[]
   t: number[]
   k: string[]
@@ -816,4 +824,155 @@ export interface NamesData {
   /** The name fields the table was made from. */
   fields: string[]
   names: NameRow[]
+}
+
+/** How much a snapshot of the raw branch differs from the one before, as data. Keys, entries and tokens are counted one by one. */
+export interface DataCounts {
+  files_added: number
+  files_removed: number
+  new_groups: number
+  gone_groups: number
+  keys_added: number
+  keys_removed: number
+  /** Ids of the files both snapshots have; the entries of an added file are not among them. */
+  entries_added: number
+  entries_removed: number
+  tokens_added: number
+  tokens_removed: number
+  /** Names of the lists of the common files (the file list of the game, the voice table, the file list of the RPG). */
+  lists_added: number
+  lists_removed: number
+  /** Files that no list names, and that had a list or were not there in the snapshot before. */
+  unlisted_new: number
+}
+
+/** The names one list of one common file gained and lost. */
+export interface DataListChange {
+  file: string
+  list: string
+  added: string[]
+  removed: string[]
+}
+
+/** A file of the KR pack, outside its directories, that no list names: the game does not load it. */
+export interface DataUnlistedFile {
+  file: string
+  entries: number
+  /** In the snapshot before it had a list, or was not there. */
+  new?: boolean
+}
+
+/** How the lists of the common files of a snapshot differ from those of the one before. */
+export interface DataListChanges {
+  /** false when the snapshot before has no common files: nothing to compare with. */
+  compared: boolean
+  changes: DataListChange[]
+  unlisted: DataUnlistedFile[]
+}
+
+/** The official packs of a snapshot: KR, which the others are compared with, JP and EN. */
+export type DataLang = Exclude<Lang, 'zh'>
+
+/** One snapshot in data/rawdiff/index.json (newest first). */
+export interface DataSnapshot {
+  tag: string
+  prev_tag: string
+  at: string
+  /** Of the KR pack. */
+  counts: DataCounts
+  /** By the language of each other pack, how many changes only it or only KR has. */
+  vs_kr: Partial<Record<DataLang, number>>
+}
+
+/** One change, named so that two packs can be compared: a group or a file by its name, a key as "<group> <path>", a token as the text writes it. */
+export interface DataItem {
+  kind: 'group' | 'file' | 'key' | 'entries' | 'token'
+  change: 'added' | 'removed'
+  name: string
+  /** Of `entries`: how many ids of the file. */
+  count?: number
+}
+
+/** How the changes of a pack differ from those of the KR pack between the same two snapshots. */
+export interface DataVersus {
+  only_here: DataItem[]
+  only_other: DataItem[]
+}
+
+/** A file that only one of the two snapshots has. */
+export interface DataFile {
+  file: string
+  /** The kind of file: the start of its name, or its directory. */
+  group: string
+  /** Absent when no family takes the file. */
+  family?: string
+  entries: number
+}
+
+/** A key of the JSON of a kind of file, with the keys that lead to it; "[]" stands for the elements of an array. */
+export interface DataKey {
+  path: string
+  /** The kinds of its values, sorted. */
+  kinds: ('bool' | 'null' | 'number' | 'string')[]
+  count: number
+  /** Where the first value is. */
+  file: string
+  pointer: string
+}
+
+/** A kind of file that only one of the two snapshots has, with every key of its files. */
+export interface DataGroup {
+  group: string
+  files: number
+  keys: DataKey[]
+}
+
+/** The keys of a kind of file that only one of the two snapshots has. */
+export interface DataGroupKeys {
+  group: string
+  added: DataKey[]
+  removed: DataKey[]
+}
+
+/** How the entries of a file both snapshots have differ: the numbers, and the ids only one has. */
+export interface DataFileEntries {
+  file: string
+  group: string
+  family?: string
+  before: number
+  after: number
+  added: string[]
+  removed: string[]
+}
+
+/** A token of the text that the whole pack of only one of the two snapshots has. */
+export interface DataToken {
+  kind: 'bracket' | 'placeholder' | 'style' | 'tag'
+  name: string
+  change: 'added' | 'removed'
+  count: number
+  /** The first text with it. */
+  file: string
+  pointer: string
+  /** For a bracket, the kinds of file with an entry whose id is the name. */
+  defined_in: string[]
+}
+
+/** data/rawdiff/<tag>.json (KR) and <tag>.<lang>.json: what the pack of the snapshot `to` has that `from` has not, and the reverse. */
+export interface DataDiff {
+  lang: DataLang
+  from: string
+  to: string
+  counts: DataCounts
+  new_groups: DataGroup[]
+  gone_groups: DataGroup[]
+  files_added: DataFile[]
+  files_removed: DataFile[]
+  keys: DataGroupKeys[]
+  entries: DataFileEntries[]
+  tokens: DataToken[]
+  /** Of the pack of another language than KR. */
+  vs_kr?: DataVersus
+  /** Of the KR pack, when the snapshot has common files. */
+  lists?: DataListChanges
 }

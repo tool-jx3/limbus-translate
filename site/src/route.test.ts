@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { fileHref, parseHash, reviewHref, searchHref, updateHref, updatesHref, glossaryHref, termHref, previewHref, namesHref } from './route'
+import { dataChangeHref, dataChangesHref, fileHref, parseHash, reviewHref, searchHref, updateHref, updatesHref, glossaryHref, termHref, previewHref, namesHref } from './route'
 
 describe('parseHash', () => {
   it('reads the empty hash and #/ as home', () => {
@@ -272,5 +272,35 @@ describe('names route', () => {
     expect(namesHref({ sort: 'units', only: '' })).toBe('#/n')
     expect(namesHref({ q: '검', only: 'review', sort: 'kr' })).toBe('#/n?q=%EA%B2%80&only=review&sort=kr')
     expect(parseHash(namesHref({ q: '검', only: 'declined', sort: 'kr' }))).toEqual({ kind: 'names', q: '검', only: 'declined', sort: 'kr' })
+  })
+})
+
+describe('the data changes', () => {
+  it('reads #/d as the list of snapshots', () => {
+    expect(parseHash('#/d')).toEqual({ kind: 'datas' })
+    expect(dataChangesHref()).toBe('#/d')
+  })
+
+  it('reads #/d/<tag> as the changes of a snapshot and writes it back', () => {
+    for (const tag of ['raw-20261112', 'raw-20261105.2']) {
+      expect(parseHash(`#/d/${tag}`)).toEqual({ kind: 'data', tag, lang: 'kr' })
+      expect(dataChangeHref(tag)).toBe(`#/d/${tag}`)
+      expect(dataChangeHref(tag, 'kr')).toBe(`#/d/${tag}`)
+    }
+  })
+
+  it('reads the pack of another language from ?l= and writes it back; a language it does not know is KR', () => {
+    const tag = 'raw-20261112'
+    expect(parseHash(`#/d/${tag}?l=jp`)).toEqual({ kind: 'data', tag, lang: 'jp' })
+    expect(parseHash(`#/d/${tag}?l=en`)).toEqual({ kind: 'data', tag, lang: 'en' })
+    expect(dataChangeHref(tag, 'jp')).toBe(`#/d/${tag}?l=jp`)
+    expect(parseHash(`#/d/${tag}?l=zh`)).toEqual({ kind: 'data', tag, lang: 'kr' })
+    expect(parseHash(`#/d/${tag}?l=`)).toEqual({ kind: 'data', tag, lang: 'kr' })
+  })
+
+  it('reads a tag that is not a snapshot as home', () => {
+    for (const h of ['#/d/..', '#/d/foo', '#/d/raw-2026', '#/d/zh-TW-20261105.1', '#/d/raw-20261112/x', '#/d/']) {
+      expect(parseHash(h)).toEqual({ kind: 'home' })
+    }
   })
 })

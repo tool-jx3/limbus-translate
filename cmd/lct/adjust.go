@@ -144,9 +144,12 @@ func runAdjustAdd(ctx *cli.Context, args []string) error {
 // contains in file, the file of the unit at pointer. This is the only place that does
 // it: whatever has to happen to a translation before it is checked, as it
 // does for a batch submission (Normalize, then the space after the keyword
-// names), goes here. The text is a new one, so content issues are hard.
+// names where the game links them, validate.KeywordField), goes here. The text is a new one, so content issues are hard.
 func prepareAdjustmentText(r *rules.Rules, keywordNames []string, file, pointer, kr, zh string) (string, []validate.Issue) {
-	zh = validate.NormalizeKeywordSpace(validate.Normalize(kr, zh), keywordNames)
+	zh = validate.Normalize(kr, zh)
+	if validate.KeywordField(file, pointer) {
+		zh = validate.NormalizeKeywordSpace(zh, keywordNames)
+	}
 	return zh, validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr), Existing: false, File: file, Pointer: pointer, ScriptOK: r.ScriptRenderings(file), RubyCustomize: r.RubyCustomizeAt(file, pointer)})
 }
 

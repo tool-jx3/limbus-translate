@@ -4,12 +4,16 @@
 
 - 人格故事 `StoryData/P1YYXX`：欄位同劇情（`content`、`teller`、`title`）
 - 人格語音 `PersonalityVoiceDlg/Voice_<罪人>_<人格>_<編號>`：`desc` 是分類標籤、`dlg` 是台詞
-- 戰鬥泡泡 `BattleSpeechBubbleDlg*`：台詞在 `dlg`；`desc` 是觸發標籤，三語幾乎相同，不翻
+- 戰鬥泡泡 `BattleSpeechBubbleDlg*`：台詞在 `dlg`；`desc` 是開發者的註記（說話者與場合），遊戲不顯示，不翻；條目的 id 是語音事件的名稱
 - 罪人代碼：檔名與人格編號 `1YYXX` 的 YY，例如 `10310` = 唐吉訶德（03）第 10 號人格；代碼 10、11、12 是辛克萊、奧提斯、格里高爾，遊戲內是 11、12、13 號；各罪人的代碼與遊戲內編號見 `guides/characters/<id>.md` 的 `code`、`number`，01～09 兩者相同
 
 ## 語氣與人稱
 
-- **戰鬥泡泡的說話者**：戰鬥泡泡的批次沒有說話者，看 KR 的 `desc`（觸發標籤常含角色名）與 `id`（`1XXYY` = 罪人代碼 XX、人格 YY）判斷是誰在說話
+- **戰鬥泡泡的說話者**：批次的每個單位帶著條目的 id（`item_id`）與 `desc` 的 KR 原文（`label`）
+  - `item_id` 含人格編號的（`battle_s3_1XXYY_…`、`battle_react_1XXYY_…` 等，`1XXYY` = 罪人代碼 XX、人格 YY）：是那位罪人的台詞，`speaker` 與角色指引已經帶入
+  - 其餘（`<章>SV-…` 等）：是敵人、NPC 或協助者的台詞，`speaker` 是空的，看 `label`（常寫角色名與場合，例如「검지 아비 [2페이즈 넘어가는 연출]」）判斷是誰、對誰、在什麼時候說
+  - 敵人與 NPC 的台詞常是同一章劇情裡的句子：`refs` 有 `same_text` 時與劇情的譯文一致
+  - `item_id` 只差結尾 `-01`、`-02` 的是同一句的不同錄音：KR 相同就譯得相同
 
 ## 格式慣例
 

@@ -137,9 +137,11 @@ func separateAdjacentIDs(s string) string {
 // NormalizeKeywordSpace puts a half-width space after each keyword name that
 // follows a count (2級, 3層, 1回) and is not followed by one: "2級破裂強度"
 // becomes "2級破裂 強度", "2層強壯，" becomes "2層強壯 ，" and a name at the
-// end of the text gets the space too. The game matches "keyword name + space"
-// to show the effect text of a status, so KR text that names a status in
-// Korean, without an [ID], needs it in the translation.
+// end of the text gets the space too. The game links a status name that a
+// space (among other characters) follows, so KR text that names a status in
+// Korean, without an [ID], needs it in the translation. It does so only in
+// some fields (KeywordField): the caller asks first, and leaves the text of
+// any other field alone, where the space would be shown as it is.
 //
 // names are the Chinese keyword names. The longest name that fits is used
 // ("破裂易損" before "破裂"), whatever the order of names. A name not

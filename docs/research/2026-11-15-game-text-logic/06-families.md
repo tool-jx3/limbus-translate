@@ -4,7 +4,9 @@
 
 依據：`TextDataSet.LoadRemote`（0x13C2C40）、`TextDataSet.LoadLocal`（0x13C27B0）、`TextDataSet.RomoteLocalizeFileList`、各 `TextData_*` 類別的欄位、讀取各張表的函式（2026-11-12 版）；資料是 `raw-20261112` 的 2,449 個 KR 檔與 `tw` 分支 7fccf1d。「確認」＝對照反編譯或反組譯，或是資料的實際數字；「推定」＝有依據但沒有直接讀到。
 
-限制：官方的檔案清單在資源檔裡讀不到，所以「哪個檔在哪張表」是用**條目的欄位對照類別的欄位、檔名對照清單名稱**推出來的；其中約 80 個節點另外用「查這些 id 的程式讀哪張表」確認過。
+限制：寫這一章時官方的檔案清單還讀不到，「哪個檔在哪張表」是用**條目的欄位對照類別的欄位、檔名對照清單名稱**推出來的；其中約 80 個節點另外用「查這些 id 的程式讀哪張表」確認過。
+
+**2026-11-18 補充**：取得了 2026-11-12 版的清單（`RemoteLocalizeFileList.json`）並逐檔核對。清單列出、KR 也有的 1,238 個檔，推出來的表全部正確；當時標成「教學表或介面表」的四個 `Tutorial*` 檔，三個在介面表（`TutorialMainUIText`、`TutorialMainUIText_pilgrimage`、`TutorialMirrorDungeon`），一個在教學表（`TutorialRenewalMainUIDesc`）。另外有 **17 個檔不在清單裡，遊戲不會載入**（[01-custom-language.md](01-custom-language.md)、[07-field-display.md](07-field-display.md) 第 6 節），其中三個當時歸在介面表：`StoryTheaterPersonality`、`StoryTheaterMirrorWorld`、`StoryTheaterMirrorWorldStoryTitle`。下文提到這些檔的地方已各自加註。
 
 ## 先講結論
 
@@ -90,7 +92,7 @@
 |---|---|---|---|---|
 | 技能表、被動表 | `ally`／`enemy` | 完全沒有 | 同欄位 441 句，其中 23 句兩邊譯法不同 | 族群可以維持（我方與敵方分開翻有道理），但不一致比較應該跨過這條線（第 4 節） |
 | 敵人名稱表 | `enemy`（`Enemies*`）／`ally`（`Assist*`） | 沒有 | 極少 | 維持。協助者是我方單位，技能與被動也在 `ally` |
-| 介面文字表 | `ui`、`events`、`stage`、`mirror`、`abnormality`、`keywords`、`railway` | 載入與格式化都相同 | `mirror`↔`stage` 93 句（人格故事標題） | 維持。這張表本來就是雜項，依內容分比依表分合理 |
+| 介面文字表 | `ui`、`events`、`stage`、`mirror`、`abnormality`、`keywords`、`railway` | 載入與格式化都相同 | `mirror`↔`stage` 93 句（人格故事標題；這兩個檔遊戲都不載入，見上方補充） | 維持。這張表本來就是雜項，依內容分比依表分合理 |
 | 精神狀態表 | `keywords`（`MentalCondition*`）／`stage`（`reward-popup-text-ProjectGS`） | 規則相同：`{n}` 的個數要完全正確 | 無 | 維持。後者是 Project GS 的成長結果文字，放 `stage` 合內容 |
 | 劇情載入器 | `story-main`／`story-interlude`／`identity` | 沒有 | `story-main`↔`story-interlude` 48 句，8 句譯法不同 | 維持 |
 
@@ -174,6 +176,8 @@
 - `UserTicket-{L,R,EGOBg}-a1c10p1` 與 `-a1c10p3`：各 3 個 id（「???」與真名）。
 - `Announcer-a1c10p1` 與 `-a1c10p3`、`Announcer.json`：5 個 id。
 
+2026-11-18 補充：這三組都不是真的衝突。清單只列了 `DungeonStartBuffs_MD7`、`UserTicket-*-a1c10p3`、`Announcer-a1c10p3`，另一邊的檔（`DungeonStartBuffs`、`_MD6`、`*-a1c10p1`）不會載入。清單裡同一張表的重複 id 只剩 `Announcer` 與 `Announcer-a1c10p3` 的 3 個，內容相同。
+
 官方清單實際列了哪一個讀不到。語言包是後列的檔蓋掉先列的（[01-custom-language.md](01-custom-language.md)），所以這些 id 在每個檔裡的譯文最好一致，或至少知道它們互相會蓋。
 
 ## 已做的調整（2026-11-16）
@@ -192,7 +196,7 @@
 
 ## 讀不到、沒有確認的部分
 
-- 官方三份檔案清單的內容：是不是每個 KR 檔都有被列進去、同一張表裡檔案的先後、id 重複的檔哪一個有效。
-- `SynergyKeyword`、`ChapterBannerConfig`（空的）與四個 `Tutorial*` 檔屬於哪張表；`LobbyBGMCategory` 由誰讀。（鏡牢節點表 `MirrorDungeonNode1-1`、`HellsChickenDungeonNode` 已確認沒有人讀，見 [07-field-display.md](07-field-display.md)。）
+- 三份檔案清單都已取得：主要清單見上方 2026-11-18 的補充，啟動用清單與 RPG 清單見 [10-assets.md](10-assets.md) 第 2 節。
+- `LobbyBGMCategory` 由誰讀（它在清單裡，有自己的表）。`ChapterBannerConfig`、`SynergyKeyword` 不在清單裡，不會載入；四個 `Tutorial*` 檔的表見上方補充。（鏡牢節點表 `MirrorDungeonNode1-1`、`HellsChickenDungeonNode` 已確認沒有人讀，見 [07-field-display.md](07-field-display.md)。）
 - `ChoiceEventKeyword`、`ChoiceEventTarget` 屬於選擇事件結果表：原本是推定，2026-11-16 已確認讀這張表的是各個結果類別的建構式。
 - 介面文字表 98 個節點裡有 32 個是只憑類別與檔名歸進去的。
