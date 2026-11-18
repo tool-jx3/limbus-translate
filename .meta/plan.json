@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261112",
   "prev_raw_tag": "raw-20261105",
-  "rules_commit": "4ade084bede92bc3dd483c42be5999ec4734ed2b",
+  "rules_commit": "2e8e1f50eddc115e70c3e80a19a73188cd7c6fb4",
   "changes": {
     "unchanged": 272865,
     "moved": 2138,
@@ -82,12 +82,45 @@
   "copy": 0,
   "reused": 0,
   "adjustments": {
-    "applied": 222,
+    "applied": 274,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [],
+  "rewrite_applied": [
+    {
+      "id": "2026-11-18-rs-g111-fun-period",
+      "units": 1
+    },
+    {
+      "id": "2026-11-18-rs-g649-reflect-possibility",
+      "units": 1
+    },
+    {
+      "id": "2026-11-18-rs-g661-animals-feel-pain",
+      "units": 1
+    },
+    {
+      "id": "2026-11-18-rs-g664-all-yisang-research",
+      "units": 1
+    },
+    {
+      "id": "2026-11-18-rs-g678-would-it-change-2",
+      "units": 1
+    },
+    {
+      "id": "2026-11-18-rs-g678-would-it-change",
+      "units": 1
+    },
+    {
+      "id": "2026-11-18-rs-g704-place-noisy-league",
+      "units": 1
+    },
+    {
+      "id": "2026-11-18-rs-g869-gulp",
+      "units": 1
+    }
+  ],
   "frozen_changed": [],
   "new_speakers": [
     "다친필립",

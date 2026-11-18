@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261112",
   "raw_token": "l20261112_5pAcdxbyP1RC08yIrdPw",
-  "rules_commit": "4ade084bede92bc3dd483c42be5999ec4734ed2b",
-  "built_at": "2026-11-18T12:19:25Z",
+  "rules_commit": "2e8e1f50eddc115e70c3e80a19a73188cd7c6fb4",
+  "built_at": "2026-11-18T14:48:04Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,15 +10,15 @@
   },
   "notes_seen": 1058,
   "zips": {
-    "zh-TW_complete_raw-20261112.zip": "2e22a3521acd02c7d0dfcb4760b1a98cf2fa2f76762e56648c04942af9315fee",
-    "zh-TW_text_raw-20261112.zip": "28f682335ed7af687a715149693ecd49a53d680bc40b549165bb809d682c1914"
+    "zh-TW_complete_raw-20261112.zip": "bf87a9d7e0f1623ab9408043663e4a89c84541de91b049e6def37d3c842991b0",
+    "zh-TW_text_raw-20261112.zip": "d72f5e6a7847e90e4602b2953c6c3d9b5420171dcc14df3e124cb47a26363ee4"
   },
   "report": {
     "origins": {
       "claude": 19824,
       "copy": 91932,
-      "human": 222,
-      "paratranz": 163871
+      "human": 274,
+      "paratranz": 163819
     },
     "pending": 0,
     "needs_review": 0,
@@ -568,8 +568,8 @@
     "shown": {
       "claude": 19824,
       "copy": 91932,
-      "human": 222,
-      "paratranz": 163871
+      "human": 274,
+      "paratranz": 163819
     },
     "misaligned": [
       {
@@ -9556,24 +9556,6 @@
     {
       "family": "story-interlude",
       "field": "content",
-      "kr": "꿀꺽…",
-      "zh": [
-        "唔……",
-        "咕嚕……"
-      ],
-      "keys": [
-        "StoryData/E407B.json|/dataList/9/content",
-        "StoryData/ES290B.json|/dataList/134/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
       "kr": "우리는…",
       "zh": [
         "我們......",
@@ -9952,24 +9934,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "그렇구나. 모든 이상은 연구에 진심이었나 봐.",
-      "zh": [
-        "我明白了。我想所有的李箱在最終都投身於研究。",
-        "這樣啊。看來所有的李箱對於研究都十分投入啊。"
-      ],
-      "keys": [
-        "StoryData/4D105B.json|/dataList/10/content",
-        "StoryData/4D305I.json|/dataList/53/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "그렇구나…",
       "zh": [
         "這樣啊……",
@@ -10186,24 +10150,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "눈은 엄청 빛나고 있는데, 그렇게 표독스럽게 말하니까 재밌잖아.",
-      "zh": [
-        "妳明明兩眼放光，言辭卻如此毒辣，這很有趣吧？",
-        "妳明明兩眼放光，言辭卻如此毒辣，這很有趣吧。"
-      ],
-      "keys": [
-        "StoryData/4D105B.json|/dataList/23/content",
-        "StoryData/S448B.json|/dataList/47/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "눈을 천천히 감고 나니…",
       "zh": [
         "慢慢閉上眼睛之後……",
@@ -10266,24 +10212,6 @@
       "keys": [
         "StoryData/S1039I.json|/dataList/18/content",
         "StoryData/S1040B.json|/dataList/18/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "동물도 사람이랑 똑같이 아픔을 느낀다는 걸 너도 안다면, 그런 말은 함부로 못 할 걸.",
-      "zh": [
-        "你要是知道動物和人一樣有痛覺，就不會隨便說這種話了。",
-        "你要是知道動物和人一樣有痛覺的話，就不會隨便說這種話了。"
-      ],
-      "keys": [
-        "StoryData/4D202B.json|/dataList/13/content",
-        "StoryData/4D304B.json|/dataList/16/content"
       ],
       "counts": [
         1,
@@ -10482,24 +10410,6 @@
       "keys": [
         "StoryData/S1039I2.json|/dataList/31/content",
         "StoryData/S1041B.json|/dataList/31/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
-      "kr": "어떠한 가능성도 있는 그대로 비추고 싶었소.",
-      "zh": [
-        "我只是想毫無模糊地，如實地映照出所有可能性。",
-        "我只是想如實地映照出所有可能性。"
-      ],
-      "keys": [
-        "StoryData/4D105B.json|/dataList/17/content",
-        "StoryData/S448B.json|/dataList/41/content"
       ],
       "counts": [
         1,
@@ -10816,24 +10726,6 @@
     {
       "family": "story-main",
       "field": "content",
-      "kr": "하지만… 그런다고 바뀌겠니? 여전히 구리고 엉망일걸.",
-      "zh": [
-        "但……妳覺得那又能改變什麼嗎？這個世界依舊汙濁不堪。",
-        "但……你覺得那能造成任何改變嗎？這個世界依舊充斥著汙穢。"
-      ],
-      "keys": [
-        "StoryData/4D204B.json|/dataList/16/content",
-        "StoryData/4D304B.json|/dataList/19/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "content",
       "kr": "한 아이가 죽었는데도, 그 죄책감으로조차 나아가지 못하는 우리는, 등을 떠밀리는 나는…",
       "zh": [
         "明明有一個孩子死了，就連懷著那份愧疚都無法前進的我們，被人從背後推著走的我……",
@@ -10878,24 +10770,6 @@
       "keys": [
         "DungeonNode1-4.json|/dataList/0/stageList/34/desc",
         "DungeonNode1-4.json|/dataList/0/stageList/35/desc"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2
-    },
-    {
-      "family": "story-main",
-      "field": "place",
-      "kr": "소란스러워 지는 구인회",
-      "zh": [
-        "變得嘈雜的九人會",
-        "變得嘈雜起來的九人會"
-      ],
-      "keys": [
-        "StoryData/4D202B.json|/dataList/0/place",
-        "StoryData/4D304B.json|/dataList/15/place"
       ],
       "counts": [
         1,
