@@ -809,3 +809,9 @@
   zh: 我會進行記憶清除手續。
   reason: StoryData 審查 S0321：KR「기억 소거 절차를 진행할게.」是阿方索說「我會進行記憶清除手續」，JP「進行するよ」、EN「I'll get your memories erased」相同；現行 TW「你們去辦記憶清除手續吧」，變成叫對方自己去辦。
   rule: one-off
+- key: StoryData/4D305A.json|/dataList/40/content
+  raw: raw-20261112
+  kr_sha: 1e04feb8ed4a5630e32fcb76c800904cb702736b33385cb8e443194f62ad3dae
+  zh: 僅是感受到飛翔，便已足夠。
+  reason: StoryData 審查 S0322：但丁問「你那時想飛往何處」，KR「그저 나는 기분을 느끼는 것으로 좋았소.」的 나는 是 날다（飛）的定語形，「只要感受到飛翔的感覺就好了」（EN content with the feelings it would give；呼應 4D305I#73–#75「그저… 한 번 더… 날고 싶었소」）；現行「只要是讓我感到舒適的地方即可」把感受寫成地點。JP 把 나는 讀成「我」，不採。譯法由使用者決定
+  rule: one-off
