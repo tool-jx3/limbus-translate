@@ -821,3 +821,21 @@
   zh: 當我連仇甫也失去時……
   reason: StoryData 審查 S0323：KR「구보마저 떠나보냈을 때.」是「當我連仇甫也送走（失去）了的時候」，JP「クボすらも遣り出ししとき」相同，4D304B#7 現行 TW 也寫「我失去了作為最後一個友人的仇甫」；現行 TW「當我離開仇甫時」漏了「마저（連……也）」，也沒有「失去」的意思，與 4D304B#7 不一致。
   rule: one-off
+- key: StoryData/E404B.json|/dataList/60/content
+  raw: raw-20261112
+  kr_sha: 76716e7b28f81aff966201dd6a6891493d9ec79f86afbfb9d8b56faa1e41ba7e
+  zh: 你們，不是在巴士上說過想做的事頗多嗎。
+  reason: 'StoryData 審查 S0436：KR「그대들, 버스에서 제법 하고픈 것이 많다 하지 않았는가.」是「你們，不是在巴士上說過想做的事頗多嗎」（指 E401B#39–#55 罪人們在巴士上各自說想做的事，接 #61、#66 的休息提議）；現行「有說過自身登上巴士是因為有所希望」變成上巴士的動機，也少了「想做的事很多」。句末照 KR 用「。」。譯法由使用者決定'
+  rule: one-off
+- key: StoryData/E405A.json|/dataList/41/content
+  raw: raw-20261112
+  kr_sha: 9ef72fe59f31fe2ca2a82c39f343ec98dc53717ed0d73fb7510efd6bf7277094
+  zh: 那又怎麼樣，稍微玩一下又有什麼關係？難道我們晚去一陣子，那什麼鬼的鯨就會變強多少嗎？
+  reason: StoryData 審查 S0437：KR「잠깐이라도 놀면 뭐가 좀 덧나냐?」是「稍微玩一下又會怎樣？」，JP「少しくらい遊んだところで」相同；現行 TW「瞎忙活一下」是白忙一場，與希斯克利夫想玩一下的主張不符。
+  rule: one-off
+- key: StoryData/E405A.json|/dataList/59/content
+  raw: raw-20261112
+  kr_sha: 6daf6108a697581dd56d455bcdc35dd96d8ca4be573f29a7e24ed54e8e22cd97
+  zh: 有那麼一瞬間，希斯克利夫似乎佔了上風，他的拳頭擊中了以實瑪利的臉頰……
+  reason: StoryData 審查 S0438：KR「뺨」是臉頰，JP「頬」相同；現行 TW 照 EN「jaw」寫成「下巴」，部位不同。
+  rule: one-off
