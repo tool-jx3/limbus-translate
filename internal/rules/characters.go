@@ -212,3 +212,38 @@ func (r *Rules) CharacterByFile(file string) (*Character, bool) {
 	}
 	return nil, false
 }
+
+// CharacterByItemID finds the character whose personality an item id names:
+// the sinner of the one personality id 1<code>XX in it (five digits with no
+// digit beside them), as the ids of the battle speech bubbles carry it
+// (battle_s3_10514_1_1). An id with no personality id, or with those of two
+// sinners, names nobody.
+func (r *Rules) CharacterByItemID(id string) (*Character, bool) {
+	code := ""
+	for i := 0; i < len(id); {
+		if id[i] < '0' || id[i] > '9' {
+			i++
+			continue
+		}
+		j := i
+		for j < len(id) && id[j] >= '0' && id[j] <= '9' {
+			j++
+		}
+		if run := id[i:j]; len(run) == 5 && run[0] == '1' {
+			if code != "" && code != run[1:3] {
+				return nil, false
+			}
+			code = run[1:3]
+		}
+		i = j
+	}
+	if code == "" {
+		return nil, false
+	}
+	for i := range r.Characters {
+		if c := r.Characters[i].Code; c != nil && *c == code {
+			return &r.Characters[i], true
+		}
+	}
+	return nil, false
+}

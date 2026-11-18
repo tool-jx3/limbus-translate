@@ -871,7 +871,9 @@ func TestPendingEmptyStore(t *testing.T) {
 }
 
 const (
-	statusKey = "Status.json|/dataList/0/content"
+	// A passive description: a field where the game links status names
+	// (validate.KeywordField).
+	statusKey = "Passives.json|/dataList/0/desc"
 	statusKR  = "대상에게 파열 2레벨 부여"
 )
 
@@ -882,7 +884,7 @@ func keywordRepo(t *testing.T) (root string, st *store.Store) {
 	t.Helper()
 	root, st = batchRepo(t)
 	rawWT := filepath.Join(root, ".work", "raw")
-	writeTestFile(t, rawWT, "kr/KR_Status.json", `{"dataList":[{"id":1,"content":"`+statusKR+`"}]}`)
+	writeTestFile(t, rawWT, "kr/KR_Passives.json", `{"dataList":[{"id":1,"desc":"`+statusKR+`"}]}`)
 	writeTestFile(t, rawWT, "kr/KR_Bufs.json", `{"dataList":[{"id":"Burst","name":"파열"}]}`)
 	const nameKey = "Bufs.json|/dataList/0/name"
 	if err := st.SaveRecords(map[string]store.Record{
@@ -897,7 +899,7 @@ func keywordRepo(t *testing.T) (root string, st *store.Store) {
 }
 
 // The name of a status that follows a count gets the half-width space the game
-// needs to show the effect text.
+// links it by, in a field where the game links names.
 func TestBatchSubmitAddsTheSpaceAfterKeywordNames(t *testing.T) {
 	root, st := keywordRepo(t)
 	next, _, err := runNextJSON(t, root)

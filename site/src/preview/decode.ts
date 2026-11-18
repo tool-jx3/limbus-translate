@@ -46,6 +46,8 @@ function expandUnit(where: string, wire: PreviewUnitWire, fu: FileData['units'][
   const st: PreviewState = { pending: false, needs_review: false, frozen: false, ...wire.st }
   // A preview written before the existing names has no n.
   const out: PreviewUnit = { sp: wire.sp, g: wire.g, t: wire.t, k: wire.k, n: wire.n ?? [], it, keep, c: wire.c, st }
+  if (wire.id) out.id = wire.id
+  if (wire.lb) out.lb = wire.lb
   if (wire.m !== undefined) {
     if (wire.m.length !== 2) throw new DataError('format', `${where}: the methods ${JSON.stringify(wire.m)} are not two characters`)
     const em = method(where, wire.m[0])

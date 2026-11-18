@@ -19,6 +19,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/bootstrap"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/existing"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -145,6 +146,15 @@ func baseEnv(ctx *cli.Context, command string, st *store.Store, set *pack.Set) (
 	if err != nil {
 		return batch.Env{}, err
 	}
+	// The label fields of an entry (group_fields) go to its units; a root
+	// without field rules has none.
+	fr, err := fields.Load(ctx.Root)
+	if errors.Is(err, fs.ErrNotExist) {
+		fr, err = nil, nil
+	}
+	if err != nil {
+		return batch.Env{}, err
+	}
 	var foreign []string
 	if _, err := st.ReadMetaJSON(bootstrap.ForeignNamesFile, &foreign); err != nil {
 		return batch.Env{}, err
@@ -177,6 +187,7 @@ func baseEnv(ctx *cli.Context, command string, st *store.Store, set *pack.Set) (
 		Store:        st,
 		Src:          *set,
 		Rules:        r,
+		Fields:       fr,
 		RawTag:       src.Tag,
 		ForeignNames: foreign,
 		Provisional:  batch.ActiveProvisional(all, r, declined),

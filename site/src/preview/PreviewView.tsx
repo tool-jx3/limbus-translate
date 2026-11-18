@@ -167,6 +167,8 @@ function Composition({ batch, pf, pu, shared }: { batch: BatchJSON; pf: PreviewF
           rows={[
             ['原因', unit.reason],
             ['說話者', unit.speaker || '（無）'],
+            ...(unit.item_id ? ([['條目 id', unit.item_id]] as [string, string][]) : []),
+            ...(unit.label ? ([['標籤', unit.label]] as [string, string][]) : []),
             ...(unit.prev_kr ? ([['舊 KR', unit.prev_kr]] as [string, string][]) : []),
             ...(unit.prev_zh ? ([['舊譯', unit.prev_zh]] as [string, string][]) : []),
             ...(unit.draft ? ([['草稿', unit.draft]] as [string, string][]) : []),

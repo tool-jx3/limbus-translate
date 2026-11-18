@@ -1,0 +1,169 @@
+{
+  "family": "other",
+  "glossary_check": "",
+  "keywords": {},
+  "units": [
+    {
+      "sp": "faust",
+      "id": "battle_s3_10204_1_2",
+      "lb": "파우스트 3스킬",
+      "g": [
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
+      ],
+      "t": [],
+      "k": [],
+      "n": [],
+      "it": {
+        "reason": "new"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "faust",
+      "id": "battle_s3_10204_1_2",
+      "lb": "파우스트 3스킬",
+      "g": [
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
+      ],
+      "t": [],
+      "k": [],
+      "n": [],
+      "it": {
+        "reason": "new"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "faust",
+      "id": "battle_s3_10204_1_2",
+      "lb": "파우스트 3스킬",
+      "g": [
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
+      ],
+      "t": [],
+      "k": [],
+      "n": [],
+      "it": {
+        "reason": "new"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "",
+      "id": "9SV-BAT1-08",
+      "g": [
+        "guides/base.md",
+        "guides/families.md"
+      ],
+      "t": [],
+      "k": [],
+      "n": [],
+      "it": {
+        "reason": "new"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "",
+      "id": "9SV-BAT1-08",
+      "g": [
+        "guides/base.md",
+        "guides/families.md"
+      ],
+      "t": [],
+      "k": [],
+      "n": [],
+      "it": {
+        "reason": "new"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "",
+      "id": "9SV-BAT1-08",
+      "g": [
+        "guides/base.md",
+        "guides/families.md"
+      ],
+      "t": [],
+      "k": [],
+      "n": [],
+      "it": {
+        "reason": "new"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    }
+  ]
+}

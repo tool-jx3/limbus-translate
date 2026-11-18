@@ -535,6 +535,9 @@ func assemble(
 				Keep:          constraints(u.KR),
 				RubyCustomize: env.Rules.RubyCustomizeAt(fd.file, u.Pointer),
 			}
+			if label, ok := labelOf(env.Fields, fd.doc, u); ok {
+				bu.ItemID, bu.Label = u.ItemID, label
+			}
 			bu.PrevZH, bu.Draft = bu.shown(bu.PrevZH), bu.shown(bu.Draft)
 			for name, text := range bu.Refs { // a copy: cleanRefs made it
 				bu.Refs[name] = bu.shown(text)

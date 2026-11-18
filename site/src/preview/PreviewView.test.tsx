@@ -108,6 +108,22 @@ describe('PreviewView: head and composition', () => {
     expect(s).toContain('第一行')
   })
 
+  it('shows the item id and the label of a speech bubble, and the speaker its id names', async () => {
+    const BUBBLES = 'BattleSpeechBubbleDlg.json'
+    const sinner = text(await open(BUBBLES, '/dataList/0/dlg'))
+    expect(sinner).toContain('條目 id')
+    expect(sinner).toContain('battle_s3_10204_1_2')
+    expect(sinner).toContain('標籤')
+    expect(sinner).toContain('파우스트 3스킬')
+    expect(sinner).toContain('faust')
+    // Another character: the id, no label (it is empty), no speaker.
+    const other = text(await open(BUBBLES, '/dataList/1/dlg'))
+    expect(other).toContain('9SV-BAT1-08')
+    expect(other).not.toContain('標籤')
+    // A unit of a file without label fields shows neither.
+    expect(text(await open(STORY, ptrOf(STORY, 7)))).not.toContain('條目 id')
+  })
+
   it('lists the keywords of the batch', async () => {
     const el = await open(STORY, ptrOf(STORY, 7))
     const s = text(el)

@@ -137,6 +137,10 @@ type PreviewUnit struct {
 	// SP is the speaker of the batch unit, and of the unit as a line of
 	// context.
 	SP string `json:"sp"`
+	// ID and LB are the item_id and the label of the batch unit; absent when
+	// the unit has none.
+	ID string `json:"id,omitempty"`
+	LB string `json:"lb,omitempty"`
 	// G, T and K are the guides (numbers in PreviewShared.Guides), the
 	// glossary entries (numbers in PreviewFile.Terms) and the keyword ids of
 	// the batch, in its order (K sorted).
@@ -232,6 +236,8 @@ func buildPreviewFile(file File, pvs []*batch.UnitPreview, guides *guideTable) (
 		}
 		u := &PreviewUnit{
 			SP: bu.Speaker,
+			ID: bu.ItemID,
+			LB: bu.Label,
 			G:  []int{},
 			T:  []int{},
 			N:  []int{},

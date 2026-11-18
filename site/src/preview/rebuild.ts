@@ -105,9 +105,12 @@ export function rebuildBatch(path: string, file: FileData, pf: PreviewFile, shar
     file: path,
     field: fu.f,
     speaker: pu.sp,
-    kr: fu.kr,
-    reason: pu.it.reason,
   }
+  // In the order Go writes the fields of a unit.
+  if (pu.id) unit.item_id = pu.id
+  if (pu.lb) unit.label = pu.lb
+  unit.kr = fu.kr
+  unit.reason = pu.it.reason
   if (pu.it.prev_kr) unit.prev_kr = pu.it.prev_kr
   if (pu.it.prev_zh) unit.prev_zh = pu.it.prev_zh
   if (pu.it.draft) unit.draft = pu.it.draft

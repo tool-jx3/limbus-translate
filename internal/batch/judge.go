@@ -25,8 +25,9 @@ type Verdict struct {
 // terms the translation is held to (see provisionalOf); note is the
 // translator's note of the unit.
 //
-// The text is normalized (validate.Normalize, then the space after the keyword
-// names of env.KeywordNames) and checked as a new translation. A missing
+// The text is normalized (validate.Normalize, then, in a field where the game
+// links status names (validate.KeywordField), the space after the keyword names
+// of env.KeywordNames) and checked as a new translation. A missing
 // glossary rendering is only a warning in CheckNew; here it is hard where the
 // entry behind it is check: hard (a provisional term never is), unless the
 // note names the term, the way the entry itself matches a KR text. A family
@@ -37,7 +38,10 @@ type Verdict struct {
 // Foreign names are warned about only when the translation is accepted, so a
 // rejected verdict never carries them.
 func Judge(env Env, prov []rules.Term, file, pointer, kr, zh, note string) Verdict {
-	zh = validate.NormalizeKeywordSpace(validate.Normalize(kr, zh), env.KeywordNames)
+	zh = validate.Normalize(kr, zh)
+	if validate.KeywordField(file, pointer) {
+		zh = validate.NormalizeKeywordSpace(zh, env.KeywordNames)
+	}
 	hits := env.Rules.GlossaryHits(file, kr) // looked up once for the check and the entries
 	var scriptOK []string
 	if env.Scripts != nil {

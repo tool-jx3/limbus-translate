@@ -725,3 +725,18 @@ func TestLoadManualRejectsBadTranslateIdentical(t *testing.T) {
 		})
 	}
 }
+
+// GroupFields lists the label fields of a file's group, by name.
+func TestGroupFields(t *testing.T) {
+	r := loadRules(t, "group_fields: { Skills: [zeta, alpha] }\n")
+	for file, want := range map[string][]string{
+		"BattleSpeechBubbleDlg-a1c9p3.json":          {"desc"},
+		"Skills_personality-08.json":                 {"alpha", "zeta"},
+		"PersonalityVoiceDlg/Voice_Faust_10201.json": nil,
+		"StoryData/S001A.json":                       nil,
+	} {
+		if got := r.GroupFields(file); !slices.Equal(got, want) {
+			t.Errorf("GroupFields(%q) = %v, want %v", file, got, want)
+		}
+	}
+}

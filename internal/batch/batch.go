@@ -14,12 +14,14 @@ import (
 	"fmt"
 	"path"
 	"slices"
+	"strconv"
 	"strings"
 	"time"
 	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/existing"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/names"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
@@ -64,7 +66,8 @@ type Env struct {
 	ForeignNames []string
 	// KeywordNames are the Chinese names of the keywords (see KeywordNames).
 	// Submit puts a half-width space after each of them that follows a count
-	// (validate.NormalizeKeywordSpace). Empty means no name is looked for.
+	// (validate.NormalizeKeywordSpace), in the fields where the game links
+	// status names (validate.KeywordField). Empty means no name is looked for.
 	KeywordNames []string
 	// Provisional are the provisional terms in force (see ActiveProvisional):
 	// Next puts those a batch's units contain into its glossary, and Submit
@@ -84,6 +87,10 @@ type Env struct {
 	// refs.same_text, so that those submitted earlier in the update count
 	// too. Nil means none.
 	SameText *existing.SameText
+	// Fields are the field rules: Next reads from them which fields of an
+	// entry are its labels (fields.Rules.GroupFields), and gives a unit of
+	// such an entry the id and the labels. Nil means no unit gets them.
+	Fields *fields.Rules
 	// Scripts, if set, remembers rules.ScriptRenderings by file, which Judge
 	// would otherwise work out for every unit; the preview, which judges many
 	// units of one file, sets it. Nil means no cache. See rules.ScriptCache.
@@ -264,7 +271,13 @@ type BatchUnit struct {
 	// Speaker is a character id, or the raw model or speaker string of a
 	// speaker that is no known character, or "".
 	Speaker string `json:"speaker"`
-	KR      string `json:"kr"`
+	// ItemID and Label are set for a unit of an entry with label fields
+	// (fields.Rules.GroupFields, such as the desc of a battle speech bubble):
+	// the id of the entry and the KR text of its labels, one per line. They
+	// say who speaks and when; they are not translated.
+	ItemID string `json:"item_id,omitempty"`
+	Label  string `json:"label,omitempty"`
+	KR     string `json:"kr"`
 	// Reason is why the unit is pending.
 	Reason string `json:"reason"`
 	// PrevKR and PrevZH are the previous version, Draft a text to fix with
@@ -485,6 +498,34 @@ func (fd *fileData) aligned(lang int, pointer string) (*align.LangAligned, error
 // named in the file name.
 var voiceFilePrefixes = []string{"PersonalityVoiceDlg/", "EGOVoiceDig/", "BattleAnnouncerDlg/", "AbDlg_"}
 
+// itemIDFilePrefixes are the files whose lines have no model and name their
+// speaker in the id of the entry instead: the battle speech bubbles, whose id
+// is the name of a voice event and carries the personality id of a sinner's
+// line (battle_s3_10514_1_1). The lines of enemies and other characters there
+// (9SV-BAT17-26-3) keep no speaker.
+var itemIDFilePrefixes = []string{"BattleSpeechBubbleDlg"}
+
+// labelOf returns the KR text of the label fields of the dataList entry u is
+// in, one per line, without the empty ones; ok is whether the file has label
+// fields at all.
+func labelOf(fr *fields.Rules, doc *jsonx.Node, u units.Unit) (label string, ok bool) {
+	if fr == nil || u.ItemIndex < 0 {
+		return "", false
+	}
+	names := fr.GroupFields(u.File)
+	if len(names) == 0 {
+		return "", false
+	}
+	var lines []string
+	for _, name := range names {
+		n, found := doc.Get("/dataList/" + strconv.Itoa(u.ItemIndex) + "/" + jsonx.EscapeToken(name))
+		if found && n.Kind == jsonx.String && strings.TrimSpace(n.Str) != "" {
+			lines = append(lines, n.Str)
+		}
+	}
+	return strings.Join(lines, "\n"), true
+}
+
 // SpeakerOf names the speaker of u, a unit of doc: the character id when the
 // character is known, otherwise the raw model or speaker string (possibly
 // empty). Voice and AbDlg files belong to the character in the file name; the
@@ -502,6 +543,11 @@ func speaker(r *rules.Rules, doc *jsonx.Node, u units.Unit) (id string, known bo
 			return c.ID, true
 		}
 		return u.Model, false
+	}
+	if u.Model == "" && slices.ContainsFunc(itemIDFilePrefixes, func(p string) bool { return strings.HasPrefix(u.File, p) }) {
+		if c, ok := r.CharacterByItemID(u.ItemID); ok {
+			return c.ID, true
+		}
 	}
 	key := SpeakerKey(doc, u)
 	if c, _, ok := r.CharacterByModel(key); ok {

@@ -577,6 +577,9 @@ export interface PreviewCheck {
 /** What the batch of one unit has that files/<path> and PreviewFile do not. */
 export interface PreviewUnit {
   sp: string
+  /** The item_id and the label of the batch unit; absent when the unit has none. */
+  id?: string
+  lb?: string
   /** Guides: numbers in PreviewShared.guides. */
   g: number[]
   /** Glossary entries: numbers in PreviewFile.terms. */
@@ -627,6 +630,9 @@ export interface BatchUnit {
   file: string
   field: string
   speaker: string
+  /** The id of the entry and the KR text of its label fields: present for an entry with label fields (a battle speech bubble). */
+  item_id?: string
+  label?: string
   kr: string
   reason: string
   prev_kr?: string
@@ -700,6 +706,8 @@ export interface PreviewCheckWire {
 /** PreviewUnit as written. */
 export interface PreviewUnitWire {
   sp: string
+  id?: string
+  lb?: string
   g: number[]
   t: number[]
   k: string[]
