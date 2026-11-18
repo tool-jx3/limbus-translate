@@ -869,3 +869,21 @@
   zh: 或許多虧他不像平時那樣不在場，至少希斯克利夫這邊才得以解決。
   reason: StoryData 審查 S0443：KR「평소와 달리 그가 자리를 비우지 않은 덕에 그나마 히스클리프라도 해결할 수 있었던 것일지도 모르겠다」是「或許多虧他不像平時那樣不在，至少希斯克利夫這邊才得以解決」，JP 相同；現行照 EN 多了「我很高興」，把「沒有離開」寫成「沒有坐視不管」，推測語氣也變成肯定。譯法由使用者決定
   rule: one-off
+- key: StoryData/E407A.json|/dataList/23/content
+  raw: raw-20261112
+  kr_sha: ab420844963aa9c62566b410aa58e0f2777787a3d72fd276bc4e2f16ccc2b52f
+  zh: 我們早些時候就已經拿到錢了。合約剛剛履行完畢，Девять協會就派了一名專門負責配送的收尾人前來結清尾款。
+  reason: StoryData 審查 S0444：KR「배송 전문 해결사」是專門負責配送的收尾人（JP「配送専門フィクサー」、EN「a delivery Fixer」）；現行 TW 只寫「一名收尾人」，漏掉「配送專門」這個身分。
+  rule: one-off
+- key: StoryData/E407B.json|/dataList/45/content
+  raw: raw-20261112
+  kr_sha: f1202ec9b7d5a5e34c2236c444999ebb09edad2e8c328cd19cfb76d5f3c81c9c
+  zh: 得先把關於鯨的指南做得詳詳細細，你們才至少會讀一點，不是嗎？
+  reason: StoryData 審查 S0445：KR 是「總得先把鯨的指南做得詳詳細細，（你們）才至少會學一點吧？」，帶點挖苦：不這樣做大家根本不會讀（JP「まず鯨に関するガイドをちゃんと作っておかないと、最低限の勉強すらできない」同義）；羅佳下一句才回「你明知道我不讀這種東西」。現行 TW「我至少可以做一份……供你學習研究」照 EN 把「至少」放到以實瑪利自己身上，變成謙稱「我起碼能做的事」，條件關係與挖苦語氣都不見了。
+  rule: one-off
+- key: StoryData/E407B.json|/dataList/57/content
+  raw: raw-20261112
+  kr_sha: 85c32d8f08e6574df82452ecb2dc01086155d1cf2bff5190dcdd2d81c5a4bc8e
+  zh: 我們都是為了實現自己的目的而與邊獄公司簽訂了合約。我簽了，上次的李箱先生也簽了，其他所有罪人也都簽了。
+  reason: StoryData 審查 S0446：KR「이전 번의 이상 씨」是「上一次（先前）的李箱先生」（JP「この前のイサンさん」）；TW 漏掉「上次的」。
+  rule: one-off
