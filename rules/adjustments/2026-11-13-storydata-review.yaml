@@ -644,3 +644,27 @@
   zh: 啊，那個座位已經被預約了。
   reason: 'StoryData 審查 S0063（與 #95 一起改）：KR「저 자리는 예정된 자리예요」的 저 是遠指（EN that one），現行寫「這個座位」；配合 #95 的問句改為「那個座位」。使用者決定'
   rule: one-off
+- key: StoryData/S408B.json|/dataList/105/content
+  raw: raw-20261112
+  kr_sha: 1e1e8e6e150f9c683ae36b49fa015e7868e78b8d7230295b71be264830b3803a
+  zh: 提問。是固定合約，還是事後審查合約？執行方式是代表機關執行，還是共同執行？
+  reason: StoryData 審查 S0064：KR 확정계약 是簽約時就把對價定下來的合約（JP 確定契約、EN fixed contract），사후검토계약 是履行後再審查的合約（JP 事後検討契約、EN post-fulfillment review contract）；現行「格式合約」是定型化合約，「履約後合約審查」寫成審查程序。中文沒有「確定合約」一詞且易讀成「合約確定了」，寫「固定合約」。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S408B.json|/dataList/109/content
+  raw: raw-20261112
+  kr_sha: aafdfcfb818c20175c13ca5031b961102e36309496aa8d5eaf3754f76efa2ef8
+  zh: 啊……那位來自榴蓮樂隊的艾德是吧？羅佳贏了比賽，那傢伙卻不守約定，無緣無故挑起了一場鬥毆。
+  reason: StoryData 審查 S0065：KR「로쟈가 게임에서 이겼는데 약속 안 지키고 묻지마 싸움 걸었잖아」是「羅佳贏了比賽，她（艾德）卻不守約定、無緣無故找碴打架」，不守約、挑起鬥毆的是艾德（JP、EN 同）；TW「羅佳贏了比賽，但她還是挑起了一場鬥毆」，「她」緊接在羅佳之後，會被讀成羅佳挑起鬥毆，也漏了「不守約定」。
+  rule: one-off
+- key: StoryData/S415B.json|/dataList/40/content
+  raw: raw-20261112
+  kr_sha: 76452a95e8fd1c6ab4918f1920778fe35c95223454a962716b27811a8d4cc8f9
+  zh: 施倫妮小姐，你們部門也要一起去嗎？
+  reason: StoryData 審查 S0066：KR「슈렌느 씨, 그쪽 부서도 가시는 겁니까?」是「施倫妮小姐，你們部門也要去嗎？」（JP、EN 同），三朝接著說「就算這次作戰成功，對你的部門也沒有任何好處」，施倫妮再答同事死了三個；TW「妳的部門工作還順利嗎？」變成寒暄，下一句的「明明……也沒有好處」便接不上，讀者也看不出施倫妮的部門要參加作戰。
+  rule: one-off
+- key: StoryData/S417A.json|/dataList/20/content
+  raw: raw-20261112
+  kr_sha: 518e957d5a0c3172a0d2c4048a5161c8aa2fb2e260de60dcc5bc0f8b5fb96327
+  zh: 為什麼要在意這種事情？只是名字取得好聽的恐怖組織而已，我們沒有必要去了解他們的價值觀。
+  reason: StoryData 審查 S0067：KR「이름만 그럴듯한 테러 조직」是「只有名字取得像樣的恐怖組織」（JP 名前だけそれっぽく付けた，EN a hollow name）；TW「只是加了個名字的恐怖組織」意思含糊，沒寫出「名字好聽、實際只是恐怖組織」的諷刺。
+  rule: one-off
