@@ -632,3 +632,15 @@
   zh: 嫉妒會轉化為發展的動力，優秀如我們應更加寬容。昨天從那家派店用餐費買來的東西。能分給施倫妮的部門嗎，三朝？
   reason: StoryData 審查 S0062：KR「파이 가게」是派店（JP パイ屋，EN 也說 pies）；TW 寫成「麵包店」。下一句三朝說要送「胡椒、辣椒、生菜、咖哩口味」，指的就是派。
   rule: one-off
+- key: StoryData/S408B.json|/dataList/95/content
+  raw: raw-20261112
+  kr_sha: f5712f1b34a696d60957a1a8419da9a11be878f4cea2e852c0fdcfe190c6fd03
+  zh: 那麼，那個座位又是怎麼回事？
+  reason: 'StoryData 審查 S0063：KR「그러면 저 자리는 어떤 자리지?」是「那麼，那個位子是什麼樣的位子？」（JP あの席はどういう席、EN that seat），奧提斯問的是那張沒有悼念品的純白空桌；現行「這個位置的主人怎麼樣了」先假定有主人，和東朗接著答「預定的位子、在等新員工」對不上。저 是遠指，寫「那個」；名詞照 #86、#97 寫「座位」。譯法由使用者決定'
+  rule: one-off
+- key: StoryData/S408B.json|/dataList/97/content
+  raw: raw-20261112
+  kr_sha: 9cc762ab5f1cd09af4c8145cbb1e8970957c3ce5ea59949335cf238adb010a65
+  zh: 啊，那個座位已經被預約了。
+  reason: 'StoryData 審查 S0063（與 #95 一起改）：KR「저 자리는 예정된 자리예요」的 저 是遠指（EN that one），現行寫「這個座位」；配合 #95 的問句改為「那個座位」。使用者決定'
+  rule: one-off
