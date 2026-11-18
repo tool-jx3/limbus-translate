@@ -608,3 +608,27 @@
   zh: 哼，你真是軟弱啊。銀鳳？就是掛著那種俗氣的名字，生意才會做不起來。
   reason: StoryData 審查 S0435：KR「그딴 촌스런 이름이나 걸고 하니까 장사가 안되는 거다」是「掛著那種俗氣的名字，難怪生意不好」，把俗氣的店名說成生意差的原因，JP 相同；現行 TW 照 EN 寫成「你應該把那個俗氣名字給去了，給你的餐廳起個更好的名稱」，從批評變成建議改名。
   rule: one-off
+- key: StoryData/S402B.json|/dataList/87/content
+  raw: raw-20261112
+  kr_sha: cc7d7222a49d0abb98f8152e048c6a3de432bd44fce7195881e1063d7211ee68
+  zh: 嘛……富裕的都市裡發生了這種混亂，倒也確實會讓攝影機蜂擁而至。
+  reason: StoryData 審查 S0059：KR「잘 사는 도시」是「生活富裕的都市」（EN well-off Nest，JP 住み心地の良い都市）；TW 寫成「過著和平日子的都市」，把「富裕」換成「和平」。
+  rule: one-off
+- key: StoryData/S402B.json|/dataList/102/content
+  raw: raw-20261112
+  kr_sha: f16a6f3e9e136b4b9eaed1a8066446f9059c66489540e8c9a62e083ebe79cee5
+  zh: 怎麼會。難道會特地去妨礙來幫忙的人……
+  reason: StoryData 審查 S0060：KR「도와주러 온 사람한테 굳이 나서서 방해를…」與下一句「하겠…어…?」連成「難道會特地出面妨礙來幫忙的人……嗎？」，格里高爾不相信無人機會阻撓他們；TW「難道是必須妨礙伸出援手的人……」把「굳이（特地、何必）」譯成「必須」，意思變成無人機非得妨礙不可，句子也不通。
+  rule: one-off
+- key: StoryData/S403A.json|/dataList/7/content
+  raw: raw-20261112
+  kr_sha: 1ae9d7368cc32df4135b8c192e4783ceda9dee27a1eb736441357418e9cf2720
+  zh: 這些異想體是怎麼回事……出現在巢的正中央就已經夠離譜了，為什麼還變得比至今遇過的異想體更……恐怖？
+  reason: StoryData 審查 S0061：KR 是「出現在巢的正中央就已經夠離譜了（…것도 모자라서），為什麼還比我們至今遇過的異想體更……恐怖？」（JP 同）；TW 照 EN 拆成兩個「怎麼……的」疑問，少了「已經夠離譜還……」的遞進，也漏了「比至今遇過的異想體」這個比較對象。
+  rule: one-off
+- key: StoryData/S408B.json|/dataList/51/content
+  raw: raw-20261112
+  kr_sha: 3e7fd12cfa0c5d837cd367963123fea0804706466994097c4aa608766485ce7e
+  zh: 嫉妒會轉化為發展的動力，優秀如我們應更加寬容。昨天從那家派店用餐費買來的東西。能分給施倫妮的部門嗎，三朝？
+  reason: StoryData 審查 S0062：KR「파이 가게」是派店（JP パイ屋，EN 也說 pies）；TW 寫成「麵包店」。下一句三朝說要送「胡椒、辣椒、生菜、咖哩口味」，指的就是派。
+  rule: one-off
