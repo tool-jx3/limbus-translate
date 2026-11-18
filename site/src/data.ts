@@ -1,4 +1,4 @@
-import type { FileData, GlossaryFile, GlossaryIndex, GoldData, Index, NamesData, Meta, PreviewFileWire, PreviewShared, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
+import type { DataDiff, DataSnapshot, FileData, GlossaryFile, GlossaryIndex, GoldData, Index, NamesData, Meta, PreviewFileWire, PreviewShared, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
 
 /** The version of the layout and keys of the data that this page reads. */
 const FORMAT = 2
@@ -197,5 +197,22 @@ export function loadGold(): Promise<GoldData> {
   return load('gold.json', (doc) => {
     if (!isRecord(doc) || !Array.isArray(doc.units)) throw new DataError('format', 'gold.json: no units')
     return doc as unknown as GoldData
+  })
+}
+
+/** data/rawdiff/index.json: the snapshots of the raw branch that have one before them, newest first. */
+export function loadDataChanges(): Promise<{ snapshots: DataSnapshot[] }> {
+  return load('rawdiff/index.json', (doc) => {
+    if (!isRecord(doc) || !Array.isArray(doc.snapshots)) throw new DataError('format', 'rawdiff/index.json: no snapshots')
+    return doc as unknown as { snapshots: DataSnapshot[] }
+  })
+}
+
+/** data/rawdiff/<tag>.json: what one snapshot changed in the KR pack as data. */
+export function loadDataChange(tag: string): Promise<DataDiff> {
+  const rel = `rawdiff/${encodeURIComponent(tag)}.json`
+  return load(rel, (doc) => {
+    if (!isRecord(doc) || !Array.isArray(doc.tokens) || !Array.isArray(doc.files_added)) throw new DataError('format', `${rel}: not a data change`)
+    return doc as unknown as DataDiff
   })
 }

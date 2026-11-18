@@ -825,3 +825,99 @@ export interface NamesData {
   fields: string[]
   names: NameRow[]
 }
+
+/** How much a snapshot of the raw branch differs from the one before, as data. Keys, entries and tokens are counted one by one. */
+export interface DataCounts {
+  files_added: number
+  files_removed: number
+  new_groups: number
+  gone_groups: number
+  keys_added: number
+  keys_removed: number
+  /** Ids of the files both snapshots have; the entries of an added file are not among them. */
+  entries_added: number
+  entries_removed: number
+  tokens_added: number
+  tokens_removed: number
+}
+
+/** One snapshot in data/rawdiff/index.json (newest first). */
+export interface DataSnapshot {
+  tag: string
+  prev_tag: string
+  at: string
+  counts: DataCounts
+}
+
+/** A file that only one of the two snapshots has. */
+export interface DataFile {
+  file: string
+  /** The kind of file: the start of its name, or its directory. */
+  group: string
+  /** Absent when no family takes the file. */
+  family?: string
+  entries: number
+}
+
+/** A key of the JSON of a kind of file, with the keys that lead to it; "[]" stands for the elements of an array. */
+export interface DataKey {
+  path: string
+  /** The kinds of its values, sorted. */
+  kinds: ('bool' | 'null' | 'number' | 'string')[]
+  count: number
+  /** Where the first value is. */
+  file: string
+  pointer: string
+}
+
+/** A kind of file that only one of the two snapshots has, with every key of its files. */
+export interface DataGroup {
+  group: string
+  files: number
+  keys: DataKey[]
+}
+
+/** The keys of a kind of file that only one of the two snapshots has. */
+export interface DataGroupKeys {
+  group: string
+  added: DataKey[]
+  removed: DataKey[]
+}
+
+/** How the entries of a file both snapshots have differ: the numbers, and the ids only one has. */
+export interface DataFileEntries {
+  file: string
+  group: string
+  family?: string
+  before: number
+  after: number
+  added: string[]
+  removed: string[]
+}
+
+/** A token of the text that the whole pack of only one of the two snapshots has. */
+export interface DataToken {
+  kind: 'bracket' | 'placeholder' | 'style' | 'tag'
+  name: string
+  change: 'added' | 'removed'
+  count: number
+  /** The first text with it. */
+  file: string
+  pointer: string
+  /** For a bracket, the kinds of file with an entry whose id is the name. */
+  defined_in: string[]
+}
+
+/** data/rawdiff/<tag>.json: what the snapshot `to` has that `from` has not, and the reverse. */
+export interface DataDiff {
+  from: string
+  to: string
+  counts: DataCounts
+  new_groups: DataGroup[]
+  gone_groups: DataGroup[]
+  files_added: DataFile[]
+  files_removed: DataFile[]
+  keys: DataGroupKeys[]
+  entries: DataFileEntries[]
+  tokens: DataToken[]
+}

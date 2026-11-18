@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { DataError, clearDataCache, loadFile, loadGlossary, loadGlossaryEntry, loadIndex, loadMeta, loadPreviewFile, loadPreviewShared, loadReview, loadUpdate, loadUpdates } from './data'
+import { DataError, clearDataCache, loadFile, loadGlossary, loadGlossaryEntry, loadIndex, loadMeta, loadPreviewFile, loadPreviewShared, loadDataChange, loadDataChanges, loadReview, loadUpdate, loadUpdates } from './data'
 import { fixture, fixtureFetch } from './testdata'
 import type { FileData, Index, Meta, ReviewData } from './types'
 
@@ -202,5 +202,31 @@ describe('preview loading', () => {
     expect(await kindOf(loadPreviewShared())).toBe('format')
     expect(await kindOf(loadPreviewFile('x.json'))).toBe('format')
     expect(await kindOf(loadPreviewFile('nope.json'))).toBe('missing')
+  })
+})
+
+describe('data change loading', () => {
+  const tag = 'raw-20261112'
+  const diff = { from: 'raw-20261105', to: tag, files_added: [], tokens: [] }
+
+  it('reads data/rawdiff/index.json', async () => {
+    const fetchMock = serve({ 'rawdiff/index.json': { snapshots: [] } })
+    expect(await loadDataChanges()).toEqual({ snapshots: [] })
+    expect(fetchMock.mock.calls[0]?.[0]).toBe('./data/rawdiff/index.json')
+  })
+
+  it('reads data/rawdiff/<tag>.json once', async () => {
+    const fetchMock = serve({ [`rawdiff/${tag}.json`]: diff })
+    expect(await loadDataChange(tag)).toEqual(diff)
+    await loadDataChange(tag)
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    expect(fetchMock.mock.calls[0]?.[0]).toBe(`./data/rawdiff/${tag}.json`)
+  })
+
+  it('rejects documents of another shape, and a missing one', async () => {
+    serve({ 'rawdiff/index.json': { nope: 1 }, [`rawdiff/${tag}.json`]: { tokens: 1 } })
+    expect(await kindOf(loadDataChanges())).toBe('format')
+    expect(await kindOf(loadDataChange(tag))).toBe('format')
+    expect(await kindOf(loadDataChange('raw-20261119'))).toBe('missing')
   })
 })

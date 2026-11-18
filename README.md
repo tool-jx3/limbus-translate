@@ -67,6 +67,16 @@ Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內
 
 原因由 `bin/lct publish` 寫紀錄時推斷，依據兩個 Release 的 `tw`（`.meta/applied.json`、`.meta/pending.jsonl` 與譯文紀錄）和 `main` 上該 Release `rules_commit` 那一版的規則檔，網站只讀取、分組。這個功能之前的紀錄沒有原因，網站照舊的分類顯示並註明「尚未補上原因」；下一次 CI 建置執行 `bin/lct publish` 時會補齊（見「各 workflow 何時執行」的比對紀錄）。不想等遊戲更新，可在合併後手動執行一次 `rebuild.yml` 並勾選 `dry_run`：只建置、發布，不翻譯，不花費（有待譯單位時照 `dry_run` 的規則以 EN 或 KR 暫代）。要在本機檢查某個 Release 會推斷出什麼，用唯讀的 `bin/lct history make <tag>`（見「在本機使用」）。
 
+網站還有「資料變化」頁（頁首的「資料變化」，`#/d`），列出 `raw` 分支每個快照和前一個快照相比，韓文原文在結構上的變化，最新的在最上面；點快照進到 `#/d/<raw tag>`，分五節：
+
+- 檔案種類：以前沒出現過（或整個消失）的檔名開頭，附它的檔案數、分到的族群和所有 JSON 欄位。
+- 欄位：既有的檔案種類多了或少了哪些 JSON 欄位（路徑、值的型別、出現幾處、第一處在哪個檔案）。
+- 文字標記：整包原文第一次出現或完全消失的方括號名稱、具名代入符號（`{名稱}`）、`<style>` 名稱與標籤；方括號名稱分成「有對應條目」和「沒有對應條目」（後者可能是原文筆誤）。
+- 檔案：新增與移除的檔案、族群與筆數；只被預設族群接手的檔案標示「沒有分流規則」。
+- 既有檔案的條目：兩個快照都有的檔案，條目多了或少了哪些 id。
+
+每一節都寫了這種變化對翻譯規則與遊戲程式研究報告（`docs/research/2026-11-15-game-text-logic/`）的意義。文字內容改了什麼不在這一頁，看「更新」頁。資料由 `lct site` 從 `raw` 的 tag 算出（`data/rawdiff/`）；本機用 `bin/lct rawdiff [--from <raw tag>] [--to <raw tag>] [--json]` 可以直接看任兩個快照的比對（預設是最新的兩個）。遊戲程式那一面的比對是另一個工具，見研究報告的 `method/README.md`（`fingerprint.py`）。
+
 `pages.yml` 在 `update.yml` 或 `rebuild.yml` 於 `main` 上成功結束後執行（也可以手動執行）：取得 `raw`、`tw` 與 tag 並建 worktree → `go build` 出 `lct` → `bin/lct site --out site/public/data` 輸出網站資料 → 在 `site/` 執行 `npm ci`、`npm run build` → 部署 `site/dist`。`lct site` 失敗時（例如 `raw` 與 `tw` 不是同一個 snapshot）整個執行失敗，不會用缺的或舊的資料部署，網站維持上一次部署的樣子；`TestWorkflowContract` 要求 `pages.yml` 的任何一步都不能被略過或忽略失敗。
 
 ### 一次性設定

@@ -6,6 +6,7 @@ import type { UpdateFilter } from './updates/filter'
  * #/r/<tab>?family=…&kind=…&q=…&all=1&id=… (sub is the kind of the query: of a suggestion, the code of a warning),
  * #/gold (the gold sample to judge),
  * #/u, #/u/<tag>?k=<kinds>&o=<origin>&f=<file>&copy=1,
+ * #/d, #/d/<tag> (what a snapshot of the raw branch changed in the KR pack as data),
  * #/n?q=…&only=…&sort=… (the existing names),
  * #/g?q=…&sort=…&only=…&family=…, #/g/<a>/<b>?family=…&group=…&chapter=…&character=…&event=…&origin=…&q=… (the entry glossary/<a>/<b>).
  */
@@ -17,6 +18,8 @@ export type Route =
   | { kind: 'review'; tab: ReviewTab; family: string; sub: string; q: string; all: boolean; mode: ReviewMode; jpen: JPENFilter; id?: string }
   | { kind: 'updates' }
   | { kind: 'gold' }
+  | { kind: 'datas' }
+  | { kind: 'data'; tag: string }
   | { kind: 'update'; tag: string; kinds: UpdateKind[]; origin: string; file: string; copy: boolean; cause: string; group: string }
   | { kind: 'glossary'; q: string; sort: GlossarySort; only: GlossaryOnly; family: string }
   | { kind: 'names'; q: string; only: NamesOnly; sort: NamesSort }
@@ -93,6 +96,8 @@ const NAMES_ONLY: readonly string[] = ['multi', 'review', 'glossary', 'declined'
 /** The <a>/<b> of glossary/<a>/<b>. */
 const ENTRY_PATH = /^[0-9A-Za-z_-]+\/[0-9A-Za-z_-]+$/
 const UPDATE_TAG = /^zh-TW-\d{8}\.\d+$/
+/** A snapshot tag of the raw branch: raw-YYYYMMDD, or raw-YYYYMMDD.N. */
+const DATA_TAG = /^raw-\d{8}(\.\d+)?$/
 
 /** decodeURIComponent that keeps the text as it is where the escape is not valid. */
 function decode(s: string): string {
@@ -199,6 +204,11 @@ export function parseHash(hash: string): Route {
     }
   }
   if (pathname === '/gold') return { kind: 'gold' }
+  if (pathname === '/d') return { kind: 'datas' }
+  if (pathname.startsWith('/d/')) {
+    const tag = decode(pathname.slice(3))
+    return DATA_TAG.test(tag) ? { kind: 'data', tag } : { kind: 'home' }
+  }
   if (pathname === '/u') return { kind: 'updates' }
   if (pathname.startsWith('/u/')) {
     const tag = decode(pathname.slice(3))
@@ -254,6 +264,16 @@ export function reviewHref(
 /** The hash of the gold page. */
 export function goldHref(): string {
   return '#/gold'
+}
+
+/** The hash of the list of data changes. */
+export function dataChangesHref(): string {
+  return '#/d'
+}
+
+/** The hash of the data changes of a snapshot. */
+export function dataChangeHref(tag: string): string {
+  return `#/d/${encodeURIComponent(tag)}`
 }
 
 /** The hash of the list of updates. */

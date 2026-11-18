@@ -114,6 +114,41 @@ describe('App', () => {
     }
   })
 
+  it('shows the list of data changes on #/d and the page of the snapshot on #/d/<tag>', async () => {
+    const counts = { files_added: 1, files_removed: 0, new_groups: 0, gone_groups: 0, keys_added: 0, keys_removed: 0, entries_added: 0, entries_removed: 0, tokens_added: 0, tokens_removed: 0 }
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(
+        fixtureFetch({
+          'rawdiff/index.json': { snapshots: [{ tag: 'raw-20261112', prev_tag: 'raw-20261105', at: '2026-11-12T03:00:00Z', counts }] },
+          'rawdiff/raw-20261112.json': {
+            from: 'raw-20261105',
+            to: 'raw-20261112',
+            counts,
+            new_groups: [],
+            gone_groups: [],
+            files_added: [{ file: 'StoryData/S9999.json', group: 'StoryData', family: 'story-main', entries: 3 }],
+            files_removed: [],
+            keys: [],
+            entries: [],
+            tokens: [],
+          },
+        }),
+      ),
+    )
+    location.hash = '#/d'
+    let el = mount()
+    await loaded(el)
+    await vi.waitFor(() => expect(el.querySelector('.datas .uv-tag')?.getAttribute('href')).toBe('#/d/raw-20261112'))
+    expect(el.querySelector('.home')).toBeNull()
+
+    location.hash = '#/d/raw-20261112'
+    el = mount()
+    await loaded(el)
+    // The page gets the index, so a file the site has is a link.
+    await vi.waitFor(() => expect(el.querySelector('.data-change .dv-file a')?.getAttribute('href')).toBe('#/f/StoryData/S9999.json'))
+  })
+
   it('shows the list of updates on #/u and the page of the release on #/u/<tag>', async () => {
     vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'updates/index.json': { releases: [] } })))
     location.hash = '#/u'

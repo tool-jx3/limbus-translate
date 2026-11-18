@@ -16,6 +16,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/rawdiff"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/site"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -654,5 +655,66 @@ func TestSiteCommandExportsNames(t *testing.T) {
 	}
 	if got.RawTag != "raw-20261029" || len(got.Names) != 1 || got.Names[0].KR != "노을빛 검" || got.Names[0].Units != 2 {
 		t.Errorf("names.json = %s", b)
+	}
+}
+
+// lct site writes the data changes of the raw worktree (dataChanges): none in
+// a repo with one snapshot. Their bytes are in the result.
+func TestSiteCommandExportsDataChanges(t *testing.T) {
+	root := siteRepo(t)
+	out, err := runSiteJSON(t, root, "--out", "work/site")
+	if err != nil {
+		t.Fatal(err)
+	}
+	b, err := os.ReadFile(filepath.Join(root, "work", "site", "rawdiff", "index.json"))
+	if err != nil || strings.TrimSpace(string(b)) != `{"snapshots":[]}` {
+		t.Fatalf("index.json = %q, %v; want no snapshot to compare", b, err)
+	}
+	var total, sum int64
+	field(t, out, "bytes", &total)
+	err = filepath.WalkDir(filepath.Join(root, "work", "site"), func(_ string, e fs.DirEntry, err error) error {
+		if err != nil || e.IsDir() {
+			return err
+		}
+		info, err := e.Info()
+		sum += info.Size()
+		return err
+	})
+	if err != nil || total != sum {
+		t.Errorf("bytes = %d, want the %d bytes written (%v)", total, sum, err)
+	}
+}
+
+// The data changes are those between the snapshot tags of the raw branch, by
+// the order of their names, each compared with the one before it.
+func TestDataChangesComparesEachSnapshotWithTheOneBefore(t *testing.T) {
+	root := rawdiffRepo(t, rawdiffPacks...)
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	changes, err := dataChanges(filepath.Join(root, ".work", "raw"), r)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(changes) != 2 {
+		t.Fatalf("%d changes, want 2", len(changes))
+	}
+	first, second := changes[0], changes[1]
+	if first.Diff.From != "raw-20261029" || first.Diff.To != "raw-20261105" || first.Diff.Counts != (rawdiff.Counts{EntriesAdded: 1}) {
+		t.Errorf("first = %+v, want one entry added from raw-20261029 to raw-20261105", first.Diff)
+	}
+	if second.Diff.From != "raw-20261105" || second.Diff.To != "raw-20261112" || len(second.Diff.FilesAdded) != 1 || second.Diff.FilesAdded[0].Family != "ally" {
+		t.Errorf("second = %+v, want Skills-a1.json (ally) added from raw-20261105 to raw-20261112", second.Diff)
+	}
+	at, err := gitx.RevTime(filepath.Join(root, ".work", "raw"), "refs/tags/raw-20261112")
+	if err != nil || second.At != at.Format("2006-01-02T15:04:05Z") {
+		t.Errorf("at = %q, want the time of the commit of the tag (%v, %v)", second.At, at, err)
+	}
+
+	// One snapshot has nothing to be compared with, and is not read.
+	one := rawdiffRepo(t, rawdiffPacks[0])
+	if changes, err := dataChanges(filepath.Join(one, ".work", "raw"), r); err != nil || len(changes) != 0 {
+		t.Errorf("one snapshot: %d changes, %v; want none", len(changes), err)
 	}
 }

@@ -590,3 +590,11 @@ func TestOpenKRAtUnknownTag(t *testing.T) {
 		}
 	}
 }
+
+func TestSortedTagsOrdersByDayThenNumber(t *testing.T) {
+	got := SortedTags([]string{"raw-20261105.10", "raw-20261112", "raw-20261105", "raw-latest", "raw-20261105.2", "zh-TW-20261029.1", "raw-20261029.x", "raw-2026110"})
+	want := []string{"raw-20261105", "raw-20261105.2", "raw-20261105.10", "raw-20261112"}
+	if !slices.Equal(got, want) {
+		t.Errorf("SortedTags = %v, want %v", got, want)
+	}
+}

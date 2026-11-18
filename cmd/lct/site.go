@@ -24,6 +24,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
+	"github.com/tool-jx3/limbus-translate/internal/rawdiff"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/site"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -135,19 +136,28 @@ func runSite(ctx *cli.Context, args []string) error {
 	if _, err := site.ExportUpdates(releases, hist, r, outDir); err != nil {
 		return err
 	}
-	// Result.Bytes is the size of everything written.
-	err = filepath.WalkDir(filepath.Join(outDir, "updates"), func(_ string, d fs.DirEntry, err error) error {
-		if err != nil || d.IsDir() {
-			return err
-		}
-		info, err := d.Info()
-		if err == nil {
-			res.Bytes += info.Size()
-		}
-		return err
-	})
+	changes, err := dataChanges(rawWorktree, r)
 	if err != nil {
 		return err
+	}
+	if _, err := site.ExportDataChanges(changes, outDir); err != nil {
+		return err
+	}
+	// Result.Bytes is the size of everything written.
+	for _, dir := range []string{"updates", "rawdiff"} {
+		err = filepath.WalkDir(filepath.Join(outDir, dir), func(_ string, d fs.DirEntry, err error) error {
+			if err != nil || d.IsDir() {
+				return err
+			}
+			info, err := d.Info()
+			if err == nil {
+				res.Bytes += info.Size()
+			}
+			return err
+		})
+		if err != nil {
+			return err
+		}
 	}
 	return ctx.Emit(siteOutput{res})
 }
@@ -447,4 +457,39 @@ func evalLoosely(p string) (string, error) {
 		rest = append(rest, filepath.Base(p))
 		p = parent
 	}
+}
+
+// dataChanges compares the KR pack of each snapshot tag of the raw worktree
+// with that of the tag before it, the oldest first: nothing for a branch with
+// one snapshot. Each snapshot is read once. The families are those of r, the
+// rules of today, whatever the snapshot.
+func dataChanges(rawWorktree string, r *rules.Rules) ([]site.DataChange, error) {
+	names, err := gitx.Tags(rawWorktree, raw.TagPrefix)
+	if err != nil {
+		return nil, err
+	}
+	tags := raw.SortedTags(names)
+	if len(tags) < 2 {
+		return nil, nil
+	}
+	var changes []site.DataChange
+	var prev *rawdiff.Summary
+	prevTag := ""
+	for _, tag := range tags {
+		cur, err := rawSummary(rawWorktree, tag)
+		if err != nil {
+			return nil, err
+		}
+		if prev != nil {
+			at, err := gitx.RevTime(rawWorktree, "refs/tags/"+tag)
+			if err != nil {
+				return nil, err
+			}
+			d := rawdiff.Compare(prev, cur, r.Family)
+			d.From, d.To = prevTag, tag
+			changes = append(changes, site.DataChange{Diff: d, At: at.Format("2006-01-02T15:04:05Z")})
+		}
+		prev, prevTag = cur, tag
+	}
+	return changes, nil
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'preact/hooks'
-import { glossaryHref, goldHref, reviewHref, searchHref, updatesHref, type Route } from '../route'
+import { dataChangesHref, glossaryHref, goldHref, reviewHref, searchHref, updatesHref, type Route } from '../route'
 import { LANGS, type Settings } from '../settings'
 import type { Lang, ReviewCounts } from '../types'
 
@@ -77,6 +77,9 @@ export function Header({ route, review, settings, onSettings, fileQuery, onFileQ
       </a>
       <a class="gold-link" href={goldHref()} {...(route.kind === 'gold' ? { 'aria-current': 'page' as const } : {})}>
         基準
+      </a>
+      <a class="data-link" href={dataChangesHref()} {...(route.kind === 'datas' || route.kind === 'data' ? { 'aria-current': 'page' as const } : {})}>
+        資料變化
       </a>
       <div class="top-filter">
         <FileFilter value={fileQuery} onInput={onFileQuery} />

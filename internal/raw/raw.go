@@ -20,6 +20,9 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"regexp"
+	"slices"
+	"strconv"
 	"strings"
 	"time"
 
@@ -360,4 +363,45 @@ func writeSource(worktree string, s Source) error {
 		return err
 	}
 	return os.WriteFile(path, buf.Bytes(), 0o644)
+}
+
+// snapshotTagRe matches a snapshot tag: raw-YYYYMMDD, or raw-YYYYMMDD.N for
+// the Nth snapshot of a day (NextTag).
+var snapshotTagRe = regexp.MustCompile(`^` + regexp.QuoteMeta(TagPrefix) + `(\d{8})(?:\.(\d+))?$`)
+
+// SortedTags returns the snapshot tags among names, the oldest first: by day,
+// then by N as a number (the tag without one is the first of its day). Names
+// that are not snapshot tags are left out.
+func SortedTags(names []string) []string {
+	type snap struct {
+		name, day string
+		n         int
+	}
+	var snaps []snap
+	for _, name := range names {
+		m := snapshotTagRe.FindStringSubmatch(name)
+		if m == nil {
+			continue
+		}
+		n := 1
+		if m[2] != "" {
+			var err error
+			if n, err = strconv.Atoi(m[2]); err != nil {
+				continue
+			}
+		}
+		snaps = append(snaps, snap{name, m[1], n})
+	}
+	// The days have eight digits each, so they compare as text.
+	slices.SortStableFunc(snaps, func(a, b snap) int {
+		if a.day != b.day {
+			return strings.Compare(a.day, b.day)
+		}
+		return a.n - b.n
+	})
+	out := make([]string, len(snaps))
+	for i, s := range snaps {
+		out[i] = s.name
+	}
+	return out
 }
