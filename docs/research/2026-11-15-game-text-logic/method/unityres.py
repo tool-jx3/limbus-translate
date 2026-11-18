@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""讀遊戲本體的 resources.assets（Unity 6000.3，沒有型別資訊）裡和文字有關的設定。
+r"""讀遊戲本體的 resources.assets（Unity 6000.3，沒有型別資訊）裡和文字有關的設定。
 
   python3 -I unityres.py <LimbusCompany_Data 資料夾> texts <輸出資料夾>   把所有 TextAsset 寫成檔案（啟動用清單、啟動用文字、換行規則…）
   python3 -I unityres.py <LimbusCompany_Data 資料夾> styles               TextMeshPro 樣式表：名稱、開頭、結尾
   python3 -I unityres.py <LimbusCompany_Data 資料夾> config               下載設定（TextAssetPatchConfig）；加密金鑰不印
-  python3 -I unityres.py <LimbusCompany_Data 資料夾> labels               靜態標籤（UITextDataLoader）：文字 id、物件路徑、字級、縮字、換行、溢出、寬度（TSV）
+  python3 -I unityres.py <LimbusCompany_Data 資料夾> labels [檔案…]      靜態標籤（UITextDataLoader）：文字 id、物件路徑、字級、縮字、換行、溢出、寬度（TSV）
+  python3 -I unityres.py <LimbusCompany_Data 資料夾> tmp <檔案> [正規表示式]  某個檔裡的文字元件：物件路徑、字級、縮字範圍、換行、溢出、框的寬高（TSV）
 
-需要資料夾裡的 resources.assets 與 globalgamemanagers.assets。物件的欄位順序是照這一版的類別寫死的，
+檔案是資料夾裡的檔名：resources.assets（預設）、level0～level8（場景）、sharedassets0～8.assets。戰鬥場景是 level3、
+劇情場景是 level4；例如戰鬥氣泡是 `tmp level3 'Dialog/\[Text\]Dialog$'`，劇情台詞是 `tmp level4 'rect_texts/\[Text\]Serif$'`。
+需要資料夾裡的 globalgamemanagers.assets（元件的類別名稱在裡面）。物件的欄位順序是照這一版的類別寫死的，
 遊戲或 Unity 改版後要重新核對（每個指令解析完都會檢查是否剛好讀到物件結尾或數值是否合理）。
 """
 import mmap
@@ -96,8 +99,9 @@ class Reader:
 
 
 class Resources:
-    def __init__(self, folder):
-        self.res = SerializedFile(os.path.join(folder, "resources.assets"))
+    def __init__(self, folder, name="resources.assets"):
+        self.name = name
+        self.res = SerializedFile(os.path.join(folder, name))
         gm = SerializedFile(os.path.join(folder, "globalgamemanagers.assets"))
         self.scripts = {}
         for path_id, (_, _, class_id) in gm.objects.items():
@@ -108,7 +112,7 @@ class Resources:
                 name = r.string()
                 namespace = r.string()
                 self.scripts[path_id] = f"{namespace}.{name}" if namespace else name
-        self.gm_index = self.res.externals.index("globalgamemanagers.assets") + 1
+        self.gm_index = self.res.externals.index("globalgamemanagers.assets") + 1 if "globalgamemanagers.assets" in self.res.externals else -1
 
     def behaviours(self, *classes):
         """(path id, 類別, 所在的 GameObject, 讀到自訂欄位開頭的 Reader)"""
@@ -167,7 +171,8 @@ def cmd_config(res):
             print(name, r.string())
 
 
-def cmd_labels(res):
+def text_components(res):
+    """物件路徑的函式、每個 GameObject 的文字設定與框。"""
     names, transform_of, parent, owner, rects = {}, {}, {}, {}, {}
     for path_id, (offset, size, class_id) in res.res.objects.items():
         if class_id == 1:  # GameObject：元件、layer、名稱
@@ -191,7 +196,7 @@ def cmd_labels(res):
             t = parent.get(t)
         return "/".join(reversed(parts))
 
-    texts = {}
+    texts, odd = {}, 0
     for _, _, game_object, r in res.behaviours("TMPro.TextMeshProUGUI", "TMPro.CustomRubyTextMeshProUGUI"):
         r.skip(12 + 16 + 4 + 16 + 4)  # Graphic：材質、顏色、raycast、padding、maskable
         if r.i32():  # 有事件接收者的元件，版面不同，略過
@@ -209,33 +214,63 @@ def cmd_labels(res):
         wrap = r.i32()
         r.skip(4)
         overflow = r.i32()
-        if not (1 <= size <= 500 and auto in (0, 1) and 0 <= wrap <= 4 and 0 <= overflow <= 8):
-            sys.exit("文字元件的數值不合理：欄位順序可能變了")
+        # 世界座標的標籤（RPG 地圖上的地名）字級可以小於 1
+        if not (0.01 <= size <= 2000 and auto in (0, 1) and 0 <= wrap <= 4 and 0 <= overflow <= 8):
+            odd += 1
+            continue
         texts[game_object] = (size, auto, low, high, wrap, overflow)
+    if odd > max(3, len(texts) // 100):
+        sys.exit(f"{res.name}: {odd} 個文字元件的數值不合理：欄位順序可能變了")
+    if odd:
+        print(f"{res.name}: 略過 {odd} 個數值不合理的文字元件", file=sys.stderr)
+    return path, texts, rects
 
-    print("key\tlocal\tpath\tsize\tautosize\tmin\tmax\twrap\toverflow\tfixed_width")
+
+def cmd_tmp(res, pattern):
+    import re
+
+    path, texts, rects = text_components(res)
+    wanted = re.compile(pattern)
+    print("path\tsize\tautosize\tmin\tmax\twrap\toverflow\twidth\theight")
+    for game_object, (size, auto, low, high, wrap, overflow) in texts.items():
+        p = path(game_object)
+        if not wanted.search(p):
+            continue
+        rect = rects.get(game_object)
+        # 錨點左右（上下）相同時寬（高）是固定的；否則跟著上層物件伸縮
+        width = f"{rect[6]:g}" if rect and abs(rect[0] - rect[2]) < 1e-6 else "隨上層"
+        height = f"{rect[7]:g}" if rect and abs(rect[1] - rect[3]) < 1e-6 else "隨上層"
+        print(f"{p}\t{size:g}\t{auto}\t{low:g}\t{high:g}\t{wrap}\t{overflow}\t{width}\t{height}")
+
+
+def cmd_labels(res, header=True):
+    path, texts, rects = text_components(res)
+    if header:
+        print("file\tkey\tlocal\tpath\tsize\tautosize\tmin\tmax\twrap\toverflow\tfixed_width")
     for _, _, game_object, r in res.behaviours("UITextDataLoader"):
         key = r.string()
         local = r.b[r.p] if r.p < len(r.b) else 0
         size, auto, low, high, wrap, overflow = texts.get(game_object, ("", "", "", "", "", ""))
         rect = rects.get(game_object)
         width = round(rect[6]) if rect and abs(rect[0] - rect[2]) < 1e-6 else ""
-        print(f"{key}\t{local}\t{path(game_object)}\t{size}\t{auto}\t{low}\t{high}\t{wrap}\t{overflow}\t{width}")
+        print(f"{res.name}\t{key}\t{local}\t{path(game_object)}\t{size}\t{auto}\t{low}\t{high}\t{wrap}\t{overflow}\t{width}")
 
 
 def main():
     if len(sys.argv) < 3:
         sys.exit(__doc__)
-    res = Resources(sys.argv[1])
-    command = sys.argv[2]
-    if command == "texts" and len(sys.argv) > 3:
-        cmd_texts(res, sys.argv[3])
+    folder, command, rest = sys.argv[1], sys.argv[2], sys.argv[3:]
+    if command == "texts" and rest:
+        cmd_texts(Resources(folder), rest[0])
     elif command == "styles":
-        cmd_styles(res)
+        cmd_styles(Resources(folder))
     elif command == "config":
-        cmd_config(res)
+        cmd_config(Resources(folder))
     elif command == "labels":
-        cmd_labels(res)
+        for i, name in enumerate(rest or ["resources.assets"]):
+            cmd_labels(Resources(folder, name), header=i == 0)
+    elif command == "tmp" and rest:
+        cmd_tmp(Resources(folder, rest[0]), rest[1] if len(rest) > 1 else "")
     else:
         sys.exit(__doc__)
 
