@@ -17,9 +17,10 @@
 | [`fingerprint.py`](fingerprint.py) | 把報告依賴的程式事實抽成一份「指紋」（`fingerprints/<日期>.json`），遊戲更新後比對哪些變了、要重看哪幾章；`watch.json` 是要盯的方法清單 |
 | [`filelist.py`](filelist.py) | 官方檔案清單（`RemoteLocalizeFileList.json`）和語言包的檔案互相比對：哪些檔不會被載入、清單有而資料夾沒有的檔、同一張表的重複 id |
 | [`catalog.py`](catalog.py) | 解讀 Addressables 的目錄（`catalog_S1.json`）：每個資源的型別，在哪個 bundle 還是在遊戲本體 |
+| [`unityres.py`](unityres.py) | 讀遊戲本體的 `resources.assets`：文字資源（啟動用清單與文字、換行規則）、樣式表、下載設定、靜態標籤對應的文字 id 與文字元件的設定 |
 | `re_common.py` | 共用：工作目錄、PE 檔讀取、方法位址索引 |
 
-前六個與 `fingerprint.py` 的 `watch`、`make` 需要遊戲檔案與 `pip install iced-x86 numpy`；`kwsim.py`、`packcheck.py` 只需要 `raw`、`tw` 分支的資料；`filelist.py`、`catalog.py` 各需要一份遊戲下載的資料（腳本開頭寫了檔案在哪裡），不需要額外的套件。腳本一律用 `python3 -I` 執行。遊戲的檔案與下載的資料都不放進版控。
+前六個與 `fingerprint.py` 的 `watch`、`make` 需要遊戲檔案與 `pip install iced-x86 numpy`；`kwsim.py`、`packcheck.py` 只需要 `raw`、`tw` 分支的資料；`filelist.py`、`catalog.py` 各需要一份遊戲下載的資料，`unityres.py` 需要遊戲安裝資料夾裡的 `resources.assets` 與 `globalgamemanagers.assets`（腳本開頭寫了檔案在哪裡），都不需要額外的套件。腳本一律用 `python3 -I` 執行。遊戲的檔案與下載的資料都不放進版控。
 
 ## 步驟
 

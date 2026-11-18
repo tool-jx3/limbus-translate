@@ -87,7 +87,7 @@
 
 `TextDataConverter.InitRemote<T>`（共用實作 0x3BC1EE0，確認）：語言包生效時，把要載入的官方語言**直接改成 1（EN）**，再另外準備一個「讀語言包」的函式。劇情（`StoryDataParser.GetScriptText` 0x20B2B40）與 RPG（`RpgLocalizationManager`）也一樣。
 
-例外是啟動時就要用的四張表（登入介面、檔案下載說明、戰鬥提示、錯誤代碼訊息；`TextDataSet.LoadLocal` 0x13C27B0）：底是遊戲內選的語言，語言包同樣以 id 覆蓋。這四張表的官方文字放在遊戲本體的 Resources 裡，每個語言五個檔：`BattleHint`、`FileDownloadDesc`、`LoginUIText`、`UserAgreements`、`ErrorCodeMsgLocal`（資源目錄 `catalog_S1.json` 的 `Localize/<語言>/…`，確認）。前四個在 `raw` 的 KR 裡也有同名的檔，所以語言包有翻；`ErrorCodeMsgLocal` 只在遊戲本體裡，`raw` 沒有，語言包目前沒有這個檔，啟動階段的錯誤訊息會是遊戲內選的語言（推定）。哪個檔對到哪張表寫在 `Localize/LocalizeFileList`（同樣在本體的 Resources），內容還沒讀。
+例外是啟動時就要用的四張表（登入介面、檔案下載說明、戰鬥提示、錯誤代碼訊息；`TextDataSet.LoadLocal` 0x13C27B0）：底是遊戲內選的語言，語言包同樣以 id 覆蓋。這四張表的官方文字放在遊戲本體的 Resources 裡，每個語言五個檔：`BattleHint`、`FileDownloadDesc`、`LoginUIText`、`UserAgreements`、`ErrorCodeMsgLocal`（資源目錄 `catalog_S1.json` 的 `Localize/<語言>/…`，確認）。前四個在 `raw` 的 KR 裡也有同名的檔，所以語言包有翻；`ErrorCodeMsgLocal` 只在遊戲本體裡，`raw` 沒有，語言包目前沒有這個檔，啟動階段的錯誤訊息會是遊戲內選的語言（推定）。哪個檔對到哪張表寫在 `Localize/LocalizeFileList`（同樣在本體的 Resources）：登入介面讀 `LoginUIText`、`UserAgreements`、`ErrorCodeMsgLocal`，錯誤代碼訊息只讀 `ErrorCodeMsgLocal`（[10-assets.md](10-assets.md) 第 2 節）。
 
 ### 合併規則：一般文字表
 
@@ -161,8 +161,7 @@
 
 ## 讀不到、沒有確認的部分
 
-- 遊戲實際用「檔案模式」還是「Addressables 模式」載入官方文字：推定是檔案模式。資源目錄 `catalog_S1.json` 的 21,880 個資源裡沒有 `Assets/Resources_moved/Localize` 底下的東西，只有啟動用的 16 個 Resources 項目；`RemoteLocalizeFileList.json` 與各語言的文字檔則是下載後以檔案的形式存在。
-- 啟動用檔案清單 `Localize/LocalizeFileList` 的內容（在遊戲本體的 `resources.assets` 裡）。
+- 2026-11-18 已解決：遊戲用**檔案模式**載入官方文字（`TextAssetPatchConfig` 的設定值是 1，確認），啟動用檔案清單的內容也讀到了。兩者與各檔的下載網址見 [10-assets.md](10-assets.md)。
 - `JsonUtility` 對不嚴格的 JSON（註解、結尾多的逗號、型別不符）容忍到什麼程度：那是 Unity 的原生程式。官方檔有把數字寫進字串欄位（`"id": 0`）的情形，表示這一種可以；其他不要依賴。
 - 某張表載入失敗後玩家實際看到什麼。
 

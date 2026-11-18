@@ -196,7 +196,7 @@
 
 ## 讀不到、沒有確認的部分
 
-- 啟動用檔案清單（`Localize/LocalizeFileList`，在遊戲本體裡）與 RPG 檔案清單的內容。主要的清單已取得，見上方 2026-11-18 的補充。
+- 三份檔案清單都已取得：主要清單見上方 2026-11-18 的補充，啟動用清單與 RPG 清單見 [10-assets.md](10-assets.md) 第 2 節。
 - `LobbyBGMCategory` 由誰讀（它在清單裡，有自己的表）。`ChapterBannerConfig`、`SynergyKeyword` 不在清單裡，不會載入；四個 `Tutorial*` 檔的表見上方補充。（鏡牢節點表 `MirrorDungeonNode1-1`、`HellsChickenDungeonNode` 已確認沒有人讀，見 [07-field-display.md](07-field-display.md)。）
 - `ChoiceEventKeyword`、`ChoiceEventTarget` 屬於選擇事件結果表：原本是推定，2026-11-16 已確認讀這張表的是各個結果類別的建構式。
 - 介面文字表 98 個節點裡有 32 個是只憑類別與檔名歸進去的。

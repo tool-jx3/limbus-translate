@@ -60,7 +60,7 @@
 
 - **沒有任何遊戲程式把 rich text 關掉**（掃過所有寫入 `TMP_Text.m_isRichText` 的指令）。個別 prefab 上的設定在資源檔裡，讀不到。
 - **`<noparse>`**：遊戲程式沒有賦予它任何意義，只有 TextMeshPro 自己處理。它能擋關鍵字的原因見 [03-keywords.md](03-keywords.md)。
-- **`<style="…">`**：樣式定義在 TextMeshPro 的樣式表資源裡，讀不到；名稱必須是官方用過的。官方用過：`highlight`、`upgradeHighlight`、`highlightConverted`、`yellow`、`number_highlight`、`railwayDungeonEnemy`、`railwayDungeonAlly`，以及歌詞用的 `dkr…`（KR）、`djp…`（JP）、`den…`（EN）。歌詞樣式名稱依語言不同，譯文沿用 KR 的名稱；哪一組搭配譯文字型最合適沒有辦法從程式判斷。
+- **`<style="…">`**：樣式定義在 TextMeshPro 的樣式表資源裡（2026-11-18 已讀出，31 個樣式的內容見 [10-assets.md](10-assets.md) 第 3 節）；名稱必須是官方用過的。官方用過：`highlight`、`upgradeHighlight`、`highlightConverted`、`yellow`、`number_highlight`、`railwayDungeonEnemy`、`railwayDungeonAlly`，以及歌詞用的 `dkr…`（KR）、`djp…`（JP）、`den…`（EN）。歌詞樣式名稱依語言不同；這三組其實是切換到該語言字型的發光材質，搭配語言包字型的實際效果還沒有確認（[10-assets.md](10-assets.md) 第 3 節）。
 - **`<style="highlight">` 與 `<style="upgradeHighlight">` 是用完全相同的字串比對的**（雙引號、沒有空格、小寫）。同步等級比較畫面（`SkillTextDataMediator`）在新等級文字含有 `<style="highlight">` 且與舊等級不同時，把它換成 `<style="highlightConverted">`；飾品強化預覽把 `<style="upgradeHighlight">` 換成同一個。寫法不同（單引號、多空格）就不會被換。少了 `</style>` 不會當機，但後面的標籤顏色會全部變黃（推定：只看了反編譯結果）。
 - **同步等級比較的另一條路**（文字沒有 `<style="highlight">` 時；`SkillTextDataMediator.ColorChangedText` 0x1830BC0，推定）：把新舊兩級的文字各自以換行切開，逐行比較；整行相同的不標；只有數字不同的，只把變了的數字上色；其他的整行上色。所以：
   - 原文相鄰兩級完全相同的那一行，譯文也要完全相同（差一個字就整行變色）。
