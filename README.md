@@ -15,7 +15,7 @@
 | 分支 | 內容 | 誰寫入 |
 |---|---|---|
 | `main` | 程式、翻譯規則（`guides/`、`glossary/`、`rules/`）、workflow | 人 |
-| `raw` | 每次遊戲更新的官方原文快照，一次更新一個 commit 與 tag（`raw-YYYYMMDD`） | 只有 CI |
+| `raw` | 每次遊戲更新的官方原文快照，一次更新一個 commit 與 tag（`raw-YYYYMMDD`）：`kr/`、`en/`、`jp/` 三個語言包，以及 `common/`（不分語言的檔：官方檔案清單、語音表、RPG 檔案清單） | 只有 CI |
 | `tw` | 每個單位的譯文紀錄、待譯清單、報表、每個 Release 的比對紀錄（`.meta/history/<tag>.json`）與建置出來的語言包 | 只有 CI |
 
 Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內容和上一個 Release 不同時才建立（見「GitHub Actions 設定」）。人要改什麼，都經由 `main`（見「人工介入」）。CI 對 `main` 不直接 push，只開規則 PR 讓人審核（見「收到規則 PR 怎麼處理」）。
@@ -73,6 +73,7 @@ Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內
 - 欄位：既有的檔案種類多了或少了哪些 JSON 欄位（路徑、值的型別、出現幾處、第一處在哪個檔案）。
 - 文字標記：整包原文第一次出現或完全消失的方括號名稱、具名代入符號（`{名稱}`）、`<style>` 名稱與標籤；方括號名稱分成「有對應條目」和「沒有對應條目」（後者可能是原文筆誤）。
 - 檔案：新增與移除的檔案、族群與筆數；只被預設族群接手的檔案標示「沒有分流規則」。
+- 檔案清單（只有 KR）：官方檔案清單、語音表、RPG 檔案清單多了或少了哪些名稱，以及韓文語言包根目錄裡沒有任何清單列出的檔（遊戲不會載入）；這一版才變成未列入的另外標示。這一節要快照帶有 `common/` 才有，也就是 `lct fetch` 開始一併抓這些檔之後的快照。
 - 既有檔案的條目：兩個快照都有的檔案，條目多了或少了哪些 id。
 
 每一節都寫了這種變化對翻譯規則與遊戲程式研究報告（`docs/research/2026-11-15-game-text-logic/`）的意義。文字內容改了什麼不在這一頁，看「更新」頁。
@@ -103,6 +104,7 @@ fork 或搬到別的 repo 時，要設定下面的 secrets 與 variables，並�
 | `RULES_REVIEW_IN_CI` | Variable | 設成 `true` 時，`rules-proposal.yml` 在 CI 以 action 審查建議並開規則 PR | 選填；不是 `true` 時 CI 只數出待處理的建議，留給人在本機執行 `/rules-review`，維持成功 | 無（在本機審查） | 填 `true`。action 用的是 GitHub Actions 的用量，只適用 Agent SDK、API 等的促銷額度不能用 |
 | `LCT_MAX_USD` | Variable | 每次建置翻譯花費的上限（美元），到了就停止翻譯 | 否 | 30 | 自行決定；手動執行時可用 `max_usd` 輸入蓋過 |
 | `LIMBUS_CDN_TEMPLATE` | Variable | 下載官方語言包的 CDN 網址範本，含 `{token}` 與 `{lang}` | 否 | 同 `lct.yaml` 的 `cdn_template`：`https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip` | CDN 換了位置才需要設定 |
+| `LIMBUS_CDN_FILE_TEMPLATE` | Variable | 下載單一檔案的 CDN 網址範本，含 `{token}` 與 `{path}`；`lct fetch` 用它抓不分語言的檔（官方檔案清單、語音表、RPG 檔案清單） | 否 | 同 `lct.yaml` 的 `cdn_file_template`：`https://downloadcommon.limbuscompanycdn.org/{token}/{path}` | CDN 換了位置才需要設定，要和上一列的語言包網址範本一起設：只設了語言包的那一個時，`lct.yaml` 的 `cdn_file_template` 不會被採用（那是另一個 CDN 的），該次快照就沒有 `common/` |
 
 ### Workflow permissions
 

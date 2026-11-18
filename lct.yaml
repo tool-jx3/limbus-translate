@@ -1,6 +1,8 @@
 lang_dir: zh-TW
 frozen: []
 cdn_template: https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip
+# 單一檔案的網址；lct fetch 用它抓不分語言的檔（官方檔案清單、語音表、RPG 檔案清單）放進 common/
+cdn_file_template: https://downloadcommon.limbuscompanycdn.org/{token}/{path}
 worktrees: { raw: .work/raw, tw: .work/tw }
 batch: { max_units: 40, story_max_units: 120, max_names: 80, max_attempts: 3, lease_minutes: 120 }
 build: { max_inconsistent: 1000 }

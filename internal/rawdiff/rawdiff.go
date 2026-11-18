@@ -5,8 +5,14 @@
 package rawdiff
 
 import (
+	"bytes"
+	"encoding/json"
+	"errors"
 	"fmt"
+	"io/fs"
 	"maps"
+	"os"
+	"path/filepath"
 	"regexp"
 	"slices"
 	"strconv"
@@ -43,6 +49,9 @@ type Diff struct {
 	// VsKR is, for the pack of another language, how its changes differ from
 	// those of the KR pack; the caller sets it (Against).
 	VsKR *Versus `json:"vs_kr,omitempty"`
+	// Lists is how the lists of the common files differ, when To has common
+	// files (SetLists); nil when it has none.
+	Lists *ListChanges `json:"lists,omitempty"`
 }
 
 // Counts is the size of each list of a Diff. Keys, entries and tokens are
@@ -58,6 +67,9 @@ type Counts struct {
 	EntriesRemoved int `json:"entries_removed"`
 	TokensAdded    int `json:"tokens_added"`
 	TokensRemoved  int `json:"tokens_removed"`
+	ListsAdded     int `json:"lists_added"` // names of the lists of the common files
+	ListsRemoved   int `json:"lists_removed"`
+	UnlistedNew    int `json:"unlisted_new"` // files that no list names, and that had a list or were not there before
 }
 
 // Zero reports whether nothing differs.
@@ -156,6 +168,9 @@ type Summary struct {
 	// defined is, by an id a bracket could name, the groups with an entry of
 	// that id.
 	defined map[string]map[string]bool
+	// lists is the lists of the common files (SetLists); nil when the
+	// snapshot has none.
+	lists Lists
 }
 
 type fileSum struct {
@@ -372,6 +387,17 @@ func Compare(from, to *Summary, familyOf func(file string) string) *Diff {
 			d.Counts.TokensAdded++
 		} else {
 			d.Counts.TokensRemoved++
+		}
+	}
+	if d.Lists = listChanges(from, to); d.Lists != nil {
+		for _, c := range d.Lists.Changes {
+			d.Counts.ListsAdded += len(c.Added)
+			d.Counts.ListsRemoved += len(c.Removed)
+		}
+		for _, u := range d.Lists.Unlisted {
+			if u.New {
+				d.Counts.UnlistedNew++
+			}
 		}
 	}
 	d.Counts.FilesAdded, d.Counts.FilesRemoved = len(d.FilesAdded), len(d.FilesRemoved)
@@ -595,4 +621,159 @@ func onlyItems(a, b *Diff) []Item {
 		out = append(out, Item{Kind: id.kind, Change: id.change, Name: id.name})
 	}
 	return out
+}
+
+// Lists is the names that the common files of a snapshot list: by file (its
+// path under the common directory), by list, the names in the order of the
+// file. The file list of the game is {"ui": ["BattleUIText", …], …}; that of
+// the RPG has objects with the name under "file".
+type Lists map[string]map[string][]string
+
+// ListChanges is how the lists of the common files of To differ from those of
+// From. Neither list is nil.
+type ListChanges struct {
+	// Compared is false when From has no common files: then there is nothing
+	// to compare with, Changes is empty and no file is New.
+	Compared bool         `json:"compared"`
+	Changes  []ListChange `json:"changes"` // by file, then by list
+	// Unlisted are the files of the pack of To, outside its directories, that
+	// no list of any common file names: the game does not load them from the
+	// file list. (The files in a directory are named by other means: the
+	// story by its static data, the voices by the name of their character.)
+	Unlisted []UnlistedFile `json:"unlisted"`
+}
+
+// ListChange is the names that one list of one common file gained and lost.
+type ListChange struct {
+	File    string   `json:"file"`
+	List    string   `json:"list"`
+	Added   []string `json:"added"`
+	Removed []string `json:"removed"`
+}
+
+// UnlistedFile is a file of the pack that no list names. New: in From it had a
+// list, or was not there.
+type UnlistedFile struct {
+	File    string `json:"file"`
+	Entries int    `json:"entries"`
+	New     bool   `json:"new,omitempty"`
+}
+
+// ReadLists reads the lists of the common files under dir: of every .json
+// file that is an object, the members that are arrays, and of each array the
+// elements that are a string or an object with a string under "file". nil
+// when dir does not exist. A .json file that cannot be parsed is an error
+// naming it.
+func ReadLists(dir string) (Lists, error) {
+	if info, err := os.Stat(dir); errors.Is(err, fs.ErrNotExist) || err == nil && !info.IsDir() {
+		return nil, nil
+	}
+	lists := Lists{}
+	err := filepath.WalkDir(dir, func(p string, d fs.DirEntry, err error) error {
+		if err != nil || d.IsDir() || !strings.HasSuffix(p, ".json") {
+			return err
+		}
+		rel, err := filepath.Rel(dir, p)
+		if err != nil {
+			return err
+		}
+		rel = filepath.ToSlash(rel)
+		data, err := os.ReadFile(p)
+		if err != nil {
+			return err
+		}
+		var doc map[string]json.RawMessage
+		if err := json.Unmarshal(bytes.TrimPrefix(data, []byte("\xef\xbb\xbf")), &doc); err != nil {
+			return fmt.Errorf("rawdiff: %s: %w", rel, err)
+		}
+		file := map[string][]string{}
+		for name, raw := range doc {
+			var items []json.RawMessage
+			if json.Unmarshal(raw, &items) != nil {
+				continue
+			}
+			names := []string{}
+			for _, item := range items {
+				var s string
+				var obj struct {
+					File *string `json:"file"`
+				}
+				if json.Unmarshal(item, &s) == nil {
+					names = append(names, s)
+				} else if json.Unmarshal(item, &obj) == nil && obj.File != nil {
+					names = append(names, *obj.File)
+				}
+			}
+			file[name] = names
+		}
+		lists[rel] = file
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return lists, nil
+}
+
+// SetLists gives the summary the lists of the common files of its snapshot.
+func (s *Summary) SetLists(l Lists) { s.lists = l }
+
+// unlisted is the files of s outside a directory that no list of s names.
+func (s *Summary) unlisted() []string {
+	named := map[string]bool{}
+	for _, file := range s.lists {
+		for _, names := range file {
+			for _, n := range names {
+				named[n] = true
+			}
+		}
+	}
+	var out []string
+	for file := range s.files {
+		if !strings.Contains(file, "/") && !named[strings.TrimSuffix(file, ".json")] {
+			out = append(out, file)
+		}
+	}
+	slices.Sort(out)
+	return out
+}
+
+// listChanges compares the lists of from and to; nil when to has none.
+func listChanges(from, to *Summary) *ListChanges {
+	if to.lists == nil {
+		return nil
+	}
+	c := &ListChanges{Compared: from.lists != nil, Changes: []ListChange{}, Unlisted: []UnlistedFile{}}
+	was := map[string]bool{}
+	if c.Compared {
+		for _, f := range from.unlisted() {
+			was[f] = true
+		}
+		files := map[string]bool{}
+		for f := range from.lists {
+			files[f] = true
+		}
+		for f := range to.lists {
+			files[f] = true
+		}
+		for _, file := range slices.Sorted(maps.Keys(files)) {
+			names := map[string]bool{}
+			for n := range from.lists[file] {
+				names[n] = true
+			}
+			for n := range to.lists[file] {
+				names[n] = true
+			}
+			for _, list := range slices.Sorted(maps.Keys(names)) {
+				lc := ListChange{File: file, List: list, Added: onlyIDs(to.lists[file][list], from.lists[file][list]), Removed: onlyIDs(from.lists[file][list], to.lists[file][list])}
+				if len(lc.Added)+len(lc.Removed) > 0 {
+					c.Changes = append(c.Changes, lc)
+				}
+			}
+		}
+	}
+	for _, f := range to.unlisted() {
+		c.Unlisted = append(c.Unlisted, UnlistedFile{File: f, Entries: to.files[f].entries, New: c.Compared && !was[f]})
+	}
+	return c
 }

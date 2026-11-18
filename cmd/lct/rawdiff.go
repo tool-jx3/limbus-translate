@@ -20,7 +20,7 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "rawdiff",
 		Usage: "compare an official pack of two snapshots of the raw branch as data (the files, the kinds of file, the keys of the JSON, the entries and the tokens " +
-			"of the text that only one has; not what the text says): [--from TAG] [--to TAG] [--lang kr|jp|en]; --to defaults to the newest snapshot, " +
+			"of the text that only one has, and for KR the lists of the common files of the snapshots; not what the text says): [--from TAG] [--to TAG] [--lang kr|jp|en]; --to defaults to the newest snapshot, " +
 			"--from to the one before --to, --lang to kr; for jp and en it also lists what changed in that pack and not in KR, and the reverse; " +
 			"reads the tags of the raw worktree and writes nothing",
 		Run: runRawdiff,
@@ -93,6 +93,24 @@ func (o rawdiffOutput) String() string {
 			}
 		}
 		b.WriteString(")\n")
+	}
+	if l := d.Lists; l != nil {
+		fmt.Fprintf(&b, "lists: +%d -%d, %d files newly unlisted\n", d.Counts.ListsAdded, d.Counts.ListsRemoved, d.Counts.UnlistedNew)
+		for _, c := range l.Changes {
+			if len(c.Added) > 0 {
+				fmt.Fprintf(&b, "  + %s %s: %s\n", c.File, c.List, strings.Join(c.Added, ", "))
+			}
+			if len(c.Removed) > 0 {
+				fmt.Fprintf(&b, "  - %s %s: %s\n", c.File, c.List, strings.Join(c.Removed, ", "))
+			}
+		}
+		for _, u := range l.Unlisted {
+			isNew := ""
+			if u.New {
+				isNew = ", new"
+			}
+			fmt.Fprintf(&b, "  unlisted: %s (%d entries%s)\n", u.File, u.Entries, isNew)
+		}
 	}
 	if d.VsKR != nil {
 		lang := strings.ToUpper(d.Lang)
@@ -200,7 +218,8 @@ func rawDiff(rawRoot, from, to, lang string, familyOf func(string) string) (*raw
 }
 
 // rawSummary summarizes the pack of lang of the snapshot tag of the raw
-// worktree at rawRoot, which it does not touch.
+// worktree at rawRoot, which it does not touch; for the KR pack, with the
+// lists of the common files of the snapshot, if it has any.
 func rawSummary(rawRoot, tag, lang string) (*rawdiff.Summary, error) {
 	tmp, err := os.MkdirTemp("", "lct-rawdiff-*")
 	if err != nil {
@@ -211,5 +230,23 @@ func rawSummary(rawRoot, tag, lang string) (*rawdiff.Summary, error) {
 	if err != nil {
 		return nil, err
 	}
-	return rawdiff.Summarize(p)
+	s, err := rawdiff.Summarize(p)
+	if err != nil || lang != rawLangs[0] {
+		return s, err
+	}
+	// The lists of the common files go with the KR pack; a snapshot made
+	// before they were fetched has none.
+	has, err := gitx.HasPath(rawRoot, "refs/tags/"+tag, raw.CommonDir)
+	if err != nil || !has {
+		return s, err
+	}
+	if err := gitx.Archive(rawRoot, "refs/tags/"+tag, []string{raw.CommonDir}, tmp); err != nil {
+		return nil, err
+	}
+	lists, err := rawdiff.ReadLists(filepath.Join(tmp, raw.CommonDir))
+	if err != nil {
+		return nil, err
+	}
+	s.SetLists(lists)
+	return s, nil
 }

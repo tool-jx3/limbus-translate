@@ -17,6 +17,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strings"
 	"time"
 )
@@ -341,4 +342,91 @@ func extractFile(f *zip.File, dest string) error {
 	// Reading to the end also verifies the CRC recorded in the archive.
 	_, err = writeFile(dest, rc)
 	return err
+}
+
+// Where the game keeps the files of the localization on the CDN, under the
+// token: the list of every file, and the directory of the files themselves
+// (<lang>/… for the packs, the rest for every language).
+const (
+	PatchInfoPath = "Assets/LocalizePatch/LocalizePatchInfo.json"
+	LocalizeRoot  = "Assets/Resources_moved/Localize/"
+)
+
+// MaxCommonFiles bounds the common files of one update. There are three (the
+// file list of the game, the voice table, the file list of the RPG); many more
+// means the layout changed and the packs would be taken for common files.
+const MaxCommonFiles = 20
+
+// maxPatchInfoBytes bounds the list of every file (about 1 MB for 7,300 files).
+const maxPatchInfoBytes = 16 << 20
+
+// commonFileRe matches the path of a common file under LocalizeRoot: plain
+// names separated by slashes.
+var commonFileRe = regexp.MustCompile(`^[A-Za-z0-9_-][A-Za-z0-9._-]*(/[A-Za-z0-9_-][A-Za-z0-9._-]*)*$`)
+
+// FileURL fills the CDN file template: {token} becomes token and {path} the
+// path of the file under the token.
+func FileURL(template, token, path string) string {
+	return strings.NewReplacer("{token}", token, "{path}", path).Replace(template)
+}
+
+// CommonFiles reads the list of every file of an update (the content of
+// PatchInfoPath) and returns the files that belong to no language pack, as
+// paths under LocalizeRoot, sorted: "RemoteLocalizeFileList.json",
+// "etc/VoiceTable.json". The files of the packs (kr/, en/, jp/) and whatever
+// lies outside LocalizeRoot are left out. A list without files, a path that is
+// not plain, or more than MaxCommonFiles common files is an error.
+func CommonFiles(patchInfo []byte) ([]string, error) {
+	var info struct {
+		Files map[string]json.RawMessage `json:"Files"`
+	}
+	if err := json.Unmarshal(patchInfo, &info); err != nil {
+		return nil, errors.New("parse the list of files: not JSON")
+	}
+	if len(info.Files) == 0 {
+		return nil, errors.New("parse the list of files: it lists no file")
+	}
+	var common []string
+	for name := range info.Files {
+		rel, ok := strings.CutPrefix(name, LocalizeRoot)
+		if !ok {
+			continue
+		}
+		if lang, _, isPack := strings.Cut(rel, "/"); isPack && (lang == "kr" || lang == "en" || lang == "jp") {
+			continue
+		}
+		if !commonFileRe.MatchString(rel) || !filepath.IsLocal(filepath.FromSlash(rel)) || rel == "kr" || rel == "en" || rel == "jp" {
+			return nil, fmt.Errorf("parse the list of files: %q is not a file this tool downloads", name)
+		}
+		common = append(common, rel)
+	}
+	if len(common) > MaxCommonFiles {
+		return nil, fmt.Errorf("parse the list of files: %d files belong to no language pack, at most %d are expected", len(common), MaxCommonFiles)
+	}
+	slices.Sort(common)
+	return common, nil
+}
+
+// ReadPatchInfo downloads the list of every file of an update. It is kept in
+// memory and never written: besides the files it holds a key of the game.
+func ReadPatchInfo(ctx context.Context, rawURL string) ([]byte, error) {
+	return Read(ctx, rawURL, maxPatchInfoBytes)
+}
+
+// Read returns the body of rawURL (https://, http:// or file://), which must
+// not be longer than limit bytes.
+func Read(ctx context.Context, rawURL string, limit int64) ([]byte, error) {
+	body, err := open(ctx, packClient, rawURL)
+	if err != nil {
+		return nil, fmt.Errorf("download %s: %w", rawURL, err)
+	}
+	defer body.Close()
+	data, err := io.ReadAll(io.LimitReader(body, limit+1))
+	if err != nil {
+		return nil, fmt.Errorf("download %s: %w", rawURL, unwrapURLError(err))
+	}
+	if int64(len(data)) > limit {
+		return nil, fmt.Errorf("download %s: more than %d bytes", rawURL, limit)
+	}
+	return data, nil
 }

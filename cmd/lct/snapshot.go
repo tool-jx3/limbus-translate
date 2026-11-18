@@ -42,7 +42,7 @@ func (r snapshotResult) String() string {
 func runSnapshot(ctx *cli.Context, args []string) error {
 	flags := flag.NewFlagSet("snapshot", flag.ContinueOnError)
 	flags.SetOutput(io.Discard)
-	from := flags.String("from", "", "directory holding kr/, en/ and jp/ (the output of lct fetch)")
+	from := flags.String("from", "", "directory holding kr/, en/ and jp/, and maybe common/ (the output of lct fetch)")
 	token := flags.String("token", "", "CDN token of the game update")
 	createdAt := flags.String("created-at", "", "creation time of the token, such as \"2026-10-29 02:55:23\"")
 	if err := flags.Parse(args); err != nil {
@@ -69,6 +69,10 @@ func runSnapshot(ctx *cli.Context, args []string) error {
 			return cli.UserError(fmt.Sprintf("snapshot: --from %s has no %s directory", *from, lang))
 		}
 		packs[lang] = dir
+	}
+	// The common files are there when lct fetch had a file template.
+	if dir := filepath.Join(*from, raw.CommonDir); isDir(dir) {
+		packs[raw.CommonDir] = dir
 	}
 
 	worktree := filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.Raw))
@@ -98,4 +102,10 @@ func userError(err error) error {
 		return cli.UserError("snapshot: " + err.Error())
 	}
 	return err
+}
+
+// isDir reports whether path is a directory.
+func isDir(path string) bool {
+	info, err := os.Stat(path)
+	return err == nil && info.IsDir()
 }

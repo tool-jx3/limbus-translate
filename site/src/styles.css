@@ -3421,3 +3421,12 @@ a.uc-cause:focus-visible {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+.uv-count.is-flag {
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+}
+
+.dv-names {
+  overflow-wrap: anywhere;
+}

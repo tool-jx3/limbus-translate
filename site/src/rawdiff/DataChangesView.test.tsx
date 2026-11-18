@@ -13,7 +13,7 @@ const snapshots: DataSnapshot[] = [
     tag: 'raw-20261112',
     prev_tag: 'raw-20261105',
     at: '2026-11-12T03:37:12Z',
-    counts: { ...zeroCounts, files_added: 27, new_groups: 2, keys_added: 4, entries_added: 173, tokens_added: 29, files_removed: 1, tokens_removed: 3 },
+    counts: { ...zeroCounts, files_added: 27, new_groups: 2, keys_added: 4, entries_added: 173, tokens_added: 29, files_removed: 1, tokens_removed: 3, lists_added: 30, lists_removed: 1, unlisted_new: 2 },
     vs_kr: { jp: 3, en: 0 },
   },
   { tag: 'raw-20261105', prev_tag: 'raw-20261029', at: '2026-11-05T03:20:00Z', counts: zeroCounts, vs_kr: { jp: 5 } },
@@ -69,8 +69,11 @@ describe('DataChangesView', () => {
       'is-new 新欄位 4',
       'is-new 新條目 173',
       'is-new 新標記 29',
+      'is-new 清單新增 30',
+      'is-flag 新的未列入清單 2',
       'is-deleted 移除檔案 1',
       'is-deleted 消失的標記 3',
+      'is-deleted 清單移除 1',
     ])
   })
 

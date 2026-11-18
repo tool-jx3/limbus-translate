@@ -226,6 +226,53 @@ describe('DataChangeView', () => {
     expect(el.querySelector('.dv-none')?.textContent).toContain('結構沒有變化')
   })
 
+  it('shows how the lists of the common files changed, and the files no list names', async () => {
+    const lists = {
+      compared: true,
+      changes: [
+        { file: 'RemoteLocalizeFileList.json', list: 'ui', added: ['Walpu10EventText', 'UnitKeyword-a1c10p3'], removed: [] },
+        { file: 'RemoteLocalizeFileList.json', list: 'skill', added: [], removed: ['Skills_Old'] },
+        { file: 'etc/VoiceTable.json', list: 'voiceKeys', added: ['85SV-014'], removed: [] },
+      ],
+      unlisted: [
+        { file: 'SynergyKeyword.json', entries: 1, new: true },
+        { file: 'Skills_personality-02.json', entries: 25 },
+      ],
+    }
+    const el = await mount({ ...empty, counts: { ...zeroCounts, lists_added: 3, lists_removed: 1, unlisted_new: 1 }, lists })
+    const s = section(el, 'lists')
+    expect(s?.querySelector('h2')?.textContent?.replace(/\s+/g, ' ').trim()).toBe('檔案清單 +3 −1')
+    expect(s?.querySelector('.dv-why')?.textContent?.length).toBeGreaterThan(10)
+    expect(texts(s, '.dv-list-row')).toEqual([
+      '+ RemoteLocalizeFileList.json ui Walpu10EventText、UnitKeyword-a1c10p3',
+      '− RemoteLocalizeFileList.json skill Skills_Old',
+      '+ etc/VoiceTable.json voiceKeys 85SV-014',
+    ])
+    // The files no list names: the new ones first and flagged; one the site has is a link.
+    const un = s?.querySelector('[data-lists="unlisted"]')
+    expect(un?.querySelector('h3')?.textContent?.replace(/\s+/g, ' ').trim()).toBe('不在清單裡的檔 2')
+    expect(texts(un ?? null, '.dv-unlisted')).toEqual(['SynergyKeyword.json 1 筆 這一版才出現', 'Skills_personality-02.json 25 筆'])
+    expect(un?.querySelectorAll('.dv-unlisted .dv-flag').length).toBe(1)
+    expect([...(un?.querySelectorAll('.dv-unlisted') ?? [])].map((u) => u.querySelector('a')?.getAttribute('href') ?? null)).toEqual([null, '#/f/Skills_personality-02.json'])
+    // The section stands on its own: nothing else of the snapshot changed.
+    expect(el.querySelector('.dv-none')).toBeNull()
+  })
+
+  it('says so when the snapshot before has no lists to compare with, and has no section without lists', async () => {
+    let el = await mount({ ...empty, lists: { compared: false, changes: [], unlisted: [{ file: 'SynergyKeyword.json', entries: 1 }] } })
+    const s = section(el, 'lists')
+    expect(s?.querySelector('.dv-first-lists')?.textContent).toContain('上一個快照沒有清單')
+    expect(s?.querySelector('.dv-list-row')).toBeNull()
+    expect(texts(s, '.dv-unlisted')).toEqual(['SynergyKeyword.json 1 筆'])
+    clearDataCache()
+    el = await mount(empty)
+    expect(section(el, 'lists')).toBeNull()
+    // The pack of another language shows no lists, even if the data had them.
+    clearDataCache()
+    el = await mount({ ...jp, lists: { compared: true, changes: [], unlisted: [] } }, 'jp')
+    expect(section(el, 'lists')).toBeNull()
+  })
+
   it('has a tab for the pack of each language, the one shown marked', async () => {
     let el = await mount()
     const tabs = (root: HTMLElement) => [...root.querySelectorAll('.dv-langs a')].map((a) => [a.textContent, a.getAttribute('href'), a.getAttribute('aria-current')])

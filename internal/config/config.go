@@ -21,15 +21,18 @@ var ErrRootNotFound = errors.New(FileName + " not found")
 
 // Config is the content of lct.yaml.
 type Config struct {
-	LangDir     string    `yaml:"lang_dir"`
-	Frozen      []string  `yaml:"frozen"`
-	CDNTemplate string    `yaml:"cdn_template"`
-	Worktrees   Worktrees `yaml:"worktrees"`
-	Batch       Batch     `yaml:"batch"`
-	Build       Build     `yaml:"build"`
-	Names       Names     `yaml:"names"`
-	Font        Font      `yaml:"font"`
-	Bootstrap   Bootstrap `yaml:"bootstrap"`
+	LangDir     string   `yaml:"lang_dir"`
+	Frozen      []string `yaml:"frozen"`
+	CDNTemplate string   `yaml:"cdn_template"`
+	// CDNFileTemplate is the URL of a single file of an update, with {token}
+	// and {path}; lct fetch downloads the common files with it. Empty: none.
+	CDNFileTemplate string    `yaml:"cdn_file_template"`
+	Worktrees       Worktrees `yaml:"worktrees"`
+	Batch           Batch     `yaml:"batch"`
+	Build           Build     `yaml:"build"`
+	Names           Names     `yaml:"names"`
+	Font            Font      `yaml:"font"`
+	Bootstrap       Bootstrap `yaml:"bootstrap"`
 }
 
 // Worktrees holds the worktree directories, relative to the repo root.

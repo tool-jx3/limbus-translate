@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'preact/hooks'
 import { Notice } from '../app/Notice'
 import { DataError, loadDataChange } from '../data'
 import { dataChangeHref, dataChangesHref, fileHref } from '../route'
-import type { DataDiff, DataFile, DataGroup, DataItem, DataKey, DataLang, DataToken, DataVersus, Index } from '../types'
+import type { DataDiff, DataFile, DataGroup, DataItem, DataKey, DataLang, DataListChanges, DataToken, DataVersus, Index } from '../types'
 
 /** Where the report on the game's code is; the page names its chapters. */
 const REPORT = 'https://github.com/tool-jx3/limbus-translate/blob/main/docs/research/2026-11-15-game-text-logic/README.md'
@@ -186,6 +186,59 @@ function VersusKR({ lang, vs, site }: { lang: DataLang; vs: DataVersus; site: Si
   )
 }
 
+/** The lists of the common files (the file list of the game, the voice table, the file list of the RPG): what changed, and the files no list names. */
+function ListsSection({ lists, added, removed, site }: { lists: DataListChanges; added: number; removed: number; site: Site }) {
+  // The files that are unlisted since this snapshot come first.
+  const unlisted = [...lists.unlisted].sort((a, b) => Number(b.new ?? false) - Number(a.new ?? false))
+  return (
+    <section class="dv-section" data-section="lists">
+      <h2>
+        檔案清單
+        {added > 0 && <span class="dv-n is-added"> +{added}</span>}
+        {removed > 0 && <span class="dv-n is-removed"> −{removed}</span>}
+      </h2>
+      <p class="dv-why">
+        遊戲只載入官方檔案清單（RemoteLocalizeFileList.json）列出的檔名，RPG 的檔案另有一份清單，語音表（etc/VoiceTable.json）則列出會帶出戰鬥氣泡的語音 id。這裡是這三份檔案和上一個快照相比多了、少了哪些名稱。
+      </p>
+      {!lists.compared && <p class="dv-first-lists">上一個快照沒有清單可以比較（那時還沒有一併抓取），所以這裡只列出目前不在清單裡的檔。</p>}
+      {lists.changes.length > 0 && (
+        <ul class="dv-list-rows">
+          {lists.changes.flatMap((c) =>
+            [
+              { names: c.added, added: true },
+              { names: c.removed, added: false },
+            ]
+              .filter((x) => x.names.length > 0)
+              .map(({ names, added }) => (
+                <li key={`${c.file} ${c.list} ${added}`} class={`dv-list-row ${added ? 'is-added' : 'is-removed'}`}>
+                  <span class="dv-sign">{added ? '+' : '−'}</span> <span class="dv-kinds">{c.file}</span> <strong class="dv-group-name">{c.list}</strong>{' '}
+                  <span class="dv-names">{names.join('、')}</span>
+                </li>
+              )),
+          )}
+        </ul>
+      )}
+      {unlisted.length > 0 && (
+        <div class="dv-tokens" data-lists="unlisted">
+          <h3>
+            不在清單裡的檔 <span class="dv-n">{unlisted.length}</span>
+          </h3>
+          <p class="dv-why">
+            韓文語言包根目錄裡、沒有任何一份清單列出的檔。遊戲不會從檔案清單載入它們，翻不翻都不影響畫面；例外是啟動時就要用的 LoginUIText、UserAgreements、FileDownloadDesc、BattleHint，它們由遊戲本體裡的另一份清單載入。標示「這一版才出現」的是新檔案，或是這一版從清單移除的檔。
+          </p>
+          <ul>
+            {unlisted.map((u) => (
+              <li key={u.file} class="dv-unlisted">
+                <FileName site={site} file={u.file} /> <span class="dv-count">{u.entries} 筆</span> {u.new && <span class="dv-flag">這一版才出現</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  )
+}
+
 /** The page of one snapshot: what the pack of a language has that the snapshot before it has not, and the reverse, as data. */
 export function DataChangeView({ tag, lang, index }: { tag: string; lang: DataLang; index: Index }) {
   const state = useDataChange(tag, lang)
@@ -199,7 +252,8 @@ export function DataChangeView({ tag, lang, index }: { tag: string; lang: DataLa
   const c = d.counts
   const added = d.tokens.filter((t) => t.change === 'added')
   const brackets = added.filter((t) => t.kind === 'bracket')
-  const nothing = Object.values(c).every((n) => n === 0) && d.entries.length === 0
+  const lists = lang === 'kr' ? d.lists : undefined
+  const nothing = Object.values(c).every((n) => n === 0) && d.entries.length === 0 && !lists
   return (
     <section class="update data-change">
       <header class="uv-head">
@@ -290,6 +344,8 @@ export function DataChangeView({ tag, lang, index }: { tag: string; lang: DataLa
         />
         <TokenList name="removed" title="不再出現" why="上一個快照有，這個快照整包都沒有了。" tokens={d.tokens.filter((t) => t.change === 'removed')} site={site} tail="before" />
       </Section>
+
+      {lists && <ListsSection lists={lists} added={c.lists_added} removed={c.lists_removed} site={site} />}
 
       <Section
         name="files"

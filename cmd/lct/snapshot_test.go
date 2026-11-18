@@ -196,3 +196,23 @@ func TestSnapshotInFreshCloneContinuesTagNumbering(t *testing.T) {
 		t.Errorf("second snapshot = %+v, want changed raw-20261029.2 (raw-20261029 exists upstream)", second)
 	}
 }
+
+// What lct fetch leaves under common/ goes into the snapshot with the packs.
+func TestSnapshotTakesTheCommonFilesOfTheFetch(t *testing.T) {
+	root := snapshotRepo(t)
+	from := extractedDir(t, "{}\n")
+	writeTestFile(t, from, "common/RemoteLocalizeFileList.json", `{"ui":["A"]}`)
+	writeTestFile(t, from, "common/etc/VoiceTable.json", `{"prefixes":[]}`)
+	if _, err := runSnapshotJSON(t, root, "--from", from, "--token", testToken, "--created-at", testCreatedAt); err != nil {
+		t.Fatal(err)
+	}
+	wt := filepath.Join(root, ".work", "raw")
+	for rel, want := range map[string]string{"common/RemoteLocalizeFileList.json": `{"ui":["A"]}`, "common/etc/VoiceTable.json": `{"prefixes":[]}`} {
+		if b, err := os.ReadFile(filepath.Join(wt, filepath.FromSlash(rel))); err != nil || string(b) != want {
+			t.Errorf("%s = %q, %v; want %q", rel, b, err, want)
+		}
+	}
+	if got := runGitIn(t, wt, "ls-tree", "-r", "--name-only", "raw-20261029", "common"); got != "common/RemoteLocalizeFileList.json\ncommon/etc/VoiceTable.json" {
+		t.Errorf("the tag holds under common/:\n%s", got)
+	}
+}

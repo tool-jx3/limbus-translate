@@ -184,3 +184,55 @@ func TestRawdiffComparesThePackOfAnotherLanguage(t *testing.T) {
 		}
 	}
 }
+
+// The lists of the common files of the snapshots are compared with the KR pack.
+func TestRawdiffComparesTheListsOfTheCommonFiles(t *testing.T) {
+	skills := `{"dataList":[{"id":1,"name":"가"}]}`
+	root := rawdiffRepo(t,
+		map[string]string{"KR_Skills.json": skills, "KR_Loose.json": skills},
+		map[string]string{"KR_Skills.json": skills, "KR_Loose.json": skills, "common/RemoteLocalizeFileList.json": `{"skill":["Skills"]}`},
+		map[string]string{"KR_Skills.json": skills, "KR_Loose.json": skills, "KR_New.json": skills,
+			"common/RemoteLocalizeFileList.json": `{"skill":["Skills","Skills-a1"]}`, "common/etc/VoiceTable.json": `{"voiceKeys":["a"]}`},
+	)
+	d, err := runRawdiffJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := &rawdiff.ListChanges{
+		Compared: true,
+		Changes: []rawdiff.ListChange{
+			{File: "RemoteLocalizeFileList.json", List: "skill", Added: []string{"Skills-a1"}, Removed: []string{}},
+			{File: "etc/VoiceTable.json", List: "voiceKeys", Added: []string{"a"}, Removed: []string{}},
+		},
+		Unlisted: []rawdiff.UnlistedFile{{File: "Loose.json", Entries: 1}, {File: "New.json", Entries: 1, New: true}},
+	}
+	if !reflect.DeepEqual(d.Lists, want) {
+		t.Errorf("lists = %+v, want %+v", d.Lists, want)
+	}
+	// The snapshot before the first one with common files has nothing to compare with.
+	d, err = runRawdiffJSON(t, root, "--to", "raw-20261105")
+	if err != nil || d.Lists == nil || d.Lists.Compared || len(d.Lists.Unlisted) != 1 {
+		t.Errorf("raw-20261105: lists = %+v, %v; want Loose.json unlisted and nothing compared", d.Lists, err)
+	}
+	// The other packs have no lists of their own.
+	d, err = runRawdiffJSON(t, root, "--lang", "jp")
+	if err != nil || d.Lists != nil {
+		t.Errorf("--lang jp: lists = %+v, %v; want none", d.Lists, err)
+	}
+
+	ctx, out := testCtx(t, root, "", false)
+	if err := runRawdiff(ctx, nil); err != nil {
+		t.Fatal(err)
+	}
+	for _, line := range []string{
+		"lists: +2 -0, 1 files newly unlisted\n",
+		"  + RemoteLocalizeFileList.json skill: Skills-a1\n",
+		"  + etc/VoiceTable.json voiceKeys: a\n",
+		"  unlisted: Loose.json (1 entries)\n",
+		"  unlisted: New.json (1 entries, new)",
+	} {
+		if !strings.Contains(out.String(), line) {
+			t.Errorf("output has no line %q:\n%s", line, out)
+		}
+	}
+}

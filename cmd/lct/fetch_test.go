@@ -4,17 +4,21 @@ import (
 	"archive/zip"
 	"bytes"
 	"encoding/json"
+	"fmt"
+	"io/fs"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"reflect"
+	"slices"
 	"strings"
 	"sync/atomic"
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/fetch"
 )
 
 const (
@@ -399,5 +403,184 @@ func TestFetchCheck(t *testing.T) {
 	}
 	if _, err := os.Stat(filepath.Join(snapshotted, ".work", "fetch")); !os.IsNotExist(err) {
 		t.Errorf("--check made a download directory, stat err = %v", err)
+	}
+}
+
+// cdnCommon adds to the fake CDN of cdnDir the list of every file and the
+// common files (path under fetch.LocalizeRoot to content), and returns the
+// file:// template of single files. listed are the paths the list names;
+// a path of files that is not listed is on the CDN and not in the list.
+func cdnCommon(t *testing.T, cdn string, files map[string]string, listed ...string) (template string) {
+	t.Helper()
+	entries := []string{`"Assets/Resources_moved/Localize/kr/KR_A.json":{"Hash":"h","Size":1,"Crc":0}`}
+	for _, rel := range listed {
+		entries = append(entries, fmt.Sprintf(`%q:{"Hash":"h","Size":1,"Crc":0}`, fetch.LocalizeRoot+rel))
+	}
+	writeTestFile(t, cdn, fetch.PatchInfoPath, `{"Version":"0.1","EncryptKey":"SECRET-KEY","EncryptIV":"SECRET-IV","Files":{`+strings.Join(entries, ",")+`}}`)
+	for rel, content := range files {
+		writeTestFile(t, cdn, fetch.LocalizeRoot+rel, content)
+	}
+	return "file://" + filepath.Dir(cdn) + "/{token}/{path}"
+}
+
+var commonFiles = map[string]string{
+	"RemoteLocalizeFileList.json":    "{\r\n  \"ui\": [\"BattleUIText\"]\r\n}",
+	"etc/VoiceTable.json":            `{"prefixes":["battle_kill"],"voiceKeys":[]}`,
+	"rpg-loc-file-list-a1c10p3.json": `{"ui":[{"file":"rpg-loc-ui-common"}]}`,
+}
+
+func TestFetchDownloadsTheCommonFiles(t *testing.T) {
+	cdn, template := cdnDir(t)
+	fileTemplate := cdnCommon(t, cdn, commonFiles, "RemoteLocalizeFileList.json", "etc/VoiceTable.json", "rpg-loc-file-list-a1c10p3.json")
+	ctx, out := testCtx(t, t.TempDir(), "worktrees: { raw: .work/raw }\n", true)
+	dest := filepath.Join(t.TempDir(), "dl")
+	// A leftover from an earlier fetch must not survive.
+	writeTestFile(t, dest, "common/Stale.json", "{}")
+
+	err := runFetch(ctx, []string{"--token", testToken, "--created-at", testCreatedAt, "--cdn-template", template, "--cdn-file-template", fileTemplate, "--out", dest})
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got struct {
+		Common []string `json:"common"`
+	}
+	if err := json.Unmarshal(out.Bytes(), &got); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	if want := []string{"RemoteLocalizeFileList.json", "etc/VoiceTable.json", "rpg-loc-file-list-a1c10p3.json"}; !slices.Equal(got.Common, want) {
+		t.Errorf("common = %v, want %v", got.Common, want)
+	}
+	// Byte for byte, under common/ with the layout of the CDN.
+	for rel, want := range commonFiles {
+		if b, err := os.ReadFile(filepath.Join(dest, "common", filepath.FromSlash(rel))); err != nil || string(b) != want {
+			t.Errorf("common/%s = %q, %v; want %q", rel, b, err, want)
+		}
+	}
+	if _, err := os.Stat(filepath.Join(dest, "common", "Stale.json")); !os.IsNotExist(err) {
+		t.Errorf("the old contents of common/ must be replaced, stat err = %v", err)
+	}
+	if _, err := os.Stat(filepath.Join(dest, "kr", "KR_A.json")); err != nil {
+		t.Errorf("the packs are fetched as before: %v", err)
+	}
+	// The list of every file holds a key of the game: it is written nowhere.
+	err = filepath.WalkDir(dest, func(p string, d fs.DirEntry, err error) error {
+		if err != nil || d.IsDir() {
+			return err
+		}
+		if b, _ := os.ReadFile(p); bytes.Contains(b, []byte("SECRET")) || strings.Contains(p, "PatchInfo") {
+			t.Errorf("%s keeps the list of every file", p)
+		}
+		return nil
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(out.String(), "SECRET") {
+		t.Errorf("the output shows the key:\n%s", out)
+	}
+}
+
+func TestFetchWithoutAFileTemplateFetchesNoCommonFiles(t *testing.T) {
+	_, template := cdnDir(t)
+	t.Setenv("LIMBUS_CDN_FILE_TEMPLATE", "")
+	ctx, out := testCtx(t, t.TempDir(), "worktrees: { raw: .work/raw }\n", true)
+	dest := filepath.Join(t.TempDir(), "dl")
+	writeTestFile(t, dest, "common/Stale.json", "{}")
+	if err := runFetch(ctx, []string{"--token", testToken, "--created-at", testCreatedAt, "--cdn-template", template, "--out", dest}); err != nil {
+		t.Fatal(err)
+	}
+	// What an earlier fetch left is not of this update.
+	if _, err := os.Stat(filepath.Join(dest, "common")); !os.IsNotExist(err) {
+		t.Errorf("common/ must be gone, stat err = %v", err)
+	}
+	if strings.Contains(out.String(), `"common"`) {
+		t.Errorf("the output names common files:\n%s", out)
+	}
+}
+
+// The file template is taken from where the pack template comes from, or from
+// a place that outranks it (flag, then environment, then lct.yaml): a pack
+// template given by hand names another CDN than the file template of lct.yaml.
+func TestFetchFileTemplateGoesWithThePackTemplate(t *testing.T) {
+	cdn, pack := cdnDir(t)
+	good := cdnCommon(t, cdn, commonFiles, "etc/VoiceTable.json")
+	bad := "file:///nonexistent/{token}/{path}"
+	type src struct{ flag, env, config string }
+	for name, c := range map[string]struct {
+		pack, file src
+		want       bool
+	}{
+		"both by flag":                    {src{flag: pack}, src{flag: good, env: bad, config: bad}, true},
+		"both from the environment":       {src{env: pack}, src{env: good, config: bad}, true},
+		"both from lct.yaml":              {src{config: pack}, src{config: good}, true},
+		"file by flag, pack from config":  {src{config: pack}, src{flag: good, config: bad}, true},
+		"file from env, pack from config": {src{config: pack}, src{env: good, config: bad}, true},
+		"pack by flag, file from config":  {src{flag: pack}, src{config: bad}, false},
+		"pack by flag, file from env":     {src{flag: pack}, src{env: bad}, false},
+		"pack from env, file from config": {src{env: pack}, src{config: bad}, false},
+	} {
+		t.Setenv("LIMBUS_CDN_TEMPLATE", c.pack.env)
+		t.Setenv("LIMBUS_CDN_FILE_TEMPLATE", c.file.env)
+		yaml := "worktrees: { raw: .work/raw }\n"
+		if c.pack.config != "" {
+			yaml += "cdn_template: " + c.pack.config + "\n"
+		}
+		if c.file.config != "" {
+			yaml += "cdn_file_template: " + c.file.config + "\n"
+		}
+		ctx, _ := testCtx(t, t.TempDir(), yaml, false)
+		dest := filepath.Join(t.TempDir(), "dl")
+		args := []string{"--token", testToken, "--created-at", testCreatedAt, "--out", dest}
+		if c.pack.flag != "" {
+			args = append(args, "--cdn-template", c.pack.flag)
+		}
+		if c.file.flag != "" {
+			args = append(args, "--cdn-file-template", c.file.flag)
+		}
+		if err := runFetch(ctx, args); err != nil {
+			t.Errorf("%s: %v", name, err)
+			continue
+		}
+		_, err := os.Stat(filepath.Join(dest, "common", "etc", "VoiceTable.json"))
+		if got := err == nil; got != c.want {
+			t.Errorf("%s: common files fetched = %v, want %v", name, got, c.want)
+		}
+	}
+}
+
+func TestFetchCommonFailureKeepsExistingOutput(t *testing.T) {
+	cdn, template := cdnDir(t)
+	// The list names a file the CDN has not.
+	fileTemplate := cdnCommon(t, cdn, map[string]string{"etc/VoiceTable.json": "{}"}, "etc/VoiceTable.json", "RemoteLocalizeFileList.json")
+	ctx, _ := testCtx(t, t.TempDir(), "worktrees: { raw: .work/raw }\n", false)
+	dest := filepath.Join(t.TempDir(), "dl")
+	writeTestFile(t, dest, "kr/KR_Old.json", "old")
+	writeTestFile(t, dest, "common/Old.json", "old")
+
+	err := runFetch(ctx, []string{"--token", testToken, "--created-at", testCreatedAt, "--cdn-template", template, "--cdn-file-template", fileTemplate, "--out", dest})
+	if err == nil {
+		t.Fatal("a common file that cannot be downloaded must be an error")
+	}
+	for _, rel := range []string{"kr/KR_Old.json", "common/Old.json"} {
+		if b, err := os.ReadFile(filepath.Join(dest, filepath.FromSlash(rel))); err != nil || string(b) != "old" {
+			t.Errorf("a failed fetch changed %s: %q, %v", rel, b, err)
+		}
+	}
+	if _, err := os.Stat(filepath.Join(dest, "kr", "KR_A.json")); !os.IsNotExist(err) {
+		t.Errorf("a failed fetch left a partial kr/: stat err = %v", err)
+	}
+}
+
+func TestFetchFileTemplateUsageErrors(t *testing.T) {
+	_, template := cdnDir(t)
+	ctx, _ := testCtx(t, t.TempDir(), "worktrees: { raw: .work/raw }\n", false)
+	for _, bad := range []string{"file:///x/{token}/list.json", "file:///x/{path}"} {
+		err := runFetch(ctx, []string{"--token", testToken, "--created-at", testCreatedAt, "--cdn-template", template, "--cdn-file-template", bad, "--out", t.TempDir()})
+		if !isUserError(err) {
+			t.Errorf("--cdn-file-template %s: err = %v, want a user error", bad, err)
+		}
+	}
+	if err := runFetch(ctx, []string{"--check", "--cdn-file-template", "x", "--status-url", "file:///x"}); !isUserError(err) {
+		t.Errorf("--check with --cdn-file-template: err = %v, want a user error", err)
 	}
 }

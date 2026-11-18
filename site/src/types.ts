@@ -839,6 +839,35 @@ export interface DataCounts {
   entries_removed: number
   tokens_added: number
   tokens_removed: number
+  /** Names of the lists of the common files (the file list of the game, the voice table, the file list of the RPG). */
+  lists_added: number
+  lists_removed: number
+  /** Files that no list names, and that had a list or were not there in the snapshot before. */
+  unlisted_new: number
+}
+
+/** The names one list of one common file gained and lost. */
+export interface DataListChange {
+  file: string
+  list: string
+  added: string[]
+  removed: string[]
+}
+
+/** A file of the KR pack, outside its directories, that no list names: the game does not load it. */
+export interface DataUnlistedFile {
+  file: string
+  entries: number
+  /** In the snapshot before it had a list, or was not there. */
+  new?: boolean
+}
+
+/** How the lists of the common files of a snapshot differ from those of the one before. */
+export interface DataListChanges {
+  /** false when the snapshot before has no common files: nothing to compare with. */
+  compared: boolean
+  changes: DataListChange[]
+  unlisted: DataUnlistedFile[]
 }
 
 /** The official packs of a snapshot: KR, which the others are compared with, JP and EN. */
@@ -944,4 +973,6 @@ export interface DataDiff {
   tokens: DataToken[]
   /** Of the pack of another language than KR. */
   vs_kr?: DataVersus
+  /** Of the KR pack, when the snapshot has common files. */
+  lists?: DataListChanges
 }

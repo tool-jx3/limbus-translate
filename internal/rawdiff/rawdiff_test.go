@@ -185,7 +185,7 @@ func TestCompareTheSameSnapshot(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := `{"lang":"","from":"","to":"","counts":{"files_added":0,"files_removed":0,"new_groups":0,"gone_groups":0,"keys_added":0,"keys_removed":0,"entries_added":0,"entries_removed":0,"tokens_added":0,"tokens_removed":0},` +
+	want := `{"lang":"","from":"","to":"","counts":{"files_added":0,"files_removed":0,"new_groups":0,"gone_groups":0,"keys_added":0,"keys_removed":0,"entries_added":0,"entries_removed":0,"tokens_added":0,"tokens_removed":0,"lists_added":0,"lists_removed":0,"unlisted_new":0},` +
 		`"new_groups":[],"gone_groups":[],"files_added":[],"files_removed":[],"keys":[],"entries":[],"tokens":[]}`
 	if string(got) != want {
 		t.Errorf("JSON:\n got %s\nwant %s", got, want)
@@ -278,5 +278,112 @@ func TestTokenTextIsTheTokenAsTheTextWritesIt(t *testing.T) {
 		if got := (Token{Kind: c.kind, Name: c.name}).Text(); got != c.want {
 			t.Errorf("Text of %s %s = %q, want %q", c.kind, c.name, got, c.want)
 		}
+	}
+}
+
+// writeCommon writes the common files of a snapshot (path to content) and
+// reads their lists.
+func writeCommon(t *testing.T, files map[string]string) Lists {
+	t.Helper()
+	dir := t.TempDir()
+	for name, content := range files {
+		p := filepath.Join(dir, filepath.FromSlash(name))
+		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(p, []byte(content), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	l, err := ReadLists(dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return l
+}
+
+func TestReadListsTakesTheNamesOfEveryList(t *testing.T) {
+	got := writeCommon(t, map[string]string{
+		"RemoteLocalizeFileList.json":    "\xef\xbb\xbf{\r\n \"ui\": [\"BattleUIText\", \"MainUIText\"],\r\n \"skill\": [\"Skills\"], \"version\": 3 }",
+		"etc/VoiceTable.json":            `{"prefixes":["battle_kill"],"voiceKeys":["8SV-015","8SV-016"]}`,
+		"rpg-loc-file-list-a1c10p3.json": `{"ui":[{"file":"rpg-loc-ui-common"},{"other":1},7]}`,
+		"notes.txt":                      "not a list",
+	})
+	equal(t, "lists", got, Lists{
+		"RemoteLocalizeFileList.json":    {"ui": {"BattleUIText", "MainUIText"}, "skill": {"Skills"}},
+		"etc/VoiceTable.json":            {"prefixes": {"battle_kill"}, "voiceKeys": {"8SV-015", "8SV-016"}},
+		"rpg-loc-file-list-a1c10p3.json": {"ui": {"rpg-loc-ui-common"}},
+	})
+	// A directory that is not there has no lists; a JSON file that cannot be read is named.
+	if l, err := ReadLists(filepath.Join(t.TempDir(), "nope")); err != nil || l != nil {
+		t.Errorf("no directory: %v, %v; want nil", l, err)
+	}
+	dir := t.TempDir()
+	if err := os.WriteFile(filepath.Join(dir, "Bad.json"), []byte(`{"ui":[`), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := ReadLists(dir); err == nil || !strings.Contains(err.Error(), "Bad.json") {
+		t.Errorf("err = %v, want one that names Bad.json", err)
+	}
+}
+
+func TestCompareListsOfTheCommonFiles(t *testing.T) {
+	pack := map[string]string{
+		"Skills.json":             `{"dataList":[{"id":1,"name":"가"}]}`,
+		"Old.json":                `{"dataList":[{"id":1,"name":"나"}]}`,
+		"Loose.json":              `{"dataList":[{"id":1,"name":"다"},{"id":2,"name":"라"}]}`,
+		"StoryData/S1.json":       `{"dataList":[{"id":0,"content":"마"}]}`,
+		"RPGSystem/rpg-ui-a.json": `{"dataList":[{"id":0,"content":"바"}]}`,
+	}
+	from, to := summarize(t, pack), summarize(t, map[string]string{
+		"Skills.json": pack["Skills.json"], "Old.json": pack["Old.json"], "Loose.json": pack["Loose.json"],
+		"StoryData/S1.json": pack["StoryData/S1.json"], "RPGSystem/rpg-ui-a.json": pack["RPGSystem/rpg-ui-a.json"],
+		"New.json": `{"dataList":[{"id":1,"name":"사"}]}`,
+	})
+	from.SetLists(writeCommon(t, map[string]string{
+		"RemoteLocalizeFileList.json": `{"skill":["Skills"],"old":["Old","Gone"]}`,
+		"etc/VoiceTable.json":         `{"voiceKeys":["a","b"]}`,
+		"rpg-list.json":               `{"ui":[{"file":"rpg-ui-a"}]}`,
+	}))
+	to.SetLists(writeCommon(t, map[string]string{
+		"RemoteLocalizeFileList.json": `{"skill":["Skills","Skills-a1"],"old":["Gone"],"fresh":["Fresh"]}`,
+		"etc/VoiceTable.json":         `{"voiceKeys":["a","b","c"]}`,
+		"rpg-list.json":               `{"ui":[{"file":"rpg-ui-a"}]}`,
+	}))
+	d := Compare(from, to, nil)
+	equal(t, "lists", d.Lists, &ListChanges{
+		Compared: true,
+		Changes: []ListChange{
+			{File: "RemoteLocalizeFileList.json", List: "fresh", Added: []string{"Fresh"}, Removed: []string{}},
+			{File: "RemoteLocalizeFileList.json", List: "old", Added: []string{}, Removed: []string{"Old"}},
+			{File: "RemoteLocalizeFileList.json", List: "skill", Added: []string{"Skills-a1"}, Removed: []string{}},
+			{File: "etc/VoiceTable.json", List: "voiceKeys", Added: []string{"c"}, Removed: []string{}},
+		},
+		// The files of the pack, outside its directories, that no list names:
+		// Loose.json was unlisted before, New.json is a new file, Old.json was dropped from its list.
+		Unlisted: []UnlistedFile{
+			{File: "Loose.json", Entries: 2},
+			{File: "New.json", Entries: 1, New: true},
+			{File: "Old.json", Entries: 1, New: true},
+		},
+	})
+	if d.Counts.ListsAdded != 3 || d.Counts.ListsRemoved != 1 || d.Counts.UnlistedNew != 2 {
+		t.Errorf("counts = %+v, want 3 names added, 1 removed, 2 files newly unlisted", d.Counts)
+	}
+}
+
+func TestCompareListsWhenOnlyTheNewerSnapshotHasThem(t *testing.T) {
+	pack := map[string]string{"Skills.json": `{"dataList":[{"id":1,"name":"가"}]}`, "Loose.json": `{"dataList":[]}`}
+	from, to := summarize(t, pack), summarize(t, pack)
+	to.SetLists(writeCommon(t, map[string]string{"RemoteLocalizeFileList.json": `{"skill":["Skills"]}`}))
+	d := Compare(from, to, nil)
+	// Nothing to compare with: the names are no change, and no file is newly unlisted.
+	equal(t, "lists", d.Lists, &ListChanges{Compared: false, Changes: []ListChange{}, Unlisted: []UnlistedFile{{File: "Loose.json", Entries: 0}}})
+	if !d.Counts.Zero() {
+		t.Errorf("counts = %+v, want none", d.Counts)
+	}
+	// A snapshot without common files has no lists to show, whatever the one before had.
+	if d := Compare(to, from, nil); d.Lists != nil {
+		t.Errorf("the newer snapshot has no common files: lists = %+v, want nil", d.Lists)
 	}
 }
