@@ -1,0 +1,27 @@
+{
+  "tag": "zh-TW-20261112.9",
+  "prev_tag": "zh-TW-20261112.8",
+  "released_at": "2026-11-18T12:20:14Z",
+  "prev_released_at": "2026-11-17T06:35:32Z",
+  "raw_tag": "raw-20261112",
+  "prev_raw_tag": "raw-20261112",
+  "rules_commit": "4ade084bede92bc3dd483c42be5999ec4734ed2b",
+  "prev_rules_commit": "bcd0b074348e942ebe836a2ff923e0d15d6cbca5",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [
+    "Lang/zh-TW/ErrorCodeMsgLocal.json"
+  ],
+  "entries": [],
+  "causes_version": 1
+}
