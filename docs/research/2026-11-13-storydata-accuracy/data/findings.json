@@ -28,7 +28,17 @@
   "reason": "錯誤成立；但初篩說「我敢肯定」是多加的語氣不對，KR 句首的「분명」就是「肯定、一定」。初篩改法把第一句改成「分明，原本是……」，中文不自然，第一句應保留現行譯文。",
   "confidence": "high",
   "seq": "S0001",
-  "group": "main-00"
+  "group": "main-00",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "我敢說，你以前一定是巢裡的大人物吧？一想到你只要稍微拿出點當年的派頭，錢就會嘩啦啦地流進我們口袋……呼呼……",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S002B#79",
@@ -59,7 +69,21 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0002",
-  "group": "main-00"
+  "group": "main-00",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "但他只是百無聊賴地盯著車窗，目光空洞，彷彿對一切都提不起興趣。",
+    "same_as_report": true
+   },
+   "suggest": "但他只是盯著車窗，目光空洞，彷彿對那種事提不起興趣。",
+   "kr_meaning": "「그러한 것에 관심이 없는 듯」是「彷彿對那種事沒有興趣」，「그러한 것」指上一句的「장난（開玩笑）」，不是「一切」。「텅 빈 눈으로」是「用空洞的眼神」。「차창만 쳐다보고 있을 뿐이었다」是「只是望著車窗而已」。KR 沒有「百無聊賴」。整句直譯：「他卻像是對那種事毫無興趣，只是用空洞的眼神望著車窗。」",
+   "context": "李箱自我介紹只說了一句「이상이오」（#77，李箱／以上的雙關）。但丁在 #78 想「他是不是故意開玩笑」而仔細看他，這一句是看到的結果：他對開玩笑這種事似乎沒有興趣，只是望著車窗。接著 #80 以實瑪利嘆氣接話。",
+   "problem": "「車窗」已改對。但現在的譯文把「그러한 것（那種事，指開玩笑）」寫成「一切」，這句回答 #78「是不是在開玩笑」的作用就不見了；「百無聊賴地」是照 EN（vacantly、disinterested）加的，KR 沒有。改為「對那種事提不起興趣」，並刪去「百無聊賴地」，其餘保留。",
+   "also": []
+  }
  },
  {
   "ref": "S101B#3",
@@ -90,7 +114,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0003",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "直到耳邊傳來低聲交談，我才睜開了眼睛。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S101B#6",
@@ -121,7 +155,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0004",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "又或者，對失去了腦袋和記憶的我來說，這是唯一想得到的辦法。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S101B#13",
@@ -152,7 +196,26 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0005",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "雖然我感覺這是相當可怕的場面，但依他們的反應來看，也許這種暴行在都市中只能算是稀鬆平常。",
+    "same_as_report": true
+   },
+   "also": [
+    {
+     "ref": "S101B#12",
+     "kr": "버스 안에 앉은 대부분의 사람, 수감자들은 가지각색의 눈빛으로 정면만 응시하고 있다.",
+     "tw": "巴士上許多雙眼眸神色各異，都不約而同地凝視著前方。",
+     "suggest": "坐在巴士上的大多數人，也就是罪人們，神色各異，都只凝視著前方。",
+     "why": "KR「버스 안에 앉은 대부분의 사람, 수감자들은」是「坐在巴士裡的大多數人——罪人們」，「가지각색의 눈빛으로 정면만 응시하고 있다」是「帶著各不相同的眼神，只凝視著正前方」。現行把主詞換成「許多雙眼眸」，漏了「大多數人」與「수감자들（罪人們）」（詞彙表譯名，這是旁白第一次交代車上的人是罪人）；S0005 的「依他們的反應來看」指的就是這些人。「不約而同地」是多加的。"
+    }
+   ],
+   "note": "「이런 장면」是「這種場面」，現在寫「這種暴行」是照 EN（this kind of violence）；意思沒有相反，不必為此再改。"
+  }
  },
  {
   "ref": "S101B#16",
@@ -183,7 +246,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0006",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "<蟲……不對，戴眼鏡的兄弟。你知道我們現在是要去哪嗎？>",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S101B#48",
@@ -214,7 +287,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0007",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "毫無緣由的暴力不可原諒！汝就由吾來懲治！",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S101B#107",
@@ -245,7 +328,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0008",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "請、請等一等！但丁經理看上去很痛苦的樣子，我們就到此為……",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S101B#108",
@@ -276,7 +369,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0009",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "還沒等他說完，希斯克利夫的金屬球棒就狠狠砸在了辛克萊的頭上。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S101B#131",
@@ -307,7 +410,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0010",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "乞求他賜予我死亡都比再承受那樣的苦痛要好。我飛快地搖了搖頭。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S101B#135",
@@ -338,7 +451,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0011",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "讓你面對那種程度的痛楚也能眼睛都不眨一下。這樣一來，你就撐得住了吧？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S103B#1",
@@ -369,7 +492,18 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0012",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "在那附近的地面上，也就是巴士的嘴前，散落著各種各樣的人類。其中既有意識尚存的，也有早已四分五裂的。",
+    "same_as_report": false
+   },
+   "also": [],
+   "note": "前半句沒有動過：「그 앞」是「在那前方」，現在寫「在那附近的地面上」是照 JP；「여러 가지 사람의 형태」是「各種模樣的人形」。後面緊接「也就是巴士的嘴前」，位置沒有錯，可以不改。"
+  }
  },
  {
   "ref": "S103B#2",
@@ -400,7 +534,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0013",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "不久後，那張大口便完全張開了，巴士真的開始咀嚼起人來。狼吞虎嚥地、迫不及待地。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S104B#7",
@@ -431,7 +575,18 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0014",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "妳說的是以前的L公司吧。聽說那是一家透過奇點技術生產能源的公司。不過L公司沒落之後現在也只剩下廢墟與殘骸了。",
+    "same_as_report": true
+   },
+   "also": [],
+   "note": "同場 #6 的「추출했던 에너지」是「提取過的能源」，現行寫「生產」；#9、#12 的 추출 都寫「提取」。不影響本項。"
+  }
  },
  {
   "ref": "S105B#14",
@@ -462,7 +617,18 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0015",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "作為被折斷之翼的員工，妳的工作一定結束得很不愉快吧。",
+    "same_as_report": true
+   },
+   "also": [],
+   "note": "KR 只說「墜落的翼啊，結局想必不好」，沒有寫「員工」「妳的工作」，這兩處是照 EN 補的；對象確實是尤莉，下一句羅佳也是接「愉快的回憶」，意思接得上。"
+  }
  },
  {
   "ref": "S105B#34",
@@ -493,7 +659,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0016",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "但由於不太習慣這種表情，他的眼角似乎在抽搐，不過我決定裝作沒看見。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S105B#37",
@@ -524,7 +700,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0017",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "我不知道妳是從哪裡聽到這樣的消息，但收尾人並不是那樣的英雄。他們身上甚至只能聞到月薪族的窮酸味。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S105B#38",
@@ -555,7 +741,21 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0018",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "……這麼快就找到另一份工作也挺不容易的，很高興妳撐過來了。",
+    "same_as_report": true
+   },
+   "suggest": "……這麼快就找到另一份工作也挺不容易的，真虧妳辦到了啊。",
+   "kr_meaning": "「금세 다른 밥벌이를 찾는 게 쉽진 않았을 텐데」是「要這麼快找到別的飯碗想必不容易」。「용케」是「居然、真虧（辦得到）」，「해냈군」是「辦到了啊」（해내다＝做成、完成），是稱讚對方做成了這件事，沒有「高興」也沒有「撐過來」。整句直譯：「……要這麼快找到別的飯碗想必不容易，真虧妳辦到了。」",
+   "context": "格里高爾在 #32 問尤莉離開 L 公司後做什麼，唐吉訶德猜她是收尾人、尤莉點頭（#35–#36），以實瑪利潑冷水（#37）。這一句是格里高爾打圓場，稱讚她這麼快就找到新工作。尤莉在 #39 回「目前還只是約聘」，是對「辦到了」的謙辭。",
+   "problem": "「妳」已改對。但後半「很高興妳撐過來了」是照 EN（Good that you're holding up）寫的，KR「용케 해냈군」是「真虧妳辦到了」（JP「よくやれたな」），稱讚的是找到工作這件事；現在的寫法變成慶幸她熬過來，和 #39「目前還只是約聘」的回答也接得較遠。只改後半句。",
+   "also": []
+  }
  },
  {
   "ref": "S105B#40",
@@ -586,7 +786,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0019",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "原來如此，這就是妳硬是爬回這裡的理由啊。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S105B#41",
@@ -617,7 +827,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0020",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "那他們是不是還承諾過，如果妳在原來的工作地點立了大功，就會提拔妳到隊長的位置上？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S105B#44",
@@ -648,7 +868,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0021",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "哈，那可真是毫無意義的一條命啊。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S105B#45",
@@ -679,7 +909,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0022",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "（喂，從剛才開始妳怎麼就一直在冷嘲熱諷啊？是什麼讓妳不爽了嗎？）",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S105B#52",
@@ -710,7 +950,18 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0023",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "梅菲的肚子，膨膨。卡戎也砰砰。",
+    "same_as_report": false
+   },
+   "also": [],
+   "note": "「砰砰」不是喇叭聲（JP 明寫クラクション），但和「膨膨」同音，保留了 KR 兩次「빵빵」的重複；是使用者決定的寫法。"
+  }
  },
  {
   "ref": "S106B#7",
@@ -741,7 +992,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0024",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "因為妳一直在往奇怪的方向走啊！麻煩妳好好看看地圖。我們要去的是東南方向……",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S107A#18",
@@ -772,7 +1033,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0025",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "喂，既然妳這麼聰明，就去前面先幫忙把路找出來吧。從剛才開始他們就吵得我睡不著覺。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S111B#5",
@@ -803,7 +1074,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0026",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "再次提醒各位，如果你們死在這裡，即使戰鬥結束也無法復活。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S111B#55n",
@@ -834,7 +1115,17 @@
   "reason": "原建議「卑鄙的殘兵［沒落的G公司］」把稱號（title 欄位「沒落的G公司」）併進說話者名稱，不能直接用；說話者名稱只寫「卑鄙的殘兵」，並依 base.md 去掉現行結尾的半形空格。#58、#62、#70、#72、#81 要一起改。",
   "confidence": "high",
   "seq": "S0027",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "卑鄙的殘兵",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S111B#71",
@@ -865,7 +1156,26 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0028",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "啊哈，你應該也上過前線吧。怎麼樣，真正的我看起來比海報上好多了吧？",
+    "same_as_report": true
+   },
+   "also": [
+    {
+     "ref": "S111B#73",
+     "kr": "이런, 실물에 대고 한 것도 아닌데 너무 그러지 말지 그래.",
+     "tw": "哎呀，又不需要你對著真人敬禮，就別這麼說了。",
+     "suggest": "哎呀，又不是對著真人敬的禮，就別這麼說了。",
+     "why": "KR「실물에 대고 한 것도 아닌데」是「又不是對著本人（實物）做的」，過去的事：殘兵當年敬禮的對象是海報，不是格里高爾本人，接 S0028 的「海報／實物」。現行「又不需要你對著真人敬禮」照 EN（had to）寫成「不必敬禮」，時態與意思都不對。"
+    }
+   ],
+   "note": "「你應該也上過前線吧」的「也」是照 EN（too）加的，KR「너는 전방에 소속되어 있었나 보네」是「看來你當時隸屬前線啊」；差別不大，未列為調整。"
+  }
  },
  {
   "ref": "S111B#86",
@@ -896,7 +1206,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0029",
-  "group": "main-01"
+  "group": "main-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "哪怕是那些有錢有勢的傢伙也會在人背後捅刀。你最好是別有什麼天真的期待。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S202A#59",
@@ -927,7 +1247,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0030",
-  "group": "main-02"
+  "group": "main-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "鴻璐是唯一真心實意歡迎他們的人（他差點就要鼓掌了），",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S203B#8",
@@ -958,7 +1288,18 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0031",
-  "group": "main-02"
+  "group": "main-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "……好像也不必了？",
+    "same_as_report": true
+   },
+   "also": [],
+   "note": "KR 是「그대로 두고 봐…（不能就這樣放著不管）」說到一半改口成「…도 되겠네?（放著也行吧？）」；現行 #6–#8 三句（給顏色瞧瞧……／瞧瞧看……／好像也不必了？）是照 JP 的寫法改寫的，三句彼此接得上，結果也一樣是「原本要抗議、看了文件後改口」，所以不必再改。"
+  }
  },
  {
   "ref": "S203B#162",
@@ -989,7 +1330,17 @@
   "reason": "改法保留現行「似乎試圖反駁」（沒有錯，不必改成「想要」），只改後半句。",
   "confidence": "medium",
   "seq": "S0032",
-  "group": "main-02"
+  "group": "main-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "被這句話侮辱到的以實瑪利似乎試圖反駁，但比起這個，更引人注意的是豆豆幫混混們正從懷中拿出武器。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S208B#39",
@@ -1020,7 +1371,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0033",
-  "group": "main-02"
+  "group": "main-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "此處所說的運氣並非我們通常知曉的那個概念。把運氣累積起來一次爆發，或是一點一點地投入運氣、只求回本，那都在合理範圍內，但是剛入場就立刻中頭獎在這裡是不可能的。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S209A#9",
@@ -1051,7 +1412,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0034",
-  "group": "main-02"
+  "group": "main-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "這樣啊。那我會找機會把那臺輪盤裡的願望罐拿過來。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S209A#25",
@@ -1082,7 +1453,17 @@
   "reason": "TW 同樣是嘲諷警衛弱，不算「意思相反」，嚴重度降為 low；原建議「你們竟然還只能在那邊喘氣啊」語句不順，改寫。",
   "confidence": "medium",
   "seq": "S0035",
-  "group": "main-02"
+  "group": "main-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "對上這樣的我們，你們居然還打得氣喘吁吁啊……",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S210B#7",
@@ -1113,7 +1494,25 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0036",
-  "group": "main-02"
+  "group": "main-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "不，等等。這傢伙的臉才是更大的問題吧？充當眼睛的是時針？還是分針？",
+    "same_as_report": true
+   },
+   "also": [
+    {
+     "ref": "S210B#4",
+     "kr": "모분이 뭔데?!",
+     "tw": "那是什麼意思？！",
+     "suggest": "脖．扭是什麼意思？！",
+     "why": "KR「모분이 뭔데?!」是把 #3 良秀的縮略語「모. 분.」（現行「脖．扭」）原樣拿來追問：「脖扭是什麼？！」，#5 良秀才展開成「扭斷你脖子的意思」。現行「那是什麼意思？！」漏了被追問的那個詞。characters/ryoshu.md「劇中展開或猜測時」明寫：別人追問時照抄同一組字，並舉這一句為例（追問「모분이 뭔데?!」也要照抄，不要漏掉）。和 S0036 是同一個說話者在同一段對話裡的前一句。"
+    }
+   ]
+  }
  },
  {
   "ref": "S212A#44",
@@ -1144,7 +1543,25 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0037",
-  "group": "main-02"
+  "group": "main-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "你，要不要加入我們的幫派？你可是將來能成大器的好苗子。",
+    "same_as_report": false
+   },
+   "also": [
+    {
+     "ref": "S212A#42",
+     "kr": "오오… 활활 타버린 재에서 남아있는 불씨… 그 불씨로 달궈지는 리듬… 그 리듬으로부터 표현되는 몸짓… 이건 마치, 하룻밤 타오르고 남은 거대한 캠프파이어! 그곳에서 춤을 추듯 휘날리는 잿가루들의 여명 무도회!",
+     "tw": "哦哦……在餘燼中殘留下的火種……被這火種點燃的節奏……配合那節奏表現的動作……這動作簡直是，徹夜不熄的巨大篝火！在那之中飛散的塵土正如翩翩起舞般舉行著黎明舞會！",
+     "suggest": "哦哦……在餘燼中殘留下的火種……被這火種點燃的節奏……配合那節奏表現的動作……這動作簡直是，燃燒了一夜後留下的巨大篝火！在那之中飛散的灰燼正如翩翩起舞般舉行著黎明舞會！",
+     "why": "KR「하룻밤 타오르고 남은 거대한 캠프파이어」是「燒了一整夜之後剩下的巨大營火」（JP「一晩中燃えさかって火の尽きた」），現行「徹夜不熄」變成還在燒，和前面的「餘燼、殘留的火種」、後面的「黎明」接不上；「잿가루들」是飛揚的「灰」，現行寫成「塵土」。這是流浪樂隊成員稱讚辛克萊的同一段話，#44 的「好苗子」就是接在它後面。只改這兩處。"
+    }
+   ]
+  }
  },
  {
   "ref": "S301B#39",
@@ -1175,7 +1592,29 @@
   "reason": "是主語偏移，歸 A4；整句仍是羅佳在求良秀附和，讀者不太會誤會劇情，嚴重度降為 low。",
   "confidence": "medium",
   "seq": "S0038",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "……口、口水都要流出來了～你說是不是，良秀？",
+    "same_as_report": true
+   },
+   "suggest": "……口、口水都要流出來了～妳說是不是，良秀？",
+   "kr_meaning": "「치, 침 고인다~」是羅佳說自己：「침이 고이다」＝嘴裡積起口水、饞了，開頭「치, 침」是結巴。「그렇지 않아, 료슈?」是常體的反問「不是嗎，良秀？」，KR 沒有寫出第二人稱。整句直譯：「……口、口水都出來了～不是嗎，良秀？」",
+   "context": "巴士上，#36 羅佳提起 K 公司有一家以漢堡排出名的連鎖餐廳；#37 奧提斯、#38 以實瑪利卻接著講行軍時只含鹽、航海時只有鐵味的罐頭湯。羅佳接不下去，在 #39 自己說饞了，轉頭找良秀附和；#40 良秀回答想到各地血的顏色確實會流口水，#41 羅佳放棄，改問辛克萊想吃什麼。",
+   "problem": "意思與語氣都對，只有「你說是不是」的「你」要改：聽者良秀是女性（characters/ryoshu.md 的 gender: female），依 base.md「性別」一節，對女性罪人加了第二人稱就寫「妳」。這個「你」是這次調整才加進去的（調整前是「對吧，良秀？」，沒有人稱），所以改成「妳說是不是」，其餘不動。#41「真是無法跟你好好說話」的「你」是原有譯文，沒有列入。",
+   "also": [
+    {
+     "ref": "S301B#36",
+     "kr": "오~ 거기 햄버그 맛있다고 유명한 프랜차이즈 식당 있지 않았어?",
+     "tw": "哦～那裡是不是還開著家漢堡好吃到出名的連鎖餐廳來著？",
+     "suggest": "哦～那裡是不是還開著家漢堡排好吃到出名的連鎖餐廳來著？",
+     "why": "KR「햄버그」是漢堡排（JP ハンバーグ，EN hamburg steak），不是漢堡（햄버거）。#39 羅佳說流口水指的就是這個（EN 在 #39 直接寫 steak）。只把「漢堡」改成「漢堡排」。"
+    }
+   ]
+  }
  },
  {
   "ref": "S301B#70",
@@ -1206,7 +1645,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0039",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "希斯克利夫氣得手中的球棒都在顫抖，想要朝浮士德走去，但……",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S302B#1",
@@ -1237,7 +1686,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0040",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "順便一提，剛才是要去11區後巷，卻說成K公司了吧？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S303B#56",
@@ -1268,7 +1727,17 @@
   "reason": "改法只換掉錯的「身分證明」；KR「말씀해주세요」有敬語，現行的「您」與「入境目的」（EN purpose of visit）都保留。",
   "confidence": "medium",
   "seq": "S0041",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "請報上您所屬的組織和入境目的。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S303B#75",
@@ -1299,7 +1768,17 @@
   "reason": "同 S303B#56：只換掉「身分證明」，保留「您」與「入境目的」。",
   "confidence": "medium",
   "seq": "S0042",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "請報上您所屬的組織和入境目的。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S303B#82",
@@ -1330,7 +1809,17 @@
   "reason": "同 S303B#56：只換掉「身分證明」，保留「您」與「入境目的」。",
   "confidence": "medium",
   "seq": "S0043",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "……請報上您所屬的組織和入境目的。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S303B#95",
@@ -1361,7 +1850,14 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0044",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [],
+   "note": "尚未寫成人工調整。"
+  }
  },
  {
   "ref": "S303B#102",
@@ -1392,7 +1888,17 @@
   "reason": "後半「K사와 어울리네요」沒有主詞，TW 解讀成「（血小板、白血球這種）稱呼很適合K公司」說得通，不必改；只改前半句。",
   "confidence": "medium",
   "seq": "S0045",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "似乎指的就是那些人。非常適合K公司的稱呼。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S304B#7",
@@ -1423,7 +1929,14 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0046",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [],
+   "note": "尚未寫成人工調整。"
+  }
  },
  {
   "ref": "S307B#26",
@@ -1454,7 +1967,14 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0047",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [],
+   "note": "尚未寫成人工調整。同一個擬聲詞在 E615A#62「찰칵!」現行寫「咔嚓！」，兩種寫法都通。"
+  }
  },
  {
   "ref": "S307B#27",
@@ -1485,7 +2005,14 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0048",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [],
+   "note": "尚未寫成人工調整。"
+  }
  },
  {
   "ref": "S308B#42",
@@ -1516,7 +2043,21 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0049",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "噗……索德，你有看到那個時鐘的時針在顫抖嗎？就像要哭了一樣。",
+    "same_as_report": true
+   },
+   "suggest": "噗……索德，妳有看到那個時鐘的時針在顫抖嗎？就像要哭了一樣。",
+   "kr_meaning": "「풉…」是噗哧一笑。「소드, 저 시계 시침 바르르 떨리는 거 보여?」＝「索德，看到那個時鐘的時針在微微發抖嗎？」（시침＝時針，바르르＝細細地抖，보여?＝常體問句，對象是索德）。「저러다가 울기라도 하겠어.」＝「再那樣下去怕是要哭出來了。」整句直譯：「噗……索德，看到那個時鐘的時針在抖嗎？再那樣下去都要哭了。」",
+   "context": "第 3 章檢查站外，埃菲（男）與索德（女）開裝甲車來會合。#38 索德說上次的偽裝服「結果沒派上用場」，#39 但丁無言，#40 格里高爾說她講話還是一樣戳人，#41 但丁想起上次的混亂而胸口發悶。#42 埃菲轉頭對索德取笑但丁的指針在抖，#43 索德接著說「開玩笑的」。",
+   "problem": "「秒針」改「時針」正確。但這句是埃菲對索德說的，索德是女性（S203B#2、S311B#19 的現行譯文都寫「她」，npcs.yaml 第 9 章的索德標 female），依 base.md「性別」一節對女性寫「妳」；現在的「你有看到」把性別寫錯，改成「妳有看到」，其餘不動。",
+   "also": []
+  }
  },
  {
   "ref": "S310B#21",
@@ -1547,7 +2088,14 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0050",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [],
+   "note": "尚未寫成人工調整。E003I2#67「와장창창!」現行寫「哐啷啷啷！」，若想統一可寫「SE // 哐啷！」；「嘩啷」本身沒有錯。"
+  }
  },
  {
   "ref": "S311B#12",
@@ -1578,7 +2126,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0051",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "……他們又來了。原來他們一直都沒有忘記。就這樣，找上門來……",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S311B#38",
@@ -1609,7 +2167,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0052",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "<你說什麼？>",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S313A#28",
@@ -1640,7 +2208,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0053",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "……辛克萊，是你的鄰居們嗎？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S313A#37",
@@ -1671,7 +2249,26 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0054",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "聖善夜……",
+    "same_as_report": true
+   },
+   "also": [
+    {
+     "ref": "S313A#34",
+     "kr": "고요한 밤…",
+     "tw": "平安……",
+     "suggest": "平安夜……",
+     "why": "KR「고요한 밤…」是《平安夜》第一句的完整一節（Silent night），和 #37「거룩한 밤…」成對。#37 現在寫中文歌詞的「聖善夜……」，這一句的現行「平安……」少了「夜」，兩句對不上（歌詞是「平安夜，聖善夜」）；補成「平安夜……」。"
+    }
+   ],
+   "note": "下一個檔 S313B#24 克羅默拿這兩句歌詞說「고요하지는 않지만 거룩한 밤이지.」，現行「雖然今夜並不平安，但確實神聖。」意思沒錯，只是「神聖」和這裡的「聖善夜」用字不同，可以不改。"
+  }
  },
  {
   "ref": "S318A#2",
@@ -1702,7 +2299,14 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0055",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [],
+   "note": "尚未寫成人工調整。"
+  }
  },
  {
   "ref": "S318A#15",
@@ -1733,7 +2337,14 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0056",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [],
+   "note": "尚未寫成人工調整。"
+  }
  },
  {
   "ref": "S320B#7",
@@ -1764,7 +2375,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0057",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "哈？那你是怎麼知道要帶我們來地下室的？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S322B#20",
@@ -1795,7 +2416,14 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0058",
-  "group": "main-03"
+  "group": "main-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [],
+   "note": "尚未寫成人工調整。"
+  }
  },
  {
   "ref": "S402B#87",
@@ -1826,7 +2454,17 @@
   "reason": "錯在一般詞語的意思，不是數字、名稱或術語，類別改為 A1；改法只換掉錯的部分。",
   "confidence": "medium",
   "seq": "S0059",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "嘛……富裕的都市裡發生了這種混亂，倒也確實會讓攝影機蜂擁而至。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S402B#102",
@@ -1857,7 +2495,17 @@
   "reason": "TW 仍是「難道……嗎」的反問，沒有反轉疑問或肯定否定；錯在「굳이」譯成「必須」，類別改為 A1。",
   "confidence": "medium",
   "seq": "S0060",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "怎麼會。難道會特地去妨礙來幫忙的人……",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S403A#7",
@@ -1888,7 +2536,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0061",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "這些異想體是怎麼回事……出現在巢的正中央就已經夠離譜了，為什麼還變得比至今遇過的異想體更……恐怖？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S408B#51",
@@ -1919,7 +2577,21 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0062",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "嫉妒會轉化為發展的動力，優秀如我們應更加寬容。昨天從那家派店用餐費買來的東西。能分給施倫妮的部門嗎，三朝？",
+    "same_as_report": true
+   },
+   "suggest": "嫉妒會轉化為發展的動力，優秀如我們應更加寬容。昨天從那家派店用餐費買來的東西。能分給施倫妮的部門嗎，三朝先生？",
+   "kr_meaning": "「시기는 발전의 원동력이니, 잘난 쪽이 참아 줘야죠」：嫉妒是發展的原動力，所以優秀的一方得多擔待。「어제 그 파이 가게에서 회식비로 사온 거」：昨天用聚餐費在那家派店買回來的東西。「슈렌느 부서에도 돌릴까, 삼조 씨?」：也分給施倫妮的部門吧，三朝先生？句末的稱呼是「삼조 씨」，帶「씨」。",
+   "context": "東朗在K公司研究室接待罪人，隔壁部門的施倫妮過來挖苦。#49 施倫妮罵東朗和三朝「兩個都一樣討人厭」，#50 格里高爾說優秀的人容易招嫉妒，東朗在這一句先回格里高爾（해요체），後半句轉頭問祕書三朝（반말加「삼조 씨」）；#52 三朝答「我本來就這麼打算」。",
+   "problem": "「派店」已改對，但句末的「삼조 씨」只寫成「三朝」，漏了稱謂。依 base.md，「~씨」寫「先生／小姐」；東朗在同一個檔的 #6、#36、#47、#102 叫「삼조 씨」，現行譯文都寫「三朝先生」，只有這一句沒有。補上「先生」，其餘不動。",
+   "also": []
+  }
  },
  {
   "ref": "S408B#95",
@@ -1950,7 +2622,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0063",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "那麼，那個座位又是怎麼回事？",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S408B#105",
@@ -1981,7 +2663,18 @@
   "reason": "說明與方向正確，但同場對話（S408B#106、但丁的「合約事務所」）都寫「合約」，改法把「契約」改回「合約」以保持一致。",
   "confidence": "medium",
   "seq": "S0064",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "提問。是固定合約，還是事後審查合約？執行方式是代表機關執行，還是共同執行？",
+    "same_as_report": false
+   },
+   "also": [],
+   "note": "同一句的四個問號併成兩個，是使用者決定的寫法，意思沒有出入。"
+  }
  },
  {
   "ref": "S408B#109",
@@ -2012,7 +2705,25 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0065",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "啊……那位來自榴蓮樂隊的艾德是吧？羅佳贏了比賽，那傢伙卻不守約定，無緣無故挑起了一場鬥毆。",
+    "same_as_report": true
+   },
+   "also": [
+    {
+     "ref": "S408B#111",
+     "kr": "네, 맞아요, 입회인이 되어줄 줄 알았던 아이드 씨가 쏜살같이 태도를 바꿔 버리는 바람에 무력으로 가져와야만 했었죠.",
+     "tw": "是的，沒錯，原本身為公證人的艾達小姐突然改變了態度，我們只好動用武力來取得金枝。",
+     "suggest": "是的，沒錯，原以為會擔任公證人的艾達小姐突然改變了態度，我們只好動用武力來取得金枝。",
+     "why": "KR「입회인이 되어줄 줄 알았던 아이드 씨」是「原以為會（替我們）當公證人的艾達小姐」（JP 立会人になってくれると思った）；現行「原本身為公證人」寫成她本來就是公證人，和 #108「沒有找到合適的公證人」對不上。"
+    }
+   ]
+  }
  },
  {
   "ref": "S415B#40",
@@ -2043,7 +2754,25 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0066",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "施倫妮小姐，你們部門也要一起去嗎？",
+    "same_as_report": true
+   },
+   "also": [
+    {
+     "ref": "S415B#43",
+     "kr": "이득이랑 손해만 따지면서 움직이기엔 나도 많은 걸 잃었다는 소리야.",
+     "tw": "如果說只考慮利益和損失的話，我也失去了很多東西。",
+     "suggest": "我是說，我也失去了太多，沒辦法只計較利益和損失來行動。",
+     "why": "這是施倫妮對 #40–#41「你們部門也要去嗎、明明沒有好處」的回答。KR「이득이랑 손해만 따지면서 움직이기엔 나도 많은 걸 잃었다는 소리야」是「我也失去了太多，沒辦法只計較得失來行動」（-기엔＝要……的話已經太……；JP 失いすぎたってことよ）；現行「如果說只考慮利益和損失的話，我也失去了很多東西」變成在算自己的損失，意思不同。"
+    }
+   ]
+  }
  },
  {
   "ref": "S417A#20",
@@ -2074,7 +2803,17 @@
   "reason": "TW 仍表達出「名字沒有意義、只是恐怖組織」的大意，讀者不至於誤會劇情，嚴重度改為 low；改法保留原句其餘部分。",
   "confidence": "medium",
   "seq": "S0067",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "為什麼要在意這種事情？只是名字取得好聽的恐怖組織而已，我們沒有必要去了解他們的價值觀。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S418B#34",
@@ -2105,7 +2844,18 @@
   "reason": "說明正確；第二句「這才是一名研究人員應該有的樣子」沒有錯，改法保留現行譯文，只改第一句。",
   "confidence": "medium",
   "seq": "S0068",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "這樣就對了，你就儘管活成只對眼前發生的事好奇的模樣吧。這才是一名研究人員應該有的樣子。",
+    "same_as_report": false
+   },
+   "also": [],
+   "note": "這句是蘭回答 #33 三朝的「지금 뭘 하는…」，「你」指三朝，無誤。"
+  }
  },
  {
   "ref": "S421B#36",
@@ -2136,7 +2886,17 @@
   "reason": "前半「我以為……看來你還挺擅長寫小說的嘛」沒有錯，改法保留現行譯文，只換掉辱罵的詞。",
   "confidence": "medium",
   "seq": "S0069",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "我以為研究員的任務就是撰寫論文……看來你還挺擅長寫小說的嘛，你這瘋子。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S426B#36",
@@ -2167,7 +2927,17 @@
   "reason": "說明正確；改法保留現行的「雖然……也很重要」句式，只改錯的部分。",
   "confidence": "medium",
   "seq": "S0070",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "應該不是我們能隨意對抗的人。雖然委託方花了多少錢、派出哪一科的收尾人也很重要……",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S427B#56",
@@ -2198,7 +2968,17 @@
   "reason": "TW 並非「與原意相反」：「剝離瞬間」也有把瞬間抽離出來的意思，問題是丟了「標本」的比喻、句意不清；說明據此修正。",
   "confidence": "medium",
   "seq": "S0071",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "照片，不過是被製成標本的瞬間罷了。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S430B#35",
@@ -2229,7 +3009,17 @@
   "reason": "「씻은 듯이」是慣用語（如 씻은 듯이 낫다＝痊癒），初篩改法直譯成「像洗過一樣」不自然；改為「徹底」，並保留現行的「只需淋雨，便能」。",
   "confidence": "medium",
   "seq": "S0072",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "只需淋雨，便能徹底恢復健康的故事……",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "S430B#73",
@@ -2260,7 +3050,18 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0073",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "如果你想要的是情報，我現在就提供給你。我們原計劃明天出去員工聚餐，而且約好要去一家很好吃的烤肉店。",
+    "same_as_report": true
+   },
+   "also": [],
+   "note": "上一句 #72 現行把一名研究員（연구원 하나）寫成「他們」，是照 EN 的 them；不影響這一項，未列入一起改。"
+  }
  },
  {
   "ref": "S433A#7",
@@ -2291,7 +3092,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0074",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "如果他們將異想體還原成卵的形態，然後像腦葉公司那樣找到了顯現E.G.O的方法……",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "S445B#18",
@@ -2322,7 +3133,21 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0075",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "呵，你也跟鄉巴佬沒兩樣嘛。不對，應該說是船巴佬？",
+    "same_as_report": true
+   },
+   "suggest": "呵，妳也跟鄉巴佬沒兩樣嘛。不對，應該說是船巴佬？",
+   "kr_meaning": "「헷」：呵。「너도 촌뜨기나 다름없구만」：你也跟鄉巴佬沒兩樣嘛（너＝聽者，這裡是以實瑪利）。「아니지, 배뜨기냐?」：不對，該說是「船巴佬」嗎？「배뜨기」是仿「촌뜨기」造的詞，嘲笑她長年待在船上。",
+   "context": "#10 以實瑪利說挖角違反企業間的道義；#14–#16 良秀嘲笑這個「橙頭髮、在船上待太久」的人把常識丟進大湖；#17 莫梭補充企業之間只看利益；希斯克利夫在這一句跟著取笑以實瑪利，#19 以實瑪利氣得只發出「이익…」。",
+   "problem": "句意已改對，但聽者是以實瑪利（女性），依 base.md「對女性用妳」，句中的「你」要寫「妳」。只改這一個字。同場 #14、#15 良秀對以實瑪利的台詞現行也寫「你」，那兩句不是這次列出的項目，沒有列入一起改。",
+   "also": []
+  }
  },
  {
   "ref": "S448B#77",
@@ -2353,7 +3178,18 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0076",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "是啊……我們總以為是憑自己的意志……離開了九人會……",
+    "same_as_report": false
+   },
+   "also": [],
+   "note": "下一句 #78 已有人工調整。#79「그 원인이 우리 중에 있다」是「原因就在我們之中」（暗指九人會裡有人），現行寫「在我們身上」，差別不大，未列入。"
+  }
  },
  {
   "ref": "S454B#18",
@@ -2384,7 +3220,32 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0077",
-  "group": "main-04"
+  "group": "main-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "也許冬柏會來，李箱。",
+    "same_as_report": true
+   },
+   "also": [
+    {
+     "ref": "S454B#15",
+     "kr": "그렇다면, 이는 연기자만큼의 수가 배부되어 있다고 보는 것이 합당하다.",
+     "tw": "那麼，合理推測演員是按角色數量分配的。",
+     "suggest": "那麼，合理推測這些是按演員人數分發的。",
+     "why": "KR「이는 연기자만큼의 수가 배부되어 있다」的主詞「이는」是桌上那幾疊劇本（#9、#13），意思是「這些發了和演員人數一樣多的份數」（JP これは演者の数だけ配られている）；現行「演員是按角色數量分配的」把主詞寫成演員。劇本的份數等於演員人數，才接得上 #16「不是沒有人，而是在等」和這一項的「也許冬柏會來」。"
+    },
+    {
+     "ref": "S454B#19",
+     "kr": "만약 동백이 죽기 직전에 이 공간… 하하, 뭐라 불러야 할지 모르겠네.",
+     "tw": "如果她臨死前來到了這個空間……哈哈，我不知道該怎麼說。",
+     "suggest": "如果在冬柏臨死前，這個空間……哈哈，不知道該怎麼稱呼才好。",
+     "why": "KR「만약 동백이 죽기 직전에 이 공간…」話只說到一半，沒有「來到了」；東朗停下來是因為不知道該怎麼稱呼這個空間（뭐라 불러야 할지），#20 才接著說完「如果這個空間的入口打開了」。現行照 EN 補成「她臨死前來到了這個空間」，又把「怎麼稱呼」寫成「怎麼說」；冬柏「來到了」是這一項才在猜測的事，不是前提。"
+    }
+   ]
+  }
  },
  {
   "ref": "S503B#27",
@@ -10373,7 +11234,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0284",
-  "group": "dungeon-01"
+  "group": "dungeon-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "……然後只要在這個空間裡經過一定的時間，卵就會孵化。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "1D203B#17",
@@ -10404,7 +11275,18 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0285",
-  "group": "dungeon-01"
+  "group": "dungeon-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "戰鬥豈能不經苦……呃，嘔！咳咳！",
+    "same_as_report": false
+   },
+   "also": [],
+   "note": "譯法由使用者決定；KR 斷在「전투를…」（動詞沒說出口），現在的譯文斷在「苦（難）」，都看得出是話被嗆斷，不需要改。"
+  }
  },
  {
   "ref": "1D203B#35",
@@ -10435,7 +11317,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0286",
-  "group": "dungeon-01"
+  "group": "dungeon-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "阿雅或許是覺得妳很討喜，因此處處關照著妳……但如今她已經死了，所以誰還會在乎呢。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "1D203B#52",
@@ -10466,7 +11358,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0287",
-  "group": "dungeon-01"
+  "group": "dungeon-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "阿雅小姐她，咳。不是想要照顧妳嗎……所以這東西就是妳的了。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "1D203B#65",
@@ -10497,7 +11399,17 @@
   "reason": "初篩判斷正確；改法改為保留現行「把整棟大樓都封鎖起來」的措辭，只修正句式。",
   "confidence": "high",
   "seq": "S0288",
-  "group": "dungeon-01"
+  "group": "dungeon-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "在公司正為了不讓異想體逃進都市而把整棟大樓封鎖起來的情況下？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "1D204B#16",
@@ -10528,7 +11440,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0289",
-  "group": "dungeon-01"
+  "group": "dungeon-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "它是逃了出來，然後到處亂殺人的嗎。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "1D306A#61",
@@ -10559,7 +11481,17 @@
   "reason": "初篩改法「我給你的可不是為了……」少了受詞，讀起來不順；改為只把「培養你」換成「把它給你」，其餘保留現行譯文。",
   "confidence": "high",
   "seq": "S0290",
-  "group": "dungeon-01"
+  "group": "dungeon-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "我把它給你可不是為了看你落入這種處境的。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "1D306A#69",
@@ -10590,7 +11522,18 @@
   "reason": "初篩建議的「如同做了噩夢後醒來的黎明。」與現行 #68「就如同從長夜的噩夢之中驚醒……」重複，不能單獨套用；改成能直接接在現行 #68 後面的寫法，合讀為「就如同從長夜的噩夢之中驚醒……迎來黎明。」。意象大致保留，只是多譯，嚴重度降為 low。",
   "confidence": "medium",
   "seq": "S0291",
-  "group": "dungeon-01"
+  "group": "dungeon-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "迎來黎明。",
+    "same_as_report": true
+   },
+   "also": [],
+   "note": "「새벽」也指天亮前還一片漆黑的凌晨，在 KR 是拿來比喻 #67「시야는, 까맣게 물들었다」的黑；JP、EN 都讀成黎明，現行 #68＋#69 合讀意思大致還在，所以不改。若要更貼近 KR，可把 #68 改成「就像漫長的……」、#69 改成「噩夢醒來後的凌晨。」（#68 目前沒有人工調整）。"
+  }
  },
  {
   "ref": "1D306I2#7",
@@ -10621,7 +11564,21 @@
   "reason": "初篩說「卡戎變成動作者、語意錯亂」不太準：「看地圖」本來就在完整版 1D306B#5 裡，問題是缺漏的部分和 KR 不一致；改法照 KR 的語序把省略號放在「教卡戎」之後。",
   "confidence": "medium",
   "seq": "S0292",
-  "group": "dungeon-01"
+  "group": "dungeon-01",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "……等回到巴士上後，我能教卡戎……嗎？",
+    "same_as_report": true
+   },
+   "suggest": "……等回到巴士上後，我能教教卡戎……嗎？",
+   "kr_meaning": "「버스로 돌아가면」＝回到巴士之後；「카론한테 …알려줘도 될까요?」＝「可以教卡戎……嗎？」，中間的「지도 보는 법을」（看地圖的方法）被挖掉換成「…」。整句就是 1D306B#5「…버스로 돌아가면, 카론한테 지도 보는 법을 알려줘도 될까요?」少了中間一段，其餘逐字相同。直譯：「……回到巴士之後，可以教卡戎……嗎？」",
+   "context": "戰鬥中段，被異想體吞掉的尤莉的聲音在重播她說過的話：#4 重播她初登場的 S105B#4（現行譯文與 S105B#4 逐字相同，只多一個刪節號），#7 重播 1D306B#5 她對格里高爾說的那句，#8 但丁彷彿看見她的粉色頭髮。這句的作用是讓人認出 1D306B#5。",
+   "problem": "意思沒有錯，但和被重播的原句差一個字：1D306B#5 現行譯文是「……等回到巴士上後，我能教教卡戎怎麼看地圖嗎？」，這裡寫「教卡戎」。KR 是原句挖掉一段、其餘不動，譯文也應該是原句挖掉「怎麼看地圖」，所以寫「教教卡戎……嗎」，和 #4 對 S105B#4 的做法一致。",
+   "also": []
+  }
  },
  {
   "ref": "2D102B#33",
@@ -10652,7 +11609,17 @@
   "reason": "問題是多出「改革」，類別改為 A3；改法依莫梭簡潔、書面的語氣寫「政治宣傳嗎」，不用口語的「搞宣傳」。",
   "confidence": "medium",
   "seq": "S0293",
-  "group": "dungeon-02"
+  "group": "dungeon-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "煽動宣傳嗎。遺憾的是並未奏效。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "2D306A#29",
@@ -10683,7 +11650,18 @@
   "reason": "上一句已說「別指望下次還有這種善意」，「選擇它」也大致說得通，只失去暗示，嚴重度降為 low。",
   "confidence": "medium",
   "seq": "S0294",
-  "group": "dungeon-02"
+  "group": "dungeon-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "若是看見了一條能讓多數人富足的明確道路，我會毫不猶豫地站到另一邊。",
+    "same_as_report": false
+   },
+   "also": [],
+   "note": "譯法由使用者決定。「다른 쪽」是相對於 #28「這種善意的衝動」的另一個選擇；接著 #28 讀，「站到另一邊」不會被誤解。"
+  }
  },
  {
   "ref": "2D306A#48",
@@ -10714,7 +11692,18 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0295",
-  "group": "dungeon-02"
+  "group": "dungeon-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "趁我們家經理大賺一筆的時候順手拿來的。",
+    "same_as_report": true
+   },
+   "also": [],
+   "note": "`guides/characters/rodion.md` 寫羅佳稱呼但丁「直接叫「但丁」，KR 是「관리자님」也一樣」。這句是她在眾人面前用第三人稱、帶敬語（하셨을 때）戲謔地說「我們家管理者」，「我們家經理」是調整前就有的寫法；要不要照指引改成「我們家但丁」請使用者決定。"
+  }
  },
  {
   "ref": "2D306B#3",
@@ -10745,7 +11734,18 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0296",
-  "group": "dungeon-02"
+  "group": "dungeon-02",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "我有時會在思緒混亂的時候來這裡。哪怕沒有妳喜歡的安樂椅和威士忌……",
+    "same_as_report": true
+   },
+   "also": [],
+   "note": "前一句 2D306B#2 現行譯文「一頭如冰一樣透明頭髮的人在等著我們」句末漏了句號（KR 以「.」結尾），不屬於意思錯誤，沒有列入一起改。"
+  }
  },
  {
   "ref": "3D102A#1",
@@ -10776,7 +11776,17 @@
   "reason": "初篩說「執行經理」是錯誤稱謂，這點不成立：奧提斯稱但丁「관리자님」既有譯文有「經理」也有「執行經理」（outis.md 記錄 36 行），所以保留「執行經理」，只改「確認目標存活」。",
   "confidence": "high",
   "seq": "S0297",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "……執行經理。我建議您今後將確認擊殺作為基礎作戰計畫的一部分。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "3D102A#2",
@@ -10807,7 +11817,18 @@
   "reason": "初篩改法的「學乖了」是「變得聽話、學到教訓」，不是「身體記住了」，改用「記住了」；並拿掉現行譯文開頭多出的半形空格。",
   "confidence": "high",
   "seq": "S0298",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "彷彿身體已經徹底記住了一般，渾身起了雞皮疙瘩。",
+    "same_as_report": false
+   },
+   "also": [],
+   "note": "下一句 3D102A#3 現行譯文開頭還有一個多餘的半形空格（「 異端……必須抹殺。」），和這句調整前的情況相同。"
+  }
  },
  {
   "ref": "3D102A#75",
@@ -10838,7 +11859,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0299",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "啊……你們知道這場面有多難看嗎？我好不容易才營造出帥氣的畫面耶。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "3D301B#23",
@@ -10869,7 +11900,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0300",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "去赴死吧！無須畏懼死亡！",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "3D301B#37",
@@ -10900,7 +11941,17 @@
   "reason": "「表面看似美好、其實充滿嫉妒」的主旨沒有變，讀者不會誤解劇情，嚴重度降為 low；改法照用。",
   "confidence": "medium",
   "seq": "S0301",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "只要再靠近些看，就會發現那段喧鬧的時間其實是由嫉妒、炫耀、優越感與狡詐⏎混雜而成的。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "3D301B#39",
@@ -10931,7 +11982,17 @@
   "reason": "說明與改法照用；依嚴重度定義，人名錯屬 high（只出現這一次的同學，影響範圍小）。",
   "confidence": "high",
   "seq": "S0302",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "隔壁班的拉胡爾，聽說他父親會親自給他做雙臂手術。甚至還會用上沒公開的最新技術來著？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "3D301B#42",
@@ -10962,7 +12023,26 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0303",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "「你沒有什麼要說的嗎？」那些看著我的眼神，⏎彷彿隨時都會轉為嘲笑與輕蔑。",
+    "same_as_report": true
+   },
+   "also": [
+    {
+     "ref": "3D301B#46",
+     "kr": "하지만 나는 그들의 야릇한 시선에서 벗어나서는 안 됐다.",
+     "tw": "但我卻無法逃避他們好奇的目光。",
+     "suggest": "但我不能脫離他們好奇的目光。",
+     "why": "「벗어나서는 안 됐다」是「不可以脫離」（JP「逃れてはならなかった」、EN「I had to keep their curious eyes on me」），不是「逃不掉」。現行「無法逃避」寫成他想躲開目光卻躲不掉，意思相反，也接不上下一句 #47 的理由（一旦脫離就會被丟下）。這幾句講的就是本項 #42 那些盯著他的眼神。只改這一處，其餘保留。"
+    }
+   ],
+   "note": "#45「뭐 없냐는 말」回指這句的「너는 뭐 없어?」；現行 #45「其實根本沒有誰要求我也講一個故事」意思相同，只是沒有重複這句話，可以不改。"
+  }
  },
  {
   "ref": "3D301B#54",
@@ -10993,7 +12073,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0304",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "P公司？你是說那片翼嗎？！哇……太羨慕了。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "3D301B#56",
@@ -11024,7 +12114,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0305",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "自鳴得意。那是相當甜美的滋味。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "3D301B#75",
@@ -11055,7 +12155,21 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0306",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "伴隨著輕快的口哨聲，一個嬌小的身影出現在我的課桌前。",
+    "same_as_report": true
+   },
+   "suggest": "伴隨著輕快的口哨聲，一道小小的陰影落在我的課桌上。",
+   "kr_meaning": "「경쾌한 휘파람 소리와 함께」＝伴隨著輕快的口哨聲；「책상 위로」＝往書桌上面；「조그만 그늘이 진다」＝「그늘」是（光被遮住而成的）陰影，「그늘이 지다」是落下陰影，「조그만」（小小的）修飾的是陰影，不是人。直譯：「伴隨著輕快的口哨聲，一片小小的陰影落在書桌上。」",
+   "context": "辛克萊的回憶獨白。#70 他低頭看著滴在書桌上的血，#74 克羅默開口「你……流血了」，這句寫他眼前的桌面被影子遮住，下一句 #76 才交代「向我搭話的」是幾乎沒交流過的同學。",
+   "problem": "現在的譯文只把「奇怪的」改成「輕快的」，後半「一個嬌小的身影出現在我的課桌前」仍是舊譯：把「陰影落在桌上」寫成「身影出現在桌前」，「조그만」也從形容陰影變成形容來人「嬌小」（KR 沒有描寫來人的身材）。JP「机の上に小さな影が差す」、EN「casts a shadow over my desk」也都是影子。辛克萊這時低頭看著桌面，先看到影子，#76 才寫來的是誰，照 KR 寫成陰影才接得上。",
+   "also": []
+  }
  },
  {
   "ref": "3D306B#0",
@@ -11086,7 +12200,17 @@
   "reason": "初篩說這與後文「離聖誕節還有很久」相衝，不成立：那是 3D309A#77 現在時間格里高爾的話，這行是辛克萊的回憶，兩者無關；說明改為與下一句「聖夜」對應。改法照用。",
   "confidence": "high",
   "seq": "S0307",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "那天是聖誕夜，鎮上充斥著鐘聲與喜悅。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "3D309A#80",
@@ -11117,7 +12241,36 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0308",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "蟲……不對，我可是特地叫了你卡戎！",
+    "same_as_report": true
+   },
+   "suggest": "蟲……不對，我可是特地叫了妳卡戎！",
+   "kr_meaning": "「벌…」是把卡戎剛叫他的「벌레 양반」（蟲男）跟著唸到一半；「아니」＝不對（改口）；「기껏」＝特地、難得；「카론이라고 불렀더니」＝（我）叫了「卡戎」，結果卻……。KR 沒有寫第二人稱代名詞。直譯：「蟲……不對，我難得叫了『卡戎』，結果！」",
+   "context": "巴士上。#77 格里高爾叫她「卡戎」，#78 卡戎回「別掃卡戎的興，蟲男」，這句是格里高爾當面向卡戎抗議；#81 羅佳接著慫恿他也回叫卡戎「司機小妹」。",
+   "problem": "意思沒有問題，只有第二人稱的性別：聽者是卡戎，女性（`guides/characters/charon.md` gender: female；`guides/base.md`「女性罪人……（還有卡戎）。對她們說話時，加了第二人稱就用「妳」」），現在的譯文寫「你卡戎」。調整理由裡引的譯文本來也是「我可是特地叫了妳卡戎！」，同一批對尤莉的 S0286、S0287 也都已寫「妳」。",
+   "also": [
+    {
+     "ref": "3D309A#89",
+     "kr": "<긴 터널 속을 지나오고 있는 거라면…>",
+     "tw": "<既然要穿過很長的隧道……>",
+     "suggest": "<如果是正在穿過漫長的隧道……>",
+     "why": "同一場戲的結尾（本項之後 9 行，和本項的改法無關，但意思明確錯了，和 #90 要一起改）。「지나오고 있는 거라면」是「如果是正在穿過來的話」，隧道是比喻：#86 但丁想起維吉里烏斯說卡戎「正在穿越隧道」（S301B#21「她正身處一條看不見出口的漫長隧道」），#88 看著勉強笑著的辛克萊，才說出這句。現行「既然要穿過很長的隧道」寫成巴士接下來真的要過隧道。"
+    },
+    {
+     "ref": "3D309A#90",
+     "kr": "<아침을 기다리면 되는 게 아닐까?>",
+     "tw": "<那等早上再出發不也行嗎？>",
+     "suggest": "<那只要等待早晨到來不就好了嗎？>",
+     "why": "「아침을 기다리면 되는 게 아닐까?」是「只要等待早晨不就行了嗎？」（JP「朝を待てば良いんじゃないか？」、EN「what we do is wait for the morning to arrive」），接 #89 的比喻：身在漫長的隧道裡，就等天亮。現行「那等早上再出發不也行嗎？」變成建議改到早上才出發，多了「出發」，比喻不見了；#92 羅佳說他「盡說些奇怪的話」也因此接不上。"
+    }
+   ]
+  }
  },
  {
   "ref": "3D309B#4",
@@ -11148,7 +12301,17 @@
   "reason": "初篩改法「我可是很想殺了你看看啊」沒有接上前文「別瞪我、時機未到」的因果；改成「會忍不住想」。意思大致還在，只是語氣弱化，嚴重度降為 low。",
   "confidence": "medium",
   "seq": "S0309",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "你這樣，我會忍不住想把你殺了看看的嘛。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "3D309I2#15",
@@ -11179,7 +12342,17 @@
   "reason": "說明照用；改法保留現行「流淌鮮血」（「피를 쏟고」這部分沒有錯），只改「剝離肉體」與後半句。",
   "confidence": "high",
   "seq": "S0310",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "填滿血肉，流淌鮮血！讓最像人類的東西每一刻都不斷增加！",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "3D309I2#59",
@@ -11210,7 +12383,17 @@
   "reason": "說明補上誤讀的原因；初篩改法「宛如全然暢快釋懷的人」少了量詞，讀起來不順，改寫成「像是個無比暢快釋懷的人」。",
   "confidence": "high",
   "seq": "S0311",
-  "group": "dungeon-03"
+  "group": "dungeon-03",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "他看起來似乎是個無比輕鬆自在的人，但與此相反，他每走近一步，周遭的空氣又似乎讓所有人都感到越發沉重。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "4D105B#36",
@@ -11241,7 +12424,18 @@
   "reason": "初篩判斷正確；改法改為只把「檢票」換成「發號碼牌」，其餘保留現行譯文。",
   "confidence": "high",
   "seq": "S0312",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "真是的……以前來這裡參觀的客人並不多，但之後我們大概得發號碼牌讓他們排隊了。",
+    "same_as_report": true
+   },
+   "also": [],
+   "note": "句首「참…」JP 讀成「そうだ」（對了），EN 讀成 Really；兩種讀法都通，現行「真是的」不必改。"
+  }
  },
  {
   "ref": "4D105B#49",
@@ -11272,7 +12466,17 @@
   "reason": "初篩判斷正確；改法改為保留現行「不與對方直接對視」，只改「薄情無義」。",
   "confidence": "high",
   "seq": "S0313",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "但不與對方直接對視，並不代表我對他們心存芥蒂。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "4D202B#9",
@@ -11303,7 +12507,32 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0314",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "聽說是靈之先生所屬的團體，我特地把忙碌的行程全推掉跑來……結果只看到一些像兒童玩具的東西。",
+    "same_as_report": true
+   },
+   "also": [
+    {
+     "ref": "4D202B#8",
+     "kr": "있잖아, 동랑 씨는… 언제까지 그 동물병원 놀이나 할 셈이야?",
+     "tw": "說起來，東朗先生……你準備在那個動物醫院玩多久？",
+     "suggest": "說起來，東朗先生……你那個動物醫院家家酒打算玩到什麼時候？",
+     "why": "KR「동물병원 놀이」是「扮動物醫院的遊戲」（JP 動物病院ごっこ），羅佳（訥人）嘲笑東朗醫治動物的技術只是兒戲，下一句（這一項）才說「只看到像兒童玩具的東西」；現行「在那個動物醫院玩多久」寫成真有一間動物醫院、他在那裡玩。「언제까지 … 할 셈이야」是「打算……到什麼時候」。"
+    },
+    {
+     "ref": "4D202B#5",
+     "kr": "왜 못마땅해 하는 거야? 같이 가자는 영지 형의 제안을 한사코 거절한 건 너였잖아, 동백.",
+     "tw": "妳為什麼這麼不高興？提議堅決拒絕和靈之哥一起去的人不是妳嗎，冬柏。",
+     "suggest": "妳為什麼這麼不高興？靈之哥提議一起去，堅決拒絕的人不是妳嗎，冬柏。",
+     "why": "KR「같이 가자는 영지 형의 제안을 한사코 거절한 건 너였잖아」是「靈之哥提議一起去，堅決拒絕的不就是妳嗎」；現行「提議堅決拒絕和靈之哥一起去的人」語序錯亂，讀起來像是冬柏「提議」拒絕。這一句也是同場用「靈之哥」（영지 형）的地方，和這一項的「靈之先生」（영지 님）是不同說話者的稱呼，不必統一。"
+    }
+   ]
+  }
  },
  {
   "ref": "4D202B#32",
@@ -11334,7 +12563,17 @@
   "reason": "初篩改法的「斜著眼看」在中文有輕視的意味；改用李箱前文已用的「側目視之」，「滲入」也與 4D105B#50「逐漸滲入其中」一致。",
   "confidence": "high",
   "seq": "S0315",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "以為只要側目視之、逐漸滲入其中便好，原來只是貪圖安逸……",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "4D205B#4",
@@ -11365,7 +12604,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0316",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "為什麼……你讓九人會的位置暴露了，雅能？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "4D208B#25",
@@ -11396,7 +12645,18 @@
   "reason": "初篩改法寫「你們」，但 KR 沒有複數；東朗是在回應剛喊「住手」的唐吉訶德，KR 帶敬語 -시-（모르실），依 base.md 寫「您」。",
   "confidence": "medium",
   "seq": "S0317",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "啊，各位也許還不知道，但僅那一個奇點便拯救了數不清的生命。",
+    "same_as_report": false
+   },
+   "also": [],
+   "note": "調整理由說東朗是對在場的罪人說話，查過前後文無誤：#4–#22 是眼淚的場景碎片（#24 浮士德說對方聽不到），東朗是和罪人一起在看，回應 #23 的唐吉訶德，「各位」合適。"
+  }
  },
  {
   "ref": "4D301B#12",
@@ -11427,7 +12687,25 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0318",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "我若背過身去，你不也會陪我一同背過身去嗎。",
+    "same_as_report": false
+   },
+   "also": [
+    {
+     "ref": "4D301B#14",
+     "kr": "구보가 막바지에나마 구인회에 합류한 것도, 네 영향이 제일 클걸.",
+     "tw": "仇甫雖然是最後加入九人會的，我卻覺得他受你影響最大。",
+     "suggest": "仇甫雖然到了最後關頭才加入九人會，那多半也是受你的影響最大。",
+     "why": "KR「구보가 막바지에나마 구인회에 합류한 것도, 네 영향이 제일 클걸」的主語是「仇甫加入九人會這件事」：他會在最後關頭加入，最大的原因是你（EN you're the biggest reason he decided to join）。現行「雖然是最後加入的，我卻覺得他受你影響最大」寫成在比誰受李箱影響最深，#13「仇甫真心珍惜你」到 #15 李箱否認的這段話就少了根據。"
+    }
+   ]
+  }
  },
  {
   "ref": "4D304B#57",
@@ -11458,7 +12736,21 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0319",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "嗯，如你所說。我書櫃上那些最優秀獎的獎牌，全都只是空殼罷了。",
+    "same_as_report": true
+   },
+   "suggest": "嗯，如妳所說。我書櫃上那些最優秀獎的獎牌，全都只是空殼罷了。",
+   "kr_meaning": "「네, 당신 말이 맞아요」：是的，你說得對（해요체加「당신」，是對罪人說話的語體，不是對李箱的반말）。「제 책장에 있는 최우수 상패들은 모두 껍데기들이에요」：我書櫃上的最優秀獎獎牌全都是空殼。",
+   "context": "鏡中的戲演完後，以實瑪利在 #41 對東朗說「你說自己實現了願望，可是我怎麼想都不覺得是那樣」，東朗當時頂了回去（#43）；希斯克利夫、李箱接著說話，#54 奧提斯說小黃牛還在等他，東朗在 #55–#57 用해요체回答，這一句是承認 #41 以實瑪利說的沒錯；#58 起說話者名稱變成「否定一切的東朗」。",
+   "problem": "「書櫃」「最優秀獎的獎牌」已改對，但「당신」指的是罪人：東朗在 #39 用「당신」稱呼以實瑪利，這一句回應的是她在 #41 說的話；即使看成回答 #54 的奧提斯，也是女性。依 base.md「對女性用妳」，「如你所說」要寫「如妳所說」。只改這一個字。同檔 #38、#39 東朗對以實瑪利的台詞現行也寫「你」，不是這次列出的項目，沒有列入一起改。",
+   "also": []
+  }
  },
  {
   "ref": "4D305A#4",
@@ -11489,7 +12781,17 @@
   "reason": "說明照用；另外現行開頭的「介於」是錯字（「介於」是「在兩者之間」），應為「鑑於」，改法一併修正。",
   "confidence": "high",
   "seq": "S0320",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "鑑於恐怖組織的首領——是叫冬柏對吧？已經死掉了，組織轉眼間就會瓦解。那麼關於剩下的問題……",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "4D305A#24",
@@ -11520,7 +12822,17 @@
   "reason": "初篩判斷正確；「辦手續」通常是申請人去辦，改用 KR「진행」的「進行」。",
   "confidence": "high",
   "seq": "S0321",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "我會進行記憶清除手續。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "4D305A#40",
@@ -11551,7 +12863,17 @@
   "reason": "初篩改法的「氛圍」不是 KR「기분」（心情、感覺）的意思；改用「心境」，並照李箱的典雅白話語氣。",
   "confidence": "high",
   "seq": "S0322",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "僅是感受到飛翔，便已足夠。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "4D305I#14",
@@ -11582,7 +12904,22 @@
   "reason": "初篩說離開的是仇甫、TW 把人弄反，不成立：4D304B#0「떠나기로 결정했나?」顯示要離開 N 公司的是李箱，「我離開仇甫」在事實上沒錯；真正的問題是漏了「마저」與「失去」的意味。初篩改法「仇甫也離我而去」反而與劇情不符，改用與 4D304B#7 一致的「失去」，嚴重度降為 low。",
   "confidence": "medium",
   "seq": "S0323",
-  "group": "dungeon-04"
+  "group": "dungeon-04",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "當我連仇甫也失去時……",
+    "same_as_report": true
+   },
+   "suggest": "當我連仇甫也失去時。",
+   "kr_meaning": "「구보마저」：連仇甫也（마저＝連最後一個也）。「떠나보냈을 때」：送走了、失去了的時候（떠나보내다＝讓人離開、送別）。句末是句號。整句：連仇甫也送走了的時候。",
+   "context": "#13 但丁問李箱離開N公司之前在想什麼。李箱從這一句答起：先說出時間點，#15 接著說星星熄滅、自己像成了瘸子，#16–#17 再轉到「但是……也許某處有地方能讓這樣的我活下去」。",
+   "problem": "「連……也失去」已改對，但句末沿用了舊譯照 EN「When I parted with Gubo...」寫的「……」；KR 是句號，下一句 #15 也是完整的句子，沒有欲言又止的停頓。依 base.md「句末標點跟 KR」，改成「。」。",
+   "also": [],
+   "note": "這一項處理時曾建議句尾照舊譯保留「……」，理由是句子接到下一行；這裡依「句末標點跟 KR」改回句號，和其他項目的處理一致。兩種寫法意思相同，由使用者決定"
+  }
  },
  {
   "ref": "5D101B#42",
@@ -15360,7 +16697,18 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0421",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "果然是這樣吧？呼……我還以為浮士德小姐一時發瘋了，心想是不是得由我親自出手讓她清醒過來呢。",
+    "same_as_report": true
+   },
+   "also": [],
+   "note": "下一句 #82 KR「왜 방금까지 메이스를 꽉 쥐고 있었던 거지」是反問「妳剛才為什麼一直緊握著鎚矛」，現行照 EN 寫成「這就是你為何……嗎」；吐槽的意思還在，沒有列入一起改。"
+  }
  },
  {
   "ref": "E301B#15",
@@ -15391,7 +16739,25 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0422",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "哎呀，那些在店門口徘徊的是什麼東西？看上去不太正常啊。",
+    "same_as_report": true
+   },
+   "also": [
+    {
+     "ref": "E301B#16",
+     "kr": "그 자의 말에 고개를 돌려보자, 괴상한 행색을 한 사람들이 시야에 잡혔다.",
+     "tw": "我順著他的話轉過身，視野中出現了一群舉止怪異的人。",
+     "suggest": "我順著他的話轉過頭，視野中出現了一群打扮怪異的人。",
+     "why": "KR「괴상한 행색을 한 사람들」的「행색」是外表、打扮（JP「奇妙な格好をした人たち」），現行照 EN 的「strange behavior」寫成「舉止怪異」；後面 #18、#19 講的都是面具、吉祥物這些外觀，#15 現在也改成「看上去不太正常」。「고개를 돌려보자」是轉頭，一併把「轉過身」改成「轉過頭」。"
+    }
+   ]
+  }
  },
  {
   "ref": "E302B#33",
@@ -15422,7 +16788,17 @@
   "reason": "錯誤成立；初篩改法「怎麼會是一樣的啊？！」與良秀的縮略「那．那。」對不上，改為用「那跟那」展開縮略，同時保留「一樣」的意思。",
   "confidence": "medium",
   "seq": "S0423",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "什麼叫那跟那都一樣啊？！",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E302B#56",
@@ -15453,7 +16829,17 @@
   "reason": "句子仍是在駁回羅佳的擔心，問題在語氣，類別改為 A7；初篩改法「真是急死人了」太口語，奧提斯的角色指引是軍人式、形式化的口吻，改為「真教人焦躁」。",
   "confidence": "medium",
   "seq": "S0424",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "真是夠了。就算臉皮被剝掉，有經理在這裡就沒關係。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "E303A#9",
@@ -15484,7 +16870,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0425",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "嗯……我的房間裡沒有廚房那種東西呢。不過我小時候為了討點心吃，倒是偷偷溜進過我家二樓的大餐廳。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E303B#5",
@@ -15515,7 +16911,17 @@
   "reason": "錯誤成立；初篩改法連「一改往日的鎮定」也改寫，改為保留現行前半句，只改錯的地方。",
   "confidence": "high",
   "seq": "S0426",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "格里高爾一改往日的鎮定，用變得尖銳的語氣發起了脾氣。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E304A#11",
@@ -15546,7 +16952,25 @@
   "reason": "錯誤成立；初篩改法連前半句也改寫，改為只刪掉多出的子句。",
   "confidence": "high",
   "seq": "S0427",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "<要拿給人試吃的料理，你們自己都沒吃過是想怎樣啊！>",
+    "same_as_report": false
+   },
+   "also": [
+    {
+     "ref": "E304A#13",
+     "kr": "전투를 치르기 전보다 더 결연한 분위기가 맴돌았다.",
+     "tw": "空氣中瀰漫著比戰鬥開始前還要殺機四伏的氣氛。",
+     "suggest": "空氣中瀰漫著比戰鬥開始前還要決絕的氣氛。",
+     "why": "KR「결연한 분위기」是「決然、下定決心的氣氛」（JP「覚悟を決めたような雰囲気」）：但丁說完 #11、希斯克利夫問「誰要來吃」之後，大家像要赴死一樣在決定誰吃，下面接李箱「不要用這種眼神看著我」與唐吉訶德「吾願獻身」。現行「殺機四伏」是有人想殺人的意思，和原文不同。"
+    }
+   ]
+  }
  },
  {
   "ref": "E304A#48",
@@ -15577,7 +17001,17 @@
   "reason": "錯誤成立；初篩改法把整句改寫，改為保留現行的「又鹹又淡，甜又不甜」，只改「又軟又脆」。",
   "confidence": "medium",
   "seq": "S0428",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "味道又鹹又淡，甜又不甜，不能煮太熟卻又要有點焦的料理，到底要怎麼做啊！",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E305A#35",
@@ -15608,7 +17042,29 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0429",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "<我們的機會來了！店長身上的扭曲或者別的什麼東西正在減弱！>",
+    "same_as_report": true
+   },
+   "suggest": "<我們的機會來了！店長身上那個叫扭曲的東西正在減弱！>",
+   "kr_meaning": "「지금이야!」：就是現在！（現行「我們的機會來了！」意思相通。）「사장의 뒤틀림이라는 게」：「사장의」店長的；「뒤틀림이라는 게」是「뒤틀림이라고 하는 것이」的縮略，「那個叫做『扭曲』的東西」，是對剛學到、還不熟的詞的說法，沒有「或者別的東西」的意思。「약화되고 있어」：正在減弱。整句直譯：「就是現在！店長那個叫扭曲的東西正在減弱！」",
+   "context": "店長吃了奧提斯的料理後想起母親（#27–#34「어머니…」），但丁看到扭曲開始消退，對罪人們喊出這句；接著 #36 辛克萊說店長面前出現了一扇門，#39 奧提斯下令進入。「扭曲」這個詞但丁是在 E301A#78 才第一次聽浮士德解釋（「그… 뒤틀림이 됐다는 거야?」），所以這裡用「뒤틀림이라는 게」。",
+   "problem": "現在的譯文「扭曲或者別的什麼東西」是照 EN「The Distortion or whatever」直譯留下來的，中文讀起來變成「扭曲，或者是另外某種東西」在減弱；KR 只是「那個叫扭曲的東西」，沒有第二個選項。只改這一段，其餘不動。",
+   "also": [
+    {
+     "ref": "E305A#36",
+     "kr": "이것 보세요! 사장님 앞에 어디론가 향하는 문 같은 것이 생겨났어요!",
+     "tw": "看！有一扇門在它旁邊出現了！",
+     "suggest": "看！店長面前出現了一扇像是通往某處的門！",
+     "why": "KR「사장님 앞에 어디론가 향하는 문 같은 것이 생겨났어요」是「店長面前出現了像是通往某處的門」（JP「社長の前にどこかへと向かう扉みたいなの」）。現行照 EN 寫「在它旁邊」：#35 已經把「它」改成「店長」，這句的「它」要跟著改；「앞에」是面前不是旁邊；也漏了「通往某處」。"
+    }
+   ]
+  }
  },
  {
   "ref": "E306A#22",
@@ -15639,7 +17095,17 @@
   "reason": "初篩把「這個菜……」誤讀成「這道菜」，改法也拿掉了接下一行吐槽的口誤；改為保留口誤，只補「只有我和」並刪掉「手法很巧妙」。整句意思大致仍在，嚴重度降為 low。",
   "confidence": "high",
   "seq": "S0430",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "那是只有我和這個菜……少年才察覺到的風向。你配合得很好。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "E306A#26",
@@ -15670,7 +17136,18 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0431",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "重要的不是食譜……是為某個人著想的心意……就算做出來的形狀是披薩……只要用心去做，客人們一定會喜歡的。",
+    "same_as_report": true
+   },
+   "also": [],
+   "note": "KR「그 형태가 피자… 일지라도」的「그 형태」承接前面的「누군가를 위하는 마음」（那份心意的形式是披薩，呼應母親存的是披薩券），現行「做出來的形狀是披薩」說成料理的形狀；意思還通，沒有判調整。要更貼 KR 可寫「就算那份心意的形式是披薩」。"
+  }
  },
  {
   "ref": "E306A#66",
@@ -15701,7 +17178,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0432",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "那就先這樣。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E306B#18",
@@ -15732,7 +17219,17 @@
   "reason": "錯誤與改法成立；這是譯錯意思，不是殘留韓文或亂碼，類別改為 A1。",
   "confidence": "high",
   "seq": "S0433",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "咦？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E306B#26",
@@ -15763,7 +17260,21 @@
   "reason": "錯誤成立；末句 KR「심지어… 가게를 찾아왔던 수많은 손님들조차도!」是說連客人們也都不記得，現行「我的顧客也都把它的味道給忘完了」說得通，不必改寫；改法只改前兩處。",
   "confidence": "medium",
   "seq": "S0434",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "applied": {
+    "zh": "就是這樣……！是辣味醬料還是醬油醬料……主料是糖還是鹽……什麼都沒留下！就連……來過店裡的那麼多客人，也什麼都不記得了！",
+    "same_as_report": false
+   },
+   "suggest": "就是這樣……！是辣味醬料還是醬油醬料……主料是糖還是鹽……什麼都沒留下！就連……來過店裡的那麼多客人也是！",
+   "kr_meaning": "「그래…!」：對、就是這樣（承認李箱、浮士德的說明）。「매운 양념이었는지 간장 양념이었는지… 설탕이 주재료였는지 아니면 소금이었는지」：是辣味醬料還是醬油醬料、主料是糖還是鹽。「아무것도 남지 않아!」：什麼都沒剩下。「심지어… 가게를 찾아왔던 수많은 손님들조차도!」：「심지어」甚至；「가게를 찾아왔던」過去常來店裡的（-았던 是「以前……現在不了」）；「손님들조차도」連客人們也——後面省略了述語，只能承接前一句的「남지 않아」，也就是「連客人們也（沒剩下）」。KR 沒有寫「不記得」；要說「客人也不記得」，韓文會寫「손님들에게조차」「손님들의 기억에서조차」。整句直譯：「對……！是辣味醬料還是醬油醬料……主料是糖還是鹽，什麼都沒剩下！甚至……連以前來過店裡的那麼多客人也是！」",
+   "context": "#19–#25 李箱、浮士德說明概念焚化爐會讓技術連同文件、記憶一起消失；店長接著說出這句，#27 再說「現在努力也沒用了」。下一句 #28 奧提斯回「掛著那種俗氣的名字，生意才會做不起來」，回應的正是「客人也沒了」。E306A#61 菩薩雞店長也說「那家餐廳重新開張，我們店的客人就會流失」，可見食譜被燒掉之後銀鳳的客人是跑光了。",
+   "problem": "現在的譯文後半「也什麼都不記得了」是照 EN「None of my customers can remember how it tasted!」補的，KR 沒有這個述語；照 KR 的句法與下一句奧提斯講「生意做不起來」，比較自然的讀法是「連客人也沒剩下」。建議照 KR 留下省略，寫「也是」，兩種讀法都不排除，也不替原文多說一句。前半（使用者決定的寫法）不動。",
+   "also": []
+  }
  },
  {
   "ref": "E306B#28",
@@ -15794,7 +17305,17 @@
   "reason": "「店名俗氣、該換掉」的意思兩者都有，店長回答「銀鳳是我媽媽的名字」也都接得上，嚴重度降為 low；改法保留現行的「你真是軟弱啊」。",
   "confidence": "high",
   "seq": "S0435",
-  "group": "event-e3"
+  "group": "event-e3",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "哼，你真是軟弱啊。銀鳳？就是掛著那種俗氣的名字，生意才會做不起來。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E404B#60",
@@ -15825,7 +17346,17 @@
   "reason": "錯誤成立；「버스에서」是說這話的地點，初篩改法「說過在巴士上有不少想做的事」容易讀成想在巴士上做的事，改為「在巴士上不是說過」。句末照 KR 用「。」（見 base.md「句末標點跟 KR」）。",
   "confidence": "medium",
   "seq": "S0436",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "你們，不是在巴士上說過想做的事頗多嗎。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "E405A#41",
@@ -15856,7 +17387,33 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0437",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "那又怎麼樣，稍微玩一下又有什麼關係？難道我們晚去一陣子，那什麼鬼的鯨就會變強多少嗎？",
+    "same_as_report": true
+   },
+   "also": [
+    {
+     "ref": "E405A#35",
+     "kr": "닥쳐. 지금 너 혼자 개 고생해? 여태껏 다 쳐 뒤져가면서 굴러왔잖아. 여기 있는 놈들 전부!",
+     "tw": "閉嘴。你覺得你是唯一一個遭罪的人嗎？我們不都是拚盡全力現在才能站在這的嗎。這裡的所有人！",
+     "suggest": "閉嘴。你覺得你是唯一一個遭罪的人嗎？我們不都是死了一次又一次才一路撐到現在的嗎。這裡的所有人！",
+     "why": "KR「여태껏 다 쳐 뒤져가면서 굴러왔잖아」是「到現在大家不都是一路死著撐過來的嗎」（뒤지다＝死的粗話；JP「みんなくたばりながらここまで転がってきた」、EN「We've all died more times than we can count」）。現行「拚盡全力現在才能站在這」漏了「死」，而這正是這場爭吵的重點：#36「這次也總能解決」、#37 以實瑪利回「這種方法在大湖上行不通」、#40–#41「就當我們會全部沒命……玩一下又怎樣」都接在「反正死了能復活」上。"
+    },
+    {
+     "ref": "E405A#42",
+     "kr": "분위기를 계속 조져 놓았으면 같이 어울리는 척이라도 해야 될 거 아냐, 상식적으로!!",
+     "tw": "與其在一直這裡把氣氛搞砸，不如也假裝一起玩玩吧，你連這種常識都沒有嗎！！",
+     "suggest": "既然一直把氣氛搞砸，好歹也該假裝一起玩玩吧，你連這種常識都沒有嗎！！",
+     "why": "現行「與其在一直這裡把氣氛搞砸」語序錯了（在一直這裡），KR 也沒有「這裡」。KR「분위기를 계속 조져 놓았으면 같이 어울리는 척이라도 해야 될 거 아냐」是「既然一直把氣氛搞砸了，至少也該裝作跟大家玩在一起吧」（-았으면 ……-아야 될 거 아냐：都做了前者，就該做後者），不是「與其……不如」的二選一。後半「你連這種常識都沒有嗎」接得上 #44「大談什麼常識」，保留。"
+    }
+   ],
+   "note": "#43 KR「제법 웃기네요. 히스클리프 씨?」句末是問號，現行寫「。」；只是標點，沒有列入一起改。"
+  }
  },
  {
   "ref": "E405A#59",
@@ -15887,7 +17444,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0438",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "有那麼一瞬間，希斯克利夫似乎佔了上風，他的拳頭擊中了以實瑪利的臉頰……",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E405A#88",
@@ -15918,7 +17485,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0439",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "辛克萊與唐吉訶德越說越小聲的勸阻，浮士德淡然的聲音，以及奧提斯為了袒護我而拔高的音量。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "E405A#101",
@@ -15949,7 +17526,17 @@
   "reason": "只是催促與否的語氣差別，下一行就是大家去收集廢料，讀者不會誤會劇情，嚴重度降為 low；改法保留現行前半句。",
   "confidence": "high",
   "seq": "S0440",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "好了、好了……現在大概已經估計好要收集多少廢料了，差不多可以出發了。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E406B#34",
@@ -15980,7 +17567,17 @@
   "reason": "錯誤成立；KR 對格里高爾用了帶 -시- 的敬語，依 base.md 第二人稱規則不宜寫「你」，改法改寫成不需要代名詞的句子。",
   "confidence": "high",
   "seq": "S0441",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "哇～格里高爾先生，這是要表演火焰秀嗎？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E406B#35",
@@ -16011,7 +17608,25 @@
   "reason": "錯誤成立；初篩改法「再華麗一點地纏繞火焰」不通順，改寫為符合良秀簡短口吻的句子。只是一句評語，嚴重度降為 low。",
   "confidence": "medium",
   "seq": "S0442",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "無趣。讓火焰纏得再華麗點。",
+    "same_as_report": false
+   },
+   "also": [
+    {
+     "ref": "E406B#36",
+     "kr": "아, 아니! 저건 그냥 타는 거잖아요!",
+     "tw": "等、等下！他只是在把它火化！",
+     "suggest": "不、不是吧！那只是燒起來了而已啊！",
+     "why": "KR「아, 아니! 저건 그냥 타는 거잖아요!」是「不、不是！那只是燒起來了而已吧！」（타다 是自己燒起來；JP「あれ普通に燃えてるじゃないですか」），否定的是 #34「火焰秀」、#35「纏得再華麗點」這種看表演的說法；下一句莫梭才把燒壞的食物取出來。現行照 EN「He's just cremating it!」寫「他只是在把它火化」，多了「他」這個主詞，變成格里高爾故意在燒；#34、#35 的調整理由也都把這句當作「那只是燒起來了」。"
+    }
+   ]
+  }
  },
  {
   "ref": "E406B#50",
@@ -16042,7 +17657,17 @@
   "reason": "大意（多虧維吉里烏斯在場，希斯克利夫的事解決了）仍然傳達了，偏差在細節與語氣，嚴重度降為 low。",
   "confidence": "medium",
   "seq": "S0443",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "或許多虧他不像平時那樣不在場，至少希斯克利夫這邊才得以解決。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "E407A#23",
@@ -16073,7 +17698,17 @@
   "reason": "漏譯判斷正確；初篩改法「配送專門的收尾人」照搬日文語序，改成較自然的「專門負責配送的收尾人」。",
   "confidence": "high",
   "seq": "S0444",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "我們早些時候就已經拿到錢了。合約剛剛履行完畢，Девять協會就派了一名專門負責配送的收尾人前來結清尾款。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E407B#45",
@@ -16104,7 +17739,17 @@
   "reason": "判斷成立；初篩改法「做得詳盡密集」「讀一點書」不太通順，改寫措辭。",
   "confidence": "medium",
   "seq": "S0445",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "得先把關於鯨的指南做得詳詳細細，你們才至少會讀一點，不是嗎？",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E407B#57",
@@ -16135,7 +17780,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0446",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "我們都是為了實現自己的目的而與邊獄公司簽訂了合約。我簽了，上次的李箱先生也簽了，其他所有罪人也都簽了。",
+    "same_as_report": true
+   },
+   "also": []
+  }
  },
  {
   "ref": "E407B#61",
@@ -16166,7 +17821,17 @@
   "reason": "「自私」與「個人」是詞義差異，歸 A1；另補上初篩說明沒提到的「모두」呼應，改法也一併處理。",
   "confidence": "medium",
   "seq": "S0447",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "您明明比誰都更出於個人動機在行動，為什麼還要裝作是為了所有人呢？",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "E407B#72",
@@ -16197,7 +17862,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0448",
-  "group": "event-e4"
+  "group": "event-e4",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "applied": {
+    "zh": "好吧，那份了不起的合約我會遵守。經理。只要是您的吩咐，我照做就是了。",
+    "same_as_report": false
+   },
+   "also": []
+  }
  },
  {
   "ref": "E501B#3",
