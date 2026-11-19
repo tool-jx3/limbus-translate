@@ -1,6 +1,6 @@
 # StoryData 審查報告的再檢視（結合前後文）
 
-> 這是再檢視時給子代理的說明，原樣保存。`<tools>` 是放工具的工作目錄，不在 repo 內；裡面的 `ctx.py`、`look.py` 就是 `method/recheck_ctx.py`、`method/recheck_look.py`，`report_refs.txt` 是 `data/findings.json` 每項的編號、位置與 key。`.work/raw`、`.work/tw` 是 raw-20261119 與 tw 2bf1273。主線第 5 章、第 5 章副本與活動 E5 由主要的工作階段依同一份標準檢視，其餘各組由子代理檢視後再經 `method/recheck_check.py` 檢查、抽查。
+> 這是再檢視時給子代理的說明，原樣保存。`<tools>` 是放工具的工作目錄，不在 repo 內；裡面的 `ctx.py`、`look.py`、`check_recheck.py` 就是 `method/recheck_ctx.py`、`method/recheck_look.py`、`method/recheck_check.py`，`report_refs.txt` 是 `data/findings.json` 每項的編號、位置與 key。`.work/raw`、`.work/tw` 是 raw-20261119 與 tw 2bf1273。主線第 5 章、第 5 章副本與活動 E5 由主要的工作階段依同一份標準檢視，其餘各組由子代理檢視。「指引」一節裡 `lct guide resolve`、人格故事、合作活動三條是第二批（活動 E0、ES、PC、人格故事）開始前加的。
 
 《Limbus Company》臺灣繁體中文（zh-TW）譯本。repo 在 `/home/user/limbus-translate`（先讀 `CLAUDE.md`）。
 `docs/research/2026-11-13-storydata-accuracy/` 是一份已完成的報告：逐行對照 KR 找出現行 TW 的意思錯誤，每處有編號（S0001–S0818）與「建議」譯文。使用者正依報告逐項決定怎麼改。
@@ -42,6 +42,9 @@
 - `guides/base.md`：尤其「人稱與稱呼」一節（第二人稱您／你的規則、`~씨`／`~군`／`~양`、複數有禮貌寫「各位」不寫「您們」）。
 - `guides/characters/<id>.md`：說話者的角色指引（李箱 yisang、浮士德 faust、唐吉訶德 donquixote、良秀 ryoshu、莫梭 meursault、鴻璐 honglu、希斯克利夫 heathcliff、以實瑪利 ishmael、羅佳 rodion、辛克萊 sinclair、奧提斯 outis、格里高爾 gregor、但丁 dante 等）。例如：李箱是典雅白話、不寫文言；以實瑪利對但丁用「您」；良秀的縮略語規則。
 - `guides/npcs.yaml`：NPC 的性別與備註。
+- 這個檔適用哪些指引，用 `bin/lct guide resolve --file StoryData/<檔名>.json` 查（例如人格故事 `P1…` 會帶 `guides/families/identity.md` 與該罪人的角色指引，活動與間章帶 `guides/families/story-interlude.md`）。
+- 人格故事（`P1…`）：說話者常是該人格版本的罪人或鏡像世界的人物，口吻、自稱、稱呼可能和本篇不同（角色指引的 `models_other_self`、「人格差異」各條）；以同一個檔裡現行譯文的寫法與 KR 的語體為準，不要硬套本篇的口吻。旁白多是該人格的第一人稱。
+- 合作活動（`PC…`，明日方舟）與活動 `ES…`、`E0…`：外部作品或活動專有的人名、組織名、用語，照現行譯名（`bin/lct search` 查同一活動其他檔的寫法），不要自己另譯。
 - 女性聽者現行譯文多寫「妳」，男性寫「你」。只有在現行或建議把性別寫錯時才處理，不要為了統一你／妳去改沒有被列出的句子。
 
 ## 先前已確認的例子（判斷的尺度）
