@@ -11,6 +11,11 @@ for s in specs:
     if len(p) == 3: items = items[int(p[1]):int(p[1]) + int(p[2])]
     want += [f['seq'] for f in items]
 adj = ''.join(open(p, encoding='utf-8').read() for p in glob.glob(repo + '/rules/adjustments/*.yaml'))
+import yaml
+ADJ = {}
+for _p in sorted(glob.glob(repo + '/rules/adjustments/*.yaml')):
+    for _e in yaml.safe_load(open(_p, encoding='utf-8')) or []:
+        ADJ[_e['key']] = _e['zh']
 d = json.load(open(path))
 bad = 0
 def err(*a):
@@ -33,11 +38,12 @@ def val(file, ptr, kr, zh):
 for x in d:
     f = by.get(x['seq'])
     if not f: err(x['seq'], 'unknown'); continue
+    base = ADJ.get(f['key'], f['suggest'])   # already adjusted: the adjustment; otherwise the suggestion of the report
     if x['result'] == 'direct':
-        if x['suggest'] != f['suggest']: err(x['seq'], 'direct but text differs from report')
+        if N(x['suggest']) != N(base): err(x['seq'], 'direct but text differs from ' + ('the adjustment' if f['key'] in ADJ else 'the report'))
     elif x['result'] == 'adjust':
-        if x['suggest'] == f['suggest']: err(x['seq'], 'adjust but same text')
-        if x['suggest'] == f['tw']: err(x['seq'], 'adjust equals current tw')
+        if N(x['suggest']) == N(base): err(x['seq'], 'adjust but same text')
+        if f['key'] not in ADJ and x['suggest'] == f['tw']: err(x['seq'], 'adjust equals current tw')
         for k in ('kr_meaning', 'context', 'problem'):
             if not x.get(k): err(x['seq'], 'missing', k)
         ok, out = val(f['file'], f['key'].split('|')[1], f['kr'], x['suggest'])

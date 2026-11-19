@@ -1,12 +1,16 @@
 """Merge the context re-check results into data/findings.json and render items/*.md again.
 
-usage: python3 -I recheck_apply.py <docs dir> <date> <raw tag> [recheck json ...]
+usage: python3 -I recheck_apply.py <docs dir> <date> <raw tag> [--adjustments <rules/adjustments dir>] [recheck json ...]
 
 Each recheck file is a JSON array of
   {"seq", "result": "direct"|"adjust", "suggest", "kr_meaning", "context", "problem",
    "also": [{"ref", "kr", "tw", "suggest", "why"}], "note"}
 (see method/RECHECK.md). A record replaces the `recheck` field of the finding with the same seq.
 With no recheck file the script only renders items/*.md from data/findings.json.
+
+With --adjustments, a finding whose unit already has a manual adjustment is checked against that
+adjustment instead of the suggestion of the report: "direct" then means that the adjustment needs
+no further change, and the adjustment is recorded in recheck.applied.
 
 The item layout is the one of acc_assemble.py; a finding with a `recheck` field gets the
 「再檢視」 lines after it. Groups without any re-checked finding are rendered byte for byte as before.
@@ -15,6 +19,14 @@ import json, os, re, sys, collections, difflib
 
 OUT, DATE, RAW = sys.argv[1], sys.argv[2], sys.argv[3]
 FILES = sys.argv[4:]
+ADJ = {}
+if FILES[:1] == ['--adjustments']:
+    import glob, yaml
+    for _p in sorted(glob.glob(FILES[1] + '/*.yaml')):
+        for _e in yaml.safe_load(open(_p, encoding='utf-8')) or []:
+            ADJ[_e['key']] = _e['zh']
+    FILES = FILES[2:]
+N = lambda t: (t or '').replace('\n', '⏎')   # the report writes line breaks as ⏎
 P = OUT + '/data/findings.json'
 kept = json.load(open(P, encoding='utf-8'))
 by_seq = {r['seq']: r for r in kept}
@@ -24,13 +36,17 @@ for f in FILES:
         r = by_seq[x['seq']]
         if x['result'] not in ('direct', 'adjust'):
             sys.exit('%s: result %r' % (x['seq'], x['result']))
-        if x['result'] == 'direct' and x['suggest'] != r['suggest']:
-            sys.exit('%s: direct, but the text is not the suggestion of the report' % x['seq'])
+        applied = ADJ.get(r['key'])
+        base = N(applied) if applied is not None else r['suggest']
+        if x['result'] == 'direct' and N(x['suggest']) != base:
+            sys.exit('%s: direct, but the text is not the %s' % (x['seq'], 'adjustment' if applied is not None else 'suggestion of the report'))
         if x['result'] == 'adjust' and not (x.get('kr_meaning') and x.get('context') and x.get('problem')):
             sys.exit('%s: adjust needs kr_meaning, context and problem' % x['seq'])
-        if x['result'] == 'adjust' and x['suggest'] == r['suggest']:
-            sys.exit('%s: adjust, but the text is the suggestion of the report' % x['seq'])
+        if x['result'] == 'adjust' and N(x['suggest']) == base:
+            sys.exit('%s: adjust, but the text is the %s' % (x['seq'], 'adjustment' if applied is not None else 'suggestion of the report'))
         rc = collections.OrderedDict([('date', DATE), ('raw', RAW), ('result', x['result'])])
+        if applied is not None:
+            rc['applied'] = collections.OrderedDict([('zh', N(applied)), ('same_as_report', N(applied) == r['suggest'])])
         if x['result'] == 'adjust':
             rc['suggest'] = x['suggest']
             rc['kr_meaning'], rc['context'], rc['problem'] = x['kr_meaning'], x['context'], x['problem']
@@ -95,15 +111,21 @@ def diff_line(frm, to):
 def recheck_md(r):
     rc = r['recheck']
     out = []
+    ap = rc.get('applied')
+    if ap:
+        state = '已寫成人工調整（與報告建議相同）' if ap['same_as_report'] else '已寫成人工調整，譯法與報告建議不同：%s' % code(ap['zh'])
     if rc['result'] == 'direct':
-        out.append('- **再檢視**（%s）：可以直接照建議修改%s' % (rc['date'], ('。' + esc(rc['note'])) if rc.get('note') else ''))
+        if ap:
+            out.append('- **再檢視**（%s）：%s；不需要再改%s' % (rc['date'], state, ('。' + esc(rc['note'])) if rc.get('note') else ''))
+        else:
+            out.append('- **再檢視**（%s）：可以直接照建議修改%s' % (rc['date'], ('。' + esc(rc['note'])) if rc.get('note') else ''))
     else:
-        out.append('- **再檢視**（%s）：建議再調整' % rc['date'])
+        out.append('- **再檢視**（%s）：%s建議再調整' % (rc['date'], (state + '；') if ap else ''))
         out.append('  - KR 原意：%s' % esc(rc['kr_meaning']))
         out.append('  - 前後文：%s' % esc(rc['context']))
-        out.append('  - 報告建議的問題：%s' % esc(rc['problem']))
+        out.append('  - %s：%s' % ('現在的譯文的問題' if ap else '報告建議的問題', esc(rc['problem'])))
         out.append('  - **調整後的建議**：%s' % code(rc['suggest']))
-        out.append('  - 差異（對現行）：%s' % diff_line(r['tw'], rc['suggest']))
+        out.append('  - 差異（對現行）：%s' % diff_line(ap['zh'] if ap else r['tw'], rc['suggest']))
         if rc.get('note'):
             out.append('  - 備註：%s' % esc(rc['note']))
     for a in rc['also']:
@@ -144,11 +166,18 @@ for g, rs in groups.items():
         nd = sum(1 for x in rc if x['result'] == 'direct')
         na = sum(1 for x in rc if x['result'] == 'adjust')
         nl = sum(len(x['also']) for x in rc)
+        nap = sum(1 for x in rc if x.get('applied'))
         dates = sorted(set(x['date'] for x in rc))
-        lines += ['再檢視（%s，見報告「[再檢視](../README.md#再檢視)」）：%d 項中 %d 項可以直接照建議修改、%d 項建議再調整；另有 %d 句前後文建議一起改。%s' % (
-            '、'.join(dates), len(rc), nd, na, nl,
-            ('建議再調整的是 %s。' % '、'.join(r['seq'] for r in rs if r.get('recheck') and r['recheck']['result'] == 'adjust')) if na else ''), '']
-        summary.append((g, len(rs), len(rc), nd, na, nl))
+        adj_list = ('建議再調整的是 %s。' % '、'.join(r['seq'] for r in rs if r.get('recheck') and r['recheck']['result'] == 'adjust')) if na else ''
+        if nap:
+            nda = sum(1 for x in rc if x['result'] == 'direct' and x.get('applied'))
+            ndu = nd - nda
+            lines += ['再檢視（%s，見報告「[再檢視](../README.md#再檢視)」）：%d 項中 %d 項已寫成人工調整。%d 項不需要再改%s、%d 項建議再調整；另有 %d 句前後文建議一起改。%s' % (
+                '、'.join(dates), len(rc), nap, nda, ('、%d 項還沒寫入但可以直接照建議修改' % ndu) if ndu else '', na, nl, adj_list), '']
+        else:
+            lines += ['再檢視（%s，見報告「[再檢視](../README.md#再檢視)」）：%d 項中 %d 項可以直接照建議修改、%d 項建議再調整；另有 %d 句前後文建議一起改。%s' % (
+                '、'.join(dates), len(rc), nd, na, nl, adj_list), '']
+        summary.append((g, len(rs), len(rc), nd, na, nl, nap))
     cur = None
     for r in rs:
         f = r['file'].split('/')[-1][:-5]
@@ -158,8 +187,15 @@ for g, rs in groups.items():
         lines += item_md(r)
     open(OUT + '/items/%s.md' % g, 'w', encoding='utf-8').write('\n'.join(lines).rstrip() + '\n')
 
-print('| 範圍 | 項數 | 可以直接照建議 | 建議再調整 | 前後文一起改 | 清單 |')
-print('|---|---:|---:|---:|---:|---|')
-for g, n, nr, nd, na, nl in summary:
-    print('| %s | %d | %d | %d | %d | [items/%s.md](items/%s.md) |' % (group_title(g), nr, nd, na, nl, g, g))
-print('| 合計 | %d | %d | %d | %d | |' % (sum(s[2] for s in summary), sum(s[3] for s in summary), sum(s[4] for s in summary), sum(s[5] for s in summary)))
+for title, rows, head in (('還沒處理的範圍', [x for x in summary if not x[6]], '可以直接照建議'),
+                          ('已經處理過的範圍', [x for x in summary if x[6]], '不需要再改')):
+    if not rows:
+        continue
+    print('%s：' % title)
+    print()
+    print('| 範圍 | 項數 | %s | 建議再調整 | 前後文一起改 | 清單 |' % head)
+    print('|---|---:|---:|---:|---:|---|')
+    for g, n, nr, nd, na, nl, nap in rows:
+        print('| %s | %d | %d | %d | %d | [items/%s.md](items/%s.md) |' % (group_title(g), nr, nd, na, nl, g, g))
+    print('| 合計 | %d | %d | %d | %d | |' % (sum(x[2] for x in rows), sum(x[3] for x in rows), sum(x[4] for x in rows), sum(x[5] for x in rows)))
+    print()
