@@ -5973,3 +5973,20 @@
   match: word
   category: [buff]
   notes: 2026-11-12 更新新出現的詞，沒有舊譯；新譯 8/8 用 情感等級，與「감정 0단계 → 情感等級0」一致
+
+- kr: 밀랍날개
+  jp: 蜜蝋の翼
+  en: Waxen Pinion
+  zh: 蠟翼
+  forbidden: [蜜蠟之翼]
+  status: approved
+  category: [ego]
+  notes: 2026-11-19 既有 Paratranz 譯文 5 個單位寫「蠟翼」（BattleKeywords、Bufs、Passives 的說明裡的「不穩定E.G.O::蠟翼」）；新譯 8 個單位有 5 個寫成「蜜蠟之翼」。使用者決定統一成「蠟翼」（審核 #20 順帶發現），那 5 個單位由 rules/rewrite/2026-11-19-waxen-pinion.yaml 改寫
+
+- kr: 불안정 E.G.O
+  jp: 不安定E.G.O
+  en: Volatile E.G.O
+  zh: 不穩定E.G.O
+  status: approved
+  category: [ego]
+  notes: 2026-11-19 既有 25/25 個單位寫「不穩定E.G.O」（Paratranz 23、新譯 2）。另有名稱是「불안정」的被動（Passive_Ego，譯「動搖」）與恐慌類型（譯「失控」），都不是這個詞；審核 #20 的「name/불안정」就是把這個詞裡的「불안정」當成那個被動

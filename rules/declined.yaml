@@ -944,3 +944,9 @@
 - id: "inconsistent/ally/name/1dac12a9"
   reason: G130：JP 同為「牽制」但 EN 一為 Careful Obstruction、一為 Wary Move，是不同招式，各自譯名成立（使用者決定 2026-11-13：I2 保留）（2026-11-16：Skills.json 改歸 ally 後同一組的新 id，原為 inconsistent/enemy/name/1dac12a9）
   date: 2026-11-13
+- id: "name/불안정"
+  reason: '審核 #20：這裡的「불안정」是「불안정 E.G.O」（不穩定E.G.O）的一部分，既有譯文 40 多處都寫「不穩定E.G.O」；「動搖」是另一個被動（Passive_Ego 的名稱 불안정），不是同一個東西'
+  date: 2026-11-19
+- id: "name/피해량 증가"
+  reason: '審核 #20：這句的「피해량 증가」指上面列的「造成的傷害 +(30/硬幣數)%」效果，是一般敘述，不是名為「傷害強化」的狀態；既有譯文敘述用法寫「傷害增加」（17 處）、指該狀態才寫「傷害強化」（24 處）'
+  date: 2026-11-19
