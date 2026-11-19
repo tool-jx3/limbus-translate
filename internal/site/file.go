@@ -98,6 +98,10 @@ type FileSummary struct {
 	Top string     `json:"top"`
 	Sub string     `json:"sub,omitempty"`
 	Tag *rules.Tag `json:"tag,omitempty"`
+	// Group is the group of the story order the file is in, if any; Export
+	// sets it (storyGroups). The directory shows such a file under its group
+	// instead of under Sub and Tag.
+	Group *FileGroup `json:"group,omitempty"`
 	// Label is the place a story starts in; empty outside StoryData/.
 	Label string `json:"label"`
 	// Speakers are the tellers of the file, each once, first seen first.

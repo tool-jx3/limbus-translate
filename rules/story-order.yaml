@@ -1,5 +1,8 @@
 # 劇情檔在遊戲裡的順序。網頁同一個類別裡的檔照這個順序排；這裡沒列的檔排在已列的之後，照檔名。
 # 一組是一章、一個活動或一個角色的人格故事；組的先後就是順序（類別仍由 guides/routing.yaml 決定）。
+# 網頁的目錄也照組來分：section 是上一層，組名是 title 指到的語言包文字（file 的 dataList 裡 id 那一筆的
+# fields，以空格相接；譯文沒有就用 KR），沒有 title 就用 label。chapter 是主線的章號：章節篩選用它，
+# 組名前面也會加上「第 N 章」。
 #
 # 這個檔是產生的，不要手改：遊戲更新後照
 # docs/research/2026-11-15-game-text-logic/method/README.md 的「劇情檔的順序」重新產生。
@@ -7,6 +10,9 @@
 # 標「推定」的檔兩者都沒列，是照檔名插進同一章的（同一編號 B → I → A）。
 groups:
   - id: main-100
+    section: 主線
+    chapter: 0
+    title: { file: StoryTheaterMain.json, id: 'CHAPTER_100', fields: [title] }
     files:
       - StoryData/S001B.json
       - StoryData/S001A.json
@@ -16,6 +22,9 @@ groups:
       - StoryData/S004B.json
       - StoryData/S004A.json
   - id: main-101
+    section: 主線
+    chapter: 1
+    title: { file: StoryTheaterMain.json, id: 'CHAPTER_101', fields: [title] }
     files:
       - StoryData/S101B.json
       - StoryData/S102B.json
@@ -50,6 +59,9 @@ groups:
       - StoryData/1D306I2.json
       - StoryData/1D306A.json
   - id: main-102
+    section: 主線
+    chapter: 2
+    title: { file: StoryTheaterMain.json, id: 'CHAPTER_102', fields: [title] }
     files:
       - StoryData/S201B.json
       - StoryData/S202B.json
@@ -82,6 +94,9 @@ groups:
       - StoryData/2D306I.json
       - StoryData/2D306A.json
   - id: main-103
+    section: 主線
+    chapter: 3
+    title: { file: StoryTheaterMain.json, id: 'CHAPTER_103', fields: [title] }
     files:
       - StoryData/S301B.json
       - StoryData/S302B.json
@@ -120,6 +135,9 @@ groups:
       - StoryData/3D309I2.json
       - StoryData/3D309A.json
   - id: main-104
+    section: 主線
+    chapter: 4
+    title: { file: StoryTheaterMain.json, id: 'CHAPTER_104', fields: [title] }
     files:
       - StoryData/S401B.json
       - StoryData/S402B.json
@@ -179,6 +197,9 @@ groups:
       - StoryData/4D305I.json
       - StoryData/4D305I2.json
   - id: main-105
+    section: 主線
+    chapter: 5
+    title: { file: StoryTheaterMain.json, id: 'CHAPTER_105', fields: [title] }
     files:
       - StoryData/S501B.json
       - StoryData/S502B.json
@@ -251,6 +272,9 @@ groups:
       - StoryData/5D304I8.json
       - StoryData/5D304I9.json
   - id: main-106
+    section: 主線
+    chapter: 6
+    title: { file: StoryTheaterMain.json, id: 'CHAPTER_106', fields: [title] }
     files:
       - StoryData/S601B.json
       - StoryData/S602B.json
@@ -317,6 +341,9 @@ groups:
       - StoryData/S648I4.json  # 推定
       - StoryData/S648A.json
   - id: main-107
+    section: 主線
+    chapter: 7
+    title: { file: StoryTheaterMain.json, id: 'CHAPTER_107', fields: [title] }
     files:
       - StoryData/S701B.json
       - StoryData/S702B.json
@@ -385,6 +412,9 @@ groups:
       - StoryData/7D112I5.json
       - StoryData/7D112A.json
   - id: main-108
+    section: 主線
+    chapter: 8
+    title: { file: StoryTheaterMain.json, id: 'CHAPTER_108', fields: [title] }
     files:
       - StoryData/S801B.json
       - StoryData/S801A.json
@@ -455,6 +485,9 @@ groups:
       - StoryData/S833I7.json
       - StoryData/S833A.json
   - id: main-109
+    section: 主線
+    chapter: 9
+    title: { file: StoryTheaterMain.json, id: 'CHAPTER_109', fields: [title] }
     files:
       - StoryData/S901B.json
       - StoryData/S902B.json
@@ -517,6 +550,9 @@ groups:
       - StoryData/S950A.json
       - StoryData/S951B.json
   - id: main-110
+    section: 主線
+    chapter: 10
+    title: { file: StoryTheaterMain.json, id: 'CHAPTER_110', fields: [title] }
     files:
       - StoryData/S1003B.json
       - StoryData/S1004B.json
@@ -585,6 +621,8 @@ groups:
       - StoryData/S1044B.json
       - StoryData/S1044C.json  # 推定
   - id: other-0
+    section: 插曲與活動
+    label: 其他（劇場沒有列）
     files:
       - StoryData/E000X.json  # 推定
       - StoryData/E001X.json  # 推定
@@ -595,6 +633,8 @@ groups:
       - StoryData/E003I3.json  # 推定
       - StoryData/E003I4.json  # 推定
   - id: other-9103
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_k_9103', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E301B.json
       - StoryData/E301A.json
@@ -608,11 +648,15 @@ groups:
       - StoryData/E306B.json
       - StoryData/E306A.json
   - id: other-9010
+    section: 插曲與活動
+    title: { file: StoryTheaterOther.json, id: 'EventTitleText_9010', fields: [title] }
     files:
       - StoryData/E010X.json
       - StoryData/E020X.json
       - StoryData/E030X.json
   - id: other-9104
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_u_9104', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E401B.json
       - StoryData/E402B.json
@@ -625,13 +669,19 @@ groups:
       - StoryData/E407B.json
       - StoryData/E407A.json
   - id: other-9011
+    section: 插曲與活動
+    title: { file: StoryTheaterOther.json, id: 'EventTitleText_9011', fields: [title] }
     files:
       - StoryData/E041X.json
       - StoryData/E042X.json
   - id: other-9012
+    section: 插曲與活動
+    title: { file: StoryTheaterOther.json, id: 'EventTitleText_9012', fields: [title] }
     files:
       - StoryData/E050X.json
   - id: other-9105
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_u_9105', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E501B.json
       - StoryData/E502B.json
@@ -647,13 +697,19 @@ groups:
       - StoryData/E508A.json
       - StoryData/E509B.json
   - id: other-9013
+    section: 插曲與活動
+    title: { file: StoryTheaterOther.json, id: 'EventTitleText_9013', fields: [title] }
     files:
       - StoryData/E051X.json
       - StoryData/E052X.json
   - id: other-9014
+    section: 插曲與活動
+    title: { file: StoryTheaterOther.json, id: 'EventTitleText_9014', fields: [title] }
     files:
       - StoryData/E053X.json
   - id: other-9107
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_t_9107', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E510B.json
       - StoryData/E511B.json
@@ -671,13 +727,19 @@ groups:
       - StoryData/E519B.json
       - StoryData/E519A.json
   - id: other-9015
+    section: 插曲與活動
+    title: { file: StoryTheaterOther.json, id: 'EventTitleText_9015', fields: [title] }
     files:
       - StoryData/E054X.json
   - id: other-9016
+    section: 插曲與活動
+    title: { file: StoryTheaterOther.json, id: 'EventTitleText_9016', fields: [title] }
     files:
       - StoryData/E061X.json
       - StoryData/E062X.json
   - id: other-9109
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_t_9109', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E601B.json
       - StoryData/E602A.json
@@ -699,9 +761,13 @@ groups:
       - StoryData/E615I3.json  # 推定
       - StoryData/E615A.json
   - id: other-9017
+    section: 插曲與活動
+    title: { file: StoryTheaterOther.json, id: 'EventTitleText_9017', fields: [title] }
     files:
       - StoryData/E063X.json
   - id: other-9110
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_t_9110', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E616B.json
       - StoryData/E617B.json
@@ -719,14 +785,20 @@ groups:
       - StoryData/E626B.json
       - StoryData/E627B.json
   - id: other-9018
+    section: 插曲與活動
+    title: { file: StoryTheaterOther.json, id: 'EventTitleText_9018', fields: [title] }
     files:
       - StoryData/E064X.json
       - StoryData/E065X.json
   - id: other-9019
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_p_9019', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E070X.json
       - StoryData/E071X.json
   - id: other-9114
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_p_9114', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E701B.json
       - StoryData/E701A.json
@@ -752,6 +824,8 @@ groups:
       - StoryData/E717B.json
       - StoryData/E717A.json
   - id: other-9116
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_h_9116', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E718B.json
       - StoryData/E719B.json
@@ -773,11 +847,15 @@ groups:
       - StoryData/E727A.json
       - StoryData/E728B.json
   - id: other-9020
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_p_9020', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E080X.json
       - StoryData/E081X.json
       - StoryData/E082X.json
   - id: other-9119
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_h_9119', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E801B.json
       - StoryData/E802B.json
@@ -827,6 +905,8 @@ groups:
       - StoryData/E811A.json
       - StoryData/E812B.json
   - id: pilgrimage
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_h_9120', fields: [chapter, chaptertitle] }
     files:
       - StoryData/PC01B.json  # 推定
       - StoryData/PC01A.json  # 推定
@@ -848,10 +928,14 @@ groups:
       - StoryData/PC14I.json  # 推定
       - StoryData/PC14A.json  # 推定
   - id: other-9021
+    section: 插曲與活動
+    title: { file: StoryTheaterOther.json, id: 'EventTitleText_9021', fields: [title] }
     files:
       - StoryData/E090X.json
       - StoryData/E091X.json
   - id: other-9125
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_h_9125', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E901B.json
       - StoryData/E902B.json
@@ -871,6 +955,8 @@ groups:
       - StoryData/E913B.json
       - StoryData/E914B.json
   - id: other-9127
+    section: 插曲與活動
+    title: { file: StageChapterText.json, id: 'chapter_n_9127', fields: [chapter, chaptertitle] }
     files:
       - StoryData/E915B.json
       - StoryData/E916B.json
@@ -891,12 +977,16 @@ groups:
       - StoryData/E926A.json
       - StoryData/E927B.json
   - id: other-9022
+    section: 插曲與活動
+    title: { file: StoryTheaterOther.json, id: 'EventTitleText_9022', fields: [title] }
     files:
       - StoryData/E100X.json
       - StoryData/E101X.json
       - StoryData/E102X.json
       - StoryData/E103X.json
   - id: personality-01
+    section: 人格故事
+    title: { file: Characters.json, id: '1', fields: [name] }
     files:
       - StoryData/P10102.json
       - StoryData/P10103.json
@@ -914,6 +1004,8 @@ groups:
       - StoryData/P10115.json
       - StoryData/P10116.json
   - id: personality-02
+    section: 人格故事
+    title: { file: Characters.json, id: '2', fields: [name] }
     files:
       - StoryData/P10202.json
       - StoryData/P10203.json
@@ -931,6 +1023,8 @@ groups:
       - StoryData/P10215.json
       - StoryData/P10216.json
   - id: personality-03
+    section: 人格故事
+    title: { file: Characters.json, id: '3', fields: [name] }
     files:
       - StoryData/P10302.json
       - StoryData/P10303.json
@@ -948,6 +1042,8 @@ groups:
       - StoryData/P10315.json
       - StoryData/P10316.json
   - id: personality-04
+    section: 人格故事
+    title: { file: Characters.json, id: '4', fields: [name] }
     files:
       - StoryData/P10402.json
       - StoryData/P10403.json
@@ -965,6 +1061,8 @@ groups:
       - StoryData/P10415.json
       - StoryData/P10416.json
   - id: personality-05
+    section: 人格故事
+    title: { file: Characters.json, id: '5', fields: [name] }
     files:
       - StoryData/P10502.json
       - StoryData/P10503.json
@@ -981,6 +1079,8 @@ groups:
       - StoryData/P10514.json
       - StoryData/P10515.json
   - id: personality-06
+    section: 人格故事
+    title: { file: Characters.json, id: '6', fields: [name] }
     files:
       - StoryData/P10602.json
       - StoryData/P10603.json
@@ -999,6 +1099,8 @@ groups:
       - StoryData/P10616.json
       - StoryData/P10617.json
   - id: personality-07
+    section: 人格故事
+    title: { file: Characters.json, id: '7', fields: [name] }
     files:
       - StoryData/P10702.json
       - StoryData/P10703.json
@@ -1018,6 +1120,8 @@ groups:
       - StoryData/P10716.json
       - StoryData/P10717.json
   - id: personality-08
+    section: 人格故事
+    title: { file: Characters.json, id: '8', fields: [name] }
     files:
       - StoryData/P10802.json
       - StoryData/P10803.json
@@ -1035,6 +1139,8 @@ groups:
       - StoryData/P10815.json
       - StoryData/P10816.json
   - id: personality-09
+    section: 人格故事
+    title: { file: Characters.json, id: '9', fields: [name] }
     files:
       - StoryData/P10902.json
       - StoryData/P10903.json
@@ -1053,6 +1159,8 @@ groups:
       - StoryData/P10916.json
       - StoryData/P10917.json
   - id: personality-10
+    section: 人格故事
+    title: { file: Characters.json, id: '10', fields: [name] }
     files:
       - StoryData/P11002.json
       - StoryData/P11003.json
@@ -1071,6 +1179,8 @@ groups:
       - StoryData/P11016.json
       - StoryData/P11017.json
   - id: personality-11
+    section: 人格故事
+    title: { file: Characters.json, id: '11', fields: [name] }
     files:
       - StoryData/P11102.json
       - StoryData/P11103.json
@@ -1088,6 +1198,8 @@ groups:
       - StoryData/P11115.json
       - StoryData/P11116.json
   - id: personality-12
+    section: 人格故事
+    title: { file: Characters.json, id: '12', fields: [name] }
     files:
       - StoryData/P11202.json
       - StoryData/P11203.json

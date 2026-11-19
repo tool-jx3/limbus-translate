@@ -162,6 +162,34 @@ describe('Directory', () => {
     expect(el.querySelector('.dir-sub')).toBeNull()
   })
 
+  it('draws the groups of the story order under their section, in the order of the index, with their own class', () => {
+    const files = [
+      sum('StoryData/S101B.json', 'story-main', '', [], { group: { section: '主線', id: 'main-101', label: '第 1 章 身無所屬' } }),
+      sum('StoryData/1D101A.json', 'story-main', '', [], { group: { section: '主線', id: 'main-101', label: '第 1 章 身無所屬' } }),
+      sum('StoryData/E301B.json', 'story-interlude', '', [], { group: { section: '插曲與活動', id: 'other-9103', label: '間章I 地獄雞' } }),
+    ]
+    const grouped: Index = {
+      families: [],
+      files,
+      groups: [
+        {
+          kind: 'top',
+          node: 'StoryData/',
+          label: 'StoryData/',
+          files: [],
+          children: [
+            { kind: 'sub', node: '主線', label: '主線', files: [], children: [{ kind: 'story', node: 'main-101', label: '第 1 章 身無所屬', files: [0, 1], children: [] }] },
+            { kind: 'sub', node: '插曲與活動', label: '插曲與活動', files: [], children: [{ kind: 'story', node: 'other-9103', label: '間章I 地獄雞', files: [2], children: [] }] },
+          ],
+        },
+      ],
+    }
+    const el = show({ index: grouped, current: 'StoryData/1D101A.json' })
+    expect(rows(el)).toEqual(['StoryData/:3', '主線:2', '第 1 章 身無所屬:2', '插曲與活動:1'])
+    expect(links(el)).toEqual(['StoryData/S101B.json', 'StoryData/1D101A.json'])
+    expect(el.querySelectorAll('.dir-story')).toHaveLength(1)
+  })
+
   it('opens every level above a hit, and shows no level without one', () => {
     const el = show({ index: tree, query: 's001a' })
     expect(rows(el)).toEqual(['StoryData:1', 'Main:1', '第 1 章:1'])

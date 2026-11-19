@@ -3,8 +3,8 @@ r"""讀遊戲的靜態資料包（Addressables 的 static_s1 bundle），並從�
 
   python3 -I staticdata.py unpack <__data> <輸出資料夾>
       把資料包裡的 JSON（TextAsset）寫成檔案，一個資源一個檔。
-  python3 -I staticdata.py storyorder <JSON 資料夾> <語言包的 StoryData 資料夾> [前綴]
-      印出 rules/story-order.yaml。語言包資料夾是 raw 分支的 kr/StoryData（前綴 KR_，預設）。
+  python3 -I staticdata.py storyorder <JSON 資料夾> <語言包資料夾> [前綴]
+      印出 rules/story-order.yaml。語言包資料夾是 raw 分支的 kr/（前綴 KR_，預設）。
 
 資料包在遊戲的快取裡，不在版控裡：
   %USERPROFILE%\AppData\LocalLow\Unity\ProjectMoon_LimbusCompany\<bundle 的內部名稱>\<hash>\__data
@@ -21,6 +21,12 @@ r"""讀遊戲的靜態資料包（Addressables 的 static_s1 bundle），並從�
      這些在輸出裡標「推定」。PC（巡禮）整組推定，放在最接近的活動（subChapterId 較小者）之後；
      E000X～E003X 沒有位置資料，照編號放在活動的最前面。
   其餘沒有任何依據的檔不列，網頁會把它們排在同類別已列的檔之後。
+
+每一組另外寫出網頁目錄要用的三樣東西：section（目錄的上一層：主線、插曲與活動、人格故事）、
+chapter（主線的章號，subChapterId 減 100）、title（組名在語言包的哪一筆文字：主線是 StoryTheaterMain 的
+CHAPTER_<subChapterId>，活動是 StageChapterText 的 chapter_<…>_<subChapterId>，小故事是 StoryTheaterOther 的
+EventTitleText_<subChapterId>，人格故事是 Characters 的角色名）。
+語言包裡找不到標題的組改寫 label。
 """
 import collections
 import glob
@@ -344,9 +350,58 @@ def story_order(static, pack_names):
     return order, unlisted, missing
 
 
+def data_list(pack, prefix, name):
+    path = os.path.join(pack, prefix + name)
+    return load(path).get("dataList", []) if os.path.exists(path) else []
+
+
+def group_meta(group, pilgrimage, mains, chapters, events, characters):
+    """一組在目錄上的 section、chapter、title（或 label）；回傳要印的幾行。"""
+    kind, _, number = group.partition("-")
+    lines = []
+    title = None
+    if group == "pilgrimage":
+        kind, number = "other", str(pilgrimage)
+    if kind == "main":
+        lines += ["section: 主線", f"chapter: {int(number) - 100}"]
+        title = mains.get(number)
+    elif kind == "other":
+        lines.append("section: 插曲與活動")
+        title = chapters.get(number) or events.get(number)
+    elif kind == "personality":
+        lines.append("section: 人格故事")
+        title = characters.get(str(int(number)))
+    if title:
+        file, ident, fields = title
+        lines.append(f"title: {{ file: {file}, id: '{ident}', fields: [{', '.join(fields)}] }}")
+    else:
+        lines.append("label: 其他（劇場沒有列）" if group == "other-0" else f"label: {group}")
+        if group != "other-0":
+            print(f"{group}: 語言包裡找不到標題", file=sys.stderr)
+    return lines
+
+
 def cmd_storyorder(static, pack, prefix):
+    mains, chapters, events, characters = {}, {}, {}, {}
+    for entry in data_list(pack, prefix, "StoryTheaterMain.json"):
+        m = re.fullmatch(r"CHAPTER_(\d+)", str(entry.get("id")))
+        if m and entry.get("title"):
+            mains.setdefault(m[1], ("StoryTheaterMain.json", entry["id"], ["title"]))
+    for entry in data_list(pack, prefix, "StageChapterText.json"):
+        m = re.fullmatch(r"chapter_[a-z]+_(\d+)", str(entry.get("id")))
+        if m and entry.get("chaptertitle") and m[1] not in chapters:
+            chapters[m[1]] = ("StageChapterText.json", entry["id"], ["chapter", "chaptertitle"])
+    for entry in data_list(pack, prefix, "StoryTheaterOther.json"):
+        m = re.fullmatch(r"EventTitleText_(\d+)", str(entry.get("id")))
+        if m and entry.get("title"):
+            events.setdefault(m[1], ("StoryTheaterOther.json", entry["id"], ["title"]))
+    for entry in data_list(pack, prefix, "Characters.json"):
+        if entry.get("name"):
+            characters.setdefault(str(entry.get("id")), ("Characters.json", entry["id"], ["name"]))
+    pilgrimage = min(e["id"] for e in load(os.path.join(static, "storybattle-pilgrimage-normal.json"))["list"]) // 100
+    pack_stories = os.path.join(pack, "StoryData")
     names = set()
-    for path in glob.glob(os.path.join(pack, "*.json")):
+    for path in glob.glob(os.path.join(pack_stories, "*.json")):
         name = os.path.basename(path)[: -len(".json")]
         if not name.startswith(prefix):
             sys.exit(f"{path}: 檔名不是 {prefix} 開頭")
@@ -354,6 +409,9 @@ def cmd_storyorder(static, pack, prefix):
     order, unlisted, missing = story_order(static, names)
     print("# 劇情檔在遊戲裡的順序。網頁同一個類別裡的檔照這個順序排；這裡沒列的檔排在已列的之後，照檔名。")
     print("# 一組是一章、一個活動或一個角色的人格故事；組的先後就是順序（類別仍由 guides/routing.yaml 決定）。")
+    print("# 網頁的目錄也照組來分：section 是上一層，組名是 title 指到的語言包文字（file 的 dataList 裡 id 那一筆的")
+    print("# fields，以空格相接；譯文沒有就用 KR），沒有 title 就用 label。chapter 是主線的章號：章節篩選用它，")
+    print("# 組名前面也會加上「第 N 章」。")
     print("#")
     print("# 這個檔是產生的，不要手改：遊戲更新後照")
     print("# docs/research/2026-11-15-game-text-logic/method/README.md 的「劇情檔的順序」重新產生。")
@@ -365,6 +423,8 @@ def cmd_storyorder(static, pack, prefix):
         if not stories:
             continue
         print(f"  - id: {group}")
+        for line in group_meta(group, pilgrimage, mains, chapters, events, characters):
+            print(f"    {line}")
         print("    files:")
         for story in stories:
             print(f"      - StoryData/{story}.json" + ("  # 推定" if story in order.inferred else ""))

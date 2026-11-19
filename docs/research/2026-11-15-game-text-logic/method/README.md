@@ -137,10 +137,10 @@ python3 -I fingerprint.py diff fingerprints/2026-11-12.json fingerprints/2026-11
    ```
 
    ```bash
-   python3 -I staticdata.py storyorder $RE_WORK/static <repo>/.work/raw/kr/StoryData > <repo>/rules/story-order.yaml
+   python3 -I staticdata.py storyorder $RE_WORK/static <repo>/.work/raw/kr > <repo>/rules/story-order.yaml
    ```
 
-   第二個指令在標準錯誤印出列入幾個檔、幾個是推定的、哪些檔沒有依據而不列。順序和劇場清單對不上時會直接停下來，不會產生檔案。
+   第二個指令在標準錯誤印出列入幾個檔、幾個是推定的、哪些檔沒有依據而不列、哪一組在語言包裡找不到標題（那一組會改用組的代號當名稱）。順序和劇場清單對不上時會直接停下來，不會產生檔案。
 3. `bin/lct rules lint` 檢查格式，並對「表裡有、KR 沒有」的檔提出警告。
 
 資料包的主機（`download.limbuscompanycdn.org`）對非遊戲的請求一律回 403，所以這一步不能放進 CI，只能從本機的快取取得。

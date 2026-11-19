@@ -2,6 +2,7 @@ package rules
 
 import (
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -66,7 +67,7 @@ type Tag struct {
 }
 
 var (
-	storyChapterRe = regexp.MustCompile(`^StoryData/S(\d+)\d{2}[A-Za-z]?$`)
+	storyChapterRe = regexp.MustCompile(`^StoryData/S(\d+)\d{2}(?:[A-Za-z]\d*)?$`)
 	storyDChapter  = regexp.MustCompile(`^StoryData/(\d+)D`)
 	rootChapterRe  = regexp.MustCompile(`^a1c(\d+)`)
 	eventRe        = regexp.MustCompile(`^[^-_]+`)
@@ -97,8 +98,9 @@ func chapterTag(digits string) Tag {
 	return Tag{Kind: TagChapter, Value: n, Label: "第 " + n + " 章"}
 }
 
-// FileTag derives the third-level tag of a file from its path alone: the
-// character first, then the chapter, then the event. ok is false when the
+// FileTag derives the third-level tag of a file: the character first, then
+// the chapter (that of its group of the story order, else what its path
+// says), then the event. ok is false when the
 // file has none.
 func (r *Rules) FileTag(file string) (Tag, bool) {
 	if c, ok := r.CharacterByFile(file); ok {
@@ -107,6 +109,9 @@ func (r *Rules) FileTag(file string) (Tag, bool) {
 	stem := strings.TrimSuffix(file, ".json")
 	if c, ok := r.skillCharacter(stem); ok {
 		return Tag{Kind: TagCharacter, Value: c.ID, Label: c.Name}, true
+	}
+	if g, ok := r.StoryGroup(file); ok && g.Chapter != nil {
+		return chapterTag(strconv.Itoa(*g.Chapter)), true
 	}
 	if strings.Contains(stem, "/") {
 		for _, re := range []*regexp.Regexp{storyChapterRe, storyDChapter} {

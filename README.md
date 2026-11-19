@@ -26,7 +26,7 @@ Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內
 
 網站把每個檔案的 KR、JP、EN 原文與 TW 譯文並排顯示（表格與劇本兩種模式），標出每句譯文的來源並可依來源篩選，也能全文搜尋（子字串或正規表示式）。勾選頁首的「顯示原始標籤」時，全文搜尋比對含標籤的原文（rubycustomize 也照紀錄的寫法 `<rubycustomize=讀音>本文</rubycustomize>`），例如搜尋 `rubycustomize` 就列出用到它的所有位置。資料只放最新一次建置，由 CI 產生並部署，不 commit 到任何分支。網站用每頁的 `<meta name="robots" content="noindex, nofollow">` 要求搜尋引擎不收錄。`site/public/robots.txt`（`Disallow: /`）也會一起部署，但網站是專案網站（網址帶 `/limbus-translate/`），爬蟲只讀主機根目錄的 `robots.txt`，所以這個檔案在這個網址上不起作用，有效的是 `<meta>`；只有改放在自訂網域的根目錄時它才會被讀到。網站不收集使用者資料，也不使用外部 CDN。
 
-檔案的先後（目錄裡同一層的檔、「上一個／下一個檔」、更新頁）：先照類別（`guides/routing.yaml` 的 `priority`），同一類別裡劇情檔照遊戲的順序（`rules/story-order.yaml`：同一個節點戰前 `B` → 戰鬥中 `I` → 戰後 `A`，迷宮接在該章之後），表上沒有的檔排在後面、照檔名。這張表是從遊戲的靜態資料產生的，不要手改；遊戲新增章節或活動後照 `docs/research/2026-11-15-game-text-logic/method/README.md` 的「劇情檔的順序」重新產生，`lct rules lint` 會對表上有、KR 沒有的檔提出警告。
+檔案的先後（目錄裡同一層的檔、「上一個／下一個檔」、更新頁）：先照類別（`guides/routing.yaml` 的 `priority`），同一類別裡劇情檔照遊戲的順序（`rules/story-order.yaml`：同一個節點戰前 `B` → 戰鬥中 `I` → 戰後 `A`，迷宮接在該章之後），表上沒有的檔排在後面、照檔名。目錄裡 `StoryData/` 也照這張表的組來分：「主線」「插曲與活動」「人格故事」底下一章、一個活動或一個角色一組，組名取自譯文裡的章節與活動標題。這張表是從遊戲的靜態資料產生的，不要手改；遊戲新增章節或活動後照 `docs/research/2026-11-15-game-text-logic/method/README.md` 的「劇情檔的順序」重新產生，`lct rules lint` 會對表上有、KR 沒有的檔提出警告。
 
 網站另有「審核」頁（`#/r/<suggestions|warnings|notes|todo|scope>`），把人需要看的項目集中成五個分頁（四個加上「詞彙範圍」），網頁唯讀：
 

@@ -38,6 +38,8 @@ type Rules struct {
 	RubyCustomize RubyCustomize
 	// StoryOrder is the order of the story files in the game (StoryOrderFile).
 	StoryOrder StoryOrder
+	// storyAt is the group of StoryOrder of each file it lists; Load builds it.
+	storyAt map[string]int
 }
 
 // Load reads the rules under root, the repo root. It fails when a file is
@@ -123,6 +125,7 @@ func Load(root string) (*Rules, error) {
 			return nil, fmt.Errorf("%s: %w", StoryOrderFile, err)
 		}
 	}
+	r.storyAt = r.StoryOrder.groupIndex()
 	return r, nil
 }
 
