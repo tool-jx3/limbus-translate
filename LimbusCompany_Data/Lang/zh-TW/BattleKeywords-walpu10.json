@@ -216,13 +216,13 @@
     },
     {
       "id": "WaxWing_LowMorale",
-      "name": "蜜蠟之翼",
+      "name": "蠟翼",
       "desc": "- 士氣低落\n- 獲得1層易損 \n- 對帶有燒傷 的敵方單位造成的傷害+10%",
       "summary": ""
     },
     {
       "id": "WaxWing_Panic",
-      "name": "蜜蠟之翼",
+      "name": "蠟翼",
       "desc": "- 陷入恐慌\n- 獲得1層易損 \n- 對帶有燒傷 的敵方單位造成的傷害+25%",
       "summary": ""
     }

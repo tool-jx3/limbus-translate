@@ -1,0 +1,125 @@
+{
+  "tag": "zh-TW-20261119.2",
+  "prev_tag": "zh-TW-20261119.1",
+  "released_at": "2026-11-19T14:12:30Z",
+  "prev_released_at": "2026-11-19T03:36:13Z",
+  "raw_tag": "raw-20261119",
+  "prev_raw_tag": "raw-20261119",
+  "rules_commit": "4a518a95fcee8b3789e352520dc72d6e8b0730ea",
+  "prev_rules_commit": "2e8e1f50eddc115e70c3e80a19a73188cd7c6fb4",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 5
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "BattleKeywords-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/34/name",
+      "kind": "zh-changed",
+      "new_kr": "밀랍날개",
+      "old_zh": "蜜蠟之翼",
+      "new_zh": "蠟翼",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-waxen-pinion"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/35/name",
+      "kind": "zh-changed",
+      "new_kr": "밀랍날개",
+      "old_zh": "蜜蠟之翼",
+      "new_zh": "蠟翼",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-waxen-pinion"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/34/name",
+      "kind": "zh-changed",
+      "new_kr": "밀랍날개",
+      "old_zh": "蜜蠟之翼",
+      "new_zh": "蠟翼",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-waxen-pinion"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "name",
+      "ptr": "/dataList/35/name",
+      "kind": "zh-changed",
+      "new_kr": "밀랍날개",
+      "old_zh": "蜜蠟之翼",
+      "new_zh": "蠟翼",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-waxen-pinion"
+        }
+      ]
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_7.json",
+      "field": "desc",
+      "ptr": "/dataList/51/desc",
+      "kind": "zh-changed",
+      "new_kr": "턴 시작시, <noparse>새벽 사무소</noparse> 소속 인격이 3인 이상일 때 발동 (대기 인원 포함)\n첫 턴이면, 모든 아군에게 [DawnLight] 2 부여\n<noparse>새벽 사무소</noparse> 해결사 싱클레어가 전투 시작시 정신력을 10 회복하고, '불안정한 자아의 껍질' 패시브 효과로 불안정 E.G.O 밀랍날개 상태가 되는 정신력 조건이 25로 감소\n\n[<noparse>새벽 사무소</noparse> 소속 인격 전용 효과]\n기본 스킬의 공격 적중 시 대상에게 [Combustion] 2, [Vibration] 2 부여 (스킬당 1회)\n<noparse>새벽 사무소</noparse> 소속 인격을 [Combustion], [Vibration]을 부여하는 인격으로 취급됨\n- 이 효과로 인해서 기본 스킬이 [Combustion], [Vibration]을 부여하는 스킬로 취급됨\n스테이지 시작시 <noparse>새벽 사무소</noparse> 해결사 파우스트 인격이 전투에 등장해 있으면, [Firstlight] 1 부여",
+      "old_zh": "回合開始時，若屬於<noparse>黎明事務所</noparse>的人格不低於3名，則觸發該效果(包含待命人員)\n第一個回合使全體友方單位獲得2層 [DawnLight]\n使<noparse>黎明事務所</noparse> 收尾人 辛克萊在戰鬥開始時恢復10點理智值，且該人格透過被動「不穩定的自我外殼」進入不穩定E.G.O::蜜蠟之翼狀態的理智值條件改為不低於25點\n\n[屬於<noparse>黎明事務所</noparse>的人格專用效果]\n基礎技能攻擊命中時，使目標增加2級 [Combustion] 強度與2級 [Vibration] 強度(每個技能最多1次)\n屬於<noparse>黎明事務所</noparse>的人格視作施加 [Combustion] 與 [Vibration] 的人格\n- 根據以上效果，其基礎技能也視作施加 [Combustion] 與 [Vibration] 的技能\n關卡開始時，若<noparse>黎明事務所</noparse> 收尾人 浮士德於戰鬥中登場，則使其獲得1層 [Firstlight]",
+      "new_zh": "回合開始時，若屬於<noparse>黎明事務所</noparse>的人格不低於3名，則觸發該效果(包含待命人員)\n第一個回合使全體友方單位獲得2層 [DawnLight]\n使<noparse>黎明事務所</noparse> 收尾人 辛克萊在戰鬥開始時恢復10點理智值，且該人格透過被動「不穩定的自我外殼」進入不穩定E.G.O::蠟翼狀態的理智值條件改為不低於25點\n\n[屬於<noparse>黎明事務所</noparse>的人格專用效果]\n基礎技能攻擊命中時，使目標增加2級 [Combustion] 強度與2級 [Vibration] 強度(每個技能最多1次)\n屬於<noparse>黎明事務所</noparse>的人格視作施加 [Combustion] 與 [Vibration] 的人格\n- 根據以上效果，其基礎技能也視作施加 [Combustion] 與 [Vibration] 的技能\n關卡開始時，若<noparse>黎明事務所</noparse> 收尾人 浮士德於戰鬥中登場，則使其獲得1層 [Firstlight]",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-waxen-pinion"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "rewrite:2026-11-19-waxen-pinion": {
+      "kind": "rewrite",
+      "id": "2026-11-19-waxen-pinion",
+      "path": "rules/rewrite/2026-11-19-waxen-pinion.yaml",
+      "title": "「밀랍날개」統一成既有譯名「蠟翼」（詞彙表）",
+      "commit": "4a518a95fcee8b3789e352520dc72d6e8b0730ea"
+    }
+  }
+}

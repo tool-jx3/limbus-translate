@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261119",
   "raw_token": "l20261119_4Eq_wJ8_ZGT2-Y1MVwFc",
-  "rules_commit": "df4f389a5d72ff8af493136334a50d66870b866c",
-  "built_at": "2026-11-19T12:22:30Z",
+  "rules_commit": "4a518a95fcee8b3789e352520dc72d6e8b0730ea",
+  "built_at": "2026-11-19T14:11:47Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,8 +10,8 @@
   },
   "notes_seen": 1066,
   "zips": {
-    "zh-TW_complete_raw-20261119.zip": "bc3a6b389756ad82479e703005f13b73170ea28817d264a2d8aa51fe4fd89bea",
-    "zh-TW_text_raw-20261119.zip": "a37ff7b45e153c561089691a3a4bae13eef61943ddb8b1d9315110759e8ec773"
+    "zh-TW_complete_raw-20261119.zip": "058677b64b9d683cb2d3a14ec3134bc8521cd81d761e52a81e3abed6bf43eb7f",
+    "zh-TW_text_raw-20261119.zip": "f9a5ba59cac19d105a0366da232de78abe21c2aeeebe97a330406783db06e8e4"
   },
   "report": {
     "origins": {
@@ -669,47 +669,7 @@
       }
     ],
     "misaligned_files": 19,
-    "name_diffs": [
-      {
-        "kr": "불안정",
-        "existing": [
-          {
-            "zh": "動搖",
-            "units": 1
-          }
-        ],
-        "units": [
-          {
-            "key": "EGOgift_MirrorDungeon_7.json|/dataList/51/desc",
-            "zh": "回合開始時，若屬於<noparse>黎明事務所</noparse>的人格不低於3名，則觸發該效果(包含待命人員)\n第一個回合使全體友方單位獲得2層 [DawnLight]\n使<noparse>黎明事務所</noparse> 收尾人 辛克萊在戰鬥開始時恢復10點理智值，且該人格透過被動「不穩定的自我外殼」進入不穩定E.G.O::蜜蠟之翼狀態的理智值條件改為不低於25點\n\n[屬於<noparse>黎明事務所</noparse>的人格專用效果]\n基礎技能攻擊命中時，使目標增加2級 [Combustion] 強度與2級 [Vibration] 強度(每個技能最多1次)\n屬於<noparse>黎明事務所</noparse>的人格視作施加 [Combustion] 與 [Vibration] 的人格\n- 根據以上效果，其基礎技能也視作施加 [Combustion] 與 [Vibration] 的技能\n關卡開始時，若<noparse>黎明事務所</noparse> 收尾人 浮士德於戰鬥中登場，則使其獲得1層 [Firstlight]",
-            "note": "밀랍날개：依 names 改為「蜜蠟之翼」（舊譯「蠟翼」）；불안정 E.G.O 沿用舊譯「不穩定E.G.O」，names 的「動搖」只有 1 單位、此處與被動名「不穩定的自我外殼」一致較合",
-            "kind": "mention"
-          }
-        ]
-      },
-      {
-        "kr": "피해량 증가",
-        "existing": [
-          {
-            "zh": "傷害強化",
-            "units": 2
-          }
-        ],
-        "units": [
-          {
-            "key": "BattleKeywords.json|/dataList/626/desc",
-            "zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥2次，強制混亂除外)\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
-            "note": "피해량 증가：此處指本效果的增傷效果，非狀態「傷害強化」，沿用舊譯「傷害增加」。新增的 흐트러짐 譯「混亂」、전투당 譯「每場戰鬥」",
-            "kind": "mention"
-          },
-          {
-            "key": "Bufs.json|/dataList/710/desc",
-            "zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥2次，強制混亂除外)\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
-            "kind": "mention"
-          }
-        ]
-      }
-    ],
+    "name_diffs": [],
     "term_diffs": []
   },
   "inconsistent_all": [
