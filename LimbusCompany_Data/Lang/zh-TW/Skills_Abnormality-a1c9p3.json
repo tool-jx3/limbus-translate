@@ -3971,7 +3971,7 @@
         {
           "level": 1,
           "name": "Furioso [Lacrimosa-Crescendo]",
-          "desc": "[WideAreaRampage]\n<color=#ff6000><mark=#ff000040><b><u>本技能不會觸發目標的守備技能</u></b></mark></color>\n可無視速度值與本技能拚點\n<color=#ff6000><mark=#ff000040><b><u>- 與良秀的初始E.G.O拚點時，使本技能的拚點威力-20</u></b></mark></color>\n[WhenUse]\n- 使自身獲得9級 [Breath] 強度與9回 [Breath]\n- 使本技能的拚點威力+15 (自身每帶有20層 [KarmaOfIndexRien_2Phase]，則使增加的拚點威力-1)\n[WhenUse] 自身的理智值不低於0點時，則生成3望\n- 使本技能造成的傷害+100%、最終威力+12\n[WinDuel]\n- 攻擊結束後，對攻擊命中的所有目標施加5級 [Laceration] 強度、3層 [Binding] 以及3層 [Vulnerable]\n[DefeatDuel]\n- 對自身施加8層 [AttackDmgDown] 與9層 [Paralysis]\n- 本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標帶有的 [Sinking]\n[EndSkill] 若本技能生成了望，則使自身失去30點理智值\n[EndSkill] 結束本回合",
+          "desc": "[WideAreaRampage]\n<color=#ff6000><mark=#ff000040><b><u>本技能不會觸發目標的守備技能</u></b></mark></color>\n可無視速度值與本技能拚點\n<color=#ff6000><mark=#ff000040><b><u>- 與良秀的初始E.G.O拚點時，使本技能的拚點威力-20</u></b></mark></color>\n[WhenUse]\n- 使自身獲得9級 [Breath] 強度與9回 [Breath]\n- 使本技能的拚點威力+15 (自身每帶有20層 [KarmaOfIndexRien_2Phase]，則使增加的拚點威力-1)\n[WhenUse] 自身的理智值不低於0點時，則生成3望\n- 使本技能造成的傷害+100%、最終威力+12\n[WinDuel]\n- 攻擊結束後，於下回合對攻擊命中的所有目標施加5級 [Laceration] 強度、3層 [Binding] 以及3層 [Vulnerable]\n[DefeatDuel]\n- 對自身施加8層 [AttackDmgDown] 與9層 [Paralysis]\n- 本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標帶有的 [Sinking]\n[EndSkill] 若本技能生成了望，則使自身失去30點理智值\n[EndSkill] 結束本回合",
           "coinlist": [
             {
               "coindescs": [

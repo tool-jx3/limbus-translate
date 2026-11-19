@@ -633,7 +633,7 @@
     {
       "id": 9282,
       "name": "翼狀蠟燭",
-      "desc": "回合開始時，若屬於<noparse>黎明事務所</noparse>的人格不低於3名，則觸發該效果(以編隊人員為準)\n第一個回合使全體友方單位獲得2層 [DawnLight]\n使<noparse>黎明事務所</noparse> 收尾人 辛克萊在戰鬥開始時恢復10點理智值，且該人格透過被動「不穩定的自我外殼」進入不穩定E.G.O::蠟翼狀態的理智值條件改為不低於25點\n\n[屬於<noparse>黎明事務所</noparse>的人格專用效果]\n基礎技能攻擊命中時，使目標增加2級 [Combustion] 強度與2級 [Vibration] 強度(每個技能最多1次)\n屬於<noparse>黎明事務所</noparse>的人格視作施加 [Combustion] 與 [Vibration] 的人格\n- 根據以上效果，其基礎技能也視作施加 [Combustion] 與 [Vibration] 的技能\n關卡開始時，若<noparse>黎明事務所</noparse> 收尾人 浮士德於戰鬥中登場，則使其獲得1層 [Firstlight]",
+      "desc": "回合開始時，若屬於<noparse>黎明事務所</noparse>的人格不低於3名，則觸發該效果(包含待命人員)\n第一個回合使全體友方單位獲得2層 [DawnLight]\n使<noparse>黎明事務所</noparse> 收尾人 辛克萊在戰鬥開始時恢復10點理智值，且該人格透過被動「不穩定的自我外殼」進入不穩定E.G.O::蜜蠟之翼狀態的理智值條件改為不低於25點\n\n[屬於<noparse>黎明事務所</noparse>的人格專用效果]\n基礎技能攻擊命中時，使目標增加2級 [Combustion] 強度與2級 [Vibration] 強度(每個技能最多1次)\n屬於<noparse>黎明事務所</noparse>的人格視作施加 [Combustion] 與 [Vibration] 的人格\n- 根據以上效果，其基礎技能也視作施加 [Combustion] 與 [Vibration] 的技能\n關卡開始時，若<noparse>黎明事務所</noparse> 收尾人 浮士德於戰鬥中登場，則使其獲得1層 [Firstlight]",
       "simpleDesc": [
         {
           "abilityID": 9281,

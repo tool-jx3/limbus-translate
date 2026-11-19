@@ -3405,6 +3405,9 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
+                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害100%的突刺傷害"
+                },
+                {
                   "desc": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+30%\n- [OnSucceedAttack] 使目標增加2回 [Vibration]"
                 }
               ]
@@ -3438,6 +3441,9 @@
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害100%的突刺傷害"
                 },
                 {
                   "desc": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+30%\n- [OnSucceedAttack] 使目標增加2回 [Vibration]<style=\"highlight\"></style>"
@@ -3520,7 +3526,7 @@
         {
           "level": 3,
           "name": "……全員，準備交鋒。",
-          "desc": "[WhenUse] 自身每帶有8級 [Breath] 強度，使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 目標每帶有8級 [Vibration] 強度，使本技能的最終威力+1 (最多+2)\n[WhenUse]\n- 使自身獲得3回 [Breath]\n- 依除自身以外可行動且屬於楔事務所[TabExplain]的友方人格數量，使攻擊容量增加相應數值 (最多+2)\n[WhenUse] 本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+30% (若是集中遭遇戰，則以部位判定)\n[EndSkill]\n- 消耗自身所有的 [ComboWedgeDawn]",
+          "desc": "[WhenUse] 自身每帶有8級 [Breath] 強度，使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 目標每帶有8級 [Vibration] 強度，使本技能的最終威力+1 (最多+2)\n[WhenUse]\n- 使自身獲得3回 [Breath]\n- 依除自身以外可行動且屬於楔事務所[TabExplain]的友方人格數量，使攻擊容量增加相應數值 (最多+2)\n[WhenUse] 本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+60% (若是集中遭遇戰，則以部位判定)\n[EndSkill]\n- 消耗自身所有的 [ComboWedgeDawn]",
           "coinlist": [
             {
               "coindescs": [
@@ -3531,6 +3537,9 @@
                   "desc": "[OnSucceedAttack] [FusionVibration] 為 [VibrationCollapse]"
                 },
                 {
+                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害15%的突刺傷害"
+                },
+                {
                   "desc": "[ComboSkill]：黎明事務所[TabExplain] 收尾人 浮士德\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加3級 [Combustion] 強度\n- [OnSucceedAttack] [Switch_Vibration] 為 [VibrationIgnition]"
                 }
               ]
@@ -3539,6 +3548,9 @@
               "coindescs": [
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害15%的突刺傷害"
                 },
                 {
                   "desc": "[ComboSkill]：楔事務所[TabExplain] 收尾人 唐吉訶德\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
@@ -3557,6 +3569,9 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
+                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害15%的突刺傷害"
+                },
+                {
                   "desc": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Combustion] 強度\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回\n- [OnSucceedAttack] 觸發目標的 [Combustion]。使目標的 [Combustion] 回數減少1回"
                 }
               ]
@@ -3571,12 +3586,15 @@
         {
           "level": 3,
           "name": "黎明之後貫穿而來的楔",
-          "desc": "[WhenUse] 自身每帶有8級 [Breath] 強度，使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 目標每帶有8級 [Vibration] 強度，使本技能的最終威力+1 (最多+2)\n[WhenUse]\n- 使自身獲得3回 [Breath]\n- 依除自身以外可行動且屬於楔事務所[TabExplain]的友方人格數量，使攻擊容量增加相應數值 (最多+2)\n[WhenUse] 本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+30% (若是集中遭遇戰，則以部位判定)\n[WinDuel] [FusionVibration] 為 [VibrationCollapse]\n[EndSkill]\n- 消耗自身所有的 [ComboWedgeDawn]",
+          "desc": "[WhenUse] 自身每帶有8級 [Breath] 強度，使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 目標每帶有8級 [Vibration] 強度，使本技能的最終威力+1 (最多+2)\n[WhenUse]\n- 使自身獲得3回 [Breath]\n- 依除自身以外可行動且屬於楔事務所[TabExplain]的友方人格數量，使攻擊容量增加相應數值 (最多+2)\n[WhenUse] 本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+60% (若是集中遭遇戰，則以部位判定)\n[WinDuel] [FusionVibration] 為 [VibrationCollapse]\n[EndSkill]\n- 消耗自身所有的 [ComboWedgeDawn]",
           "coinlist": [
             {
               "coindescs": [
                 {
                   "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害20%的突刺傷害"
                 },
                 {
                   "desc": "[ComboSkill]：黎明事務所[TabExplain] 收尾人 浮士德\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加3級 [Combustion] 強度\n- [OnSucceedAttack] [Switch_Vibration] 為 [VibrationIgnition]"
@@ -3590,6 +3608,9 @@
               "coindescs": [
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害20%的突刺傷害"
                 },
                 {
                   "desc": "[ComboSkill]：楔事務所[TabExplain] 收尾人 唐吉訶德\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
@@ -3609,6 +3630,9 @@
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害20%的突刺傷害"
                 }
               ]
             }

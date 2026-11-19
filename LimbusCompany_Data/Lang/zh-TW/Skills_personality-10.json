@@ -3507,7 +3507,7 @@
                   "summary": "[ReUseOnSucceedAttack] [Switch_Vibration] 為 [VibrationCollapse]"
                 },
                 {
-                  "desc": "[ReUseOnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkYellow] 層數×4)%的突刺傷害 (最多32%)",
+                  "desc": "[ReUseOnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkYellow] 層數×6)%的突刺傷害 (最多48%)",
                   "summary": "[ReUseOnSucceedAttack] 依目標的 [WedgeMarkYellow] 層數造成突刺傷害"
                 },
                 {
@@ -3563,7 +3563,7 @@
                   "summary": "[ReUseOnSucceedAttack] [Switch_Vibration] 為 [VibrationCollapse]"
                 },
                 {
-                  "desc": "[ReUseOnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkYellow] 層數×4)%的突刺傷害 (最多32%)",
+                  "desc": "[ReUseOnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkYellow] 層數×6)%的突刺傷害 (最多48%)",
                   "summary": "[ReUseOnSucceedAttack] 依目標的 [WedgeMarkYellow] 層數造成突刺傷害"
                 },
                 {

@@ -3986,7 +3986,7 @@
                   "summary": "[OnSucceedAttack] [Switch_Vibration] 為 [VibrationCollapse]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkGreen] 層數×5)%的突刺傷害 (最多40%)",
+                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkGreen] 層數×7)%的突刺傷害 (最多56%)",
                   "summary": "[OnSucceedAttack] 依目標的 [WedgeMarkGreen] 層數造成突刺傷害"
                 },
                 {
@@ -4047,7 +4047,7 @@
                   "summary": "[OnSucceedAttack] [Switch_Vibration] 為 [VibrationCollapse]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkGreen] 層數×5)%的突刺傷害 (最多40%)",
+                  "desc": "[OnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkGreen] 層數×7)%的突刺傷害 (最多56%)",
                   "summary": "[OnSucceedAttack] 依目標的 [WedgeMarkGreen] 層數造成突刺傷害"
                 },
                 {

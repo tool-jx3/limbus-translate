@@ -1,0 +1,892 @@
+{
+  "tag": "zh-TW-20261119.1",
+  "prev_tag": "zh-TW-20261112.10",
+  "released_at": "2026-11-19T03:36:13Z",
+  "prev_released_at": "2026-11-18T14:48:55Z",
+  "raw_tag": "raw-20261119",
+  "prev_raw_tag": "raw-20261112",
+  "rules_commit": "2e8e1f50eddc115e70c3e80a19a73188cd7c6fb4",
+  "prev_rules_commit": "2e8e1f50eddc115e70c3e80a19a73188cd7c6fb4",
+  "counts": {
+    "new": 13,
+    "kr_changed": 30,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "copy_counts": {
+    "new": 6,
+    "kr_changed": 3,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "BattleKeywords.json",
+      "field": "desc",
+      "ptr": "/dataList/619/desc",
+      "kind": "kr-changed",
+      "old_kr": "- 최댓값 : 30\n- 턴당 최대 20까지 얻을 수 있음",
+      "new_kr": "- 최댓값 : 30\n- 턴당 최대 20까지 얻을 수 있음\n턴 시작 시 자신이 흐트러짐 상태면, 흐트러짐 해제 (전투당 1회, 강제 흐트러짐 제외)",
+      "old_zh": "- 最大值：30\n- 每回合最多可獲得20層",
+      "new_zh": "- 最大值：30\n- 每回合最多可獲得20層\n回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥1次，強制混亂除外)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033312-c1dc621f"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords.json",
+      "field": "desc",
+      "ptr": "/dataList/626/desc",
+      "kind": "kr-changed",
+      "old_kr": "- 최댓값: 5\n- 이 효과의 수치가 증가할 때, 자신의 호흡 횟수 1 증가\n- 턴 종료 시 수치만큼 자신의 호흡 횟수 증가\n- 이 효과 수치에 따라 기본 공격 스킬이 아래 효과 얻음\n· 2 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 3 ~ : 코인 위력 +1, 스킬 사용 시 마지막 코인이 파괴 불가 코인이 됨\n· 4 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 5 ~ : 공격 시작 시부터 공격 종료 시까지 공격 대상의 관통 내성 +0.1\n- 피해량 증가와 파괴 불가 코인 변경은 스킬 사용 직전의 수치로 판정",
+      "new_kr": "- 최댓값: 5\n- 이 효과의 수치가 증가할 때, 자신의 호흡 횟수 1 증가\n- 턴 종료 시 수치만큼 자신의 호흡 횟수 증가\n- 턴 시작 시 자신이 흐트러짐 상태면, 흐트러짐 해제 (전투당 2회, 강제 흐트러짐 제외)\n- 이 효과 수치에 따라 기본 공격 스킬이 아래 효과 얻음\n· 2 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 3 ~ : 코인 위력 +1, 스킬 사용 시 마지막 코인이 파괴 불가 코인이 됨\n· 4 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 5 ~ : 공격 시작 시부터 공격 종료 시까지 공격 대상의 관통 내성 +0.1\n- 피해량 증가와 파괴 불가 코인 변경은 스킬 사용 직전의 수치로 판정",
+      "old_zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
+      "new_zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥2次，強制混亂除外)\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033312-c1dc621f"
+        }
+      ]
+    },
+    {
+      "file": "BattleSpeechBubbleDlg.json",
+      "field": "id",
+      "ptr": "/dataList/805/id",
+      "kind": "new",
+      "new_kr": "battle_special_11016_15_a",
+      "new_zh": "battle_special_11016_15_a",
+      "new_origin": "copy",
+      "copy": true,
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "BattleSpeechBubbleDlg.json",
+      "field": "desc",
+      "ptr": "/dataList/805/desc",
+      "kind": "new",
+      "new_kr": "르루주 히스클리프 강화",
+      "new_zh": "르루주 히스클리프 강화",
+      "new_origin": "copy",
+      "copy": true,
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "BattleSpeechBubbleDlg.json",
+      "field": "dlg",
+      "ptr": "/dataList/805/dlg",
+      "kind": "new",
+      "new_kr": "그 모든 악성까지 남김 없이 먹어치워라.",
+      "new_zh": "連那一切惡意都一點不剩地吞噬殆盡吧。",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "BattleSpeechBubbleDlg.json",
+      "field": "id",
+      "ptr": "/dataList/806/id",
+      "kind": "new",
+      "new_kr": "battle_special_11016_15_b",
+      "new_zh": "battle_special_11016_15_b",
+      "new_origin": "copy",
+      "copy": true,
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "BattleSpeechBubbleDlg.json",
+      "field": "desc",
+      "ptr": "/dataList/806/desc",
+      "kind": "new",
+      "new_kr": "르루주 히스클리프 강화",
+      "new_zh": "르루주 히스클리프 강화",
+      "new_origin": "copy",
+      "copy": true,
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "BattleSpeechBubbleDlg.json",
+      "field": "dlg",
+      "ptr": "/dataList/806/dlg",
+      "kind": "new",
+      "new_kr": "모멸. 소란스러운 격분.",
+      "new_zh": "輕蔑。喧囂的激憤。",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "desc",
+      "ptr": "/dataList/22/desc",
+      "kind": "kr-changed",
+      "old_kr": "- 최댓값 : 30\n- 모든 아군의 감정 단계 수치가 9가 될 때까지 9 초과로 증가하지 않음\n- 합 승리 시, 코인 앞면 적중 시, 적 처치 시 3 증가\n- 합 패배, 코인 뒷면 적중 시, 아군 사망 시 1 증가\n- 턴 종료시 모든 아군의 감정 단계 수치가 9면, 1 추가로 얻고 감정 단계 증가",
+      "new_kr": "- 최댓값 : 30\n- 화상 효과로 받는 피해량 -75% (소수점 버림)\n- 모든 아군의 감정 단계 수치가 9가 될 때까지 9 초과로 증가하지 않음\n- 합 승리 시, 코인 앞면 적중 시, 적 처치 시 3 증가\n- 합 패배, 코인 뒷면 적중 시, 아군 사망 시 1 증가\n- 턴 종료시 모든 아군의 감정 단계 수치가 9면, 1 추가로 얻고 감정 단계 증가",
+      "old_zh": "- 最大值：30\n- 直到所有友方單位的情感等級層數達到9為止，不會增加至超過9\n- 拚點勝利時、硬幣正面命中時、擊殺敵方時增加3\n- 拚點失敗、硬幣反面命中時、友方單位陣亡時增加1\n- 回合結束時，若所有友方單位的情感等級層數為9，則額外獲得1層，並提升情感等級",
+      "new_zh": "- 最大值：30\n- 受到燒傷效果造成的傷害-75% (無條件捨去)\n- 直到所有友方單位的情感等級層數達到9為止，不會增加至超過9\n- 拚點勝利時、硬幣正面命中時、擊殺敵方時增加3\n- 拚點失敗、硬幣反面命中時、友方單位陣亡時增加1\n- 回合結束時，若所有友方單位的情感等級層數為9，則額外獲得1層，並提升情感等級",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033312-c1dc621f"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "desc",
+      "ptr": "/dataList/23/desc",
+      "kind": "kr-changed",
+      "old_kr": "- 최댓값 : 30\n- 최종 위력 +1\n- 모든 아군의 감정 단계 수치가 19가 될 때까지 19 초과로 증가하지 않음\n- 합 승리 시, 코인 앞면 적중 시, 적 처치 시 3 증가\n- 합 패배, 코인 뒷면 적중 시, 아군 사망 시 1 증가\n- 턴 종료시 모든 아군의 감정 단계 수치가 19면, 1 추가로 얻고 감정 단계 증가\n\n[지정 사서 전용 효과]\n- 재 : 피격 시 공격자에게 화상을 1~3 부여. 피격 시 40% 확률로 다음 턴 동안 '스킬 적중 시 화상 1 부여' 능력을 얻음 (중첩불가)",
+      "new_kr": "- 최댓값 : 30\n- 최종 위력 +1\n- 화상 효과로 받는 피해량 -75% (소수점 버림)\n- 모든 아군의 감정 단계 수치가 19가 될 때까지 19 초과로 증가하지 않음\n- 합 승리 시, 코인 앞면 적중 시, 적 처치 시 3 증가\n- 합 패배, 코인 뒷면 적중 시, 아군 사망 시 1 증가\n- 턴 종료시 모든 아군의 감정 단계 수치가 19면, 1 추가로 얻고 감정 단계 증가\n\n[지정 사서 전용 효과]\n- 재 : 피격 시 공격자에게 화상을 1~3 부여. 피격 시 40% 확률로 다음 턴 동안 '스킬 적중 시 화상 1 부여' 능력을 얻음 (중첩불가)",
+      "old_zh": "- 最大值：30\n- 最終威力+1\n- 直到所有友方單位的情感等級層數達到19為止，不會增加至超過19\n- 拚點勝利時、硬幣正面命中時、擊殺敵方時增加3\n- 拚點失敗、硬幣反面命中時、友方單位陣亡時增加1\n- 回合結束時，若所有友方單位的情感等級層數為19，則額外獲得1層，並提升情感等級\n\n[指定司書專用效果]\n- 灰燼：受擊時，對攻擊者施加1~3級燒傷 強度。受擊時，有40%機率在下回合內獲得「技能命中時施加1級燒傷 強度」的能力 (不可疊加)",
+      "new_zh": "- 最大值：30\n- 最終威力+1\n- 受到燒傷效果造成的傷害-75% (無條件捨去)\n- 直到所有友方單位的情感等級層數達到19為止，不會增加至超過19\n- 拚點勝利時、硬幣正面命中時、擊殺敵方時增加3\n- 拚點失敗、硬幣反面命中時、友方單位陣亡時增加1\n- 回合結束時，若所有友方單位的情感等級層數為19，則額外獲得1層，並提升情感等級\n\n[指定司書專用效果]\n- 灰燼：受擊時，對攻擊者施加1~3級燒傷 強度。受擊時，有40%機率在下回合內獲得「技能命中時施加1級燒傷 強度」的能力 (不可疊加)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033312-c1dc621f"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "desc",
+      "ptr": "/dataList/24/desc",
+      "kind": "kr-changed",
+      "old_kr": "- 최댓값 : 30\n- 최종 위력 +2\n- 모든 아군의 감정 단계 수치가 29가 될 때까지 29 초과로 증가하지 않음\n- 합 승리 시, 코인 앞면 적중 시, 적 처치 시 3 증가\n- 합 패배, 코인 뒷면 적중 시, 아군 사망 시 1 증가\n- 턴 종료시 모든 아군의 감정 단계 수치가 29면, 1 추가로 얻고 감정 단계 증가\n\n[지정 사서 전용 효과]\n- 재 : 피격 시 공격자에게 화상을 1~3 부여. 피격 시 40% 확률로 다음 턴 동안 '스킬 적중 시 화상 1 부여' 능력을 얻음 (중첩불가)\n- 그리웠던 옛날의 포옹 : 합 승리 시 20% 확률로 대상에게 진동 폭발. 동일한 대상과 합을 할수록 확률이 증가함 (1합당 2%, 최대 50%)",
+      "new_kr": "- 최댓값 : 30\n- 최종 위력 +2\n- 화상 효과로 받는 피해량 -75% (소수점 버림)\n- 모든 아군의 감정 단계 수치가 29가 될 때까지 29 초과로 증가하지 않음\n- 합 승리 시, 코인 앞면 적중 시, 적 처치 시 3 증가\n- 합 패배, 코인 뒷면 적중 시, 아군 사망 시 1 증가\n- 턴 종료시 모든 아군의 감정 단계 수치가 29면, 1 추가로 얻고 감정 단계 증가\n\n[지정 사서 전용 효과]\n- 재 : 피격 시 공격자에게 화상을 1~3 부여. 피격 시 40% 확률로 다음 턴 동안 '스킬 적중 시 화상 1 부여' 능력을 얻음 (중첩불가)\n- 그리웠던 옛날의 포옹 : 합 승리 시 20% 확률로 대상에게 진동 폭발. 동일한 대상과 합을 할수록 확률이 증가함 (1합당 2%, 최대 50%)",
+      "old_zh": "- 最大值：30\n- 最終威力+2\n- 直到所有友方單位的情感等級層數達到29為止，不會增加至超過29\n- 拚點勝利時、硬幣正面命中時、擊殺敵方時增加3\n- 拚點失敗、硬幣反面命中時、友方單位陣亡時增加1\n- 回合結束時，若所有友方單位的情感等級層數為29，則額外獲得1層，並提升情感等級\n\n[指定司書專用效果]\n- 灰燼：受擊時，對攻擊者施加1~3級燒傷 強度。受擊時，有40%機率在下回合內獲得「技能命中時施加1級燒傷 強度」的能力 (不可疊加)\n- 懷念的往日擁抱：拚點勝利時，有20%機率使目標震顫引爆 。與同一目標拚點的次數越多，機率越高 (每次拚點2%，最多50%)",
+      "new_zh": "- 最大值：30\n- 最終威力+2\n- 受到燒傷效果造成的傷害-75% (無條件捨去)\n- 直到所有友方單位的情感等級層數達到29為止，不會增加至超過29\n- 拚點勝利時、硬幣正面命中時、擊殺敵方時增加3\n- 拚點失敗、硬幣反面命中時、友方單位陣亡時增加1\n- 回合結束時，若所有友方單位的情感等級層數為29，則額外獲得1層，並提升情感等級\n\n[指定司書專用效果]\n- 灰燼：受擊時，對攻擊者施加1~3級燒傷 強度。受擊時，有40%機率在下回合內獲得「技能命中時施加1級燒傷 強度」的能力 (不可疊加)\n- 思念的擁抱：拚點勝利時，有20%機率使目標震顫引爆 。與同一目標拚點的次數越多，機率越高 (每次拚點2%，最多50%)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033312-c1dc621f"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "desc",
+      "ptr": "/dataList/25/desc",
+      "kind": "kr-changed",
+      "old_kr": "- 최댓값 : 30\n- 최종 위력 +3\n\n[지정 사서 전용 효과]\n- 재 : 피격 시 공격자에게 화상을 1~3 부여. 피격 시 40% 확률로 다음 턴 동안 '스킬 적중 시 화상 1 부여' 능력을 얻음 (중첩불가)\n- 그리웠던 옛날의 포옹 : 합 승리 시 20% 확률로 대상에게 진동 폭발. 동일한 대상과 합을 할수록 확률이 증가함 (1합당 2%, 최대 50%)\n- 식탐 : 자신의 공격 대상이 이번 턴에 피해를 받았다면, 적중 시 피해량이 1-3 증가하고, 체력을 2-5 회복함",
+      "new_kr": "- 최댓값 : 30\n- 최종 위력 +3\n- 화상 효과로 받는 피해량 -75% (소수점 버림)\n\n[지정 사서 전용 효과]\n- 재 : 피격 시 공격자에게 화상을 1~3 부여. 피격 시 40% 확률로 다음 턴 동안 '스킬 적중 시 화상 1 부여' 능력을 얻음 (중첩불가)\n- 그리웠던 옛날의 포옹 : 합 승리 시 20% 확률로 대상에게 진동 폭발. 동일한 대상과 합을 할수록 확률이 증가함 (1합당 2%, 최대 50%)\n- 식탐 : 자신의 공격 대상이 이번 턴에 피해를 받았다면, 적중 시 피해량이 1-3 증가하고, 체력을 2-5 회복함",
+      "old_zh": "- 最大值：30\n- 最終威力+3\n\n[指定司書專用效果]\n- 灰燼：受擊時，對攻擊者施加1~3級燒傷 強度。受擊時，有40%機率在下回合內獲得「技能命中時施加1級燒傷 強度」的能力 (不可疊加)\n- 懷念的往日擁抱：拚點勝利時，有20%機率使目標震顫引爆 。與同一目標拚點的次數越多，機率越高 (每次拚點2%，最多50%)\n- 貪食：若自身的攻擊目標本回合內已受到傷害，則命中時造成的傷害增加1-3，並恢復2-5點體力",
+      "new_zh": "- 最大值：30\n- 最終威力+3\n- 受到燒傷效果造成的傷害-75% (無條件捨去)\n\n[指定司書專用效果]\n- 灰燼：受擊時，對攻擊者施加1~3級燒傷 強度。受擊時，有40%機率在下回合內獲得「技能命中時施加1級燒傷 強度」的能力 (不可疊加)\n- 思念的擁抱：拚點勝利時，有20%機率使目標震顫引爆 。與同一目標拚點的次數越多，機率越高 (每次拚點2%，最多50%)\n- 貪食：若自身的攻擊目標本回合內已受到傷害，則命中時造成的傷害增加1-3，並恢復2-5點體力",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033312-c1dc621f"
+        }
+      ]
+    },
+    {
+      "file": "Bufs.json",
+      "field": "desc",
+      "ptr": "/dataList/704/desc",
+      "kind": "kr-changed",
+      "old_kr": "- 최댓값 : 30\n- 턴당 최대 20까지 얻을 수 있음",
+      "new_kr": "- 최댓값 : 30\n- 턴당 최대 20까지 얻을 수 있음\n턴 시작 시 자신이 흐트러짐 상태면, 흐트러짐 해제 (전투당 1회, 강제 흐트러짐 제외)",
+      "old_zh": "- 最大值：30\n- 每回合最多可獲得20層",
+      "new_zh": "- 最大值：30\n- 每回合最多可獲得20層\n回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥1次，強制混亂除外)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033312-c1dc621f"
+        }
+      ]
+    },
+    {
+      "file": "Bufs.json",
+      "field": "desc",
+      "ptr": "/dataList/710/desc",
+      "kind": "kr-changed",
+      "old_kr": "- 최댓값: 5\n- 이 효과의 수치가 증가할 때, 자신의 호흡 횟수 1 증가\n- 턴 종료 시 수치만큼 자신의 호흡 횟수 증가\n- 이 효과 수치에 따라 기본 공격 스킬이 아래 효과 얻음\n· 2 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 3 ~ : 코인 위력 +1, 스킬 사용 시 마지막 코인이 파괴 불가 코인이 됨\n· 4 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 5 ~ : 공격 시작 시부터 공격 종료 시까지 공격 대상의 관통 내성 +0.1\n- 피해량 증가와 파괴 불가 코인 변경은 스킬 사용 직전의 수치로 판정",
+      "new_kr": "- 최댓값: 5\n- 이 효과의 수치가 증가할 때, 자신의 호흡 횟수 1 증가\n- 턴 종료 시 수치만큼 자신의 호흡 횟수 증가\n- 턴 시작 시 자신이 흐트러짐 상태면, 흐트러짐 해제 (전투당 2회, 강제 흐트러짐 제외)\n- 이 효과 수치에 따라 기본 공격 스킬이 아래 효과 얻음\n· 2 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 3 ~ : 코인 위력 +1, 스킬 사용 시 마지막 코인이 파괴 불가 코인이 됨\n· 4 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 5 ~ : 공격 시작 시부터 공격 종료 시까지 공격 대상의 관통 내성 +0.1\n- 피해량 증가와 파괴 불가 코인 변경은 스킬 사용 직전의 수치로 판정",
+      "old_zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
+      "new_zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥2次，強制混亂除外)\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033312-c1dc621f"
+        }
+      ]
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_7.json",
+      "field": "desc",
+      "ptr": "/dataList/51/desc",
+      "kind": "kr-changed",
+      "old_kr": "턴 시작시, <noparse>새벽 사무소</noparse> 소속 인격이 3인 이상일 때 발동 (편성 인원을 기준으로 함)\n첫 턴이면, 모든 아군에게 [DawnLight] 2 부여\n<noparse>새벽 사무소</noparse> 해결사 싱클레어가 전투 시작시 정신력을 10 회복하고, '불안정한 자아의 껍질' 패시브 효과로 불안정 E.G.O 밀랍날개 상태가 되는 정신력 조건이 25로 감소\n\n[<noparse>새벽 사무소</noparse> 소속 인격 전용 효과]\n기본 스킬의 공격 적중 시 대상에게 [Combustion] 2, [Vibration] 2 부여 (스킬당 1회)\n<noparse>새벽 사무소</noparse> 소속 인격을 [Combustion], [Vibration]을 부여하는 인격으로 취급됨\n- 이 효과로 인해서 기본 스킬이 [Combustion], [Vibration]을 부여하는 스킬로 취급됨\n스테이지 시작시 <noparse>새벽 사무소</noparse> 해결사 파우스트 인격이 전투에 등장해 있으면, [Firstlight] 1 부여",
+      "new_kr": "턴 시작시, <noparse>새벽 사무소</noparse> 소속 인격이 3인 이상일 때 발동 (대기 인원 포함)\n첫 턴이면, 모든 아군에게 [DawnLight] 2 부여\n<noparse>새벽 사무소</noparse> 해결사 싱클레어가 전투 시작시 정신력을 10 회복하고, '불안정한 자아의 껍질' 패시브 효과로 불안정 E.G.O 밀랍날개 상태가 되는 정신력 조건이 25로 감소\n\n[<noparse>새벽 사무소</noparse> 소속 인격 전용 효과]\n기본 스킬의 공격 적중 시 대상에게 [Combustion] 2, [Vibration] 2 부여 (스킬당 1회)\n<noparse>새벽 사무소</noparse> 소속 인격을 [Combustion], [Vibration]을 부여하는 인격으로 취급됨\n- 이 효과로 인해서 기본 스킬이 [Combustion], [Vibration]을 부여하는 스킬로 취급됨\n스테이지 시작시 <noparse>새벽 사무소</noparse> 해결사 파우스트 인격이 전투에 등장해 있으면, [Firstlight] 1 부여",
+      "old_zh": "回合開始時，若屬於<noparse>黎明事務所</noparse>的人格不低於3名，則觸發該效果(以編隊人員為準)\n第一個回合使全體友方單位獲得2層 [DawnLight]\n使<noparse>黎明事務所</noparse> 收尾人 辛克萊在戰鬥開始時恢復10點理智值，且該人格透過被動「不穩定的自我外殼」進入不穩定E.G.O::蠟翼狀態的理智值條件改為不低於25點\n\n[屬於<noparse>黎明事務所</noparse>的人格專用效果]\n基礎技能攻擊命中時，使目標增加2級 [Combustion] 強度與2級 [Vibration] 強度(每個技能最多1次)\n屬於<noparse>黎明事務所</noparse>的人格視作施加 [Combustion] 與 [Vibration] 的人格\n- 根據以上效果，其基礎技能也視作施加 [Combustion] 與 [Vibration] 的技能\n關卡開始時，若<noparse>黎明事務所</noparse> 收尾人 浮士德於戰鬥中登場，則使其獲得1層 [Firstlight]",
+      "new_zh": "回合開始時，若屬於<noparse>黎明事務所</noparse>的人格不低於3名，則觸發該效果(包含待命人員)\n第一個回合使全體友方單位獲得2層 [DawnLight]\n使<noparse>黎明事務所</noparse> 收尾人 辛克萊在戰鬥開始時恢復10點理智值，且該人格透過被動「不穩定的自我外殼」進入不穩定E.G.O::蜜蠟之翼狀態的理智值條件改為不低於25點\n\n[屬於<noparse>黎明事務所</noparse>的人格專用效果]\n基礎技能攻擊命中時，使目標增加2級 [Combustion] 強度與2級 [Vibration] 強度(每個技能最多1次)\n屬於<noparse>黎明事務所</noparse>的人格視作施加 [Combustion] 與 [Vibration] 的人格\n- 根據以上效果，其基礎技能也視作施加 [Combustion] 與 [Vibration] 的技能\n關卡開始時，若<noparse>黎明事務所</noparse> 收尾人 浮士德於戰鬥中登場，則使其獲得1層 [Firstlight]",
+      "old_origin": "paratranz",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033501-e261062a"
+        }
+      ]
+    },
+    {
+      "file": "EGOgift_walpu10.json",
+      "field": "desc",
+      "ptr": "/dataList/5/desc",
+      "kind": "kr-changed",
+      "old_kr": "턴 시작 시 <noparse>쐐기 사무소</noparse> 소속 인격이 3인 이상일 때 발동 (편성 인원을 기준으로 함)\n\n[<noparse>쐐기 사무소</noparse> 대표 오티스 전용 효과]\n- 위 조건을 처음 만족한 턴 시작 시 [ComboWedge] 20 얻음\n- '쐐기 대형 전개', '...전원 격돌 준비.', '새벽 뒤 꿰뚫어 오는 쐐기' 사용 시 다음 턴에 [ComboWedgeDawn] 1 얻음 (턴당 2회)\n- '쐐기 대형 전개'를 사용했으면, 다음 턴 시작 시 해당 스킬로 소모한 [ComboWedge]의 절반을 돌려받음 (턴당 1회, 소수점 버림)",
+      "new_kr": "턴 시작 시 <noparse>쐐기 사무소</noparse> 소속 인격이 3인 이상일 때 발동 (대기 인원 포함)\n\n[<noparse>쐐기 사무소</noparse> 대표 오티스 전용 효과]\n- 위 조건을 처음 만족한 턴 시작 시 [ComboWedge] 20 얻음\n- '쐐기 대형 전개', '...전원 격돌 준비.', '새벽 뒤 꿰뚫어 오는 쐐기' 사용 시 다음 턴에 [ComboWedgeDawn] 1 얻음 (턴당 2회)\n- '쐐기 대형 전개'를 사용했으면, 다음 턴 시작 시 해당 스킬로 소모한 [ComboWedge]의 절반을 돌려받음 (턴당 1회, 소수점 버림)",
+      "old_zh": "回合開始時，<noparse>楔事務所</noparse>所屬人格不低於3名時發動 (以編隊人員為準)\n\n[<noparse>楔事務所</noparse> 代表 奧提斯專用效果]\n- 首次滿足上述條件的回合開始時，獲得20層 [ComboWedge] \n- 使用「楔形陣展開」、「……全員準備交鋒。」、「黎明之後貫穿而來的楔」時，下回合獲得1層 [ComboWedgeDawn] (每回合最多2次)\n- 若使用過「楔形陣展開」，下回合開始時，返還該技能消耗的 [ComboWedge] 的一半 (每回合最多1次，小數點以下捨去)",
+      "new_zh": "回合開始時，<noparse>楔事務所</noparse>所屬人格不低於3名時發動 (包含待命人員)\n\n[<noparse>楔事務所</noparse> 代表 奧提斯專用效果]\n- 首次滿足上述條件的回合開始時，獲得20層 [ComboWedge] \n- 使用「楔形陣展開」、「……全員，準備交鋒。」、「黎明之後貫穿而來的楔」時，下回合獲得1層 [ComboWedgeDawn] (每回合最多2次)\n- 若使用過「楔形陣展開」，下回合開始時，返還該技能消耗的 [ComboWedge] 的一半 (每回合最多1次，小數點以下捨去)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033501-e261062a"
+        }
+      ]
+    },
+    {
+      "file": "MainUIText-a1c10p1.json",
+      "field": "id",
+      "ptr": "/dataList/27/id",
+      "kind": "new",
+      "new_kr": "10th_anniversary_event_desc",
+      "new_zh": "10th_anniversary_event_desc",
+      "new_origin": "copy",
+      "copy": true,
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "MainUIText-a1c10p1.json",
+      "field": "content",
+      "ptr": "/dataList/27/content",
+      "kind": "new",
+      "new_kr": "기간 내 접속 시 3성 인격 출현 추출 티켓 및 광기 증정",
+      "new_zh": "活動期間內登入即贈送3星人格必得十連提取券及狂氣",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "MainUIText.json",
+      "field": "id",
+      "ptr": "/dataList/525/id",
+      "kind": "new",
+      "new_kr": "limtochess_entrance_coming_soon",
+      "new_zh": "limtochess_entrance_coming_soon",
+      "new_origin": "copy",
+      "copy": true,
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "MainUIText.json",
+      "field": "content",
+      "ptr": "/dataList/525/content",
+      "kind": "new",
+      "new_kr": "준비 중입니다.",
+      "new_zh": "準備中。",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "MirrorDungeonRentalName.json",
+      "field": "content",
+      "ptr": "/dataList/38/content",
+      "kind": "new",
+      "new_kr": "거미집",
+      "new_zh": "蜘蛛巢",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "PersonalityVoiceDlg/Voice_DonQuixote_Wedge_10316.json",
+      "field": "dlg",
+      "ptr": "/dataList/13/dlg",
+      "kind": "kr-changed",
+      "old_kr": "집중이 안 되니, 급한 건 싱클레이 군에게 말씀하시게!",
+      "new_kr": "집중이 안 되니, 급한 건 싱클레어 군에게 말씀하시게!",
+      "old_zh": "吾無法專心，急事就跟辛克萊說吧！",
+      "new_zh": "吾無法專心，急事就跟辛克萊說吧！",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033355-dde10a93"
+        }
+      ]
+    },
+    {
+      "file": "Skills_Abnormality-a1c9p3.json",
+      "field": "desc",
+      "ptr": "/dataList/109/levelList/0/desc",
+      "kind": "kr-changed",
+      "old_kr": "[WideAreaRampage]\n<color=#ff6000><mark=#ff000040><b><u>이 스킬은 대상의 수비 스킬을 발동시키지 않음</u></b></mark></color>\n속도에 상관없이 이 스킬과 합을 할 수 있음\n<color=#ff6000><mark=#ff000040><b><u>- 료슈의 기본 E.G.O와 합 진행 시, 합 위력 -20</u></b></mark></color>\n[WhenUse]\n- [Breath] 9 얻음, 자신의 [Breath] 횟수 9 증가\n- 합 위력 +15 (자신의 카르마 [KarmaOfIndexRien_2Phase] 20당 1씩 감소)\n[WhenUse] 정신력이 0 이상이면, 망 3개 생성\n- 피해량이 100%만큼 증가하고 최종 위력 +12\n[WinDuel]\n- 공격 종료 시 공격이 적중한 모든 대상에게 다음 턴에 [Laceration] 5, [Binding] 3, [Vulnerable] 3 부여\n[DefeatDuel] \n- [AttackDmgDown] 8, [Paralysis] 9 얻음\n- 이 스킬의 피해로 대상이 흐트러지지 않고 적중 시 대상의 [Sinking] 효과가 발동하지 않음  \n[EndSkill] 망을 생성했으면, 정신력 30만큼 감소\n[EndSkill] 이번 턴 종료",
+      "new_kr": "[WideAreaRampage]\n<color=#ff6000><mark=#ff000040><b><u>이 스킬은 대상의 수비 스킬을 발동시키지 않음</u></b></mark></color>\n속도에 상관없이 이 스킬과 합을 할 수 있음\n<color=#ff6000><mark=#ff000040><b><u>- 료슈의 기본 E.G.O와 합 진행 시, 합 위력 -20</u></b></mark></color>\n[WhenUse]\n- [Breath] 9 얻음, 자신의 [Breath] 횟수 9 증가\n- 합 위력 +15 (자신의 [KarmaOfIndexRien_2Phase] 20당 1씩 감소)\n[WhenUse] 정신력이 0 이상이면, 망 3개 생성\n- 피해량이 100%만큼 증가하고 최종 위력 +12\n[WinDuel]\n- 공격 종료 시 공격이 적중한 모든 대상에게 다음 턴에 [Laceration] 5, [Binding] 3, [Vulnerable] 3 부여\n[DefeatDuel] \n- [AttackDmgDown] 8, [Paralysis] 9 얻음\n- 이 스킬의 피해로 대상이 흐트러지지 않고 적중 시 대상의 [Sinking] 효과가 발동하지 않음  \n[EndSkill] 망을 생성했으면, 정신력 30만큼 감소\n[EndSkill] 이번 턴 종료",
+      "old_zh": "[WideAreaRampage]\n<color=#ff6000><mark=#ff000040><b><u>本技能不會觸發目標的守備技能</u></b></mark></color>\n可無視速度值與本技能拚點\n<color=#ff6000><mark=#ff000040><b><u>- 與良秀的初始E.G.O拚點時，使本技能的拚點威力-20</u></b></mark></color>\n[WhenUse]\n- 使自身獲得9級 [Breath] 強度與9回 [Breath]\n- 使本技能的拚點威力+15 (自身每帶有20層 [KarmaOfIndexRien_2Phase]，則使增加的拚點威力-1)\n[WhenUse] 自身的理智值不低於0點時，則生成3望\n- 使本技能造成的傷害+100%、最終威力+12\n[WinDuel]\n- 攻擊結束後，對攻擊命中的所有目標施加5級 [Laceration] 強度、3層 [Binding] 以及3層 [Vulnerable]\n[DefeatDuel]\n- 對自身施加8層 [AttackDmgDown] 與9層 [Paralysis]\n- 本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標帶有的 [Sinking]\n[EndSkill] 若本技能生成了望，則使自身失去30點理智值\n[EndSkill] 結束本回合",
+      "new_zh": "[WideAreaRampage]\n<color=#ff6000><mark=#ff000040><b><u>本技能不會觸發目標的守備技能</u></b></mark></color>\n可無視速度值與本技能拚點\n<color=#ff6000><mark=#ff000040><b><u>- 與良秀的初始E.G.O拚點時，使本技能的拚點威力-20</u></b></mark></color>\n[WhenUse]\n- 使自身獲得9級 [Breath] 強度與9回 [Breath]\n- 使本技能的拚點威力+15 (自身每帶有20層 [KarmaOfIndexRien_2Phase]，則使增加的拚點威力-1)\n[WhenUse] 自身的理智值不低於0點時，則生成3望\n- 使本技能造成的傷害+100%、最終威力+12\n[WinDuel]\n- 攻擊結束後，於下回合對攻擊命中的所有目標施加5級 [Laceration] 強度、3層 [Binding] 以及3層 [Vulnerable]\n[DefeatDuel]\n- 對自身施加8層 [AttackDmgDown] 與9層 [Paralysis]\n- 本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標帶有的 [Sinking]\n[EndSkill] 若本技能生成了望，則使自身失去30點理智值\n[EndSkill] 結束本回合",
+      "old_origin": "paratranz",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033439-788e0aff"
+        }
+      ]
+    },
+    {
+      "file": "Skills_Abnormality_Mirror7.json",
+      "field": "desc",
+      "ptr": "/dataList/23/levelList/0/desc",
+      "kind": "kr-changed",
+      "old_kr": "[WideAreaRampage]\n<color=#ff6000><mark=#ff000040><b><u>이 스킬은 대상의 수비 스킬을 발동시키지 않음</u></b></mark></color>\n속도에 상관없이 이 스킬과 합을 할 수 있음\n[WhenUse]\n- [Breath] 9 얻음, 자신의 [Breath] 횟수 9 증가\n- 합 위력 +15 (자신의 카르마 [KarmaOfIndexRien_2Phase] 5당 1씩 감소)\n[WhenUse] 정신력이 0 이상이면, 망 3개 생성\n- 피해량이 60%만큼 증가하고 최종 위력 +8\n[WinDuel]\n- 공격 종료 시 공격이 적중한 모든 대상에게 다음 턴에 [Laceration] 5, [Binding] 3, [Vulnerable] 3 부여\n[DefeatDuel]\n- 최종 피해량이 80%만큼 감소\n- 이 스킬의 피해로 대상이 흐트러지지 않고 적중 시 대상의 [Sinking] 효과가 발동하지 않음\n[EndSkill] 망을 생성했으면, 정신력 30만큼 감소\n[EndSkill] 이번 턴 종료",
+      "new_kr": "[WideAreaRampage]\n<color=#ff6000><mark=#ff000040><b><u>이 스킬은 대상의 수비 스킬을 발동시키지 않음</u></b></mark></color>\n속도에 상관없이 이 스킬과 합을 할 수 있음\n[WhenUse]\n- [Breath] 9 얻음, 자신의 [Breath] 횟수 9 증가\n- 합 위력 +15 (자신의 [KarmaOfIndexRien_2Phase] 5당 1씩 감소)\n[WhenUse] 정신력이 0 이상이면, 망 3개 생성\n- 피해량이 60%만큼 증가하고 최종 위력 +8\n[WinDuel]\n- 공격 종료 시 공격이 적중한 모든 대상에게 다음 턴에 [Laceration] 5, [Binding] 3, [Vulnerable] 3 부여\n[DefeatDuel]\n- 최종 피해량이 80%만큼 감소\n- 이 스킬의 피해로 대상이 흐트러지지 않고 적중 시 대상의 [Sinking] 효과가 발동하지 않음\n[EndSkill] 망을 생성했으면, 정신력 30만큼 감소\n[EndSkill] 이번 턴 종료",
+      "old_zh": "[WideAreaRampage]\n<color=#ff6000><mark=#ff000040><b><u>本技能不會觸發目標的守備技能</u></b></mark></color>\n可無視速度值與本技能拚點\n[WhenUse]\n- 使自身獲得9級 [Breath] 強度與9回 [Breath]\n- 使本技能的拚點威力+15(自身每帶有5層 [KarmaOfIndexRien_2Phase]，則使增加的拚點威力-1)\n[WhenUse] 自身的理智值不低於0點時，則生成3望\n- 使本技能造成的傷害+60%、最終威力+8\n[WinDuel]\n- 攻擊結束後，對攻擊命中的所有目標施加5級 [Laceration] 強度、3層 [Binding] 以及3層 [Vulnerable]\n[DefeatDuel]\n- 使本技能造成的最終傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標帶有的 [Sinking]\n[EndSkill] 若本技能生成了望，則使自身失去30點理智值\n[EndSkill] 結束本回合",
+      "new_zh": "[WideAreaRampage]\n<color=#ff6000><mark=#ff000040><b><u>本技能不會觸發目標的守備技能</u></b></mark></color>\n可無視速度值與本技能拚點\n[WhenUse]\n- 使自身獲得9級 [Breath] 強度與9回 [Breath]\n- 使本技能的拚點威力+15 (自身每帶有5層 [KarmaOfIndexRien_2Phase]，則使增加的拚點威力-1)\n[WhenUse] 自身的理智值不低於0點時，則生成3望\n- 使本技能造成的傷害+60%、最終威力+8\n[WinDuel]\n- 攻擊結束後，於下回合對攻擊命中的所有目標施加5級 [Laceration] 強度、3層 [Binding] 以及3層 [Vulnerable]\n[DefeatDuel]\n- 使本技能造成的最終傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標帶有的 [Sinking]\n[EndSkill] 若本技能生成了望，則使自身失去30點理智值\n[EndSkill] 結束本回合",
+      "old_origin": "paratranz",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033439-788e0aff"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-03.json",
+      "field": "desc",
+      "ptr": "/dataList/58/levelList/0/coinlist/2/coindescs/6/desc",
+      "kind": "kr-changed",
+      "old_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 (대상의 [WedgeMarkGreen] x 5)%만큼 관통 피해 (최대 40%)",
+      "new_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 (대상의 [WedgeMarkGreen] x 7)%만큼 관통 피해 (최대 56%)",
+      "old_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkGreen] 層數×5)%的突刺傷害 (最多40%)",
+      "new_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkGreen] 層數×7)%的突刺傷害 (最多56%)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-03.json",
+      "field": "desc",
+      "ptr": "/dataList/58/levelList/1/coinlist/2/coindescs/6/desc",
+      "kind": "kr-changed",
+      "old_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 (대상의 [WedgeMarkGreen] x 5)%만큼 관통 피해 (최대 40%)",
+      "new_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 (대상의 [WedgeMarkGreen] x 7)%만큼 관통 피해 (최대 56%)",
+      "old_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkGreen] 層數×5)%的突刺傷害 (最多40%)",
+      "new_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkGreen] 層數×7)%的突刺傷害 (最多56%)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-10.json",
+      "field": "desc",
+      "ptr": "/dataList/57/levelList/0/coinlist/2/coindescs/5/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ReUseOnSucceedAttack] 이 코인 최종 피해량의 (대상의 [WedgeMarkYellow] x 4)%만큼 관통 피해 (최대 32%)",
+      "new_kr": "[ReUseOnSucceedAttack] 이 코인 최종 피해량의 (대상의 [WedgeMarkYellow] x 6)%만큼 관통 피해 (최대 48%)",
+      "old_zh": "[ReUseOnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkYellow] 層數×4)%的突刺傷害 (最多32%)",
+      "new_zh": "[ReUseOnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkYellow] 層數×6)%的突刺傷害 (最多48%)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-10.json",
+      "field": "desc",
+      "ptr": "/dataList/57/levelList/1/coinlist/2/coindescs/5/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ReUseOnSucceedAttack] 이 코인 최종 피해량의 (대상의 [WedgeMarkYellow] x 4)%만큼 관통 피해 (최대 32%)",
+      "new_kr": "[ReUseOnSucceedAttack] 이 코인 최종 피해량의 (대상의 [WedgeMarkYellow] x 6)%만큼 관통 피해 (최대 48%)",
+      "old_zh": "[ReUseOnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkYellow] 層數×4)%的突刺傷害 (最多32%)",
+      "new_zh": "[ReUseOnSucceedAttack] 造成等同於本硬幣最終傷害(目標的 [WedgeMarkYellow] 層數×6)%的突刺傷害 (最多48%)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/51/levelList/0/coinlist/0/coindescs/6/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 대표 그레고르\n- 피해량 +30%\n- [OnSucceedAttack] [Vibration] 횟수 2 증가",
+      "new_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 100%만큼 관통 피해",
+      "old_zh": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+30%\n- [OnSucceedAttack] 使目標增加2回 [Vibration]",
+      "new_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害100%的突刺傷害",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/51/levelList/0/coinlist/0/coindescs/7/desc",
+      "kind": "new",
+      "new_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 대표 그레고르\n- 피해량 +30%\n- [OnSucceedAttack] [Vibration] 횟수 2 증가",
+      "new_zh": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+30%\n- [OnSucceedAttack] 使目標增加2回 [Vibration]",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/51/levelList/1/coinlist/0/coindescs/7/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 대표 그레고르\n- 피해량 +30%\n- [OnSucceedAttack] [Vibration] 횟수 2 증가<style=\"highlight\"></style>",
+      "new_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 100%만큼 관통 피해",
+      "old_zh": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+30%\n- [OnSucceedAttack] 使目標增加2回 [Vibration]<style=\"highlight\"></style>",
+      "new_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害100%的突刺傷害",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/51/levelList/1/coinlist/0/coindescs/8/desc",
+      "kind": "new",
+      "new_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 대표 그레고르\n- 피해량 +30%\n- [OnSucceedAttack] [Vibration] 횟수 2 증가<style=\"highlight\"></style>",
+      "new_zh": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+30%\n- [OnSucceedAttack] 使目標增加2回 [Vibration]<style=\"highlight\"></style>",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/54/levelList/0/desc",
+      "kind": "kr-changed",
+      "old_kr": "[WhenUse] 자신의 [Breath] 위력 8당, 코인 위력 +1 (최대 2)\n[WhenUse] 대상의 [Vibration] 위력 8당, 최종 위력 +1 (최대 2)\n[WhenUse]\n- 자신의 [Breath] 횟수 3 증가\n- 자신을 제외한 행동 가능한 아군 쐐기 사무소[TabExplain] 소속 인격 수만큼 공격 가중치 증가 (최대 2)\n[WhenUse] 이 스킬 공격 가중치보다 낮은 공격 대상 1당 피해량 +30% (집중 전투인 경우, 부위로 판정)\n[EndSkill]\n- 자신의 [ComboWedgeDawn] 모두 소모",
+      "new_kr": "[WhenUse] 자신의 [Breath] 위력 8당, 코인 위력 +1 (최대 2)\n[WhenUse] 대상의 [Vibration] 위력 8당, 최종 위력 +1 (최대 2)\n[WhenUse]\n- 자신의 [Breath] 횟수 3 증가\n- 자신을 제외한 행동 가능한 아군 쐐기 사무소[TabExplain] 소속 인격 수만큼 공격 가중치 증가 (최대 2)\n[WhenUse] 이 스킬 공격 가중치보다 낮은 공격 대상 1당 피해량 +60% (집중 전투인 경우, 부위로 판정)\n[EndSkill]\n- 자신의 [ComboWedgeDawn] 모두 소모",
+      "old_zh": "[WhenUse] 自身每帶有8級 [Breath] 強度，使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 目標每帶有8級 [Vibration] 強度，使本技能的最終威力+1 (最多+2)\n[WhenUse]\n- 使自身獲得3回 [Breath]\n- 依除自身以外可行動且屬於楔事務所[TabExplain]的友方人格數量，使攻擊容量增加相應數值 (最多+2)\n[WhenUse] 本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+30% (若是集中遭遇戰，則以部位判定)\n[EndSkill]\n- 消耗自身所有的 [ComboWedgeDawn]",
+      "new_zh": "[WhenUse] 自身每帶有8級 [Breath] 強度，使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 目標每帶有8級 [Vibration] 強度，使本技能的最終威力+1 (最多+2)\n[WhenUse]\n- 使自身獲得3回 [Breath]\n- 依除自身以外可行動且屬於楔事務所[TabExplain]的友方人格數量，使攻擊容量增加相應數值 (最多+2)\n[WhenUse] 本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+60% (若是集中遭遇戰，則以部位判定)\n[EndSkill]\n- 消耗自身所有的 [ComboWedgeDawn]",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/54/levelList/0/coinlist/0/coindescs/2/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 해결사 파우스트\n- 피해량 +20%\n- [OnSucceedAttack] [Combustion] 3 부여\n- [OnSucceedAttack] [VibrationIgnition]로 [Switch_Vibration]",
+      "new_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 15%만큼 관통 피해",
+      "old_zh": "[ComboSkill]：黎明事務所[TabExplain] 收尾人 浮士德\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加3級 [Combustion] 強度\n- [OnSucceedAttack] [Switch_Vibration] 為 [VibrationIgnition]",
+      "new_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害15%的突刺傷害",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/54/levelList/0/coinlist/0/coindescs/3/desc",
+      "kind": "new",
+      "new_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 해결사 파우스트\n- 피해량 +20%\n- [OnSucceedAttack] [Combustion] 3 부여\n- [OnSucceedAttack] [VibrationIgnition]로 [Switch_Vibration]",
+      "new_zh": "[ComboSkill]：黎明事務所[TabExplain] 收尾人 浮士德\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加3級 [Combustion] 強度\n- [OnSucceedAttack] [Switch_Vibration] 為 [VibrationIgnition]",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/54/levelList/0/coinlist/1/coindescs/1/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ComboSkill] : 쐐기 사무소[TabExplain] 해결사 돈키호테\n- 크리티컬 피해량 +20%\n- [OnSucceedAttack] [Vibration] 2 부여",
+      "new_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 15%만큼 관통 피해",
+      "old_zh": "[ComboSkill]：楔事務所[TabExplain] 收尾人 唐吉訶德\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Vibration] 強度",
+      "new_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害15%的突刺傷害",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/54/levelList/0/coinlist/1/coindescs/2/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ComboSkill] : 쐐기 사무소[TabExplain] 해결사 싱클레어\n- 크리티컬 피해량 +20%\n- [OnSucceedAttack] [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소",
+      "new_kr": "[ComboSkill] : 쐐기 사무소[TabExplain] 해결사 돈키호테\n- 크리티컬 피해량 +20%\n- [OnSucceedAttack] [Vibration] 2 부여",
+      "old_zh": "[ComboSkill]：楔事務所[TabExplain] 收尾人 辛克萊\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回",
+      "new_zh": "[ComboSkill]：楔事務所[TabExplain] 收尾人 唐吉訶德\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Vibration] 強度",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/54/levelList/0/coinlist/1/coindescs/3/desc",
+      "kind": "new",
+      "new_kr": "[ComboSkill] : 쐐기 사무소[TabExplain] 해결사 싱클레어\n- 크리티컬 피해량 +20%\n- [OnSucceedAttack] [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소",
+      "new_zh": "[ComboSkill]：楔事務所[TabExplain] 收尾人 辛克萊\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/54/levelList/0/coinlist/2/coindescs/2/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 대표 그레고르\n- 피해량 +20%\n- [OnSucceedAttack] [Combustion] 2 부여\n- [OnSucceedAttack] [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소\n- [OnSucceedAttack] 대상의 [Combustion] 발동. 대상의 [Combustion] 횟수 1 감소",
+      "new_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 15%만큼 관통 피해",
+      "old_zh": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Combustion] 強度\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回\n- [OnSucceedAttack] 觸發目標的 [Combustion]。使目標的 [Combustion] 回數減少1回",
+      "new_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害15%的突刺傷害",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/54/levelList/0/coinlist/2/coindescs/3/desc",
+      "kind": "new",
+      "new_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 대표 그레고르\n- 피해량 +20%\n- [OnSucceedAttack] [Combustion] 2 부여\n- [OnSucceedAttack] [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소\n- [OnSucceedAttack] 대상의 [Combustion] 발동. 대상의 [Combustion] 횟수 1 감소",
+      "new_zh": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Combustion] 強度\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回\n- [OnSucceedAttack] 觸發目標的 [Combustion]。使目標的 [Combustion] 回數減少1回",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/55/levelList/0/desc",
+      "kind": "kr-changed",
+      "old_kr": "[WhenUse] 자신의 [Breath] 위력 8당, 코인 위력 +1 (최대 2)\n[WhenUse] 대상의 [Vibration] 위력 8당, 최종 위력 +1 (최대 2)\n[WhenUse]\n- 자신의 [Breath] 횟수 3 증가\n- 자신을 제외한 행동 가능한 아군 쐐기 사무소[TabExplain] 소속 인격 수만큼 공격 가중치 증가 (최대 2)\n[WhenUse] 이 스킬 공격 가중치보다 낮은 공격 대상 1당 피해량 +30% (집중 전투인 경우, 부위로 판정)\n[WinDuel] [VibrationCollapse]로 [FusionVibration]\n[EndSkill]\n- 자신의 [ComboWedgeDawn] 모두 소모",
+      "new_kr": "[WhenUse] 자신의 [Breath] 위력 8당, 코인 위력 +1 (최대 2)\n[WhenUse] 대상의 [Vibration] 위력 8당, 최종 위력 +1 (최대 2)\n[WhenUse]\n- 자신의 [Breath] 횟수 3 증가\n- 자신을 제외한 행동 가능한 아군 쐐기 사무소[TabExplain] 소속 인격 수만큼 공격 가중치 증가 (최대 2)\n[WhenUse] 이 스킬 공격 가중치보다 낮은 공격 대상 1당 피해량 +60% (집중 전투인 경우, 부위로 판정)\n[WinDuel] [VibrationCollapse]로 [FusionVibration]\n[EndSkill]\n- 자신의 [ComboWedgeDawn] 모두 소모",
+      "old_zh": "[WhenUse] 自身每帶有8級 [Breath] 強度，使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 目標每帶有8級 [Vibration] 強度，使本技能的最終威力+1 (最多+2)\n[WhenUse]\n- 使自身獲得3回 [Breath]\n- 依除自身以外可行動且屬於楔事務所[TabExplain]的友方人格數量，使攻擊容量增加相應數值 (最多+2)\n[WhenUse] 本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+30% (若是集中遭遇戰，則以部位判定)\n[WinDuel] [FusionVibration] 為 [VibrationCollapse]\n[EndSkill]\n- 消耗自身所有的 [ComboWedgeDawn]",
+      "new_zh": "[WhenUse] 自身每帶有8級 [Breath] 強度，使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 目標每帶有8級 [Vibration] 強度，使本技能的最終威力+1 (最多+2)\n[WhenUse]\n- 使自身獲得3回 [Breath]\n- 依除自身以外可行動且屬於楔事務所[TabExplain]的友方人格數量，使攻擊容量增加相應數值 (最多+2)\n[WhenUse] 本技能的攻擊容量每比攻擊目標數多1，使造成的傷害+60% (若是集中遭遇戰，則以部位判定)\n[WinDuel] [FusionVibration] 為 [VibrationCollapse]\n[EndSkill]\n- 消耗自身所有的 [ComboWedgeDawn]",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/55/levelList/0/coinlist/0/coindescs/1/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 해결사 파우스트\n- 피해량 +20%\n- [OnSucceedAttack] [Combustion] 3 부여\n- [OnSucceedAttack] [VibrationIgnition]로 [Switch_Vibration]",
+      "new_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 20%만큼 관통 피해",
+      "old_zh": "[ComboSkill]：黎明事務所[TabExplain] 收尾人 浮士德\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加3級 [Combustion] 強度\n- [OnSucceedAttack] [Switch_Vibration] 為 [VibrationIgnition]",
+      "new_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害20%的突刺傷害",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/55/levelList/0/coinlist/0/coindescs/2/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 대표 그레고르\n- 피해량 +20%\n- [OnSucceedAttack] [Combustion] 2 부여\n- [OnSucceedAttack] [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소\n- [OnSucceedAttack] 대상의 [Combustion] 발동. 대상의 [Combustion] 횟수 1 감소",
+      "new_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 해결사 파우스트\n- 피해량 +20%\n- [OnSucceedAttack] [Combustion] 3 부여\n- [OnSucceedAttack] [VibrationIgnition]로 [Switch_Vibration]",
+      "old_zh": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Combustion] 強度\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回\n- [OnSucceedAttack] 觸發目標的 [Combustion]。使目標的 [Combustion] 回數減少1回",
+      "new_zh": "[ComboSkill]：黎明事務所[TabExplain] 收尾人 浮士德\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加3級 [Combustion] 強度\n- [OnSucceedAttack] [Switch_Vibration] 為 [VibrationIgnition]",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/55/levelList/0/coinlist/0/coindescs/3/desc",
+      "kind": "new",
+      "new_kr": "[ComboSkill] : 새벽 사무소[TabExplain] 대표 그레고르\n- 피해량 +20%\n- [OnSucceedAttack] [Combustion] 2 부여\n- [OnSucceedAttack] [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소\n- [OnSucceedAttack] 대상의 [Combustion] 발동. 대상의 [Combustion] 횟수 1 감소",
+      "new_zh": "[ComboSkill]：黎明事務所[TabExplain] 代表 格里高爾\n- 造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Combustion] 強度\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回\n- [OnSucceedAttack] 觸發目標的 [Combustion]。使目標的 [Combustion] 回數減少1回",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/55/levelList/0/coinlist/1/coindescs/1/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ComboSkill] : 쐐기 사무소[TabExplain] 해결사 돈키호테\n- 크리티컬 피해량 +20%\n- [OnSucceedAttack] [Vibration] 2 부여",
+      "new_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 20%만큼 관통 피해",
+      "old_zh": "[ComboSkill]：楔事務所[TabExplain] 收尾人 唐吉訶德\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Vibration] 強度",
+      "new_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害20%的突刺傷害",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/55/levelList/0/coinlist/1/coindescs/2/desc",
+      "kind": "kr-changed",
+      "old_kr": "[ComboSkill] : 쐐기 사무소[TabExplain] 해결사 싱클레어\n- 크리티컬 피해량 +20%\n- [OnSucceedAttack] [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소",
+      "new_kr": "[ComboSkill] : 쐐기 사무소[TabExplain] 해결사 돈키호테\n- 크리티컬 피해량 +20%\n- [OnSucceedAttack] [Vibration] 2 부여",
+      "old_zh": "[ComboSkill]：楔事務所[TabExplain] 收尾人 辛克萊\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回",
+      "new_zh": "[ComboSkill]：楔事務所[TabExplain] 收尾人 唐吉訶德\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 使目標增加2級 [Vibration] 強度",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033410-c2b2d05f"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/55/levelList/0/coinlist/1/coindescs/3/desc",
+      "kind": "new",
+      "new_kr": "[ComboSkill] : 쐐기 사무소[TabExplain] 해결사 싱클레어\n- 크리티컬 피해량 +20%\n- [OnSucceedAttack] [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소",
+      "new_zh": "[ComboSkill]：楔事務所[TabExplain] 收尾人 辛克萊\n- 暴擊時造成的傷害+20%\n- [OnSucceedAttack] 觸發 [VibrationExplosion]。使目標的 [Vibration] 回數減少1回",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "Skills_personality-11.json",
+      "field": "desc",
+      "ptr": "/dataList/55/levelList/0/coinlist/2/coindescs/3/desc",
+      "kind": "new",
+      "new_kr": "[OnSucceedAttack] 이 코인 최종 피해량의 20%만큼 관통 피해",
+      "new_zh": "[OnSucceedAttack] 造成等同於本硬幣最終傷害20%的突刺傷害",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "new"
+        }
+      ]
+    },
+    {
+      "file": "StageChapterText.json",
+      "field": "chapter",
+      "ptr": "/dataList/30/chapter",
+      "kind": "kr-changed",
+      "old_kr": "10장",
+      "new_kr": "",
+      "old_zh": "第10章",
+      "new_zh": "",
+      "old_origin": "paratranz",
+      "new_origin": "copy",
+      "copy": true,
+      "causes": [
+        {
+          "kind": "kr-changed"
+        }
+      ]
+    },
+    {
+      "file": "StageChapterText.json",
+      "field": "chapterNumber",
+      "ptr": "/dataList/30/chapterNumber",
+      "kind": "kr-changed",
+      "old_kr": "10",
+      "new_kr": "",
+      "old_zh": "10",
+      "new_zh": "",
+      "old_origin": "copy",
+      "new_origin": "copy",
+      "copy": true,
+      "causes": [
+        {
+          "kind": "kr-changed"
+        }
+      ]
+    },
+    {
+      "file": "StageChapterText.json",
+      "field": "chaptertitle",
+      "ptr": "/dataList/30/chaptertitle",
+      "kind": "kr-changed",
+      "old_kr": "바라보아지는",
+      "new_kr": "제 10 회 발푸르기스의 밤",
+      "old_zh": "備受注視",
+      "new_zh": "第10次瓦爾普吉斯之夜",
+      "old_origin": "paratranz",
+      "new_origin": "claude",
+      "causes": [
+        {
+          "kind": "kr-changed",
+          "batch": "20261119T033522-2f3f1741"
+        }
+      ]
+    },
+    {
+      "file": "StageChapterText.json",
+      "field": "timeline",
+      "ptr": "/dataList/30/timeline",
+      "kind": "kr-changed",
+      "old_kr": "985-03",
+      "new_kr": "985-06",
+      "old_zh": "985-03",
+      "new_zh": "985-06",
+      "old_origin": "copy",
+      "new_origin": "copy",
+      "copy": true,
+      "causes": [
+        {
+          "kind": "kr-changed"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1
+}

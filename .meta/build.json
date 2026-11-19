@@ -1,6 +1,6 @@
 {
-  "raw_tag": "raw-20261112",
-  "raw_token": "l20261112_5pAcdxbyP1RC08yIrdPw",
+  "raw_tag": "raw-20261119",
+  "raw_token": "l20261119_4Eq_wJ8_ZGT2-Y1MVwFc",
   "rules_commit": "2e8e1f50eddc115e70c3e80a19a73188cd7c6fb4",
   "built_at": "2026-11-18T14:48:04Z",
   "upstream": {
@@ -8,17 +8,20 @@
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
     "paratranz": "user-unknown-0711/ParatranzUploader@1793285016"
   },
-  "notes_seen": 1058,
+  "model": "claude-opus-5-5",
+  "cost_usd": 1.430453,
+  "stopped": "done",
+  "notes_seen": 1066,
   "zips": {
-    "zh-TW_complete_raw-20261112.zip": "bf87a9d7e0f1623ab9408043663e4a89c84541de91b049e6def37d3c842991b0",
-    "zh-TW_text_raw-20261112.zip": "d72f5e6a7847e90e4602b2953c6c3d9b5420171dcc14df3e124cb47a26363ee4"
+    "zh-TW_complete_raw-20261119.zip": "96dce1dfc101caa4853f0b2e06e8b3a98ee52959465912a2e7d4d488a9e4bd06",
+    "zh-TW_text_raw-20261119.zip": "013e2018a1760f05970ee14978937a7cb89906c859d936019aca609a33072472"
   },
   "report": {
     "origins": {
-      "claude": 19824,
-      "copy": 91932,
+      "claude": 19841,
+      "copy": 91939,
       "human": 274,
-      "paratranz": 163819
+      "paratranz": 163814
     },
     "pending": 0,
     "needs_review": 0,
@@ -41,7 +44,7 @@
       "newline-space": 9,
       "page-count": 5,
       "shared-line": 10,
-      "term-missing": 798
+      "term-missing": 796
     },
     "missing_glyphs": [],
     "copied": [
@@ -563,13 +566,70 @@
         "units": 9
       }
     ],
-    "notes": [],
-    "new_translated": 1763,
+    "notes": [
+      {
+        "key": "BattleKeywords.json|/dataList/626/desc",
+        "batch": "20261119T033312-c1dc621f",
+        "kr_sha": "fd61dcc91f5eb551009ace153034ad0da1cbb8d2f2ccc3ed523018a964e6f67b",
+        "model": "claude-opus-5-5",
+        "note": "피해량 증가：此處指本效果的增傷效果，非狀態「傷害強化」，沿用舊譯「傷害增加」。新增的 흐트러짐 譯「混亂」、전투당 譯「每場戰鬥」"
+      },
+      {
+        "key": "Bufs-walpu10.json|/dataList/24/desc",
+        "batch": "20261119T033312-c1dc621f",
+        "kr_sha": "ae4051fbbf0c7cf6458c7b157b32c7c03b80c1f5ad2b2e6ea763d2786c7d7c99",
+        "model": "claude-opus-5-5",
+        "note": "그리웠던 옛날의 포옹：依 names 改用既有名稱「思念的擁抱」（舊譯此處寫「懷念的往日擁抱」）"
+      },
+      {
+        "key": "Bufs-walpu10.json|/dataList/25/desc",
+        "batch": "20261119T033312-c1dc621f",
+        "kr_sha": "30527e46278daa40a832c4f1ef7ccdd4c9f9ba5cd8c85cf3bdd5959125f72018",
+        "model": "claude-opus-5-5",
+        "note": "그리웠던 옛날의 포옹：依 names 改用既有名稱「思念的擁抱」（舊譯此處寫「懷念的往日擁抱」）"
+      },
+      {
+        "key": "BattleSpeechBubbleDlg.json|/dataList/805/dlg",
+        "batch": "20261119T033355-dde10a93",
+        "kr_sha": "c941b8f255d55935168c9345016b359c72ecd07bd85f20571412a71002e0f3c1",
+        "model": "claude-opus-5-5",
+        "note": "악성：JP 悪性、EN vicious criticisms，譯「惡意」以兼顧惡性與惡評"
+      },
+      {
+        "key": "Skills_Abnormality-a1c9p3.json|/dataList/109/levelList/0/desc",
+        "batch": "20261119T033439-788e0aff",
+        "kr_sha": "5e68def881d164ae49a245e4fe29f034839d3ebf8fbbe70b73e4155409dd19c5",
+        "model": "claude-opus-5-5",
+        "note": "KR 只刪去 [ID] 前的「카르마」，舊譯本來就沒寫；다음 턴에：舊譯漏譯，補「於下回合」"
+      },
+      {
+        "key": "Skills_Abnormality_Mirror7.json|/dataList/23/levelList/0/desc",
+        "batch": "20261119T033439-788e0aff",
+        "kr_sha": "273fbe3b6c2f616b9abd564df6c0072328845b6189dc8e17a1b23dbbcad3f422",
+        "model": "claude-opus-5-5",
+        "note": "KR 只刪去 [ID] 前的「카르마」，舊譯本來就沒寫；다음 턴에：舊譯漏譯，補「於下回合」；舊譯「+15(」補上半形空格與另一檔一致"
+      },
+      {
+        "key": "EGOgift_MirrorDungeon_7.json|/dataList/51/desc",
+        "batch": "20261119T033501-e261062a",
+        "kr_sha": "4b0a9e6ae56d77f63c3b1588689b57533675db96bc66fda28d05dc4cd60381fe",
+        "model": "claude-opus-5-5",
+        "note": "밀랍날개：依 names 改為「蜜蠟之翼」（舊譯「蠟翼」）；불안정 E.G.O 沿用舊譯「不穩定E.G.O」，names 的「動搖」只有 1 單位、此處與被動名「不穩定的自我外殼」一致較合"
+      },
+      {
+        "key": "EGOgift_walpu10.json|/dataList/5/desc",
+        "batch": "20261119T033501-e261062a",
+        "kr_sha": "ecc19b8007816dff878c2dd9d570fb1ae62309db8564eba9a79c818cf97e4e70",
+        "model": "claude-opus-5-5",
+        "note": "...전원 격돌 준비.：依 names 改為「……全員，準備交鋒。」"
+      }
+    ],
+    "new_translated": 43,
     "shown": {
-      "claude": 19824,
-      "copy": 91932,
+      "claude": 19841,
+      "copy": 91939,
       "human": 274,
-      "paratranz": 163819
+      "paratranz": 163814
     },
     "misaligned": [
       {
@@ -669,7 +729,47 @@
       }
     ],
     "misaligned_files": 19,
-    "name_diffs": [],
+    "name_diffs": [
+      {
+        "kr": "불안정",
+        "existing": [
+          {
+            "zh": "動搖",
+            "units": 1
+          }
+        ],
+        "units": [
+          {
+            "key": "EGOgift_MirrorDungeon_7.json|/dataList/51/desc",
+            "zh": "回合開始時，若屬於<noparse>黎明事務所</noparse>的人格不低於3名，則觸發該效果(包含待命人員)\n第一個回合使全體友方單位獲得2層 [DawnLight]\n使<noparse>黎明事務所</noparse> 收尾人 辛克萊在戰鬥開始時恢復10點理智值，且該人格透過被動「不穩定的自我外殼」進入不穩定E.G.O::蜜蠟之翼狀態的理智值條件改為不低於25點\n\n[屬於<noparse>黎明事務所</noparse>的人格專用效果]\n基礎技能攻擊命中時，使目標增加2級 [Combustion] 強度與2級 [Vibration] 強度(每個技能最多1次)\n屬於<noparse>黎明事務所</noparse>的人格視作施加 [Combustion] 與 [Vibration] 的人格\n- 根據以上效果，其基礎技能也視作施加 [Combustion] 與 [Vibration] 的技能\n關卡開始時，若<noparse>黎明事務所</noparse> 收尾人 浮士德於戰鬥中登場，則使其獲得1層 [Firstlight]",
+            "note": "밀랍날개：依 names 改為「蜜蠟之翼」（舊譯「蠟翼」）；불안정 E.G.O 沿用舊譯「不穩定E.G.O」，names 的「動搖」只有 1 單位、此處與被動名「不穩定的自我外殼」一致較合",
+            "kind": "mention"
+          }
+        ]
+      },
+      {
+        "kr": "피해량 증가",
+        "existing": [
+          {
+            "zh": "傷害強化",
+            "units": 2
+          }
+        ],
+        "units": [
+          {
+            "key": "BattleKeywords.json|/dataList/626/desc",
+            "zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥2次，強制混亂除外)\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
+            "note": "피해량 증가：此處指本效果的增傷效果，非狀態「傷害強化」，沿用舊譯「傷害增加」。新增的 흐트러짐 譯「混亂」、전투당 譯「每場戰鬥」",
+            "kind": "mention"
+          },
+          {
+            "key": "Bufs.json|/dataList/710/desc",
+            "zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥2次，強制混亂除外)\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
+            "kind": "mention"
+          }
+        ]
+      }
+    ],
     "term_diffs": []
   },
   "inconsistent_all": [

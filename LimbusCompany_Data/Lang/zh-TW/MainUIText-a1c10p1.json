@@ -107,6 +107,10 @@
     {
       "id": "notice_of_story_same_content",
       "content": "與{0}內容相同，僅領取了獎勵。"
+    },
+    {
+      "id": "10th_anniversary_event_desc",
+      "content": "活動期間內登入即贈送3星人格必得十連提取券及狂氣"
     }
   ]
 }
