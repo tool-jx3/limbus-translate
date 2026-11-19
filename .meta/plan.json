@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261119",
   "prev_raw_tag": "raw-20261112",
-  "rules_commit": "2e8e1f50eddc115e70c3e80a19a73188cd7c6fb4",
+  "rules_commit": "df4f389a5d72ff8af493136334a50d66870b866c",
   "changes": {
     "unchanged": 275816,
     "moved": 139,
@@ -30,7 +30,7 @@
       "BattleSpeechBubbleDlg.json"
     ]
   },
-  "copy": 9,
+  "copy": 0,
   "reused": 0,
   "adjustments": {
     "applied": 274,
@@ -43,10 +43,10 @@
   "new_speakers": [],
   "field_changes": [],
   "new_files_default_family": [],
-  "pending": 43,
+  "pending": 0,
   "name_table": {
     "raw_tag": "raw-20261119",
-    "built": true,
+    "built": false,
     "names": 8722,
     "same_texts": 1245
   }
