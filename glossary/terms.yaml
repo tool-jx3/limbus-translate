@@ -5990,11 +5990,3 @@
   status: approved
   category: [ego]
   notes: 2026-11-19 既有 25/25 個單位寫「不穩定E.G.O」（Paratranz 23、新譯 2）。另有名稱是「불안정」的被動（Passive_Ego，譯「動搖」）與恐慌類型（譯「失控」），都不是這個詞；審核 #20 的「name/불안정」就是把這個詞裡的「불안정」當成那個被動
-
-- kr: 개화 E.G.O
-  jp: [開花 E.G.O, 開花E.G.O]
-  en: Effloresced E.G.O
-  zh: 綻放E.G.O
-  status: approved
-  category: [ego]
-  notes: 2026-11-19 既有 86/86 個單位寫「綻放E.G.O」（Paratranz 84、新譯 2，含「불안정 개화 E.G.O → 不穩定綻放E.G.O」）。單獨的「개화」（狀態名稱等 32 處）不是這個詞，不適用這一條
