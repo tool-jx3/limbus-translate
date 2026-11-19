@@ -155,3 +155,77 @@ func TestChangedSpan(t *testing.T) {
 		}
 	}
 }
+
+// lineHunks returns what changed between the previous and the present text of
+// a unit: each run of lines of the KR text that is not in both, with the lines
+// of the translations at the same places.
+func TestLineHunks(t *testing.T) {
+	prevKR := "가 (편성 기준)\n나\n다"
+	prevZH := "甲(以編隊為準)\n乙\n丙"
+	kr := "가 (대기 포함)\n나\n새 줄\n다"
+	zh := "甲(包含待命)\n乙\n新行\n新丙"
+	want := []LineHunk{
+		{OldKR: "가 (편성 기준)", NewKR: "가 (대기 포함)", OldZH: "甲(以編隊為準)", NewZH: "甲(包含待命)"},
+		{OldKR: "", NewKR: "새 줄", OldZH: "", NewZH: "新行"},
+	}
+	if got := lineHunks(prevKR, prevZH, kr, zh); !reflect.DeepEqual(got, want) {
+		t.Errorf("lineHunks = %+v, want %+v", got, want)
+	}
+	// Lines that went away are a hunk too; neighbours make one hunk.
+	got := lineHunks("가\n나\n다\n라", "甲\n乙\n丙\n丁", "가\n새\n라", "甲\n新\n丁")
+	if want := []LineHunk{{OldKR: "나\n다", NewKR: "새", OldZH: "乙\n丙", NewZH: "新"}}; !reflect.DeepEqual(got, want) {
+		t.Errorf("lineHunks = %+v, want %+v", got, want)
+	}
+	// A translation that does not have the lines of its KR one for one: the
+	// whole text is the hunk.
+	got = lineHunks("가\n나", "甲乙", "가\n다", "甲\n丙")
+	if want := []LineHunk{{OldKR: "가\n나", NewKR: "가\n다", OldZH: "甲乙", NewZH: "甲\n丙"}}; !reflect.DeepEqual(got, want) {
+		t.Errorf("lineHunks = %+v, want %+v", got, want)
+	}
+	if got := lineHunks("", "", "가", "甲"); got != nil {
+		t.Errorf("lineHunks without a previous text = %+v", got)
+	}
+}
+
+// The build lists every unit translated again for this raw tag with what
+// changed in its KR text and in its translation, and how many of its lines
+// were rewritten although their KR is the same; the report has the table.
+func TestBuildListsRetranslated(t *testing.T) {
+	recs := keptRecords()
+	e := nameEnv(t, keptKR, nil, recs...)
+	rep := e.run()
+	want := []Retranslated{
+		{Key: recs[0].Key, Kept: 1, Hunks: []LineHunk{{OldKR: "가 (편성 기준)", NewKR: "가 (대기 포함)", OldZH: "甲(以編隊為準)", NewZH: "甲(包含待命)"}}},
+		{Key: recs[1].Key, Hunks: []LineHunk{{OldKR: "옛", NewKR: "나", OldZH: "乙", NewZH: "新乙"}}},
+	}
+	if !reflect.DeepEqual(rep.Retranslated, want) {
+		t.Errorf("Retranslated = %+v, want %+v", rep.Retranslated, want)
+	}
+	got := section(t, e.readReport(), "### 這次重翻的單位與舊譯的差異")
+	for _, want := range []string{
+		"| 單位 | KR 的變動 | 譯文的變動 | 原文沒變卻被改寫 |",
+		"| `Skills.json\\|/dataList/0/desc` | `가 (편성 기준)` → `가 (대기 포함)` | `甲(以編隊為準)` → `甲(包含待命)` | 1 行 |",
+		"| `Skills.json\\|/dataList/1/desc` | `옛` → `나` | `乙` → `新乙` | — |",
+	} {
+		if !strings.Contains(got, want) {
+			t.Errorf("report lacks %q:\n%s", want, got)
+		}
+	}
+}
+
+// hunkCell is a cell of the table of retranslated units: the two texts cut
+// down to where they differ, a side that has no line said so, and texts that
+// are the same said so.
+func TestHunkCell(t *testing.T) {
+	for _, c := range [][3]string{
+		{"甲乙", "甲丙", "`甲乙` → `甲丙`"},
+		{"", "新的一行", "（無） → `新的一行`"},
+		{"舊的一行", "", "`舊的一行` → （無）"},
+		{"吾無法專心", "吾無法專心", "（沒有改）"},
+		{"a|b", "a|c", "`a\\|b` → `a\\|c`"},
+	} {
+		if got := hunkCell(c[0], c[1]); got != c[2] {
+			t.Errorf("hunkCell(%q, %q) = %q, want %q", c[0], c[1], got, c[2])
+		}
+	}
+}

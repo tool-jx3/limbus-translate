@@ -226,6 +226,11 @@ type Report struct {
 	// their KR changed, in which lines whose KR is the same were rewritten
 	// (see keptLines), by key; never nil.
 	KeptRewrites []KeptRewrite `json:"kept_rewrites"`
+	// Retranslated are the units translated again for this raw tag because
+	// their KR changed, each with what changed in its KR text and in its
+	// translation (see lineHunks), by key; never nil. Only a record that
+	// keeps its previous text (store.Record.PrevKR) is one.
+	Retranslated []Retranslated `json:"retranslated"`
 }
 
 // NameDiff is an existing name that translations of this raw tag render
@@ -338,8 +343,10 @@ type builder struct {
 	// provisional terms of Report.TermDiffs, by KR, and tally counts the old
 	// units that hold them. All three stay empty without Options.Names.
 	nameDiffs map[string]*NameDiff
-	// keptRewrites are Report.KeptRewrites as the units are met.
+	// keptRewrites and retranslated are Report.KeptRewrites and
+	// Report.Retranslated as the units are met.
 	keptRewrites []KeptRewrite
+	retranslated []Retranslated
 	termDiffs    []*termDiff
 	tally        *existing.OldTally
 	// game is the information of the whole KR pack that the keyword-link,
@@ -480,7 +487,7 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 		rep: &Report{
 			Origins: map[string]int{}, Warnings: map[string]int{}, FrozenFallback: []string{}, MissingGlyphs: []rune{},
 			WarningSamples: map[string][]string{}, NewWarnings: map[string]int{}, Inconsistent: []Inconsistency{}, Notes: notes,
-			Shown: map[string]int{}, Misaligned: []FileMisaligned{}, NameDiffs: []NameDiff{}, TermDiffs: []TermDiff{}, KeptRewrites: []KeptRewrite{},
+			Shown: map[string]int{}, Misaligned: []FileMisaligned{}, NameDiffs: []NameDiff{}, TermDiffs: []TermDiff{}, KeptRewrites: []KeptRewrite{}, Retranslated: []Retranslated{},
 		},
 		warnKeys:  map[string][]string{},
 		renders:   map[renderKey]*rendering{},
@@ -843,8 +850,12 @@ func (b *builder) compareWithExisting(u units.Unit, key string, rec store.Record
 	if ix.IsName(u.Field, u.KR) {
 		exact = ix.Lookup(u.KR)
 	}
-	if lines := keptLines(rec.PrevKR, rec.PrevZH, u.KR, rec.ZH); len(lines) > 0 {
+	lines := keptLines(rec.PrevKR, rec.PrevZH, u.KR, rec.ZH)
+	if len(lines) > 0 {
 		b.keptRewrites = append(b.keptRewrites, KeptRewrite{Key: key, Lines: lines, Note: b.noteOn(u, key)})
+	}
+	if hunks := lineHunks(rec.PrevKR, rec.PrevZH, u.KR, rec.ZH); hunks != nil || len(lines) > 0 {
+		b.retranslated = append(b.retranslated, Retranslated{Key: key, Hunks: hunks, Kept: len(lines)})
 	}
 	// The names the KR text mentioned before and the previous translation
 	// rendered in no existing way either: that wording is the old one.
@@ -1092,6 +1103,8 @@ func (b *builder) finish() {
 	slices.SortFunc(b.rep.NameDiffs, func(x, y NameDiff) int { return cmp.Compare(x.KR, y.KR) })
 	b.rep.KeptRewrites = append(b.rep.KeptRewrites, b.keptRewrites...)
 	slices.SortFunc(b.rep.KeptRewrites, func(x, y KeptRewrite) int { return cmp.Compare(x.Key, y.Key) })
+	b.rep.Retranslated = append(b.rep.Retranslated, b.retranslated...)
+	slices.SortFunc(b.rep.Retranslated, func(x, y Retranslated) int { return cmp.Compare(x.Key, y.Key) })
 	for _, d := range b.termDiffs {
 		use, examples, _ := b.tally.Use(b.opt.Names, d.p.KR, d.p.ZH)
 		if use.Existing == "" {

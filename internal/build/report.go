@@ -275,6 +275,7 @@ func markdown(opt Options, info Info, sum *plan.Summary, pending []store.Pending
 	infoWarnings(&b, info.Report)
 	infoNameDiffs(&b, info.Report)
 	infoKeptRewrites(&b, info.Report)
+	infoRetranslated(&b, info.Report)
 	infoInconsistent(&b, info)
 	infoNotes(&b, info.Report)
 	infoGlyphs(&b, info.Report)
@@ -545,6 +546,63 @@ func infoKeptRewrites(b *strings.Builder, rep Report) {
 			fmt.Fprintf(b, "  - %s → %s（KR %s）\n", code(capRunes(old, maxNameDiffRunes)),
 				code(capRunes(now, maxNameDiffRunes)), code(capRunes(oneLine(l.KR), maxNameDiffRunes)))
 		}
+	}
+}
+
+// hunkCell is a cell of the table of infoRetranslated: old and now, each on
+// one line and cut down to where they differ (changedSpan), as code; （無）
+// stands for a side without a line and （沒有改） for texts that are the
+// same.
+func hunkCell(old, now string) string {
+	old, now = oneLine(old), oneLine(now)
+	if old == now {
+		return "（沒有改）"
+	}
+	old, now = changedSpan(old, now, keptContext)
+	side := func(s string) string {
+		if s == "" {
+			return "（無）"
+		}
+		return strings.ReplaceAll(code(capRunes(s, maxNameDiffRunes)), "|", "\\|")
+	}
+	return side(old) + " → " + side(now)
+}
+
+// maxRetranslatedUnits is how many units the table of infoRetranslated lists.
+const maxRetranslatedUnits = 200
+
+// infoRetranslated is the table of the units translated again because their
+// KR changed: for each run of lines that changed, the KR text and the
+// translation as they were and as they are, cut down to where they differ,
+// and for each unit how many lines were rewritten although their KR is the
+// same.
+func infoRetranslated(b *strings.Builder, rep Report) {
+	b.WriteString("\n### 這次重翻的單位與舊譯的差異\n\n")
+	if len(rep.Retranslated) == 0 {
+		b.WriteString("None.\n")
+		return
+	}
+	b.WriteString("因 KR 有改而重翻的單位：KR 改了哪裡、譯文跟著改了哪裡（只顯示有差異的那一段）。最後一欄不是「—」的單位，譯者連 KR 沒變的行也改了，每一行列在上一節。\n\n")
+	b.WriteString("| 單位 | KR 的變動 | 譯文的變動 | 原文沒變卻被改寫 |\n|---|---|---|---|\n")
+	for _, r := range rep.Retranslated[:min(len(rep.Retranslated), maxRetranslatedUnits)] {
+		key := strings.ReplaceAll(code(r.Key), "|", "\\|")
+		kept := "—"
+		if r.Kept > 0 {
+			kept = fmt.Sprintf("%d 行", r.Kept)
+		}
+		if len(r.Hunks) == 0 {
+			fmt.Fprintf(b, "| %s | — | — | %s |\n", key, kept)
+			continue
+		}
+		for i, h := range r.Hunks {
+			if i > 0 {
+				key, kept = "", ""
+			}
+			fmt.Fprintf(b, "| %s | %s | %s | %s |\n", key, hunkCell(h.OldKR, h.NewKR), hunkCell(h.OldZH, h.NewZH), kept)
+		}
+	}
+	if more := len(rep.Retranslated) - maxRetranslatedUnits; more > 0 {
+		fmt.Fprintf(b, "\n另有 %d 個單位沒有列出，全部在 `.meta/build.json` 的 `retranslated`。\n", more)
 	}
 }
 
