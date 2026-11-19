@@ -1,0 +1,9 @@
+# 審核 #20 順帶發現：「밀랍날개」既有 Paratranz 譯文寫「蠟翼」（5 個單位），新譯有 5 個單位寫成「蜜蠟之翼」：
+# BattleKeywords-walpu10.json 與 Bufs-walpu10.json 的 /dataList/34/name、/dataList/35/name，
+# EGOgift_MirrorDungeon_7.json 的 /dataList/51/desc。使用者決定統一成「蠟翼」2026-11-19。
+reason: '「밀랍날개」統一成既有譯名「蠟翼」（詞彙表）'
+files: ['BattleKeywords-walpu10.json', 'Bufs-walpu10.json', 'EGOgift_MirrorDungeon_7.json']
+origins: [claude]
+pattern: '蜜蠟之翼'
+replace: '蠟翼'
+kr_pattern: '밀랍날개'
