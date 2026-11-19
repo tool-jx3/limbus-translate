@@ -101,3 +101,23 @@ func TestOrderFilesEmpty(t *testing.T) {
 		t.Errorf("OrderFiles(nil) = %#v, want an empty, non-nil slice", got)
 	}
 }
+
+// Inside a family the files the story order lists come in its order, whatever
+// their names; the ones it does not list come after them, by name. The family
+// still decides first.
+func TestOrderFilesByStoryOrder(t *testing.T) {
+	r := testRules()
+	r.StoryOrder = rules.StoryOrder{Groups: []rules.StoryOrderGroup{
+		{ID: "main-1", Files: []string{"StoryData/S1B.json", "StoryData/S1I.json", "StoryData/S1A.json"}},
+		{ID: "main-2", Files: []string{"StoryData/1D1A.json", "A.json", "StoryData/S2B.json"}},
+	}}
+	in := []string{"B.json", "StoryData/S2B.json", "StoryData/S1A.json", "StoryData/1D1A.json", "A.json", "StoryData/S10B.json", "StoryData/S1I.json", "StoryData/S3B.json", "StoryData/S1B.json"}
+	want := []string{
+		"StoryData/S1B.json", "StoryData/S1I.json", "StoryData/S1A.json", "StoryData/1D1A.json", "StoryData/S2B.json",
+		"StoryData/S3B.json", "StoryData/S10B.json",
+		"A.json", "B.json",
+	}
+	if got := OrderFiles(in, r); !slices.Equal(got, want) {
+		t.Errorf("OrderFiles = %v, want %v", got, want)
+	}
+}

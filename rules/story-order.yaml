@@ -1,0 +1,1106 @@
+# 劇情檔在遊戲裡的順序。網頁同一個類別裡的檔照這個順序排；這裡沒列的檔排在已列的之後，照檔名。
+# 一組是一章、一個活動或一個角色的人格故事；組的先後就是順序（類別仍由 guides/routing.yaml 決定）。
+#
+# 這個檔是產生的，不要手改：遊戲更新後照
+# docs/research/2026-11-15-game-text-logic/method/README.md 的「劇情檔的順序」重新產生。
+# 依據是遊戲靜態資料的劇情劇場清單與載入設定（研究報告 11-story-order.md）；
+# 標「推定」的檔兩者都沒列，是照檔名插進同一章的（同一編號 B → I → A）。
+groups:
+  - id: main-100
+    files:
+      - StoryData/S001B.json
+      - StoryData/S001A.json
+      - StoryData/S002B.json
+      - StoryData/S003B.json
+      - StoryData/S003A.json
+      - StoryData/S004B.json
+      - StoryData/S004A.json
+  - id: main-101
+    files:
+      - StoryData/S101B.json
+      - StoryData/S102B.json
+      - StoryData/S103B.json
+      - StoryData/S104B.json
+      - StoryData/S105B.json
+      - StoryData/S106B.json
+      - StoryData/S107B.json
+      - StoryData/S107A.json
+      - StoryData/S108B.json
+      - StoryData/S109B.json
+      - StoryData/S110B.json
+      - StoryData/S111B.json
+      - StoryData/1D101A.json
+      - StoryData/1D102A.json
+      - StoryData/1D103A.json
+      - StoryData/1D104B.json
+      - StoryData/1D105B.json
+      - StoryData/1D105A.json
+      - StoryData/1D201B.json
+      - StoryData/1D202B.json
+      - StoryData/1D202A.json
+      - StoryData/1D203B.json
+      - StoryData/1D204B.json
+      - StoryData/1D301B.json
+      - StoryData/1D302B.json
+      - StoryData/1D303B.json
+      - StoryData/1D304B.json
+      - StoryData/1D305B.json
+      - StoryData/1D306B.json
+      - StoryData/1D306I.json
+      - StoryData/1D306I2.json
+      - StoryData/1D306A.json
+  - id: main-102
+    files:
+      - StoryData/S201B.json
+      - StoryData/S202B.json
+      - StoryData/S202A.json
+      - StoryData/S203B.json
+      - StoryData/S204B.json
+      - StoryData/S205B.json
+      - StoryData/S205A.json
+      - StoryData/S206B.json
+      - StoryData/S207B.json
+      - StoryData/S207A.json
+      - StoryData/S208B.json
+      - StoryData/S209B.json
+      - StoryData/S209A.json
+      - StoryData/S210B.json
+      - StoryData/S212B.json
+      - StoryData/S212A.json
+      - StoryData/S213B.json
+      - StoryData/S215B.json
+      - StoryData/S215A.json
+      - StoryData/S216B.json
+      - StoryData/S217B.json
+      - StoryData/S218B.json
+      - StoryData/S219B.json
+      - StoryData/2D102B.json
+      - StoryData/2D107A.json
+      - StoryData/2D202B.json
+      - StoryData/2D301B.json
+      - StoryData/2D306B.json
+      - StoryData/2D306I.json
+      - StoryData/2D306A.json
+  - id: main-103
+    files:
+      - StoryData/S301B.json
+      - StoryData/S302B.json
+      - StoryData/S302A.json
+      - StoryData/S303B.json
+      - StoryData/S304B.json
+      - StoryData/S304A.json
+      - StoryData/S306A.json
+      - StoryData/S307B.json
+      - StoryData/S308B.json
+      - StoryData/S309B.json
+      - StoryData/S310B.json
+      - StoryData/S311B.json
+      - StoryData/S313B.json
+      - StoryData/S313A.json
+      - StoryData/S315B.json
+      - StoryData/S316B.json
+      - StoryData/S317B.json
+      - StoryData/S318B.json
+      - StoryData/S318A.json
+      - StoryData/S320B.json
+      - StoryData/S322B.json
+      - StoryData/3D101A.json
+      - StoryData/3D102A.json
+      - StoryData/3D103B.json
+      - StoryData/3D301B.json
+      - StoryData/3D302B.json
+      - StoryData/3D303B.json
+      - StoryData/3D304B.json
+      - StoryData/3D305B.json
+      - StoryData/3D306B.json
+      - StoryData/3D307B.json
+      - StoryData/3D308B.json  # 推定
+      - StoryData/3D309B.json
+      - StoryData/3D309I1.json
+      - StoryData/3D309I2.json
+      - StoryData/3D309A.json
+  - id: main-104
+    files:
+      - StoryData/S401B.json
+      - StoryData/S402B.json
+      - StoryData/S403A.json
+      - StoryData/S406A.json
+      - StoryData/S407B.json
+      - StoryData/S408B.json
+      - StoryData/S409B.json
+      - StoryData/S410B.json
+      - StoryData/S412B.json
+      - StoryData/S415B.json
+      - StoryData/S416B.json
+      - StoryData/S416A.json
+      - StoryData/S417A.json
+      - StoryData/S418B.json
+      - StoryData/S421B.json
+      - StoryData/S422B.json
+      - StoryData/S426B.json
+      - StoryData/S427B.json
+      - StoryData/S428B.json
+      - StoryData/S429B.json
+      - StoryData/S430B.json
+      - StoryData/S433B.json
+      - StoryData/S433A.json
+      - StoryData/S435B.json
+      - StoryData/S438B.json
+      - StoryData/S441B.json
+      - StoryData/S443B.json
+      - StoryData/S445B.json
+      - StoryData/S447B.json
+      - StoryData/S448B.json
+      - StoryData/S448A.json
+      - StoryData/S449B.json
+      - StoryData/S451B.json
+      - StoryData/S454B.json
+      - StoryData/4D102A.json
+      - StoryData/4D103B.json
+      - StoryData/4D104B.json
+      - StoryData/4D105B.json
+      - StoryData/4D106B.json
+      - StoryData/4D107B.json
+      - StoryData/4D201B.json
+      - StoryData/4D202B.json
+      - StoryData/4D203B.json
+      - StoryData/4D204B.json
+      - StoryData/4D205B.json
+      - StoryData/4D206B.json
+      - StoryData/4D206A.json
+      - StoryData/4D207B.json
+      - StoryData/4D208B.json
+      - StoryData/4D301B.json
+      - StoryData/4D302B.json
+      - StoryData/4D303B.json
+      - StoryData/4D304B.json
+      - StoryData/4D305B.json
+      - StoryData/4D305A.json
+      - StoryData/4D305I.json
+      - StoryData/4D305I2.json
+  - id: main-105
+    files:
+      - StoryData/S501B.json
+      - StoryData/S502B.json
+      - StoryData/S503B.json
+      - StoryData/S504B.json
+      - StoryData/S505A.json
+      - StoryData/S506B.json
+      - StoryData/S507B.json
+      - StoryData/S509A.json
+      - StoryData/S510B.json
+      - StoryData/S510A.json
+      - StoryData/S511B.json
+      - StoryData/S513B.json
+      - StoryData/S514B.json
+      - StoryData/S515B.json
+      - StoryData/S516B.json
+      - StoryData/S517A.json
+      - StoryData/S518B.json
+      - StoryData/S518A.json
+      - StoryData/S519A.json
+      - StoryData/S520B.json
+      - StoryData/S521B.json
+      - StoryData/S522B.json
+      - StoryData/S523A.json
+      - StoryData/S524B.json
+      - StoryData/S525B.json
+      - StoryData/S526A.json
+      - StoryData/S527B.json
+      - StoryData/S529A.json
+      - StoryData/S530B.json
+      - StoryData/S532B.json
+      - StoryData/S532A.json
+      - StoryData/S533B.json
+      - StoryData/S534B.json
+      - StoryData/S535B.json
+      - StoryData/S537A.json
+      - StoryData/S538B.json
+      - StoryData/S539B.json
+      - StoryData/5D101B.json
+      - StoryData/5D102B.json
+      - StoryData/5D102A.json
+      - StoryData/5D103B.json
+      - StoryData/5D104B.json
+      - StoryData/5D105B.json
+      - StoryData/5D105A.json
+      - StoryData/5D106B.json
+      - StoryData/5D107B.json
+      - StoryData/5D108B.json
+      - StoryData/5D201B.json
+      - StoryData/5D202B.json
+      - StoryData/5D202A.json
+      - StoryData/5D203B.json
+      - StoryData/5D204B.json
+      - StoryData/5D205B.json
+      - StoryData/5D205A.json
+      - StoryData/5D206B.json
+      - StoryData/5D301B.json
+      - StoryData/5D301A.json
+      - StoryData/5D302B.json
+      - StoryData/5D303B.json
+      - StoryData/5D304B.json
+      - StoryData/5D304A.json
+      - StoryData/5D304I.json
+      - StoryData/5D304I2.json
+      - StoryData/5D304I3.json
+      - StoryData/5D304I4.json
+      - StoryData/5D304I5.json
+      - StoryData/5D304I6.json
+      - StoryData/5D304I7.json
+      - StoryData/5D304I8.json
+      - StoryData/5D304I9.json
+  - id: main-106
+    files:
+      - StoryData/S601B.json
+      - StoryData/S602B.json
+      - StoryData/S603B.json
+      - StoryData/S603A.json
+      - StoryData/S604B.json
+      - StoryData/S605B.json
+      - StoryData/S606B.json
+      - StoryData/S607B.json
+      - StoryData/S608B.json
+      - StoryData/S609B.json
+      - StoryData/S609A.json
+      - StoryData/S610B.json
+      - StoryData/S611B.json
+      - StoryData/S612B.json
+      - StoryData/S613B.json
+      - StoryData/S614B.json
+      - StoryData/S616B.json
+      - StoryData/S617B.json
+      - StoryData/S618B.json
+      - StoryData/S619B.json
+      - StoryData/S619A.json
+      - StoryData/S620B.json
+      - StoryData/S621B.json
+      - StoryData/S621A.json
+      - StoryData/S622B.json
+      - StoryData/S623A.json
+      - StoryData/S624B.json
+      - StoryData/S625B.json
+      - StoryData/S628B.json
+      - StoryData/S629A.json
+      - StoryData/S630B.json
+      - StoryData/S631A.json
+      - StoryData/S632B.json
+      - StoryData/S632I.json
+      - StoryData/S632A.json
+      - StoryData/S633B.json
+      - StoryData/S634B.json
+      - StoryData/S634I.json
+      - StoryData/S634A.json
+      - StoryData/S635B.json
+      - StoryData/S635I.json
+      - StoryData/S635A.json
+      - StoryData/S636B.json
+      - StoryData/S637B.json
+      - StoryData/S637A.json
+      - StoryData/S638B.json
+      - StoryData/S639B.json
+      - StoryData/S641I.json
+      - StoryData/S641I2.json
+      - StoryData/S641I3.json
+      - StoryData/S643B.json
+      - StoryData/S644B.json
+      - StoryData/S644I.json
+      - StoryData/S644A.json
+      - StoryData/S645B.json
+      - StoryData/S645A.json
+      - StoryData/S646B.json
+      - StoryData/S647B.json
+      - StoryData/S648B.json
+      - StoryData/S648I.json
+      - StoryData/S648I2.json  # 推定
+      - StoryData/S648I3.json  # 推定
+      - StoryData/S648I4.json  # 推定
+      - StoryData/S648A.json
+  - id: main-107
+    files:
+      - StoryData/S701B.json
+      - StoryData/S702B.json
+      - StoryData/S703B.json
+      - StoryData/S704A.json
+      - StoryData/S705B.json
+      - StoryData/S706B.json
+      - StoryData/S706A.json
+      - StoryData/S707B.json
+      - StoryData/S708B.json
+      - StoryData/S709B.json
+      - StoryData/S709A.json
+      - StoryData/S710B.json
+      - StoryData/S712B.json
+      - StoryData/S712A.json
+      - StoryData/S713B.json
+      - StoryData/S713A.json
+      - StoryData/S714B.json
+      - StoryData/S715B.json
+      - StoryData/S715A.json
+      - StoryData/S716B.json
+      - StoryData/S716A.json
+      - StoryData/S717B.json
+      - StoryData/S717A.json
+      - StoryData/S718B.json
+      - StoryData/S718A.json
+      - StoryData/S719B.json
+      - StoryData/S720B.json
+      - StoryData/S721B.json
+      - StoryData/S722B.json
+      - StoryData/S723B.json
+      - StoryData/S724B.json
+      - StoryData/S724A.json
+      - StoryData/S725B.json
+      - StoryData/S726B.json
+      - StoryData/S727A.json
+      - StoryData/S728B.json
+      - StoryData/S729B.json
+      - StoryData/S730B.json
+      - StoryData/S731B.json
+      - StoryData/S733B.json
+      - StoryData/S735B.json
+      - StoryData/S736B.json
+      - StoryData/S737B.json
+      - StoryData/7D101B.json
+      - StoryData/7D102B.json
+      - StoryData/7D102A.json
+      - StoryData/7D103B.json
+      - StoryData/7D103A.json
+      - StoryData/7D104B.json
+      - StoryData/7D105B.json
+      - StoryData/7D106B.json
+      - StoryData/7D107B.json
+      - StoryData/7D108B.json
+      - StoryData/7D109B.json
+      - StoryData/7D110B.json
+      - StoryData/7D111B.json
+      - StoryData/7D111I.json
+      - StoryData/7D111I2.json
+      - StoryData/7D111I3.json
+      - StoryData/7D111A.json
+      - StoryData/7D112I.json
+      - StoryData/7D112I2.json
+      - StoryData/7D112I3.json
+      - StoryData/7D112I4.json
+      - StoryData/7D112I5.json
+      - StoryData/7D112A.json
+  - id: main-108
+    files:
+      - StoryData/S801B.json
+      - StoryData/S801A.json
+      - StoryData/S802B.json
+      - StoryData/S803B.json
+      - StoryData/S805B.json
+      - StoryData/S806B.json
+      - StoryData/S807B.json
+      - StoryData/S808B.json
+      - StoryData/S809A.json
+      - StoryData/S810B.json
+      - StoryData/S811B.json
+      - StoryData/S812A.json
+      - StoryData/S813B.json
+      - StoryData/S814B.json
+      - StoryData/S815B.json
+      - StoryData/S817I.json
+      - StoryData/S817A.json
+      - StoryData/S818B.json
+      - StoryData/S819B.json
+      - StoryData/S820B.json
+      - StoryData/8D101B.json
+      - StoryData/8D102B.json
+      - StoryData/8D103B.json
+      - StoryData/8D104B.json
+      - StoryData/8D104A.json
+      - StoryData/8D105B.json
+      - StoryData/8D106B.json
+      - StoryData/8D106A.json
+      - StoryData/8D107B.json
+      - StoryData/8D107A.json
+      - StoryData/8D108B.json
+      - StoryData/8D201B.json
+      - StoryData/8D201A.json
+      - StoryData/8D202B.json
+      - StoryData/8D202A.json
+      - StoryData/8D203B.json
+      - StoryData/8D203A.json
+      - StoryData/8D204B.json
+      - StoryData/8D204A.json
+      - StoryData/8D205B.json
+      - StoryData/8D206B.json
+      - StoryData/8D207B.json
+      - StoryData/8D207A.json
+      - StoryData/8D208B.json
+      - StoryData/8D209I.json
+      - StoryData/8D209A.json
+      - StoryData/S821B.json
+      - StoryData/S822B.json
+      - StoryData/S823B.json
+      - StoryData/S824B.json
+      - StoryData/S825A.json
+      - StoryData/S826B.json
+      - StoryData/S827A.json
+      - StoryData/S828B.json
+      - StoryData/S830B.json
+      - StoryData/S830I1.json
+      - StoryData/S830A.json
+      - StoryData/S831B.json
+      - StoryData/S832B.json
+      - StoryData/S833B.json
+      - StoryData/S833I1.json
+      - StoryData/S833I2.json
+      - StoryData/S833I3.json
+      - StoryData/S833I4.json
+      - StoryData/S833I5.json
+      - StoryData/S833I6.json
+      - StoryData/S833I7.json
+      - StoryData/S833A.json
+  - id: main-109
+    files:
+      - StoryData/S901B.json
+      - StoryData/S902B.json
+      - StoryData/S903I.json
+      - StoryData/S903A.json
+      - StoryData/S904B.json
+      - StoryData/S907B.json
+      - StoryData/S908B.json
+      - StoryData/S911B.json
+      - StoryData/S912B.json
+      - StoryData/S913B.json
+      - StoryData/S915B.json
+      - StoryData/S916B.json
+      - StoryData/S917B.json
+      - StoryData/S918B.json
+      - StoryData/S918A.json
+      - StoryData/S919B.json
+      - StoryData/S920B.json
+      - StoryData/S922B.json
+      - StoryData/S923B.json
+      - StoryData/S924B.json
+      - StoryData/S925B.json
+      - StoryData/S926B.json
+      - StoryData/S926I1.json
+      - StoryData/S926I2.json
+      - StoryData/S926A.json
+      - StoryData/S927B.json
+      - StoryData/S928B.json
+      - StoryData/S929B.json
+      - StoryData/S929A.json
+      - StoryData/S930B.json
+      - StoryData/S931B.json
+      - StoryData/S936B.json
+      - StoryData/S937B.json
+      - StoryData/S937I1.json
+      - StoryData/S937I2.json
+      - StoryData/S938B.json
+      - StoryData/S939B.json
+      - StoryData/S940B.json
+      - StoryData/S941B.json
+      - StoryData/S941A.json
+      - StoryData/S942B.json
+      - StoryData/S942A.json
+      - StoryData/S943B.json
+      - StoryData/S943I1.json
+      - StoryData/S943I2.json
+      - StoryData/S943A.json
+      - StoryData/S944I1.json
+      - StoryData/S945B.json
+      - StoryData/S945A.json
+      - StoryData/S946B.json
+      - StoryData/S947B.json
+      - StoryData/S948B.json
+      - StoryData/S948A.json
+      - StoryData/S949B.json
+      - StoryData/S949A.json
+      - StoryData/S950B.json
+      - StoryData/S950I1.json
+      - StoryData/S950I2.json
+      - StoryData/S950A.json
+      - StoryData/S951B.json
+  - id: main-110
+    files:
+      - StoryData/S1003B.json
+      - StoryData/S1004B.json
+      - StoryData/S1005B.json
+      - StoryData/S1000B.json  # 推定
+      - StoryData/S1001B.json
+      - StoryData/S1002B.json
+      - StoryData/S1008B.json
+      - StoryData/S1009B.json
+      - StoryData/S1010B.json
+      - StoryData/S1011B.json
+      - StoryData/S1012B.json
+      - StoryData/S1013B.json
+      - StoryData/S1014B.json
+      - StoryData/S1015B.json
+      - StoryData/S1016B.json
+      - StoryData/S1060B.json
+      - StoryData/S1061B.json
+      - StoryData/S1062B.json
+      - StoryData/S9991B.json
+      - StoryData/S1017B.json
+      - StoryData/S1018B.json
+      - StoryData/S1019B.json
+      - StoryData/S1020B.json  # 推定
+      - StoryData/S1021B.json
+      - StoryData/S1022B.json
+      - StoryData/S1023B.json
+      - StoryData/S1024B.json
+      - StoryData/S1025B.json
+      - StoryData/S1026B.json
+      - StoryData/S1027B.json
+      - StoryData/S1028B.json
+      - StoryData/S1029B.json
+      - StoryData/S9992B.json
+      - StoryData/S1030B.json
+      - StoryData/S1031B.json
+      - StoryData/S1032B.json
+      - StoryData/S1033B.json
+      - StoryData/S1034B.json
+      - StoryData/S1034A.json
+      - StoryData/S1034A2.json
+      - StoryData/S1034A3.json  # 推定
+      - StoryData/S1035B.json
+      - StoryData/S1035A.json
+      - StoryData/S1036B.json
+      - StoryData/S1037B.json
+      - StoryData/S1038B.json
+      - StoryData/S1038A.json
+      - StoryData/S1039B.json
+      - StoryData/S1039I.json  # 推定
+      - StoryData/S1039I2.json  # 推定
+      - StoryData/S1039A.json
+      - StoryData/S1040B.json
+      - StoryData/S1040A.json
+      - StoryData/S1041B.json
+      - StoryData/S1041A.json  # 推定
+      - StoryData/S1041A2.json
+      - StoryData/S1042B.json
+      - StoryData/S1042C.json  # 推定
+      - StoryData/S1043B.json  # 推定
+      - StoryData/S1043C.json  # 推定
+      - StoryData/S1045C.json
+      - StoryData/S1046C.json
+      - StoryData/S1047C.json
+      - StoryData/S1048C.json
+      - StoryData/S1044B.json
+      - StoryData/S1044C.json  # 推定
+  - id: other-0
+    files:
+      - StoryData/E000X.json  # 推定
+      - StoryData/E001X.json  # 推定
+      - StoryData/E002X.json  # 推定
+      - StoryData/E003X.json  # 推定
+      - StoryData/E003I1.json  # 推定
+      - StoryData/E003I2.json  # 推定
+      - StoryData/E003I3.json  # 推定
+      - StoryData/E003I4.json  # 推定
+  - id: other-9103
+    files:
+      - StoryData/E301B.json
+      - StoryData/E301A.json
+      - StoryData/E302B.json
+      - StoryData/E302A.json
+      - StoryData/E303B.json
+      - StoryData/E303A.json
+      - StoryData/E304B.json
+      - StoryData/E304A.json
+      - StoryData/E305A.json
+      - StoryData/E306B.json
+      - StoryData/E306A.json
+  - id: other-9010
+    files:
+      - StoryData/E010X.json
+      - StoryData/E020X.json
+      - StoryData/E030X.json
+  - id: other-9104
+    files:
+      - StoryData/E401B.json
+      - StoryData/E402B.json
+      - StoryData/E402A.json
+      - StoryData/E403B.json
+      - StoryData/E404B.json
+      - StoryData/E405B.json
+      - StoryData/E405A.json
+      - StoryData/E406B.json
+      - StoryData/E407B.json
+      - StoryData/E407A.json
+  - id: other-9011
+    files:
+      - StoryData/E041X.json
+      - StoryData/E042X.json
+  - id: other-9012
+    files:
+      - StoryData/E050X.json
+  - id: other-9105
+    files:
+      - StoryData/E501B.json
+      - StoryData/E502B.json
+      - StoryData/E503B.json
+      - StoryData/E503A.json
+      - StoryData/E504B.json
+      - StoryData/E505B.json
+      - StoryData/E505A.json
+      - StoryData/E506B.json
+      - StoryData/E506A.json
+      - StoryData/E507B.json
+      - StoryData/E507A.json
+      - StoryData/E508A.json
+      - StoryData/E509B.json
+  - id: other-9013
+    files:
+      - StoryData/E051X.json
+      - StoryData/E052X.json
+  - id: other-9014
+    files:
+      - StoryData/E053X.json
+  - id: other-9107
+    files:
+      - StoryData/E510B.json
+      - StoryData/E511B.json
+      - StoryData/E511A.json
+      - StoryData/E512B.json
+      - StoryData/E512A.json
+      - StoryData/E513B.json
+      - StoryData/E513A.json
+      - StoryData/E514B.json
+      - StoryData/E515A.json
+      - StoryData/E516B.json
+      - StoryData/E516A.json
+      - StoryData/E517B.json
+      - StoryData/E518B.json
+      - StoryData/E519B.json
+      - StoryData/E519A.json
+  - id: other-9015
+    files:
+      - StoryData/E054X.json
+  - id: other-9016
+    files:
+      - StoryData/E061X.json
+      - StoryData/E062X.json
+  - id: other-9109
+    files:
+      - StoryData/E601B.json
+      - StoryData/E602A.json
+      - StoryData/E603B.json
+      - StoryData/E604B.json
+      - StoryData/E605B.json
+      - StoryData/E606B.json
+      - StoryData/E607B.json
+      - StoryData/E609B.json
+      - StoryData/E610A.json
+      - StoryData/E611B.json
+      - StoryData/E612B.json
+      - StoryData/E613B.json
+      - StoryData/E614B.json
+      - StoryData/E614A.json
+      - StoryData/E615B.json
+      - StoryData/E615I.json  # 推定
+      - StoryData/E615I2.json  # 推定
+      - StoryData/E615I3.json  # 推定
+      - StoryData/E615A.json
+  - id: other-9017
+    files:
+      - StoryData/E063X.json
+  - id: other-9110
+    files:
+      - StoryData/E616B.json
+      - StoryData/E617B.json
+      - StoryData/E618B.json
+      - StoryData/E619B.json
+      - StoryData/E619A.json
+      - StoryData/E620B.json
+      - StoryData/E621A.json
+      - StoryData/E622B.json
+      - StoryData/E623A.json
+      - StoryData/E624A.json
+      - StoryData/E625B.json
+      - StoryData/E625I.json  # 推定
+      - StoryData/E625A.json
+      - StoryData/E626B.json
+      - StoryData/E627B.json
+  - id: other-9018
+    files:
+      - StoryData/E064X.json
+      - StoryData/E065X.json
+  - id: other-9019
+    files:
+      - StoryData/E070X.json
+      - StoryData/E071X.json
+  - id: other-9114
+    files:
+      - StoryData/E701B.json
+      - StoryData/E701A.json
+      - StoryData/E702B.json
+      - StoryData/E703B.json
+      - StoryData/E704B.json
+      - StoryData/E704A.json
+      - StoryData/E705B.json
+      - StoryData/E706B.json
+      - StoryData/E707B.json
+      - StoryData/E708B.json
+      - StoryData/E709B.json
+      - StoryData/E710B.json
+      - StoryData/E711B.json
+      - StoryData/E711I.json  # 推定
+      - StoryData/E711A.json
+      - StoryData/E712B.json
+      - StoryData/E713B.json
+      - StoryData/E714B.json
+      - StoryData/E715B.json
+      - StoryData/E716B.json
+      - StoryData/E716A.json
+      - StoryData/E717B.json
+      - StoryData/E717A.json
+  - id: other-9116
+    files:
+      - StoryData/E718B.json
+      - StoryData/E719B.json
+      - StoryData/E719A.json
+      - StoryData/E720B.json
+      - StoryData/E721B.json
+      - StoryData/E721A.json
+      - StoryData/E722B.json
+      - StoryData/E722A.json
+      - StoryData/E723B.json
+      - StoryData/E724B.json
+      - StoryData/E725B.json
+      - StoryData/E725A.json
+      - StoryData/E726B.json
+      - StoryData/E726I.json  # 推定
+      - StoryData/E726I2.json  # 推定
+      - StoryData/E726A.json
+      - StoryData/E727I.json  # 推定
+      - StoryData/E727A.json
+      - StoryData/E728B.json
+  - id: other-9020
+    files:
+      - StoryData/E080X.json
+      - StoryData/E081X.json
+      - StoryData/E082X.json
+  - id: other-9119
+    files:
+      - StoryData/E801B.json
+      - StoryData/E802B.json
+      - StoryData/E803B.json
+      - StoryData/ES000B.json
+      - StoryData/ES011B.json
+      - StoryData/ES011A.json
+      - StoryData/ES013B.json
+      - StoryData/ES013A.json
+      - StoryData/ES012B.json
+      - StoryData/ES012A.json
+      - StoryData/ES040B.json
+      - StoryData/ES040A.json
+      - StoryData/ES050B.json
+      - StoryData/ES050A.json
+      - StoryData/ES060B.json
+      - StoryData/ES061B.json
+      - StoryData/ES061A.json
+      - StoryData/ES030B.json
+      - StoryData/ES030A.json
+      - StoryData/ES070B.json
+      - StoryData/ES090B.json
+      - StoryData/ES120B.json
+      - StoryData/ES120A.json
+      - StoryData/ES130B.json
+      - StoryData/ES130A.json
+      - StoryData/ES150B.json
+      - StoryData/ES180B.json
+      - StoryData/ES180A.json
+      - StoryData/ES190B.json
+      - StoryData/ES210B.json
+      - StoryData/ES240B.json
+      - StoryData/ES240A.json
+      - StoryData/ES250B.json
+      - StoryData/ES260B.json
+      - StoryData/ES260A.json
+      - StoryData/ES280A.json
+      - StoryData/ES290B.json
+      - StoryData/ES300A.json
+      - StoryData/E805B.json
+      - StoryData/E806B.json
+      - StoryData/E808B.json
+      - StoryData/E808A.json
+      - StoryData/E809B.json
+      - StoryData/E811B.json
+      - StoryData/E811I1.json
+      - StoryData/E811A.json
+      - StoryData/E812B.json
+  - id: pilgrimage
+    files:
+      - StoryData/PC01B.json  # 推定
+      - StoryData/PC01A.json  # 推定
+      - StoryData/PC02B.json  # 推定
+      - StoryData/PC03B.json  # 推定
+      - StoryData/PC04B.json  # 推定
+      - StoryData/PC05A.json  # 推定
+      - StoryData/PC06B.json  # 推定
+      - StoryData/PC07B.json  # 推定
+      - StoryData/PC07A.json  # 推定
+      - StoryData/PC08B.json  # 推定
+      - StoryData/PC09B.json  # 推定
+      - StoryData/PC11B.json  # 推定
+      - StoryData/PC11A.json  # 推定
+      - StoryData/PC12B.json  # 推定
+      - StoryData/PC12A.json  # 推定
+      - StoryData/PC13B.json  # 推定
+      - StoryData/PC14B.json  # 推定
+      - StoryData/PC14I.json  # 推定
+      - StoryData/PC14A.json  # 推定
+  - id: other-9021
+    files:
+      - StoryData/E090X.json
+      - StoryData/E091X.json
+  - id: other-9125
+    files:
+      - StoryData/E901B.json
+      - StoryData/E902B.json
+      - StoryData/E903B.json
+      - StoryData/E903A.json
+      - StoryData/E904B.json
+      - StoryData/E905B.json
+      - StoryData/E906B.json
+      - StoryData/E906A.json
+      - StoryData/E907B.json
+      - StoryData/E908B.json
+      - StoryData/E909B.json
+      - StoryData/E910B.json
+      - StoryData/E910A.json
+      - StoryData/E911A.json
+      - StoryData/E912B.json
+      - StoryData/E913B.json
+      - StoryData/E914B.json
+  - id: other-9127
+    files:
+      - StoryData/E915B.json
+      - StoryData/E916B.json
+      - StoryData/E917B.json
+      - StoryData/E918B.json
+      - StoryData/E918A.json
+      - StoryData/E919B.json
+      - StoryData/E919A.json
+      - StoryData/E920B.json
+      - StoryData/E921B.json
+      - StoryData/E922B.json
+      - StoryData/E923B.json
+      - StoryData/E923I.json
+      - StoryData/E924B.json
+      - StoryData/E925B.json
+      - StoryData/E926B.json
+      - StoryData/E926I.json  # 推定
+      - StoryData/E926A.json
+      - StoryData/E927B.json
+  - id: other-9022
+    files:
+      - StoryData/E100X.json
+      - StoryData/E101X.json
+      - StoryData/E102X.json
+      - StoryData/E103X.json
+  - id: personality-01
+    files:
+      - StoryData/P10102.json
+      - StoryData/P10103.json
+      - StoryData/P10104.json
+      - StoryData/P10105.json
+      - StoryData/P10106.json
+      - StoryData/P10107.json
+      - StoryData/P10108.json
+      - StoryData/P10109.json
+      - StoryData/P10110.json
+      - StoryData/P10111.json
+      - StoryData/P10112.json
+      - StoryData/P10113.json
+      - StoryData/P10114.json
+      - StoryData/P10115.json
+      - StoryData/P10116.json
+  - id: personality-02
+    files:
+      - StoryData/P10202.json
+      - StoryData/P10203.json
+      - StoryData/P10204.json
+      - StoryData/P10205.json
+      - StoryData/P10206.json
+      - StoryData/P10207.json
+      - StoryData/P10208.json
+      - StoryData/P10209.json
+      - StoryData/P10210.json
+      - StoryData/P10211.json
+      - StoryData/P10212.json
+      - StoryData/P10213.json
+      - StoryData/P10214.json
+      - StoryData/P10215.json
+      - StoryData/P10216.json
+  - id: personality-03
+    files:
+      - StoryData/P10302.json
+      - StoryData/P10303.json
+      - StoryData/P10304.json
+      - StoryData/P10305.json
+      - StoryData/P10306.json
+      - StoryData/P10307.json
+      - StoryData/P10308.json
+      - StoryData/P10309.json
+      - StoryData/P10310.json
+      - StoryData/P10311.json
+      - StoryData/P10312.json
+      - StoryData/P10313.json
+      - StoryData/P10314.json
+      - StoryData/P10315.json
+      - StoryData/P10316.json
+  - id: personality-04
+    files:
+      - StoryData/P10402.json
+      - StoryData/P10403.json
+      - StoryData/P10404.json
+      - StoryData/P10405.json
+      - StoryData/P10406.json
+      - StoryData/P10407.json
+      - StoryData/P10408.json
+      - StoryData/P10409.json
+      - StoryData/P10410.json
+      - StoryData/P10411.json
+      - StoryData/P10412.json
+      - StoryData/P10413.json
+      - StoryData/P10414.json
+      - StoryData/P10415.json
+      - StoryData/P10416.json
+  - id: personality-05
+    files:
+      - StoryData/P10502.json
+      - StoryData/P10503.json
+      - StoryData/P10504.json
+      - StoryData/P10505.json
+      - StoryData/P10506.json
+      - StoryData/P10507.json
+      - StoryData/P10508.json
+      - StoryData/P10509.json
+      - StoryData/P10510.json
+      - StoryData/P10511.json
+      - StoryData/P10512.json
+      - StoryData/P10513.json
+      - StoryData/P10514.json
+      - StoryData/P10515.json
+  - id: personality-06
+    files:
+      - StoryData/P10602.json
+      - StoryData/P10603.json
+      - StoryData/P10604.json
+      - StoryData/P10605.json
+      - StoryData/P10606.json
+      - StoryData/P10607.json
+      - StoryData/P10608.json
+      - StoryData/P10609.json
+      - StoryData/P10610.json
+      - StoryData/P10611.json
+      - StoryData/P10612.json
+      - StoryData/P10613.json
+      - StoryData/P10614.json
+      - StoryData/P10615.json
+      - StoryData/P10616.json
+      - StoryData/P10617.json
+  - id: personality-07
+    files:
+      - StoryData/P10702.json
+      - StoryData/P10703.json
+      - StoryData/P10704.json
+      - StoryData/P10705.json
+      - StoryData/P10706.json
+      - StoryData/P10707.json
+      - StoryData/P10708.json
+      - StoryData/P10709.json
+      - StoryData/P10710.json
+      - StoryData/P10710A.json
+      - StoryData/P10711.json
+      - StoryData/P10712.json
+      - StoryData/P10713.json
+      - StoryData/P10714.json
+      - StoryData/P10715.json
+      - StoryData/P10716.json
+      - StoryData/P10717.json
+  - id: personality-08
+    files:
+      - StoryData/P10802.json
+      - StoryData/P10803.json
+      - StoryData/P10804.json
+      - StoryData/P10805.json
+      - StoryData/P10806.json
+      - StoryData/P10807.json
+      - StoryData/P10808.json
+      - StoryData/P10809.json
+      - StoryData/P10810.json
+      - StoryData/P10811.json
+      - StoryData/P10812.json
+      - StoryData/P10813.json
+      - StoryData/P10814.json
+      - StoryData/P10815.json
+      - StoryData/P10816.json
+  - id: personality-09
+    files:
+      - StoryData/P10902.json
+      - StoryData/P10903.json
+      - StoryData/P10904.json
+      - StoryData/P10905.json
+      - StoryData/P10906.json
+      - StoryData/P10907.json
+      - StoryData/P10908.json
+      - StoryData/P10909.json
+      - StoryData/P10910.json
+      - StoryData/P10911.json
+      - StoryData/P10912.json
+      - StoryData/P10913.json
+      - StoryData/P10914.json
+      - StoryData/P10915.json
+      - StoryData/P10916.json
+      - StoryData/P10917.json
+  - id: personality-10
+    files:
+      - StoryData/P11002.json
+      - StoryData/P11003.json
+      - StoryData/P11004.json
+      - StoryData/P11005.json
+      - StoryData/P11006.json
+      - StoryData/P11007.json
+      - StoryData/P11008.json
+      - StoryData/P11009.json
+      - StoryData/P11010.json
+      - StoryData/P11011.json
+      - StoryData/P11012.json
+      - StoryData/P11013.json
+      - StoryData/P11014.json
+      - StoryData/P11015.json
+      - StoryData/P11016.json
+      - StoryData/P11017.json
+  - id: personality-11
+    files:
+      - StoryData/P11102.json
+      - StoryData/P11103.json
+      - StoryData/P11104.json
+      - StoryData/P11105.json
+      - StoryData/P11106.json
+      - StoryData/P11107.json
+      - StoryData/P11108.json
+      - StoryData/P11109.json
+      - StoryData/P11110.json
+      - StoryData/P11111.json
+      - StoryData/P11112.json
+      - StoryData/P11113.json
+      - StoryData/P11114.json
+      - StoryData/P11115.json
+      - StoryData/P11116.json
+  - id: personality-12
+    files:
+      - StoryData/P11202.json
+      - StoryData/P11203.json
+      - StoryData/P11204.json
+      - StoryData/P11205.json
+      - StoryData/P11206.json
+      - StoryData/P11207.json
+      - StoryData/P11208.json
+      - StoryData/P11209.json
+      - StoryData/P11210.json
+      - StoryData/P11211.json
+      - StoryData/P11212.json
+      - StoryData/P11213.json
+      - StoryData/P11214.json
+      - StoryData/P11215.json
+      - StoryData/P11216.json

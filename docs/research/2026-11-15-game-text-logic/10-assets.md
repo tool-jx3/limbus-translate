@@ -2,7 +2,7 @@
 
 2026-11-18。前面九章是從遊戲程式讀的；這一章讀的是**遊戲的資料檔**（2026-11-12 版）：
 
-- 遊戲下載的資料：`RemoteLocalizeFileList.json`、`etc/VoiceTable.json`、`LocalizePatchInfo.json`、RPG 的檔案清單、Addressables 目錄 `catalog_S1.json`。
+- 遊戲下載的資料：`RemoteLocalizeFileList.json`、`etc/VoiceTable.json`、`LocalizePatchInfo.json`、RPG 的檔案清單、Addressables 目錄（`catalog_S1.json` 與 `catalog_S1.bin`，見下面的補正）。
 - 遊戲安裝資料夾 `LimbusCompany_Data` 裡的 `resources.assets`、`globalgamemanagers.assets`、`globalgamemanagers`，以及九個場景檔 `level0`～`level8` 與 `sharedassets0`～`8.assets`。
 
 「確認」＝直接從檔案讀到；「推定」＝有依據但沒有直接讀到。這些檔案都不放進版控，讀法見 [method/](method/README.md) 的 `filelist.py`、`catalog.py`、`unityres.py`。
@@ -29,7 +29,11 @@
 | `_remoteUrlLocalize` | `https://downloadcommon.limbuscompanycdn.org/<版本代碼>`，版本代碼就是 `raw` 的 `meta/source.json` 記的 `token`（這一版是 `l20261112_…`） |
 | `_localizePatchInfoFilePath` | `Assets/LocalizePatch/LocalizePatchInfo.json` |
 
-Addressables 目錄也印證這一點：21,880 個資源裡沒有官方文字，只有啟動用的 16 個項目。
+Addressables 目錄也印證這一點：裡面沒有官方文字檔。
+
+> **2026-11-19 補正**：這一句原本寫「21,880 個資源裡沒有官方文字，只有啟動用的 16 個項目」，數字來自 `catalog_S1.json`。那個檔是 2026-05 版留在快取裡的舊目錄（裡面的網址是 `s20260521_…`，共 1,369 個 bundle）；遊戲現在用的是二進位格式的 `catalog_S1.bin`（網址 `s20261112_…`，3,193 個 bundle），所以那兩個數字不是這一版的。
+> 對現行目錄只做了字串掃描，沒有完整解析它的格式：裡面沒有 `KR_`／`EN_`／`JP_` 開頭的文字檔名，語言包根目錄與各子資料夾的 1,448 個檔名也只有 2 個同名（`Ch8TextEffectSettings.json`、`Ch8VideoEffectSettings.json`）。有 981 個 `<劇情代號>.json` 與劇情檔同名，推定是 [01](01-custom-language.md) 說的、和台詞逐筆配對的演出資料，不是文字。結論不變。
+> 現行目錄另外指出靜態資料包的位置，劇情檔的順序就是從那裡讀的，見 [11-story-order.md](11-story-order.md)。
 
 實際下載確認過的網址（`<base>` 是上表的 `_remoteUrlLocalize`）：
 
