@@ -90,8 +90,8 @@ type Summary struct {
 	// RawTag is the current snapshot, PrevRawTag the one the state belonged
 	// to before it. They are equal when the plan of RawTag found no older
 	// state; a plan of a snapshot that was planned already keeps PrevRawTag,
-	// Changes, FrozenChanged, NewSpeakers and NewFilesDefaultFamily of that
-	// plan (see Run).
+	// Changes, NumberPatched, FrozenChanged, NewSpeakers and
+	// NewFilesDefaultFamily of that plan (see Run).
 	RawTag      string `json:"raw_tag"`
 	PrevRawTag  string `json:"prev_raw_tag"`
 	RulesCommit string `json:"rules_commit"`
@@ -102,8 +102,12 @@ type Summary struct {
 	// translate that had no copy of their KR text yet.
 	Copy int `json:"copy"`
 	// Reused counts the units that took the translation of the same text.
-	Reused      int               `json:"reused"`
-	Adjustments AdjustmentSummary `json:"adjustments"`
+	Reused int `json:"reused"`
+	// NumberPatched counts, of the strings Changes counts as changed, those of
+	// which only numbers changed and whose translation was made from the old
+	// one by putting the new numbers in it (see Run): they were not queued.
+	NumberPatched int               `json:"number_patched"`
+	Adjustments   AdjustmentSummary `json:"adjustments"`
 	// RequeueApplied and RewriteApplied are the request and rewrite files
 	// applied this time (each file is applied once), in the order they were.
 	RequeueApplied []Applied `json:"requeue_applied"`
@@ -221,7 +225,7 @@ func (s *Summary) String() string {
 		fmt.Fprintf(&b, "files: %d added, %d deleted, %d changed, %d shifted\n", len(c.FilesAdded), len(c.FilesDeleted), len(c.FilesChanged), len(c.FilesShifted))
 	}
 	a := s.Adjustments
-	fmt.Fprintf(&b, "copied %d, reused %d\n", s.Copy, s.Reused)
+	fmt.Fprintf(&b, "copied %d, reused %d, number-patched %d\n", s.Copy, s.Reused, s.NumberPatched)
 	fmt.Fprintf(&b, "adjustments: %d applied, %d moved, %d expired\n", a.Applied, len(a.Moved), len(a.Expired))
 	for _, m := range a.Moved {
 		fmt.Fprintf(&b, "  moved: %s -> %s\n", m.From, m.To)
@@ -281,10 +285,10 @@ func (in Inputs) check() error {
 // to the current one. When that is not the current snapshot, the state is
 // first carried over to it (Transition). When it is, and the last plan was of
 // it too, the summary keeps what that plan said the snapshot brought
-// (PrevRawTag, Changes, FrozenChanged, NewSpeakers, NewFilesDefaultFamily, and
-// the ExpiredUnits of the adjustments that still are expired); the rest of it
-// is what this run did. Then every unit of the current KR gets
-// the first source that holds:
+// (PrevRawTag, Changes, NumberPatched, FrozenChanged, NewSpeakers,
+// NewFilesDefaultFamily, and the ExpiredUnits of the adjustments that still
+// are expired); the rest of it is what this run did. Then every unit of the
+// current KR gets the first source that holds:
 //
 //  1. the field rules do not translate it: a copy record (its KR text), and
 //     it leaves the queue;
@@ -321,7 +325,11 @@ func (in Inputs) check() error {
 //     once it is translated again.
 //
 // Steps 1 to 4 and 6 come first, and the adjustments that expired are queued.
-// The rewrite files and the request files of rules/rewrite and rules/requeue
+// Then a unit that the transition of this run queued as changed, and of which
+// nothing else is asked, gets the translation of its new text without a
+// translator when the two KR texts differ in numbers only (patchChanged): the
+// old translation with the new numbers, in the record the unit had. The
+// rewrite files and the request files of rules/rewrite and rules/requeue
 // that .meta/applied.json does not list are applied, each in file name order,
 // and their ids are added to applied.json: the rewrites, then step 5, then the
 // requests. So the translations step 5 copies are rewritten already, those
@@ -418,6 +426,7 @@ func Run(in Inputs) (*Summary, error) {
 		if err := p.expire(adjusted); err != nil {
 			return err
 		}
+		p.patchChanged()
 		applied, err := st.LoadApplied()
 		if err != nil {
 			return err
@@ -591,10 +600,12 @@ type planner struct {
 	pending map[string]store.PendingItem // by key; the request files make the final queue from it
 
 	// After a transition: the KR pack of the previous snapshot, the units it
-	// had that the current one has not, and the records as they were before
-	// the transition, by their keys in the previous snapshot.
+	// had that the current one has not, the units it queued as changed with
+	// the records they had, and the records as they were before the
+	// transition, by their keys in the previous snapshot.
 	oldKR       *pack.Pack
 	deleted     []DeletedUnit
+	changed     []ChangedUnit
 	prevRecords map[string]store.Record
 
 	// from is the snapshot the state belongs to when Run starts.
@@ -645,7 +656,7 @@ func (p *planner) load(st *store.Store) error {
 		// This snapshot was planned already: what it brought stays in the
 		// summary, for the report and the review issue of its raw tag.
 		s := p.sum
-		s.PrevRawTag, s.Changes = last.PrevRawTag, last.Changes
+		s.PrevRawTag, s.Changes, s.NumberPatched = last.PrevRawTag, last.Changes, last.NumberPatched
 		s.FrozenChanged, s.NewSpeakers, s.NewFilesDefaultFamily = nonNil(last.FrozenChanged), nonNil(last.NewSpeakers), nonNil(last.NewFilesDefaultFamily)
 		p.planned = last.Adjustments.ExpiredUnits
 	}
@@ -687,7 +698,7 @@ func (p *planner) transition(dir string) error {
 	if err != nil {
 		return err
 	}
-	p.oldKR, p.deleted, p.prevRecords, p.records = old, moved.Deleted, p.records, moved.Records
+	p.oldKR, p.deleted, p.changed, p.prevRecords, p.records = old, moved.Deleted, moved.Changed, p.records, moved.Records
 	p.setPending(moved.Pending)
 	p.sum.Changes, p.sum.FrozenChanged = moved.Changes, moved.FrozenChanged
 	if p.sum.FrozenChanged == nil {

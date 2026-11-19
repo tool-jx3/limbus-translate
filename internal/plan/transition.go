@@ -31,6 +31,9 @@ type Moved struct {
 	// Deleted lists the units of the old version that have no counterpart in
 	// the new one, files in name order, each file in document order.
 	Deleted []DeletedUnit
+	// Changed lists, sorted by key, the units that were queued as changed and
+	// had a record, which is gone from Records.
+	Changed []ChangedUnit
 	Changes Changes
 	// FrozenChanged lists, sorted, the new keys of frozen units whose KR text
 	// changed and whose translation was kept as it was.
@@ -46,6 +49,18 @@ type DeletedUnit struct {
 	// Pending is the pending item the unit had, as it was (nil when it had
 	// none): the plan hands a request on it to the unit that takes its place.
 	Pending *store.PendingItem
+}
+
+// ChangedUnit is a string whose KR text changed and whose record the
+// transition dropped, the unit being queued. The plan may still make the
+// translation of the new text from that record (planner.patchChanged).
+type ChangedUnit struct {
+	Key    string       // of the unit in the new version
+	KR     string       // the KR text of the old version, which Record translates
+	Record store.Record // the record the unit had, as it was
+	// Queued: the unit had a pending item in the old version already, so
+	// something else was asked of it before its text changed.
+	Queued bool
 }
 
 // Changes counts what became of the units. Unchanged includes the units
@@ -79,13 +94,13 @@ type Changes struct {
 //     item loses its lease, which was taken on the old version;
 //   - changed: its record is dropped and the unit is queued as "kr-changed"
 //     with the old KR and the old translation, keeping the Hint of a pending
-//     item it had. With no record but a pending item that carries a previous
-//     translation (the KR changed twice before the unit was retranslated),
-//     the new item keeps that item's PrevKR and PrevZH instead. A changed
-//     unit of a frozen file (frozen holds the patterns of lct.yaml) keeps
-//     its record instead, with the old kr_sha, and is listed in
-//     FrozenChanged; with no record to keep, it is queued like any other
-//     changed unit;
+//     item it had; the record is listed in Changed. With no record but a
+//     pending item that carries a previous translation (the KR changed twice
+//     before the unit was retranslated), the new item keeps that item's
+//     PrevKR and PrevZH instead. A changed unit of a frozen file (frozen
+//     holds the patterns of lct.yaml) keeps its record instead, with the old
+//     kr_sha, and is listed in FrozenChanged; with no record to keep, it is
+//     queued like any other changed unit;
 //   - new: queued as "new".
 //
 // A string only the old version has is deleted: its record and pending item
@@ -126,6 +141,7 @@ func Transition(oldKR, newKR *pack.Pack, recs map[string]store.Record, pending [
 
 	sort.Slice(m.out.Pending, func(i, j int) bool { return m.out.Pending[i].Key < m.out.Pending[j].Key })
 	slices.Sort(m.out.FrozenChanged)
+	sort.Slice(m.out.Changed, func(i, j int) bool { return m.out.Changed[i].Key < m.out.Changed[j].Key })
 	return m.out, nil
 }
 
@@ -204,6 +220,7 @@ func (m *mover) file(file string, oldDoc, newDoc *jsonx.Node) {
 			switch {
 			case hasRec:
 				queued.PrevZH = rec.ZH
+				m.out.Changed = append(m.out.Changed, ChangedUnit{Key: newKey, KR: old.KR, Record: cloneRecord(rec), Queued: hasItem})
 			case hasItem && item.PrevZH != "":
 				// The KR changed again before the unit was retranslated:
 				// keep the last translated pair, so PrevZH stays paired
