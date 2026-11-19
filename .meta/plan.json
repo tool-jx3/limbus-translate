@@ -1,85 +1,36 @@
 {
-  "raw_tag": "raw-20261112",
-  "prev_raw_tag": "raw-20261105",
+  "raw_tag": "raw-20261119",
+  "prev_raw_tag": "raw-20261112",
   "rules_commit": "2e8e1f50eddc115e70c3e80a19a73188cd7c6fb4",
   "changes": {
-    "unchanged": 272865,
-    "moved": 2138,
-    "changed": 10,
-    "new": 2974,
+    "unchanged": 275816,
+    "moved": 139,
+    "changed": 33,
+    "new": 19,
     "deleted": 0,
-    "files_added": [
-      "AbEvents-walpu10.json",
-      "ActionEvents-walpu10.json",
-      "Announcer-walpu10.json",
-      "BattleAnnouncerDlg/Announcer_Hokma_59.json",
-      "BattleAnnouncerDlg/Announcer_Walpu10_90008.json",
-      "BattleKeywords-walpu10.json",
-      "BattleSpeechBubbleDlg-walpu10.json",
-      "Bufs-walpu10.json",
-      "EGOgift_walpu10.json",
-      "Enemies-walpu10.json",
-      "PanicInfo-walpu10.json",
-      "Passives_Abnormality-walpu10.json",
-      "PersonalityCompanion.json",
-      "PersonalityVoiceDlg/Voice_DonQuixote_Wedge_10316.json",
-      "PersonalityVoiceDlg/Voice_Outis_Wedge_11116.json",
-      "PersonalityVoiceDlg/Voice_Sinclair_Wedge_11017.json",
-      "Skills_Abnormality-walpu10.json",
-      "StageNode91-29.json",
-      "StoryData/E100X.json",
-      "StoryData/E101X.json",
-      "StoryData/E102X.json",
-      "StoryData/E103X.json",
-      "StoryData/P10316.json",
-      "StoryData/P11017.json",
-      "StoryData/P11116.json",
-      "SynergyKeyword.json",
-      "Walpu10EventText.json"
-    ],
     "files_changed": [
-      "Announcer.json",
       "BattleKeywords.json",
       "BattleSpeechBubbleDlg.json",
-      "BattleUIText.json",
+      "Bufs-walpu10.json",
       "Bufs.json",
-      "EGOVoiceDig/Voice_EGO_HongLu_6.json",
-      "Egos.json",
-      "GachaNotice.json",
-      "GachaTitle.json",
-      "IAPProduct-a1c10.json",
-      "IntroductionPreset.json",
+      "EGOgift_MirrorDungeon_7.json",
+      "EGOgift_walpu10.json",
       "MainUIText-a1c10p1.json",
       "MainUIText.json",
-      "MirrorDungeonTheme-1.json",
-      "Passive_Ego.json",
-      "Passives.json",
-      "Personalities.json",
-      "Personality_Get_Condition.json",
-      "ScenarioModelCodes-AutoCreated.json",
-      "SkillTag.json",
-      "Skills_Ego_Personality-06.json",
+      "MirrorDungeonRentalName.json",
+      "PersonalityVoiceDlg/Voice_DonQuixote_Wedge_10316.json",
+      "Skills_Abnormality-a1c9p3.json",
+      "Skills_Abnormality_Mirror7.json",
       "Skills_personality-03.json",
       "Skills_personality-10.json",
       "Skills_personality-11.json",
-      "StoryTheaterMirrorWorldStoryTitle.json",
-      "StoryTheaterOther.json",
-      "StoryTheaterUIText.json",
-      "UI_Mission_MirrorDungeon8Event.json",
-      "UnitKeyword.json",
-      "UnlockCode-1.json",
-      "UserBanner.json",
-      "UserTicket-EGOBg.json",
-      "UserTicket-L.json",
-      "UserTicket-R.json"
+      "StageChapterText.json"
     ],
     "files_shifted": [
-      "BattleSpeechBubbleDlg.json",
-      "MainUIText.json",
-      "StoryTheaterOther.json"
+      "BattleSpeechBubbleDlg.json"
     ]
   },
-  "copy": 0,
+  "copy": 9,
   "reused": 0,
   "adjustments": {
     "applied": 274,
@@ -87,60 +38,16 @@
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [
-    {
-      "id": "2026-11-18-rs-g111-fun-period",
-      "units": 1
-    },
-    {
-      "id": "2026-11-18-rs-g649-reflect-possibility",
-      "units": 1
-    },
-    {
-      "id": "2026-11-18-rs-g661-animals-feel-pain",
-      "units": 1
-    },
-    {
-      "id": "2026-11-18-rs-g664-all-yisang-research",
-      "units": 1
-    },
-    {
-      "id": "2026-11-18-rs-g678-would-it-change-2",
-      "units": 1
-    },
-    {
-      "id": "2026-11-18-rs-g678-would-it-change",
-      "units": 1
-    },
-    {
-      "id": "2026-11-18-rs-g704-place-noisy-league",
-      "units": 1
-    },
-    {
-      "id": "2026-11-18-rs-g869-gulp",
-      "units": 1
-    }
-  ],
+  "rewrite_applied": [],
   "frozen_changed": [],
-  "new_speakers": [
-    "다친필립",
-    "살바도르",
-    "에고필립",
-    "오스카",
-    "유나",
-    "파멜라",
-    "파멜리",
-    "필립"
-  ],
+  "new_speakers": [],
   "field_changes": [],
-  "new_files_default_family": [
-    "SynergyKeyword.json"
-  ],
-  "pending": 0,
+  "new_files_default_family": [],
+  "pending": 43,
   "name_table": {
-    "raw_tag": "raw-20261112",
-    "built": false,
-    "names": 8721,
-    "same_texts": 1273
+    "raw_tag": "raw-20261119",
+    "built": true,
+    "names": 8722,
+    "same_texts": 1245
   }
 }

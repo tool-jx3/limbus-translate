@@ -1,5 +1,5 @@
 {
-  "raw_tag": "raw-20261112",
+  "raw_tag": "raw-20261119",
   "texts": {
     "(800101, FAILURE), (800102, FAILURE), (800104, FAILURE), (800105, FAILURE)": [
       {
@@ -980,8 +980,8 @@
         ]
       },
       {
-        "group": "story-interlude|teller|T사2등급",
-        "speaker": "T사2등급",
+        "group": "story-interlude|teller|t-corp-time-collectors",
+        "speaker": "t-corp-time-collectors",
         "keys": [
           "StoryData/E601B.json|/dataList/33/teller",
           "StoryData/E601B.json|/dataList/35/teller",
@@ -3183,6 +3183,13 @@
         ]
       },
       {
+        "group": "story-main|place|araya",
+        "speaker": "araya",
+        "keys": [
+          "StoryData/S929A.json|/dataList/35/place"
+        ]
+      },
+      {
         "group": "story-main|place|dante",
         "speaker": "dante",
         "keys": [
@@ -3204,13 +3211,6 @@
         "speaker": "베스파",
         "keys": [
           "StoryData/S926I2.json|/dataList/0/place"
-        ]
-      },
-      {
-        "group": "story-main|place|소지아비3",
-        "speaker": "소지아비3",
-        "keys": [
-          "StoryData/S929A.json|/dataList/35/place"
         ]
       }
     ],
@@ -3247,6 +3247,15 @@
         ]
       },
       {
+        "group": "story-interlude|place|heathcliff",
+        "speaker": "heathcliff",
+        "keys": [
+          "StoryData/E706B.json|/dataList/0/place",
+          "StoryData/E707B.json|/dataList/0/place",
+          "StoryData/E709B.json|/dataList/0/place"
+        ]
+      },
+      {
         "group": "story-interlude|place|ishmael",
         "speaker": "ishmael",
         "keys": [
@@ -3278,15 +3287,6 @@
           "StoryData/E714B.json|/dataList/0/place",
           "StoryData/E717A.json|/dataList/17/place",
           "StoryData/E725B.json|/dataList/46/place"
-        ]
-      },
-      {
-        "group": "story-interlude|place|후디히스",
-        "speaker": "후디히스",
-        "keys": [
-          "StoryData/E706B.json|/dataList/0/place",
-          "StoryData/E707B.json|/dataList/0/place",
-          "StoryData/E709B.json|/dataList/0/place"
         ]
       },
       {
@@ -3507,6 +3507,13 @@
         ]
       },
       {
+        "group": "story-main|place|bloodfiend-hunters",
+        "speaker": "bloodfiend-hunters",
+        "keys": [
+          "StoryData/S704A.json|/dataList/0/place"
+        ]
+      },
+      {
         "group": "story-main|place|donquixote",
         "speaker": "donquixote",
         "keys": [
@@ -3518,13 +3525,6 @@
         "speaker": "폴라",
         "keys": [
           "StoryData/S705B.json|/dataList/0/place"
-        ]
-      },
-      {
-        "group": "story-main|place|혈귀사냥꾼",
-        "speaker": "혈귀사냥꾼",
-        "keys": [
-          "StoryData/S704A.json|/dataList/0/place"
         ]
       }
     ],
@@ -3791,8 +3791,8 @@
         ]
       },
       {
-        "group": "story-main|place|쌍갈고리파조직원2",
-        "speaker": "쌍갈고리파조직원2",
+        "group": "story-main|place|twinhook-pirates",
+        "speaker": "twinhook-pirates",
         "keys": [
           "StoryData/S505A.json|/dataList/0/place"
         ]
@@ -3848,10 +3848,15 @@
     ],
     "Vulnerable": [
       {
-        "group": "enemy|keywords|",
+        "group": "ally|keywords|",
         "keys": [
           "Skills.json|/dataList/8/levelList/0/keywords/0",
-          "Skills.json|/dataList/8/levelList/1/keywords/0",
+          "Skills.json|/dataList/8/levelList/1/keywords/0"
+        ]
+      },
+      {
+        "group": "enemy|keywords|",
+        "keys": [
           "Skills_Abnormality.json|/dataList/109/levelList/0/keywords/0",
           "Skills_Abnormality_Mirror.json|/dataList/19/levelList/0/keywords/0",
           "Skills_Abnormality_Refraction1_bokgak.json|/dataList/84/levelList/0/keywords/0"
@@ -4197,6 +4202,21 @@
         ]
       }
     ],
+    "[EnemyKill] 이 스킬 1회 재사용": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills.json|/dataList/73/levelList/0/desc",
+          "Skills.json|/dataList/73/levelList/1/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Enemy.json|/dataList/62/levelList/0/desc"
+        ]
+      }
+    ],
     "[ExtractCoin]": [
       {
         "group": "ally|desc|",
@@ -4405,48 +4425,17 @@
         ]
       }
     ],
-    "[OnSucceedAttackHead] 공격 위력 감소 2 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/22/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/65/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/65/levelList/1/coinlist/1/coindescs/0/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttackHead] 관통 취약 1 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/45/levelList/0/coinlist/0/coindescs/1/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/145/levelList/1/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/145/levelList/2/coinlist/0/coindescs/1/desc"
-        ]
-      }
-    ],
     "[OnSucceedAttackHead] 다음 코인 위력 +2": [
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/77/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_personality-x1p1c1.json|/dataList/26/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/77/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c6p2.json|/dataList/10/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c6p2.json|/dataList/12/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c6p3.json|/dataList/23/levelList/0/coinlist/1/coindescs/0/desc",
@@ -4475,13 +4464,13 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/17/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_personality-x1p1c1.json|/dataList/6/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/17/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-a1c5p2.json|/dataList/30/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       }
@@ -4490,30 +4479,34 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/172/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_personality-02.json|/dataList/5/levelList/1/coinlist/2/coindescs/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/172/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Refraction.json|/dataList/37/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Refraction.json|/dataList/9/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
-    "[OnSucceedAttackHead] 다음 턴에 방어 레벨 감소 2 부여": [
+    "[OnSucceedAttackHead] 다음 턴에 마비 1 부여": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-08.json|/dataList/1/levelList/0/coinlist/1/coindescs/1/desc"
+          "Skills.json|/dataList/168/levelList/1/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/168/levelList/2/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/176/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/177/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/177/levelList/0/coinlist/1/coindescs/1/desc"
+          "Skills_Abnormality-a1c5p3.json|/dataList/11/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/11/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Enemy-a1c5p2.json|/dataList/28/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy-a1c5p2.json|/dataList/34/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       }
     ],
@@ -4521,6 +4514,8 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/245/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/245/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_Ego_Personality-06.json|/dataList/1/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego_Personality-06.json|/dataList/1/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_personality-01.json|/dataList/5/levelList/0/coinlist/0/coindescs/0/desc",
@@ -4530,8 +4525,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/245/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/245/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality_Refraction.json|/dataList/35/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy-x1p1c1.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/22/levelList/0/coinlist/1/coindescs/0/desc",
@@ -4577,20 +4570,6 @@
         ]
       }
     ],
-    "[OnSucceedAttackHead] 다음 턴에 신속 2 얻음": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/24/levelList/0/coinlist/0/coindescs/1/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/24/levelList/0/coinlist/2/coindescs/0/desc"
-        ]
-      }
-    ],
     "[OnSucceedAttackHead] 다음 턴에 취약 1 부여": [
       {
         "group": "ally|desc|",
@@ -4616,6 +4595,10 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/112/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/112/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/114/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/114/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_Ego.json|/dataList/17/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/17/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/18/levelList/0/coinlist/0/coindescs/0/desc",
@@ -4626,25 +4609,7 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/112/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/112/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/114/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/114/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/56/levelList/0/coinlist/0/coindescs/1/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttackHead] 방어 레벨 감소 2 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-01.json|/dataList/2/levelList/0/coinlist/2/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/44/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       }
     ],
@@ -4700,72 +4665,30 @@
         ]
       }
     ],
-    "[OnSucceedAttackHead] 자신의 충전 횟수 4 증가": [
+    "[OnSucceedAttackHead] 자신의 충전 횟수 2 증가": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_Ego_Personality-08.json|/dataList/0/levelList/1/coinlist/0/coindescs/0/desc"
+          "Skills.json|/dataList/206/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/206/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/206/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/206/levelList/1/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/31/levelList/1/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/91/levelList/1/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/91/levelList/1/coinlist/1/coindescs/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/31/levelList/2/coinlist/0/coindescs/1/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttackHead] 자신의 호흡 횟수 1 증가": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-12.json|/dataList/4/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/120/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/129/levelList/1/coinlist/0/coindescs/1/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttackHead] 진동 1 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/27/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills_personality-11.json|/dataList/1/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-11.json|/dataList/1/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/196/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/196/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/200/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/200/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/200/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/220/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/220/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/221/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/51/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/51/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/53/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/53/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/53/levelList/1/coinlist/2/coindescs/0/desc"
+          "Skills_Abnormality_Refraction2.json|/dataList/50/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/50/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
     "[OnSucceedAttackHead] 진동 2 부여": [
       {
         "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/25/levelList/0/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
         "keys": [
           "Skills.json|/dataList/124/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/202/levelList/0/coinlist/1/coindescs/0/desc",
@@ -4775,10 +4698,34 @@
           "Skills.json|/dataList/205/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/221/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/76/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills_personality-x1p1c1.json|/dataList/25/levelList/0/coinlist/0/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
           "Skills_Enemy.json|/dataList/184/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/184/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/194/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/194/levelList/0/coinlist/1/coindescs/0/desc"
+        ]
+      }
+    ],
+    "[OnSucceedAttackHead] 진동 3 부여": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills.json|/dataList/125/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/75/levelList/0/coinlist/0/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Abnormality.json|/dataList/141/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality.json|/dataList/142/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality.json|/dataList/230/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy.json|/dataList/202/levelList/0/coinlist/1/coindescs/1/desc"
         ]
       }
     ],
@@ -4804,99 +4751,26 @@
         ]
       }
     ],
-    "[OnSucceedAttackHead] 진동 횟수 1 증가": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-10.json|/dataList/0/levelList/1/coinlist/1/coindescs/1/desc",
-          "Skills_personality-10.json|/dataList/0/levelList/1/coinlist/3/coindescs/1/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/200/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/220/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/87/levelList/0/coinlist/0/coindescs/0/desc"
-        ]
-      }
-    ],
     "[OnSucceedAttackHead] 진동 횟수 2 증가": [
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/53/levelList/0/coinlist/3/coindescs/0/desc",
           "Skills_personality-01.json|/dataList/0/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/53/levelList/0/coinlist/3/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/228/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Abnormality.json|/dataList/229/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Enemy.json|/dataList/166/levelList/0/coinlist/0/coindescs/1/desc"
         ]
       }
     ],
-    "[OnSucceedAttackHead] 출혈 1 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-03.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/0/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/2/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/2/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/2/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/2/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/2/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/4/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/4/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/4/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/4/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/4/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/4/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/0/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/1/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/1/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/3/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/3/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/105/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/105/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/105/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/163/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/163/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/165/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/165/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/171/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/185/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/188/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/29/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/29/levelList/1/coinlist/1/coindescs/0/desc"
-        ]
-      }
-    ],
     "[OnSucceedAttackHead] 출혈 2 부여": [
       {
         "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/41/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills_Ego.json|/dataList/41/levelList/1/coinlist/0/coindescs/1/desc",
-          "Skills_personality-01.json|/dataList/8/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-06.json|/dataList/6/levelList/0/coinlist/3/coindescs/0/desc",
-          "Skills_personality-07.json|/dataList/0/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-08.json|/dataList/4/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/9/levelList/0/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
         "keys": [
           "Skills.json|/dataList/103/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/104/levelList/0/coinlist/0/coindescs/0/desc",
@@ -4913,6 +4787,16 @@
           "Skills.json|/dataList/69/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/69/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/71/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/41/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Ego.json|/dataList/41/levelList/1/coinlist/0/coindescs/1/desc",
+          "Skills_personality-01.json|/dataList/8/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_personality-06.json|/dataList/6/levelList/0/coinlist/3/coindescs/0/desc",
+          "Skills_personality-07.json|/dataList/0/levelList/0/coinlist/1/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
           "Skills_Enemy-a1c5p1.json|/dataList/24/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Enemy-a1c5p1.json|/dataList/24/levelList/0/coinlist/1/coindescs/1/desc",
           "Skills_Enemy-a1c5p1.json|/dataList/28/levelList/0/coinlist/0/coindescs/1/desc"
@@ -4923,13 +4807,13 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/185/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills_Ego.json|/dataList/42/levelList/0/coinlist/0/coindescs/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/185/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/138/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-a1c5p1.json|/dataList/12/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Enemy-a1c5p1.json|/dataList/4/levelList/0/coinlist/0/coindescs/0/desc",
@@ -4943,13 +4827,13 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/71/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/10/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/71/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/23/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-a1c5p1.json|/dataList/30/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Enemy-a1c5p3.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc"
@@ -4960,6 +4844,10 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/104/levelList/2/coinlist/1/coindescs/1/desc",
+          "Skills.json|/dataList/184/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/237/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/237/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_personality-06.json|/dataList/4/levelList/0/coinlist/1/coindescs/1/desc",
           "Skills_personality-06.json|/dataList/4/levelList/1/coinlist/1/coindescs/1/desc",
           "Skills_personality-06.json|/dataList/4/levelList/2/coinlist/1/coindescs/1/desc",
@@ -4969,10 +4857,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/104/levelList/2/coinlist/1/coindescs/1/desc",
-          "Skills.json|/dataList/184/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/237/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/237/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/28/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy-a1c5p3.json|/dataList/5/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/31/levelList/0/coinlist/0/coindescs/0/desc",
@@ -4986,41 +4870,78 @@
         ]
       }
     ],
+    "[OnSucceedAttackHead] 침잠 1 부여": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills.json|/dataList/3/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/64/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/91/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/91/levelList/0/coinlist/1/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Enemy-a1c5p2.json|/dataList/10/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy-a1c5p2.json|/dataList/10/levelList/0/coinlist/1/coindescs/1/desc"
+        ]
+      }
+    ],
     "[OnSucceedAttackHead] 침잠 2 부여": [
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/128/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/3/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/63/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/21/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/128/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/3/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/63/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-a1c5p1.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-a1c5p1.json|/dataList/0/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy-a1c5p2.json|/dataList/8/levelList/0/coinlist/0/coindescs/1/desc"
         ]
       }
     ],
-    "[OnSucceedAttackHead] 파열 1 부여": [
+    "[OnSucceedAttackHead] 침잠 4 부여": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-01.json|/dataList/6/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/6/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/6/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/6/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/38/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/38/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/38/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/40/levelList/0/coinlist/2/coindescs/0/desc"
+          "Skills.json|/dataList/128/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/142/levelList/1/coinlist/0/coindescs/2/desc"
         ]
       },
       {
         "group": "enemy|desc|",
+        "keys": [
+          "Skills_Abnormality-a1c5p3.json|/dataList/18/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/18/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/18/levelList/0/coinlist/2/coindescs/1/desc"
+        ]
+      }
+    ],
+    "[OnSucceedAttackHead] 침잠 횟수 3 증가": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills.json|/dataList/92/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/92/levelList/1/coinlist/0/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Enemy-a1c5p2.json|/dataList/5/levelList/0/coinlist/0/coindescs/1/desc"
+        ]
+      }
+    ],
+    "[OnSucceedAttackHead] 파열 1 부여": [
+      {
+        "group": "ally|desc|",
         "keys": [
           "Skills.json|/dataList/118/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/118/levelList/1/coinlist/1/coindescs/0/desc",
@@ -5043,18 +4964,18 @@
           "Skills.json|/dataList/60/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/60/levelList/1/coinlist/1/coindescs/0/desc"
         ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Abnormality_Refraction.json|/dataList/17/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/186/levelList/0/coinlist/0/coindescs/1/desc"
+        ]
       }
     ],
     "[OnSucceedAttackHead] 파열 2 부여": [
       {
         "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-01.json|/dataList/4/levelList/1/coinlist/0/coindescs/1/desc",
-          "Skills_personality-x1p1c1.json|/dataList/45/levelList/0/coinlist/0/coindescs/2/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
         "keys": [
           "Skills.json|/dataList/116/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/132/levelList/0/coinlist/1/coindescs/0/desc",
@@ -5065,6 +4986,13 @@
           "Skills.json|/dataList/60/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/64/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/7/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills_personality-01.json|/dataList/4/levelList/1/coinlist/0/coindescs/1/desc",
+          "Skills_personality-x1p1c1.json|/dataList/45/levelList/0/coinlist/0/coindescs/2/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
           "Skills_Abnormality.json|/dataList/168/levelList/0/coinlist/1/coindescs/1/desc",
           "Skills_Abnormality_Mirror.json|/dataList/44/levelList/0/coinlist/1/coindescs/1/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/3/levelList/0/coinlist/1/coindescs/1/desc",
@@ -5075,7 +5003,8 @@
           "Skills_Enemy91-4.json|/dataList/19/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy91-4.json|/dataList/19/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_Enemy91-4.json|/dataList/25/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Enemy91-4.json|/dataList/25/levelList/0/coinlist/1/coindescs/0/desc"
+          "Skills_Enemy91-4.json|/dataList/25/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/25/levelList/0/coinlist/2/coindescs/0/desc"
         ]
       }
     ],
@@ -5083,6 +5012,7 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/253/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/49/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Ego_Personality-10.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego_Personality-10.json|/dataList/0/levelList/1/coinlist/0/coindescs/0/desc"
@@ -5091,7 +5021,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/253/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Refraction.json|/dataList/18/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Refraction.json|/dataList/20/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Refraction.json|/dataList/21/levelList/0/coinlist/1/coindescs/0/desc",
@@ -5110,124 +5039,38 @@
         ]
       }
     ],
-    "[OnSucceedAttackHead] 파열 4 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/44/levelList/0/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/144/levelList/1/coinlist/0/coindescs/0/desc"
-        ]
-      }
-    ],
     "[OnSucceedAttackHead] 파열 5 부여": [
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/25/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/33/levelList/0/coinlist/4/coindescs/0/desc",
           "Skills_Ego.json|/dataList/49/levelList/1/coinlist/0/coindescs/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/25/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/33/levelList/0/coinlist/4/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/164/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/225/levelList/0/coinlist/2/coindescs/1/desc"
         ]
       }
     ],
-    "[OnSucceedAttackHead] 피해량의 30%만큼 체력 회복": [
+    "[OnSucceedAttackTail] 파열 3 부여": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/46/levelList/0/coinlist/1/coindescs/1/desc"
+          "Skills.json|/dataList/213/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/213/levelList/1/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/213/levelList/2/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/213/levelList/2/coinlist/2/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/146/levelList/0/coinlist/1/coindescs/1/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttackHead] 피해량의 50%만큼 체력 회복": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/10/levelList/1/coinlist/0/coindescs/1/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/152/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/153/levelList/1/coinlist/0/coindescs/1/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttackHead] 호흡 2 얻음": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-01.json|/dataList/9/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/9/levelList/1/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/107/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/108/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/121/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/136/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/95/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/97/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/97/levelList/1/coinlist/0/coindescs/0/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttackHead] 호흡 4 얻음": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-12.json|/dataList/5/levelList/1/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/107/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/136/levelList/1/coinlist/0/coindescs/0/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttackHead] 화상 1 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-08.json|/dataList/5/levelList/0/coinlist/2/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/148/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/148/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/148/levelList/2/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/148/levelList/2/coinlist/1/coindescs/1/desc",
-          "Skills.json|/dataList/149/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/149/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/150/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/150/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/150/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/55/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/55/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/56/levelList/0/coinlist/1/coindescs/0/desc"
+          "Skills_Enemy.json|/dataList/239/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/240/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       }
     ],
@@ -6219,6 +6062,7 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/181/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Assist-a1c9p3.json|/dataList/32/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Assist-a1c9p3.json|/dataList/39/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Assist-a1c9p3.json|/dataList/41/levelList/0/coinlist/1/coindescs/0/desc",
@@ -6237,14 +6081,12 @@
           "Skills_personality-07.json|/dataList/44/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_personality-09.json|/dataList/44/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_personality-09.json|/dataList/44/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-09.json|/dataList/44/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills_personality-09.json|/dataList/48/levelList/0/coinlist/0/coindescs/0/desc"
+          "Skills_personality-09.json|/dataList/44/levelList/2/coinlist/1/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/181/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-walpu10.json|/dataList/11/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Abnormality-walpu10.json|/dataList/12/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-walpu10.json|/dataList/6/levelList/0/coinlist/0/coindescs/0/desc",
@@ -8259,22 +8101,6 @@
         ]
       }
     ],
-    "[OnSucceedAttack] 공격 위력 감소 2 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/0/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/0/levelList/2/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/142/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/142/levelList/1/coinlist/0/coindescs/1/desc"
-        ]
-      }
-    ],
     "[OnSucceedAttack] 다음 턴에 [Agility] 1 얻음": [
       {
         "group": "ally|desc|",
@@ -8679,13 +8505,13 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/16/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_personality-x1p1c1.json|/dataList/5/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/16/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/68/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Enemy.json|/dataList/167/levelList/0/coinlist/0/coindescs/0/desc"
         ]
@@ -8695,6 +8521,7 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/17/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Ego.json|/dataList/7/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Ego.json|/dataList/78/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_personality-x1p1c1.json|/dataList/6/levelList/0/coinlist/1/coindescs/0/desc"
@@ -8703,7 +8530,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/17/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/107/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Mirror.json|/dataList/17/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-tkt.json|/dataList/21/levelList/0/coinlist/1/coindescs/0/desc",
@@ -8749,6 +8575,21 @@
         ]
       }
     ],
+    "[OnSucceedAttack] 다음 턴에 관통 취약 1 부여": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills.json|/dataList/8/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/8/levelList/1/coinlist/2/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Enemy91-4.json|/dataList/6/levelList/0/coinlist/0/coindescs/1/desc"
+        ]
+      }
+    ],
     "[OnSucceedAttack] 다음 턴에 더하기 코인 약화 1 부여": [
       {
         "group": "ally|desc|",
@@ -8760,6 +8601,42 @@
         "group": "enemy|desc|",
         "keys": [
           "Skills_Enemy-a1c6p1.json|/dataList/54/levelList/0/coinlist/0/coindescs/0/desc"
+        ]
+      }
+    ],
+    "[OnSucceedAttack] 다음 턴에 마비 1 부여": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills.json|/dataList/164/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/164/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/176/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/176/levelList/2/coinlist/0/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Abnormality-a1c5p2.json|/dataList/8/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality.json|/dataList/100/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality.json|/dataList/100/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Abnormality.json|/dataList/101/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality.json|/dataList/101/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Abnormality.json|/dataList/121/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality.json|/dataList/99/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality.json|/dataList/99/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Abnormality.json|/dataList/99/levelList/0/coinlist/2/coindescs/1/desc",
+          "Skills_Abnormality.json|/dataList/99/levelList/0/coinlist/3/coindescs/1/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/10/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/10/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/11/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/11/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/9/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/9/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/9/levelList/0/coinlist/2/coindescs/1/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/9/levelList/0/coinlist/3/coindescs/1/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/67/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/67/levelList/0/coinlist/1/coindescs/1/desc"
         ]
       }
     ],
@@ -8784,31 +8661,34 @@
     ],
     "[OnSucceedAttack] 다음 턴에 못 1 부여": [
       {
-        "group": "enemy|desc|",
+        "group": "ally|desc|",
         "keys": [
           "Skills.json|/dataList/164/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/164/levelList/1/coinlist/0/coindescs/0/desc"
         ]
       },
       {
-        "group": "enemy|summary|",
+        "group": "ally|summary|",
         "keys": [
           "Skills.json|/dataList/164/levelList/0/coinlist/0/coindescs/0/summary",
           "Skills.json|/dataList/164/levelList/1/coinlist/0/coindescs/0/summary"
         ]
       }
     ],
-    "[OnSucceedAttack] 다음 턴에 방어 레벨 감소 3 부여": [
+    "[OnSucceedAttack] 다음 턴에 방어 레벨 감소 2 부여": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-08.json|/dataList/1/levelList/1/coinlist/1/coindescs/1/desc"
+          "Skills.json|/dataList/177/levelList/1/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/177/levelList/1/coinlist/1/coindescs/1/desc",
+          "Skills.json|/dataList/177/levelList/2/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/177/levelList/2/coinlist/1/coindescs/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/249/levelList/2/coinlist/0/coindescs/0/desc"
+          "Skills_Abnormality-a1c5p3.json|/dataList/46/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
@@ -8831,6 +8711,10 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/185/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/185/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/185/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/245/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills_Ego_Personality-06.json|/dataList/1/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_personality-01.json|/dataList/5/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_personality-01.json|/dataList/5/levelList/2/coinlist/0/coindescs/0/desc",
@@ -8842,10 +8726,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/185/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/185/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/185/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/245/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/64/levelList/0/coinlist/1/coindescs/1/desc",
           "Skills_Abnormality.json|/dataList/100/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/100/levelList/0/coinlist/1/coindescs/0/desc",
@@ -8861,7 +8741,11 @@
           "Skills_Abnormality_Mirror.json|/dataList/10/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Mirror.json|/dataList/10/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality_Mirror.json|/dataList/11/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Abnormality_Mirror.json|/dataList/11/levelList/0/coinlist/1/coindescs/0/desc"
+          "Skills_Abnormality_Mirror.json|/dataList/11/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/9/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/9/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/9/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/9/levelList/0/coinlist/3/coindescs/0/desc"
         ]
       }
     ],
@@ -8909,6 +8793,9 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/160/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/160/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/160/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills_Ego.json|/dataList/16/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/28/levelList/2/coinlist/0/coindescs/2/desc",
           "Skills_Ego.json|/dataList/66/levelList/2/coinlist/0/coindescs/1/desc",
@@ -8923,9 +8810,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/160/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/160/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/160/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/110/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Mirror.json|/dataList/20/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/57/levelList/0/coinlist/0/coindescs/1/desc",
@@ -8952,10 +8836,27 @@
         ]
       }
     ],
+    "[OnSucceedAttack] 다음 턴에 신속 2 얻음": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills.json|/dataList/36/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/36/levelList/1/coinlist/1/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Abnormality.json|/dataList/41/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality.json|/dataList/53/levelList/0/coinlist/0/coindescs/0/desc"
+        ]
+      }
+    ],
     "[OnSucceedAttack] 다음 턴에 신속 3 얻음": [
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/36/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills_Ego.json|/dataList/24/levelList/1/coinlist/0/coindescs/1/desc",
           "Skills_Ego.json|/dataList/24/levelList/2/coinlist/0/coindescs/1/desc"
         ]
@@ -8963,7 +8864,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/36/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/132/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       }
@@ -8972,14 +8872,14 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/9/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/9/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills_Ego.json|/dataList/13/levelList/2/coinlist/0/coindescs/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/9/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/9/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/46/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/50/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/103/levelList/0/coinlist/0/coindescs/0/desc",
@@ -9001,37 +8901,56 @@
         ]
       }
     ],
-    "[OnSucceedAttack] 다음 턴에 호흡 2 얻음": [
+    "[OnSucceedAttack] 다음 턴에 피해량 감소 1 부여": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/12/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/14/levelList/0/coinlist/1/coindescs/0/desc"
+          "Skills.json|/dataList/125/levelList/0/coinlist/1/coindescs/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/35/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/36/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/39/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/41/levelList/1/coinlist/1/coindescs/0/desc"
+          "Skills_Abnormality_Refraction.json|/dataList/40/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       }
     ],
-    "[OnSucceedAttack] 대상에게 [Burst]이 있을 때 피해량 +10%": [
+    "[OnSucceedAttack] 다음 턴에 피해량 감소 2 부여": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/46/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/46/levelList/0/coinlist/1/coindescs/0/desc"
+          "Skills.json|/dataList/125/levelList/1/coinlist/1/coindescs/1/desc",
+          "Skills.json|/dataList/125/levelList/2/coinlist/1/coindescs/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/146/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/146/levelList/0/coinlist/1/coindescs/0/desc"
+          "Skills_Enemy-a1c5p1.json|/dataList/18/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy-a1c5p2.json|/dataList/25/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy-a1c5p2.json|/dataList/35/levelList/0/coinlist/0/coindescs/0/desc"
+        ]
+      }
+    ],
+    "[OnSucceedAttack] 다음 턴에 호흡 1 얻음": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills.json|/dataList/24/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/24/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/24/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/24/levelList/2/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/24/levelList/2/coinlist/2/coindescs/1/desc",
+          "Skills.json|/dataList/36/levelList/1/coinlist/0/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Enemy.json|/dataList/81/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/81/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/81/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/81/levelList/0/coinlist/3/coindescs/0/desc"
         ]
       }
     ],
@@ -9073,21 +8992,6 @@
         ]
       }
     ],
-    "[OnSucceedAttack] 대상의 [Laceration]이 6 이상이면, 피해량 +20%": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/34/levelList/0/coinlist/3/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/105/levelList/0/coinlist/3/coindescs/0/desc",
-          "Skills.json|/dataList/105/levelList/1/coinlist/3/coindescs/0/desc"
-        ]
-      }
-    ],
     "[OnSucceedAttack] 대상의 정신력 10 감소": [
       {
         "group": "ally|desc|",
@@ -9100,21 +9004,6 @@
         "group": "enemy|desc|",
         "keys": [
           "Skills_Abnormality_Mirror7-extreme.json|/dataList/20/levelList/0/coinlist/0/coindescs/1/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttack] 대상의 정신력이 0미만이면 다음 턴에 취약 1 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/2/levelList/0/coinlist/2/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/5/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/5/levelList/1/coinlist/2/coindescs/0/desc"
         ]
       }
     ],
@@ -9146,17 +9035,17 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/15/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/190/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/190/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/190/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/190/levelList/1/coinlist/2/coindescs/0/desc",
           "Skills_personality-x1p1c1.json|/dataList/4/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/15/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/190/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/190/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/190/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/190/levelList/1/coinlist/2/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/64/levelList/0/coinlist/0/coindescs/1/desc"
         ]
       }
@@ -9182,6 +9071,10 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/47/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/47/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/99/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/99/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/28/levelList/1/coinlist/0/coindescs/1/desc",
           "Skills_Ego.json|/dataList/28/levelList/2/coinlist/0/coindescs/1/desc",
           "Skills_Ego.json|/dataList/29/levelList/1/coinlist/0/coindescs/1/desc",
@@ -9194,10 +9087,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/47/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/47/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/99/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/99/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p2.json|/dataList/0/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/136/levelList/0/coinlist/1/coindescs/1/desc",
           "Skills_Abnormality.json|/dataList/158/levelList/0/coinlist/1/coindescs/0/desc",
@@ -9216,6 +9105,9 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/122/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/122/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/69/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_Ego.json|/dataList/29/levelList/2/coinlist/0/coindescs/1/desc",
           "Skills_Ego.json|/dataList/53/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/53/levelList/1/coinlist/0/coindescs/0/desc",
@@ -9225,9 +9117,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/122/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/122/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/69/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/160/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality_Mirror.json|/dataList/36/levelList/0/coinlist/1/coindescs/0/desc"
         ]
@@ -9237,22 +9126,17 @@
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_Ego.json|/dataList/9/levelList/2/coinlist/0/coindescs/3/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
           "Skills.json|/dataList/160/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/160/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/160/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/168/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/168/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/168/levelList/2/coinlist/1/coindescs/0/desc"
+          "Skills.json|/dataList/168/levelList/2/coinlist/1/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/9/levelList/2/coinlist/0/coindescs/3/desc"
         ]
       },
       {
-        "group": "enemy|summary|",
+        "group": "ally|summary|",
         "keys": [
           "Skills.json|/dataList/160/levelList/0/coinlist/0/coindescs/0/summary",
           "Skills.json|/dataList/160/levelList/1/coinlist/0/coindescs/0/summary"
@@ -9263,6 +9147,7 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/44/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/22/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Ego.json|/dataList/23/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_personality-01.json|/dataList/2/levelList/1/coinlist/2/coindescs/0/desc"
@@ -9271,45 +9156,25 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/44/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-a1c5p2.json|/dataList/17/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-a1c5p2.json|/dataList/19/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-a1c5p2.json|/dataList/19/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
-    "[OnSucceedAttack] 방어 레벨 감소 4 부여": [
+    "[OnSucceedAttack] 수비 위력 감소 4 부여": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_Ego.json|/dataList/22/levelList/1/coinlist/0/coindescs/1/desc",
-          "Skills_Ego.json|/dataList/23/levelList/1/coinlist/0/coindescs/1/desc"
+          "Skills.json|/dataList/113/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/113/levelList/2/coinlist/1/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/114/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/114/levelList/1/coinlist/0/coindescs/1/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttack] 수비 위력 감소 2 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/22/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/22/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/22/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/23/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/23/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/23/levelList/2/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/113/levelList/0/coinlist/1/coindescs/0/desc"
+          "Skills_Abnormality_Refraction1_bokgak.json|/dataList/68/levelList/0/coinlist/0/coindescs/3/desc",
+          "Skills_Abnormality_Refraction1_bokgak.json|/dataList/72/levelList/0/coinlist/0/coindescs/2/desc"
         ]
       }
     ],
@@ -9588,6 +9453,7 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/83/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_personality-06.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_personality-06.json|/dataList/0/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_personality-06.json|/dataList/0/levelList/1/coinlist/0/coindescs/0/desc",
@@ -9599,48 +9465,28 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/83/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/89/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/89/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
-    "[OnSucceedAttack] 자신의 충전 횟수 2 증가": [
+    "[OnSucceedAttack] 자신의 충전 횟수 4 증가": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-01.json|/dataList/4/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/4/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/4/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/0/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/0/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/0/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/0/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/0/levelList/2/coinlist/1/coindescs/0/desc"
+          "Skills.json|/dataList/200/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/200/levelList/1/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/200/levelList/2/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/32/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/32/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/32/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/32/levelList/2/coinlist/1/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/91/levelList/2/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/91/levelList/2/coinlist/1/coindescs/1/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttack] 자신의 충전 횟수 3 증가": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-06.json|/dataList/1/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-06.json|/dataList/1/levelList/2/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/20/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/83/levelList/1/coinlist/2/coindescs/0/desc"
+          "Skills_Abnormality_Refraction2.json|/dataList/58/levelList/0/coinlist/1/coindescs/1/desc"
         ]
       }
     ],
@@ -9648,6 +9494,7 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/129/levelList/2/coinlist/0/coindescs/1/desc",
           "Skills_Ego_Personality-04.json|/dataList/3/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego_Personality-04.json|/dataList/3/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Ego_Personality-04.json|/dataList/3/levelList/2/coinlist/0/coindescs/0/desc",
@@ -9658,7 +9505,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/129/levelList/2/coinlist/0/coindescs/1/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/87/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/87/levelList/0/coinlist/1/coindescs/0/desc"
         ]
@@ -9683,15 +9529,6 @@
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-11.json|/dataList/1/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-11.json|/dataList/1/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/16/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/16/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
           "Skills.json|/dataList/196/levelList/1/coinlist/0/coindescs/1/desc",
           "Skills.json|/dataList/196/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/196/levelList/2/coinlist/0/coindescs/1/desc",
@@ -9701,6 +9538,15 @@
           "Skills.json|/dataList/221/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/51/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/51/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills_personality-11.json|/dataList/1/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills_personality-11.json|/dataList/1/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills_personality-x1p1c1.json|/dataList/16/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_personality-x1p1c1.json|/dataList/16/levelList/0/coinlist/1/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
           "Skills_Enemy.json|/dataList/186/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/186/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/186/levelList/0/coinlist/2/coindescs/0/desc"
@@ -9725,15 +9571,6 @@
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_Ego.json|/dataList/46/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-10.json|/dataList/1/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-11.json|/dataList/1/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_personality-11.json|/dataList/1/levelList/2/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
           "Skills.json|/dataList/124/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/124/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/196/levelList/2/coinlist/1/coindescs/0/desc",
@@ -9744,6 +9581,15 @@
           "Skills.json|/dataList/206/levelList/1/coinlist/1/coindescs/1/desc",
           "Skills.json|/dataList/221/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/221/levelList/2/coinlist/1/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/46/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_personality-10.json|/dataList/1/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_personality-11.json|/dataList/1/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills_personality-11.json|/dataList/1/levelList/2/coinlist/1/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
           "Skills_Enemy.json|/dataList/182/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/187/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/190/levelList/0/coinlist/0/coindescs/0/desc",
@@ -9758,6 +9604,13 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/205/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/205/levelList/1/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/205/levelList/2/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/206/levelList/0/coinlist/2/coindescs/1/desc",
+          "Skills.json|/dataList/206/levelList/1/coinlist/2/coindescs/1/desc",
+          "Skills.json|/dataList/75/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/88/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/27/levelList/1/coinlist/0/coindescs/1/desc",
           "Skills_Ego.json|/dataList/27/levelList/2/coinlist/0/coindescs/1/desc",
           "Skills_Ego_Personality-06.json|/dataList/1/levelList/0/coinlist/0/coindescs/1/desc",
@@ -9768,13 +9621,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/205/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/205/levelList/1/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/205/levelList/2/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/206/levelList/0/coinlist/2/coindescs/1/desc",
-          "Skills.json|/dataList/206/levelList/1/coinlist/2/coindescs/1/desc",
-          "Skills.json|/dataList/75/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/88/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c10p1.json|/dataList/49/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-a1c5p2.json|/dataList/13/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-a1c5p2.json|/dataList/13/levelList/0/coinlist/1/coindescs/0/desc",
@@ -9826,50 +9672,9 @@
         ]
       }
     ],
-    "[OnSucceedAttack] 진동 6 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/46/levelList/2/coinlist/0/coindescs/1/desc",
-          "Skills_personality-10.json|/dataList/1/levelList/2/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/125/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/125/levelList/2/coinlist/1/coindescs/0/desc"
-        ]
-      }
-    ],
     "[OnSucceedAttack] 진동 폭발": [
       {
         "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/11/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/11/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/19/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/20/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/27/levelList/2/coinlist/0/coindescs/2/desc",
-          "Skills_Ego.json|/dataList/35/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/35/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/36/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/36/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/46/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/46/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_Ego_Personality-05.json|/dataList/0/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills_Ego_Personality-09.json|/dataList/0/levelList/2/coinlist/0/coindescs/2/desc",
-          "Skills_Ego_Personality-09.json|/dataList/1/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills_Ego_Personality-09.json|/dataList/1/levelList/1/coinlist/0/coindescs/2/desc",
-          "Skills_Ego_Personality-09.json|/dataList/1/levelList/2/coinlist/0/coindescs/2/desc",
-          "Skills_Ego_Personality-09.json|/dataList/3/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Ego_Personality-09.json|/dataList/3/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego_Personality-09.json|/dataList/3/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_Ego_Personality-11.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
         "keys": [
           "Skills.json|/dataList/101/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/101/levelList/1/coinlist/0/coindescs/0/desc",
@@ -9881,6 +9686,21 @@
           "Skills.json|/dataList/52/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/52/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/77/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/11/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/11/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/19/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/20/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/27/levelList/2/coinlist/0/coindescs/2/desc",
+          "Skills_Ego.json|/dataList/35/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/35/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/36/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/36/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/46/levelList/1/coinlist/0/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
           "Skills_Abnormality.json|/dataList/142/levelList/0/coinlist/3/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/144/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/22/levelList/0/coinlist/0/coindescs/1/desc",
@@ -9890,35 +9710,21 @@
           "Skills_Enemy.json|/dataList/149/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/168/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/173/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Enemy.json|/dataList/177/levelList/0/coinlist/0/coindescs/1/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttack] 진동 폭발. 타격 취약 1 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/30/levelList/0/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/89/levelList/0/coinlist/0/coindescs/0/desc"
+          "Skills_Enemy.json|/dataList/177/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy.json|/dataList/180/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/180/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/184/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/194/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/203/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/219/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/228/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/95/levelList/0/coinlist/2/coindescs/0/desc"
         ]
       }
     ],
     "[OnSucceedAttack] 진동 횟수 1 증가": [
       {
         "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-10.json|/dataList/0/levelList/2/coinlist/1/coindescs/1/desc",
-          "Skills_personality-10.json|/dataList/0/levelList/2/coinlist/3/coindescs/1/desc",
-          "Skills_personality-x1p1c1.json|/dataList/28/levelList/0/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
         "keys": [
           "Skills.json|/dataList/198/levelList/0/coinlist/1/coindescs/1/desc",
           "Skills.json|/dataList/198/levelList/0/coinlist/2/coindescs/2/desc",
@@ -9932,31 +9738,16 @@
           "Skills.json|/dataList/220/levelList/1/coinlist/0/coindescs/1/desc",
           "Skills.json|/dataList/220/levelList/2/coinlist/0/coindescs/1/desc",
           "Skills.json|/dataList/87/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Enemy.json|/dataList/220/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_Enemy.json|/dataList/229/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttack] 진동 횟수 2 증가": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-01.json|/dataList/0/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/0/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/1/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-02.json|/dataList/4/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills_personality-08.json|/dataList/1/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/18/levelList/0/coinlist/3/coindescs/0/desc"
+          "Skills_personality-10.json|/dataList/0/levelList/2/coinlist/1/coindescs/1/desc",
+          "Skills_personality-10.json|/dataList/0/levelList/2/coinlist/3/coindescs/1/desc",
+          "Skills_personality-x1p1c1.json|/dataList/28/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/202/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/209/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/209/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/209/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/53/levelList/1/coinlist/3/coindescs/0/desc"
+          "Skills_Enemy.json|/dataList/220/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/229/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
@@ -10023,31 +9814,6 @@
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-01.json|/dataList/9/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/9/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/9/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/0/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/0/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/0/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/0/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/0/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/0/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/1/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/1/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/1/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/1/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/3/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-05.json|/dataList/3/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-06.json|/dataList/4/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-06.json|/dataList/4/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills_personality-06.json|/dataList/6/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills_personality-07.json|/dataList/2/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-07.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
           "Skills.json|/dataList/108/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills.json|/dataList/163/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/163/levelList/1/coinlist/1/coindescs/0/desc",
@@ -10063,39 +9829,33 @@
           "Skills.json|/dataList/68/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/68/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/68/levelList/2/coinlist/1/coindescs/0/desc",
+          "Skills_personality-01.json|/dataList/9/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_personality-01.json|/dataList/9/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills_personality-01.json|/dataList/9/levelList/2/coinlist/1/coindescs/0/desc",
+          "Skills_personality-03.json|/dataList/0/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills_personality-03.json|/dataList/0/levelList/2/coinlist/0/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
           "Skills_Abnormality-a1c5p3.json|/dataList/38/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/38/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/69/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/69/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_Abnormality-a1c5p3.json|/dataList/69/levelList/0/coinlist/2/coindescs/0/desc"
+          "Skills_Abnormality-a1c5p3.json|/dataList/69/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/69/levelList/0/coinlist/3/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/69/levelList/0/coinlist/4/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/72/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/72/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality_Refraction3.json|/dataList/24/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality_Refraction3.json|/dataList/24/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
     "[OnSucceedAttack] 출혈 2 부여": [
       {
         "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/32/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/47/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/8/levelList/1/coinlist/1/coindescs/1/desc",
-          "Skills_personality-01.json|/dataList/8/levelList/2/coinlist/1/coindescs/1/desc",
-          "Skills_personality-03.json|/dataList/0/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/0/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills_personality-06.json|/dataList/6/levelList/1/coinlist/3/coindescs/0/desc",
-          "Skills_personality-07.json|/dataList/0/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-07.json|/dataList/0/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills_personality-08.json|/dataList/4/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-08.json|/dataList/4/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills_personality-08.json|/dataList/5/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills_personality-08.json|/dataList/6/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills_personality-08.json|/dataList/6/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/32/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/33/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/33/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
         "keys": [
           "Skills.json|/dataList/103/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/104/levelList/1/coinlist/0/coindescs/0/desc",
@@ -10113,10 +9873,34 @@
           "Skills.json|/dataList/48/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/67/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/68/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/32/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/47/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_personality-01.json|/dataList/8/levelList/1/coinlist/1/coindescs/1/desc",
+          "Skills_personality-01.json|/dataList/8/levelList/2/coinlist/1/coindescs/1/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
           "Skills_Abnormality-a1c5p3.json|/dataList/24/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/24/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/24/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills_Abnormality-a1c5p3.json|/dataList/55/levelList/0/coinlist/0/coindescs/0/desc"
+          "Skills_Abnormality-a1c5p3.json|/dataList/55/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/55/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/75/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/75/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/75/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy-a1c5p1.json|/dataList/17/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy-a1c5p1.json|/dataList/18/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy-a1c5p1.json|/dataList/18/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Enemy-a1c5p1.json|/dataList/9/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy-a1c5p2.json|/dataList/24/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy-a1c5p2.json|/dataList/25/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy-a1c5p2.json|/dataList/25/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/1/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/1/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/1/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy-walpu2.json|/dataList/1/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
@@ -10124,6 +9908,11 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/108/levelList/1/coinlist/1/coindescs/1/desc",
+          "Skills.json|/dataList/108/levelList/2/coinlist/1/coindescs/1/desc",
+          "Skills.json|/dataList/122/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/122/levelList/1/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/67/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Assist.json|/dataList/2/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Assist.json|/dataList/2/levelList/3/coinlist/0/coindescs/0/desc",
           "Skills_Assist.json|/dataList/2/levelList/4/coinlist/0/coindescs/0/desc",
@@ -10140,11 +9929,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/108/levelList/1/coinlist/1/coindescs/1/desc",
-          "Skills.json|/dataList/108/levelList/2/coinlist/1/coindescs/1/desc",
-          "Skills.json|/dataList/122/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/122/levelList/1/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/67/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/56/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/56/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/61/levelList/0/coinlist/0/coindescs/0/desc",
@@ -10159,7 +9943,8 @@
           "Skills_Abnormality_Refraction2.json|/dataList/31/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/41/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Enemy-a1c5p1.json|/dataList/27/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Enemy-a1c5p2.json|/dataList/21/levelList/0/coinlist/1/coindescs/1/desc"
+          "Skills_Enemy-a1c5p2.json|/dataList/21/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Enemy-walpu2.json|/dataList/12/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
@@ -10213,13 +9998,6 @@
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-08.json|/dataList/6/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-08.json|/dataList/6/levelList/1/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
           "Skills.json|/dataList/184/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/184/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/237/levelList/0/coinlist/2/coindescs/0/desc",
@@ -10230,6 +10008,13 @@
           "Skills.json|/dataList/238/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/238/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/238/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills_personality-08.json|/dataList/6/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_personality-08.json|/dataList/6/levelList/1/coinlist/1/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
           "Skills_Abnormality-a1c5p3.json|/dataList/29/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/29/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/29/levelList/0/coinlist/2/coindescs/0/desc",
@@ -10239,38 +10024,42 @@
           "Skills_Abnormality-a1c5p3.json|/dataList/45/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/47/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/49/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Abnormality-a1c5p3.json|/dataList/49/levelList/0/coinlist/1/coindescs/0/desc"
+          "Skills_Abnormality-a1c5p3.json|/dataList/49/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/49/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy-a1c5p1.json|/dataList/28/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/6/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/6/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/6/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/6/levelList/0/coinlist/3/coindescs/0/desc"
         ]
       }
     ],
-    "[OnSucceedAttack] 출혈 횟수 2 부여": [
+    "[OnSucceedAttack] 출혈 횟수 3 증가": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/10/levelList/0/coinlist/2/coindescs/0/desc"
+          "Skills.json|/dataList/49/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/49/levelList/1/coinlist/1/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/29/levelList/1/coinlist/2/coindescs/0/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttack] 충전 횟수 2 증가": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego_Personality-04.json|/dataList/2/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Ego_Personality-04.json|/dataList/2/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego_Personality-04.json|/dataList/2/levelList/2/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/236/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/236/levelList/2/coinlist/0/coindescs/0/desc"
+          "Skills_Abnormality-a1c5p3.json|/dataList/48/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/51/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/61/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/61/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/62/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/70/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality.json|/dataList/234/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/61/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/42/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy-a1c5p1.json|/dataList/23/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy-a1c5p1.json|/dataList/9/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy-a1c5p2.json|/dataList/21/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy-a1c9116.json|/dataList/11/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Enemy-walpu2.json|/dataList/13/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy-walpu2.json|/dataList/9/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       }
     ],
@@ -10295,51 +10084,9 @@
         ]
       }
     ],
-    "[OnSucceedAttack] 침잠 1 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/129/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/129/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/212/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/5/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/64/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/91/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/91/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/91/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/91/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/93/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/93/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/93/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/93/levelList/0/coinlist/3/coindescs/0/desc",
-          "Skills.json|/dataList/93/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/93/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/93/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/93/levelList/1/coinlist/3/coindescs/0/desc"
-        ]
-      }
-    ],
     "[OnSucceedAttack] 침잠 2 부여": [
       {
         "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/11/levelList/2/coinlist/0/coindescs/3/desc",
-          "Skills_personality-09.json|/dataList/1/levelList/0/coinlist/3/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/2/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/20/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/21/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/22/levelList/0/coinlist/1/coindescs/1/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
         "keys": [
           "Skills.json|/dataList/129/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/129/levelList/1/coinlist/2/coindescs/0/desc",
@@ -10352,6 +10099,18 @@
           "Skills.json|/dataList/63/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/64/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/65/levelList/1/coinlist/1/coindescs/1/desc",
+          "Skills_Ego.json|/dataList/11/levelList/2/coinlist/0/coindescs/3/desc",
+          "Skills_personality-09.json|/dataList/1/levelList/0/coinlist/3/coindescs/0/desc",
+          "Skills_personality-x1p1c1.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_personality-x1p1c1.json|/dataList/2/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_personality-x1p1c1.json|/dataList/20/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_personality-x1p1c1.json|/dataList/21/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_personality-x1p1c1.json|/dataList/22/levelList/0/coinlist/1/coindescs/1/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
           "Skills_Abnormality.json|/dataList/151/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Abnormality.json|/dataList/151/levelList/0/coinlist/1/coindescs/1/desc",
           "Skills_Abnormality_Mirror.json|/dataList/77/levelList/0/coinlist/0/coindescs/1/desc",
@@ -10392,6 +10151,7 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/128/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/66/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/67/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Ego_Personality-04.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
@@ -10401,7 +10161,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/128/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/15/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/18/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/21/levelList/0/coinlist/0/coindescs/0/desc",
@@ -10414,6 +10173,10 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/142/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/142/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/215/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/215/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_Ego.json|/dataList/12/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Ego.json|/dataList/21/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/21/levelList/2/coinlist/0/coindescs/0/desc",
@@ -10425,10 +10188,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/142/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/142/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/215/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/215/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/143/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/169/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Mirror.json|/dataList/45/levelList/0/coinlist/0/coindescs/0/desc",
@@ -10485,13 +10244,13 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/92/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/35/levelList/1/coinlist/0/coindescs/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/92/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/16/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/16/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/18/levelList/0/coinlist/0/coindescs/0/desc",
@@ -10522,19 +10281,6 @@
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_Ego.json|/dataList/40/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/41/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/41/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-01.json|/dataList/4/levelList/2/coinlist/0/coindescs/1/desc",
-          "Skills_personality-x1p1c1.json|/dataList/21/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/22/levelList/0/coinlist/1/coindescs/2/desc",
-          "Skills_personality-x1p1c1.json|/dataList/36/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/40/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
           "Skills.json|/dataList/116/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills.json|/dataList/132/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/132/levelList/2/coinlist/1/coindescs/0/desc",
@@ -10552,9 +10298,27 @@
           "Skills.json|/dataList/64/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills.json|/dataList/65/levelList/1/coinlist/1/coindescs/2/desc",
           "Skills.json|/dataList/85/levelList/0/coinlist/3/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/40/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/41/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Ego.json|/dataList/41/levelList/1/coinlist/0/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
           "Skills_Abnormality.json|/dataList/167/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/192/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Abnormality.json|/dataList/192/levelList/0/coinlist/1/coindescs/0/desc"
+          "Skills_Abnormality.json|/dataList/192/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality.json|/dataList/229/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality91-4.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality91-4.json|/dataList/0/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality91-4.json|/dataList/0/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/43/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/51/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality_Refraction6.json|/dataList/22/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality_Refraction6.json|/dataList/22/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/198/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       }
     ],
@@ -10562,6 +10326,16 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/252/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/252/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/252/levelList/2/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/253/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/253/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/254/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/254/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/60/levelList/1/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/60/levelList/2/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/85/levelList/0/coinlist/4/coindescs/0/desc",
           "Skills_Ego.json|/dataList/42/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/59/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego_Personality-10.json|/dataList/0/levelList/2/coinlist/0/coindescs/0/desc",
@@ -10574,16 +10348,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/252/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/252/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/252/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/253/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/253/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/254/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/254/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/60/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/60/levelList/2/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/85/levelList/0/coinlist/4/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/138/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/168/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/188/levelList/0/coinlist/0/coindescs/0/desc",
@@ -10593,24 +10357,17 @@
           "Skills_Abnormality_Refraction2.json|/dataList/47/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/53/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy.json|/dataList/142/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Enemy.json|/dataList/162/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttack] 파열 4 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_Ego.json|/dataList/40/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/40/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_Ego.json|/dataList/67/levelList/1/coinlist/0/coindescs/1/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/226/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/226/levelList/1/coinlist/0/coindescs/0/desc"
+          "Skills_Enemy.json|/dataList/162/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/216/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/234/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/12/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/12/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/12/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/2/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/2/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/7/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/7/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
@@ -10618,6 +10375,12 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/153/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/153/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/153/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/214/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/215/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills.json|/dataList/215/levelList/1/coinlist/1/coindescs/1/desc",
           "Skills_Ego.json|/dataList/42/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_personality-06.json|/dataList/2/levelList/1/coinlist/2/coindescs/0/desc"
         ]
@@ -10625,12 +10388,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/153/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/153/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/153/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/214/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/215/levelList/0/coinlist/1/coindescs/1/desc",
-          "Skills.json|/dataList/215/levelList/1/coinlist/1/coindescs/1/desc",
           "Skills_Abnormality.json|/dataList/200/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/210/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality91-4.json|/dataList/3/levelList/0/coinlist/0/coindescs/0/desc",
@@ -10644,23 +10401,40 @@
         ]
       }
     ],
-    "[OnSucceedAttack] 파열 횟수 1 증가": [
+    "[OnSucceedAttack] 파열 횟수 2 증가": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/42/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/45/levelList/0/coinlist/0/coindescs/0/desc"
+          "Skills.json|/dataList/177/levelList/2/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/209/levelList/2/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/249/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/249/levelList/1/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/249/levelList/2/coinlist/0/coindescs/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/134/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/177/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/177/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/177/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/209/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/209/levelList/1/coinlist/0/coindescs/1/desc"
+          "Skills_Abnormality.json|/dataList/168/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality.json|/dataList/186/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality_Mirror.json|/dataList/44/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality_Refraction.json|/dataList/19/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/3/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/41/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/51/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality_Refraction6.json|/dataList/21/levelList/0/coinlist/1/coindescs/2/desc",
+          "Skills_Enemy.json|/dataList/215/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/215/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/223/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/223/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/225/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy.json|/dataList/225/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/16/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/16/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/16/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/21/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/21/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy91-4.json|/dataList/21/levelList/0/coinlist/2/coindescs/0/desc"
         ]
       }
     ],
@@ -10668,14 +10442,14 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/250/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/250/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Ego_Personality-10.json|/dataList/1/levelList/2/coinlist/0/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/250/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/250/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/167/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/194/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/210/levelList/0/coinlist/1/coindescs/0/desc",
@@ -10692,42 +10466,13 @@
         ]
       }
     ],
-    "[OnSucceedAttack] 피해량의 10%만큼 흐트러짐 손상을 입힘": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-09.json|/dataList/36/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills_personality-09.json|/dataList/36/levelList/0/coinlist/1/coindescs/1/desc",
-          "Skills_personality-09.json|/dataList/36/levelList/0/coinlist/2/coindescs/1/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/93/levelList/0/coinlist/3/coindescs/1/desc",
-          "Skills.json|/dataList/93/levelList/1/coinlist/3/coindescs/1/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttack] 피해량의 40%만큼 흐트러짐 손상을 입힘": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_Assist-a1c9p3.json|/dataList/2/levelList/0/coinlist/0/coindescs/2/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/93/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/93/levelList/1/coinlist/0/coindescs/1/desc"
-        ]
-      }
-    ],
     "[OnSucceedAttack] 피해량의 50%만큼 체력 회복": [
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/152/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/153/levelList/2/coinlist/0/coindescs/1/desc",
+          "Skills.json|/dataList/161/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Ego.json|/dataList/10/levelList/2/coinlist/0/coindescs/1/desc",
           "Skills_Ego_Personality-a1c9p3.json|/dataList/1/levelList/0/coinlist/0/coindescs/1/desc"
         ]
@@ -10735,104 +10480,59 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/152/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/153/levelList/2/coinlist/0/coindescs/1/desc",
-          "Skills.json|/dataList/161/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy-a1c5p1.json|/dataList/23/levelList/0/coinlist/0/coindescs/2/desc",
           "Skills_Enemy-a1c5p2.json|/dataList/11/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       }
     ],
-    "[OnSucceedAttack] 호흡 1 얻음": [
+    "[OnSucceedAttack] 피해량의 50%만큼 흐트러짐 회복": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-04.json|/dataList/5/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/5/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/5/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/5/levelList/2/coinlist/1/coindescs/0/desc"
+          "Skills.json|/dataList/130/levelList/1/coinlist/0/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/121/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/121/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/121/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/121/levelList/2/coinlist/2/coindescs/0/desc"
+          "Skills_Abnormality_Refraction2.json|/dataList/75/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/75/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Abnormality_Refraction2.json|/dataList/75/levelList/0/coinlist/2/coindescs/1/desc",
+          "Skills_Abnormality_Refraction2_bokgak.json|/dataList/77/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Abnormality_Refraction2_bokgak.json|/dataList/77/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Abnormality_Refraction2_bokgak.json|/dataList/77/levelList/0/coinlist/2/coindescs/1/desc"
         ]
       }
     ],
-    "[OnSucceedAttack] 호흡 2 얻음": [
+    "[OnSucceedAttack] 호흡 횟수 1 증가": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-01.json|/dataList/9/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/5/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/5/levelList/2/coinlist/0/coindescs/0/desc"
+          "Skills.json|/dataList/240/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/240/levelList/2/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/240/levelList/2/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/98/levelList/1/coinlist/0/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/108/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/108/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/121/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/121/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/129/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/129/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/129/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/95/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/95/levelList/2/coinlist/1/coindescs/0/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttack] 호흡 4 얻음": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-12.json|/dataList/5/levelList/2/coinlist/0/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/107/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/136/levelList/2/coinlist/0/coindescs/0/desc"
-        ]
-      }
-    ],
-    "[OnSucceedAttack] 화상 1 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-08.json|/dataList/5/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills_personality-08.json|/dataList/5/levelList/2/coinlist/2/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/148/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/148/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/148/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/148/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/149/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/149/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/150/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/150/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/150/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/180/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/180/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/193/levelList/1/coinlist/1/coindescs/1/desc",
-          "Skills.json|/dataList/193/levelList/1/coinlist/2/coindescs/1/desc",
-          "Skills.json|/dataList/232/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/232/levelList/0/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/232/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/232/levelList/1/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/232/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/232/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/233/levelList/0/coinlist/0/coindescs/0/desc"
+          "Skills_Abnormality-a1c5p3.json|/dataList/25/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/25/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/25/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/25/levelList/0/coinlist/3/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/30/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/30/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/30/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Abnormality-a1c5p3.json|/dataList/30/levelList/0/coinlist/3/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/2/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/2/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/2/levelList/0/coinlist/3/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/7/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/7/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/7/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy-a1c5p3.json|/dataList/7/levelList/0/coinlist/3/coindescs/0/desc"
         ]
       }
     ],
@@ -10855,17 +10555,17 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/192/levelList/1/coinlist/1/coindescs/1/desc",
+          "Skills.json|/dataList/55/levelList/2/coinlist/1/coindescs/0/desc",
+          "Skills.json|/dataList/56/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/56/levelList/1/coinlist/0/coindescs/0/desc",
+          "Skills.json|/dataList/56/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/2/levelList/0/coinlist/0/coindescs/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/192/levelList/1/coinlist/1/coindescs/1/desc",
-          "Skills.json|/dataList/55/levelList/2/coinlist/1/coindescs/0/desc",
-          "Skills.json|/dataList/56/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/56/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/56/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/148/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/148/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/148/levelList/0/coinlist/2/coindescs/0/desc",
@@ -10882,6 +10582,12 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/149/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/149/levelList/1/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/149/levelList/2/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/150/levelList/0/coinlist/3/coindescs/0/desc",
+          "Skills.json|/dataList/150/levelList/1/coinlist/3/coindescs/0/desc",
+          "Skills.json|/dataList/192/levelList/2/coinlist/1/coindescs/1/desc",
           "Skills_Ego.json|/dataList/64/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/65/levelList/0/coinlist/0/coindescs/0/desc"
         ]
@@ -10889,12 +10595,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/149/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/149/levelList/1/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/149/levelList/2/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/150/levelList/0/coinlist/3/coindescs/0/desc",
-          "Skills.json|/dataList/150/levelList/1/coinlist/3/coindescs/0/desc",
-          "Skills.json|/dataList/192/levelList/2/coinlist/1/coindescs/1/desc",
           "Skills_Abnormality.json|/dataList/146/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/146/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality_Mirror.json|/dataList/72/levelList/0/coinlist/0/coindescs/0/desc",
@@ -10920,6 +10620,7 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/235/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/54/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_personality-08.json|/dataList/6/levelList/0/coinlist/3/coindescs/0/desc",
           "Skills_personality-08.json|/dataList/6/levelList/1/coinlist/3/coindescs/0/desc"
@@ -10928,7 +10629,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/235/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/59/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/59/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Abnormality-a1c5p3.json|/dataList/59/levelList/0/coinlist/2/coindescs/0/desc"
@@ -10939,6 +10639,8 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/234/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/234/levelList/1/coinlist/2/coindescs/0/desc",
           "Skills_Ego.json|/dataList/55/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/57/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/57/levelList/1/coinlist/0/coindescs/0/desc",
@@ -10948,8 +10650,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/234/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/234/levelList/1/coinlist/2/coindescs/0/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/74/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Refraction2.json|/dataList/74/levelList/0/coinlist/1/coindescs/0/desc"
         ]
@@ -10959,6 +10659,8 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/57/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/57/levelList/1/coinlist/2/coindescs/0/desc",
           "Skills_Ego.json|/dataList/54/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_Ego.json|/dataList/54/levelList/2/coinlist/0/coindescs/0/desc"
         ]
@@ -10966,8 +10668,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/57/levelList/0/coinlist/2/coindescs/0/desc",
-          "Skills.json|/dataList/57/levelList/1/coinlist/2/coindescs/0/desc",
           "Skills_Abnormality.json|/dataList/147/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality_Mirror.json|/dataList/73/levelList/0/coinlist/0/coindescs/0/desc"
         ]
@@ -11429,48 +11129,6 @@
         ]
       }
     ],
-    "[WhenUse] 다음 턴에 수비 위력 증가 3 얻음": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/17/levelList/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/52/levelList/1/desc"
-        ]
-      }
-    ],
-    "[WhenUse] 다음 턴에 신속 1을 얻음": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-06.json|/dataList/5/levelList/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/245/levelList/0/desc"
-        ]
-      }
-    ],
-    "[WhenUse] 다음 턴에 신속 2를 얻음": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-06.json|/dataList/5/levelList/1/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/245/levelList/1/desc"
-        ]
-      }
-    ],
     "[WhenUse] 대상의 [Laceration] 4당, 코인 위력 +1 (최대 2)": [
       {
         "group": "ally|desc|",
@@ -11497,6 +11155,20 @@
         "group": "enemy|desc|",
         "keys": [
           "Skills_Abnormality-a1c971.json|/dataList/4/levelList/0/desc"
+        ]
+      }
+    ],
+    "[WhenUse] 보호 1 얻음": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills.json|/dataList/110/levelList/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Enemy.json|/dataList/120/levelList/0/desc"
         ]
       }
     ],
@@ -11593,84 +11265,19 @@
         ]
       }
     ],
-    "[WhenUse] 자신의 충전 횟수 2 증가": [
+    "[WhenUse] 자신의 충전 횟수 1 증가": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-01.json|/dataList/4/levelList/0/desc",
-          "Skills_personality-01.json|/dataList/4/levelList/1/desc",
-          "Skills_personality-06.json|/dataList/0/levelList/0/desc"
+          "Skills.json|/dataList/86/levelList/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/19/levelList/2/desc",
-          "Skills.json|/dataList/200/levelList/2/desc",
-          "Skills.json|/dataList/208/levelList/1/desc",
-          "Skills.json|/dataList/208/levelList/2/desc",
-          "Skills.json|/dataList/91/levelList/2/desc"
-        ]
-      }
-    ],
-    "[WhenUse] 자신의 충전 횟수 3 증가": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-06.json|/dataList/0/levelList/1/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/20/levelList/2/desc",
-          "Skills.json|/dataList/209/levelList/1/desc",
-          "Skills.json|/dataList/209/levelList/2/desc"
-        ]
-      }
-    ],
-    "[WhenUse] 자신의 충전 횟수 5 증가": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-01.json|/dataList/5/levelList/0/desc",
-          "Skills_personality-04.json|/dataList/1/levelList/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/92/levelList/1/desc"
-        ]
-      }
-    ],
-    "[WhenUse] 정신력 7 감소": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-09.json|/dataList/30/levelList/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/192/levelList/0/desc",
-          "Skills.json|/dataList/192/levelList/1/desc",
-          "Skills.json|/dataList/192/levelList/2/desc"
-        ]
-      }
-    ],
-    "[WhenUse] 호흡 2 얻음": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-12.json|/dataList/4/levelList/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/13/levelList/1/desc"
+          "Skills_Abnormality_Refraction2.json|/dataList/51/levelList/0/desc",
+          "Skills_Enemy.json|/dataList/242/levelList/0/desc",
+          "Skills_Enemy.json|/dataList/243/levelList/0/desc"
         ]
       }
     ],
@@ -11689,62 +11296,20 @@
         ]
       }
     ],
-    "[WinDuel] 공격 위력 증가 1 얻음": [
+    "[WinDuel] 정신력 5 회복": [
       {
         "group": "ally|desc|",
         "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/38/levelList/0/desc"
+          "Skills.json|/dataList/172/levelList/1/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/118/levelList/0/desc",
-          "Skills.json|/dataList/118/levelList/1/desc"
-        ]
-      }
-    ],
-    "[WinDuel] 다음 턴에 공격 위력 증가 2 얻음": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/9/levelList/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/28/levelList/1/desc",
-          "Skills.json|/dataList/28/levelList/2/desc"
-        ]
-      }
-    ],
-    "[WinDuel] 다음 턴에 신속 2 얻음": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/8/levelList/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/27/levelList/1/desc"
-        ]
-      }
-    ],
-    "[WinDuel] 수비 위력 감소 3 부여": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/29/levelList/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/88/levelList/1/desc",
-          "Skills.json|/dataList/88/levelList/2/desc"
+          "Skills_Enemy-a1c951.json|/dataList/1/levelList/0/desc",
+          "Skills_Enemy-a1c951.json|/dataList/10/levelList/0/desc",
+          "Skills_Enemy-a1c951.json|/dataList/4/levelList/0/desc",
+          "Skills_Enemy-a1c951.json|/dataList/7/levelList/0/desc"
         ]
       }
     ],
@@ -11752,13 +11317,13 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/117/levelList/1/desc",
           "Skills_personality-x1p1c1.json|/dataList/37/levelList/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/117/levelList/1/desc",
           "Skills_Abnormality-cultivation.json|/dataList/20/levelList/0/desc"
         ]
       }
@@ -12087,6 +11652,21 @@
         "speaker": "yisang",
         "keys": [
           "StoryData/S1031B.json|/dataList/1/content"
+        ]
+      }
+    ],
+    "…쯧. 얼마나 썼다고 벌써.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/128/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|rodion",
+        "speaker": "rodion",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/680/dlg"
         ]
       }
     ],
@@ -13067,8 +12647,8 @@
         ]
       },
       {
-        "group": "story-main|teller|경쾌한마리아치조직원",
-        "speaker": "경쾌한마리아치조직원",
+        "group": "story-main|teller|los-mariachis",
+        "speaker": "los-mariachis",
         "keys": [
           "StoryData/S212A.json|/dataList/39/teller",
           "StoryData/S212A.json|/dataList/40/teller",
@@ -13096,8 +12676,8 @@
         ]
       },
       {
-        "group": "story-main|model|경쾌한마리아치조직원",
-        "speaker": "경쾌한마리아치조직원",
+        "group": "story-main|model|los-mariachis",
+        "speaker": "los-mariachis",
         "keys": [
           "StoryData/S212A.json|/dataList/39/model",
           "StoryData/S212A.json|/dataList/40/model",
@@ -13121,8 +12701,8 @@
         ]
       },
       {
-        "group": "story-main|teller|N사심문관1",
-        "speaker": "N사심문관1",
+        "group": "story-main|teller|n-corp-inquisitors",
+        "speaker": "n-corp-inquisitors",
         "keys": [
           "StoryData/S322B.json|/dataList/10/teller",
           "StoryData/S322B.json|/dataList/14/teller",
@@ -13213,6 +12793,21 @@
         "group": "enemy|name|",
         "keys": [
           "Skills_Abnormality-a1c10p2.json|/dataList/26/levelList/0/name"
+        ]
+      }
+    ],
+    "곧, 여명이 찾아오겠지.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-walpu10.json|/dataList/1/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|gregor",
+        "speaker": "gregor",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/718/dlg"
         ]
       }
     ],
@@ -13712,8 +13307,8 @@
         ]
       },
       {
-        "group": "story-main|place|H사직원",
-        "speaker": "H사직원",
+        "group": "story-main|place|h-corp-researcher",
+        "speaker": "h-corp-researcher",
         "keys": [
           "StoryData/8D107A.json|/dataList/34/place",
           "StoryData/8D203A.json|/dataList/38/place"
@@ -13803,6 +13398,21 @@
         "group": "mirror|name|",
         "keys": [
           "ActionEvents_Mirror6.json|/dataList/3/name"
+        ]
+      }
+    ],
+    "그 누구보다 슬퍼하고 있는 나를 위해! 피어올라라!": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-walpu10.json|/dataList/27/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|sinclair",
+        "speaker": "sinclair",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/708/dlg"
         ]
       }
     ],
@@ -14224,6 +13834,22 @@
         ]
       }
     ],
+    "꿰뚫린 채로, 흔들려라.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-walpu10.json|/dataList/31/dlg",
+          "BattleSpeechBubbleDlg-walpu10.json|/dataList/32/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|outis",
+        "speaker": "outis",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/853/dlg"
+        ]
+      }
+    ],
     "끊임없이 진동하는 차원": [
       {
         "group": "enemy|name|",
@@ -14399,22 +14025,6 @@
         ]
       }
     ],
-    "나를 데려가지 마…": [
-      {
-        "group": "story-main|content|donquixote",
-        "speaker": "donquixote",
-        "keys": [
-          "StoryData/S736B.json|/dataList/142/content"
-        ]
-      },
-      {
-        "group": "story-main|content|옛산초",
-        "speaker": "옛산초",
-        "keys": [
-          "StoryData/7D108B.json|/dataList/70/content"
-        ]
-      }
-    ],
     "나를 따르는 자들은 모두 내게 바라기만 할 뿐, 답을 내놓지 않았다.": [
       {
         "group": "rpg|text|뷔페",
@@ -14460,6 +14070,21 @@
         "speaker": "카르멘진짜",
         "keys": [
           "StoryData/S1041B.json|/dataList/49/content"
+        ]
+      }
+    ],
+    "나비가 날개짓하듯.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-walpu10.json|/dataList/8/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|faust",
+        "speaker": "faust",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/715/dlg"
         ]
       }
     ],
@@ -14591,22 +14216,6 @@
         "group": "enemy|name|",
         "keys": [
           "Skills_Abnormality_Refraction6.json|/dataList/49/levelList/0/name"
-        ]
-      }
-    ],
-    "난 떠나고 싶지 않아, 왜 내 의지에 반하여 움직이는 거야…": [
-      {
-        "group": "story-main|content|donquixote",
-        "speaker": "donquixote",
-        "keys": [
-          "StoryData/S736B.json|/dataList/139/content"
-        ]
-      },
-      {
-        "group": "story-main|content|옛산초",
-        "speaker": "옛산초",
-        "keys": [
-          "StoryData/7D108B.json|/dataList/67/content"
         ]
       }
     ],
@@ -15108,8 +14717,8 @@
         ]
       },
       {
-        "group": "story-main|content|어르신2그림자",
-        "speaker": "어르신2그림자",
+        "group": "story-main|content|xianren",
+        "speaker": "xianren",
         "keys": [
           "StoryData/S832B.json|/dataList/15/content"
         ]
@@ -15467,8 +15076,8 @@
         ]
       },
       {
-        "group": "story-main|teller|피쿼드호주민1",
-        "speaker": "피쿼드호주민1",
+        "group": "story-main|teller|pequod-town-villagers",
+        "speaker": "pequod-town-villagers",
         "keys": [
           "StoryData/5D104B.json|/dataList/20/teller",
           "StoryData/5D104B.json|/dataList/22/teller"
@@ -15477,15 +15086,15 @@
     ],
     "능글맞은 작은 아우": [
       {
-        "group": "identity|model|능글맞은 작은 아우",
-        "speaker": "능글맞은 작은 아우",
+        "group": "identity|model|middle-little-brothers",
+        "speaker": "middle-little-brothers",
         "keys": [
           "StoryData/P10507.json|/dataList/48/model"
         ]
       },
       {
-        "group": "identity|teller|능글맞은 작은 아우",
-        "speaker": "능글맞은 작은 아우",
+        "group": "identity|teller|middle-little-brothers",
+        "speaker": "middle-little-brothers",
         "keys": [
           "StoryData/P10507.json|/dataList/48/teller"
         ]
@@ -15994,53 +15603,6 @@
         ]
       }
     ],
-    "대상보다 속도가 빠르면 피해량 +20%": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/41/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/41/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/133/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/133/levelList/1/coinlist/1/coindescs/0/desc"
-        ]
-      }
-    ],
-    "대상의 [Combustion]이 6 이상이면, 코인 위력 +1": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-12.json|/dataList/20/levelList/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/148/levelList/2/desc",
-          "Skills.json|/dataList/149/levelList/2/desc",
-          "Skills.json|/dataList/233/levelList/1/desc"
-        ]
-      }
-    ],
-    "대상의 체력이 50% 이상이면, 피해량 +20%": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/42/levelList/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/134/levelList/0/desc",
-          "Skills.json|/dataList/134/levelList/1/desc"
-        ]
-      }
-    ],
     "대상이 가지고 있는 진동 5마다, 대상의 합 위력 -1": [
       {
         "group": "keywords|desc|",
@@ -16054,22 +15616,6 @@
         "keys": [
           "BattleKeywords.json|/dataList/163/summary",
           "Bufs.json|/dataList/184/summary"
-        ]
-      }
-    ],
-    "대상이 이번 턴에 피해를 받은 상태면 피해량 +30%": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Skills_personality-x1p1c1.json|/dataList/13/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-x1p1c1.json|/dataList/13/levelList/0/coinlist/1/coindescs/0/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Skills.json|/dataList/40/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills.json|/dataList/40/levelList/1/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
@@ -17433,22 +16979,6 @@
         ]
       }
     ],
-    "로시난테, 멈춰! 제발 걸어가지 마! 안돼!!!": [
-      {
-        "group": "story-main|content|donquixote",
-        "speaker": "donquixote",
-        "keys": [
-          "StoryData/S736B.json|/dataList/138/content"
-        ]
-      },
-      {
-        "group": "story-main|content|옛산초",
-        "speaker": "옛산초",
-        "keys": [
-          "StoryData/7D108B.json|/dataList/66/content"
-        ]
-      }
-    ],
     "료. 고. 파. 조수, 그레고르 이야기": [
       {
         "group": "mirror|content|",
@@ -18210,8 +17740,8 @@
     ],
     "먼 옛날, 어느 전장": [
       {
-        "group": "story-main|place|산초",
-        "speaker": "산초",
+        "group": "story-main|place|donquixote",
+        "speaker": "donquixote",
         "keys": [
           "StoryData/7D102B.json|/dataList/9/place"
         ]
@@ -18832,22 +18362,6 @@
         ]
       }
     ],
-    "모험은 싫어, 부탁이니까 제발 멈춰!": [
-      {
-        "group": "story-main|content|donquixote",
-        "speaker": "donquixote",
-        "keys": [
-          "StoryData/S736B.json|/dataList/140/content"
-        ]
-      },
-      {
-        "group": "story-main|content|옛산초",
-        "speaker": "옛산초",
-        "keys": [
-          "StoryData/7D108B.json|/dataList/68/content"
-        ]
-      }
-    ],
     "모험은 용맹스럽게 하고, 고난은 견뎌가며.": [
       {
         "group": "story-main|content|",
@@ -18893,8 +18407,8 @@
         ]
       },
       {
-        "group": "story-main|teller|몸푸는철공회조직원",
-        "speaker": "몸푸는철공회조직원",
+        "group": "story-main|teller|tieqiu-crew",
+        "speaker": "tieqiu-crew",
         "keys": [
           "StoryData/S213B.json|/dataList/1/teller",
           "StoryData/S213B.json|/dataList/3/teller",
@@ -19120,6 +18634,37 @@
         "keys": [
           "Skills_Abnormality-a1c9p3.json|/dataList/15/levelList/0/name",
           "Skills_Abnormality_Mirror7.json|/dataList/30/levelList/0/name"
+        ]
+      }
+    ],
+    "반달리즘은 사절이랍니다!": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/210/dlg",
+          "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/211/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|honglu",
+        "speaker": "honglu",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/550/dlg"
+        ]
+      }
+    ],
+    "반응형 사출. 전부 조각내두죠.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-walpu10.json|/dataList/10/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|faust",
+        "speaker": "faust",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/714/dlg"
         ]
       }
     ],
@@ -19423,22 +18968,6 @@
         ]
       }
     ],
-    "부탁이야… 로시난테…": [
-      {
-        "group": "story-main|content|donquixote",
-        "speaker": "donquixote",
-        "keys": [
-          "StoryData/S736B.json|/dataList/141/content"
-        ]
-      },
-      {
-        "group": "story-main|content|옛산초",
-        "speaker": "옛산초",
-        "keys": [
-          "StoryData/7D108B.json|/dataList/69/content"
-        ]
-      }
-    ],
     "북부 제뱌찌 협회 3과": [
       {
         "group": "identity|title|rodion",
@@ -19504,22 +19033,6 @@
         "group": "enemy|name|",
         "keys": [
           "Passives_Abnormality-walpu10.json|/dataList/23/name"
-        ]
-      }
-    ],
-    "불쾌하고도 불순하도다.": [
-      {
-        "group": "story-main|content|N사심문관1",
-        "speaker": "N사심문관1",
-        "keys": [
-          "StoryData/3D301B.json|/dataList/21/content"
-        ]
-      },
-      {
-        "group": "story-main|content|N사심문관2",
-        "speaker": "N사심문관2",
-        "keys": [
-          "StoryData/3D301B.json|/dataList/22/content"
         ]
       }
     ],
@@ -19850,15 +19363,15 @@
     ],
     "상담 분위기는 어땠지?": [
       {
-        "group": "identity|content|옛산초",
-        "speaker": "옛산초",
+        "group": "identity|content|donquixote",
+        "speaker": "donquixote",
         "keys": [
           "StoryData/P10310.json|/dataList/63/content"
         ]
       },
       {
-        "group": "story-main|content|옛산초",
-        "speaker": "옛산초",
+        "group": "story-main|content|donquixote",
+        "speaker": "donquixote",
         "keys": [
           "StoryData/7D104B.json|/dataList/44/content"
         ]
@@ -19973,6 +19486,21 @@
         ]
       }
     ],
+    "생트르(Cintre).": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-a1c10p2.json|/dataList/50/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|rodion",
+        "speaker": "rodion",
+        "keys": [
+          "BattleSpeechBubbleDlg-a1c10p2.json|/dataList/70/dlg"
+        ]
+      }
+    ],
     "서부 츠바이 협회 3과": [
       {
         "group": "identity|title|",
@@ -20071,21 +19599,6 @@
         ]
       }
     ],
-    "선택지에 의하여 약화된 경우, 「방어기제」 패시브가 다음 효과로 변경 적용됨\n\n턴 시작 시, 잃은 체력의 15%만큼 보호막을 얻음 (최대 체력의 5%를 초과하여 얻을 수 없음)\n- [Combustion] 상태일 경우, ([Combustion] 횟수 x 2)%만큼 보호막 수치가 대폭 감소\n- 보호막이 [Burst] 효과 피해를 150% 추가로 받음\n\n턴 종료 시 이 효과로 얻은 보호막이 파괴되었다면, 파괴된 횟수에 비례하여 이번 전투 동안 턴 시작 시 [DefenseDown] 2 얻음 (최대 10)": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Passive-a1c971.json|/dataList/23/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Passives_Abnormality-a1c9p3.json|/dataList/88/desc",
-          "Passives_Abnormality_Refraction6.json|/dataList/60/desc"
-        ]
-      }
-    ],
     "설사 수백, 수천, 수만 명의 죄 없는 사람들을 죽였다고 하여도… 품어 주신다는 겁니까?": [
       {
         "group": "story-interlude|content|outis",
@@ -20134,46 +19647,6 @@
         ]
       }
     ],
-    "세 번째 턴이 되면 패턴이 변경되어 강력한 스킬을 사용할 준비를 시작함.\n이후에는 턴 종료 시 [Breath] 횟수가 30 이상이 되었을 때, 위 효과가 발동\n\n강력한 스킬 준비 단계 동안 체력 피해를 입지 않았으면, 해당 스킬의 파괴력이 크게 증가함 (보호막 피해는 적용되지 않음)": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Passive-a1c971.json|/dataList/21/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Passives_Abnormality-a1c9p3.json|/dataList/86/desc",
-          "Passives_Abnormality_Refraction6.json|/dataList/58/desc"
-        ]
-      }
-    ],
-    "세보이고 싶었던 콩콩이파 조직원": [
-      {
-        "group": "story-main|teller|세보이고싶었던콩콩파조직원",
-        "speaker": "세보이고싶었던콩콩파조직원",
-        "keys": [
-          "StoryData/S203B.json|/dataList/141/teller",
-          "StoryData/S203B.json|/dataList/142/teller",
-          "StoryData/S203B.json|/dataList/145/teller",
-          "StoryData/S203B.json|/dataList/154/teller",
-          "StoryData/S204B.json|/dataList/1/teller",
-          "StoryData/S204B.json|/dataList/2/teller",
-          "StoryData/S204B.json|/dataList/4/teller",
-          "StoryData/S205A.json|/dataList/15/teller",
-          "StoryData/S205B.json|/dataList/3/teller"
-        ]
-      },
-      {
-        "group": "story-main|teller|촌스러운말투의콩콩파조직원",
-        "speaker": "촌스러운말투의콩콩파조직원",
-        "keys": [
-          "StoryData/S203B.json|/dataList/146/teller",
-          "StoryData/S203B.json|/dataList/147/teller"
-        ]
-      }
-    ],
     "세보이고싶었던콩콩파조직원": [
       {
         "group": "stage|id|",
@@ -20188,8 +19661,8 @@
         ]
       },
       {
-        "group": "story-main|model|세보이고싶었던콩콩파조직원",
-        "speaker": "세보이고싶었던콩콩파조직원",
+        "group": "story-main|model|tingtang-gang",
+        "speaker": "tingtang-gang",
         "keys": [
           "StoryData/S203B.json|/dataList/141/model",
           "StoryData/S203B.json|/dataList/142/model",
@@ -20378,8 +19851,8 @@
         ]
       },
       {
-        "group": "story-main|title|혈귀사냥꾼",
-        "speaker": "혈귀사냥꾼",
+        "group": "story-main|title|bloodfiend-hunters",
+        "speaker": "bloodfiend-hunters",
         "keys": [
           "StoryData/S704A.json|/dataList/0/title",
           "StoryData/S704A.json|/dataList/2/title"
@@ -20687,6 +20160,21 @@
         ]
       }
     ],
+    "신역 선포. 찬란히 빛나리라.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-a1c10p2.json|/dataList/22/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|donquixote",
+        "speaker": "donquixote",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/769/dlg"
+        ]
+      }
+    ],
     "신탁 단말기 [카두세우스]": [
       {
         "group": "ally|name|",
@@ -20730,8 +20218,8 @@
         ]
       },
       {
-        "group": "story-main|teller|N사심문관2",
-        "speaker": "N사심문관2",
+        "group": "story-main|teller|n-corp-inquisitors",
+        "speaker": "n-corp-inquisitors",
         "keys": [
           "StoryData/S322B.json|/dataList/11/teller",
           "StoryData/S322B.json|/dataList/13/teller",
@@ -20790,17 +20278,17 @@
     ],
     "심사장 내부 지하 1층": [
       {
+        "group": "story-main|place|hierarch-evaluation-host",
+        "speaker": "hierarch-evaluation-host",
+        "keys": [
+          "StoryData/8D108B.json|/dataList/2/place"
+        ]
+      },
+      {
         "group": "story-main|place|honglu",
         "speaker": "honglu",
         "keys": [
           "StoryData/8D201A.json|/dataList/54/place"
-        ]
-      },
-      {
-        "group": "story-main|place|사회자",
-        "speaker": "사회자",
-        "keys": [
-          "StoryData/8D108B.json|/dataList/2/place"
         ]
       }
     ],
@@ -22001,6 +21489,21 @@
         ]
       }
     ],
+    "여덟. 앞으로 하나.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/246/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|yisang",
+        "speaker": "yisang",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/489/dlg"
+        ]
+      }
+    ],
     "여린 금으로 주조한 마음": [
       {
         "group": "keywords|name|",
@@ -22210,8 +21713,8 @@
         ]
       },
       {
-        "group": "story-main|teller|외우피협회보스F",
-        "speaker": "외우피협회보스F",
+        "group": "story-main|teller|wuthering-lab-researchers",
+        "speaker": "wuthering-lab-researchers",
         "keys": [
           "StoryData/S611B.json|/dataList/10/teller",
           "StoryData/S611B.json|/dataList/11/teller",
@@ -22460,13 +21963,6 @@
         ]
       },
       {
-        "group": "story-main|place|N사연구원검은색",
-        "speaker": "N사연구원검은색",
-        "keys": [
-          "StoryData/S647B.json|/dataList/134/place"
-        ]
-      },
-      {
         "group": "story-main|place|dante",
         "speaker": "dante",
         "keys": [
@@ -22481,6 +21977,14 @@
         ]
       },
       {
+        "group": "story-main|place|wuthering-lab-researchers",
+        "speaker": "wuthering-lab-researchers",
+        "keys": [
+          "StoryData/S628B.json|/dataList/0/place",
+          "StoryData/S647B.json|/dataList/134/place"
+        ]
+      },
+      {
         "group": "story-main|place|yisang",
         "speaker": "yisang",
         "keys": [
@@ -22492,13 +21996,6 @@
         "speaker": "넬리",
         "keys": [
           "StoryData/S630B.json|/dataList/0/place"
-        ]
-      },
-      {
-        "group": "story-main|place|외우피협회보스F",
-        "speaker": "외우피협회보스F",
-        "keys": [
-          "StoryData/S628B.json|/dataList/0/place"
         ]
       },
       {
@@ -22656,8 +22153,8 @@
         ]
       },
       {
-        "group": "story-main|teller|위협적인철공회조직원",
-        "speaker": "위협적인철공회조직원",
+        "group": "story-main|teller|tieqiu-crew",
+        "speaker": "tieqiu-crew",
         "keys": [
           "StoryData/S213B.json|/dataList/0/teller",
           "StoryData/S213B.json|/dataList/2/teller",
@@ -22679,8 +22176,8 @@
         ]
       },
       {
-        "group": "story-main|model|위협적인철공회조직원",
-        "speaker": "위협적인철공회조직원",
+        "group": "story-main|model|tieqiu-crew",
+        "speaker": "tieqiu-crew",
         "keys": [
           "StoryData/S213B.json|/dataList/0/model",
           "StoryData/S213B.json|/dataList/2/model",
@@ -22786,55 +22283,10 @@
         ]
       },
       {
-        "group": "story-interlude|place|뒤틀린주인카운트1",
-        "speaker": "뒤틀린주인카운트1",
+        "group": "story-interlude|place|eunbong-bar-owner",
+        "speaker": "eunbong-bar-owner",
         "keys": [
           "StoryData/E303A.json|/dataList/0/place"
-        ]
-      }
-    ],
-    "은봉이네 호프집 주인": [
-      {
-        "group": "story-interlude|teller|뒤틀린주인",
-        "speaker": "뒤틀린주인",
-        "keys": [
-          "StoryData/E303B.json|/dataList/15/teller",
-          "StoryData/E303B.json|/dataList/22/teller",
-          "StoryData/E303B.json|/dataList/25/teller",
-          "StoryData/E303B.json|/dataList/32/teller",
-          "StoryData/E305A.json|/dataList/24/teller",
-          "StoryData/E305A.json|/dataList/25/teller",
-          "StoryData/E305A.json|/dataList/34/teller",
-          "StoryData/E306B.json|/dataList/26/teller",
-          "StoryData/E306B.json|/dataList/27/teller",
-          "StoryData/E306B.json|/dataList/29/teller"
-        ]
-      },
-      {
-        "group": "story-interlude|teller|뒤틀린주인카운트1",
-        "speaker": "뒤틀린주인카운트1",
-        "keys": [
-          "StoryData/E303A.json|/dataList/0/teller",
-          "StoryData/E304B.json|/dataList/10/teller"
-        ]
-      },
-      {
-        "group": "story-interlude|teller|뒤틀린주인카운트2",
-        "speaker": "뒤틀린주인카운트2",
-        "keys": [
-          "StoryData/E304A.json|/dataList/0/teller",
-          "StoryData/E304B.json|/dataList/11/teller",
-          "StoryData/E305A.json|/dataList/4/teller",
-          "StoryData/E305A.json|/dataList/6/teller",
-          "StoryData/E305A.json|/dataList/7/teller",
-          "StoryData/E305A.json|/dataList/9/teller"
-        ]
-      },
-      {
-        "group": "story-interlude|teller|뒤틀린주인카운트3",
-        "speaker": "뒤틀린주인카운트3",
-        "keys": [
-          "StoryData/E305A.json|/dataList/11/teller"
         ]
       }
     ],
@@ -22956,20 +22408,6 @@
         ]
       }
     ],
-    "이 캐릭터가 살아있으면 턴 종료 시 적이 생성되지 않는다.": [
-      {
-        "group": "ally|desc|",
-        "keys": [
-          "Passive-walpu2.json|/dataList/5/desc"
-        ]
-      },
-      {
-        "group": "enemy|desc|",
-        "keys": [
-          "Passives_Enemy-walpu5.json|/dataList/6/desc"
-        ]
-      }
-    ],
     "이 코인에는 메인 타겟만 피해를 입음": [
       {
         "group": "ally|desc|",
@@ -23070,6 +22508,21 @@
         ]
       }
     ],
+    "이런건! 고참이 하는 거야.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-walpu10.json|/dataList/2/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|gregor",
+        "speaker": "gregor",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/719/dlg"
+        ]
+      }
+    ],
     "이름과 거미의 거울": [
       {
         "group": "mirror|content|",
@@ -23084,6 +22537,21 @@
           "UserTicket-EGOBg.json|/dataList/67/name",
           "UserTicket-L.json|/dataList/67/name",
           "UserTicket-R.json|/dataList/67/name"
+        ]
+      }
+    ],
+    "이번에야말로 이 싸움을 끝내주겠어.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-walpu10.json|/dataList/26/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|sinclair",
+        "speaker": "sinclair",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/189/dlg"
         ]
       }
     ],
@@ -23151,15 +22619,30 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/64/levelList/1/desc",
+          "Skills.json|/dataList/64/levelList/2/desc",
           "Skills_personality-x1p1c1.json|/dataList/21/levelList/0/desc"
         ]
       },
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/64/levelList/1/desc",
-          "Skills.json|/dataList/64/levelList/2/desc",
           "Skills_Enemy.json|/dataList/147/levelList/0/desc"
+        ]
+      }
+    ],
+    "이전 턴에 피해를 받지 않은 경우 코인 위력 +3": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills.json|/dataList/25/levelList/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Abnormality.json|/dataList/132/levelList/0/desc",
+          "Skills_Abnormality.json|/dataList/133/levelList/0/desc"
         ]
       }
     ],
@@ -23258,6 +22741,21 @@
         ]
       }
     ],
+    "일곱. 앞으로 둘.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-a1c9p3.json|/dataList/245/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|yisang",
+        "speaker": "yisang",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/488/dlg"
+        ]
+      }
+    ],
     "일대일 결투에선, 팔레르모를 익힌 제가 유리합니다.": [
       {
         "group": "identity|dlg|",
@@ -23330,8 +22828,8 @@
         ]
       },
       {
-        "group": "story-main|teller|피쿼드호주민2",
-        "speaker": "피쿼드호주민2",
+        "group": "story-main|teller|pequod-town-villagers",
+        "speaker": "pequod-town-villagers",
         "keys": [
           "StoryData/5D104B.json|/dataList/21/teller"
         ]
@@ -23480,6 +22978,19 @@
         ]
       },
       {
+        "group": "story-main|place|donquixote",
+        "speaker": "donquixote",
+        "keys": [
+          "StoryData/7D110B.json|/dataList/0/place",
+          "StoryData/7D111A.json|/dataList/0/place",
+          "StoryData/7D111B.json|/dataList/0/place",
+          "StoryData/7D111I2.json|/dataList/190/place",
+          "StoryData/7D111I3.json|/dataList/0/place",
+          "StoryData/7D112I2.json|/dataList/0/place",
+          "StoryData/7D112I2.json|/dataList/57/place"
+        ]
+      },
+      {
         "group": "story-main|place|honglu",
         "speaker": "honglu",
         "keys": [
@@ -23500,19 +23011,6 @@
         "speaker": "산손",
         "keys": [
           "StoryData/7D111I.json|/dataList/0/place"
-        ]
-      },
-      {
-        "group": "story-main|place|산초",
-        "speaker": "산초",
-        "keys": [
-          "StoryData/7D110B.json|/dataList/0/place",
-          "StoryData/7D111A.json|/dataList/0/place",
-          "StoryData/7D111B.json|/dataList/0/place",
-          "StoryData/7D111I2.json|/dataList/190/place",
-          "StoryData/7D111I3.json|/dataList/0/place",
-          "StoryData/7D112I2.json|/dataList/0/place",
-          "StoryData/7D112I2.json|/dataList/57/place"
         ]
       }
     ],
@@ -24055,21 +23553,6 @@
         ]
       }
     ],
-    "적기를 기다리고 있습니다.": [
-      {
-        "group": "identity|dlg|",
-        "keys": [
-          "BattleSpeechBubbleDlg.json|/dataList/362/dlg"
-        ]
-      },
-      {
-        "group": "identity|dlg|faust",
-        "speaker": "faust",
-        "keys": [
-          "PersonalityVoiceDlg/Voice_Faust_ShiAsso2_10213.json|/dataList/13/dlg"
-        ]
-      }
-    ],
     "전류를 뿜어내는 차원": [
       {
         "group": "enemy|name|",
@@ -24085,6 +23568,21 @@
         "keys": [
           "BattleKeywords_Refraction2.json|/dataList/4/name",
           "Bufs_Refraction2.json|/dataList/4/name"
+        ]
+      }
+    ],
+    "전부 펼쳐낸 나비처럼.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-walpu10.json|/dataList/9/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|faust",
+        "speaker": "faust",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/713/dlg"
         ]
       }
     ],
@@ -25197,38 +24695,6 @@
         ]
       }
     ],
-    "쥐는 자께 부려지는 것은 생애의 으뜸 기쁨일지니.": [
-      {
-        "group": "story-main|content|N사심문관1",
-        "speaker": "N사심문관1",
-        "keys": [
-          "StoryData/3D301B.json|/dataList/29/content"
-        ]
-      },
-      {
-        "group": "story-main|content|N사심문관2",
-        "speaker": "N사심문관2",
-        "keys": [
-          "StoryData/3D301B.json|/dataList/30/content"
-        ]
-      }
-    ],
-    "쥐는 자께서 말하신다.": [
-      {
-        "group": "story-main|content|N사심문관1",
-        "speaker": "N사심문관1",
-        "keys": [
-          "StoryData/3D301B.json|/dataList/18/content"
-        ]
-      },
-      {
-        "group": "story-main|content|N사심문관2",
-        "speaker": "N사심문관2",
-        "keys": [
-          "StoryData/3D301B.json|/dataList/19/content"
-        ]
-      }
-    ],
     "쥐는 자께서 함께하시니 두려움 없도다.": [
       {
         "group": "keywords|desc|",
@@ -25237,16 +24703,10 @@
         ]
       },
       {
-        "group": "story-main|content|N사심문관1",
-        "speaker": "N사심문관1",
+        "group": "story-main|content|n-corp-inquisitors",
+        "speaker": "n-corp-inquisitors",
         "keys": [
-          "StoryData/3D301B.json|/dataList/25/content"
-        ]
-      },
-      {
-        "group": "story-main|content|N사심문관2",
-        "speaker": "N사심문관2",
-        "keys": [
+          "StoryData/3D301B.json|/dataList/25/content",
           "StoryData/3D301B.json|/dataList/26/content"
         ]
       }
@@ -25645,6 +25105,21 @@
         ]
       }
     ],
+    "책임 정도는 져야겠지.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-walpu10.json|/dataList/38/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|outis",
+        "speaker": "outis",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/827/dlg"
+        ]
+      }
+    ],
     "천살성상[天殺星傷]": [
       {
         "group": "enemy|name|",
@@ -25858,8 +25333,8 @@
         ]
       },
       {
-        "group": "story-main|teller|촌스러운말투의콩콩파조직원",
-        "speaker": "촌스러운말투의콩콩파조직원",
+        "group": "story-main|teller|tingtang-gang",
+        "speaker": "tingtang-gang",
         "keys": [
           "StoryData/S203B.json|/dataList/59/teller",
           "StoryData/S203B.json|/dataList/62/teller",
@@ -25883,8 +25358,8 @@
         ]
       },
       {
-        "group": "story-main|model|촌스러운말투의콩콩파조직원",
-        "speaker": "촌스러운말투의콩콩파조직원",
+        "group": "story-main|model|tingtang-gang",
+        "speaker": "tingtang-gang",
         "keys": [
           "StoryData/S203B.json|/dataList/146/model",
           "StoryData/S203B.json|/dataList/147/model",
@@ -26035,15 +25510,15 @@
     ],
     "추방자 재집행을 위한 재판이 개정될 예정입니다.": [
       {
-        "group": "story-interlude|content|N사해결사1",
-        "speaker": "N사해결사1",
+        "group": "story-interlude|content|n-corp-fixing-team",
+        "speaker": "n-corp-fixing-team",
         "keys": [
           "StoryData/E927B.json|/dataList/100/content"
         ]
       },
       {
-        "group": "story-main|content|N사해결사1",
-        "speaker": "N사해결사1",
+        "group": "story-main|content|n-corp-fixing-team",
+        "speaker": "n-corp-fixing-team",
         "keys": [
           "StoryData/S1003B.json|/dataList/38/content"
         ]
@@ -26187,8 +25662,8 @@
         ]
       },
       {
-        "group": "story-main|teller|콩을싫어하는콩콩파조직원",
-        "speaker": "콩을싫어하는콩콩파조직원",
+        "group": "story-main|teller|tingtang-gang",
+        "speaker": "tingtang-gang",
         "keys": [
           "StoryData/S206B.json|/dataList/17/teller",
           "StoryData/S206B.json|/dataList/18/teller",
@@ -26214,8 +25689,8 @@
         ]
       },
       {
-        "group": "story-main|model|콩을싫어하는콩콩파조직원",
-        "speaker": "콩을싫어하는콩콩파조직원",
+        "group": "story-main|model|tingtang-gang",
+        "speaker": "tingtang-gang",
         "keys": [
           "StoryData/S206B.json|/dataList/17/model",
           "StoryData/S206B.json|/dataList/18/model",
@@ -26358,6 +25833,7 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills.json|/dataList/13/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_Assist-a1c8p2.json|/dataList/1/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_Assist.json|/dataList/1/levelList/0/coinlist/3/coindescs/0/desc",
           "Skills_Assist.json|/dataList/1/levelList/1/coinlist/3/coindescs/0/desc",
@@ -26376,7 +25852,6 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills.json|/dataList/13/levelList/0/coinlist/2/coindescs/0/desc",
           "Skills_Abnormality-a1c8p3.json|/dataList/17/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c9p1.json|/dataList/27/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-a1c9p1.json|/dataList/29/levelList/0/coinlist/0/coindescs/1/desc",
@@ -26384,6 +25859,22 @@
           "Skills_Abnormality-a1c9p3.json|/dataList/85/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Enemy-a1c951.json|/dataList/10/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Enemy-a1c951.json|/dataList/10/levelList/0/coinlist/1/coindescs/1/desc"
+        ]
+      }
+    ],
+    "크리티컬 피해량 +70%": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills.json|/dataList/13/levelList/1/coinlist/2/coindescs/0/desc",
+          "Skills.json|/dataList/14/levelList/1/coinlist/0/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Abnormality-a1c8p3.json|/dataList/18/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy-exme.json|/dataList/2/levelList/0/coinlist/2/coindescs/1/desc"
         ]
       }
     ],
@@ -26816,8 +26307,8 @@
     ],
     "패륜이군. 금기이고.": [
       {
-        "group": "identity|content|옛산초",
-        "speaker": "옛산초",
+        "group": "identity|content|donquixote",
+        "speaker": "donquixote",
         "keys": [
           "StoryData/P10310.json|/dataList/112/content"
         ]
@@ -27189,6 +26680,21 @@
         "group": "enemy|desc|",
         "keys": [
           "Passives_Abnormality-exme.json|/dataList/0/desc"
+        ]
+      }
+    ],
+    "핫… 역시 우리 사무소의 자랑이야.": [
+      {
+        "group": "identity|dlg|",
+        "keys": [
+          "BattleSpeechBubbleDlg-walpu10.json|/dataList/3/dlg"
+        ]
+      },
+      {
+        "group": "identity|dlg|gregor",
+        "speaker": "gregor",
+        "keys": [
+          "BattleSpeechBubbleDlg.json|/dataList/717/dlg"
         ]
       }
     ],
@@ -27646,8 +27152,8 @@
         ]
       },
       {
-        "group": "story-main|teller|흥겨운마리아치조직원",
-        "speaker": "흥겨운마리아치조직원",
+        "group": "story-main|teller|los-mariachis",
+        "speaker": "los-mariachis",
         "keys": [
           "StoryData/S210B.json|/dataList/1/teller",
           "StoryData/S210B.json|/dataList/2/teller",
@@ -27679,8 +27185,8 @@
         ]
       },
       {
-        "group": "story-main|model|흥겨운마리아치조직원",
-        "speaker": "흥겨운마리아치조직원",
+        "group": "story-main|model|los-mariachis",
+        "speaker": "los-mariachis",
         "keys": [
           "StoryData/S210B.json|/dataList/1/model",
           "StoryData/S210B.json|/dataList/2/model",

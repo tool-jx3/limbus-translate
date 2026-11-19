@@ -1,5 +1,5 @@
 {
-  "raw_tag": "raw-20261112",
+  "raw_tag": "raw-20261119",
   "fields": [
     "name",
     "abName",
@@ -4844,6 +4844,25 @@
           ],
           "examples": [
             "Skills_Enemy-tkt.json|/dataList/25/levelList/0/name"
+          ]
+        }
+      ]
+    },
+    {
+      "kr": "UNGEZIEFER KAISER",
+      "variants": [
+        {
+          "jp": "UNGEZIEFER KAISER",
+          "en": "UNGEZIEFER KAISER",
+          "renderings": [
+            {
+              "zh": "害蟲皇帝",
+              "units": 2
+            }
+          ],
+          "examples": [
+            "ScenarioModelCodes-AutoCreated.json|/dataList/628/name",
+            "ScenarioModelCodes-AutoCreated.json|/dataList/630/name"
           ]
         }
       ]
@@ -43803,7 +43822,7 @@
         {
           "renderings": [
             {
-              "zh": "死兔幫老大",
+              "zh": "死兔幫 老大",
               "units": 1
             }
           ],
@@ -72097,12 +72116,8 @@
           "en": "Fire Butterfly Coffin",
           "renderings": [
             {
-              "zh": "火蝶之棺",
-              "units": 6
-            },
-            {
               "zh": "炎蝶之棺",
-              "units": 6
+              "units": 12
             }
           ],
           "examples": [
@@ -80956,17 +80971,13 @@
           "renderings": [
             {
               "zh": "曉光之火",
-              "units": 6
-            },
-            {
-              "zh": "黎明之火",
-              "units": 6
+              "units": 12
             }
           ],
           "examples": [
-            "BattleKeywords.json|/dataList/551/name",
-            "BattleKeywords.json|/dataList/552/name",
-            "BattleKeywords.json|/dataList/553/name"
+            "BattleKeywords-walpu10.json|/dataList/10/name",
+            "BattleKeywords-walpu10.json|/dataList/11/name",
+            "BattleKeywords-walpu10.json|/dataList/9/name"
           ]
         }
       ]
@@ -139132,7 +139143,7 @@
         {
           "renderings": [
             {
-              "zh": "鐵工會老大",
+              "zh": "鐵工會 老大",
               "units": 1
             }
           ],
@@ -145253,7 +145264,7 @@
         {
           "renderings": [
             {
-              "zh": "豆豆幫老大",
+              "zh": "豆豆幫 老大",
               "units": 1
             }
           ],
