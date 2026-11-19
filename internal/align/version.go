@@ -37,7 +37,10 @@ type VersionMatch struct {
 //
 //   - by entry id and pointer within the entry, outside StoryData/, when
 //     every entry on both sides is an object with an id and no id repeats
-//     within a side;
+//     within a side. Within an entry, the elements of a nested array that
+//     moved to another index, because an element was inserted or removed
+//     before them, are found first (see shiftedItems), and the pointer of an
+//     old string is read as the new version would write it;
 //   - else by a longest common subsequence of (field name, KR text) over all
 //     dataList strings in document order. Between two matched strings, an
 //     unmatched old string pairs as edited with an unmatched new one of the
@@ -53,6 +56,10 @@ type VersionMatch struct {
 func AlignVersions(file string, old, new *jsonx.Node) []VersionMatch {
 	olds, news := units.Extract(file, old), units.Extract(file, new)
 	byID := entriesHaveIDs(file, old, new)
+	var oldKeys []versionKey // of olds, when matching by id
+	if byID {
+		oldKeys = entryKeys(olds, old, new)
+	}
 
 	// match[i] is the index in olds of the string paired with news[i], or -1.
 	match := make([]int, len(news))
@@ -64,6 +71,12 @@ func AlignVersions(file string, old, new *jsonx.Node) []VersionMatch {
 			continue
 		}
 		k := keyOf(u)
+		if byID {
+			k = oldKeys[i]
+		}
+		if k == goneKey {
+			continue // of an element the new version has not: deleted
+		}
 		index[k] = append(index[k], i)
 	}
 	for i, u := range news {
