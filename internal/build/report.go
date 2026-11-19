@@ -382,8 +382,9 @@ func infoTranslations(b *strings.Builder, opt Options, info Info, sum *plan.Summ
 	fmt.Fprintf(b, "- 轉換成 TextMeshPro 標籤的 rubycustomize：%d 個單位\n", rep.RubyConverted)
 	if sum != nil {
 		if sum.PrevRawTag != sum.RawTag {
-			// A frozen unit whose KR changed keeps its translation.
-			fmt.Fprintf(b, "- 因 KR 變更需要重翻：%d 個單位\n", max(0, sum.Changes.Changed-len(sum.FrozenChanged)))
+			// A frozen unit whose KR changed keeps its translation, and one
+			// of which only numbers changed got its translation from the plan.
+			fmt.Fprintf(b, "- 因 KR 變更需要重翻：%d 個單位\n", max(0, sum.Changes.Changed-len(sum.FrozenChanged)-sum.NumberPatched))
 		}
 		fmt.Fprintf(b, "- 沿用相同文字的譯文：%d 個單位；不需翻譯而複製原文：%d 個單位\n", sum.Reused, sum.Copy)
 	}
@@ -405,6 +406,7 @@ func infoAutomatic(b *strings.Builder, sum *plan.Summary) {
 	}
 	if sum.PrevRawTag != sum.RawTag {
 		fmt.Fprintf(b, "- id 重新編號或位置改變後，沿用原本的譯文：%d 個單位\n", sum.Changes.Moved)
+		fmt.Fprintf(b, "- KR 只改了數字，沿用舊譯並換上新數字：%d 個單位\n", sum.NumberPatched)
 	}
 	for _, l := range []struct {
 		label string

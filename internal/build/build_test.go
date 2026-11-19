@@ -1514,7 +1514,9 @@ func TestReportIgnoresAPlanOfAnotherSnapshot(t *testing.T) {
 
 // The inputs of the build and of the translation are information.
 // A frozen file whose KR changed keeps its translation, so it is not among the
-// units that need translating again; the count never goes below zero.
+// units that need translating again, and neither is a unit of which only
+// numbers changed, whose translation the plan made from the old one; the
+// count never goes below zero.
 func TestReportCountsOnlyTheUnitsThatAreRetranslated(t *testing.T) {
 	e := newEnv(t, map[string]string{"A.json": twoUnitsKR}, nil)
 	e.save(rec("A.json", "/dataList/0/content", "가", "甲"))
@@ -1522,20 +1524,27 @@ func TestReportCountsOnlyTheUnitsThatAreRetranslated(t *testing.T) {
 		name    string
 		changed int
 		frozen  []string
+		patched int
 		want    string
 	}{
-		{"none frozen", 4, nil, "因 KR 變更需要重翻：4 個單位"},
-		{"some frozen", 5, []string{"BgmLyrics/L1.json|/dataList/0/content", "BgmLyrics/L1.json|/dataList/1/content"}, "因 KR 變更需要重翻：3 個單位"},
-		{"all frozen", 2, []string{"BgmLyrics/L1.json|/dataList/0/content", "BgmLyrics/L1.json|/dataList/1/content"}, "因 KR 變更需要重翻：0 個單位"},
-		{"more frozen than changed", 1, []string{"a|/x", "b|/y"}, "因 KR 變更需要重翻：0 個單位"},
+		{"none frozen", 4, nil, 0, "因 KR 變更需要重翻：4 個單位"},
+		{"some frozen", 5, []string{"BgmLyrics/L1.json|/dataList/0/content", "BgmLyrics/L1.json|/dataList/1/content"}, 0, "因 KR 變更需要重翻：3 個單位"},
+		{"all frozen", 2, []string{"BgmLyrics/L1.json|/dataList/0/content", "BgmLyrics/L1.json|/dataList/1/content"}, 0, "因 KR 變更需要重翻：0 個單位"},
+		{"more frozen than changed", 1, []string{"a|/x", "b|/y"}, 0, "因 KR 變更需要重翻：0 個單位"},
+		{"some patched", 7, []string{"BgmLyrics/L1.json|/dataList/0/content"}, 4, "因 KR 變更需要重翻：2 個單位"},
 	} {
 		writePlan(t, e, plan.Summary{
 			RawTag: testTag, PrevRawTag: "raw-20261022", RulesCommit: "abc1234",
-			Changes: plan.Changes{Changed: tc.changed}, FrozenChanged: tc.frozen,
+			Changes: plan.Changes{Changed: tc.changed}, FrozenChanged: tc.frozen, NumberPatched: tc.patched,
 		})
 		e.run()
-		if rest := section(t, e.readReport(), "## 資訊"); !strings.Contains(rest, tc.want) {
+		rest := section(t, e.readReport(), "## 資訊")
+		if !strings.Contains(rest, tc.want) {
 			t.Errorf("%s: the information lacks %q:\n%s", tc.name, tc.want, rest)
+		}
+		// What the plan did by itself says how many it patched.
+		if want := fmt.Sprintf("KR 只改了數字，沿用舊譯並換上新數字：%d 個單位", tc.patched); !strings.Contains(rest, want) {
+			t.Errorf("%s: the information lacks %q:\n%s", tc.name, want, rest)
 		}
 	}
 }
