@@ -16,11 +16,12 @@
 | [`packcheck.py`](packcheck.py) | 把譯文與 KR 逐欄位比對結構問題（[04-other.md](../04-other.md) 的數字來源） |
 | [`fingerprint.py`](fingerprint.py) | 把報告依賴的程式事實抽成一份「指紋」（`fingerprints/<日期>.json`），遊戲更新後比對哪些變了、要重看哪幾章；`watch.json` 是要盯的方法清單 |
 | [`filelist.py`](filelist.py) | 官方檔案清單（`RemoteLocalizeFileList.json`）和語言包的檔案互相比對：哪些檔不會被載入、清單有而資料夾沒有的檔、同一張表的重複 id |
-| [`catalog.py`](catalog.py) | 解讀 Addressables 的目錄（`catalog_S1.json`）：每個資源的型別，在哪個 bundle 還是在遊戲本體 |
+| [`catalog.py`](catalog.py) | 解讀 Addressables 的 JSON 目錄（`catalog_S1.json`）：每個資源的型別，在哪個 bundle 還是在遊戲本體。只讀得懂 JSON 格式；遊戲現在用的是二進位的 `catalog_S1.bin`，快取裡的 `catalog_S1.json` 是 2026-05 版留下來的舊檔 |
+| [`staticdata.py`](staticdata.py) | 讀遊戲的靜態資料包（`static_s1` bundle，沒有加密）：把裡面的 JSON 寫成檔案；從劇情劇場清單與載入設定產生劇情檔的順序表 `rules/story-order.yaml`（[11-story-order.md](../11-story-order.md)） |
 | [`unityres.py`](unityres.py) | 讀遊戲本體的 `resources.assets` 與場景檔（`level*`、`sharedassets*.assets`）：文字資源（啟動用清單與文字、換行規則）、樣式表、下載設定、靜態標籤對應的文字 id、任一個文字元件的字級／縮字／換行／框的大小（戰鬥氣泡、劇情對話框） |
 | `re_common.py` | 共用：工作目錄、PE 檔讀取、方法位址索引 |
 
-前六個與 `fingerprint.py` 的 `watch`、`make` 需要遊戲檔案與 `pip install iced-x86 numpy`；`kwsim.py`、`packcheck.py` 只需要 `raw`、`tw` 分支的資料；`filelist.py`、`catalog.py` 各需要一份遊戲下載的資料，`unityres.py` 需要遊戲安裝資料夾 `LimbusCompany_Data` 裡的 `globalgamemanagers.assets`，加上要讀的 `resources.assets`、`level*` 或 `sharedassets*.assets`（腳本開頭寫了用法），都不需要額外的套件。腳本一律用 `python3 -I` 執行。遊戲的檔案與下載的資料都不放進版控。
+前六個與 `fingerprint.py` 的 `watch`、`make` 需要遊戲檔案與 `pip install iced-x86 numpy`；`kwsim.py`、`packcheck.py` 只需要 `raw`、`tw` 分支的資料；`filelist.py`、`catalog.py`、`staticdata.py` 各需要一份遊戲下載的資料，`unityres.py` 需要遊戲安裝資料夾 `LimbusCompany_Data` 裡的 `globalgamemanagers.assets`，加上要讀的 `resources.assets`、`level*` 或 `sharedassets*.assets`（腳本開頭寫了用法），都不需要額外的套件。腳本一律用 `python3 -I` 執行。遊戲的檔案與下載的資料都不放進版控。
 
 ## 步驟
 
@@ -123,6 +124,26 @@ python3 -I fingerprint.py diff fingerprints/2026-11-12.json fingerprints/2026-11
 - 專案裡兩個「已在遊戲中確認」的案例（`rules/adjustments/2026-11-04-noparse.yaml`）都重現：「攻擊等級+1」被讀成 `AttackLevelAdder`、「加斥我援」的「援」被讀成 `CheerUpXichun`。
 - KR 官方文字裡被 `<noparse>` 包住或後面接 `[TabExplain]` 的名稱，後一個字元是空格的 206 處、文字結尾 35 處、`,` 28 處、換行 6 處，都符合規則；有 9 處是 `)`，照規則不會連結（官方多包了）。
 - JP 官方把「～」「始」「種」三個名稱標成 `excludeAutoLink`，KR／EN 沒有；可見這個欄位是各語言自己決定的。
+
+## 劇情檔的順序（`rules/story-order.yaml`）
+
+網頁排劇情檔用的順序表是從遊戲的靜態資料產生的，遊戲更新（新的章節、活動、人格）後要重新產生：
+
+1. 找到靜態資料包。它在遊戲的快取 `%USERPROFILE%\AppData\LocalLow\Unity\ProjectMoon_LimbusCompany\<內部名稱>\<hash>\__data`。內部名稱與 hash 每一版可能不同，寫在現行目錄 `%USERPROFILE%\AppData\LocalLow\ProjectMoon\LimbusCompany\com.unity.addressables\catalog_S1.bin` 裡：用文字編輯器或 `strings` 找 `static_s1_0_assets_all_`，檔名裡的 32 個十六進位字元是 hash，它後面出現的第一個 32 字元十六進位字串是內部名稱。2026-11-12 版是 `64bd0105e9544bef32ddae650b8bcb26\9fd67c23bc1902c686b4231cc46f6d3a`。同一個資料夾裡的 `catalog_S1.json` 是舊版留下的，不要用。
+2. 解開並產生（`.work/raw` 要先更新到最新的 `raw`）：
+
+   ```bash
+   python3 -I staticdata.py unpack <__data> $RE_WORK/static
+   ```
+
+   ```bash
+   python3 -I staticdata.py storyorder $RE_WORK/static <repo>/.work/raw/kr > <repo>/rules/story-order.yaml
+   ```
+
+   第二個指令在標準錯誤印出列入幾個檔、幾個是推定的、哪些檔沒有依據而不列、哪一組在語言包裡找不到標題（那一組會改用組的代號當名稱）。順序和劇場清單對不上時會直接停下來，不會產生檔案。
+3. `bin/lct rules lint` 檢查格式，並對「表裡有、KR 沒有」的檔提出警告。
+
+資料包的主機（`download.limbuscompanycdn.org`）對非遊戲的請求一律回 403，所以這一步不能放進 CI，只能從本機的快取取得。
 
 ## 沒有放進版控的東西
 

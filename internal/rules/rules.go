@@ -36,12 +36,16 @@ type Rules struct {
 	NPCs []NPC
 	// RubyCustomize is the whitelist of <rubycustomize> (RubyCustomizeFile).
 	RubyCustomize RubyCustomize
+	// StoryOrder is the order of the story files in the game (StoryOrderFile).
+	StoryOrder StoryOrder
+	// storyAt is the group of StoryOrder of each file it lists; Load builds it.
+	storyAt map[string]int
 }
 
 // Load reads the rules under root, the repo root. It fails when a file is
-// missing (the list of ignored foreign names and that of NPCs may be) or
-// cannot be parsed;
-// Lint checks the content as well.
+// missing (the list of ignored foreign names, that of NPCs, the whitelist of
+// <rubycustomize> and the story order may be) or cannot be parsed; Lint
+// checks the content as well.
 func Load(root string) (*Rules, error) {
 	r := &Rules{}
 
@@ -111,6 +115,17 @@ func Load(root string) (*Rules, error) {
 			return nil, fmt.Errorf("%s: %w", RubyCustomizeFile, err)
 		}
 	}
+
+	data, err = os.ReadFile(filepath.Join(root, filepath.FromSlash(StoryOrderFile)))
+	if err != nil && !errors.Is(err, fs.ErrNotExist) {
+		return nil, err
+	}
+	if err == nil {
+		if r.StoryOrder, _, _, err = parseStoryOrder(data); err != nil {
+			return nil, fmt.Errorf("%s: %w", StoryOrderFile, err)
+		}
+	}
+	r.storyAt = r.StoryOrder.groupIndex()
 	return r, nil
 }
 

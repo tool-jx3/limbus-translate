@@ -259,6 +259,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 	if err := w.writeJSON("gold.json", buildGold(in.Gold, goldUnits, in.Records)); err != nil {
 		return Result{}, err
 	}
+	storyGroups(in, idx.Files)
 	idx.Groups = buildGroups(idx.Files)
 	if err := w.writeJSON("index.json", idx); err != nil {
 		return Result{}, err

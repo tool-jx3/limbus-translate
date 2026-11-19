@@ -468,6 +468,7 @@ button.link {
   margin-left: 0.75rem;
 }
 
+.dir-family .dir-story,
 .dir-family .dir-chapter,
 .dir-family .dir-character,
 .dir-family .dir-event {
@@ -476,6 +477,7 @@ button.link {
   border-left: 1px dashed var(--border);
 }
 
+.dir-story h2 button,
 .dir-chapter h2 button,
 .dir-character h2 button,
 .dir-event h2 button {

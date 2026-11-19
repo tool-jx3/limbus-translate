@@ -459,3 +459,36 @@ func TestRulesLintWarnsOfEvidenceInAGuide(t *testing.T) {
 		t.Errorf("report = %+v", got)
 	}
 }
+
+// A file the story order lists that the KR pack does not have (a misspelled
+// path, or a file the game has dropped) is a warning of lint, not an error.
+func TestRulesLintWarnsOfAStoryOrderFileThePackLacks(t *testing.T) {
+	root := cleanRules(t)
+	writeTestFile(t, root, "lct.yaml", "lang_dir: zh-TW\nworktrees: { raw: .work/raw, tw: .work/tw }\n")
+	writeTestFile(t, root, ".work/raw/meta/source.json", `{"tag":"raw-20261029","token":"t","created_at":"2026-10-29 00:00:00","fetched_at":"2026-11-01T00:00:00Z","files":{}}`)
+	writeTestFile(t, root, ".work/raw/kr/StoryData/KR_S001B.json", `{"dataList":[{"id":0,"content":"가자."}]}`)
+	writeTestFile(t, root, ".work/raw/en/EN_Passives.json", "{}")
+	writeTestFile(t, root, ".work/raw/jp/JP_Passives.json", "{}")
+	writeTestFile(t, root, rules.StoryOrderFile, "groups:\n  - id: main-100\n    files:\n      - StoryData/S001B.json\n      - StoryData/S001A.json\n")
+
+	out, err := runIn(t, runRulesLint, root, true)
+	if err != nil {
+		t.Fatalf("lint: %v\n%s", err, out)
+	}
+	var got struct {
+		OK       bool                             `json:"ok"`
+		Warnings []struct{ File, Message string } `json:"warnings"`
+	}
+	if err := json.Unmarshal([]byte(out), &got); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	var ws []string
+	for _, w := range got.Warnings {
+		if w.File == rules.StoryOrderFile {
+			ws = append(ws, w.Message)
+		}
+	}
+	if !got.OK || len(ws) != 1 || !strings.Contains(ws[0], "StoryData/S001A.json") {
+		t.Errorf("ok = %v, story order warnings = %q, want one that names StoryData/S001A.json", got.OK, ws)
+	}
+}

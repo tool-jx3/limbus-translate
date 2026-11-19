@@ -8,6 +8,9 @@
 
 目錄是遊戲下載的資料，不在版控裡：
   %USERPROFILE%\\AppData\\LocalLow\\ProjectMoon\\LimbusCompany\\com.unity.addressables\\catalog_S1.json
+
+注意（2026-11-19）：這支腳本只讀得懂 JSON 格式。遊戲現在用的是同一個資料夾裡二進位格式的 catalog_S1.bin；
+catalog_S1.json 是舊版（2026-05）留下來的，內容不是現行版本，只能拿來看目錄的結構。
 """
 import base64
 import collections

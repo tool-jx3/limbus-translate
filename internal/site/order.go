@@ -52,17 +52,25 @@ func digitsEnd(s string, i int) int {
 
 // OrderFiles returns paths in the order of the viewer's previous and next file:
 // by family in the order of the routing's priority (a family it does not list
-// comes after the listed ones, by id), and by NaturalLess within a family. It
-// returns a new slice and never nil; paths is not changed.
+// comes after the listed ones, by id); within a family the files the story
+// order lists (rules.StoryOrder) in its order, the order of the game, and then
+// the others by NaturalLess. It returns a new slice and never nil; paths is
+// not changed.
 func OrderFiles(paths []string, r *rules.Rules) []string {
 	type entry struct {
 		path, family string
 		rank         int
+		at           int // the position in the story order; the count of its files when not listed
 	}
+	listed := r.StoryOrder.Index()
 	entries := make([]entry, len(paths))
 	for i, p := range paths {
 		f := r.Family(p)
-		entries[i] = entry{path: p, family: f, rank: r.Priority(f)}
+		at, ok := listed[p]
+		if !ok {
+			at = len(listed)
+		}
+		entries[i] = entry{path: p, family: f, rank: r.Priority(f), at: at}
 	}
 	slices.SortFunc(entries, func(x, y entry) int {
 		switch {
@@ -70,6 +78,8 @@ func OrderFiles(paths []string, r *rules.Rules) []string {
 			return x.rank - y.rank
 		case x.family != y.family:
 			return strings.Compare(x.family, y.family)
+		case x.at != y.at:
+			return x.at - y.at
 		case NaturalLess(x.path, y.path):
 			return -1
 		case NaturalLess(y.path, x.path):

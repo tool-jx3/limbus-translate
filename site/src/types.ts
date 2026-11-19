@@ -48,9 +48,20 @@ export interface FileTag {
   label: string
 }
 
-/** A node of the group tree of the sidebar; files are positions in Index.files, listed directly in the group. */
+/** The group of the story order (rules/story-order.yaml) a file is in: a chapter, an event or the stories of a character. */
+export interface FileGroup {
+  /** The level of the directory the group hangs under; none hangs it under the top. */
+  section?: string
+  id: string
+  label: string
+}
+
+/**
+ * A node of the group tree of the sidebar; files are positions in Index.files, listed directly in the group.
+ * A sub is a sub-node of the file names or a section of story groups; a story is a group of the story order.
+ */
 export interface IndexGroup {
-  kind: 'top' | 'sub' | 'chapter' | 'character' | 'event'
+  kind: 'top' | 'sub' | 'story' | 'chapter' | 'character' | 'event'
   node: string
   label: string
   files: number[]
@@ -66,6 +77,8 @@ export interface FileSummary {
   sub?: string
   /** The third-level mark, if any. */
   tag?: FileTag
+  /** The group of the story order, if any: the directory lists the file under it, not under sub and tag. */
+  group?: FileGroup
   /** The place a story starts in; "" outside StoryData/. */
   label: string
   /** The tellers of the file, each once, first seen first. */

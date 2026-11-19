@@ -45,6 +45,7 @@ func Lint(root string) []error {
 	l.foreignIgnore()
 	l.npcs()
 	l.rubyCustomize()
+	l.storyOrder()
 	l.adjustments()
 	return l.errs
 }
