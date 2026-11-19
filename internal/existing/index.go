@@ -33,6 +33,9 @@ type Index struct {
 	byFirst  map[rune][]int
 	anyFirst []int
 	declined map[string]bool
+	// glossary holds the KR of the glossary entries as Mentions looks for
+	// them: a name inside one of them is the glossary's to name.
+	glossary []rules.Term
 }
 
 // NewIndex indexes t, leaving out each name that the glossary has an entry
@@ -50,6 +53,9 @@ func NewIndex(t *Table, r *rules.Rules, declined map[string]bool) *Index {
 	if r != nil {
 		for _, g := range r.Glossary {
 			inGlossary[strings.TrimSpace(g.KR)] = true
+			if p := Plain(g.KR); p != "" {
+				ix.glossary = append(ix.glossary, rules.Term{KR: p, Match: rules.MatchWord})
+			}
 		}
 	}
 	for i := range t.Names {
@@ -149,8 +155,9 @@ func (ix *Index) Declined(kr string) bool {
 // Mentions returns the names that kr mentions, longest first. A name counts
 // when it stands as a word in kr (as a glossary term does), and either has
 // three runes or more, holds a space, stands in quotes, or is in always. A
-// name whose every hit lies inside a hit of a longer one is left out. The
-// names point into the index; callers must not modify them.
+// name whose every hit lies inside a hit of a longer one, or of a longer
+// glossary entry, is left out. The names point into the index; callers must
+// not modify them.
 func (ix *Index) Mentions(kr string, always map[string]bool) []*Name {
 	if ix == nil || len(ix.order) == 0 {
 		return nil
@@ -177,6 +184,13 @@ func (ix *Index) Mentions(kr string, always map[string]bool) []*Name {
 	}
 	if len(hits) == 0 {
 		return nil
+	}
+	// The glossary entries the text holds weigh in, so that a name inside a
+	// longer entry is dropped; they are no names themselves (see NewIndex).
+	for _, g := range ix.glossary {
+		if set.MayStartTerm(g.KR) && g.OccursIn(plain) {
+			terms = append(terms, g)
+		}
 	}
 	kept := map[string]bool{}
 	for _, t := range rules.DropCovered(plain, terms) {

@@ -40,7 +40,7 @@ type Name struct {
 type Variant struct {
 	JP         string      `json:"jp,omitempty"`
 	EN         string      `json:"en,omitempty"`
-	Renderings []Rendering `json:"renderings"` // most units first, then ZH; [0] is the main one
+	Renderings []Rendering `json:"renderings"` // those not Own first, then most units first, then ZH; [0] is the main one
 	Examples   []string    `json:"examples"`   // at most 3 keys
 }
 
@@ -48,6 +48,12 @@ type Variant struct {
 type Rendering struct {
 	ZH    string `json:"zh"`
 	Units int    `json:"units"`
+	// Own is whether only this project's own translations (origin claude)
+	// have the rendering: no Paratranz translation and no adjustment of a
+	// person does. Such a rendering is used, so that a name is written one
+	// way, but it is not what the older translations say: where one of
+	// those writes the name another way, that way stands.
+	Own bool `json:"own,omitempty"`
 }
 
 // Source is a unit as Collect reads it. JP and EN are "" when none is aligned.
@@ -64,8 +70,9 @@ func Collect(rawTag string, fields []string, units []Source) *Table {
 	sort.SliceStable(sorted, func(i, j int) bool { return sorted[i].Key < sorted[j].Key })
 
 	type rendering struct {
-		units int
-		keys  []string
+		units   int
+		settled int // the units a Paratranz or a human translation has
+		keys    []string
 	}
 	type variant struct {
 		jp, en string
@@ -111,6 +118,9 @@ func Collect(rawTag string, fields []string, units []Source) *Table {
 			v.byZH[zh] = r
 		}
 		r.units++
+		if u.Origin != store.OriginClaude {
+			r.settled++
+		}
 		r.keys = append(r.keys, u.Key)
 		v.units++
 	}
@@ -129,6 +139,9 @@ func Collect(rawTag string, fields []string, units []Source) *Table {
 			}
 			sort.Slice(zhs, func(i, j int) bool {
 				a, b := v.byZH[zhs[i]], v.byZH[zhs[j]]
+				if (a.settled == 0) != (b.settled == 0) {
+					return a.settled != 0
+				}
 				if a.units != b.units {
 					return a.units > b.units
 				}
@@ -136,7 +149,7 @@ func Collect(rawTag string, fields []string, units []Source) *Table {
 			})
 			out := Variant{JP: v.jp, EN: v.en, Examples: []string{}}
 			for _, zh := range zhs {
-				out.Renderings = append(out.Renderings, Rendering{ZH: zh, Units: v.byZH[zh].units})
+				out.Renderings = append(out.Renderings, Rendering{ZH: zh, Units: v.byZH[zh].units, Own: v.byZH[zh].settled == 0})
 				out.Examples = append(out.Examples, v.byZH[zh].keys...)
 			}
 			if len(out.Examples) > maxExamples {

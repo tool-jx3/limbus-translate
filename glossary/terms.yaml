@@ -2287,9 +2287,10 @@
   jp: ヴァルプルギスの夜
   en: Walpurgis Night
   zh: 瓦爾普吉斯之夜
+  forbidden: ["re:第\\s?\\d+\\s?[屆回]\\s?瓦爾普吉斯之夜"]
   status: approved
   evidence: { kr_lines: 163, approved: 161, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。前面有回數時（`제N회 발푸르기스의 밤`）寫「第N次 瓦爾普吉斯之夜」：用「次」，數字半形，「瓦」前空一個半形空格（2026-11-19 既有 Paratranz 95、人工調整 1 個單位這樣寫；本專案新譯的第 10 回曾寫成「第10屆」「第10次」，由 rules/rewrite/2026-11-19-walpurgis-number.yaml 改回）
   sources: ["game:SeasonTitle.json#/dataList/4/content"]
 
 - kr: 별빛

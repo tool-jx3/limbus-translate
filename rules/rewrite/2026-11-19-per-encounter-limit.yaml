@@ -1,0 +1,10 @@
+# 翻譯流程檢視（2026-11-19）：KR「전투당 N회」既有譯文 116 個單位寫「每場戰鬥最多N次」，
+# 本專案新譯有 6 個單位寫成「每場戰鬥N次」：BattleKeywords-walpu10.json、Bufs-walpu10.json 的 /dataList/2/desc，
+# BattleKeywords.json 的 /dataList/619/desc、/dataList/626/desc，Bufs.json 的 /dataList/704/desc、/dataList/710/desc。
+# 依 guides/shared/skill-text.md「次數上限」補上「最多」。使用者同意 2026-11-19。
+reason: '「전투당 N회」寫「每場戰鬥最多N次」（guides/shared/skill-text.md 的「次數上限」）'
+files: ['BattleKeywords-walpu10.json', 'Bufs-walpu10.json', 'BattleKeywords.json', 'Bufs.json']
+origins: [claude]
+pattern: '每場戰鬥(\d+)次'
+replace: '每場戰鬥最多${1}次'
+kr_pattern: '전투당 \d+회'

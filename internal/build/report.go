@@ -274,6 +274,7 @@ func markdown(opt Options, info Info, sum *plan.Summary, pending []store.Pending
 	infoMisaligned(&b, info.Report)
 	infoWarnings(&b, info.Report)
 	infoNameDiffs(&b, info.Report)
+	infoKeptRewrites(&b, info.Report)
 	infoInconsistent(&b, info)
 	infoNotes(&b, info.Report)
 	infoGlyphs(&b, info.Report)
@@ -466,10 +467,11 @@ func infoWarnings(b *strings.Builder, rep Report) {
 		b.WriteString("None.\n")
 		return
 	}
-	b.WriteString("| Code | Units |\n|---|---|\n")
+	b.WriteString("| Code | 全部 | 這次新譯 |\n|---|---|---|\n")
 	for _, k := range slices.Sorted(maps.Keys(rep.Warnings)) {
-		fmt.Fprintf(b, "| %s | %d |\n", k, rep.Warnings[k])
+		fmt.Fprintf(b, "| %s | %d | %d |\n", k, rep.Warnings[k], rep.NewWarnings[k])
 	}
+	b.WriteString("\n「全部」是目前所有譯文的警告數，「這次新譯」是其中這次更新才翻的單位。\n")
 	for _, k := range slices.Sorted(maps.Keys(rep.Warnings)) {
 		samples := rep.WarningSamples[k]
 		if len(samples) == 0 {
@@ -493,7 +495,7 @@ func infoNameDiffs(b *strings.Builder, rep Report) {
 	for _, d := range rep.NameDiffs {
 		var olds []string
 		for _, r := range d.Existing {
-			olds = append(olds, fmt.Sprintf("%s（%d）", code(r.ZH), r.Units))
+			olds = append(olds, renderingText(r))
 		}
 		fmt.Fprintf(b, "- %s（%s）：既有 %s\n", code(d.KR), code(existing.SuggestionID(d.KR)), strings.Join(olds, "、"))
 		for _, u := range d.Units {
@@ -519,6 +521,29 @@ func infoNameDiffs(b *strings.Builder, rep Report) {
 		}
 		if len(d.Keys) > 0 {
 			fmt.Fprintf(b, "  - 這次用了暫定譯法：%s\n", strings.Join(codes(d.Keys), "、"))
+		}
+	}
+}
+
+// infoKeptRewrites lists the units translated again because their KR changed
+// in which lines whose KR is the same were rewritten: each such line as it
+// was and as it is, and what the translator noted.
+func infoKeptRewrites(b *strings.Builder, rep Report) {
+	b.WriteString("\n### 原文沒變的段落被改寫\n\n")
+	if len(rep.KeptRewrites) == 0 {
+		b.WriteString("None.\n")
+		return
+	}
+	for _, k := range rep.KeptRewrites {
+		fmt.Fprintf(b, "- %s", code(k.Key))
+		if note := oneLine(k.Note); note != "" {
+			fmt.Fprintf(b, "；note：%s", capRunes(note, maxNoteRunes))
+		}
+		b.WriteString("\n")
+		for _, l := range k.Lines {
+			old, now := changedSpan(oneLine(l.Old), oneLine(l.New), keptContext)
+			fmt.Fprintf(b, "  - %s → %s（KR %s）\n", code(capRunes(old, maxNameDiffRunes)),
+				code(capRunes(now, maxNameDiffRunes)), code(capRunes(oneLine(l.KR), maxNameDiffRunes)))
 		}
 	}
 }

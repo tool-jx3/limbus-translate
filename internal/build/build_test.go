@@ -1202,6 +1202,7 @@ func TestReportMarkdown(t *testing.T) {
 		Unaligned:          5,
 		FieldRuleOverride:  6,
 		Warnings:           map[string]int{"length-ratio": 7, "hangul": 1},
+		NewWarnings:        map[string]int{"length-ratio": 2},
 		MissingGlyphs:      []rune{'`', 0xE000, '字'},
 	}
 	opt := Options{RawTag: testTag, RawToken: testToken, RulesCommit: "abc1234", BuiltAt: testBuiltAt}
@@ -1210,7 +1211,7 @@ func TestReportMarkdown(t *testing.T) {
 	for _, want := range []string{
 		"# Build report raw-20261029\n",
 		"| claude | 3 |\n| paratranz | 12 |\n", // sorted by name
-		"| hangul | 1 |\n| length-ratio | 7 |\n",
+		"| Code | 全部 | 這次新譯 |\n|---|---|---|\n| hangul | 1 | 0 |\n| length-ratio | 7 | 2 |\n",
 		"- U+0060\n", "- U+E000\n", "- U+5B57 `字`\n",
 	} {
 		if !strings.Contains(got, want) {
@@ -2792,6 +2793,7 @@ func TestBuildWithoutNames(t *testing.T) {
 	with.NameDiffs, with.TermDiffs = []NameDiff{}, []TermDiff{}
 	delete(with.Warnings, existing.CodeNameDiffers)
 	delete(with.WarningSamples, existing.CodeNameDiffers)
+	delete(with.NewWarnings, existing.CodeNameDiffers)
 	if !reflect.DeepEqual(rep, with) {
 		t.Errorf("report without the names = %+v, want %+v", rep, with)
 	}

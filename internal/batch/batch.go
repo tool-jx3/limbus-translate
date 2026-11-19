@@ -147,8 +147,11 @@ type NameRef struct {
 	KR string `json:"kr"`
 	// ZH is the main rendering of the variant and Count the units that have
 	// it; Others are the other renderings.
-	ZH     string               `json:"zh"`
-	Count  int                  `json:"count"`
+	ZH    string `json:"zh"`
+	Count int    `json:"count"`
+	// Own is whether only this project's own translations have ZH
+	// (existing.Rendering.Own): no older translation writes the name so.
+	Own    bool                 `json:"own,omitempty"`
 	Others []existing.Rendering `json:"others,omitempty"`
 	JP     string               `json:"jp,omitempty"`
 	EN     string               `json:"en,omitempty"`
@@ -230,7 +233,7 @@ func nameRefs(uses []nameUse, limit int) []NameRef {
 			if i >= maxNameVariants && rank == 0 {
 				continue
 			}
-			ref := NameRef{KR: e.name.KR, ZH: v.Renderings[0].ZH, Count: v.Renderings[0].Units, JP: v.JP, EN: v.EN, Units: e.keys}
+			ref := NameRef{KR: e.name.KR, ZH: v.Renderings[0].ZH, Count: v.Renderings[0].Units, Own: v.Renderings[0].Own, JP: v.JP, EN: v.EN, Units: e.keys}
 			if len(v.Renderings) > 1 {
 				ref.Others = v.Renderings[1:]
 			}

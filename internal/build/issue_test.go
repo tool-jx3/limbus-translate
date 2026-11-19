@@ -318,9 +318,9 @@ func TestReviewItemsMatchTheIssue(t *testing.T) {
 		}
 	}
 	// ReviewKinds, which the contract of the review skill reads, lists every
-	// kind in this order, name_differs and inconsistent_new (which this
-	// build has none of) before loop_error, not_translated last.
-	if want := append(slices.Clone(wantKinds[:7]), "name_differs", "inconsistent_new", "loop_error", "not_translated"); !slices.Equal(ReviewKinds, want) {
+	// kind in this order, name_differs, kept_rewritten and inconsistent_new
+	// (which this build has none of) before loop_error, not_translated last.
+	if want := append(slices.Clone(wantKinds[:7]), "name_differs", "kept_rewritten", "inconsistent_new", "loop_error", "not_translated"); !slices.Equal(ReviewKinds, want) {
 		t.Errorf("ReviewKinds = %q, want %q", ReviewKinds, want)
 	}
 
@@ -604,7 +604,7 @@ func sectionOfKind(secs []ReviewSection, kind string) *ReviewSection {
 
 func TestReviewKindsOrder(t *testing.T) {
 	want := []string{"needs_review", "adjustment_expired", "frozen_changed", "frozen_fallback", "new_speaker",
-		"field_change", "new_family", "name_differs", "inconsistent_new", "loop_error", "not_translated"}
+		"field_change", "new_family", "name_differs", "kept_rewritten", "inconsistent_new", "loop_error", "not_translated"}
 	if !slices.Equal(ReviewKinds, want) {
 		t.Errorf("ReviewKinds = %v, want %v", ReviewKinds, want)
 	}
@@ -730,5 +730,34 @@ func TestReviewIssueInconsistentNewKeepsAGroupWithoutNewKeys(t *testing.T) {
 	sec := sectionOfKind(ReviewItems(info, nil, nil), KindInconsistentNew)
 	if sec == nil || len(sec.Items) != 1 {
 		t.Errorf("section = %+v, want one item", sec)
+	}
+}
+
+// A rendering only this project's own translations have is said to be so in
+// the item: it is not what the older translations call the name.
+func TestNameDiffItemMarksOwnRenderings(t *testing.T) {
+	rep := Report{NameDiffs: []NameDiff{{
+		KR:       "밀랍날개",
+		Existing: []existing.Rendering{{ZH: "蠟翼", Units: 1}, {ZH: "蜜蠟之翼", Units: 4, Own: true}},
+		Units:    []NameDiffUnit{{Key: "A.json|/dataList/0/desc", ZH: "蠟製羽翼", Kind: NameDiffMention}},
+	}}}
+	items := nameDiffItems(rep)
+	if len(items) != 1 || !strings.Contains(items[0], "`蠟翼`（1）、`蜜蠟之翼`（4，本專案新譯）") {
+		t.Errorf("items = %q", items)
+	}
+}
+
+// renderingsOf sums the units of a rendering over the variants; it is Own
+// only when it is in every variant that has it, and those that are not come
+// first.
+func TestRenderingsOfKeepsOwn(t *testing.T) {
+	n := &existing.Name{KR: "x", Variants: []existing.Variant{
+		{JP: "a", Renderings: []existing.Rendering{{ZH: "甲", Units: 1}, {ZH: "乙", Units: 5, Own: true}}},
+		{JP: "b", Renderings: []existing.Rendering{{ZH: "乙", Units: 2, Own: true}, {ZH: "丙", Units: 1, Own: true}}},
+		{JP: "c", Renderings: []existing.Rendering{{ZH: "丙", Units: 1}}},
+	}}
+	want := []existing.Rendering{{ZH: "丙", Units: 2}, {ZH: "甲", Units: 1}, {ZH: "乙", Units: 7, Own: true}}
+	if got := renderingsOf(n); !reflect.DeepEqual(got, want) {
+		t.Errorf("renderingsOf = %+v, want %+v", got, want)
 	}
 }
