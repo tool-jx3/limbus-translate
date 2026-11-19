@@ -2415,7 +2415,13 @@
   "reason": "TW 讓人以為是他們主動捨棄船尾才逃過一劫，但後文格里高爾、李箱說那部分是整個消失、彷彿從未存在，這會誤導劇情細節，嚴重度改為 medium；改法保留現行的「略微受損」。",
   "confidence": "medium",
   "seq": "S0078",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S504B#17",
@@ -2446,7 +2452,25 @@
   "reason": "TW 仍表達出「不打算和你們親近」的大意（EN 也寫成 don't intend to make friends），嚴重度改為 low；初篩改法「也沒有可以建立交情的餘地」較繞，改為更貼近「나눌 정도 없다」的寫法。",
   "confidence": "medium",
   "seq": "S0079",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "suggest": "你沒聽錯，李箱。因為我和你們之間，既沒有過什麼情分，往後也不會有。",
+   "kr_meaning": "「올바르게 들었어, 이상.」是「你沒聽錯，李箱。」；「내가 너희와 나눈 정도, 나눌 정도 없으니까.」的「정도」是「정（情）」加助詞「도（也）」，不是「程度」：我和你們既沒有分享過的情，也沒有要分享的情。整句：「你沒聽錯，李箱。因為我和你們之間，過去沒有情分，往後也不會有。」",
+   "context": "三句連著用同一個「정（情）」字。#16 李箱說「퍽 정 없이도 들리오」（聽來頗為無情），現行「聽著仍有些不近人情」；#17 維吉里烏斯順著這個字回答；#18 他又說「이런 잡담이나 나누고 있으니 정 같은 소리나 듣지」（就是聊這種閒話，才會聽到什麼「情」之類的話）。",
+   "problem": "報告建議「既沒有交情，往後也不會有」意思正確，但「交情」和 #16 的「不近人情」、#18 的「情」接不上同一個字；改用「情分」，三句才扣得起來。",
+   "also": [
+    {
+     "ref": "S504B#18",
+     "kr": "하, 나 참. 이런 잡담이나 나누고 있으니 정 같은 소리나 듣지.",
+     "tw": "哈，真是的。就是這種閒聊才會讓人覺得我容易親近。",
+     "suggest": "哈，真是的。就是因為聊這種閒話，才會聽到什麼情不情的。",
+     "why": "KR「정 같은 소리나 듣지」是「才會聽到什麼『情』之類的話」，指 #16 李箱說他無情；現行「才會讓人覺得我容易親近」意思偏了，也接不上前兩句的「情」。"
+    }
+   ]
+  }
  },
  {
   "ref": "S504B#143",
@@ -2477,7 +2501,13 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0080",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S506B#26",
@@ -2508,7 +2538,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0081",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "suggest": "還算，頻繁。",
+   "kr_meaning": "「다소」是「多少、有幾分」，用來緩和語氣；「자주」是「常常」。兩個詞用逗號隔開，是莫梭一板一眼的補充：「算是，常去。」",
+   "context": "格里高爾問有沒有人去過那種俱樂部（#24）。莫梭先答「去過。」（#25），再補上這一句；之後但丁無言，格里高爾問「開、開玩笑的吧？」（#28），莫梭說不是玩笑。",
+   "problem": "報告建議「稍微，經常。」在中文裡「稍微」和「經常」互相矛盾，讀不出「算是常去」的意思；現行的「頻繁」沒有錯，只需要把「特別」換掉。",
+   "also": []
+  }
  },
  {
   "ref": "S510A#46",
@@ -2539,7 +2579,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0082",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S513B#49",
@@ -2570,7 +2616,13 @@
   "reason": "說明正確；後半「用犧牲的名義把它包裝得很精美」沒有錯，改法保留現行譯文，並補上 KR「포장만 하는」的「只」。",
   "confidence": "high",
   "seq": "S0083",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S515B#10",
@@ -2601,7 +2653,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0084",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S515B#23",
@@ -2632,7 +2690,13 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0085",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S517A#25",
@@ -2663,7 +2727,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0086",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S518B#37",
@@ -2694,7 +2764,13 @@
   "reason": "說明正確；奧提斯是女性，依 base.md 對女性用「妳」，改法把「你」改為「妳」。",
   "confidence": "high",
   "seq": "S0087",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S518B#44",
@@ -2725,7 +2801,13 @@
   "reason": "初篩改法「在像現在這樣沒有無限生命的時期」容易讀成「現在也沒有無限生命」，意思不清；後半「我的意思是，這完全在我們的能力範圍之內」沒有錯，改法保留。",
   "confidence": "high",
   "seq": "S0088",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S520B#8",
@@ -2756,7 +2838,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0089",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S520B#42",
@@ -2787,7 +2875,13 @@
   "reason": "「也許」對應 KR 的「~하는 듯」（好像要跳），不是錯；只需改「舞動肩膀」與「看到的」，其餘保留現行譯文。",
   "confidence": "medium",
   "seq": "S0090",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S524B#28",
@@ -2818,7 +2912,57 @@
   "reason": "初篩改法「五個災害」不自然；這一行是在介紹這個設定，改用既有的專有說法「五大災害」。檔內其他把 재앙 當一般詞的「災難」可以保留。",
   "confidence": "low",
   "seq": "S0091",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [
+    {
+     "ref": "S524B#17",
+     "kr": "‘재앙이 오고 있다’ …였었나요?",
+     "tw": "「災難就要來了」……對吧？",
+     "suggest": "「災害就要來了」……對吧？",
+     "why": "同一場戲的「재앙」，配合 #28 寫「災害」；其餘文字不動。"
+    },
+    {
+     "ref": "S524B#24",
+     "kr": "<그럼 재앙이라고 말했던 게…>",
+     "tw": "<所以災難是……>",
+     "suggest": "<所以災害是……>",
+     "why": "同上。"
+    },
+    {
+     "ref": "S524B#25",
+     "kr": "파일럿이 이야기했던 재앙은, 지부를 파괴하는 것이 아니었던 모양이다.",
+     "tw": "皮利托所說的災難，似乎並非是破壞分部。",
+     "suggest": "皮利托所說的災害，似乎並非是破壞分部。",
+     "why": "同上。"
+    },
+    {
+     "ref": "S524B#27",
+     "kr": "뭐, 세상에는 다양한 형태의 재앙이 있기 마련이니까.",
+     "tw": "嗯，世上的災難千奇百怪。",
+     "suggest": "嗯，世上的災害千奇百怪。",
+     "why": "同上；這句和 #28 是維吉里烏斯連著說的兩句。"
+    },
+    {
+     "ref": "S524B#31",
+     "kr": "재앙은 아무리 조심하고 피하려 해도 찾아오는 법이에요… 그것들은 규칙대로 움직이지 않아도 되는 힘을 가져서 불현듯 찾아오니까요.",
+     "tw": "無論多麼小心謹慎，大湖中的災難總是無可避免……它們突如其來，又不按常理出牌。",
+     "suggest": "無論多麼小心謹慎，大湖中的災害總是無可避免……它們突如其來，又不按常理出牌。",
+     "why": "同上。"
+    },
+    {
+     "ref": "S524B#32",
+     "kr": "지금은… 그 재앙이 남기고 간 지옥 속으로 직접 노를 저어 들어갈 시간이군.",
+     "tw": "現在……是時候蕩起槳來，進入那災難遺留的廢墟地獄了。",
+     "suggest": "現在……是時候蕩起槳來，進入那災害遺留的廢墟地獄了。",
+     "why": "同上。"
+    }
+   ],
+   "note": "這一句的建議可以照用，但同一場戲的另外 6 句（#17、#24、#25、#27、#31、#32）現行都把同一個「재앙」寫成「災難」，要一起換成「災害」，否則緊鄰的 #27「世上的災難千奇百怪」和這句的「五大災害」用詞不同。第 5 章其他地方的同一個設定都寫「災害」（S514B#70、#84，S534B#13、#17，5D304A#45、#47）；S534B#87、#89 的「喚來災難」是一般說法，不用動"
+  }
  },
  {
   "ref": "S525B#38",
@@ -2849,7 +2993,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0092",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S525B#76",
@@ -2880,7 +3030,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0093",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S525B#80",
@@ -2911,7 +3067,21 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0094",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [
+    {
+     "ref": "S525B#79",
+     "kr": "하지만, 죄책감의 덕을 보게 된 걸까.",
+     "tw": "但，是因為內疚嗎。",
+     "suggest": "但，或許是託了罪惡感的福。",
+     "why": "KR「하지만, 죄책감의 덕을 보게 된 걸까.」是「不過，或許是託了罪惡感的福。」，「덕을 보다」是因此受益：但丁被罪惡感推著跑過去，靠近之後那張臉起了變化（#80）。現行「但，是因為內疚嗎。」少了「受益」的意思。"
+    }
+   ]
+  }
  },
  {
   "ref": "S525B#100",
@@ -2942,7 +3112,13 @@
   "reason": "TW 把以實瑪利的悔恨寫成了希望，情緒方向相反，讀者會誤解這段，嚴重度改為 medium。",
   "confidence": "high",
   "seq": "S0095",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S526A#35",
@@ -2973,7 +3149,13 @@
   "reason": "林的台詞與 TW 前文都寫「枝」，初篩改法改成「金枝」不必要；改法保留「被枝所吸引的並非只有你們」。",
   "confidence": "medium",
   "seq": "S0096",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S530B#35",
@@ -3004,7 +3186,13 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0097",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S530B#44",
@@ -3035,7 +3223,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0098",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S532B#77",
@@ -3066,7 +3260,13 @@
   "reason": "KR 沒有寫出主詞，後文說犯案的是「你們中的一人」，改法用「有人」，不寫成「你們」。",
   "confidence": "high",
   "seq": "S0099",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S533B#0",
@@ -3097,7 +3297,21 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0100",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [
+    {
+     "ref": "S533B#1",
+     "kr": "하지만~ 다음 기회에!",
+     "tw": "但是～沒有下次！",
+     "suggest": "可惜～下次再來！",
+     "why": "KR「하지만~ 다음 기회에!」是沒中獎時說的客套話「可惜～下次再來！」，里卡多在奚落以實瑪利只擦到他的墨鏡。現行「但是～沒有下次！」意思相反。"
+    }
+   ]
+  }
  },
  {
   "ref": "S534B#45",
@@ -3128,7 +3342,13 @@
   "reason": "說明正確；後半「起身，緩步準備離開」與 KR「站起來像要出去似地走了」相符，改法保留現行譯文，只改前半。",
   "confidence": "high",
   "seq": "S0101",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S534B#58",
@@ -3159,7 +3379,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0102",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S534B#95",
@@ -3190,7 +3416,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0103",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S535B#31",
@@ -3221,7 +3453,13 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0104",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S535B#47",
@@ -3252,7 +3490,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0105",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S537A#33",
@@ -3283,7 +3527,13 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0106",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S538B#78",
@@ -3314,7 +3564,17 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0107",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "suggest": "果然如此……那個人說得對。那些傷痕……那些我們……裴廓德號留下的傷痕……還在那裡。",
+   "kr_meaning": "「역시… 그 사람의 말이 맞았어.」是「果然……那個人說得沒錯。」，「그 사람」不分性別；「그 때 우리가… 피쿼드호가 냈던 상처 자국이 그대로잖아.」是「那時我們……裴廓德號留下的傷痕，原封不動還在啊。」",
+   "context": "眾人照計畫引出鯨群（#60–#71），以實瑪利指著其中最大、滿身傷痕的白鯨（#72–#76），喊「找到了！」（#77）後說了這句。前面幾十行沒有交代「那個人」是誰。",
+   "problem": "報告把現行的「她」改成「他」，依據是 EN 的 He 和推測（林或靛藍老人）。現行的「她」沒有根據，但「他」同樣是推測，KR 並沒有寫性別；照 KR 寫「那個人」。",
+   "also": []
+  }
  },
  {
   "ref": "S539B#24",
@@ -3345,7 +3605,13 @@
   "reason": "判斷成立；改法保留現行「我也不會忘記」（與上一行「無論……」銜接），只改施受關係與單複數，不另加 KR 沒有的「硬生生」。",
   "confidence": "high",
   "seq": "S0108",
-  "group": "main-05"
+  "group": "main-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "S601B#2",
@@ -10049,7 +10315,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0324",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "5D106B#16",
@@ -10080,7 +10352,17 @@
   "reason": "初篩改法的「酒桶比賽」在中文看不出是比喝酒；改寫成「比賽喝桶裝酒」。",
   "confidence": "high",
   "seq": "S0325",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "suggest": "去到外面的話要不要賭一桶酒比一場？就和以前一樣！",
+   "kr_meaning": "「밖에 나가면」是「出去之後」；「술통 내기라도 하는 건 어때?」的「내기」是打賭、比輸贏。韓文「名詞＋내기」通常是拿那樣東西當賭注（例如「밥 내기」是輸的人請吃飯），所以較可能是「賭一桶酒」；JP「酒樽きょうそう」、EN 則理解成比賽喝酒。「예전처럼 말이야!」是「就像以前那樣！」",
+   "context": "斯達巴克和以實瑪利敘舊：「剛剛可真是嚇到我了」（#14）、「沒想到能在這裡遇到你」（#15），然後提議出去之後像以前一樣來一場；接著問她和其他船員打過招呼沒有（#17）。",
+   "problem": "報告建議「比賽喝桶裝酒」只取了 JP、EN 的讀法。改成兩種讀法都說得通的「賭一桶酒比一場」。",
+   "also": []
+  }
  },
  {
   "ref": "5D107B#21",
@@ -10111,7 +10393,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0326",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "5D108B#41",
@@ -10142,7 +10430,13 @@
   "reason": "初篩判斷正確；改法改為保留現行第一句，只改第二句。",
   "confidence": "high",
   "seq": "S0327",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "5D203B#21",
@@ -10173,7 +10467,13 @@
   "reason": "初篩判斷正確；改法保留現行句子的結構與「深淵一般的無底洞」，把「全身上下只拴著」改成對應 KR「믿고」的「只靠著」，讀起來更順。",
   "confidence": "high",
   "seq": "S0328",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "5D203B#67",
@@ -10204,7 +10504,13 @@
   "reason": "「死得不留痕跡、無人記得」與「毫無存在感的死」意思相近，下一句以實瑪利說「最沒有意義的死法」也接得上，讀者不會誤解劇情，嚴重度降為 low；改法照用。",
   "confidence": "high",
   "seq": "S0329",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "5D203B#82",
@@ -10235,7 +10541,13 @@
   "reason": "初篩改法寫「我的心」，會和下一句「마음（心）」混同；KR 這裡用的是「심장」，改寫「心臟」以分開兩者。",
   "confidence": "high",
   "seq": "S0330",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "5D204B#0",
@@ -10266,7 +10578,17 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0331",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "suggest": "這就是船長提到過的第二個腔室嗎……",
+   "kr_meaning": "「이곳이 선장이 말한 두 번째 방인가…」是「這裡就是船長說的第二個『방』嗎……」。「방」是房間，也指腔室；句尾「-인가…」是自言自語的推測。",
+   "context": "這一節的地點是「白鯨的右心室」，前一節是右心房；亞哈先前（5D108B#12–#23）用左心房、右心房、心室說明路線。下一句但丁說「過了這裡就能抵達心臟中央」（#1）。",
+   "problem": "報告建議「第二個房間」避開了現行「心房」的錯（這裡是心室），但在心臟裡說「房間」不自然；「腔室」可以同時指心房與心室。",
+   "also": []
+  }
  },
  {
   "ref": "5D205A#14",
@@ -10297,7 +10619,13 @@
   "reason": "說明照用；另外「遊向」是錯字，游泳的「游」應寫「游」，改法一併修正。",
   "confidence": "high",
   "seq": "S0332",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "5D205A#28",
@@ -10328,7 +10656,17 @@
   "reason": "初篩漏了「죽지 않았다」的時態，改法一併改成「他沒有死」。",
   "confidence": "high",
   "seq": "S0333",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "suggest": "但是，他沒有死！雖然在拚死搏鬥之後沒能回到船上，還在這一帶隨波漂盪，但他很快就會乘上我放下的小船，前往安全的地方！",
+   "kr_meaning": "「하지만 그는 죽지 않았다!」是「但他沒有死！」；「비록 목숨을 건 사투 끝에 배에 돌아오지 못하고 이곳을 넘실대고 있지만」是「雖然在拚上性命的死鬥之後沒能回到船上、正在這一帶隨浪起伏」，「넘실대다」是隨波浪起伏；「곧 내가 내린 조각배를 타고 안전한 곳으로 갈 것이다!」是「但他很快就會搭上我放下的小船，到安全的地方去！」",
+   "context": "斯塔布落水。亞哈先說「為了趕路不能再讓他上船」（#27），接著是這句，再來是「他在喊！為了我們的成功在喊！」（#29）；以實瑪利心想「這到底是怎樣的瘋言瘋語」（#30）。",
+   "problem": "報告只改了「沒有死」和「拚死搏鬥」，後半仍是現行的「而只能在這附近彷徨的時候，也一定能找到我放下的小船」：「彷徨」不是「넘실대다」，「即使……的時候，也一定能……」句子不通，也把「很快就會搭上」寫成「一定能找到」。",
+   "also": []
+  }
  },
  {
   "ref": "5D205B#10",
@@ -10359,7 +10697,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0334",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "5D303B#7",
@@ -10390,7 +10734,13 @@
   "reason": "亞哈的論點（我救了他們、所以他們該用命回報）因此不通，下一句「延長生命的恩情」也接不上，嚴重度升為 medium；初篩改法「他們從進入……起，早就……」語序不順，改寫。",
   "confidence": "high",
   "seq": "S0335",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "5D303B#13",
@@ -10421,7 +10771,13 @@
   "reason": "改法改用同章既有的「塗抹成……的模樣」，前後呼應；並把「隨心所欲的塑造」改成副詞用的「地」。",
   "confidence": "high",
   "seq": "S0336",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "5D304I6#6",
@@ -10452,7 +10808,13 @@
   "reason": "初篩改法仍漏了「우리 둘 다 …생각하지（我們都這麼認為）」，這正是上一句「你和我一樣了」的重點，改法補上。",
   "confidence": "high",
   "seq": "S0337",
-  "group": "dungeon-05"
+  "group": "dungeon-05",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "7D102A#3",
@@ -13924,7 +14286,13 @@
   "reason": "初篩改法「才沒有那種事。」丟掉了接話補完的效果（TW 羅佳那句停在「有趣的……」），改成先補完再否定，與 KR、EN 的結構一致。",
   "confidence": "high",
   "seq": "S0449",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E501B#86",
@@ -13955,7 +14323,13 @@
   "reason": "錯誤成立；只改「智商」，保留現行（與 JP 相同的）句型。對劇情影響小，嚴重度降為 low。",
   "confidence": "high",
   "seq": "S0450",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E503B#77",
@@ -13986,7 +14360,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0451",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E503B#107",
@@ -14017,7 +14397,13 @@
   "reason": "核心意思（她是戀人）沒有錯，問題是多出 KR 沒有的推論，類別改為 A3、嚴重度降為 low；改法沿用。",
   "confidence": "high",
   "seq": "S0452",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E503B#135",
@@ -14048,7 +14434,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0453",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E504B#10",
@@ -14079,7 +14471,13 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0454",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E504B#46",
@@ -14110,7 +14508,13 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0455",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E505B#8",
@@ -14141,7 +14545,17 @@
   "reason": "判斷成立；改法改用「心神不寧」，比「處於不安的狀態」更合李箱的典雅白話。",
   "confidence": "high",
   "seq": "S0456",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "adjust",
+   "suggest": "希斯克利夫先生一直都心神不寧。考慮到前後的情況，想必是在到達T公司前需要有所準備。",
+   "kr_meaning": "「히스클리프 군은 시종일관 불안한 상태였지.」是「希斯克利夫先生自始至終都處於不安的狀態。」，「~군」是稱謂；「전후 상황을 고려하면, T사에 도착하기 전에 준비해야 할 것이 있는 것 같았소.」是「考慮到前後的情況，似乎是在抵達 T 公司之前有需要準備的東西。」",
+   "context": "但丁問李箱怎麼知道他們在這裡（#6），李箱說是推測（#7），然後逐一說明：先是希斯克利夫，下一句是「唐吉訶德女士」（#9，KR「돈키호테 양」，現行有寫稱謂）。",
+   "problem": "報告建議的譯文本身可用，但「히스클리프 군」依 guides/base.md 要寫「希斯克利夫先生」，現行和報告建議都只寫「希斯克利夫」，和下一句的「唐吉訶德女士」也不一致。",
+   "also": []
+  }
  },
  {
   "ref": "E505B#50",
@@ -14172,7 +14586,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0457",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E506A#18",
@@ -14203,7 +14623,13 @@
   "reason": "判斷成立；改法保留現行的「我知道」，只改錯的前半句。",
   "confidence": "high",
   "seq": "S0458",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E507A#25",
@@ -14234,7 +14660,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0459",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E507A#63",
@@ -14265,7 +14697,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0460",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E509B#67",
@@ -14296,7 +14734,13 @@
   "reason": "「應該／可以」的偏差成立；但「내가 그렇게 하자고 한 거니까」說「是我說就這麼辦的」，計畫本來就是那兩人的（EN「go along with their plan」），現行「同意了執行他們的計畫」並沒有錯，初篩改成「提議是我自己提出的」反而偏離，所以只改前半句。",
   "confidence": "medium",
   "seq": "S0461",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E509B#138",
@@ -14327,7 +14771,13 @@
   "reason": "錯誤成立，但只是動作畫面不同、不影響劇情，嚴重度由 medium 降為 low；改法沿用。",
   "confidence": "high",
   "seq": "S0462",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E509B#154",
@@ -14358,7 +14808,13 @@
   "reason": "錯誤成立，但兩種說法都導向「先不管別的」，後文也接得上，嚴重度由 medium 降為 low；改法沿用。",
   "confidence": "high",
   "seq": "S0463",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E510B#4",
@@ -14389,7 +14845,21 @@
   "reason": "判斷成立；初篩改法「褪成灰色啊」「……就是了」太口語，不合李箱的典雅白話。「세피아」照既有譯文（E913B、P10210）寫「深棕色」。",
   "confidence": "high",
   "seq": "S0464",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": [
+    {
+     "ref": "E510B#5",
+     "kr": "T사의 색을 수거하는 장치가 중심에 위치해 있으니까요. 영향권에서 멀면 이런 현상이 있을 수 있다고 보고된 적이 있습니다.",
+     "tw": "這是由於色彩回收裝置處於T公司的中心位置。有報告表明，即使遠離了影響範圍，此類現象也可能會發生。",
+     "suggest": "這是由於色彩回收裝置處於T公司的中心位置。有報告表明，離影響範圍遠的話，就可能出現此類現象。",
+     "why": "KR「영향권에서 멀면 이런 현상이 있을 수 있다」是「離影響範圍遠的話，就可能有這種現象」，浮士德在解釋為什麼這裡是灰色、李箱待過的定居地卻是深棕色。現行「即使遠離了影響範圍，此類現象也可能會發生」把條件寫反了。"
+    }
+   ]
+  }
  },
  {
   "ref": "E511B#58",
@@ -14420,7 +14890,13 @@
   "reason": null,
   "confidence": "medium",
   "seq": "S0465",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E511B#64",
@@ -14451,7 +14927,13 @@
   "reason": "判斷成立；但初篩改法用「他」指奧提斯，奧提斯是女性（TW 用「她」），改成不用代名詞。這是字句錯譯，不是肯定否定反轉，類別改為 A1。",
   "confidence": "high",
   "seq": "S0466",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E512A#31",
@@ -14482,7 +14964,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0467",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E515A#41",
@@ -14513,7 +15001,13 @@
   "reason": null,
   "confidence": "high",
   "seq": "S0468",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E516A#5",
@@ -14544,7 +15038,13 @@
   "reason": "判斷成立；初篩改法「排斥我們往上走」搭配不順，改寫措辭。",
   "confidence": "high",
   "seq": "S0469",
-  "group": "event-e5"
+  "group": "event-e5",
+  "recheck": {
+   "date": "2026-11-19",
+   "raw": "raw-20261119",
+   "result": "direct",
+   "also": []
+  }
  },
  {
   "ref": "E604B#46",
