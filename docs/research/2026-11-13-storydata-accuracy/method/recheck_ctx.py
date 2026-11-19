@@ -23,8 +23,8 @@ for f in items:
     d=load(f['file']); idx=int(f['key'].split('/dataList/')[1].split('/')[0]); fld=f['field']
     cur_kr=d['kr'][idx].get(fld); cur_tw=d['tw'][idx].get(fld)
     flag=[]
-    if cur_kr!=f['kr']: flag.append('KR已變')
-    if cur_tw!=f['tw']: flag.append('TW已變:'+s(cur_tw))
+    if s(cur_kr)!=s(f['kr']): flag.append('KR已變')   # the report writes line breaks as ⏎
+    if s(cur_tw)!=s(f['tw']): flag.append('TW已變:'+s(cur_tw))
     print('=== %s %s [%s|%s|信心%s] %s 來源%s %s'%(f['seq'],f['ref'],f['category'],f['severity'],f['confidence'],f['speaker'],f['origin'],' '.join(flag)))
     for i in range(max(0,idx-C),min(len(d['kr']),idx+C+1)):
         k=d['kr'][i]; t=d['tw'][i]

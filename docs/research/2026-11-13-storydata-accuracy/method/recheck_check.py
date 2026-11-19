@@ -23,7 +23,10 @@ def load(b):
         cache[b] = (json.load(open('%s/.work/raw/kr/StoryData/KR_%s.json' % (repo, b), encoding='utf-8-sig'))['dataList'],
                     json.load(open('%s/.work/tw/LimbusCompany_Data/Lang/zh-TW/StoryData/%s.json' % (repo, b), encoding='utf-8-sig'))['dataList'])
     return cache[b]
+N = lambda t: (t or '').replace('\n', '⏎')   # the report writes line breaks as ⏎
+R = lambda t: (t or '').replace('⏎', '\n')
 def val(file, ptr, kr, zh):
+    kr, zh = R(kr), R(zh)
     r = subprocess.run([repo + '/bin/lct', 'validate', '--kr', kr, '--zh', zh, '--file', file, '--pointer', ptr], capture_output=True, text=True, cwd=repo)
     out = (r.stdout + r.stderr).strip().splitlines()
     return r.returncode == 0 and out and 'no issues' in out[-1], (out[-3:] if out else [])
@@ -50,9 +53,9 @@ for x in d:
         try: kr, tw = load(b)
         except Exception as e: err(x['seq'], 'also file', a['ref'], e); continue
         if i >= len(kr): err(x['seq'], 'also index', a['ref']); continue
-        if (kr[i].get(fld) or '') != a['kr']: err(x['seq'], 'also KR mismatch', a['ref'], '| file:', (kr[i].get(fld) or '')[:60], '| given:', a['kr'][:60])
-        if (tw[i].get(fld) or '') != a['tw']: err(x['seq'], 'also TW mismatch', a['ref'], '| file:', (tw[i].get(fld) or '')[:60], '| given:', a['tw'][:60])
-        if a['suggest'] == a['tw']: err(x['seq'], 'also no change', a['ref'])
+        if N(kr[i].get(fld)) != N(a['kr']): err(x['seq'], 'also KR mismatch', a['ref'], '| file:', (kr[i].get(fld) or '')[:60], '| given:', a['kr'][:60])
+        if N(tw[i].get(fld)) != N(a['tw']): err(x['seq'], 'also TW mismatch', a['ref'], '| file:', (tw[i].get(fld) or '')[:60], '| given:', a['tw'][:60])
+        if N(a['suggest']) == N(a['tw']): err(x['seq'], 'also no change', a['ref'])
         key = 'StoryData/%s.json|/dataList/%d/%s' % (b, i, fld)
         if key in adj: err(x['seq'], 'also already adjusted', a['ref'])
         ok, out = val('StoryData/%s.json' % b, '/dataList/%d/%s' % (i, fld), kr[i].get(fld) or '', a['suggest'])
