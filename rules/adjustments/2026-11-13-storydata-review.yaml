@@ -1367,3 +1367,9 @@
   zh: 正如維吉里烏斯所說，如果公司的目的是要我們介入這片騷亂，那就一定意味著必須從這裡取得情報。
   reason: StoryData 審查 S0465：KR：若公司的意圖是要我們介入這裡的騷亂，就表示一定要從這裡拿到情報。TW 寫成「讓我們途經這片騷亂可能是有原因的」，把「要我們介入」弱化成「途經」，條件句與結論也被改寫。
   rule: one-off
+- key: StoryData/E511B.json|/dataList/64/content
+  raw: raw-20261119
+  kr_sha: d698f342f629e569f9d46f0ceda88439d336b599f42ba344bff62b7c6d72fd06
+  zh: 這聽起來倒像是平常都不是真心的……
+  reason: StoryData 審查 S0466：奧提斯說「我奧提斯由衷（진심으로）地佩服您」，旁白吐槽「這樣說聽起來像是平常都不是真心的……」（JP「普段は心からというわけではないって風に聞こえる」、EN「is she implying that her usual flattery is phony?」）。現行 TW「這聽起來不太像是真心話」變成懷疑這一句不真心，「平常不真心」的笑點不見了。 照使用者的句子，加「倒」對應「-긴 하는데」；譯法由使用者決定
+  rule: one-off
