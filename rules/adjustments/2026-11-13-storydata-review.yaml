@@ -1163,35 +1163,11 @@
   zh: 果然如此……那個人說得對。那些傷痕……那些我們……裴廓德號留下的傷痕……還在那裡。
   reason: StoryData 審查 S0107：KR「그 사람의 말이 맞았어」＝那個人說得對，JP「あの人」、EN「He was right」；前文提過與白鯨有關的人（林、靛藍老人）都是男性。TW 寫「她說得對」，性別錯，應為「他」。 照再檢視的建議調整：報告把現行的「她」改成「他」，依據是 EN 的 He 和推測（林或靛藍老人）。現行的「她」沒有根據，但「他」同樣是推測，KR 並沒有寫性別；照 KR 寫「那個人」。 使用者同意
   rule: one-off
-- key: StoryData/S539B.json|/dataList/24/content
-  raw: raw-20261119
-  kr_sha: d2b091cd6fac96b9b831d6521c50136c807207e2a7aa010c8a3f8392bb748a5c
-  zh: <color=#ff9500>我都會記得那些從我身上被扯斷的繩索吧。</color=#ff9500>
-  reason: StoryData 審查 S0108：KR「내게서부터 뜯겨 나간 그 끈들」＝從我身上被扯走的那些繩索，JP「私から引きちぎれていった」、EN「ripped away from me」也是被動，受害的是「我」，且是複數；TW「那根被我扯斷的繩索」變成「我」把繩索扯斷，施受顛倒，也變成單數。 句尾照 KR「기억하겠지」（會記得吧，推測）寫成「我都會記得……吧」，與下一句的「……吧」並列；譯法由使用者決定
-  rule: one-off
-- key: StoryData/S539B.json|/dataList/23/content
-  raw: raw-20261119
-  kr_sha: ccb4873637396a99a1ea28f6d915412526f475813f977da7fd5c3504d5ae739b
-  zh: <color=#ff9500>往後無論是不幸的時候，還是幸福的時候……</color=#ff9500>
-  reason: StoryData 審查 S0108（前後文一起改）：KR「불행할 때나 행복할 때나」是「不幸的時候、幸福的時候」，現行把「幸福」寫成「幸運」；使用者同意
-  rule: one-off
 - key: StoryData/5D101B.json|/dataList/42/content
   raw: raw-20261119
   kr_sha: e8f8f3f2422fe8fa63ea49fa4bd5eef85bf45b5813b089adb26d179e1dc85816
   zh: 然而，我可以說，我們確實曾以被認為成功率很低的方式，在作戰中取得了戲劇性的成功。
   reason: StoryData 審查 S0324：KR「…극적으로 성공시켜 왔던 것은 사실이라고 말씀드릴 수는 있겠네요」是「我可以告訴您，我們確實一再以被認為機率很低的方式讓作戰戲劇性地成功」，JP、EN 相同；現行 TW「我想申明的是，雖然我們確實曾……」用「雖然」開頭卻沒有主句，句子不完整，事實陳述也變成讓步語氣。
-  rule: one-off
-- key: StoryData/5D106B.json|/dataList/16/content
-  raw: raw-20261119
-  kr_sha: f6bbc874e3086fcb197cd5fb0007c3c8ccac4ff932db929739a4a2b1e76f6cad
-  zh: 去到外面的話要不要來賭一桶酒？就和以前一樣！
-  reason: StoryData 審查 S0325：KR「술통 내기라도 하는 건 어때?」是「要不要來賭一桶酒？」，酒桶是賭注（名詞＋내기），原文沒寫比什麼；現行「乾杯桶裝酒」漏了「내기」，報告建議「比賽喝桶裝酒」是照 EN 的讀法。譯法由使用者決定
-  rule: one-off
-- key: StoryData/5D107B.json|/dataList/21/content
-  raw: raw-20261119
-  kr_sha: af1bc5a73ef69d6237265c5da8cf6a62cf18a231207897f7a67cb4c1cda2f2f5
-  zh: 那聲音隱祕……卻又坦誠。
-  reason: StoryData 審查 S0326：KR「목소리가 은밀하고도… 진솔했다.」是「那聲音隱祕……卻又坦誠」，現行「黯淡」把「은밀（隱密、私下）」寫錯；報告建議的「低沉」是照 EN 的 low 加的。譯法由使用者決定
   rule: one-off
 - key: StoryData/5D108B.json|/dataList/41/content
   raw: raw-20261119
@@ -1300,4 +1276,28 @@
   kr_sha: 7892c3105e8c7774e06bf35a7bc8e6aed4adc33dc012533b2e8353912a5dbb2e
   zh: <好，不然我現在去救他們好了。>
   reason: StoryData 審查 S0455：KR「지금이라도 내가 나서서 구하러 가볼까.」是事後才說的「就算現在也好，我去救救看吧」，自言自語、沒把握，下一句旁白立刻否定；現行「現在到我上前拯救他們的時候了」照 EN 寫成篤定的宣告。用「不然……好了」寫出退而求其次與試探的語氣，句號照 KR。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S539B.json|/dataList/24/content
+  raw: raw-20261119
+  kr_sha: d2b091cd6fac96b9b831d6521c50136c807207e2a7aa010c8a3f8392bb748a5c
+  zh: <color=#ff9500>那些從身上被扯走的繩索，我大概都忘不了吧。</color=#ff9500>
+  reason: StoryData 審查 S0108：KR「내게서부터 뜯겨 나간 그 끈들을 기억하겠지.」是「從我身上被扯走的那些繩索，我會記得吧」（被動、複數、推測）；現行「那根被我扯斷的繩索」施受顛倒、變成單數，「我也不會忘記」照 EN 寫成誓言。受詞提到句首，「會記得吧」寫成「大概都忘不了吧」。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S539B.json|/dataList/23/content
+  raw: raw-20261119
+  kr_sha: ccb4873637396a99a1ea28f6d915412526f475813f977da7fd5c3504d5ae739b
+  zh: <color=#ff9500>往後不管過得不幸還是幸福……</color=#ff9500>
+  reason: StoryData 審查 S0108（前後文一起改）：KR「불행할 때나 행복할 때나」是「不幸的時候、幸福的時候」，現行把「幸福」寫成「幸運」；使用者同意
+  rule: one-off
+- key: StoryData/5D106B.json|/dataList/16/content
+  raw: raw-20261119
+  kr_sha: f6bbc874e3086fcb197cd5fb0007c3c8ccac4ff932db929739a4a2b1e76f6cad
+  zh: 出去以後要不要再來賭一桶酒？就像以前那樣！
+  reason: StoryData 審查 S0325：KR「술통 내기라도 하는 건 어때?」是「要不要來賭一桶酒？」，酒桶是賭注（名詞＋내기），原文沒寫比什麼；現行「乾杯桶裝酒」漏了「내기」，報告建議「比賽喝桶裝酒」是照 EN 的讀法。「밖에 나가면」寫成「出去以後」。譯法由使用者決定
+  rule: one-off
+- key: StoryData/5D107B.json|/dataList/21/content
+  raw: raw-20261119
+  kr_sha: af1bc5a73ef69d6237265c5da8cf6a62cf18a231207897f7a67cb4c1cda2f2f5
+  zh: 那聲音低得像在說祕密……卻又十分真誠。
+  reason: StoryData 審查 S0326：KR「목소리가 은밀하고도… 진솔했다.」是「那聲音隱密……卻又真誠」，現行「黯淡」把「은밀（隱密、私下）」寫錯；報告建議的「低沉」是照 EN 的 low 加的。中文改寫成聲音聽起來的樣子。譯法由使用者決定
   rule: one-off
