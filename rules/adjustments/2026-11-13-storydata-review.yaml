@@ -1259,3 +1259,39 @@
   zh: 你我二人都認為，就算要殺人，只要能將那盡頭之物握在手中，這麼做便是理所當然！
   reason: StoryData 審查 S0337：KR「우리 둘 다 누군가를 죽여가면서라도 그 끝에 있는 것을 손에 쥐기만 한다면 그리해도 마땅하다 생각하지!」是「我們兩個都認為，就算要殺人，只要能把盡頭之物握在手中，那樣做也是應當的！」，JP「誰かを殺したとしても」相同；現行 TW「你我二人無論誰被殺掉」會被讀成兩人之中誰被殺，主動殺人的意思消失，也漏了「兩人都這麼認為」。
   rule: one-off
+- key: StoryData/E501B.json|/dataList/3/content
+  raw: raw-20261119
+  kr_sha: 526a274872b9b1e5dd3ceac6ef6e579574c5debb9646e183c668ce0c32356e6e
+  zh: 事可做？才沒有那種事。能把同一句話說上30遍也算是種能耐了。如果你在說過之後立刻又忘了的話……
+  reason: StoryData 審查 S0449：羅佳說「아~ 뭐 재미…」（啊～有什麼有趣的……），奧提斯接成「（재미）있는 일 따윈 없다」：一邊幫她把話講完，一邊直接否定「根本沒有那種有趣的事」（JP「ことなぞない」；EN「—stories to tell? No, for the thirtieth time.」也是先補完再否定）。現行 TW「事可做嗎？」只把羅佳的問句補完，沒有給出「沒有」的回答，奧提斯的否定不見了。
+  rule: one-off
+- key: StoryData/E501B.json|/dataList/86/content
+  raw: raw-20261119
+  kr_sha: c45db915289229ea7bd8483eb122b923f8f3f39654c5d402b9d7c1a884778dda
+  zh: 時鐘頭……不知道你察言觀色的能力是不是跟你的頭一起被扔掉了……
+  reason: StoryData 審查 S0450：KR「대가리만 없는 게 아니라 눈치도 없었던 거냐」是「你不只沒腦袋，連察言觀色的本事也沒有嗎」（JP「ドタマと一緒にカンも捨ててきちまったのか」）；希斯克利夫是怪但丁不會看場合講話（下文「你就不能委婉點說嗎」）。現行 TW 把「눈치」寫成「智商」，罵的內容從不會看臉色變成笨。
+  rule: one-off
+- key: StoryData/E503B.json|/dataList/77/content
+  raw: raw-20261119
+  kr_sha: 0c84688bbbd7e0dbbae6047042953798b43c7fed4eac63dee956dedc4ed889b2
+  zh: 是因為來到了能找到想要之物的地方，所以放鬆下來了嗎。
+  reason: StoryData 審查 S0451：KR 句尾「-ㄴ 걸까」是疑問／推測（是不是因為來到能找到想要之物的地方才放鬆了）；TW 寫成肯定陳述，並改變了因果。
+  rule: one-off
+- key: StoryData/E503B.json|/dataList/107/content
+  raw: raw-20261119
+  kr_sha: 7160d2566bcdcce6e8b5b093f873e5eabe1e477c3b7edd871bd049f7174d8e5e
+  zh: 哈！吾唐吉訶德的直覺在高喊，那個人就是希斯克利夫先生的戀人！
+  reason: StoryData 審查 S0452：KR 是「吾唐吉訶德的直覺正在高喊，那個人是希斯克利夫先生的戀人！」（JP 同）。現行 TW 多加了「這樣稱呼一定是因為」，把直覺的判斷改寫成根據暱稱推論，結論（她是戀人）倒是沒錯。
+  rule: one-off
+- key: StoryData/E503B.json|/dataList/135/content
+  raw: raw-20261119
+  kr_sha: 9921e6a0f3fddf0f60ef0514e5afbb8359c23b6f43c923eaf6915bb7c5f52bbc
+  zh: 為什麼在偷懶諾姆！
+  reason: StoryData 審查 S0453：KR「농땡이를 피다」是偷懶（JP「サボっている」）；TW「別裝傻」意思不同。
+  rule: one-off
+- key: StoryData/E504B.json|/dataList/10/content
+  raw: raw-20261119
+  kr_sha: ad9cef5049bd9ac7e09cc4df1099f6fdaff57be1c2a1028a103644bbfcabd419
+  zh: 那麼……是我沒見過的怪物……呢……
+  reason: StoryData 審查 S0454：KR「처음 보는 괴물」是「沒見過的（陌生的）怪物」，指柯蕾昂判斷但丁是沒見過的怪物；TW「雖然……我也是第一次見到怪物」多了「雖然」並變成她第一次見到怪物，語意偏了。
+  rule: one-off
