@@ -971,3 +971,105 @@
   zh: ……的事情我毫無興趣，簡要說明你們獲得的情報。結論先說。
   reason: StoryData 審查 S0084：KR「두괄식으로」是「結論先說」（把重點放在開頭的寫法，JP 頭括型で）；TW「簡略地」意思不同，也和前面的「簡要說明」重複。
   rule: one-off
+- key: StoryData/S515B.json|/dataList/23/content
+  raw: raw-20261119
+  kr_sha: 5d04fd23aa2ff64d5358532f1de3944316e87abfe12973fcba2c9daac6df1678
+  zh: 當然。我的目的、我的目標此時到底是什麼情況，我都無從得知，在這種狀態下……
+  reason: StoryData 審查 S0085：KR「제 목적이, 목표가 시시각각 어떻게 돌아가고 있는지 알 수도 없는 상태에서…」是「我的目的、我的目標此刻是什麼情況都無從得知的狀態下……」，她有目標，只是不知道它現在的狀況；現行「不清楚自己的任務，漫無目的」寫成沒有目標。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S517A.json|/dataList/25/content
+  raw: raw-20261119
+  kr_sha: 53ff35f2781df80bb379afdbdbd0511aedeccff4e82fd742d3c824786192194b
+  zh: ……在誰都不剩的船上，唯有帆在風中飄揚。
+  reason: StoryData 審查 S0086：KR「돛」是船帆（JP 帆，EN sails）；TW 寫成「旗子」。
+  rule: one-off
+- key: StoryData/S518B.json|/dataList/37/content
+  raw: raw-20261119
+  kr_sha: f7814458a68952b0185163c2da03784315ad2f4ec4362a3cf57b427825a76ef4
+  zh: 妳說什麼？
+  reason: StoryData 審查 S0087：KR「뭐라고요?」是以實瑪利聽到奧提斯要直接衝進浪潮時的驚愕反問「妳說什麼？」（JP 今なんと？，EN What?），下一句接「你瘋了嗎？」；TW「現在怎麼辦？」變成詢問對策，意思不同。
+  rule: one-off
+- key: StoryData/S518B.json|/dataList/44/content
+  raw: raw-20261119
+  kr_sha: 78b4ee5d6709e1809d6daf936698b7945eef01da42cebb15c5b960d830cbcea9
+  zh: 而且，那還是在妳不像現在這樣擁有無限生命的時候。我的意思是，這完全在我們的能力範圍之內。
+  reason: StoryData 審查 S0088：KR「심지어 지금처럼 무한한 목숨이 아니던 시기에도, 말이지」是「而且那還是在（妳）不像現在這樣擁有無限生命的時候」，指以實瑪利過去沒有復活能力時就闖過浪潮（JP 無限の命を持っていない頃であっても，EN when you didn't have someone to bring you back）；TW「而且現在我們也不怕死」把時間與意思都改了。
+  rule: one-off
+- key: StoryData/S520B.json|/dataList/8/content
+  raw: raw-20261119
+  kr_sha: 2ef2880ba8f9c976149bc895aacaaa88b750e05035c092949e60283b1d211d22
+  zh: 我……也想一起觀看以實瑪利所見之物。
+  reason: StoryData 審查 S0089：KR「이스마엘」；TW 寫成「實瑪利」，人名少了「以」，應為「以實瑪利」。
+  rule: one-off
+- key: StoryData/S520B.json|/dataList/42/content
+  raw: raw-20261119
+  kr_sha: e0f067b688e5b6c2480625dca594388f3d2d5ae540ef92df61f3e0ca9540ea99
+  zh: 唐吉訶德正隨著節奏擺動身體……也許她在嘗試跳在俱樂部裡偷學來的旗魚舞。
+  reason: StoryData 審查 S0090：KR「클럽에서 어깨너머로 배웠던 청새치 댄스」是「在俱樂部裡看別人跳、偷學來的旗魚舞」，어깨너머로 배우다 是從旁看著學會的慣用語（JP 見よう見まね）；TW 照 EN 寫成「舞動肩膀」，把慣用語的「肩膀」當成動作，「看到的」也少了「學來」。
+  rule: one-off
+- key: StoryData/S524B.json|/dataList/28/content
+  raw: raw-20261119
+  kr_sha: e7ddaa3e0310136ca2eee18e6027e830482a2790253a712f2d2aa3ce4b6c9760
+  zh: 大湖共有五大災害。啊，現在只剩四個了。
+  reason: StoryData 審查 S0091：KR「이 대호수에서는 다섯 가지 재앙이 존재한다」是在說大湖的五種災害，即 S514B#70、S534B#13、S534B#17 的「오재앙」，TW 在那些地方都寫「五大災害」；本行寫「五個災難」，同一個設定名稱前後不一。
+  rule: one-off
+- key: StoryData/S524B.json|/dataList/17/content
+  raw: raw-20261119
+  kr_sha: 9da6d427cd34b3e0a95ddfeeac384e680e2b5e793e91961df6b58a21efef455c
+  zh: 「災害就要來了」……對吧？
+  reason: 'StoryData 審查 S0091（前後文一起改）：同一場戲的「재앙」，配合 #28 寫「災害」；其餘文字不動。 使用者同意'
+  rule: one-off
+- key: StoryData/S524B.json|/dataList/24/content
+  raw: raw-20261119
+  kr_sha: 146008c38444858190795787fe0f25d9c41244b93d6d15a1622ab4b1552ebfde
+  zh: <所以災害是……>
+  reason: StoryData 審查 S0091（前後文一起改）：同上。 使用者同意
+  rule: one-off
+- key: StoryData/S524B.json|/dataList/25/content
+  raw: raw-20261119
+  kr_sha: f2b7a3a319c97741749ceed5783ac68382132fdc9397b8e574e91260ddd9e68e
+  zh: 皮利托所說的災害，似乎並非是破壞分部。
+  reason: StoryData 審查 S0091（前後文一起改）：同上。 使用者同意
+  rule: one-off
+- key: StoryData/S524B.json|/dataList/27/content
+  raw: raw-20261119
+  kr_sha: 24a21732cb9d50963e9212eb6672665d591b27e82037c0292b05e908ffd00c01
+  zh: 嗯，世上的災害千奇百怪。
+  reason: 'StoryData 審查 S0091（前後文一起改）：同上；這句和 #28 是維吉里烏斯連著說的兩句。 使用者同意'
+  rule: one-off
+- key: StoryData/S524B.json|/dataList/31/content
+  raw: raw-20261119
+  kr_sha: 9827bd6e4109308154a2ed4429d659ab142b69b09cfaf3d146163787937f3263
+  zh: 無論多麼小心謹慎，大湖中的災害總是無可避免……它們突如其來，又不按常理出牌。
+  reason: StoryData 審查 S0091（前後文一起改）：同上。 使用者同意
+  rule: one-off
+- key: StoryData/S524B.json|/dataList/32/content
+  raw: raw-20261119
+  kr_sha: 357a4fcd18da9bcdec91fbcc9145f01880f67f1e9c755d8acdc8b200f6d54aa3
+  zh: 現在……是時候蕩起槳來，進入那災害遺留的廢墟地獄了。
+  reason: StoryData 審查 S0091（前後文一起改）：同上。 使用者同意
+  rule: one-off
+- key: StoryData/S525B.json|/dataList/38/content
+  raw: raw-20261119
+  kr_sha: 88ba24740315f847945d6d8ec2fbb60be15f4d7c33f3dd2e7ea123dc28c21772
+  zh: 不管怎麼看，這都是那東西造成的，那東西經過的地方，不可能還有正常人存在了。
+  reason: StoryData 審查 S0092：KR「이건 아무리 봐도 그것이고」是「不管怎麼看，這都是那東西（鯨）造成的」（JP どこからどう見てもアレで）；TW「不管你怎麼想，這都是事實」丟掉了「是那東西」這個判斷，後半「那東西經過的地方」便少了前提。
+  rule: one-off
+- key: StoryData/S525B.json|/dataList/76/content
+  raw: raw-20261119
+  kr_sha: cb71f8622f2f434b1d0d5e0c09cd9563d63b8321352533b78a9f6b7eca72aeac
+  zh: 也許，是覺得以實瑪利變成那樣、我也有責任的罪惡感推了我一把。
+  reason: StoryData 審查 S0093：KR「이스마엘이 저렇게 변한 것에 내 탓이 있었을 거라는 죄책감이 내 등을 밀었던 것이겠지」是「大概是覺得以實瑪利變成那樣、我也有責任的罪惡感推了我一把」（JP 私のせいであったという罪悪感，EN guilt that I may have played a part）；TW「沒能注意到以實瑪利變化的罪惡感」把愧疚的原因換成「沒注意到」。
+  rule: one-off
+- key: StoryData/S525B.json|/dataList/80/content
+  raw: raw-20261119
+  kr_sha: 706bcf9aae51db53fe5bcf7244dbe4373bd372b3ac283517c9d32daa1fcd59b8
+  zh: 當我靠近僵住的以實瑪利後，那張臉又發生了變化。
+  reason: StoryData 審查 S0094：KR「굳어져 있는 이스마엘」是僵住不動的以實瑪利（JP 固まっている）；TW 寫成「顫抖」。
+  rule: one-off
+- key: StoryData/S525B.json|/dataList/79/content
+  raw: raw-20261119
+  kr_sha: af2e7c7d05f11cc5c2c49936ba20e89d5275e3ed9697bb5cd999b30ee9c78592
+  zh: 但，或許是託了罪惡感的福。
+  reason: StoryData 審查 S0094（前後文一起改）：KR「하지만, 죄책감의 덕을 보게 된 걸까.」是「不過，或許是託了罪惡感的福。」，「덕을 보다」是因此受益：但丁被罪惡感推著跑過去，靠近之後那張臉起了變化（#80）。現行「但，是因為內疚嗎。」少了「受益」的意思。 使用者同意
+  rule: one-off
