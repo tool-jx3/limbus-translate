@@ -1349,3 +1349,15 @@
   zh: 現在更要緊的是集中在都市裡發生的事情上。
   reason: StoryData 審查 S0463：KR「지금은 도시에서 벌어지는 일에 집중하는 것이 더 급하다」是「現在更要緊的是專注於都市裡發生的事」（JP「集中する方が先だ」），是排優先順序。現行 TW「就已經盡全力了」變成已經沒有餘力，意思不同。
   rule: one-off
+- key: StoryData/E510B.json|/dataList/4/content
+  raw: raw-20261119
+  kr_sha: 7a2394bb4c2d48e50a10cc15a2dbc30c14dafb79d660ea5d1d78d85da5b2c186
+  zh: 此處仍褪為一片灰色。我記得從S公司逃亡後的定居地，分明染著深棕之色。
+  reason: StoryData 審查 S0464：KR 是對比：「這裡仍褪成灰色。我分明記得，從S公司逃出後的定居地是塗成深棕色（세피아）的……」（JP「たしか……セピア色に塗られたりきめれど」、EN「I recall with quite the certitude…was sepia-hued」）；浮士德下一句才解釋，離色彩回收裝置遠近不同顏色就不同。現行 TW「令我回想起……那裡遍染著灰褐之色」把對比寫成相似，「灰褐」也讓兩地顏色看起來差不多，浮士德的解釋就接不上了。 後半句照李箱的典雅白話寫成「分明染著深棕之色」；譯法由使用者決定
+  rule: one-off
+- key: StoryData/E510B.json|/dataList/5/content
+  raw: raw-20261119
+  kr_sha: 54e856acd8daa8be080db0be7269537bea46f4cfab91e0ef6ddf36e8d3c3c661
+  zh: 這是由於色彩回收裝置處於T公司的中心位置。有報告表明，遠離影響範圍時，就可能出現此類現象。
+  reason: StoryData 審查 S0464（前後文一起改）：KR「영향권에서 멀면 이런 현상이 있을 수 있다」是「離影響範圍遠，就可能有這種現象」，浮士德在解釋為什麼這裡是灰色、李箱待過的定居地卻是深棕色；現行「即使遠離了影響範圍，此類現象也可能會發生」把條件寫反了。使用者同意
+  rule: one-off
