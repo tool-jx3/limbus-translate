@@ -1,0 +1,8 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G867：「흐음…」是沉吟聲，E505A#3（以實瑪利）寫「咳……」，變成咳嗽。
+# 改成「嗯……」。同一句 KR 其他處寫「呼嗯……」；使用者決定 2026-11-20：簡短的狀聲詞可以有多種寫法，不必統一。
+reason: '「흐음…」是沉吟聲，寫「嗯……」，不寫「咳……」（規則建議 G867）'
+files: ['StoryData/E505A.json']
+origins: [paratranz]
+pattern: '^咳……$'
+replace: '嗯……'
+kr_pattern: '^흐음…$'
