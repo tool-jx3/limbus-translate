@@ -49,30 +49,36 @@ families:
     nodes: ["StoryData/S", "StoryData/D", "StoryData/RPG", "DungeonNode", "BgmLyrics/"]
     glossary: warn
     guide: guides/families/story-main.md
+    include: [guides/shared/phrasing.md]
   - id: story-interlude
     nodes: ["StoryData/E", "StoryData/ES", "StoryData/PC"]
     glossary: warn
     guide: guides/families/story-interlude.md
+    include: [guides/shared/phrasing.md]
   - id: identity
     nodes: ["StoryData/P", "PersonalityVoiceDlg/", "BattleSpeechBubbleDlg"]
     glossary: warn
     guide: guides/families/identity.md
+    include: [guides/shared/phrasing.md]
   - id: ego-voice
     nodes: ["EGOVoiceDig/"]
     glossary: warn
     guide: guides/families/ego-voice.md
+    include: [guides/shared/phrasing.md]
   - id: announcer
     nodes: ["BattleAnnouncerDlg/"]
     glossary: warn
     guide: guides/families/announcer.md
+    include: [guides/shared/phrasing.md]
   - id: dante-note
     nodes: ["StoryTheaterDanteNote*"]
     glossary: warn
     guide: guides/families/dante-note.md
+    include: [guides/shared/phrasing.md]
   - id: rpg
     nodes: ["RPGSystem/"]
     guide: guides/families/rpg.md
-    include: [guides/shared/korean-brackets.md]
+    include: [guides/shared/korean-brackets.md, guides/shared/phrasing.md]
   - id: ally
     nodes: ["Skills", "Skills_personality", "Skills_Ego_Personality", "Skills_Ego", "Skills_Assist", "Passives_Assist", "Passive_Ego", "Passives", "Personalit*", "Egos", "Assist", "EGO"]
     guide: guides/families/ally.md
@@ -89,6 +95,7 @@ families:
     nodes: ["AbnormalityGuides*", "AbDlg", "AbEvents*", "AbEventsResultLog*"]
     glossary: warn
     guide: guides/families/abnormality.md
+    include: [guides/shared/phrasing.md]
   - id: mirror
     nodes: ["MirrorDungeon*", "EGOgift", "EGOgift_*", "EgoGiftCategory", "ActionEvents", "ActionEvents_*", "DungeonStartBuffs", "TutorialMirrorDungeon", "StoryTheaterMirrorWorld*"]
     guide: guides/families/mirror.md

@@ -1,0 +1,8 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G088：說話者名稱「LCCB 대원?」S526A#0 寫「LCCB隊員？」，
+# 其他 6 處寫「LCCB 隊員？」；組織與職稱之間空一格（guides/shared/story-labels.md）。使用者同意 2026-11-20。
+reason: '說話者名稱「LCCB 대원?」寫「LCCB 隊員？」，組織與職稱之間空一格（規則建議 G088）'
+files: ['StoryData/S526A.json']
+origins: [paratranz]
+pattern: '^LCCB隊員？$'
+replace: 'LCCB 隊員？'
+kr_pattern: '^LCCB 대원\?$'

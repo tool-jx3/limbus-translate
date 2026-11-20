@@ -1,0 +1,9 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G761：「선물 제작소」8 處寫「禮物組裝處」、1 處（E509B#0）寫「禮物製作處」。
+# 報告建議統一成多數的「組裝處」；但「組裝」是照 EN「Gift Assembly」，KR「제작소」是製作的地方（劇情是把人做成禮物）。
+# 使用者決定 2026-11-20：照 KR 統一成「禮物製作處」，改寫「組裝處」的 8 處（劇情地點 3 處、StageNode91-5 的關卡地點 4 處、E506A#20 的台詞）。
+reason: '「선물 제작소」照 KR 寫「禮物製作處」，不寫照 EN 的「禮物組裝處」（規則建議 G761，方向由使用者決定）'
+files: ['StageNode91-5.json', 'StoryData/E506A.json', 'StoryData/E507A.json', 'StoryData/E507B.json', 'StoryData/E508A.json']
+origins: [paratranz]
+pattern: '禮物組裝處'
+replace: '禮物製作處'
+kr_pattern: '선물 제작소'

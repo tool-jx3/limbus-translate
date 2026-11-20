@@ -367,7 +367,7 @@ func TestGuidesFor(t *testing.T) {
 	}{
 		{
 			"story with speakers", "StoryData/S1037B.json", []string{"faust", "dante"},
-			[]string{"guides/base.md", "guides/families/story-main.md", "guides/shared/ruby.md", "guides/shared/story-labels.md", "guides/characters/faust.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/story-main.md", "guides/shared/phrasing.md", "guides/shared/ruby.md", "guides/shared/story-labels.md", "guides/characters/faust.md", "guides/characters/dante.md"},
 		},
 		{
 			"no speakers", "MainUIText.json", nil,
@@ -376,11 +376,11 @@ func TestGuidesFor(t *testing.T) {
 		{
 			"character of the file comes before the speakers and is not repeated",
 			"PersonalityVoiceDlg/Voice_Meursalut_xxx_10511.json", []string{"dante", "meursault"},
-			[]string{"guides/base.md", "guides/families/identity.md", "guides/shared/ruby.md", "guides/characters/meursault.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/identity.md", "guides/shared/phrasing.md", "guides/shared/ruby.md", "guides/characters/meursault.md", "guides/characters/dante.md"},
 		},
 		{
 			"repeated speakers", "StoryData/S1037B.json", []string{"faust", "dante", "faust"},
-			[]string{"guides/base.md", "guides/families/story-main.md", "guides/shared/ruby.md", "guides/shared/story-labels.md", "guides/characters/faust.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/story-main.md", "guides/shared/phrasing.md", "guides/shared/ruby.md", "guides/shared/story-labels.md", "guides/characters/faust.md", "guides/characters/dante.md"},
 		},
 		{
 			"skill file has no character guide", "Skills_personality-08.json", nil,
@@ -388,7 +388,7 @@ func TestGuidesFor(t *testing.T) {
 		},
 		{
 			"unknown speaker is skipped", "StoryData/S1037B.json", []string{"nobody", "dante"},
-			[]string{"guides/base.md", "guides/families/story-main.md", "guides/shared/ruby.md", "guides/shared/story-labels.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/story-main.md", "guides/shared/phrasing.md", "guides/shared/ruby.md", "guides/shared/story-labels.md", "guides/characters/dante.md"},
 		},
 	}
 	for _, tc := range tests {

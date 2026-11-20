@@ -1,0 +1,9 @@
+# 規則建議報告（docs/research/2026-11-12-rule-suggestions）G085：地點「용진 빌딩 6층 사무실」寫「龍進大樓 6層 辦公室」，
+# 一處漏了空格。照 guides/base.md「樓層」，地點欄位的樓層寫「樓」。報告只列「6층 사무실」的 4 處；
+# 同一棟樓的其他地點（1층、2층、4층、6층）也寫「層」，一起改成「樓」，共 9 處。使用者同意 2026-11-20。
+reason: '地點欄位的樓層寫「樓」，各層地點之間空一格：龍進大樓 6樓 辦公室（規則建議 G085，擴及同一棟樓的其他樓層）'
+files: ['StoryData/E513A.json', 'StoryData/E514B.json', 'StoryData/E515A.json', 'StoryData/E516A.json', 'StoryData/E516B.json', 'StoryData/E517B.json', 'StoryData/E518B.json', 'StoryData/E519A.json']
+origins: [paratranz]
+pattern: '^龍進大樓 ?(\d)層( 辦公室)?$'
+replace: '龍進大樓 ${1}樓${2}'
+kr_pattern: '^용진 빌딩 \d층( 사무실)?$'
