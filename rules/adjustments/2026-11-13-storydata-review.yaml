@@ -1163,3 +1163,15 @@
   zh: 果然如此……那個人說得對。那些傷痕……那些我們……裴廓德號留下的傷痕……還在那裡。
   reason: StoryData 審查 S0107：KR「그 사람의 말이 맞았어」＝那個人說得對，JP「あの人」、EN「He was right」；前文提過與白鯨有關的人（林、靛藍老人）都是男性。TW 寫「她說得對」，性別錯，應為「他」。 照再檢視的建議調整：報告把現行的「她」改成「他」，依據是 EN 的 He 和推測（林或靛藍老人）。現行的「她」沒有根據，但「他」同樣是推測，KR 並沒有寫性別；照 KR 寫「那個人」。 使用者同意
   rule: one-off
+- key: StoryData/S539B.json|/dataList/24/content
+  raw: raw-20261119
+  kr_sha: d2b091cd6fac96b9b831d6521c50136c807207e2a7aa010c8a3f8392bb748a5c
+  zh: <color=#ff9500>我都會記得那些從我身上被扯斷的繩索吧。</color=#ff9500>
+  reason: StoryData 審查 S0108：KR「내게서부터 뜯겨 나간 그 끈들」＝從我身上被扯走的那些繩索，JP「私から引きちぎれていった」、EN「ripped away from me」也是被動，受害的是「我」，且是複數；TW「那根被我扯斷的繩索」變成「我」把繩索扯斷，施受顛倒，也變成單數。 句尾照 KR「기억하겠지」（會記得吧，推測）寫成「我都會記得……吧」，與下一句的「……吧」並列；譯法由使用者決定
+  rule: one-off
+- key: StoryData/S539B.json|/dataList/23/content
+  raw: raw-20261119
+  kr_sha: ccb4873637396a99a1ea28f6d915412526f475813f977da7fd5c3504d5ae739b
+  zh: <color=#ff9500>往後無論是不幸的時候，還是幸福的時候……</color=#ff9500>
+  reason: StoryData 審查 S0108（前後文一起改）：KR「불행할 때나 행복할 때나」是「不幸的時候、幸福的時候」，現行把「幸福」寫成「幸運」；使用者同意
+  rule: one-off
