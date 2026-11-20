@@ -941,3 +941,33 @@
   zh: 哈，真是的。就是因為聊這種閒話，才會聽到什麼情不情的。
   reason: 'StoryData 審查 S0079（前後文一起改）：KR「이런 잡담이나 나누고 있으니 정 같은 소리나 듣지」是「就是聊這種閒話，才會聽到什麼『情』之類的話」，指 #16 李箱說他無情；現行「才會讓人覺得我容易親近」意思偏了，也接不上 #16、#17 的「情」。使用者同意'
   rule: one-off
+- key: StoryData/S504B.json|/dataList/143/content
+  raw: raw-20261119
+  kr_sha: 123b003f9277b76dbfb99639925c61419f5dc14d0a6651e8d25dce39e8375e83
+  zh: 都、都市的收尾人們一定還不知道這件事。不然，就是因為貧困的人多，沒辦法委託收尾人！
+  reason: StoryData 審查 S0080：KR 後半「그렇지 않다면, 빈곤한 자가 많아 의뢰하지 못했거나!」是「不然就是窮人太多，沒能委託（收尾人）」（JP 貧しい者が多くて依頼できなかったり），唐吉訶德在替收尾人找理由；現行照 EN 寫成「他們正忙於照顧其他需要幫助的人們」。「이 사실」寫「這件事」，不照 EN 寫「悲劇」。譯法由使用者決定
+  rule: one-off
+- key: StoryData/S506B.json|/dataList/26/content
+  raw: raw-20261119
+  kr_sha: de2e64749e9bfa4a8a4187ff6dd56958030eea887055d8c77f26f5e3437c4543
+  zh: 還算，頻繁。
+  reason: StoryData 審查 S0081：KR「다소, 자주.」是「算是，常去。」（다소＝多少、有幾分）；現行「特別，頻繁」把「다소」寫成「特別」，程度不同。報告建議的「稍微，經常」在中文互相矛盾，照再檢視的建議寫「還算，頻繁。」。使用者同意
+  rule: one-off
+- key: StoryData/S510A.json|/dataList/46/content
+  raw: raw-20261119
+  kr_sha: 9c36634f48fe6f85017a7a1e36f2f9debb7e488f70e6eaa89a0260807a26d416
+  zh: 她剛才的行為簡直就是屬下忤逆上司的極點。是正準備殺害長官的表現！
+  reason: StoryData 審查 S0082：KR「방금 저자의 행동은」是「她剛才的行為」，指以實瑪利拿武器傷了但丁（前文「你一直在房間裡磨刃……真的很痛」）；TW 寫成「言論」，與實際發生的事不符（JP 言動、EN words and actions 也包含行動）。
+  rule: one-off
+- key: StoryData/S513B.json|/dataList/49/content
+  raw: raw-20261119
+  kr_sha: 0b135cde43a54476be12eb06f8b1f4cfec890f7e2a24bc225aaf889c5c52eb96
+  zh: 沒人願意承認這可能只是白白送死，所以只會用犧牲的名義把它包裝得很精美……
+  reason: StoryData 審查 S0083：KR「개죽음일 수 있단 걸」是「這可能只是白白送死（毫無價值的死）」（JP 犬死に）；TW「他們只是作為走狗死去」把「개죽음」拆成「狗＋死」，變成「當走狗而死」，意思不同。
+  rule: one-off
+- key: StoryData/S515B.json|/dataList/10/content
+  raw: raw-20261119
+  kr_sha: a0b97e1ba45c7d80bbe6d803af4dfbb1de8f8e617d93158f237f00199e4b1de8
+  zh: ……的事情我毫無興趣，簡要說明你們獲得的情報。結論先說。
+  reason: StoryData 審查 S0084：KR「두괄식으로」是「結論先說」（把重點放在開頭的寫法，JP 頭括型で）；TW「簡略地」意思不同，也和前面的「簡要說明」重複。
+  rule: one-off
