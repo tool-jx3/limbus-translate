@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261119",
   "prev_raw_tag": "raw-20261112",
-  "rules_commit": "4a518a95fcee8b3789e352520dc72d6e8b0730ea",
+  "rules_commit": "50f9b846d8ea34c97ef147992afd5b82ce96c92c",
   "changes": {
     "unchanged": 275816,
     "moved": 139,
@@ -32,6 +32,7 @@
   },
   "copy": 0,
   "reused": 0,
+  "number_patched": 0,
   "adjustments": {
     "applied": 274,
     "moved": [],
@@ -40,8 +41,12 @@
   "requeue_applied": [],
   "rewrite_applied": [
     {
-      "id": "2026-11-19-waxen-pinion",
-      "units": 5
+      "id": "2026-11-19-per-encounter-limit",
+      "units": 6
+    },
+    {
+      "id": "2026-11-19-walpurgis-number",
+      "units": 16
     }
   ],
   "frozen_changed": [],

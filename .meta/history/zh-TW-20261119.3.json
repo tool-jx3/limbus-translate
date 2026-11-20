@@ -1,0 +1,438 @@
+{
+  "tag": "zh-TW-20261119.3",
+  "prev_tag": "zh-TW-20261119.2",
+  "released_at": "2026-11-20T00:06:21Z",
+  "prev_released_at": "2026-11-19T14:12:31Z",
+  "raw_tag": "raw-20261119",
+  "prev_raw_tag": "raw-20261119",
+  "rules_commit": "50f9b846d8ea34c97ef147992afd5b82ce96c92c",
+  "prev_rules_commit": "4a518a95fcee8b3789e352520dc72d6e8b0730ea",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 22
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "BattleKeywords-walpu10.json",
+      "field": "desc",
+      "ptr": "/dataList/2/desc",
+      "kind": "zh-changed",
+      "new_kr": "- 턴 시작 시 보호 2, 공격 위력 증가 1 얻음\n- 수비 스킬 사용 시 수비 위력 증가 3 얻음 (턴당 1회)\n- 합 승리 시 정신력 5 회복 (턴당 2회)\n· 정신력이 최대치이면, 자신이 보유한 해제 가능한 부정적인 효과 1개 제거\n- 기본 스킬 종료 시 해당 스킬이 각 적에게 가한 피해량 10%만큼 오만 피해\n\n- 체력이 0이 되는 피해를 받으면, 해당 턴 피해를 받지 않음 (전투당 1회)\n· 위 효과가 발동한 다음 턴에 체력을 모두 회복하고, 전투 종료 시까지 자신의 보호 수치 1당, 가하는 피해량 +10% (최대 80%)",
+      "old_zh": "- 回合開始時，獲得2層守護 、1層強壯 \n- 使用守備技能時，獲得3層忍耐 (每回合最多1次)\n- 拚點勝利時，恢復5點理智值 (每回合最多2次)\n．若理智值為最大值，則移除1個自身帶有的可解除的負面效果\n- 基礎技能結束時，對各敵方單位造成等同於該技能對其造成之傷害10%的傲慢傷害\n\n- 受到會使體力降至0的傷害時，本回合內不受傷害 (每場戰鬥1次)\n．上述效果觸發的下回合，恢復全部體力，並直到戰鬥結束，自身每有1層守護 ，造成的傷害+10% (最多80%)",
+      "new_zh": "- 回合開始時，獲得2層守護 、1層強壯 \n- 使用守備技能時，獲得3層忍耐 (每回合最多1次)\n- 拚點勝利時，恢復5點理智值 (每回合最多2次)\n．若理智值為最大值，則移除1個自身帶有的可解除的負面效果\n- 基礎技能結束時，對各敵方單位造成等同於該技能對其造成之傷害10%的傲慢傷害\n\n- 受到會使體力降至0的傷害時，本回合內不受傷害 (每場戰鬥最多1次)\n．上述效果觸發的下回合，恢復全部體力，並直到戰鬥結束，自身每有1層守護 ，造成的傷害+10% (最多80%)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-per-encounter-limit"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords.json",
+      "field": "desc",
+      "ptr": "/dataList/619/desc",
+      "kind": "zh-changed",
+      "new_kr": "- 최댓값 : 30\n- 턴당 최대 20까지 얻을 수 있음\n턴 시작 시 자신이 흐트러짐 상태면, 흐트러짐 해제 (전투당 1회, 강제 흐트러짐 제외)",
+      "old_zh": "- 最大值：30\n- 每回合最多可獲得20層\n回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥1次，強制混亂除外)",
+      "new_zh": "- 最大值：30\n- 每回合最多可獲得20層\n回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥最多1次，強制混亂除外)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-per-encounter-limit"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords.json",
+      "field": "desc",
+      "ptr": "/dataList/626/desc",
+      "kind": "zh-changed",
+      "new_kr": "- 최댓값: 5\n- 이 효과의 수치가 증가할 때, 자신의 호흡 횟수 1 증가\n- 턴 종료 시 수치만큼 자신의 호흡 횟수 증가\n- 턴 시작 시 자신이 흐트러짐 상태면, 흐트러짐 해제 (전투당 2회, 강제 흐트러짐 제외)\n- 이 효과 수치에 따라 기본 공격 스킬이 아래 효과 얻음\n· 2 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 3 ~ : 코인 위력 +1, 스킬 사용 시 마지막 코인이 파괴 불가 코인이 됨\n· 4 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 5 ~ : 공격 시작 시부터 공격 종료 시까지 공격 대상의 관통 내성 +0.1\n- 피해량 증가와 파괴 불가 코인 변경은 스킬 사용 직전의 수치로 판정",
+      "old_zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥2次，強制混亂除外)\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
+      "new_zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥最多2次，強制混亂除外)\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-per-encounter-limit"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-walpu10.json",
+      "field": "desc",
+      "ptr": "/dataList/2/desc",
+      "kind": "zh-changed",
+      "new_kr": "- 턴 시작 시 보호 2, 공격 위력 증가 1 얻음\n- 수비 스킬 사용 시 수비 위력 증가 3 얻음 (턴당 1회)\n- 합 승리 시 정신력 5 회복 (턴당 2회)\n· 정신력이 최대치이면, 자신이 보유한 해제 가능한 부정적인 효과 1개 제거\n- 기본 스킬 종료 시 해당 스킬이 각 적에게 가한 피해량 10%만큼 오만 피해\n\n- 체력이 0이 되는 피해를 받으면, 해당 턴 피해를 받지 않음 (전투당 1회)\n· 위 효과가 발동한 다음 턴에 체력을 모두 회복하고, 전투 종료 시까지 자신의 보호 수치 1당, 가하는 피해량 +10% (최대 80%)",
+      "old_zh": "- 回合開始時，獲得2層守護 、1層強壯 \n- 使用守備技能時，獲得3層忍耐 (每回合最多1次)\n- 拚點勝利時，恢復5點理智值 (每回合最多2次)\n．若理智值為最大值，則移除1個自身帶有的可解除的負面效果\n- 基礎技能結束時，對各敵方單位造成等同於該技能對其造成之傷害10%的傲慢傷害\n\n- 受到會使體力降至0的傷害時，本回合內不受傷害 (每場戰鬥1次)\n．上述效果觸發的下回合，恢復全部體力，並直到戰鬥結束，自身每有1層守護 ，造成的傷害+10% (最多80%)",
+      "new_zh": "- 回合開始時，獲得2層守護 、1層強壯 \n- 使用守備技能時，獲得3層忍耐 (每回合最多1次)\n- 拚點勝利時，恢復5點理智值 (每回合最多2次)\n．若理智值為最大值，則移除1個自身帶有的可解除的負面效果\n- 基礎技能結束時，對各敵方單位造成等同於該技能對其造成之傷害10%的傲慢傷害\n\n- 受到會使體力降至0的傷害時，本回合內不受傷害 (每場戰鬥最多1次)\n．上述效果觸發的下回合，恢復全部體力，並直到戰鬥結束，自身每有1層守護 ，造成的傷害+10% (最多80%)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-per-encounter-limit"
+        }
+      ]
+    },
+    {
+      "file": "Bufs.json",
+      "field": "desc",
+      "ptr": "/dataList/704/desc",
+      "kind": "zh-changed",
+      "new_kr": "- 최댓값 : 30\n- 턴당 최대 20까지 얻을 수 있음\n턴 시작 시 자신이 흐트러짐 상태면, 흐트러짐 해제 (전투당 1회, 강제 흐트러짐 제외)",
+      "old_zh": "- 最大值：30\n- 每回合最多可獲得20層\n回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥1次，強制混亂除外)",
+      "new_zh": "- 最大值：30\n- 每回合最多可獲得20層\n回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥最多1次，強制混亂除外)",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-per-encounter-limit"
+        }
+      ]
+    },
+    {
+      "file": "Bufs.json",
+      "field": "desc",
+      "ptr": "/dataList/710/desc",
+      "kind": "zh-changed",
+      "new_kr": "- 최댓값: 5\n- 이 효과의 수치가 증가할 때, 자신의 호흡 횟수 1 증가\n- 턴 종료 시 수치만큼 자신의 호흡 횟수 증가\n- 턴 시작 시 자신이 흐트러짐 상태면, 흐트러짐 해제 (전투당 2회, 강제 흐트러짐 제외)\n- 이 효과 수치에 따라 기본 공격 스킬이 아래 효과 얻음\n· 2 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 3 ~ : 코인 위력 +1, 스킬 사용 시 마지막 코인이 파괴 불가 코인이 됨\n· 4 ~ : 스킬 사용 시 적에게 가하는 피해량 +(30/코인 수)% (소수점 버림)\n· 5 ~ : 공격 시작 시부터 공격 종료 시까지 공격 대상의 관통 내성 +0.1\n- 피해량 증가와 파괴 불가 코인 변경은 스킬 사용 직전의 수치로 판정",
+      "old_zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥2次，強制混亂除外)\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
+      "new_zh": "- 最大值：5\n- 本效果層數增加時，使自身增加1回呼吸法 \n- 回合結束時，使自身增加等同於層數的呼吸法 回數\n- 回合開始時，若自身處於混亂狀態，則解除混亂 (每場戰鬥最多2次，強制混亂除外)\n- 根據本效果的層數，基礎攻擊技能獲得以下效果\n．2 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．3 ~ ：硬幣威力+1，使用技能時，最後一枚硬幣變為無法被破壞的硬幣\n．4 ~ ：使用技能時，對敵方造成的傷害+(30/硬幣數)% (無條件捨去)\n．5 ~ ：從攻擊開始時到攻擊結束時，攻擊目標的突刺抗性+0.1\n- 傷害增加與變為無法被破壞的硬幣的效果，以使用技能前一刻的層數判定",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-per-encounter-limit"
+        }
+      ]
+    },
+    {
+      "file": "GachaTitle.json",
+      "field": "content",
+      "ptr": "/dataList/217/content",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤 특정 추출",
+      "old_zh": "第10屆瓦爾普吉斯之夜 特定提取",
+      "new_zh": "第10次 瓦爾普吉斯之夜 特定提取",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "IAPProduct-a1c10.json",
+      "field": "desc",
+      "ptr": "/dataList/17/desc",
+      "kind": "zh-changed",
+      "new_kr": "「제10회 발푸르기스의 밤 특정 추출」 출시 기념 상품으로, 다음 구성품을 획득할 수 있습니다.\n\n· 추출 10회 티켓 x 4",
+      "old_zh": "「第10屆瓦爾普吉斯之夜 特定提取」推出紀念商品，可獲得以下內容物。\n\n．十連提取券 × 4",
+      "new_zh": "「第10次 瓦爾普吉斯之夜 特定提取」推出紀念商品，可獲得以下內容物。\n\n．十連提取券 × 4",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "IAPProduct-a1c10.json",
+      "field": "desc",
+      "ptr": "/dataList/18/desc",
+      "kind": "zh-changed",
+      "new_kr": "「제10회 발푸르기스의 밤 특정 추출」 출시 기념 상품으로, 다음 구성품을 획득할 수 있습니다.\n\n· 도약 모듈 - 인격 동기화 x 1\n· 인격 학습 티켓 IV x 90\n· 인격 학습 티켓 III x 40",
+      "old_zh": "「第10屆瓦爾普吉斯之夜 特定提取」推出紀念商品，可獲得以下內容物。\n\n．跳躍成長模組 - 人格同步 × 1\n．人格訓練券 IV × 90\n．人格訓練券 III × 40",
+      "new_zh": "「第10次 瓦爾普吉斯之夜 特定提取」推出紀念商品，可獲得以下內容物。\n\n．跳躍成長模組 - 人格同步 × 1\n．人格訓練券 IV × 90\n．人格訓練券 III × 40",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "IAPProduct-a1c10.json",
+      "field": "desc",
+      "ptr": "/dataList/19/desc",
+      "kind": "zh-changed",
+      "new_kr": "「제10회 발푸르기스의 밤 특정 추출」 출시 기념 상품으로, 다음 구성품을 획득할 수 있습니다.\n\n· 도약 모듈 - E.G.O 해석 [HE] x 1",
+      "old_zh": "「第10屆瓦爾普吉斯之夜 特定提取」推出紀念商品，可獲得以下內容物。\n\n．跳躍成長模組 - E.G.O解析 [HE] × 1",
+      "new_zh": "「第10次 瓦爾普吉斯之夜 特定提取」推出紀念商品，可獲得以下內容物。\n\n．跳躍成長模組 - E.G.O解析 [HE] × 1",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "StageChapterText.json",
+      "field": "chaptertitle",
+      "ptr": "/dataList/30/chaptertitle",
+      "kind": "zh-changed",
+      "new_kr": "제 10 회 발푸르기스의 밤",
+      "old_zh": "第10次瓦爾普吉斯之夜",
+      "new_zh": "第10次 瓦爾普吉斯之夜",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "StageNode91-29.json",
+      "field": "title",
+      "ptr": "/dataList/0/title",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤",
+      "old_zh": "第10屆瓦爾普吉斯之夜",
+      "new_zh": "第10次 瓦爾普吉斯之夜",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "StageNode91-29.json",
+      "field": "title",
+      "ptr": "/dataList/1/title",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤",
+      "old_zh": "第10屆瓦爾普吉斯之夜",
+      "new_zh": "第10次 瓦爾普吉斯之夜",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "StoryTheaterOther.json",
+      "field": "title",
+      "ptr": "/dataList/39/title",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤",
+      "old_zh": "第10屆瓦爾普吉斯之夜",
+      "new_zh": "第10次 瓦爾普吉斯之夜",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "StoryTheaterUIText.json",
+      "field": "content",
+      "ptr": "/dataList/91/content",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤 쉬움 난이도 클리어",
+      "old_zh": "以簡單難度通關第10屆瓦爾普吉斯之夜",
+      "new_zh": "以簡單難度通關第10次 瓦爾普吉斯之夜",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "UnlockCode-1.json",
+      "field": "openCondition",
+      "ptr": "/dataList/45/openCondition",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤 클리어",
+      "old_zh": "通關第10屆瓦爾普吉斯之夜",
+      "new_zh": "通關第10次 瓦爾普吉斯之夜",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "UnlockCode-1.json",
+      "field": "relatedChapterText",
+      "ptr": "/dataList/45/relatedChapterText",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤",
+      "old_zh": "第10屆瓦爾普吉斯之夜",
+      "new_zh": "第10次 瓦爾普吉斯之夜",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "UserBanner.json",
+      "field": "desc",
+      "ptr": "/dataList/96/desc",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤 이벤트에서 획득",
+      "old_zh": "於第10屆瓦爾普吉斯之夜活動中獲得",
+      "new_zh": "於第10次 瓦爾普吉斯之夜活動中獲得",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "UserTicket-EGOBg.json",
+      "field": "desc",
+      "ptr": "/dataList/80/desc",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤 이벤트에서 획득",
+      "old_zh": "於第10屆瓦爾普吉斯之夜活動中獲得",
+      "new_zh": "於第10次 瓦爾普吉斯之夜活動中獲得",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "UserTicket-L.json",
+      "field": "desc",
+      "ptr": "/dataList/80/desc",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤 이벤트에서 획득",
+      "old_zh": "於第10屆瓦爾普吉斯之夜活動中獲得",
+      "new_zh": "於第10次 瓦爾普吉斯之夜活動中獲得",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "UserTicket-R.json",
+      "field": "desc",
+      "ptr": "/dataList/80/desc",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤 이벤트에서 획득",
+      "old_zh": "於第10屆瓦爾普吉斯之夜活動中獲得",
+      "new_zh": "於第10次 瓦爾普吉斯之夜活動中獲得",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    },
+    {
+      "file": "Walpu10EventText.json",
+      "field": "content",
+      "ptr": "/dataList/0/content",
+      "kind": "zh-changed",
+      "new_kr": "제10회 발푸르기스의 밤 쉬움, 어려움 난이도 전투에서 미션을 클리어하세요.\n\n미션을 클리어하면 다양한 보상을 얻을 수 있습니다.",
+      "old_zh": "請在第10屆瓦爾普吉斯之夜的簡單、困難難度戰鬥中完成任務。\n\n完成任務即可獲得各種獎勵。",
+      "new_zh": "請在第10次 瓦爾普吉斯之夜的簡單、困難難度戰鬥中完成任務。\n\n完成任務即可獲得各種獎勵。",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-19-walpurgis-number"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "rewrite:2026-11-19-per-encounter-limit": {
+      "kind": "rewrite",
+      "id": "2026-11-19-per-encounter-limit",
+      "path": "rules/rewrite/2026-11-19-per-encounter-limit.yaml",
+      "title": "「전투당 N회」寫「每場戰鬥最多N次」（guides/shared/skill-text.md 的「次數上限」）",
+      "commit": "50f9b846d8ea34c97ef147992afd5b82ce96c92c"
+    },
+    "rewrite:2026-11-19-walpurgis-number": {
+      "kind": "rewrite",
+      "id": "2026-11-19-walpurgis-number",
+      "path": "rules/rewrite/2026-11-19-walpurgis-number.yaml",
+      "title": "「제N회 발푸르기스의 밤」寫「第N次 瓦爾普吉斯之夜」（詞彙表「발푸르기스의 밤」的備註）",
+      "commit": "50f9b846d8ea34c97ef147992afd5b82ce96c92c"
+    }
+  }
+}

@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261119",
   "raw_token": "l20261119_4Eq_wJ8_ZGT2-Y1MVwFc",
-  "rules_commit": "4a518a95fcee8b3789e352520dc72d6e8b0730ea",
-  "built_at": "2026-11-19T14:11:47Z",
+  "rules_commit": "50f9b846d8ea34c97ef147992afd5b82ce96c92c",
+  "built_at": "2026-11-20T00:05:35Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,8 +10,8 @@
   },
   "notes_seen": 1066,
   "zips": {
-    "zh-TW_complete_raw-20261119.zip": "058677b64b9d683cb2d3a14ec3134bc8521cd81d761e52a81e3abed6bf43eb7f",
-    "zh-TW_text_raw-20261119.zip": "f9a5ba59cac19d105a0366da232de78abe21c2aeeebe97a330406783db06e8e4"
+    "zh-TW_complete_raw-20261119.zip": "478b9b3fef2433fe89ef5c36d6118e62448d12c4633c639c80b991668ffcc5d4",
+    "zh-TW_text_raw-20261119.zip": "4e6a615987fc59314df8dd35bfe96c9a9800724c0b6bb8154eb37c6ce3e3f45f"
   },
   "report": {
     "origins": {
@@ -186,6 +186,7 @@
         "AbEvents.json|/dataList/0/behaveDesc"
       ]
     },
+    "new_warnings": {},
     "inconsistent": [
       {
         "family": "enemy",
@@ -670,7 +671,9 @@
     ],
     "misaligned_files": 19,
     "name_diffs": [],
-    "term_diffs": []
+    "term_diffs": [],
+    "kept_rewrites": [],
+    "retranslated": []
   },
   "inconsistent_all": [
     {
