@@ -1301,3 +1301,51 @@
   zh: 那聲音既隱祕……又坦誠。
   reason: StoryData 審查 S0326：KR「목소리가 은밀하고도… 진솔했다.」是「那聲音既隱密……又真誠坦率」，現行「黯淡」把「은밀（隱密、私下）」寫錯；報告建議的「低沉」是照 EN 的 low 加的。用「既……又……」對應「-고도」，不另加字。譯法由使用者決定
   rule: one-off
+- key: StoryData/E505B.json|/dataList/8/content
+  raw: raw-20261119
+  kr_sha: c7737af76ddcc961773c1ecc4e78cdc053f4be90ae95b4091493a721ee077936
+  zh: 希斯克利夫先生一直都心神不寧。考慮到前後的情況，想必是在到達T公司前需要有所準備。
+  reason: StoryData 審查 S0456：KR「시종일관 불안한 상태였지」是「一直處於不安的狀態」（JP「終始、心もとなき有様」、EN「constant state of uneasiness」）；現行 TW「心不在焉」是分心、不專注，意思不同。「전후 상황」是前後情況，TW「以前的情況」也稍偏。 照再檢視的建議調整：報告建議的譯文本身可用，但「히스클리프 군」依 guides/base.md 要寫「希斯克利夫先生」，現行和報告建議都只寫「希斯克利夫」，和下一句的「唐吉訶德女士」也不一致。 使用者同意
+  rule: one-off
+- key: StoryData/E505B.json|/dataList/50/content
+  raw: raw-20261119
+  kr_sha: 0823841f894d4c0836d9a4e715411d3ef3130b132a31a7f517fa523b82501bb5
+  zh: 諾姆！！有搖錢樹在四處走動諾姆！全員拿起工具快來諾姆！！！
+  reason: StoryData 審查 S0457：KR「노다지」是搖錢樹／金礦（JP「金づる」）；TW 寫成「大塊頭」，意思不同。
+  rule: one-off
+- key: StoryData/E506A.json|/dataList/18/content
+  raw: raw-20261119
+  kr_sha: d81e703719f89799bcecd56a29c275595d1794a78e9f4324cfab7110d385b9f6
+  zh: 假設他們還沒有被做成禮物，我知道他們最有可能在哪裡。
+  reason: StoryData 審查 S0458：KR「선물이 미리 되지 않았다는 가정에서」是「假設他們還沒被做成禮物」（JP「まだプレゼントになっていないという仮定から」、EN「haven't been turned into gifts yet」），接鴻璐擔心希斯克利夫他們被做成禮物。現行 TW「假設禮物沒有被送出」把主詞錯成禮物、動作錯成送出。
+  rule: one-off
+- key: StoryData/E507A.json|/dataList/25/content
+  raw: raw-20261119
+  kr_sha: a4ec07cd8c06a20c73c0e4489f852b201fb67e559d926daf9a7c95bc1f9cb77b
+  zh: 我們的城鎮是為了躲避那些怪物而建造的地方之一。
+  reason: StoryData 審查 S0459：KR 是「我們的城鎮是為了避開那些怪物而建造的地方之一」；TW 把「피해（躲避）」寫成「防禦」，漏掉「之一」，並多出「為了保證我們的安全」。
+  rule: one-off
+- key: StoryData/E507A.json|/dataList/63/content
+  raw: raw-20261119
+  kr_sha: 5b4cde258c01ab27008fd98c442fbde0d214a32a4b45e2c49cd1780d33cc15df
+  zh: 身材魁梧的巨人穿著紅色的衣服，肩上扛著和自己身軀一樣大的禮物袋，正洪亮地笑著。
+  reason: StoryData 審查 S0460：KR「제 몸만치 거대한」是和它自己的身軀一樣大；TW 寫成「比我還要大」，比較對象錯成敘述者；「쩌렁쩌렁하게」是洪亮地笑，TW「獰笑」也不同。
+  rule: one-off
+- key: StoryData/E509B.json|/dataList/67/content
+  raw: raw-20261119
+  kr_sha: 8688858e5ad6e472248b115421854ac53b6d3cbbb2cadcfebbdd812fb0a1e98b
+  zh: 確實我當時是可以阻止那兩個人的，我卻同意了執行他們的計畫。
+  reason: StoryData 審查 S0461：KR「분명히 둘을 막을 수도 있던걸」是「明明可以阻止那兩人」（JP「止めることもできたはずなのに」），但丁強調自己有能力阻止卻放行，所以點頭認責。現行 TW「應該阻止」把「能夠」改成「本該」，責任的理由變了。
+  rule: one-off
+- key: StoryData/E509B.json|/dataList/138/content
+  raw: raw-20261119
+  kr_sha: 8f4f42e48d34ec7d18d52dcf82ea28b8b09b3e657f950dcbe3c15a08932b1162
+  zh: 抓住希斯克利夫雙臂的那兩位罪人，就這樣一起消失進了巴士後門。
+  reason: StoryData 審查 S0462：KR「히스클리프의 양팔을 붙잡은 두 수감자」是「抓住希斯克利夫雙臂的兩名罪人」（JP 同、EN「hauling Heathcliff by his arms」）；現行 TW 寫成「被扛在肩上」，動作不同。
+  rule: one-off
+- key: StoryData/E509B.json|/dataList/154/content
+  raw: raw-20261119
+  kr_sha: 6fca0e0a7d05ee14010fc92bc85df20120de75fafbb54270a8bee2b8af795741
+  zh: 現在更要緊的是集中在都市裡發生的事情上。
+  reason: StoryData 審查 S0463：KR「지금은 도시에서 벌어지는 일에 집중하는 것이 더 급하다」是「現在更要緊的是專注於都市裡發生的事」（JP「集中する方が先だ」），是排優先順序。現行 TW「就已經盡全力了」變成已經沒有餘力，意思不同。
+  rule: one-off
