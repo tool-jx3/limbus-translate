@@ -20,6 +20,9 @@ const (
 	// translation yet (see plan.Transition); the preview gives it to a unit
 	// that is neither pending nor translated.
 	ReasonNew = "new"
+	// ReasonKRChanged is the Reason of a pending item for a unit whose KR
+	// text changed since it was translated (plan.ReasonKRChanged).
+	ReasonKRChanged = "kr-changed"
 	// PreviewID is the id of the batch of a preview. It is no real batch id,
 	// so a preview is never taken for a batch that was handed out.
 	PreviewID = "preview"

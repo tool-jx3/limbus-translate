@@ -12,7 +12,7 @@ func differsIndex(r *rules.Rules, declined map[string]bool) *Index {
 		KR: "노을빛 검",
 		Variants: []Variant{{
 			JP: "茜さす剣", EN: "Glow Blade",
-			Renderings: []Rendering{{"霞光劍刃", 3}, {"霞光之劍", 1}},
+			Renderings: []Rendering{{ZH: "霞光劍刃", Units: 3}, {ZH: "霞光之劍", Units: 1}},
 		}},
 	}}}
 	return NewIndex(t, r, declined)
@@ -84,8 +84,8 @@ func twoVariantIndex() *Index {
 	t := &Table{RawTag: "raw1", Fields: []string{"name"}, Names: []Name{{
 		KR: "노을빛 검",
 		Variants: []Variant{
-			{JP: "茜さす剣", EN: "Glow Blade", Renderings: []Rendering{{"霞光劍刃", 3}}},
-			{JP: "夕焼けの剣", EN: "Glow Blade", Renderings: []Rendering{{"夕照之劍", 2}}},
+			{JP: "茜さす剣", EN: "Glow Blade", Renderings: []Rendering{{ZH: "霞光劍刃", Units: 3}}},
+			{JP: "夕焼けの剣", EN: "Glow Blade", Renderings: []Rendering{{ZH: "夕照之劍", Units: 2}}},
 		},
 	}}}
 	return NewIndex(t, &rules.Rules{}, nil)
@@ -118,9 +118,9 @@ func regretIndex() *Index {
 	t := &Table{RawTag: "raw1", Fields: []string{"name"}, Names: []Name{{
 		KR: "후회",
 		Variants: []Variant{
-			{JP: "後悔", EN: "Rue", Renderings: []Rendering{{"悔恨交加", 5}}},
-			{JP: "後悔", EN: "Regret", Renderings: []Rendering{{"悔恨", 2}}},
-			{JP: "未練", EN: "Lingering", Renderings: []Rendering{{"眷戀", 1}}},
+			{JP: "後悔", EN: "Rue", Renderings: []Rendering{{ZH: "悔恨交加", Units: 5}}},
+			{JP: "後悔", EN: "Regret", Renderings: []Rendering{{ZH: "悔恨", Units: 2}}},
+			{JP: "未練", EN: "Lingering", Renderings: []Rendering{{ZH: "眷戀", Units: 1}}},
 		},
 	}}}
 	return NewIndex(t, &rules.Rules{}, nil)
@@ -148,8 +148,8 @@ func TestDiffersPrefersAVariantNothingContradicts(t *testing.T) {
 	tbl := &Table{RawTag: "raw1", Fields: []string{"name"}, Names: []Name{{
 		KR: "견제",
 		Variants: []Variant{
-			{JP: "牽制", EN: "Obstruction", Renderings: []Rendering{{"牽制", 4}}},
-			{EN: "Careful Obstruction", Renderings: []Rendering{{"牽制戰術", 1}}},
+			{JP: "牽制", EN: "Obstruction", Renderings: []Rendering{{ZH: "牽制", Units: 4}}},
+			{EN: "Careful Obstruction", Renderings: []Rendering{{ZH: "牽制戰術", Units: 1}}},
 		},
 	}}}
 	ix := NewIndex(tbl, &rules.Rules{}, nil)

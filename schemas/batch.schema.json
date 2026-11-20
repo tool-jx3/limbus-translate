@@ -120,6 +120,7 @@
           "kr": { "type": "string" },
           "zh": { "description": "The rendering most units of this variant use.", "type": "string" },
           "count": { "description": "The number of units that have zh.", "type": "integer" },
+          "own": { "description": "True when only this project's own earlier translations have zh: no Paratranz translation and no adjustment of a person writes the name so. Use it, so that the name is written one way, but it does not outweigh an older translation: where prev_zh, context or same_text writes the name another way, keep that way and say so in the note.", "type": "boolean" },
           "others": {
             "description": "The other renderings of this variant and the units that have each.",
             "type": "array",
@@ -129,7 +130,8 @@
               "required": ["zh", "units"],
               "properties": {
                 "zh": { "type": "string" },
-                "units": { "type": "integer" }
+                "units": { "type": "integer" },
+                "own": { "description": "As own of the item, for this rendering.", "type": "boolean" }
               }
             }
           },

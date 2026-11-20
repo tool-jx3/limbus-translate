@@ -51,6 +51,9 @@ const (
 	// KindNameDiffers is the new translations that differ from the existing
 	// names.
 	KindNameDiffers = "name_differs"
+	// KindKeptRewritten is the units translated again because their KR
+	// changed, in which lines whose KR did not change were rewritten.
+	KindKeptRewritten = "kept_rewritten"
 	// KindInconsistentNew is the groups of one KR text with different
 	// renderings that hold units translated in this update.
 	KindInconsistentNew = "inconsistent_new"
@@ -66,7 +69,7 @@ const (
 // contract test reads this list.
 var ReviewKinds = []string{
 	KindNeedsReview, KindAdjustmentExpired, KindFrozenChanged, KindFrozenFallback,
-	KindNewSpeaker, KindFieldChange, KindNewFamily, KindNameDiffers, KindInconsistentNew,
+	KindNewSpeaker, KindFieldChange, KindNewFamily, KindNameDiffers, KindKeptRewritten, KindInconsistentNew,
 	KindLoopError, KindNotTranslated,
 }
 
@@ -141,6 +144,9 @@ func ReviewItems(info Info, sum *plan.Summary, pending []store.PendingItem) []Re
 	add(KindNameDiffers, "與既有譯名不同的新譯",
 		"既有譯文對這些名稱有固定寫法，這次新譯不同（名稱欄位，或說明、劇情裡提到卻沒用既有譯法）。指的是同一個東西：在 `glossary/terms.yaml` 加條目（以既有譯名為準），並寫 `rules/rewrite/` 的改寫檔，只改這次新譯；依語境本來就該不同：把項目開頭的 ID 寫進 `rules/declined.yaml`（審核頁或 `lct accept`）。",
 		nameDiffItems(info.Report))
+	add(KindKeptRewritten, "原文沒變的段落被改寫",
+		"這些單位因 KR 有改而重翻，但譯者連 KR 沒變的行也改了（多半是照既有譯名表換了名稱，或順手修正舊譯）。看每一項的舊譯、新譯與譯者備註：改得對就勾掉；該維持舊譯：用 `lct adjust add` 寫回舊的寫法，名稱要統一的話在 `glossary/terms.yaml` 加條目。",
+		keptRewriteItems(info.Report))
 	add(KindInconsistentNew, "同一 KR 不同譯法（含這次新譯）",
 		"同一段 KR 在同族群、同欄位有不同譯法，其中有這次新翻的單位。要統一：照 `rules-review` 的 `inconsistent` 處理（詞彙或指引，加重翻要求檔或改寫檔）；依 JP/EN 或語境本來就該不同：把項目開頭的 ID 寫進 `rules/declined.yaml`。",
 		inconsistentNewItems(info))
@@ -166,6 +172,36 @@ const maxItemUnits = 5
 // maxItemRunes is how long a KR text or a translation in such an item is.
 const maxItemRunes = 60
 
+// renderingText is a rendering of an existing name in an item: the
+// translation and its units, and that only this project's own translations
+// have it when that is so.
+func renderingText(r existing.Rendering) string {
+	if r.Own {
+		return fmt.Sprintf("%s（%d，本專案新譯）", code(r.ZH), r.Units)
+	}
+	return fmt.Sprintf("%s（%d）", code(r.ZH), r.Units)
+}
+
+// keptRewriteItems is the item of each unit in which lines were rewritten
+// although their KR did not change: how many, the first of them as it was
+// and as it is, and what the translator noted.
+func keptRewriteItems(rep Report) []string {
+	var items []string
+	for _, k := range rep.KeptRewrites {
+		old, now := changedSpan(oneLine(k.Lines[0].Old), oneLine(k.Lines[0].New), keptContext)
+		item := fmt.Sprintf("%s：%d 行，%s → %s", code(k.Key), len(k.Lines),
+			code(capRunes(old, maxItemRunes)), code(capRunes(now, maxItemRunes)))
+		if len(k.Lines) > 1 {
+			item += "…等"
+		}
+		if note := oneLine(k.Note); note != "" {
+			item += "；備註：" + capRunes(note, maxNoteRunes)
+		}
+		items = append(items, item)
+	}
+	return items
+}
+
 // nameDiffItems is the item of each existing name that was rendered otherwise
 // and of each provisional term that is not in force.
 func nameDiffItems(rep Report) []string {
@@ -173,7 +209,7 @@ func nameDiffItems(rep Report) []string {
 	for _, d := range rep.NameDiffs {
 		var olds []string
 		for _, r := range d.Existing {
-			olds = append(olds, fmt.Sprintf("%s（%d）", code(r.ZH), r.Units))
+			olds = append(olds, renderingText(r))
 		}
 		var units []string
 		for _, u := range d.Units[:min(len(d.Units), maxItemUnits)] {

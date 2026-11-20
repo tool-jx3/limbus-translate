@@ -628,7 +628,10 @@ func (s *submission) since(key string) string {
 // KR text is kr: the record of a new translation under the rules of now,
 // made by the submitter's model in this batch.
 func (s *submission) claudeRecord(key, kr, zh string) store.Record {
+	prevKR, prevZH := s.previous(key)
 	return store.Record{
+		PrevKR:  prevKR,
+		PrevZH:  prevZH,
 		Key:     key,
 		KRSha:   units.KRSha(kr),
 		ZH:      zh,
@@ -640,6 +643,23 @@ func (s *submission) claudeRecord(key, kr, zh string) store.Record {
 		Batch:   s.batch.ID,
 		Flags:   withoutFlag(s.records[key].Flags, store.FlagNeedsReview),
 	}
+}
+
+// previous returns the KR text and the translation the batch showed for the
+// unit key as its previous version, when the unit is translated again because
+// its KR changed and the batch has both; else two empty strings.
+func (s *submission) previous(key string) (prevKR, prevZH string) {
+	for i := range s.batch.Units {
+		u := &s.batch.Units[i]
+		if u.Key != key {
+			continue
+		}
+		if u.Reason == ReasonKRChanged && u.PrevKR != "" && u.PrevZH != "" {
+			return u.PrevKR, u.PrevZH
+		}
+		break
+	}
+	return "", ""
 }
 
 // keepsRecord reports whether a unit that ran out of attempts keeps the record

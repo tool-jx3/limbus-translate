@@ -31,7 +31,7 @@ allowed-tools:
 0. 執行 `go build -o bin/lct ./cmd/lct`。每次開始都執行；失敗就停止並回報
 1. 執行 `bin/lct fetch --out .work/fetch --json`，記下結果的 `token` 與 `created_at`。錯誤訊息說沒有狀態 API 時，請人設定環境變數 `LIMBUS_STATUS_URL`，或提供 `--token` 與 `--created-at` 後重跑，不自己猜
 2. 執行 `bin/lct snapshot --from .work/fetch --token <token> --created-at "<created_at>" --json`。結果的 `changed` 是 `false` 表示原文與上次相同，仍繼續（`main` 上的新規則和待譯照樣要處理）
-3. 執行 `bin/lct plan --json`，向人回報 `raw_tag`、`pending`（可領的待譯單位數）與 `changes`、`requeue_applied`、`rewrite_applied` 的摘要。`pending` 是 0 就跳過第 4 步
+3. 執行 `bin/lct plan --json`，向人回報 `raw_tag`、`pending`（可領的待譯單位數）與 `changes`、`number_patched`（KR 只改了數字、直接把新數字換進舊譯的單位數）、`requeue_applied`、`rewrite_applied` 的摘要。`pending` 是 0 就跳過第 4 步
 4. 翻譯：讀 `.claude/skills/translate-pending/SKILL.md`，從它的第 0 步照做到「沒有批次可領」，包含它的「限制」與「退回」。到那裡之後回到這個 skill 繼續第 5 步，不在那裡結束
    - 待譯很多時，先告訴人數量，再開始
    - 人要求中途停止，就停在已送出的批次之後；沒翻的單位留在待譯清單，build 照樣會打包，報表列出以 EN 或 KR 暫代的單位

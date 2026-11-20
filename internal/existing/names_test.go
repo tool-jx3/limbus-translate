@@ -14,7 +14,7 @@ import (
 var nameFields = []string{"name", "abName"}
 
 func src(key, kr, zh, jp, en string) Source {
-	return Source{Key: key, Field: "name", KR: kr, ZH: zh, Origin: store.OriginClaude, JP: jp, EN: en}
+	return Source{Key: key, Field: "name", KR: kr, ZH: zh, Origin: store.OriginParatranz, JP: jp, EN: en}
 }
 
 func TestCollectGroupsVariantsByJPEN(t *testing.T) {
@@ -30,14 +30,14 @@ func TestCollectGroupsVariantsByJPEN(t *testing.T) {
 		t.Fatalf("Names = %+v, want one name with two variants", tbl.Names)
 	}
 	v := tbl.Names[0].Variants[0]
-	if want := []Rendering{{"霞光劍刃", 2}, {"晚霞之劍", 1}}; !reflect.DeepEqual(v.Renderings, want) {
+	if want := []Rendering{{ZH: "霞光劍刃", Units: 2}, {ZH: "晚霞之劍", Units: 1}}; !reflect.DeepEqual(v.Renderings, want) {
 		t.Errorf("Renderings = %+v, want %+v", v.Renderings, want)
 	}
 	if want := []string{"k1", "k2", "k3"}; !reflect.DeepEqual(v.Examples, want) {
 		t.Errorf("Examples = %v, want %v", v.Examples, want)
 	}
 	v2 := tbl.Names[0].Variants[1]
-	if v2.JP != "夕焼け" || v2.EN != "Sunset" || !reflect.DeepEqual(v2.Renderings, []Rendering{{"夕陽", 1}}) ||
+	if v2.JP != "夕焼け" || v2.EN != "Sunset" || !reflect.DeepEqual(v2.Renderings, []Rendering{{ZH: "夕陽", Units: 1}}) ||
 		!reflect.DeepEqual(v2.Examples, []string{"k5"}) {
 		t.Errorf("second variant = %+v", v2)
 	}
@@ -162,8 +162,8 @@ func TestTableRoundTrip(t *testing.T) {
 
 func TestNameHas(t *testing.T) {
 	n := &Name{KR: "노을빛 검", Variants: []Variant{
-		{Renderings: []Rendering{{"霞光劍刃", 2}}},
-		{Renderings: []Rendering{{"夕陽", 1}}},
+		{Renderings: []Rendering{{ZH: "霞光劍刃", Units: 2}}},
+		{Renderings: []Rendering{{ZH: "夕陽", Units: 1}}},
 	}}
 	for zh, want := range map[string]bool{"<b>霞光劍刃</b>揮出": true, "夕<b>陽</b>": true, "月光": false} {
 		if got := n.Has(zh); got != want {
@@ -181,5 +181,36 @@ func TestCollectAndHasAgreeOnTags(t *testing.T) {
 	}
 	if !n.Has(zh) {
 		t.Error("Has does not find the rendering it was built from")
+	}
+}
+
+// A rendering only this project's own translations have is marked Own, and
+// comes after the renderings a Paratranz or a human translation has, however
+// many units it has: it is not what the older translations say.
+func TestCollectMarksOwnRenderings(t *testing.T) {
+	kr := "밀랍날개"
+	own := func(key, zh string) Source {
+		return Source{Key: key, Field: "name", KR: kr, ZH: zh, Origin: store.OriginClaude, JP: "蜜蝋の翼", EN: "Waxen Pinion"}
+	}
+	units := []Source{
+		own("k1", "蜜蠟之翼"), own("k2", "蜜蠟之翼"), own("k3", "蜜蠟之翼"),
+		{Key: "k4", Field: "name", KR: kr, ZH: "蠟翼", Origin: store.OriginParatranz, JP: "蜜蝋の翼", EN: "Waxen Pinion"},
+		{Key: "k5", Field: "name", KR: kr, ZH: "蠟之翼", Origin: store.OriginHuman, JP: "蜜蝋の翼", EN: "Waxen Pinion"},
+		own("k6", "蠟之翼"),
+	}
+	tbl := Collect("raw1", nameFields, units)
+	if len(tbl.Names) != 1 || len(tbl.Names[0].Variants) != 1 {
+		t.Fatalf("Names = %+v", tbl.Names)
+	}
+	want := []Rendering{{ZH: "蠟之翼", Units: 2}, {ZH: "蠟翼", Units: 1}, {ZH: "蜜蠟之翼", Units: 3, Own: true}}
+	if got := tbl.Names[0].Variants[0].Renderings; !reflect.DeepEqual(got, want) {
+		t.Errorf("Renderings = %+v, want %+v", got, want)
+	}
+	data, err := json.Marshal(tbl.Names[0].Variants[0].Renderings)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := `[{"zh":"蠟之翼","units":2},{"zh":"蠟翼","units":1},{"zh":"蜜蠟之翼","units":3,"own":true}]`; string(data) != want {
+		t.Errorf("JSON = %s, want %s", data, want)
 	}
 }

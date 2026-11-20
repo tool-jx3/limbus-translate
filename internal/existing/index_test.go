@@ -23,7 +23,7 @@ func krs(ns []*Name) []string {
 func tableOf(names ...string) *Table {
 	t := &Table{RawTag: "raw1", Fields: []string{"name", "abName"}}
 	for _, kr := range names {
-		t.Names = append(t.Names, Name{KR: kr, Variants: []Variant{{Renderings: []Rendering{{"譯", 1}}}}})
+		t.Names = append(t.Names, Name{KR: kr, Variants: []Variant{{Renderings: []Rendering{{ZH: "譯", Units: 1}}}}})
 	}
 	return t
 }
@@ -313,5 +313,22 @@ func BenchmarkMentions(b *testing.B) {
 	b.ResetTimer()
 	for i := range b.N {
 		ix.Mentions(texts[i%len(texts)], nil)
+	}
+}
+
+// A name whose every hit lies inside a hit of a longer glossary term is not
+// mentioned: the glossary names that text, as 불안정 E.G.O for the 불안정 in
+// it. A hit outside the glossary term still counts.
+func TestMentionsDropsANameInsideAGlossaryTerm(t *testing.T) {
+	r := &rules.Rules{Glossary: []rules.Term{{KR: "불안정 E.G.O", ZH: "不穩定E.G.O", Status: "approved"}}}
+	ix := NewIndex(tableOf("불안정", "밀랍날개"), r, nil)
+	if got := krs(ix.Mentions("패시브 효과로 불안정 E.G.O 밀랍날개 상태가 되는", nil)); !reflect.DeepEqual(got, []string{"밀랍날개"}) {
+		t.Errorf("Mentions = %v, want only 밀랍날개", got)
+	}
+	if got := krs(ix.Mentions("불안정 상태에서 불안정 E.G.O 발동", nil)); !reflect.DeepEqual(got, []string{"불안정"}) {
+		t.Errorf("Mentions = %v, want 불안정: one hit stands alone", got)
+	}
+	if got := krs(NewIndex(tableOf("불안정"), nil, nil).Mentions("불안정 E.G.O 발동", nil)); !reflect.DeepEqual(got, []string{"불안정"}) {
+		t.Errorf("Mentions without the glossary = %v", got)
 	}
 }

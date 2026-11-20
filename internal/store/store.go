@@ -71,6 +71,13 @@ type Record struct {
 	Model   string   `json:"model,omitempty"`
 	Batch   string   `json:"batch,omitempty"`
 	Flags   []string `json:"flags,omitempty"`
+	// PrevKR and PrevZH are the KR text and the translation the unit had
+	// before this one, when Submit wrote the record for a unit whose KR had
+	// changed (the pending item's prev_kr and prev_zh): the build tells from
+	// them which lines were rewritten although their KR is the same. Both
+	// are empty otherwise.
+	PrevKR string `json:"prev_kr,omitempty"`
+	PrevZH string `json:"prev_zh,omitempty"`
 }
 
 // TranslatedIn reports whether Submit wrote the record's translation at the

@@ -1,0 +1,11 @@
+# 翻譯流程檢視（2026-11-19）：KR「제N회 발푸르기스의 밤」既有譯文 96 個單位寫「第N次 瓦爾普吉斯之夜」，
+# 本專案新譯的第 10 回有 15 個單位寫成「第10屆瓦爾普吉斯之夜」、1 個單位寫成「第10次瓦爾普吉斯之夜」
+# （GachaTitle、IAPProduct-a1c10、StageChapterText、StageNode91-29、StoryTheaterOther、StoryTheaterUIText、
+# UnlockCode-1、UserBanner、UserTicket-EGOBg／L／R、Walpu10EventText）。依詞彙表「발푸르기스의 밤」的備註統一。
+# 使用者同意 2026-11-19。
+reason: '「제N회 발푸르기스의 밤」寫「第N次 瓦爾普吉斯之夜」（詞彙表「발푸르기스의 밤」的備註）'
+files: ['GachaTitle.json', 'IAPProduct-a1c10.json', 'StageChapterText.json', 'StageNode91-29.json', 'StoryTheaterOther.json', 'StoryTheaterUIText.json', 'UnlockCode-1.json', 'UserBanner.json', 'UserTicket-EGOBg.json', 'UserTicket-L.json', 'UserTicket-R.json', 'Walpu10EventText.json']
+origins: [claude]
+pattern: '第(\d+)[屆次]\s?瓦爾普吉斯之夜'
+replace: '第${1}次 瓦爾普吉斯之夜'
+kr_pattern: '제 ?\d+ ?회 ?발푸르기스의 밤'

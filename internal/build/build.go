@@ -181,6 +181,10 @@ type Report struct {
 	// WarningSamples holds, for each code of Warnings, the first 10 of the
 	// keys of the units that warn, in sorted order.
 	WarningSamples map[string][]string `json:"warning_samples"`
+	// NewWarnings counts, by issue code, the warnings of Warnings that are
+	// of a translation written for this raw tag (store.Record.TranslatedIn):
+	// what this update added, apart from what was there. Never nil.
+	NewWarnings map[string]int `json:"new_warnings"`
 	// Inconsistent lists the groups of units of one family and field with
 	// the same KR text and different translations, the biggest 20 by their
 	// number of units. Only used translations count: not copies, not stand-ins.
@@ -218,6 +222,15 @@ type Report struct {
 	// (see Options.Names).
 	NameDiffs []NameDiff `json:"name_diffs"`
 	TermDiffs []TermDiff `json:"term_diffs"`
+	// KeptRewrites are the units translated again for this raw tag because
+	// their KR changed, in which lines whose KR is the same were rewritten
+	// (see keptLines), by key; never nil.
+	KeptRewrites []KeptRewrite `json:"kept_rewrites"`
+	// Retranslated are the units translated again for this raw tag because
+	// their KR changed, each with what changed in its KR text and in its
+	// translation (see lineHunks), by key; never nil. Only a record that
+	// keeps its previous text (store.Record.PrevKR) is one.
+	Retranslated []Retranslated `json:"retranslated"`
 }
 
 // NameDiff is an existing name that translations of this raw tag render
@@ -330,8 +343,12 @@ type builder struct {
 	// provisional terms of Report.TermDiffs, by KR, and tally counts the old
 	// units that hold them. All three stay empty without Options.Names.
 	nameDiffs map[string]*NameDiff
-	termDiffs []*termDiff
-	tally     *existing.OldTally
+	// keptRewrites and retranslated are Report.KeptRewrites and
+	// Report.Retranslated as the units are met.
+	keptRewrites []KeptRewrite
+	retranslated []Retranslated
+	termDiffs    []*termDiff
+	tally        *existing.OldTally
 	// game is the information of the whole KR pack that the keyword-link,
 	// level-diff, shared-line and cross-group checks need, with the
 	// translations the build uses.
@@ -469,8 +486,8 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 		queued:  make(map[string]bool, len(pending)),
 		rep: &Report{
 			Origins: map[string]int{}, Warnings: map[string]int{}, FrozenFallback: []string{}, MissingGlyphs: []rune{},
-			WarningSamples: map[string][]string{}, Inconsistent: []Inconsistency{}, Notes: notes,
-			Shown: map[string]int{}, Misaligned: []FileMisaligned{}, NameDiffs: []NameDiff{}, TermDiffs: []TermDiff{},
+			WarningSamples: map[string][]string{}, NewWarnings: map[string]int{}, Inconsistent: []Inconsistency{}, Notes: notes,
+			Shown: map[string]int{}, Misaligned: []FileMisaligned{}, NameDiffs: []NameDiff{}, TermDiffs: []TermDiff{}, KeptRewrites: []KeptRewrite{}, Retranslated: []Retranslated{},
 		},
 		warnKeys:  map[string][]string{},
 		renders:   map[renderKey]*rendering{},
@@ -709,6 +726,9 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 				continue
 			}
 			b.rep.Warnings[is.Code]++
+			if rec.TranslatedIn(b.opt.RawTag) {
+				b.rep.NewWarnings[is.Code]++
+			}
 			// One unit can warn twice of one code; its key is one sample.
 			if keys := b.warnKeys[is.Code]; len(keys) == 0 || keys[len(keys)-1] != key {
 				b.warnKeys[is.Code] = append(keys, key)
@@ -808,8 +828,10 @@ func alignedText(a *align.LangAligned) string {
 // KR. An old record counts in the tally of the provisional terms of
 // Report.TermDiffs. A record of this raw tag adds u to the NameDiff of each
 // name its KR mentions, other than the name a name field is, that is not
-// declined and whose renderings its text all lacks, and to the TermDiff of
-// each term its KR holds and whose rendering its text uses.
+// declined and whose renderings its text all lacks (unless the translation it
+// had before, of a KR text that mentioned the name, lacked them too), and to
+// the TermDiff of each term its KR holds and whose rendering its text uses;
+// its rewritten lines whose KR did not change make it a KeptRewrite.
 func (b *builder) compareWithExisting(u units.Unit, key string, rec store.Record) {
 	if !b.comparing() {
 		return
@@ -828,9 +850,29 @@ func (b *builder) compareWithExisting(u units.Unit, key string, rec store.Record
 	if ix.IsName(u.Field, u.KR) {
 		exact = ix.Lookup(u.KR)
 	}
+	lines := keptLines(rec.PrevKR, rec.PrevZH, u.KR, rec.ZH)
+	if len(lines) > 0 {
+		b.keptRewrites = append(b.keptRewrites, KeptRewrite{Key: key, Lines: lines, Note: b.noteOn(u, key)})
+	}
+	if hunks := lineHunks(rec.PrevKR, rec.PrevZH, u.KR, rec.ZH); hunks != nil || len(lines) > 0 {
+		b.retranslated = append(b.retranslated, Retranslated{Key: key, Hunks: hunks, Kept: len(lines)})
+	}
+	// The names the KR text mentioned before and the previous translation
+	// rendered in no existing way either: that wording is the old one.
+	var asBefore map[*existing.Name]bool
+	if rec.PrevKR != "" && rec.PrevZH != "" {
+		for _, n := range ix.Mentions(rec.PrevKR, nil) {
+			if !n.Has(rec.PrevZH) {
+				if asBefore == nil {
+					asBefore = map[*existing.Name]bool{}
+				}
+				asBefore[ix.Lookup(n.KR)] = true
+			}
+		}
+	}
 	for _, n := range ix.Mentions(u.KR, nil) {
 		// By Lookup, so that a table listing the name twice is one name.
-		if (exact != nil && ix.Lookup(n.KR) == exact) || ix.Declined(n.KR) || n.Has(rec.ZH) {
+		if (exact != nil && ix.Lookup(n.KR) == exact) || ix.Declined(n.KR) || n.Has(rec.ZH) || asBefore[ix.Lookup(n.KR)] {
 			continue
 		}
 		b.addNameDiff(n, NameDiffUnit{Key: key, ZH: rec.ZH, Note: b.noteOn(u, key), Kind: NameDiffMention})
@@ -860,20 +902,31 @@ func (b *builder) addNameDiff(n *existing.Name, unit NameDiffUnit) {
 }
 
 // renderingsOf returns the renderings of every variant of n, the units of one
-// rendering summed, the most units first and then by ZH, at most
+// rendering summed: those that are not Own (an older translation has them in
+// some variant) first, then the most units first and then by ZH, at most
 // maxNameRenderings; never nil.
 func renderingsOf(n *existing.Name) []existing.Rendering {
 	byZH := map[string]int{}
+	settled := map[string]bool{}
 	for _, v := range n.Variants {
 		for _, r := range v.Renderings {
 			byZH[r.ZH] += r.Units
+			if !r.Own {
+				settled[r.ZH] = true
+			}
 		}
 	}
 	out := make([]existing.Rendering, 0, len(byZH))
 	for zh, count := range byZH {
-		out = append(out, existing.Rendering{ZH: zh, Units: count})
+		out = append(out, existing.Rendering{ZH: zh, Units: count, Own: !settled[zh]})
 	}
 	slices.SortFunc(out, func(x, y existing.Rendering) int {
+		if x.Own != y.Own {
+			if y.Own {
+				return -1
+			}
+			return 1
+		}
 		return cmp.Or(cmp.Compare(y.Units, x.Units), cmp.Compare(x.ZH, y.ZH))
 	})
 	return out[:min(len(out), maxNameRenderings)]
@@ -1048,6 +1101,10 @@ func (b *builder) finish() {
 		b.rep.NameDiffs = append(b.rep.NameDiffs, *d)
 	}
 	slices.SortFunc(b.rep.NameDiffs, func(x, y NameDiff) int { return cmp.Compare(x.KR, y.KR) })
+	b.rep.KeptRewrites = append(b.rep.KeptRewrites, b.keptRewrites...)
+	slices.SortFunc(b.rep.KeptRewrites, func(x, y KeptRewrite) int { return cmp.Compare(x.Key, y.Key) })
+	b.rep.Retranslated = append(b.rep.Retranslated, b.retranslated...)
+	slices.SortFunc(b.rep.Retranslated, func(x, y Retranslated) int { return cmp.Compare(x.Key, y.Key) })
 	for _, d := range b.termDiffs {
 		use, examples, _ := b.tally.Use(b.opt.Names, d.p.KR, d.p.ZH)
 		if use.Existing == "" {

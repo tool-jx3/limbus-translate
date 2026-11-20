@@ -59,7 +59,7 @@ func TestOldTallyTooFew(t *testing.T) {
 
 func TestOldTallyUsesNameTable(t *testing.T) {
 	ix := NewIndex(&Table{RawTag: "raw1", Fields: []string{"name"}, Names: []Name{
-		{KR: "격돌", Variants: []Variant{{Renderings: []Rendering{{"交鋒", 3}}}}},
+		{KR: "격돌", Variants: []Variant{{Renderings: []Rendering{{ZH: "交鋒", Units: 3}}}}},
 	}}, nil, nil)
 	tally := NewOldTally([]rules.Term{provisional("격돌", "衝突"), provisional("격돌", "交鋒")})
 	tally.Add("F.json|/0", "격돌", "交鋒")
@@ -77,7 +77,7 @@ func TestOldTallyUsesNameTable(t *testing.T) {
 // the table lacks.
 func TestOldTallyIgnoresADeclinedName(t *testing.T) {
 	ix := NewIndex(&Table{RawTag: "raw1", Fields: []string{"name"}, Names: []Name{
-		{KR: "격돌", Variants: []Variant{{Renderings: []Rendering{{"交鋒", 3}}}}},
+		{KR: "격돌", Variants: []Variant{{Renderings: []Rendering{{ZH: "交鋒", Units: 3}}}}},
 	}}, nil, map[string]bool{SuggestionID("격돌"): true})
 	few := NewOldTally([]rules.Term{provisional("격돌", "衝突")})
 	few.Add("F.json|/0", "격돌", "交鋒")
