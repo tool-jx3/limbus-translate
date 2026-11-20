@@ -1187,3 +1187,27 @@
   zh: 去到外面的話要不要來賭一桶酒？就和以前一樣！
   reason: StoryData 審查 S0325：KR「술통 내기라도 하는 건 어때?」是「要不要來賭一桶酒？」，酒桶是賭注（名詞＋내기），原文沒寫比什麼；現行「乾杯桶裝酒」漏了「내기」，報告建議「比賽喝桶裝酒」是照 EN 的讀法。譯法由使用者決定
   rule: one-off
+- key: StoryData/5D107B.json|/dataList/21/content
+  raw: raw-20261119
+  kr_sha: af1bc5a73ef69d6237265c5da8cf6a62cf18a231207897f7a67cb4c1cda2f2f5
+  zh: 那聲音隱祕……卻又坦誠。
+  reason: StoryData 審查 S0326：KR「목소리가 은밀하고도… 진솔했다.」是「那聲音隱祕……卻又坦誠」，現行「黯淡」把「은밀（隱密、私下）」寫錯；報告建議的「低沉」是照 EN 的 low 加的。譯法由使用者決定
+  rule: one-off
+- key: StoryData/5D108B.json|/dataList/41/content
+  raw: raw-20261119
+  kr_sha: 9cb79ab9401777c98a73100404860183a1b31896bad0244b6bd3f10259e2dfd3
+  zh: ……這裡是絕對缺乏情報的戰場及未知空間。無從得知經理會在何時、以何種方式陷入危險。
+  reason: StoryData 審查 S0327：KR「언제 어떤 식으로 관리자님이 위험에 빠질지 알 수 없지.」是「不知道經理會在何時、以何種方式陷入危險」，JP「いつどんな風に…危機に陥るか分からない」相同，說的是風險無法預料；現行 TW「不論以何種方式，都不能讓經理陷入危險」變成禁令，也漏了「何時」。
+  rule: one-off
+- key: StoryData/5D203B.json|/dataList/21/content
+  raw: raw-20261119
+  kr_sha: 5c94580cdedb886e2b3405329158a09fe0eb105a63a8de9e4533a467c2c2d1b5
+  zh: 我不敢進去，不敢只靠著一根刀刃輕輕一劃就會斷的繩子，進到那個深淵一般的無底洞裡……
+  reason: StoryData 審查 S0328：KR「고작 칼날 한 번만 스치면 끊어질 끈 하나만 믿고」是「只靠一根刀刃輕輕一劃就會斷的繩子」，JP「ナイフ一振りで切れる縄一本だけが頼みの綱」相同；現行 TW 照 EN 寫成「細到幾乎能被風吹斷」，把刀刃換成了風，「全身上下只拴著」也是多加的。
+  rule: one-off
+- key: StoryData/5D203B.json|/dataList/67/content
+  raw: raw-20261119
+  kr_sha: 459c86395e3c124d52205a28fd41cc5ed64c2d7b4b4f0b3542bfcce9472d3756
+  zh: 哇啊……如果滿身是油死掉的話……那可真是死得毫無存在感了。
+  reason: StoryData 審查 S0329：KR「기름 범벅인 채로 죽었더라면… 그야말로 존재감 없는 죽음이었겠네.」是「要是滿身是油地死了……那可真是毫無存在感的死」，JP「存在感の無い死」相同；現行 TW 照 EN 寫成「那我們紀念你的時候，連屍體和遺物都沒有了」，加了「紀念」「屍體和遺物」。
+  rule: one-off
