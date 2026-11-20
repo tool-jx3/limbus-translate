@@ -1073,3 +1073,57 @@
   zh: 但，或許是託了罪惡感的福。
   reason: StoryData 審查 S0094（前後文一起改）：KR「하지만, 죄책감의 덕을 보게 된 걸까.」是「不過，或許是託了罪惡感的福。」，「덕을 보다」是因此受益：但丁被罪惡感推著跑過去，靠近之後那張臉起了變化（#80）。現行「但，是因為內疚嗎。」少了「受益」的意思。 使用者同意
   rule: one-off
+- key: StoryData/S525B.json|/dataList/100/content
+  raw: raw-20261119
+  kr_sha: 34ffcb0f3f23d275433950f2d868d158f8a91d82c9f5bc237e13a8fe260c104c
+  zh: 我強迫自己……努力封鎖的那一天的記憶……一想到也許當時其實有辦法解決……
+  reason: StoryData 審查 S0095：KR「어쩌면 해결법이 있었을 거라는 생각에…」是「想到當時也許其實有辦法解決……」，回想過去而後悔（JP 解決方法があったかもしれないって思い，EN there was something that I could've done）；TW「也許就要有解決的辦法了」變成對未來的期望，下一句「它們不受控制地在我眼前浮現」說的卻是痛苦的回憶。 照報告建議，「想到」改「一想到」以接下一句「不受控制地在我眼前浮現」；譯法由使用者決定
+  rule: one-off
+- key: StoryData/S525B.json|/dataList/102/content
+  raw: raw-20261119
+  kr_sha: 88b2e4dab8792ad7fd9c5be7c02c0b79fd272ea4bb53e2375252c5a23ae87513
+  zh: 被那頭鯨吐了出來，如今不是沉下去、就是還漂在大湖裡的他們……
+  reason: StoryData 審查 S0095（前後文一起改）：KR「가라앉거나 떠다니고 있을 그들이」是「正在下沉或漂著的他們」，現行漏了「下沉」；使用者同意
+  rule: one-off
+- key: StoryData/S526A.json|/dataList/35/content
+  raw: raw-20261119
+  kr_sha: 0a7375575e98ed25d8c3036e771ec00b2f9f92641c1616e3cb7052a83f8bcf3f
+  zh: 想必你們早已體會過，被枝所吸引的並非只有你們。
+  reason: StoryData 審查 S0096：KR「가지에 이끌리는 게 비단 그대들뿐이 아니라는 건 진작에 겪었겠소」是「被枝吸引的不只你們，這你們想必早已親身經歷過」（JP 既に知るらん），下一句接「甚至好不容易得到的一根還被奪走」；TW 照 EN 寫成「我確信……」，少了「你們早已經歷過」。
+  rule: one-off
+- key: StoryData/S530B.json|/dataList/35/content
+  raw: raw-20261119
+  kr_sha: 1ae1c345e005d706aa9fc71c74ee4d2b94792810d60d091c5e5e0359d013ab36
+  zh: 原本水位根本沒漲到這裡來吧！！
+  reason: StoryData 審查 S0097：KR「원래 여기까지 물이 차 있지 않았었잖아!!」是「這裡本來沒淹到這麼高吧！！」（JP 同），強調水位和進來時不同；TW 照 EN 寫成「快要漫到我們的褲腳了」，多了 KR 沒有的內容。
+  rule: one-off
+- key: StoryData/S530B.json|/dataList/44/content
+  raw: raw-20261119
+  kr_sha: 6f7eb8a873d54d656897490ac9d4434b99202f26e848fee75ab1949288458723
+  zh: 良秀成功用刀背彈開了幾支飛來的魚叉……但魚叉實在太多了，全部擋住是不可能的。
+  reason: StoryData 審查 S0098：KR「칼등으로」是用刀背（JP 刀の峰，EN the back of her sword）；TW 寫成「刀鞘」。KR「튕기다」是彈開。
+  rule: one-off
+- key: StoryData/S532B.json|/dataList/77/content
+  raw: raw-20261119
+  kr_sha: 1f87c58048904af273b238fafcb3f6ea2f1de00d1d4982d1c38781c4ecd6abd4
+  zh: 但就因為有人偷走了那張優惠券……
+  reason: StoryData 審查 S0099：KR「그 쿠폰을 털어가는 바람에…」是「因為（有人）把那張優惠券搶走了……」（JP スられちまった，EN the coupon thief）；TW「弄丟了」變成自己遺失。後兩句幼兄說「這就是你們中的一人犯下極惡罪行的證據」，追究的是偷竊。
+  rule: one-off
+- key: StoryData/S533B.json|/dataList/0/content
+  raw: raw-20261119
+  kr_sha: 2dfdfd090c0fa95f8cd5223c7d1155da006232dd422be4d0ff93891791e555e0
+  zh: 好，這次擦到我的墨鏡了！
+  reason: StoryData 審查 S0100：KR「이번에는 선글라스를 스쳤어!」是「這次擦到墨鏡了！」，以實瑪利的攻擊擦過里卡多的墨鏡（JP 掠めた，EN You nicked my sunglasses）；TW「這次你能搶走我的墨鏡」意思與時態都錯。
+  rule: one-off
+- key: StoryData/S533B.json|/dataList/1/content
+  raw: raw-20261119
+  kr_sha: a278218813eb13e11034b71582446d2562a60a6432ccb3d5728e41c034d91757
+  zh: 可惜～下次再來！
+  reason: StoryData 審查 S0100（前後文一起改）：KR「하지만~ 다음 기회에!」是沒中獎時說的客套話「可惜～下次再來！」，里卡多在奚落以實瑪利只擦到他的墨鏡。現行「但是～沒有下次！」意思相反。 使用者同意
+  rule: one-off
+- key: StoryData/S534B.json|/dataList/45/content
+  raw: raw-20261119
+  kr_sha: 9bcf2ac041139e8fda0c2b23fa1fff255fb262616445ba13523b9fd6e7bf5b4a
+  zh: 一聽到那句話，老人便起身，緩步準備離開。
+  reason: StoryData 審查 S0101：KR「그 말을 듣자마자」是「一聽到那句話就」（JP 聞くや否や）；TW「也不知是否聽到那句話」把明確的先後與因果寫成不確定。
+  rule: one-off
