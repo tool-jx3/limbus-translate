@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261119",
   "prev_raw_tag": "raw-20261112",
-  "rules_commit": "50f9b846d8ea34c97ef147992afd5b82ce96c92c",
+  "rules_commit": "8f5b3e06361292f66d66c13ce7d67302f3170748",
   "changes": {
     "unchanged": 275816,
     "moved": 139,
@@ -34,19 +34,35 @@
   "reused": 0,
   "number_patched": 0,
   "adjustments": {
-    "applied": 274,
+    "applied": 353,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
   "rewrite_applied": [
     {
-      "id": "2026-11-19-per-encounter-limit",
-      "units": 6
+      "id": "2026-11-20-rs-g085-place-yongjin-floor",
+      "units": 9
     },
     {
-      "id": "2026-11-19-walpurgis-number",
-      "units": 16
+      "id": "2026-11-20-rs-g086-ellipsis-s526a",
+      "units": 1
+    },
+    {
+      "id": "2026-11-20-rs-g088-teller-lccb",
+      "units": 1
+    },
+    {
+      "id": "2026-11-20-rs-g761-gift-workshop",
+      "units": 8
+    },
+    {
+      "id": "2026-11-20-rs-g770-title-sinner",
+      "units": 1
+    },
+    {
+      "id": "2026-11-20-rs-g867-hmm",
+      "units": 1
     }
   ],
   "frozen_changed": [],
