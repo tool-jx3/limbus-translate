@@ -1373,3 +1373,21 @@
   zh: 這聽起來倒像是平常都不是真心的……
   reason: StoryData 審查 S0466：奧提斯說「我奧提斯由衷（진심으로）地佩服您」，旁白吐槽「這樣說聽起來像是平常都不是真心的……」（JP「普段は心からというわけではないって風に聞こえる」、EN「is she implying that her usual flattery is phony?」）。現行 TW「這聽起來不太像是真心話」變成懷疑這一句不真心，「平常不真心」的笑點不見了。 照使用者的句子，加「倒」對應「-긴 하는데」；譯法由使用者決定
   rule: one-off
+- key: StoryData/E511B.json|/dataList/63/content
+  raw: raw-20261119
+  kr_sha: 4e23e99143e1b42de679eb131c43a88b82ce072fd30bd7d87f34fb95d26cba34
+  zh: 太偉大了，執行經理。我奧提斯由衷地佩服您！
+  reason: StoryData 審查 S0466（前後文一起改）：句末標點照 KR「훌륭하십니다, 관리자님. … 감탄했습니다!」（前句號、後驚嘆號），現行兩個標點相反；用詞不變。使用者同意
+  rule: one-off
+- key: StoryData/E512A.json|/dataList/31/content
+  raw: raw-20261119
+  kr_sha: 7eb3d5b6385b7415502bab10a6ca868e98747d9a10f96ec35679ff6051dcdc5b
+  zh: 「1. 清除或確保該地區附近產生的扭曲。」
+  reason: StoryData 審查 S0467：KR「제거, 혹은 확보」是「清除或確保」（EN and/or）；TW 寫成「清除，又稱確保」，把「或」錯成「又稱」，變成兩者同義。
+  rule: one-off
+- key: StoryData/E515A.json|/dataList/41/content
+  raw: raw-20261119
+  kr_sha: 55d6503fadca2b6398ba503348b16d98a4093a2b63761dbba28042f9c4727e81
+  zh: 啊啊！好、好燙！經理老爺頭上的火一直都不燙，吾還以為只是裝飾呢……
+  reason: StoryData 審查 S0468：KR「뜨겁지 않아서」是「不燙」，所以才以為只是裝飾（EN：not once felt such heat）；TW 寫成「不怎麼旺」，變成火勢大小，與溫度無關。
+  rule: one-off
