@@ -1127,3 +1127,39 @@
   zh: 一聽到那句話，老人便起身，緩步準備離開。
   reason: StoryData 審查 S0101：KR「그 말을 듣자마자」是「一聽到那句話就」（JP 聞くや否や）；TW「也不知是否聽到那句話」把明確的先後與因果寫成不確定。
   rule: one-off
+- key: StoryData/S534B.json|/dataList/58/content
+  raw: raw-20261119
+  kr_sha: 1ac181502d6e0f68a1897784e39fb7ce9415a1713476f42146cc51c6942f66e3
+  zh: 不，那艘船……雖然看起來狀態很糟，卻是不會輕易損壞的船。
+  reason: StoryData 審查 S0102：KR「상태는 구려 보여도, 어지간해서 부서지지 않는 배다」是「雖然看起來破爛，卻是不容易壞的船」（EN may not look like much, but extremely durable）；TW「情況不同尋常」沒有「外表破爛」的意思，也失去「雖然……卻」的對比，下一句李箱說用了 X 公司的合金，接的是「很耐用」。
+  rule: one-off
+- key: StoryData/S534B.json|/dataList/95/content
+  raw: raw-20261119
+  kr_sha: 601287f33b38559400083be181aba01daca8d6708ebc82023b2ff16d6cfeaf6e
+  zh: 權當是對同樣握槳前行之人的一點親近感吧。
+  reason: StoryData 審查 S0103：KR「동질감」是同類的親近感（JP 親近感，EN kinship）；TW 寫成「同情」，意思不同。
+  rule: one-off
+- key: StoryData/S535B.json|/dataList/31/content
+  raw: raw-20261119
+  kr_sha: bf09f0980ba77ef6bbfc8338ba9792551a783b4f07be9ec94b0f463f2b393bea
+  zh: 前方約三百五十公尺處，是一塊花紋樸素、閃閃發光的微小岩石。再往前約五百公尺處，有一塊中等大小的岩石，有標誌性的駝峰形狀。
+  reason: StoryData 審查 S0104：KR「그보다 500m쯤 먼 거리에」是「比那塊再遠約500公尺處」（EN 500 meters ahead of that）；TW 寫成「前方約五百公尺處」，變成離船500公尺，比第一塊的350公尺只遠150公尺。
+  rule: one-off
+- key: StoryData/S535B.json|/dataList/47/content
+  raw: raw-20261119
+  kr_sha: fc83468a48a880fd15acb4170c3def8a18bb15fe52368b54d10b24549a0b0b05
+  zh: ……你的想法本身就錯了。
+  reason: StoryData 審查 S0105：以實瑪利這句是對希斯克利夫（男性）說的，KR「당신」、JP「あなた」；TW 寫「妳的想法」，對男性用了「妳」，應為「你」。
+  rule: one-off
+- key: StoryData/S537A.json|/dataList/33/content
+  raw: raw-20261119
+  kr_sha: 8b671dc9145bde23efafe82e54adb92dfd7673e4a8b59847c4555a969a9601d0
+  zh: ……行，妳說得對。但哪怕如此，這也算是能被座標明確規定的都市規則，跟妳的那種玄乎的歌才完全不一樣吧？妳讓我信這個？
+  reason: StoryData 審查 S0106：希斯克利夫對以實瑪利（女性）說話，同一行前後都用「妳」，中間「你的那種玄乎的歌」卻用「你」，應為「妳」。
+  rule: one-off
+- key: StoryData/S538B.json|/dataList/78/content
+  raw: raw-20261119
+  kr_sha: 31dc2ab33992f350ca9902b27ad992ec0e60cdc28edd24a44aee718cae7be26a
+  zh: 果然如此……那個人說得對。那些傷痕……那些我們……裴廓德號留下的傷痕……還在那裡。
+  reason: StoryData 審查 S0107：KR「그 사람의 말이 맞았어」＝那個人說得對，JP「あの人」、EN「He was right」；前文提過與白鯨有關的人（林、靛藍老人）都是男性。TW 寫「她說得對」，性別錯，應為「他」。 照再檢視的建議調整：報告把現行的「她」改成「他」，依據是 EN 的 He 和推測（林或靛藍老人）。現行的「她」沒有根據，但「他」同樣是推測，KR 並沒有寫性別；照 KR 寫「那個人」。 使用者同意
+  rule: one-off
