@@ -53,3 +53,13 @@ for f in items:
     print('    報告建議: '+s(f['suggest']))
     print('    說明: '+s(f['explain']))
     if f.get('reason'): print('    複核: '+s(f['reason']))
+    rc=f.get('recheck')
+    if rc:
+        if rc['result']=='direct':
+            print('    前次再檢視(%s): direct（可以直接照建議）%s'%(rc['date'],('；備註：'+s(rc['note'])) if rc.get('note') else ''))
+        else:
+            print('    前次再檢視(%s): adjust → %s'%(rc['date'],s(rc['suggest'])))
+            print('      前次指出的問題: '+s(rc['problem']))
+            if rc.get('note'): print('      前次備註: '+s(rc['note']))
+        for a in rc.get('also') or []:
+            print('    前次建議一起改 %s: %s → %s（%s）'%(a['ref'],s(a['tw']),s(a['suggest']),s(a['why'])))
