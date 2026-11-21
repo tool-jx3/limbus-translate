@@ -1,6 +1,6 @@
 """Merge the context re-check results into data/findings.json and render items/*.md again.
 
-usage: python3 -I recheck_apply.py <docs dir> <date> <raw tag> [--adjustments <rules/adjustments dir>] [recheck json ...]
+usage: python3 -I recheck_apply.py <docs dir> <date> <raw tag> [--adjustments <rules/adjustments dir>] [--guide <guide path>] [recheck json ...]
 
 Each recheck file is a JSON array of
   {"seq", "result": "direct"|"adjust", "suggest", "kr_meaning", "context", "problem",
@@ -12,6 +12,12 @@ With --adjustments, a finding whose unit already has a manual adjustment is chec
 adjustment instead of the suggestion of the report: "direct" then means that the adjustment needs
 no further change, and the adjustment is recorded in recheck.applied.
 
+With --guide, the re-check also applied that guide (guides/shared/phrasing.md: whether the text reads as
+natural Chinese); the path is recorded in recheck.guides and the item says so.
+
+A record that replaces a re-check of another date keeps what that one said in recheck.prev (date, result,
+and the adjusted text when it had one), so that the item can show what changed.
+
 The item layout is the one of acc_assemble.py; a finding with a `recheck` field gets the
 「再檢視」 lines after it. Groups without any re-checked finding are rendered byte for byte as before.
 """
@@ -20,11 +26,15 @@ import json, os, re, sys, collections, difflib
 OUT, DATE, RAW = sys.argv[1], sys.argv[2], sys.argv[3]
 FILES = sys.argv[4:]
 ADJ = {}
-if FILES[:1] == ['--adjustments']:
-    import glob, yaml
-    for _p in sorted(glob.glob(FILES[1] + '/*.yaml')):
-        for _e in yaml.safe_load(open(_p, encoding='utf-8')) or []:
-            ADJ[_e['key']] = _e['zh']
+GUIDES = []
+while FILES[:1] and FILES[0] in ('--adjustments', '--guide'):
+    if FILES[0] == '--adjustments':
+        import glob, yaml
+        for _p in sorted(glob.glob(FILES[1] + '/*.yaml')):
+            for _e in yaml.safe_load(open(_p, encoding='utf-8')) or []:
+                ADJ[_e['key']] = _e['zh']
+    else:
+        GUIDES.append(FILES[1])
     FILES = FILES[2:]
 N = lambda t: (t or '').replace('\n', '⏎')   # the report writes line breaks as ⏎
 P = OUT + '/data/findings.json'
@@ -45,6 +55,15 @@ for f in FILES:
         if x['result'] == 'adjust' and N(x['suggest']) == base:
             sys.exit('%s: adjust, but the text is the %s' % (x['seq'], 'adjustment' if applied is not None else 'suggestion of the report'))
         rc = collections.OrderedDict([('date', DATE), ('raw', RAW), ('result', x['result'])])
+        if GUIDES:
+            rc['guides'] = GUIDES
+        old = r.get('recheck')
+        if old and old['date'] != DATE:
+            rc['prev'] = collections.OrderedDict([('date', old['date']), ('result', old['result'])])
+            if old['result'] == 'adjust':
+                rc['prev']['suggest'] = old['suggest']
+        elif old and old.get('prev'):
+            rc['prev'] = old['prev']   # the same re-check applied again: keep what the one before it said
         if applied is not None:
             rc['applied'] = collections.OrderedDict([('zh', N(applied)), ('same_as_report', N(applied) == r['suggest'])])
         if x['result'] == 'adjust':
@@ -108,19 +127,28 @@ def diff_line(frm, to):
         return '整句改寫較多，請看建議全文'
     return '；'.join(code(p) for p in diff(frm, to))
 
+def changed(r):
+    """Whether the re-check says something else than the one before it (recheck.prev)."""
+    rc = r['recheck']
+    pv = rc.get('prev')
+    if not pv:
+        return False
+    return pv['result'] != rc['result'] or (rc['result'] == 'adjust' and N(pv.get('suggest')) != N(rc['suggest']))
+
 def recheck_md(r):
     rc = r['recheck']
     out = []
     ap = rc.get('applied')
+    when = rc['date'] + ('，依語句指引' if rc.get('guides') else '')
     if ap:
         state = '已寫成人工調整（與報告建議相同）' if ap['same_as_report'] else '已寫成人工調整，譯法與報告建議不同：%s' % code(ap['zh'])
     if rc['result'] == 'direct':
         if ap:
-            out.append('- **再檢視**（%s）：%s；不需要再改%s' % (rc['date'], state, ('。' + esc(rc['note'])) if rc.get('note') else ''))
+            out.append('- **再檢視**（%s）：%s；不需要再改%s' % (when, state, ('。' + esc(rc['note'])) if rc.get('note') else ''))
         else:
-            out.append('- **再檢視**（%s）：可以直接照建議修改%s' % (rc['date'], ('。' + esc(rc['note'])) if rc.get('note') else ''))
+            out.append('- **再檢視**（%s）：可以直接照建議修改%s' % (when, ('。' + esc(rc['note'])) if rc.get('note') else ''))
     else:
-        out.append('- **再檢視**（%s）：%s建議再調整' % (rc['date'], (state + '；') if ap else ''))
+        out.append('- **再檢視**（%s）：%s建議再調整' % (when, (state + '；') if ap else ''))
         out.append('  - KR 原意：%s' % esc(rc['kr_meaning']))
         out.append('  - 前後文：%s' % esc(rc['context']))
         out.append('  - %s：%s' % ('現在的譯文的問題' if ap else '報告建議的問題', esc(rc['problem'])))
@@ -128,6 +156,15 @@ def recheck_md(r):
         out.append('  - 差異（對現行）：%s' % diff_line(ap['zh'] if ap else r['tw'], rc['suggest']))
         if rc.get('note'):
             out.append('  - 備註：%s' % esc(rc['note']))
+    pv = rc.get('prev')
+    if pv:
+        if not changed(r):
+            was = '結果相同'
+        elif pv['result'] == 'direct':
+            was = '當時判為可以直接照建議修改'
+        else:
+            was = '當時調整後的建議是 %s' % code(pv['suggest'])
+        out.append('- 前次再檢視（%s）：%s' % (pv['date'], was))
     for a in rc['also']:
         out.append('- **前後文一起改**：`%s`' % a['ref'])
         out.append('  - KR：%s' % code(a['kr']))
@@ -169,6 +206,12 @@ for g, rs in groups.items():
         nap = sum(1 for x in rc if x.get('applied'))
         dates = sorted(set(x['date'] for x in rc))
         adj_list = ('建議再調整的是 %s。' % '、'.join(r['seq'] for r in rs if r.get('recheck') and r['recheck']['result'] == 'adjust')) if na else ''
+        if any(x.get('guides') for x in rc):
+            adj_list += '這一組依語句指引（`guides/shared/phrasing.md`）再檢視過。'
+        ch = [r['seq'] for r in rs if r.get('recheck') and changed(r)]
+        if ch:
+            adj_list += '與前次再檢視（%s）相比，%d 項的結果有變動：%s。' % (
+                '、'.join(sorted(set(r['recheck']['prev']['date'] for r in rs if r.get('recheck') and r['recheck'].get('prev')))), len(ch), '、'.join(ch))
         if nap:
             nda = sum(1 for x in rc if x['result'] == 'direct' and x.get('applied'))
             ndu = nd - nda
