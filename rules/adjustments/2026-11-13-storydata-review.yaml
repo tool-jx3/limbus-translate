@@ -1457,3 +1457,21 @@
   zh: 我卻連想回嘴的心情都沒有……
   reason: StoryData 審查 S0116：KR「뭐라고 하고 싶은 마음조차도 들지 않는 건…」＝（對方雖然一直罵）卻讓人連回嘴的心情都沒有（JP 言い返す気にもならないのは…）。TW「想讓人說點什麼的想法都激發不了」語意不清，讀不出「不想回嘴」。
   rule: one-off
+- key: StoryData/S610B.json|/dataList/83/content
+  raw: raw-20261119
+  kr_sha: 641258037b14089b64258d0d4059110818564294ee620b44d41384a6da3a029a
+  zh: 這場宴會可是凱瑟琳辦的。那還有什麼好委託的？
+  reason: 'StoryData 審查 S0117：上一行死兔幫老大說是受辛德利委託而來；希斯克利夫反問：宴會是凱瑟琳主辦的，（辛德利）還有什麼要拜託的（JP 何を頼む必要があるんだ）。TW「她有必要拜託拜託你嗎」把拜託的人寫成凱瑟琳，「拜託」也重複了。「부탁」寫「委託」，與 #81、#82 一致；「-잖아」用「可是」承擔，句號照 KR；「-다는 건데?」的反問寫「還有什麼好委託的」。譯法由使用者決定'
+  rule: one-off
+- key: StoryData/S611B.json|/dataList/9/content
+  raw: raw-20261119
+  kr_sha: 0d6ee1fc6d13e4615ac733edc7db01f680494e1df77b5c74b52954915600a32a
+  zh: 逝者凱瑟琳的丈夫，林頓．埃德加先生。
+  reason: StoryData 審查 S0118：KR「고인 캐서린의 남편이었던」用過去式只因凱瑟琳已死（JP 夫であった、EN the spouse of the deceased）；林頓自己也說兩人是夫妻直到她嚥氣（S611B#22）。TW「前夫」會讓人以為兩人離婚了。
+  rule: one-off
+- key: StoryData/S611B.json|/dataList/71/content
+  raw: raw-20261119
+  kr_sha: 4d42ce48eb2e6653b4c9ec7ecc19a4a5976b2f239782913ec397a448d47914cf
+  zh: 閉嘴！時鐘頭。我現在還管什麼公司、什麼規則？別想阻止我。
+  reason: StoryData 審查 S0119：KR「지금 회사고 규칙이고 알 바냐?」是反問「現在還管什麼公司、規則？」（JP 会社も規則も知ったこっちゃねぇ），表示不在乎；TW「我清楚公司和規章制度」意思相反。
+  rule: one-off
