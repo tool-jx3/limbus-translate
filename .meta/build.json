@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261119",
   "raw_token": "l20261119_4Eq_wJ8_ZGT2-Y1MVwFc",
-  "rules_commit": "8f5b3e06361292f66d66c13ce7d67302f3170748",
-  "built_at": "2026-11-20T14:47:03Z",
+  "rules_commit": "0298974f46cd57cc9a71d469b102991c4f124537",
+  "built_at": "2026-11-25T13:24:27Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,15 +10,15 @@
   },
   "notes_seen": 1066,
   "zips": {
-    "zh-TW_complete_raw-20261119.zip": "0524d58edae9203d341db7462c5b122b1c56246df4ea469bf4f12aead1a26f64",
-    "zh-TW_text_raw-20261119.zip": "ba933420464cb94dcb8f8862084b1cb1802548b49cb8769b30134a88ef423f49"
+    "zh-TW_complete_raw-20261119.zip": "78b417855f244e69c1bc847f33f9c5edab32614aae20cac4e61a0ff4cdbec6be",
+    "zh-TW_text_raw-20261119.zip": "0661d5d4e8f5087892ed7cc44e2437c19fe1ddfdacbaca24ad7120254b387325"
   },
   "report": {
     "origins": {
       "claude": 19841,
       "copy": 91939,
-      "human": 353,
-      "paratranz": 163735
+      "human": 414,
+      "paratranz": 163674
     },
     "pending": 0,
     "needs_review": 0,
@@ -569,8 +569,8 @@
     "shown": {
       "claude": 19841,
       "copy": 91939,
-      "human": 353,
-      "paratranz": 163735
+      "human": 414,
+      "paratranz": 163674
     },
     "misaligned": [
       {
@@ -3748,24 +3748,6 @@
       "counts": [
         1,
         3
-      ],
-      "units": 4
-    },
-    {
-      "family": "story-interlude",
-      "field": "teller",
-      "kr": "어느 시계 공장주",
-      "zh": [
-        "某鐘錶工廠廠長",
-        "鐘錶工廠廠長"
-      ],
-      "keys": [
-        "StoryData/E605B.json|/dataList/7/teller",
-        "StoryData/E605B.json|/dataList/23/teller"
-      ],
-      "counts": [
-        3,
-        1
       ],
       "units": 4
     },

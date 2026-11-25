@@ -1,0 +1,1219 @@
+{
+  "tag": "zh-TW-20261119.5",
+  "prev_tag": "zh-TW-20261119.4",
+  "released_at": "2026-11-25T13:25:23Z",
+  "prev_released_at": "2026-11-20T14:47:47Z",
+  "raw_tag": "raw-20261119",
+  "prev_raw_tag": "raw-20261119",
+  "rules_commit": "0298974f46cd57cc9a71d469b102991c4f124537",
+  "prev_rules_commit": "8f5b3e06361292f66d66c13ce7d67302f3170748",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 62
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "PersonalityVoiceDlg/Voice_Meursault_DeadRabbit_10509.json",
+      "field": "dlg",
+      "ptr": "/dataList/6/dlg",
+      "kind": "zh-changed",
+      "new_kr": "싸움이 시작되기 전에 던지는 스카프는, 우리 데드레빗츠의 유구한 전통이다. 토끼의 귀 모양으로 묶은 이 스카프가 적에게 뛰어드는 것을 표현했지.",
+      "old_zh": "在戰鬥開始前投擲圍巾是我們死兔幫長久以來的傳統。系成兔耳形狀的圍巾代表著向敵人躍去的場景。",
+      "new_zh": "在戰鬥開始前投擲方巾是我們死兔幫長久以來的傳統。繫成兔耳形狀的方巾代表著向敵人躍去的場景。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0115（相關的人格語音一起改）：死兔幫的「스카프」與 S610B#9、#23 統一寫「方巾」；「系成」改正為「繫成」。使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E604B.json",
+      "field": "content",
+      "ptr": "/dataList/46/content",
+      "kind": "zh-changed",
+      "new_kr": "베르길리우스는 못마땅하다는 기색으로 시간을 끌었다.",
+      "old_zh": "維吉里烏斯擺出了一副不滿的樣子。",
+      "new_zh": "維吉里烏斯一臉不滿地拖延了片刻。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0470：KR「못마땅하다는 기색으로 시간을 끌었다」是「一臉不滿地拖著不回答」（JP「もったいぶった」），接以實瑪利問「到底許可了幾個人」。現行 TW 只寫「擺出了一副不滿的樣子」，漏掉拖著不答的動作。「시간을 끌었다」寫「拖延了片刻」，不補 KR 沒有的「回答」；下一句 #47 就是他的回答。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E604B.json",
+      "field": "content",
+      "ptr": "/dataList/163/content",
+      "kind": "zh-changed",
+      "new_kr": "로쟈가 반박하려던 찰나, 멍하니 먼 허공 어딘가를 바라보며 담배를 피우던 료슈가 성큼 앞으로 발을 디뎠다.",
+      "old_zh": "就在羅佳準備反駁的瞬間，一直呆望著空氣抽著菸的良秀突然開了口。",
+      "new_zh": "就在羅佳準備反駁的瞬間，原本呆望著遠處抽菸的良秀向前跨出了一大步。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0471：KR 是良秀「성큼 앞으로 발을 디뎠다」（大步向前踏出），TW 寫成「突然開了口」，動作被換成說話；下一句才是她開口。 照再檢視的建議調整：意思上建議把「突然開了口」改成「向前邁步」是對的。語句上：「大步向前邁出了一步」的「步」重複；「一直呆望著空氣抽著菸的良秀」沿用現行譯文，「望著空氣」中文不這樣說，KR 是「먼 허공」（遠處的半空），「먼」也沒譯出。改成「原本呆望著遠處抽菸的良秀向前跨出了一大步」。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E605B.json",
+      "field": "teller",
+      "ptr": "/dataList/23/teller",
+      "kind": "zh-changed",
+      "new_kr": "어느 시계 공장주",
+      "old_zh": "鐘錶工廠廠長",
+      "new_zh": "某鐘錶工廠廠長",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-25-rs-g764-teller-clock-factory"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E605B.json",
+      "field": "content",
+      "ptr": "/dataList/25/content",
+      "kind": "zh-changed",
+      "new_kr": "저는 하루를 52시간으로 쓰고 있거든요옹. 전성기 때는 100시간으로도 산 적이 있었는데 요새 공장 사정이 조금 안 좋아져서용.",
+      "old_zh": "我的一天裡有52個小時唷。雖然最多的時候買過一天100個小時呢，但最近工廠的經濟情況有點不良呀。",
+      "new_zh": "我的一天裡有52個小時唷。雖然全盛時期也曾經一天過100個小時呢，但最近工廠的狀況變得不太好呀。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0472：KR「전성기 때는 100시간으로도 산 적이 있었는데」的「산」是「살다（過日子）」：全盛期也曾一天過100個小時（JP「1日を100時間で過ごしたこともある」、EN「used to live 100 hour-days in my heyday」）；現行 TW 誤讀成「사다（買）」寫「買過」，也漏了「全盛期」。 照再檢視的建議調整：意思：建議把「買過」改成「過」、補上「全盛時期」，正確。語句：後半沿用現行的「經濟情況有點不良」——「經濟」是照 JP「懐事情」多出來的，KR 只有「공장 사정」（工廠的狀況）；「情況有點不良」中文不這樣說，而且 KR 是「안 좋아져서」（變得不好）。改為「工廠的狀況變得不太好」。其餘照建議。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E605B.json",
+      "field": "content",
+      "ptr": "/dataList/37/content",
+      "kind": "zh-changed",
+      "new_kr": "아~ 저희 둘째 고모가 자주 쓰시던 소금이네요.",
+      "old_zh": "啊～是我家裡的二嬸嬸經常用的鹽呢。",
+      "new_zh": "啊～是我家裡的二姑姑經常用的鹽呢。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0473：KR「둘째 고모」是父親的第二個姊妹（二姑姑）（JP「上から2番目の叔母さん」）；現行 TW「二嬸嬸」是叔叔的妻子，親屬關係錯。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E605B.json",
+      "field": "content",
+      "ptr": "/dataList/81/content",
+      "kind": "zh-changed",
+      "new_kr": "료슈가 성큼 성큼 걸어가더니. 갑자기 속도를 내서 그를 향해 돌진하듯이 달려들었다.",
+      "old_zh": "良秀先是慢慢地走著。突然猛地提高速度向他衝了過去。",
+      "new_zh": "良秀先是大步走過去。突然加快速度，向他猛衝了過去。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0474：KR「성큼 성큼 걸어가더니」是大步大步地走過去（JP「大股で歩くと」、EN「strode」）；現行 TW「慢慢地走著」意思相反。「성큼 성큼」寫「大步走」（只講步幅，與其他檔一致），不寫「大步流星」，後面「突然加快速度」的對比才成立；照再檢視把「走著」改「走過去」、「猛地提高速度」改「加快速度」。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E605B.json",
+      "field": "content",
+      "ptr": "/dataList/87/content",
+      "kind": "zh-changed",
+      "new_kr": "그러면 범인은 바로 료슈 님인 걸로 사건이 종결 되었겠네요~",
+      "old_zh": "如果那樣的話，就當犯人是良秀小姐，把事件解決吧～",
+      "new_zh": "如果那樣的話，犯人就會是良秀小姐，事件也就此結案了呢～",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0475：KR「범인은 바로 료슈 님인 걸로 사건이 종결 되었겠네요」是假設語氣「（真那樣的話）事件就會以良秀小姐是犯人結案了呢」（JP「事件終了になってたでしょうね」），在開良秀剛才示範的玩笑。現行 TW「就當犯人是良秀小姐，把事件解決吧」變成提議。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E606B.json",
+      "field": "content",
+      "ptr": "/dataList/28/content",
+      "kind": "zh-changed",
+      "new_kr": "잠깐 거기 당신! 왜 그렇게 구부정하게 다니는 겁니까? 검문입니다!",
+      "old_zh": "等等，那邊的人！你為什麼鬼鬼祟祟的？臨檢！",
+      "new_zh": "等等，那邊的人！你為什麼彎腰駝背地走路？臨檢！",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0476：KR「구부정하게 다니는」是彎腰駝背地走，TW 寫成「鬼鬼祟祟」，意思不同（後文也說這裡的人彎著腰走路）。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E610A.json",
+      "field": "content",
+      "ptr": "/dataList/58/content",
+      "kind": "zh-changed",
+      "new_kr": "…잡혀가는 사람도 많지. 그 외에는 비밀이야. 둥지에 테러를 할 수 있도록 해주는 비장의 수단이 있다, 정도로만 알아둬.",
+      "old_zh": "……被抓的人也很多。這些以外是祕密。你們只需要知道我們有能讓我們繼續在巢裡活動的祕密手段就夠了。",
+      "new_zh": "……被抓的人也很多。其他的是祕密。你們只需要知道，我們有祕密手段能對巢發動恐怖攻擊就夠了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0477：KR/JP 是「둥지에 테러를 할 수 있도록」（能對巢發動恐怖攻擊），TW 改成「繼續在巢裡活動」，把恐怖行動的意思淡化掉。（EN 為 guerilla activities，TW 似依 EN。） 照再檢視的建議調整：意思：建議把「繼續在巢裡活動」改回「對巢發動恐怖攻擊」，正確。語句：一、沿用現行的「這些以外是祕密」，中文不這樣說，改「其他的是祕密」；二、「你們只需要知道我們有能對巢發動恐怖攻擊的祕密手段就夠了」二十多個字不斷句，「有能……的祕密手段」的修飾語又長又拗口，改成「有祕密手段能……」，並在「知道」後斷開。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E611B.json",
+      "field": "content",
+      "ptr": "/dataList/42/content",
+      "kind": "zh-changed",
+      "new_kr": "로쟈가 갑자기 우뚝 선 채로 나를 바라보았다.",
+      "old_zh": "羅佳突然站起來，並看著我。",
+      "new_zh": "羅佳突然停下腳步，一動也不動地看著我。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0478：KR「우뚝 선 채로」是猛然停住不動地站著，TW「突然站起來」變成從坐姿起身，動作不同。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E615B.json",
+      "field": "content",
+      "ptr": "/dataList/41/content",
+      "kind": "zh-changed",
+      "new_kr": "성자님 말씀대로 기회는 분명 올 거다… 너도 지루하다는 건 알겠는데, 언젠지는 그만 물어 좀. 나라고 징수자 놈들한테 시비 걸고 도망치는 게 좋은 줄 아냐!",
+      "old_zh": "正如聖者大人所言，時機一定會到來……我知道你也覺得無聊，但別再問要到什麼時候了。你覺得我挑釁了那些徵收人還能全身而退？",
+      "new_zh": "正如聖者大人所言，時機一定會到來……我知道你也覺得無聊，但別再問要到什麼時候了。你以為我就喜歡去找那些徵收人的碴再逃跑嗎！",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0479：KR 句末「나라고 징수자 놈들한테 시비 걸고 도망치는 게 좋은 줄 아냐!」是反問「你以為我就喜歡去找徵收人的碴再逃跑嗎！」，抱怨自己也受夠了（JP「俺だって、好きで……喧嘩ふっかけて逃げてるとでも？」、EN「I'm just as tired as you are…」）。現行 TW「你覺得我挑釁了那些徵收人還能全身而退？」變成質疑能不能脫身，意思不同。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E615B.json",
+      "field": "content",
+      "ptr": "/dataList/61/content",
+      "kind": "zh-changed",
+      "new_kr": "그렇게… 시간을 죽이고 있었지…",
+      "old_zh": "然後……讓時間白白流逝……",
+      "new_zh": "就這樣……一直在殺死時間……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0480（前後文一起改）：KR「그렇게… 시간을 죽이고 있었지…」是「就這樣……一直在殺死時間……」。這場戲 #48、#59 的「시간을 죽이다」都寫「殺死時間」，本項的「그 죽어가는 시간들」（那些正在死去的時間）指的就是這裡被殺的時間；現行「讓時間白白流逝」只譯出慣用語的意思，本項改了之後接不上，要一起改回「殺死時間」。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E615B.json",
+      "field": "content",
+      "ptr": "/dataList/62/content",
+      "kind": "zh-changed",
+      "new_kr": "그 죽어가는 시간들을 내가, 우리가 구해줬다. 그게… 뭐가 나쁘지?",
+      "old_zh": "那些逝去的時間將由我、由我們挽回。那又……有什麼不好？",
+      "new_zh": "那些正在死去的時間，是我、是我們救下來的。那又……有什麼不好？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0480：KR「구해줬다」是過去式（已經挽救了）、「죽어가는」是「正在死去的」；TW 寫「將由我、由我們挽回」變成未來式，且「逝去的時間」與「正在死去」略有出入。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E615I2.json",
+      "field": "content",
+      "ptr": "/dataList/6/content",
+      "kind": "zh-changed",
+      "new_kr": "그 놈의 나머지 타령은 그만 좀 해! 덧셈 뺄셈도 제대로 못하는 주제에…",
+      "old_zh": "別說多餘的話了！連基本加減法都做不好的文盲……",
+      "new_zh": "別再開口閉口都是「剩下的」了！連加減法都算不好的傢伙……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0481：KR「나머지 타령」是在嗆對方一直在講上一句的「剩下的（餘數）」；TW 寫成「別說多餘的話」，丟掉了與「剩餘／餘數」的呼應，並多出 KR 沒有的「文盲」。 照再檢視的建議調整：前次的調整：報告建議的「拿……說事」是中國大陸的口語，改成「開口閉口都是『剩下的』」，也貼近「타령」；「剩下的」和 #5 的兩個「剩下的」呼應，「文盲」KR 沒有，改「傢伙」。這次的語句調整：「基本加減法」的「基本」是照 EN「basic additions and subtractions」多出來的，KR 只有「덧셈 뺄셈」，拿掉。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E616B.json",
+      "field": "content",
+      "ptr": "/dataList/93/content",
+      "kind": "zh-changed",
+      "new_kr": "그건 안 될 일일세… 본인은 로시난테와 한치도 떨어져서는 안 되는 사이여야 하네…! 결코, 우리 로시난테를 저 험상궂은 히스클리프 군의 신발짝과 같이 내버려둘 수는 없소… ",
+      "old_zh": "絕對不能讓這種事情發生……吾的駑騂難得絕對一刻都不能與吾分開……！吾決不會將吾等駑騂難得放在希斯克利夫先生那醜陋而俗氣的鞋子旁……",
+      "new_zh": "此事萬萬不可……吾與駑騂難得必須寸步不離……！吾決不能把吾家駑騂難得和那面目兇惡的希斯克利夫先生的鞋子丟在一起……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0482：KR「험상궂은」修飾的是希斯克利夫（「那兇神惡煞的希斯克利夫的鞋子」）；TW 變成鞋子「醜陋而俗氣」，修飾對象錯了且多出「俗氣」。 駑騂難得是唐吉訶德的鞋（E626B），「한치도」寫「寸步不離」；「우리」寫「吾家」；「험상궂은」寫「面目兇惡」；「내버려두다」寫「丟在一起」；開頭「그건 안 될 일일세」寫「此事萬萬不可」。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E617B.json",
+      "field": "content",
+      "ptr": "/dataList/106/content",
+      "kind": "zh-changed",
+      "new_kr": "파우스트가 작게 한숨을 내뱉은 것 같지만, 뭔가를 더 물어보기 전에 캡슐의 문은 밀폐되었고…",
+      "old_zh": "雖然我覺得浮士德似乎小小地嘆了口氣，但在我確實聽到什麼之前，門就密封上了……",
+      "new_zh": "雖然我覺得浮士德似乎小小地嘆了口氣，但我還來不及再問些什麼，門就密封上了……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0483（前後文一起改）：KR「뭔가를 더 물어보기 전에」是「還沒來得及再問些什麼」（EN「before I could ask her anything」）。現行「在我確實聽到什麼之前」把「問」寫成「聽到」；但丁來不及問浮士德那句「很快就會再見」是什麼意思，才有本項的「當時我並不知道」。前次寫「但在我再多問些什麼之前」，這次改成中文比較會說的「還來不及再問些什麼」，意思相同。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E617B.json",
+      "field": "content",
+      "ptr": "/dataList/109/content",
+      "kind": "zh-changed",
+      "new_kr": "…그때는 몰랐다.",
+      "old_zh": "……之後我就不知道了。",
+      "new_zh": "……當時我並不知道。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0483：KR「그때는 몰랐다」是「當時不知道」，與下一行「（後來才知道）那句話還有別的意思」呼應；TW 寫成「之後我就不知道了」，時間與意思都錯。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E617B.json",
+      "field": "content",
+      "ptr": "/dataList/110/content",
+      "kind": "zh-changed",
+      "new_kr": "금방 다시 보게 될 것이라는 말에… 또 다른 뜻이 있었다는 것을.",
+      "old_zh": "「我們很快就會再見的」……這句話肯定還有別的意思。",
+      "new_zh": "「我們很快就會再見的」這句話……原來還有另一層意思。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0484：KR 第109、110行連起來是「……當時我並不知道。『很快就會再見』這句話……還有另一層意思。」（JP「…そのときは知らなかった。すぐにまた会うことになるという言葉に…また別の意味があったということを。」）。現行 TW 第110行寫成推測「這句話肯定還有別的意思」，與第109行（現行「之後我就不知道了」）都沒表達出「當時不知道、事後才明白」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E618B.json",
+      "field": "content",
+      "ptr": "/dataList/13/content",
+      "kind": "zh-changed",
+      "new_kr": "처음에 우려했던 그 문제를 직접 겪게 생겼구나. 그 생각이 가장 먼저 뇌리를 스쳐 지나갔다.",
+      "old_zh": "我會親身經歷自己最初所擔心的問題嗎？這樣的念頭閃過我的腦海。",
+      "new_zh": "看來真要親身碰上一開始擔心的那個問題了。這個念頭最先閃過我的腦海。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0485：KR「겪게 생겼구나」是感嘆／確認「看來要親身經歷了」；TW 寫成疑問句「我會親身經歷……嗎？」，陳述變疑問。「-게 생겼구나」寫「看來真要……了」；擔心的不只是但丁（上車前以實瑪利、辛克萊都在擔心 WARP 列車），不寫「自己」；「그 생각」寫「這個念頭」，「가장 먼저」與 #15「接著」對應。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E621A.json",
+      "field": "content",
+      "ptr": "/dataList/1/content",
+      "kind": "zh-changed",
+      "new_kr": "어쩔 수 없어요~ 저희같이 긴 무기를 쓰는 사람들은 좁은 곳에서 금방 지치기 마련이니까요.",
+      "old_zh": "也沒辦法啦～像我們這樣使用長柄武器的人在狹窄的地方戰鬥會很容易受傷呢。",
+      "new_zh": "也沒辦法啦～像我們這樣使用長柄武器的人，在狹窄的地方很快就會累嘛。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0486：KR「금방 지치기 마련」是「很容易疲累」；TW 寫「很容易受傷」，與上一句辛克萊說的「累」也對不上。 照再檢視的建議調整：意思上建議把「受傷」改成「累」是對的。語句上：「戰鬥」是現行譯文照 EN 帶進來的，KR 這句沒有；「금방」（很快）寫成了「很容易」。改成「在狹窄的地方很快就會累嘛」，並在主語後加逗號。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E621A.json",
+      "field": "content",
+      "ptr": "/dataList/26/content",
+      "kind": "zh-changed",
+      "new_kr": "이번엔 내가 가서 속닥거렸다.",
+      "old_zh": "隨後浮士德靠近我悄悄說道。",
+      "new_zh": "這次換我走過去悄悄說話。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0487：KR「이번엔 내가 가서 속닥거렸다」主詞是我（但丁）：這次換我走過去對浮士德悄悄說話（EN: It was my turn to start whispering；JP: 今度は私が近寄って耳打ちした）。TW 寫成「浮士德靠近我悄悄說道」，主詞受詞顛倒；下一句但丁問「知道什麼了嗎？」才接得上。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E622B.json",
+      "field": "content",
+      "ptr": "/dataList/18/content",
+      "kind": "zh-changed",
+      "new_kr": "흥, 그럴듯한 이름이지.",
+      "old_zh": "嗯，差不多是叫那個。",
+      "new_zh": "哼，挺貼切的名字。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0488：KR「흥, 그럴듯한 이름이지」是良秀評價「血袋」這個稱呼「哼，挺貼切的名字」（JP「それっぽい名前だろ」、EN「not a terrible name」）；現行 TW「嗯，差不多是叫那個」變成只是確認叫法。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E623A.json",
+      "field": "content",
+      "ptr": "/dataList/9/content",
+      "kind": "zh-changed",
+      "new_kr": "같은 생체형 의완이더라도 이렇게 투박한 구형 모델은 최근 도시에서 보기 드물기 때문에, 착각할 수도 있다.",
+      "old_zh": "即使同為生物型義體，像這般無骨骼的舊式型號最近在都市也十分罕見，因此會混淆也很合理。",
+      "new_zh": "即使同為生物型義手，像這般粗笨的舊式型號最近在都市也很少見，因此有可能誤會。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0489：KR「투박한 구형 모델」是「粗笨的舊型號」；JP 寫「無骨（ぶこつ，粗獷）な旧型モデル」，現行 TW「無骨骼的舊式型號」應是把 JP 的「無骨」照字面讀成沒有骨骼，意思錯了。 照再檢視的建議調整：意思：「無骨骼」改「粗笨」是對的，照用。「의완」在同一個活動的 E620B#37、E624A#24 都寫「義手」，這裡現行寫成「義體」（「의체」，#8、#10 用的詞），改成「義手」。語句：（1）「十分罕見」的「十分」KR 沒有，改「很少見」；（2）「會混淆也很合理」，KR「착각할 수도 있다」只是「有可能」，「很合理」是多出來的評價；而且同一個「착각」在上一句 #8 寫「誤會」，這裡寫「混淆」對不上，改成「有可能誤會」，也合莫梭只陳述事實的口吻。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E625B.json",
+      "field": "content",
+      "ptr": "/dataList/75/content",
+      "kind": "zh-changed",
+      "new_kr": "붉은 눈에 대해 물어볼 땐 얼마나 놀랐던지. 의심했어도 내 눈은 붉은빛을 내는 의안일 뿐이라 의미는 없었겠지만.",
+      "old_zh": "被你問起紅色眼睛的時候，我可是怕得要死啊。即使被懷疑的僅僅是單純紅色的義眼。",
+      "new_zh": "被問起紅色眼睛的時候，我可是嚇得要死啊。不過我的眼睛只是會發出紅光的義眼，就算被懷疑也沒什麼意義就是了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0490：KR 後半「의심했어도 내 눈은 붉은빛을 내는 의안일 뿐이라 의미는 없었겠지만」是「不過就算被懷疑，我的眼睛也只是會發紅光的義眼，沒什麼意義就是了」（JP「疑われたところで、俺の目は赤い義眼だったから意味はなかったろうけど」）；現行 TW「即使被懷疑的僅僅是單純紅色的義眼」語意不完整，「懷疑也沒用」的意思不見了。 照再檢視的建議調整：意思（照前次）：前半句沿用現行的「被你問起」，KR 沒有寫是誰問的；這句是在回答唐吉訶德，會讀成是唐吉訶德問的（她是女性，也不會寫「你」），實際發問的是浮士德，改成不帶人稱的「被問起」。另外「怕得要死」的「怕」，KR「놀랐던지」是嚇到，改一個字寫「嚇得要死」。語句：後半「不過就算被懷疑，我的眼睛也只是會發出紅光的義眼，沒什麼意義就是了」照 KR 的語序排，「沒什麼意義」落在最後，讀不出是什麼沒意義（會讀成義眼沒意義）；把原因提前、「就算被懷疑也沒什麼意義」連在一起，用字不變。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E627B.json",
+      "field": "content",
+      "ptr": "/dataList/131/content",
+      "kind": "zh-changed",
+      "new_kr": "언젠가 다시 만날 수도 있겠소?",
+      "old_zh": "我何時才能與她再見面呢？",
+      "new_zh": "有朝一日，還能再相逢嗎？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0491：KR「언젠가 다시 만날 수도 있겠소?」是問可能性「有朝一日還能再見嗎？」（JP「いつかまた逢うこと叶うや？」）；現行 TW「我何時才能與她再見面呢？」改成問時間點，等於已經認定會再見。 #131「만날」與 #135「만남」是同一個詞，兩處都寫「相逢」；KR 沒有寫要和誰再見，不補「她」；「-ㄹ 수도 있겠소」問的是有沒有可能。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E627B.json",
+      "field": "content",
+      "ptr": "/dataList/134/content",
+      "kind": "zh-changed",
+      "new_kr": "나름대로…",
+      "old_zh": "那會是……",
+      "new_zh": "也算是……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0492：KR「나름대로」意為「就某種意義而言／以自己的方式」，後接過去式的感想（EN：In a way, it was quite the...）；TW 寫成「那會是」變成未來推測，漏掉『就某種意義上』並使時態錯誤。 #134、#135 是同一句話拆兩行，「나름대로」寫「也算是」直接接 #135。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E627B.json",
+      "field": "content",
+      "ptr": "/dataList/135/content",
+      "kind": "zh-changed",
+      "new_kr": "꽤 유쾌한 만남이지 않았는가. ",
+      "old_zh": "會是一次很愉快的會面，不是嗎？",
+      "new_zh": "一場相當愉快的相逢，不是嗎。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0493：KR「유쾌한 만남이지 않았는가」是過去式，指剛結束的與浮士德（們）的相遇「其實也算相當愉快，不是嗎」（EN：was it not?）；TW 與上一行「那會是……」連成未來式，把已發生的事說成將發生，時態反了。 #131「만날」與 #135「만남」是同一個詞，兩處都寫「相逢」；KR 沒有寫要和誰再見，不補「她」；句末照 KR 用句號。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E627B.json",
+      "field": "content",
+      "ptr": "/dataList/136/content",
+      "kind": "zh-changed",
+      "new_kr": "알 듯 말 듯 한 말을 한 후 이상은 돌아갔다. ",
+      "old_zh": "留下了一些既熟悉又陌生的話語後，李箱回去了。",
+      "new_zh": "李箱留下這番似懂非懂的話，便回去了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0493（前後文一起改）：KR「알 듯 말 듯 한 말」是「似懂非懂的話」，指 #131–#135 李箱那段話；現行「既熟悉又陌生的話語」意思不對。使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S601B.json",
+      "field": "content",
+      "ptr": "/dataList/2/content",
+      "kind": "zh-changed",
+      "new_kr": "<color=#4e3076>폭풍으로 뚫린 균열 사이로 모든 온기가 빠져나갔던 그 저택으로.</color>",
+      "old_zh": "<color=#4e3076>回歸那因暴雨侵入而牆縫龜裂、溫暖全然消散的宅邸吧。</color>",
+      "new_zh": "<color=#4e3076>回歸那被暴風撕開裂縫、溫暖自縫隙間全然流失的宅邸吧。</color>",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0109：KR「폭풍으로 뚫린 균열 사이로 모든 온기가 빠져나갔던 그 저택」＝被暴風撕開裂縫、所有溫暖從裂縫間流失的宅邸（JP 嵐、EN storm）。TW「因暴雨侵入而牆縫龜裂、溫暖全然消散」的因果方向沒有變（風暴造成裂縫），但把「폭풍」（暴風）寫成「暴雨」，也沒寫出溫暖是從裂縫間流失的。 照再檢視的建議調整：意思上沒有錯。語句上有兩處：(1)「牆縫龜裂」的「牆」和「侵襲」KR 都沒有（沿用現行譯文的字）；「牆縫」本身已經是縫，後面又接「龜裂」「自裂縫間」，縫、裂重複三次；「龜裂」是表面的細紋，也不合「뚫린」（破開、打穿）。(2)「自裂縫間……消散」搭配不順：「消散」是就地散掉，KR「빠져나가다」是從縫裡漏走。改成「被暴風撕開裂縫、溫暖自縫隙間全然流失」，排比句型「回歸那……的宅邸吧。」不動。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S605B.json",
+      "field": "content",
+      "ptr": "/dataList/23/content",
+      "kind": "zh-changed",
+      "new_kr": "대체로 ‘흠’, ‘글쎄요’, ‘그렇게 볼 수도’ 같은 대답만을 하던 파우스트가 이 정도로 자세한 대답을 내주는 건 드문 일이었다.",
+      "old_zh": "一般只會回答「嗯」「是的」「也可以這麼說」的浮士德很少會給出如此詳細的回答。",
+      "new_zh": "浮士德一般只會回答「嗯」「或許吧」「也可以這麼說」之類的話，很少會給出如此詳細的回答。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0110：KR 列舉浮士德的敷衍回應「흠」「글쎄요」「그렇게 볼 수도」，「글쎄요」是「這個嘛／難說」的含糊回答（EN Maybe.）；TW 譯成「是的」，變成肯定回答，與「只會敷衍」的語意不符。 照再檢視的建議把「浮士德」提到句首、補上「之類的話」；「글쎄요」寫「或許吧」，與浮士德自己的台詞「흠… 글쎄요.」（嗯……或許吧。）一致。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S606B.json",
+      "field": "content",
+      "ptr": "/dataList/32/content",
+      "kind": "zh-changed",
+      "new_kr": "쓸데없이 짜증 부리는 게 아니라고요. 이 점은 확실히 하죠.",
+      "old_zh": "我並非是在無謂地發脾氣。只是至少想獲得這個問題的答案。",
+      "new_zh": "我可不是無緣無故在發脾氣。這點我要先說清楚。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0111：KR「쓸데없이 짜증 부리는 게 아니라고요. 이 점은 확실히 하죠.」＝我不是無謂地發脾氣，這點先說清楚（JP この点だけは、はっきりさせておきましょう；EN I want to make it clear that I'm not being a hardass）。TW 後半「只是至少想獲得這個問題的答案」是 KR 沒有的意思。 照再檢視的建議調整：意思上建議是對的。語句上，前半沿用現行的「我並非是在無謂地發脾氣」：「並非是在無謂地」是書面語，和以實瑪利當面頂撞人的口氣不合，「-라고요」的強調也沒寫出來。改成「我可不是無緣無故在發脾氣」，用「可」承擔強調；後半照建議。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S606B.json",
+      "field": "content",
+      "ptr": "/dataList/49/content",
+      "kind": "zh-changed",
+      "new_kr": "모든 것을 얻어내겠다는 욕심으로 무리하게 계약을 지키려다 관리자가 돌이킬 수 없는 지경으로 가게 되어 다 잃지는 않을까 하는 고민은 덜었지.",
+      "old_zh": "在我竭力遵守合約的每個條款的同時，我不用那麼擔心經理會受到不可逆的損傷，因而讓我再失去一切了。",
+      "new_zh": "貪圖一切、死守合約，結果讓經理落到無法挽回的地步，到頭來一無所有，這樣的擔憂倒是少了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0112：KR：我已經不那麼擔心「出於想得到一切的貪念而勉強遵守合約，結果經理落到無法挽回的地步，讓我失去一切」（JP 全てを手に入れるという欲で無理に契約を守ろうとして…という悩みは減った）。TW 照 EN 把「모든 것을 얻어내겠다는 욕심」（想得到一切的貪念）寫成「竭力遵守合約的每個條款」，漏了貪念與「勉強」這個擔憂的起因；後半「因而讓我再失去一切了」語序混亂、不易讀。 照 KR 的順序先寫擔心的內容、句尾收在「這樣的擔憂倒是少了」；「무리하게 지키려다」寫「死守」，「돌이킬 수 없는 지경」寫「無法挽回的地步」（現行「不可逆的損傷」是照 EN），「다 잃다」寫「一無所有」。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S606B.json",
+      "field": "content",
+      "ptr": "/dataList/64/content",
+      "kind": "zh-changed",
+      "new_kr": "…있어. 옛날부터 나만 보면 하나라도 흠잡을 구석 없는지 눈알을 굴려대는…",
+      "old_zh": "……從很久以前開始，一見面就翻著白眼想著要羞辱我的傢伙……",
+      "new_zh": "……就是……從很久以前開始，一看到我就轉著眼珠子上下打量，看能不能挑出一點毛病的傢伙……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0113：KR「나만 보면 하나라도 흠잡을 구석 없는지 눈알을 굴려대는」＝一見到我就轉著眼珠打量，看有沒有哪怕一點可以挑的毛病（JP ケチ付けるとこねぇか目玉をギョロつかせる）。TW「翻著白眼想著要羞辱我」把動作寫成表示不屑的翻白眼，目的寫成 EN 的「羞辱」，漏了「挑毛病」。 開頭的「…있어.」是不說名字、只形容人的回答，中文寫「就是……」；「眼珠子」保留以接下一句良秀的「把眼珠子挖出來」；「하나라도 흠잡을 구석 없는지」寫「看能不能挑出一點毛病」。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S609B.json",
+      "field": "content",
+      "ptr": "/dataList/38/content",
+      "kind": "zh-changed",
+      "new_kr": "그래봤자 어디서 굴러들어온 개 뼈다구 보다 못한 놈들일 거다.",
+      "old_zh": "那群比不知道從哪滾出來的比狗骨頭還脆的東西也要不了你們多少力氣。",
+      "new_zh": "反正那些傢伙連不知道從哪滾來的狗骨頭都不如。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0114：KR「어디서 굴러들어온 개 뼈다구 보다 못한 놈들」＝連不知從哪滾來的狗骨頭都不如的傢伙（JP 馬の骨以下のやつら）。TW「比不知道從哪滾出來的比狗骨頭還脆的東西」重複「比」、多了「脆」，句子不通；「也要不了你們多少力氣」是照 EN 加的。改法保留「狗骨頭」，下一行李箱的「狗……骨頭……？」仍接得上。 照再檢視的建議調整：意思上沒有問題（「狗骨頭」保留，接得上 #39）。語句上：「不過是連不知道從哪滾來的狗骨頭都不如的東西」把一個本身帶「連……都不如」的長修飾語壓在「東西」前面，「不過是連不知道」幾個虛詞擠在一起，唸起來卡（phrasing.md「長修飾語」）。把「놈들」提到句首當主詞（「那些傢伙」），句子只剩一個「連……都不如」。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S610B.json",
+      "field": "content",
+      "ptr": "/dataList/9/content",
+      "kind": "zh-changed",
+      "new_kr": "한쪽 어깨에 대충 두른 스카프와 외상으로 마신 맥주 한 병만 있었으면 그 망할 아담스 패밀리들 따윈 아무것도 아니었지.",
+      "old_zh": "只要隨意綁上臂帶再來上一瓶賒帳的啤酒，那狗養的亞當斯家族也沒什麼大不了的。",
+      "new_zh": "當年只要在一邊肩膀上隨手綁條方巾，再來上一瓶賒帳的啤酒，那狗養的亞當斯家族也沒什麼大不了的。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0115：KR「한쪽 어깨에 대충 두른 스카프」＝隨意圍在一邊肩膀上的圍巾（JP 片方の肩に適当に巻いたスカーフ）；TW「臂帶」照 EN 的 round one arm，物件與位置都不對。KR「아무것도 아니었지」是回憶當年的過去式，TW 沒有表現。 「스카프」綁在肩膀到上臂，寫「圍巾」會讓人想到脖子，改寫「方巾」；同場 #23 與莫梭人格語音一起改成「方巾」。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S610B.json",
+      "field": "content",
+      "ptr": "/dataList/23/content",
+      "kind": "zh-changed",
+      "new_kr": "왜, 이상하냐? 유행이라는 거는 매일 바뀌는 거야. 어깨에 토끼가 그려진 스카프를 매던 시기는 지났단 거지.",
+      "old_zh": "怎麼了，這很奇怪嗎？所謂時尚潮流每天都在改變。在身上繫兔子臂帶的時代已經過去了。",
+      "new_zh": "怎麼了，很奇怪嗎？流行這種東西每天都在變。肩上綁著畫了兔子的方巾，那都是過去的事了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0115（前後文一起改）：KR「어깨에 토끼가 그려진 스카프를 매던 시기는 지났단 거지」是「在肩上綁著畫了兔子的方巾的時期已經過去了」，和 #9 是同一條「스카프」；現行「在身上繫兔子臂帶」把「肩」寫成「身上」、把方巾寫成臂帶。使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S610B.json",
+      "field": "content",
+      "ptr": "/dataList/66/content",
+      "kind": "zh-changed",
+      "new_kr": "뭐라고 하고 싶은 마음조차도 들지 않는 건…",
+      "old_zh": "但他就連想讓人說點什麼的想法都激發不了……",
+      "new_zh": "我卻連想回嘴的心情都沒有……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0116：KR「뭐라고 하고 싶은 마음조차도 들지 않는 건…」＝（對方雖然一直罵）卻讓人連回嘴的心情都沒有（JP 言い返す気にもならないのは…）。TW「想讓人說點什麼的想法都激發不了」語意不清，讀不出「不想回嘴」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S610B.json",
+      "field": "content",
+      "ptr": "/dataList/83/content",
+      "kind": "zh-changed",
+      "new_kr": "애초에 이 자리는 캐서린이 주최한 연회잖아. 그런데 무슨 부탁을 할 게 있다는 건데?",
+      "old_zh": "這不是一開始就是凱瑟琳主辦的宴會嗎？她有必要拜託拜託你嗎？",
+      "new_zh": "這場宴會可是凱瑟琳辦的。那還有什麼好委託的？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0117：上一行死兔幫老大說是受辛德利委託而來；希斯克利夫反問：宴會是凱瑟琳主辦的，（辛德利）還有什麼要拜託的（JP 何を頼む必要があるんだ）。TW「她有必要拜託拜託你嗎」把拜託的人寫成凱瑟琳，「拜託」也重複了。「부탁」寫「委託」，與 #81、#82 一致；「-잖아」用「可是」承擔，句號照 KR；「-다는 건데?」的反問寫「還有什麼好委託的」。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S611B.json",
+      "field": "content",
+      "ptr": "/dataList/9/content",
+      "kind": "zh-changed",
+      "new_kr": "고인 캐서린의 남편이었던 린튼 에드가 씨.",
+      "old_zh": "逝者凱瑟琳的前夫，林頓．埃德加先生。",
+      "new_zh": "逝者凱瑟琳的丈夫，林頓．埃德加先生。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0118：KR「고인 캐서린의 남편이었던」用過去式只因凱瑟琳已死（JP 夫であった、EN the spouse of the deceased）；林頓自己也說兩人是夫妻直到她嚥氣（S611B#22）。TW「前夫」會讓人以為兩人離婚了。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S611B.json",
+      "field": "content",
+      "ptr": "/dataList/71/content",
+      "kind": "zh-changed",
+      "new_kr": "다물어! 시계 대가리. 지금 회사고 규칙이고 알 바냐? 말릴 생각 하지 마.",
+      "old_zh": "閉嘴！時鐘頭。我清楚公司和規章制度。別想阻止我。",
+      "new_zh": "閉嘴！時鐘頭。我現在還管什麼公司、什麼規則？別想阻止我。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0119：KR「지금 회사고 규칙이고 알 바냐?」是反問「現在還管什麼公司、規則？」（JP 会社も規則も知ったこっちゃねぇ），表示不在乎；TW「我清楚公司和規章制度」意思相反。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S611B.json",
+      "field": "content",
+      "ptr": "/dataList/87/content",
+      "kind": "zh-changed",
+      "new_kr": "잠시 진정 시간을 10분 정도 가진 뒤 이후 계속 진행하겠습니다.",
+      "old_zh": "我們會留出10分鐘的休息時間，之後再繼續。",
+      "new_zh": "我們會留出10分鐘左右的緩衝時間，之後再繼續。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0120（前後文一起改）：「진정 시간」與 S612B#19 是同一個詞（同一位科長宣布暫停與恢復），兩處都寫「緩衝時間」；補上「10분 정도」的「左右」。使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S612B.json",
+      "field": "content",
+      "ptr": "/dataList/19/content",
+      "kind": "zh-changed",
+      "new_kr": "진정 시간이 끝남에 따라, 재산 상속 유언장 집행을 계속하겠습니다.",
+      "old_zh": "隨著陳情時間結束，財產繼承遺囑將繼續執行。",
+      "new_zh": "緩衝時間已結束，我們將繼續執行財產繼承遺囑。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0120：KR「진정 시간」是前面為了讓希斯克利夫冷靜而給的休息時間（S611B#87「잠시 진정 시간을 10분 정도」，TW 譯為「10分鐘的休息時間」；JP 落ち着いていただくための休憩時間）。TW「陳情時間」把「진정」誤當成「陳情」。改法的「冷靜時間」也可寫成「休息時間」與 S611B#87 一致。「진정 시간」寫「緩衝時間」，與 S611B#87 一致；「-에 따라」不寫「隨著」，主詞是宣布的科長一方。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S618B.json",
+      "field": "content",
+      "ptr": "/dataList/5/content",
+      "kind": "zh-changed",
+      "new_kr": "그러고 보니… 요전번에 용진빌딩에서 싸웠던 흑운회의 간부도 비슷한 말을 했었지.",
+      "old_zh": "這麼說來……我們在龍進大樓對付過的那個黑雲會高層也尋找過類似的東西。",
+      "new_zh": "這麼說來……我們上次在龍進大樓對付過的那個黑雲會高層也說過類似的話。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0121：KR「비슷한 말을 했었지」＝也說過類似的話（JP 似たようなことを言っていた），承接希斯克利夫說 T 公司的人一定帶著鐘錶；TW「尋找過類似的東西」是照 EN（was looking for a timepiece）改寫的，與 KR 不同。 照再檢視的建議調整：意思上，建議把「尋找過類似的東西」改成「說過類似的話」是對的，但和現行譯文一樣漏了「요전번에」（上次、前陣子）；其他檔的「요전번」寫「上次」（S303B#26、S520B#23），補上。語句沒有再調整。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S619A.json",
+      "field": "content",
+      "ptr": "/dataList/96/content",
+      "kind": "zh-changed",
+      "new_kr": "뭐~ 집집마다 거기서 거기죠. 부엌부터 한 번 가봅시다.",
+      "old_zh": "嘛～每家每戶的構造都有不同，不過一般都挨著廚房。讓我們先從廚房開始找吧。",
+      "new_zh": "嘛～每家每戶都大同小異。先去廚房看看吧。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0122：KR「집집마다 거기서 거기죠」＝每戶人家都差不多（JP どの家も似たようなもの）；TW「每家每戶的構造都有不同」意思相反，「不過一般都挨著廚房」是照 EN 加的。 照再檢視的建議調整：意思上建議把「都有不同，不過一般都挨著廚房」改成「大同小異」是對的。語句上還留著兩處 KR 沒有的字：「的構造」是為了接上一句補的，不寫也看得懂；「讓我們先從廚房開始找吧」的「讓我們」是照 EN「Let's」的翻譯腔，「開始找」KR 是「가봅시다」（去看看）。改成「每家每戶都大同小異。先去廚房看看吧。」 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S625B.json",
+      "field": "content",
+      "ptr": "/dataList/39/content",
+      "kind": "zh-changed",
+      "new_kr": "그대는 이미 이 모든 장면들을 일찍이 보아오고 있었나 보군.",
+      "old_zh": "那必然早已參與了與此處相關的事件。",
+      "new_zh": "那你想必早已見證了此處的一切。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0123：KR「그대는 이미 이 모든 장면들을 일찍이 보아오고 있었나 보군」＝你想必早就一直看著這一切光景了（JP 既にこの全ての場面を早くより見きめり），承接上一行「若你看到這些光景還能如此泰然……」；TW「那必然早已參與了與此處相關的事件」照 EN（been a part of this）譯，把「看著」寫成「參與」。 保留現行「那……早已……了」的句型；「보아오다」寫「見證」，「이 모든 장면들」寫「此處的一切」，「-나 보군」的推測寫「想必」，補上主詞「你」（그대）。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S629A.json",
+      "field": "content",
+      "ptr": "/dataList/6/content",
+      "kind": "zh-changed",
+      "new_kr": "<약지는 어디야? 중지… 이웃?>",
+      "old_zh": "<什麼是環指？是中指的……親戚嗎？>",
+      "new_zh": "<什麼是環指？是中指的……鄰居嗎？>",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0124：KR 但丁問「약지는 어디야? 중지… 이웃?」，「이웃」＝鄰居（JP お隣、EN neighbor：環指在中指旁邊）；TW 寫「親戚」。下一行羅佳重複「이웃…」，現行 TW 也寫「親戚……」（S629A#7），兩行要一起改成「鄰居」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S629A.json",
+      "field": "content",
+      "ptr": "/dataList/7/content",
+      "kind": "zh-changed",
+      "new_kr": "이웃… 하하. 나도 잘은 모르는데, 반쯤 정신 나간 조직이야. 그냥 아름다운 거라면 사족을 못 쓰는 애들이라고…",
+      "old_zh": "親戚……哈哈。我也不太清楚，只知道他們是一個半瘋的幫派。就是一群對美麗之物目不轉睛的傢伙們而已……",
+      "new_zh": "鄰居……哈哈。我也不太清楚，只知道他們是一個半瘋的幫派。就是一群對美麗之物毫無抵抗力的傢伙而已……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0125：承上一行（S629A#6），羅佳重複但丁說的「이웃」（鄰居，JP お隣、EN Neighbor）；TW 寫「親戚」。須與 S629A#6 一起改。 照再檢視的建議調整：意思：「親戚」改「鄰居」沒有問題。但建議沿用了現行的「目不轉睛」：「사족을 못 쓰다」說的是著迷到無法自拔，不是「盯著看」；「目不轉睛」只剩視線不移開的意思。同一個慣用語在其他檔（E090X#45、RPG 對話）譯「毫無抵抗力」，這裡照用。語句：其餘沒有調整。「一群……傢伙們」的「一群」與「們」重複，拿掉「們」。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S632B.json",
+      "field": "content",
+      "ptr": "/dataList/29/content",
+      "kind": "zh-changed",
+      "new_kr": "하하… 모두의 증오가 서려 있으니까, 놀랄 일도 아니지. 그래.",
+      "old_zh": "哈哈……因為這裡凝聚著一切的憎惡，所以也沒什麼好驚訝的。對吧。",
+      "new_zh": "哈哈……因為這裡凝聚著所有人的憎惡，所以也沒什麼好驚訝的。對吧。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0126（前後文一起改）：KR「모두의 증오」＝所有人的憎惡（「모두」是「大家」），現行「一切的憎惡」和 JP「全ての憎悪」一樣讀成「所有的」。下一句「캐서린도」（凱瑟琳也）就是承這個「所有人」說的，寫成「一切的憎惡」，下一句的「也」就沒有著落。只改這一處。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S632B.json",
+      "field": "content",
+      "ptr": "/dataList/30/content",
+      "kind": "zh-changed",
+      "new_kr": "캐서린도 죽어가면서까지 날 증오했을 테니까.",
+      "old_zh": "凱瑟琳即使在死後一定也會對我恨之入骨吧。",
+      "new_zh": "畢竟凱瑟琳一定也是到死都憎恨著我。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0126：KR「죽어가면서까지」＝直到臨死之際（JP 死ぬ間際まで、EN as she expired）；TW「即使在死後」時間點錯了。 照再檢視的建議調整：意思（照前次）：把「死後」改成「臨死之際」是對的，但建議沿用現行的「一定也會……吧」，讀起來像還沒發生的事（凱瑟琳已死，KR 是對過去的推測）；漏了「-ㄹ 테니까」的理由語氣，接不上 #29；「也」的位置讀不出「凱瑟琳也」。前次已改成「畢竟凱瑟琳一定也是直到臨死之際都對我恨之入骨。」。語句（這次）：一、「直到臨死之際都」是把「죽어가면서」「까지」逐段對譯，辛德利這時是發狂的粗口語氣，中文在這個場合說「到死都」。二、「恨之入骨」是程度更重的成語，而且這個「증오」和上一句 #29 的「증오」（現行「憎惡」）是同一個詞、前後呼應，改用「憎恨著我」讓兩句對得上。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S632I.json",
+      "field": "content",
+      "ptr": "/dataList/1/content",
+      "kind": "zh-changed",
+      "new_kr": "글쎄, 어딘가에서 게으르게 곯아떨어져 있지 않을런가 모르겠군. 어이, 히스클리프! 어디 처박혀 있는 거야? 캐서린 아가씨가 오랜만에 행차했잖냐.",
+      "old_zh": "難說，不知道那個懶鬼是不是又在哪裡睡著了。喂，希斯克利夫！你在哪？凱瑟琳小姐可是在大張旗鼓地找你呢！",
+      "new_zh": "難說，不知道那個懶鬼是不是又在哪裡睡著了。喂，希斯克利夫！你在哪？凱瑟琳小姐可是難得大駕光臨呢。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0127：KR「캐서린 아가씨가 오랜만에 행차했잖냐」＝凱瑟琳小姐難得大駕光臨了（JP 久々にお出まし、EN has finally returned），辛德利是在叫希斯克利夫出來迎接（下一行「該像其他下人一樣滾出來問好」）；TW「在大張旗鼓地找你」變成凱瑟琳在找他。 照再檢視的建議調整：意思：建議把「在大張旗鼓地找你」改成「大駕光臨」是對的。句末標點（照前次）：KR 最後一句以句號結尾（행차했잖냐.），建議沿用現行的「！」，改成「。」。語句（這次）：「睽違許久大駕光臨了」兩個四字詞硬接在一起，中文不這樣講；「오랜만에」寫成「難得」，句子就順了。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S636B.json",
+      "field": "content",
+      "ptr": "/dataList/28/content",
+      "kind": "zh-changed",
+      "new_kr": "벼락이 쳤던 순간이 언제였지?",
+      "old_zh": "總共有幾道閃電落下來著？",
+      "new_zh": "閃電都是在什麼時候落下的來著？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0128：KR「벼락이 쳤던 순간이 언제였지?」＝閃電落下的是哪些時候（JP いつだったっけ），接著眾人依序回答第一道閃電在何時；TW「總共有幾道閃電落下來著」變成問次數。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S637A.json",
+      "field": "content",
+      "ptr": "/dataList/49/content",
+      "kind": "zh-changed",
+      "new_kr": "린튼 씨가… 어떻게 된 거예요?",
+      "old_zh": "林頓先生……到底會怎麼樣？",
+      "new_zh": "林頓先生……到底是怎麼了？",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0129：KR「린튼 씨가… 어떻게 된 거예요?」＝林頓先生是怎麼了（JP どうなってるんですか、EN What happened to Linton?），下一行亞細亞答「他變成了完美的麵糰」；TW「到底會怎麼樣」變成問未來。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S638B.json",
+      "field": "content",
+      "ptr": "/dataList/2/content",
+      "kind": "zh-changed",
+      "new_kr": "마침내… 다시 올 테죠.",
+      "old_zh": "他終於……又回來了。",
+      "new_zh": "終於……又要來了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0130：KR「마침내… 다시 올 테죠」是推測「他終於又要來了」（JP また来ます、EN He's coming back），之後希斯克利夫才現身說「我又回來了」；TW「又回來了」寫成已發生。 不寫「他」，主詞留給下一句的「那個希斯克利夫」（KR 倒裝）；「올」寫「來」，與 #5 的「돌아왔다」（回來）分開。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S643B.json",
+      "field": "content",
+      "ptr": "/dataList/62/content",
+      "kind": "zh-changed",
+      "new_kr": "이런 능력이 있었으면 진작에 하던가! 라고 소리쳐도 할 말은 없었다.",
+      "old_zh": "罪人們並沒有向我回以「有這種能力就早點使出來啊！」這種抱怨的話。",
+      "new_zh": "就算有人大喊「有這種能力就早點使出來啊！」，我也無話可說。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0131：KR「이런 능력이 있었으면 진작에 하던가! 라고 소리쳐도 할 말은 없었다」＝就算被喊「有這種能力就早點用啊！」，我也無話可說（JP と言われたとしても返す言葉はなかった）；TW「罪人們並沒有向我回以……這種抱怨的話」變成敘述罪人們沒有抱怨，丟了「我無話可說」，也加了 KR 沒有的「罪人們」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S645A.json",
+      "field": "content",
+      "ptr": "/dataList/1/content",
+      "kind": "zh-changed",
+      "new_kr": "가끔은 돌아가신 언쇼 씨도 그리워.",
+      "old_zh": "我偶爾會懷念已逝的恩肖夫人。",
+      "new_zh": "我偶爾也會懷念已逝的恩肖先生。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0132：KR「돌아가신 언쇼 씨」是已故的老恩肖，凱瑟琳與辛德利的父親（S612B#92 辛德利叫他「아빠」；EN the late Mister Earnshaw Senior）；TW「恩肖夫人」把人寫成女性，變成另一個人。 照再檢視的建議調整：意思（照前次）：把「夫人」改成「先生」是對的（老恩肖是凱瑟琳與辛德利的父親），但建議沿用現行譯文漏掉「언쇼 씨도」的「도」。這句是接著 #0 再舉一個「我並非憎恨一切」的例子，少了「也」就和前後句斷開，補上「也」。語句沒有再調整。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S646B.json",
+      "field": "content",
+      "ptr": "/dataList/55/content",
+      "kind": "zh-changed",
+      "new_kr": "그래서 겉보기엔 항상 고독하고 쓸쓸해 보이지.",
+      "old_zh": "因此，它們可能比世界上其他任何東西都顯得更孤獨寂寞。",
+      "new_zh": "因此，它們看起來總是孤獨又寂寞。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0133：KR「겉보기엔 항상 고독하고 쓸쓸해 보이지」＝看起來總是孤獨寂寞（JP いつも孤独で寂しそうに見える）；TW「可能比世界上其他任何東西都顯得更孤獨寂寞」是照 EN 加的比較與「可能」。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S646B.json",
+      "field": "content",
+      "ptr": "/dataList/84/content",
+      "kind": "zh-changed",
+      "new_kr": "말을 마친 히스클리프는 주저앉은 넬리를 내버려둔 채 옥상으로 올라가기 시작했다.",
+      "old_zh": "說罷，希斯克利夫丟下了彎著身子的奈莉，轉身向屋頂走去。",
+      "new_zh": "說罷，希斯克利夫丟下了癱坐在地的奈莉，轉身向屋頂走去。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0134（前後文一起改）：KR「주저앉은 넬리」＝癱坐（跌坐）在地的奈莉（JP へたり込んだ），和 #85「주저앉아 있었다」是同一個詞；現行「彎著身子」姿勢不對。使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S646B.json",
+      "field": "content",
+      "ptr": "/dataList/85/content",
+      "kind": "zh-changed",
+      "new_kr": "뒤에서는 넬리가 웃음인지 울음인지 모를 소리를 낸 채로 주저앉아 있었다.",
+      "old_zh": "在他背後，奈莉帶著似哭似笑的腔調，吐出我難以辨認的話語。",
+      "new_zh": "在他背後，奈莉仍坐在地上，發出不知是笑還是哭的聲音。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0134：KR「웃음인지 울음인지 모를 소리를 낸 채로 주저앉아 있었다」＝發出分不清是笑是哭的聲音，癱坐在地（JP 座り込んでいた）。TW「帶著似哭似笑的腔調」已譯出哭笑難分，但「吐出我難以辨認的話語」把「聲音」寫成「話語」，也漏了「癱坐」。 #85 的「주저앉아 있었다」是坐倒後維持的狀態，寫「仍坐在地上」，避免和 #84 的「癱坐在地」重複（JP 也分成「へたり込んだ」「座り込んでいた」）。譯法由使用者決定"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S647B.json",
+      "field": "content",
+      "ptr": "/dataList/5/content",
+      "kind": "zh-changed",
+      "new_kr": "이곳은 나만의 천국이다. 거의 다 이르렀지.",
+      "old_zh": "這裡是僅屬於我的天堂。事到如今我終於能這麼認為。",
+      "new_zh": "這裡是僅屬於我的天堂。我幾乎就要抵達了。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0135：KR「거의 다 이르렀지」＝（我）幾乎已經抵達了（JP 今や至れたと言っても過言じゃ無い、EN It is finally within my reach）；TW「事到如今我終於能這麼認為」沒有「接近抵達」的意思。"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S648A.json",
+      "field": "content",
+      "ptr": "/dataList/19/content",
+      "kind": "zh-changed",
+      "new_kr": "그랬기에 히스클리프는 문을 열어서 더 넓은 세상을 볼 수 있을지도 모른다.",
+      "old_zh": "或許正因希斯克利夫打開了門，見識到更為廣闊的世界也說不定。",
+      "new_zh": "也多虧如此，希斯克利夫或許能打開門，見識到更為廣闊的世界。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0136：KR「그랬기에 히스클리프는 문을 열어서 더 넓은 세상을 볼 수 있을지도 모른다」＝正因如此（承上一行：困在夢裡的希斯克利夫消失了），希斯克利夫或許能打開門、看見更廣闊的世界（JP だからこそ）；TW「正因希斯克利夫打開了門，見識到……」把開門變成原因，「或許能」也變成已發生。 照再檢視的建議調整：意思（照前次）：建議「或許正因如此……才能打開門，見識到……也說不定」和 EN 一樣把「或許」放在原因上，「才能……見識到」也讀成已經發生；KR 的原因是確定的，不確定的是今後能不能打開門看見世界。「그랬기에」在 #18 現行寫「多虧如此」，這句是同一個詞的排比，用同一寫法；「或許……也說不定」重複，只留「或許」。語句沒有再調整。 使用者同意"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S648A.json",
+      "field": "content",
+      "ptr": "/dataList/42/content",
+      "kind": "zh-changed",
+      "new_kr": "<그렇게 된 것 같아.>",
+      "old_zh": "<我覺得我今後會喜歡上了。>",
+      "new_zh": "<好像變得喜歡了。>",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-13-storydata-review.yaml",
+          "reason": "StoryData 審查 S0137：德米安問「你也喜歡花嗎？」，但丁答 KR「그렇게 된 것 같아」＝好像變得喜歡了（JP 今回ので好きになった気がする、EN I think I've come to like them）；TW「今後會喜歡上了」寫成未來，時態也混亂。「그렇게 된」寫「變得喜歡了」（原本不是、後來才喜歡），「것 같아」寫「好像」；不補「我」與「花」，標點照 KR。譯法由使用者決定"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-13-storydata-review.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-13-storydata-review.yaml",
+      "path": "rules/adjustments/2026-11-13-storydata-review.yaml",
+      "title": "2026-11-13-storydata-review.yaml",
+      "commit": "0298974f46cd57cc9a71d469b102991c4f124537"
+    },
+    "rewrite:2026-11-25-rs-g764-teller-clock-factory": {
+      "kind": "rewrite",
+      "id": "2026-11-25-rs-g764-teller-clock-factory",
+      "path": "rules/rewrite/2026-11-25-rs-g764-teller-clock-factory.yaml",
+      "title": "說話者名稱「어느 시계 공장주」寫「某鐘錶工廠廠長」，與同檔其他 3 處一致（規則建議 G764）",
+      "commit": "0298974f46cd57cc9a71d469b102991c4f124537"
+    }
+  }
+}

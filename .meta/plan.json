@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261119",
   "prev_raw_tag": "raw-20261112",
-  "rules_commit": "8f5b3e06361292f66d66c13ce7d67302f3170748",
+  "rules_commit": "0298974f46cd57cc9a71d469b102991c4f124537",
   "changes": {
     "unchanged": 275816,
     "moved": 139,
@@ -34,34 +34,14 @@
   "reused": 0,
   "number_patched": 0,
   "adjustments": {
-    "applied": 353,
+    "applied": 414,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
   "rewrite_applied": [
     {
-      "id": "2026-11-20-rs-g085-place-yongjin-floor",
-      "units": 9
-    },
-    {
-      "id": "2026-11-20-rs-g086-ellipsis-s526a",
-      "units": 1
-    },
-    {
-      "id": "2026-11-20-rs-g088-teller-lccb",
-      "units": 1
-    },
-    {
-      "id": "2026-11-20-rs-g761-gift-workshop",
-      "units": 8
-    },
-    {
-      "id": "2026-11-20-rs-g770-title-sinner",
-      "units": 1
-    },
-    {
-      "id": "2026-11-20-rs-g867-hmm",
+      "id": "2026-11-25-rs-g764-teller-clock-factory",
       "units": 1
     }
   ],
