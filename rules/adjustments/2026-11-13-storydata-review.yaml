@@ -1553,3 +1553,21 @@
   zh: 就算有人大喊「有這種能力就早點使出來啊！」，我也無話可說。
   reason: StoryData 審查 S0131：KR「이런 능력이 있었으면 진작에 하던가! 라고 소리쳐도 할 말은 없었다」＝就算被喊「有這種能力就早點用啊！」，我也無話可說（JP と言われたとしても返す言葉はなかった）；TW「罪人們並沒有向我回以……這種抱怨的話」變成敘述罪人們沒有抱怨，丟了「我無話可說」，也加了 KR 沒有的「罪人們」。
   rule: one-off
+- key: StoryData/S638B.json|/dataList/2/content
+  raw: raw-20261119
+  kr_sha: 54b73fe74beca47a9f9433a9858873f8fbd2910cbc4b79aed84b16ab9f7a82b0
+  zh: 終於……又要來了。
+  reason: 'StoryData 審查 S0130：KR「마침내… 다시 올 테죠」是推測「他終於又要來了」（JP また来ます、EN He''s coming back），之後希斯克利夫才現身說「我又回來了」；TW「又回來了」寫成已發生。 不寫「他」，主詞留給下一句的「那個希斯克利夫」（KR 倒裝）；「올」寫「來」，與 #5 的「돌아왔다」（回來）分開。譯法由使用者決定'
+  rule: one-off
+- key: StoryData/S645A.json|/dataList/1/content
+  raw: raw-20261119
+  kr_sha: 4e47c8ef0f82b8ce7a5ce2a8e855ef6e24ebd6f06f81790e8889c96213a4da45
+  zh: 我偶爾也會懷念已逝的恩肖先生。
+  reason: 'StoryData 審查 S0132：KR「돌아가신 언쇼 씨」是已故的老恩肖，凱瑟琳與辛德利的父親（S612B#92 辛德利叫他「아빠」；EN the late Mister Earnshaw Senior）；TW「恩肖夫人」把人寫成女性，變成另一個人。 照再檢視的建議調整：意思（照前次）：把「夫人」改成「先生」是對的（老恩肖是凱瑟琳與辛德利的父親），但建議沿用現行譯文漏掉「언쇼 씨도」的「도」。這句是接著 #0 再舉一個「我並非憎恨一切」的例子，少了「也」就和前後句斷開，補上「也」。語句沒有再調整。 使用者同意'
+  rule: one-off
+- key: StoryData/S646B.json|/dataList/55/content
+  raw: raw-20261119
+  kr_sha: 268ffdf0adcaa87c8ee6f5593dc0a5c112b656b87896aeb112c20953aa06c1f9
+  zh: 因此，它們看起來總是孤獨又寂寞。
+  reason: StoryData 審查 S0133：KR「겉보기엔 항상 고독하고 쓸쓸해 보이지」＝看起來總是孤獨寂寞（JP いつも孤独で寂しそうに見える）；TW「可能比世界上其他任何東西都顯得更孤獨寂寞」是照 EN 加的比較與「可能」。
+  rule: one-off
