@@ -3040,9 +3040,10 @@ func checkKeepsGoing(job workflowJob) []string {
 }
 
 // pagesPermissions are the permissions of the job of pages.yml: it reads the
-// repo, publishes the site to Pages (pages) and proves to the deployment who
-// it is with its OIDC token (id-token).
-var pagesPermissions = map[string]string{"contents": "read", "pages": "write", "id-token": "write"}
+// repo, publishes the site to Pages (pages), proves to the deployment who it is
+// with its OIDC token (id-token) and reads the artifacts of the run while it
+// waits for the one it uploaded (actions).
+var pagesPermissions = map[string]string{"contents": "read", "pages": "write", "id-token": "write", "actions": "read"}
 
 // pagesActions are the only actions pages.yml uses, pinned to the major
 // version. None of them is the action of Anthropic: the site is made without a
@@ -3061,6 +3062,11 @@ const (
 	pagesSiteCommand = "bin/lct site --out site/public/data --json"
 	// pagesArtifactPath is what the build makes and the artifact holds.
 	pagesArtifactPath = "site/dist"
+	// pagesArtifactName is the name of the artifact: the upload, the step that
+	// waits and the deploy all name it. It is that of the attempt of the run,
+	// since a re-run of the job uploads its own and deploy-pages refuses when
+	// two artifacts of the run have the name it looks for.
+	pagesArtifactName = "github-pages-${{ github.run_attempt }}"
 )
 
 // pagesSteps are the steps pages.yml must have, in the order of pagesOrder: by
@@ -3079,6 +3085,7 @@ var pagesSteps = []struct {
 	{"npm-build", "runs npm run build", func(s workflowStep) bool { return strings.TrimSpace(s.Run) == "npm run build" }},
 	{"configure", "configures Pages", func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/configure-pages@") }},
 	{"upload", "uploads the artifact", func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/upload-pages-artifact@") }},
+	{"wait", "waits until the run lists the artifact", func(s workflowStep) bool { return strings.Contains(s.Run, "/actions/runs/") }},
 	{"deploy", "deploys the artifact", func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/deploy-pages@") }},
 }
 
@@ -3095,6 +3102,8 @@ var pagesOrder = []struct{ first, second, why string }{
 	{"npm-build", "upload", "the artifact would hold a site/dist the build did not make"},
 	{"configure", "upload", "Pages is not configured before the artifact is made"},
 	{"upload", "deploy", "there is no artifact to deploy"},
+	{"upload", "wait", "there is no artifact to wait for"},
+	{"wait", "deploy", "deploy-pages looks for the artifact once, and the run can list it only some seconds after the upload"},
 }
 
 // pagesFetchMarkers are what the step of pages.yml that fetches must do, with
@@ -3231,6 +3240,22 @@ func checkPagesWorkflow(file, content string) []string {
 	if i := index["upload"]; i >= 0 {
 		if got := job.Steps[i].With["path"]; got != pagesArtifactPath {
 			add("the upload has path = %v, want %s: the artifact is the site that the build made", got, pagesArtifactPath)
+		}
+		if got := job.Steps[i].With["name"]; got != pagesArtifactName {
+			add("the upload has name = %v, want %s: a re-run of the job would upload a second artifact of the same name, and the deploy refuses two", got, pagesArtifactName)
+		}
+	}
+	if i := index["wait"]; i >= 0 {
+		if got := job.Steps[i].Env["ARTIFACT"]; got != pagesArtifactName {
+			add("the step that waits has ARTIFACT = %q, want %s: it would wait for an artifact that is not the one uploaded", got, pagesArtifactName)
+		}
+		if got := job.Steps[i].Env["GH_TOKEN"]; got != "${{ github.token }}" {
+			add("the step that waits has GH_TOKEN = %q, want ${{ github.token }}: gh cannot list the artifacts of the run", got)
+		}
+	}
+	if i := index["deploy"]; i >= 0 {
+		if got := job.Steps[i].With["artifact_name"]; got != pagesArtifactName {
+			add("the deploy has artifact_name = %v, want %s: it would look for an artifact that is not the one uploaded", got, pagesArtifactName)
 		}
 	}
 	return problems
@@ -4229,8 +4254,9 @@ func TestWorkflowContract(t *testing.T) {
 	const (
 		pagesSiteStep   = "      - name: Write the data of the site\n        run: bin/lct site --out site/public/data --json\n"
 		pagesBuildStep  = "        run: npm run build\n        working-directory: site\n"
-		pagesUploadStep = "      - uses: actions/upload-pages-artifact@v5\n        with:\n          path: site/dist\n"
-		pagesDeployStep = "      - uses: actions/deploy-pages@v5\n"
+		pagesUploadStep = "      - uses: actions/upload-pages-artifact@v5\n        with:\n          path: site/dist\n          name: github-pages-${{ github.run_attempt }}\n"
+		pagesWaitStep   = "      - name: Wait until the run lists the artifact\n"
+		pagesDeployStep = "      - uses: actions/deploy-pages@v5\n        with:\n          artifact_name: github-pages-${{ github.run_attempt }}\n"
 		siteNodeStep    = "      - uses: actions/setup-node@v7\n        with:\n          node-version-file: site/.nvmrc\n          cache: npm\n          cache-dependency-path: site/package-lock.json\n"
 	)
 	for _, tc := range []struct{ name, old, repl, want string }{
@@ -4256,7 +4282,7 @@ func TestWorkflowContract(t *testing.T) {
 		{"no permission for the id token", ", id-token: write", "", "permissions"},
 		{"no permission for pages", "pages: write, ", "", "permissions"},
 		{"a token that writes the repo", "contents: read", "contents: write", "permissions"},
-		{"a permission more", "id-token: write }", "id-token: write, issues: write }", "permissions"},
+		{"a permission more", "actions: read }", "actions: read, issues: write }", "permissions"},
 		{"no environment", "    environment: github-pages\n", "", "environment"},
 		{"another environment", "environment: github-pages", "environment: production", "environment"},
 
@@ -4307,6 +4333,12 @@ func TestWorkflowContract(t *testing.T) {
 		{"no configuration of Pages", "      - uses: actions/configure-pages@v6\n", "", "no step that configures Pages"},
 		{"no upload", pagesUploadStep, "", "no step that uploads the artifact"},
 		{"no deploy", pagesDeployStep, "", "no step that deploys the artifact"},
+		{"no wait for the artifact", "/actions/runs/", "/actions/run/", "no step that waits until the run lists the artifact"},
+		{"no permission to list the artifacts", ", actions: read", "", "permissions"},
+		{"an artifact named as on every attempt", "          name: github-pages-${{ github.run_attempt }}\n", "", "the upload has name"},
+		{"a wait for another artifact", "          ARTIFACT: github-pages-${{ github.run_attempt }}\n", "          ARTIFACT: github-pages\n", "the step that waits has ARTIFACT"},
+		{"a wait with no token", "          GH_TOKEN: ${{ github.token }}\n", "", "GH_TOKEN"},
+		{"a deploy of another artifact", "          artifact_name: github-pages-${{ github.run_attempt }}\n", "          artifact_name: github-pages\n", "the deploy has artifact_name"},
 		{"an action that is not pinned", "actions/deploy-pages@v5", "actions/deploy-pages@v4", "actions/deploy-pages@v4"},
 		{"another action", "actions/setup-go@v6", "anthropics/claude-code-action@v1", "anthropics/claude-code-action@v1"},
 	} {
@@ -4344,10 +4376,27 @@ func TestWorkflowContract(t *testing.T) {
 		wantProblems(t, checkPagesWorkflow(pagesFile, src), pagesFile,
 			"the step that runs bin/lct site must come before the step that runs npm run build")
 	})
-	t.Run("pages.yml: exactly one problem for an upload after the deploy", func(t *testing.T) {
-		src := mutate(t, mutate(t, pages, pagesUploadStep, ""), pagesDeployStep, pagesDeployStep+pagesUploadStep)
+	t.Run("pages.yml: exactly one problem for an upload after the wait", func(t *testing.T) {
+		// The upload moves from before the step that waits to between it and
+		// the deploy.
+		src := mutate(t, mutate(t, pages, pagesUploadStep, ""), pagesDeployStep, pagesUploadStep+"\n"+pagesDeployStep)
 		wantProblems(t, checkPagesWorkflow(pagesFile, src), pagesFile,
-			"the step that uploads the artifact must come before the step that deploys the artifact")
+			"the step that uploads the artifact must come before the step that waits until the run lists the artifact")
+	})
+	t.Run("pages.yml: an upload after the deploy", func(t *testing.T) {
+		src := mutate(t, mutate(t, pages, pagesUploadStep, ""), pagesDeployStep, pagesDeployStep+pagesUploadStep)
+		problems := checkPagesWorkflow(pagesFile, src)
+		hasProblem(t, problems, pagesFile, "the step that uploads the artifact must come before the step that deploys the artifact")
+		hasProblem(t, problems, pagesFile, "the step that uploads the artifact must come before the step that waits until the run lists the artifact")
+		if len(problems) != 2 {
+			t.Errorf("got %d problems, want the two of the order:\n%s", len(problems), strings.Join(problems, "\n"))
+		}
+	})
+	t.Run("pages.yml: exactly one problem for a deploy before the wait", func(t *testing.T) {
+		// The deploy moves from behind the step that waits to before it.
+		src := mutate(t, mutate(t, pages, pagesDeployStep, ""), pagesWaitStep, pagesDeployStep+"\n"+pagesWaitStep)
+		wantProblems(t, checkPagesWorkflow(pagesFile, src), pagesFile,
+			"the step that waits until the run lists the artifact must come before the step that deploys the artifact")
 	})
 	t.Run("pages.yml: exactly one problem for a build after the upload", func(t *testing.T) {
 		src := mutate(t, mutate(t, pages, "      - name: Build the site\n"+pagesBuildStep, ""), pagesUploadStep, pagesUploadStep+"\n      - name: Build the site\n"+pagesBuildStep)

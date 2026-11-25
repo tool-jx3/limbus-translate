@@ -25,7 +25,9 @@ jobs:
     # keeps one waiting run only, and a newer one replaces it. Every run builds
     # from the branches as they are then.
     concurrency: { group: pages, cancel-in-progress: false }
-    permissions: { contents: read, pages: write, id-token: write }
+    # actions: read is for the step that waits until the run lists the
+    # artifact.
+    permissions: { contents: read, pages: write, id-token: write, actions: read }
     environment: github-pages
     # A script stops at the first command that fails (bash -e), and so does the
     # run: no step has an if or continue-on-error, so nothing is deployed when
@@ -82,8 +84,37 @@ jobs:
 
       - uses: actions/configure-pages@v6
 
+      # The artifact is named after the attempt of the run: a re-run of the job
+      # uploads its own, and deploy-pages, which refuses when two artifacts of
+      # the run have the name it looks for, finds only that one.
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site/dist
+          name: github-pages-${{ github.run_attempt }}
+
+      # deploy-pages looks for the artifact once, and the run can list it only
+      # some seconds after the upload has finalized it (on 2026-11-25 the
+      # deploy found none, twice, under a second after the upload). This waits
+      # until the run lists it, two minutes at most, and fails the run when it
+      # never does.
+      - name: Wait until the run lists the artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT: github-pages-${{ github.run_attempt }}
+        run: |
+          for attempt in $(seq 24); do
+            # A failed request counts as no artifact yet: the next attempt asks again.
+            count=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts?name=$ARTIFACT" --jq .total_count) || count=0
+            if [ "$count" -ge 1 ]; then
+              echo "The run lists the artifact $ARTIFACT."
+              exit 0
+            fi
+            echo "Attempt $attempt: the run lists no artifact $ARTIFACT yet."
+            sleep 5
+          done
+          echo "::error::The run lists no artifact $ARTIFACT two minutes after the upload."
+          exit 1
 
       - uses: actions/deploy-pages@v5
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
