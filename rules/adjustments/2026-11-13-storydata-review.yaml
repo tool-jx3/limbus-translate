@@ -1529,3 +1529,27 @@
   zh: 哈哈……因為這裡凝聚著所有人的憎惡，所以也沒什麼好驚訝的。對吧。
   reason: StoryData 審查 S0126（前後文一起改）：KR「모두의 증오」＝所有人的憎惡（「모두」是「大家」），現行「一切的憎惡」和 JP「全ての憎悪」一樣讀成「所有的」。下一句「캐서린도」（凱瑟琳也）就是承這個「所有人」說的，寫成「一切的憎惡」，下一句的「也」就沒有著落。只改這一處。 使用者同意
   rule: one-off
+- key: StoryData/S632I.json|/dataList/1/content
+  raw: raw-20261119
+  kr_sha: bf35b7bc9218f73453f44decac5197659380309f6cbea74ee94dddde2d6cc39e
+  zh: 難說，不知道那個懶鬼是不是又在哪裡睡著了。喂，希斯克利夫！你在哪？凱瑟琳小姐可是難得大駕光臨呢。
+  reason: StoryData 審查 S0127：KR「캐서린 아가씨가 오랜만에 행차했잖냐」＝凱瑟琳小姐難得大駕光臨了（JP 久々にお出まし、EN has finally returned），辛德利是在叫希斯克利夫出來迎接（下一行「該像其他下人一樣滾出來問好」）；TW「在大張旗鼓地找你」變成凱瑟琳在找他。 照再檢視的建議調整：意思：建議把「在大張旗鼓地找你」改成「大駕光臨」是對的。句末標點（照前次）：KR 最後一句以句號結尾（행차했잖냐.），建議沿用現行的「！」，改成「。」。語句（這次）：「睽違許久大駕光臨了」兩個四字詞硬接在一起，中文不這樣講；「오랜만에」寫成「難得」，句子就順了。 使用者同意
+  rule: one-off
+- key: StoryData/S636B.json|/dataList/28/content
+  raw: raw-20261119
+  kr_sha: 18bcd2b8ffe12184b6362dae44b82b83c330266d3b9bc0488d0bf5ba665e8f2c
+  zh: 閃電都是在什麼時候落下的來著？
+  reason: StoryData 審查 S0128：KR「벼락이 쳤던 순간이 언제였지?」＝閃電落下的是哪些時候（JP いつだったっけ），接著眾人依序回答第一道閃電在何時；TW「總共有幾道閃電落下來著」變成問次數。
+  rule: one-off
+- key: StoryData/S637A.json|/dataList/49/content
+  raw: raw-20261119
+  kr_sha: e7e8825f961b5900961e6e87b4dc6309db7c9c5971733b7b8fef30f18967400b
+  zh: 林頓先生……到底是怎麼了？
+  reason: StoryData 審查 S0129：KR「린튼 씨가… 어떻게 된 거예요?」＝林頓先生是怎麼了（JP どうなってるんですか、EN What happened to Linton?），下一行亞細亞答「他變成了完美的麵糰」；TW「到底會怎麼樣」變成問未來。
+  rule: one-off
+- key: StoryData/S643B.json|/dataList/62/content
+  raw: raw-20261119
+  kr_sha: 1cb28ed284c0e2da4d785b112b7bb423ed8ec34763f89216ed0cec90e6ef4ca8
+  zh: 就算有人大喊「有這種能力就早點使出來啊！」，我也無話可說。
+  reason: StoryData 審查 S0131：KR「이런 능력이 있었으면 진작에 하던가! 라고 소리쳐도 할 말은 없었다」＝就算被喊「有這種能力就早點用啊！」，我也無話可說（JP と言われたとしても返す言葉はなかった）；TW「罪人們並沒有向我回以……這種抱怨的話」變成敘述罪人們沒有抱怨，丟了「我無話可說」，也加了 KR 沒有的「罪人們」。
+  rule: one-off
