@@ -1625,3 +1625,57 @@
   zh: 啊～是我家裡的二姑姑經常用的鹽呢。
   reason: StoryData 審查 S0473：KR「둘째 고모」是父親的第二個姊妹（二姑姑）（JP「上から2番目の叔母さん」）；現行 TW「二嬸嬸」是叔叔的妻子，親屬關係錯。
   rule: one-off
+- key: StoryData/E605B.json|/dataList/81/content
+  raw: raw-20261119
+  kr_sha: 6f22bff152fcadf59c73db8c7251e9585b4b5208a59f1c42bdb2fdb5ea639efc
+  zh: 良秀先是大步走過去。突然加快速度，向他猛衝了過去。
+  reason: StoryData 審查 S0474：KR「성큼 성큼 걸어가더니」是大步大步地走過去（JP「大股で歩くと」、EN「strode」）；現行 TW「慢慢地走著」意思相反。「성큼 성큼」寫「大步走」（只講步幅，與其他檔一致），不寫「大步流星」，後面「突然加快速度」的對比才成立；照再檢視把「走著」改「走過去」、「猛地提高速度」改「加快速度」。譯法由使用者決定
+  rule: one-off
+- key: StoryData/E605B.json|/dataList/87/content
+  raw: raw-20261119
+  kr_sha: 54dbb4d12b3274d986a33a9ddea5d42b03d0553c38c2554d11ed564a2f7eda67
+  zh: 如果那樣的話，犯人就會是良秀小姐，事件也就此結案了呢～
+  reason: StoryData 審查 S0475：KR「범인은 바로 료슈 님인 걸로 사건이 종결 되었겠네요」是假設語氣「（真那樣的話）事件就會以良秀小姐是犯人結案了呢」（JP「事件終了になってたでしょうね」），在開良秀剛才示範的玩笑。現行 TW「就當犯人是良秀小姐，把事件解決吧」變成提議。
+  rule: one-off
+- key: StoryData/E606B.json|/dataList/28/content
+  raw: raw-20261119
+  kr_sha: 19be58c626c1ff9e783dc60ab256fccf3ec852079680ff4fc203f17d69cd5e07
+  zh: 等等，那邊的人！你為什麼彎腰駝背地走路？臨檢！
+  reason: StoryData 審查 S0476：KR「구부정하게 다니는」是彎腰駝背地走，TW 寫成「鬼鬼祟祟」，意思不同（後文也說這裡的人彎著腰走路）。
+  rule: one-off
+- key: StoryData/E610A.json|/dataList/58/content
+  raw: raw-20261119
+  kr_sha: 76312ea800c7c2e2e7b4a1c404f74f212cfde9eebcd451e77021cb8aaddbe8ce
+  zh: ……被抓的人也很多。其他的是祕密。你們只需要知道，我們有祕密手段能對巢發動恐怖攻擊就夠了。
+  reason: StoryData 審查 S0477：KR/JP 是「둥지에 테러를 할 수 있도록」（能對巢發動恐怖攻擊），TW 改成「繼續在巢裡活動」，把恐怖行動的意思淡化掉。（EN 為 guerilla activities，TW 似依 EN。） 照再檢視的建議調整：意思：建議把「繼續在巢裡活動」改回「對巢發動恐怖攻擊」，正確。語句：一、沿用現行的「這些以外是祕密」，中文不這樣說，改「其他的是祕密」；二、「你們只需要知道我們有能對巢發動恐怖攻擊的祕密手段就夠了」二十多個字不斷句，「有能……的祕密手段」的修飾語又長又拗口，改成「有祕密手段能……」，並在「知道」後斷開。 使用者同意
+  rule: one-off
+- key: StoryData/E611B.json|/dataList/42/content
+  raw: raw-20261119
+  kr_sha: 51b6df89ec9dd02d5bf3ad129ada4842111e3f8ddb3a26978aa7271a4f915795
+  zh: 羅佳突然停下腳步，一動也不動地看著我。
+  reason: StoryData 審查 S0478：KR「우뚝 선 채로」是猛然停住不動地站著，TW「突然站起來」變成從坐姿起身，動作不同。
+  rule: one-off
+- key: StoryData/E615B.json|/dataList/41/content
+  raw: raw-20261119
+  kr_sha: ea5ef964887b0a3f113764de44ea01bb90a660ec2e0690be85e3aa6cc3539a3c
+  zh: 正如聖者大人所言，時機一定會到來……我知道你也覺得無聊，但別再問要到什麼時候了。你以為我就喜歡去找那些徵收人的碴再逃跑嗎！
+  reason: StoryData 審查 S0479：KR 句末「나라고 징수자 놈들한테 시비 걸고 도망치는 게 좋은 줄 아냐!」是反問「你以為我就喜歡去找徵收人的碴再逃跑嗎！」，抱怨自己也受夠了（JP「俺だって、好きで……喧嘩ふっかけて逃げてるとでも？」、EN「I'm just as tired as you are…」）。現行 TW「你覺得我挑釁了那些徵收人還能全身而退？」變成質疑能不能脫身，意思不同。
+  rule: one-off
+- key: StoryData/E615B.json|/dataList/62/content
+  raw: raw-20261119
+  kr_sha: b5b7d08a103534b2475d326eb7483cf85a42aaf14694c0f09221c6ec614f66be
+  zh: 那些正在死去的時間，是我、是我們救下來的。那又……有什麼不好？
+  reason: StoryData 審查 S0480：KR「구해줬다」是過去式（已經挽救了）、「죽어가는」是「正在死去的」；TW 寫「將由我、由我們挽回」變成未來式，且「逝去的時間」與「正在死去」略有出入。
+  rule: one-off
+- key: StoryData/E615B.json|/dataList/61/content
+  raw: raw-20261119
+  kr_sha: c1a378855e0b15323e09378989ec9e44047ce543b1186a31f80346c25e97b461
+  zh: 就這樣……一直在殺死時間……
+  reason: 'StoryData 審查 S0480（前後文一起改）：KR「그렇게… 시간을 죽이고 있었지…」是「就這樣……一直在殺死時間……」。這場戲 #48、#59 的「시간을 죽이다」都寫「殺死時間」，本項的「그 죽어가는 시간들」（那些正在死去的時間）指的就是這裡被殺的時間；現行「讓時間白白流逝」只譯出慣用語的意思，本項改了之後接不上，要一起改回「殺死時間」。 使用者同意'
+  rule: one-off
+- key: StoryData/E615I2.json|/dataList/6/content
+  raw: raw-20261119
+  kr_sha: a99baec074a89698d8d7813b7b3c765648be2cc46718f6b3c83669ca1ca22afc
+  zh: 別再開口閉口都是「剩下的」了！連加減法都算不好的傢伙……
+  reason: 'StoryData 審查 S0481：KR「나머지 타령」是在嗆對方一直在講上一句的「剩下的（餘數）」；TW 寫成「別說多餘的話」，丟掉了與「剩餘／餘數」的呼應，並多出 KR 沒有的「文盲」。 照再檢視的建議調整：前次的調整：報告建議的「拿……說事」是中國大陸的口語，改成「開口閉口都是『剩下的』」，也貼近「타령」；「剩下的」和 #5 的兩個「剩下的」呼應，「文盲」KR 沒有，改「傢伙」。這次的語句調整：「基本加減法」的「基本」是照 EN「basic additions and subtractions」多出來的，KR 只有「덧셈 뺄셈」，拿掉。 使用者同意'
+  rule: one-off
