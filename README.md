@@ -110,7 +110,7 @@ fork 或搬到別的 repo 時，要設定下面的 secrets 與 variables，並�
 
 ### Workflow permissions
 
-Settings → Actions → General → Workflow permissions 選「Read and write permissions」。各 workflow 也自己宣告了所需的權限：`contents: write`（推 `raw`、`tw`、tag 與建立 Release）與 `issues: write`（開審核 Issue）；`rules-proposal.yml` 另需 `pull-requests: write`（開規則 PR）與 `id-token: write`（action 向 Claude GitHub App 換 token）。`pages.yml` 只讀 repo，需要的是 `contents: read`、`pages: write` 與 `id-token: write`（部署到 Pages）。
+Settings → Actions → General → Workflow permissions 選「Read and write permissions」。各 workflow 也自己宣告了所需的權限：`contents: write`（推 `raw`、`tw`、tag 與建立 Release）與 `issues: write`（開審核 Issue）；`rules-proposal.yml` 另需 `pull-requests: write`（開規則 PR）與 `id-token: write`（action 向 Claude GitHub App 換 token）。`pages.yml` 只讀 repo，需要的是 `contents: read`、`pages: write` 與 `id-token: write`（部署到 Pages），以及 `actions: read`（部署前確認這次執行查得到剛上傳的 artifact）。
 
 ### 各 workflow 何時執行
 
@@ -119,7 +119,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 | `update.yml` | 每週四 11:35（UTC+8，cron `35 3 * * 4`）；收到 `repository_dispatch`（類型 `limbus_update`）；手動 | 向狀態 API 查最新的 token。沒有新 token、沒有待譯、沒有要套用的重翻或改寫檔，`tw` 上次建置用的就是目前的 `raw`，也沒有還欠著的 Release、沒有只保存了進度卻還沒建置的 commit，就結束。否則：下載並 snapshot 到 `raw` → plan → 翻譯 → 把翻譯進度推到 `tw` → build → 推 `tw` → 語言包有變才建立 Release → 有需要人處理的項目時開審核 Issue |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**` 或 `lct.yaml`；手動 | 不查狀態 API，用目前的 `raw` 重做：plan → 翻譯（規則改動後新增的待譯）→ 把翻譯進度推到 `tw` → build → 推 `tw` → 語言包有變才建立 Release → 審核 Issue |
 | `rules-proposal.yml` | `update.yml` 或 `rebuild.yml` 在 `main` 上成功結束後；手動（沒有輸入） | 選規則 PR 的分支（有開著的規則 PR 就用它的，沒有就用 `rules-proposal/<日期>`）→ `bin/lct suggest` 數出還沒在任何規則 PR、也沒被不採用的建議，沒有就結束 → 有的話，`RULES_REVIEW_IN_CI` 是 `true` 才以 `anthropics/claude-code-action@v1` 執行 `/rules-review` skill（否則只在記錄留下待處理的數量，由人在本機執行），修改 `guides/`、`glossary/`、`rules/`，開規則 PR 或更新開著的那個 → 確認 PR 存在，把網址寫在 summary |
-| `pages.yml` | `update.yml` 或 `rebuild.yml` 在 `main` 上成功結束後；手動（沒有輸入） | 取得 `raw`、`tw` 與 tag 並建 worktree → build `lct` → `bin/lct site --out site/public/data` 輸出網站資料 → 在 `site/` 執行 `npm ci`、`npm run build` → `actions/configure-pages`、`actions/upload-pages-artifact`（`site/dist`）、`actions/deploy-pages`。任何一步失敗，整個執行就失敗，不部署。網址與要先做的設定見「網站」 |
+| `pages.yml` | `update.yml` 或 `rebuild.yml` 在 `main` 上成功結束後；手動（沒有輸入） | 取得 `raw`、`tw` 與 tag 並建 worktree → build `lct` → `bin/lct site --out site/public/data` 輸出網站資料 → 在 `site/` 執行 `npm ci`、`npm run build` → `actions/configure-pages`、`actions/upload-pages-artifact`（`site/dist`，artifact 名稱帶執行的 attempt 編號，重跑失敗的 job 也不會和前一次的同名）→ 等這次執行查得到那個 artifact（最多 2 分鐘；GitHub 有時上傳完幾秒後才查得到）→ `actions/deploy-pages`。任何一步失敗，整個執行就失敗，不部署。網址與要先做的設定見「網站」 |
 | `ci.yml` | 每次 push 與 PR | `go vet`、`go test`、`lct rules lint`。PR 改到 `guides/`、`glossary/` 或 `rules/` 時另外執行 `bin/lct impact`，把影響評估寫在該次執行的 summary（見「收到規則 PR 怎麼處理」）。另有 `site` job：在 `site/` 執行 `npm ci`、`npm run typecheck`、`npm test`、`npm run build` |
 
 `update.yml` 與 `rebuild.yml` 都呼叫 `pipeline.yml`（共同的流程，不單獨執行）。`rules-proposal.yml` 與 `pages.yml` 在它們成功結束後才執行，失敗或被取消的不執行，其他分支上的執行也不算。細節：
