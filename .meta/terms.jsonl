@@ -24,3 +24,23 @@
 {"kr":"유나","zh":"尤娜","key":"ScenarioModelCodes-AutoCreated.json|/dataList/751/name","batch":"20261112T041435-9a35c82a","raw_tag":"raw-20261112","time":"2026-11-12T04:14:47Z"}
 {"kr":"필립","zh":"菲利普","key":"ScenarioModelCodes-AutoCreated.json|/dataList/752/name","batch":"20261112T041435-9a35c82a","raw_tag":"raw-20261112","time":"2026-11-12T04:14:47Z"}
 {"kr":"고독한 해결사","zh":"孤獨的收尾人","key":"Walpu10EventText.json|/dataList/36/content","batch":"20261112T041451-7a4e648d","raw_tag":"raw-20261112","time":"2026-11-12T04:15:34Z"}
+{"kr":"발도 자세","zh":"拔刀姿勢","key":"BattleKeywords-schema.json|/dataList/2/desc","batch":"20261126T061137-aee7e7af","raw_tag":"raw-20261126","time":"2026-11-26T06:13:20Z"}
+{"kr":"타래둥지","zh":"線團巢","key":"BattleKeywords.json|/dataList/608/desc","batch":"20261126T061137-aee7e7af","raw_tag":"raw-20261126","time":"2026-11-26T06:13:20Z","old":{"units":25,"with":0}}
+{"kr":"탄환 - 죄수","zh":"子彈 - 罪犯","key":"BattleKeywords.json|/dataList/631/name","batch":"20261126T061137-aee7e7af","raw_tag":"raw-20261126","time":"2026-11-26T06:13:20Z"}
+{"kr":"조력자","zh":"援助者","key":"BattleKeywords.json|/dataList/633/desc","batch":"20261126T061137-aee7e7af","raw_tag":"raw-20261126","time":"2026-11-26T06:13:20Z","old":{"units":41,"with":0}}
+{"kr":"건조장","zh":"乾燥室","key":"BattleKeywords.json|/dataList/636/desc","batch":"20261126T061137-aee7e7af","raw_tag":"raw-20261126","time":"2026-11-26T06:13:20Z"}
+{"kr":"인력 충원","zh":"人力補充","key":"BattleKeywords.json|/dataList/638/name","batch":"20261126T061137-aee7e7af","raw_tag":"raw-20261126","time":"2026-11-26T06:13:20Z"}
+{"kr":"보존 횟수","zh":"保存回數","key":"BattleKeywords.json|/dataList/638/desc","batch":"20261126T061137-aee7e7af","raw_tag":"raw-20261126","time":"2026-11-26T06:13:20Z"}
+{"kr":"이어진 실","zh":"相連之線","key":"BattleKeywords.json|/dataList/639/desc","batch":"20261126T061137-aee7e7af","raw_tag":"raw-20261126","time":"2026-11-26T06:13:20Z"}
+{"kr":"붉은 결속","zh":"赤紅羈絆","key":"BattleKeywords.json|/dataList/642/name","batch":"20261126T061325-314f6424","raw_tag":"raw-20261126","time":"2026-11-26T06:13:41Z"}
+{"kr":"스티치","zh":"縫線","key":"BattleKeywords.json|/dataList/644/name","batch":"20261126T061325-314f6424","raw_tag":"raw-20261126","time":"2026-11-26T06:13:41Z"}
+{"kr":"시너지 발동 조건","zh":"協同效果觸發條件","key":"BattleKeywords_Synergy.json|/dataList/0/name","batch":"20261126T061325-314f6424","raw_tag":"raw-20261126","time":"2026-11-26T06:13:41Z"}
+{"kr":"자아내기","zh":"紡出絲線","key":"Passives.json|/dataList/659/desc","batch":"20261126T061956-1b6e82f7","raw_tag":"raw-20261126","time":"2026-11-26T06:21:16Z"}
+{"kr":"덧바느질","zh":"疊縫","key":"Passives.json|/dataList/660/name","batch":"20261126T061956-1b6e82f7","raw_tag":"raw-20261126","time":"2026-11-26T06:21:16Z"}
+{"kr":"매듭 짓기","zh":"打結","key":"Skills_personality-12.json|/dataList/52/levelList/0/desc","batch":"20261126T062121-43dd3b72","raw_tag":"raw-20261126","time":"2026-11-26T06:22:37Z"}
+{"kr":"흑운회 제3조장 미네","zh":"黑雲會 第3組長 美音","key":"Enemies-schema.json|/dataList/0/name","batch":"20261126T062243-36de3d30","raw_tag":"raw-20261126","time":"2026-11-26T06:24:08Z"}
+{"kr":"쿠모기리","zh":"雲斬","key":"Passives_Enemy-schema.json|/dataList/1/desc","batch":"20261126T062243-36de3d30","raw_tag":"raw-20261126","time":"2026-11-26T06:24:08Z"}
+{"kr":"공간참","zh":"空間斬","key":"Passives_Enemy-schema.json|/dataList/1/desc","batch":"20261126T062243-36de3d30","raw_tag":"raw-20261126","time":"2026-11-26T06:24:08Z"}
+{"kr":"아메기리","zh":"雨斬","key":"Skills_Enemy-schema.json|/dataList/4/levelList/0/name","batch":"20261126T062243-36de3d30","raw_tag":"raw-20261126","time":"2026-11-26T06:24:08Z"}
+{"kr":"쿠로쿠모기리","zh":"黑雲斬","key":"Skills_Enemy-schema.json|/dataList/5/levelList/0/name","batch":"20261126T062243-36de3d30","raw_tag":"raw-20261126","time":"2026-11-26T06:24:08Z"}
+{"kr":"도상구축","zh":"圖式構築","key":"LimtochessUI.json|/dataList/2/content","batch":"20261126T062505-477ac441","raw_tag":"raw-20261126","time":"2026-11-26T06:25:45Z"}
