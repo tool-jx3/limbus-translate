@@ -6025,3 +6025,37 @@
   status: approved
   category: [city]
   notes: 2026-11-26 既有 25／25 個單位（RPG 地下 2 樓）寫「線團之巢」；審核 #30 新譯 10 個單位（格里高爾人格「高級訂製服::丹紅派 B2F 線團之巢」等）用了暫定詞「線團巢」，改回「線團之巢」（rules/rewrite/2026-11-26-review30-skein-nest.yaml）
+
+- kr: 도상구축
+  jp: スキーマ構築
+  en: Schemacraft
+  zh: 圖式構築
+  status: approved
+  category: [system]
+  notes: 2026-11-26 Limtochess 模式的名稱：既有 65／65 個單位寫「圖式構築」（LimtochessUI、TutorialMainUIText、Passives_Enemy-schema、UserTicket、UserBanner、Items，全是 2026-11-26 的新譯）。「圖式」照 JP、EN 的 schema，字面也保留 KR「도상（圖像）」的「圖」，扣住「拿記憶當紙畫出後巷」的主題；臺灣心理學把 schema 譯「基模」，但玩家不易懂，使用者決定保留「圖式」（審核 #30）。一起的名稱見 도상、도상 왜곡、표상
+
+- kr: 도상 왜곡
+  jp: スキーマ歪曲
+  en: Schema Deformation
+  zh: 圖式扭曲
+  status: approved
+  category: [system]
+  notes: 2026-11-26 既有 13／13 個單位寫「圖式扭曲」（LimtochessUI、TutorialMainUIText）。見 도상구축
+
+- kr: 도상
+  jp: スキーマ
+  en: Schema
+  zh: 圖式
+  files: ["LimtochessUI.json", "TutorialMainUIText.json", "*-schema.json", "SchemaCraftChoice.json"]
+  status: approved
+  category: [system]
+  notes: 2026-11-26 圖式構築模式的一個階段（第N圖式）：這些檔既有 41／41 個單位寫「圖式」。其他檔的「도상」是一般用法（JP 図像），寫「圖像」（例如 BattleKeywords-a1c10p2 的「死亡與質量的圖像」），所以只限這些檔。見 도상구축
+
+- kr: 표상
+  jp: 表象
+  en: Representation
+  zh: 表象
+  files: ["LimtochessUI.json", "TutorialMainUIText.json", "*-schema.json", "SchemaCraftChoice.json"]
+  status: approved
+  category: [system]
+  notes: 2026-11-26 圖式構築模式地圖上的格子（EN Representation）：這些檔既有 17／17 個單位寫「表象」。其他檔的「표상」依語境也有寫「意象」的（BattleKeywords-a1c9p3 的風味文字），所以只限這些檔。見 도상구축
