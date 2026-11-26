@@ -5419,6 +5419,482 @@
     {
       "id": "TutoRailway2BokGak_P21_D3",
       "content": "而之後再領取獎勵將不再需要消耗腦啡肽模組，可以在任何時間領取。"
+    },
+    {
+      "id": "TutoSchemacraft_Title",
+      "content": "圖式構築"
+    },
+    {
+      "id": "TutoSchemacraft_P1_T1",
+      "content": "圖式構築"
+    },
+    {
+      "id": "TutoSchemacraft_P1_D1",
+      "content": "圖式構築是擲骰子探索圖式，並以戰鬥獎勵獲得的人格與E.G.O逐步完善編隊的內容。"
+    },
+    {
+      "id": "TutoSchemacraft_P1_D2",
+      "content": "戰鬥會自動進行，請選擇要前往哪個表象、要選擇哪個獎勵、何時使用E.G.O，以擊敗最終BOSS為目標。"
+    },
+    {
+      "id": "TutoSchemacraft_P1_T2",
+      "content": "入場"
+    },
+    {
+      "id": "TutoSchemacraft_P1_D3",
+      "content": "選擇「入場」後，會移動到初始編隊畫面。若有進行中的圖式構築，可以選擇「繼續」接著進行，或選擇「重新開始」從頭開始。"
+    },
+    {
+      "id": "TutoSchemacraft_P1_T3",
+      "content": "圖式構築通行證"
+    },
+    {
+      "id": "TutoSchemacraft_P1_D4",
+      "content": "進行圖式構築可以獲得通行證經驗值，並依等級領取獎勵。"
+    },
+    {
+      "id": "TutoSchemacraft_P2_T1",
+      "content": "初始編隊"
+    },
+    {
+      "id": "TutoSchemacraft_P2_D1",
+      "content": "編入最多4名一同開始圖式構築的人格。"
+    },
+    {
+      "id": "TutoSchemacraft_P2_T2",
+      "content": "手動編隊"
+    },
+    {
+      "id": "TutoSchemacraft_P2_D2",
+      "content": "在給定的經費內直接選擇想要的人格。經費較高的人格，可編入的數量有限制。"
+    },
+    {
+      "id": "TutoSchemacraft_P2_T3",
+      "content": "自動編隊"
+    },
+    {
+      "id": "TutoSchemacraft_P2_D3",
+      "content": "獲得以比手動編隊更多的經費組成的隨機編隊。獲得的編隊會保存在自動編隊清單中，可以從中選擇一個。"
+    },
+    {
+      "id": "TutoSchemacraft_P2_D4",
+      "content": "可以透過刷新自動編隊獲得新的編隊，剩餘次數每天重置。"
+    },
+    {
+      "id": "TutoSchemacraft_P2_D5",
+      "content": "圖式構築進行到一定圖式以上再結束時，會額外獲得自動編隊刷新機會。"
+    },
+    {
+      "id": "TutoSchemacraft_P2_D6",
+      "content": "以自動編隊開始時，會額外獲得圖式構築通行證經驗值。"
+    },
+    {
+      "id": "TutoSchemacraft_P3_T1",
+      "content": "探索圖式"
+    },
+    {
+      "id": "TutoSchemacraft_P3_D1",
+      "content": "圖式構築由數個圖式組成，擊敗各圖式的BOSS後，就會前往下一個圖式。"
+    },
+    {
+      "id": "TutoSchemacraft_P3_D2",
+      "content": "表象是圖式上可以移動的地點，分為常規遭遇戰、菁英遭遇戰、BOSS遭遇戰、休息、誘惑、事件。"
+    },
+    {
+      "id": "TutoSchemacraft_P3_T2",
+      "content": "骰子"
+    },
+    {
+      "id": "TutoSchemacraft_P3_D3",
+      "content": "擲骰子後，擲出點數距離內的表象會被揭曉，可以從中選擇一個移動。"
+    },
+    {
+      "id": "TutoSchemacraft_P3_T3",
+      "content": "圖式扭曲"
+    },
+    {
+      "id": "TutoSchemacraft_P3_D4",
+      "content": "剩餘次數與額外擲骰都用完後仍可以擲骰子，但每擲一次都會累積圖式扭曲。"
+    },
+    {
+      "id": "TutoSchemacraft_P3_D5",
+      "content": "圖式扭曲會強化目前圖式的敵人。"
+    },
+    {
+      "id": "TutoSchemacraft_P3_T4",
+      "content": "編隊與構築力"
+    },
+    {
+      "id": "TutoSchemacraft_P3_D6",
+      "content": "人格等級共同適用於所有編入的人格，戰鬥勝利越多就越高。"
+    },
+    {
+      "id": "TutoSchemacraft_P3_D7",
+      "content": "構築力是表示目前編隊強度的數值。可以在表象資訊中與建議構築力比較。"
+    },
+    {
+      "id": "TutoSchemacraft_P4_T1",
+      "content": "表象資訊"
+    },
+    {
+      "id": "TutoSchemacraft_P4_D1",
+      "content": "可以確認該表象的種類與敵人的平均等級等。選擇進入表象後，就會移動到該表象。"
+    },
+    {
+      "id": "TutoSchemacraft_P4_T2",
+      "content": "出現卡包清單"
+    },
+    {
+      "id": "TutoSchemacraft_P4_D2",
+      "content": "這是戰鬥勝利時可能出現的卡包清單。選擇各個卡包，可以確認卡包的詳細資訊。"
+    },
+    {
+      "id": "TutoSchemacraft_P5_T1",
+      "content": "戰鬥編隊"
+    },
+    {
+      "id": "TutoSchemacraft_P5_D1",
+      "content": "決定參與戰鬥的人格與順序。可戰鬥人數會隨著圖式的進行而增加。"
+    },
+    {
+      "id": "TutoSchemacraft_P5_D2",
+      "content": "超過可戰鬥人數的人格會編為待機人員，我方死亡時，會依編隊順序代替參與戰鬥。"
+    },
+    {
+      "id": "TutoSchemacraft_P5_T2",
+      "content": "戰鬥準備"
+    },
+    {
+      "id": "TutoSchemacraft_P5_D3",
+      "content": "選擇下方的按鈕，可以確認防禦方針與簡報。"
+    },
+    {
+      "id": "TutoSchemacraft_P5_D4",
+      "content": "準備完成後，選擇開始戰鬥即可開始戰鬥。"
+    },
+    {
+      "id": "TutoSchemacraft_P6_T1",
+      "content": "防禦方針"
+    },
+    {
+      "id": "TutoSchemacraft_P6_D1",
+      "content": "在防禦方針中，可以設定各人格使用守備技能的條件。"
+    },
+    {
+      "id": "TutoSchemacraft_P6_T2",
+      "content": "守備條件"
+    },
+    {
+      "id": "TutoSchemacraft_P6_D2",
+      "content": "選擇人格後，從清單中選擇使用守備技能的條件。"
+    },
+    {
+      "id": "TutoSchemacraft_P6_T3",
+      "content": "一併設定"
+    },
+    {
+      "id": "TutoSchemacraft_P6_D3",
+      "content": "可以一次將編入人格的守備條件恢復為預設值，或變更為相同的條件。"
+    },
+    {
+      "id": "TutoSchemacraft_P7_T1",
+      "content": "簡報"
+    },
+    {
+      "id": "TutoSchemacraft_P7_D1",
+      "content": "開始戰鬥前，可以確認我方與敵人的平均等級、出現的敵人數量與弱點。"
+    },
+    {
+      "id": "TutoSchemacraft_P7_T2",
+      "content": "罪孽碎片"
+    },
+    {
+      "id": "TutoSchemacraft_P7_D2",
+      "content": "可以比較首先出戰的人格技能所能獲得的罪孽碎片，以及裝備的E.G.O所需的罪孽碎片。"
+    },
+    {
+      "id": "TutoSchemacraft_P8_T1",
+      "content": "自動戰鬥"
+    },
+    {
+      "id": "TutoSchemacraft_P8_D1",
+      "content": "我方與敵人會依各自的速度值自動行動，雙方技能相遇時便會進行拚點。"
+    },
+    {
+      "id": "TutoSchemacraft_P8_T2",
+      "content": "TURN"
+    },
+    {
+      "id": "TutoSchemacraft_P8_D2",
+      "content": "畫面中央的量表顯示回合的進行狀況，回合結束時的效果會在每回合結束時套用。"
+    },
+    {
+      "id": "TutoSchemacraft_P8_T3",
+      "content": "戰鬥人數"
+    },
+    {
+      "id": "TutoSchemacraft_P8_D3",
+      "content": "出戰的我方死亡時會投入待機人員，編入的人格全部死亡時，戰鬥失敗。"
+    },
+    {
+      "id": "TutoSchemacraft_P8_T4",
+      "content": "套用效果"
+    },
+    {
+      "id": "TutoSchemacraft_P8_D4",
+      "content": "可以確認苦難與圖式扭曲對敵人套用中的效果。"
+    },
+    {
+      "id": "TutoSchemacraft_P8_T5",
+      "content": "罪孽碎片"
+    },
+    {
+      "id": "TutoSchemacraft_P8_D5",
+      "content": "戰鬥開始時，包含待機人格在內，每種罪孽屬性每2張技能可獲得1個罪孽碎片。戰鬥中也能依技能屬性獲得罪孽碎片。"
+    },
+    {
+      "id": "TutoSchemacraft_P9_T1",
+      "content": "人格面板"
+    },
+    {
+      "id": "TutoSchemacraft_P9_D1",
+      "content": "畫面下方的人格面板中，會依序顯示每名出戰人格發動中的技能、待機中的技能與守備技能。"
+    },
+    {
+      "id": "TutoSchemacraft_P9_T2",
+      "content": "使用E.G.O"
+    },
+    {
+      "id": "TutoSchemacraft_P9_D2",
+      "content": "罪孽碎片足夠時，可以選擇人格面板上的E.G.O來使用，目標會自動決定。"
+    },
+    {
+      "id": "TutoSchemacraft_P9_D3",
+      "content": "將E.G.O往上拖曳並放到敵人身上，即可直接指定目標。"
+    },
+    {
+      "id": "TutoSchemacraft_P9_D4",
+      "content": "將E.G.O往下拖曳會切換為超頻，直接放開或放到敵人身上即可使用。"
+    },
+    {
+      "id": "TutoSchemacraft_P9_D5",
+      "content": "長按E.G.O後放開，即可確認該E.G.O的資訊。"
+    },
+    {
+      "id": "TutoSchemacraft_P10_T1",
+      "content": "戰鬥報告"
+    },
+    {
+      "id": "TutoSchemacraft_P10_D1",
+      "content": "在戰鬥報告中，可以確認各陣營的體力變化、我方的平均理智值，以及各罪人的紀錄。"
+    },
+    {
+      "id": "TutoSchemacraft_P10_T2",
+      "content": "戰鬥後狀態"
+    },
+    {
+      "id": "TutoSchemacraft_P10_D2",
+      "content": "戰鬥結束後，死亡的人格也會歸隊，體力全部回復。理智值會延續到下一場戰鬥，低於0時會回復到0。"
+    },
+    {
+      "id": "TutoSchemacraft_P10_T3",
+      "content": "再次挑戰"
+    },
+    {
+      "id": "TutoSchemacraft_P10_D3",
+      "content": "每場戰鬥都可以再次挑戰指定的次數，在次數用完的狀態下失敗，圖式構築就會結束。"
+    },
+    {
+      "id": "TutoSchemacraft_P11_T1",
+      "content": "戰鬥獎勵 - 選擇卡包"
+    },
+    {
+      "id": "TutoSchemacraft_P11_D1",
+      "content": "戰鬥勝利後會提供3個卡包，可以從中選擇一個，再選擇人格與E.G.O。"
+    },
+    {
+      "id": "TutoSchemacraft_P11_D2",
+      "content": "各卡包會顯示確定出現的所屬或關鍵字，以及各經費人格的機率。"
+    },
+    {
+      "id": "TutoSchemacraft_P11_T2",
+      "content": "替換卡包"
+    },
+    {
+      "id": "TutoSchemacraft_P11_D3",
+      "content": "消耗刷新機會，可以將提供的卡包替換為出現卡包清單中的其他卡包。"
+    },
+    {
+      "id": "TutoSchemacraft_P11_D4",
+      "content": "每次戰鬥勝利都會獲得刷新機會，也可以在休息表象等處額外獲得。"
+    },
+    {
+      "id": "TutoSchemacraft_P12_T1",
+      "content": "選擇人格與E.G.O"
+    },
+    {
+      "id": "TutoSchemacraft_P12_D1",
+      "content": "開啟卡包後，從提供的人格與E.G.O中選擇指定的數量獲得。消耗刷新機會，每張卡片可以重抽一次。"
+    },
+    {
+      "id": "TutoSchemacraft_P12_T2",
+      "content": "編入 / 替換 / 碎片"
+    },
+    {
+      "id": "TutoSchemacraft_P12_D2",
+      "content": "編入：將尚未編入的罪人人格加入編隊。若已達編隊上限，則需選擇要移除的人格。"
+    },
+    {
+      "id": "TutoSchemacraft_P12_D3",
+      "content": "替換：將已編入的罪人人格換成所選的人格。"
+    },
+    {
+      "id": "TutoSchemacraft_P12_D4",
+      "content": "碎片：不編入人格，改為獲得該罪人的碎片。"
+    },
+    {
+      "id": "TutoSchemacraft_P12_T3",
+      "content": "同步與碎片"
+    },
+    {
+      "id": "TutoSchemacraft_P12_D5",
+      "content": "選擇與編隊中人格相同的人格，同步階段就會提升。帳號中未持有的人格，最多只能提升至同步3階。"
+    },
+    {
+      "id": "TutoSchemacraft_P12_D6",
+      "content": "罪人的碎片收集到所需數量後，該罪人的人格就會提升至下一個同步階段。"
+    },
+    {
+      "id": "TutoSchemacraft_P12_T4",
+      "content": "通用碎片"
+    },
+    {
+      "id": "TutoSchemacraft_P12_D7",
+      "content": "同步階段已達上限的罪人，其碎片會轉換為通用碎片。"
+    },
+    {
+      "id": "TutoSchemacraft_P12_T5",
+      "content": "E.G.O異想解析"
+    },
+    {
+      "id": "TutoSchemacraft_P12_D8",
+      "content": "E.G.O的異想解析階段依帳號持有的階段而定，未持有的E.G.O以異想解析1階套用。"
+    },
+    {
+      "id": "TutoSchemacraft_P13_T1",
+      "content": "菁英遭遇戰"
+    },
+    {
+      "id": "TutoSchemacraft_P13_D1",
+      "content": "在菁英遭遇戰中勝利後，除了卡包獎勵，還可以從精英獎勵中選擇一個獲得。"
+    },
+    {
+      "id": "TutoSchemacraft_P13_D2",
+      "content": "替換人格：將編隊中罪人的人格換成提供的其他人格。"
+    },
+    {
+      "id": "TutoSchemacraft_P13_D3",
+      "content": "編入人格：將提供的人格加入編隊。"
+    },
+    {
+      "id": "TutoSchemacraft_P13_D4",
+      "content": "成長：選擇1名編隊中的罪人，給予碎片。"
+    },
+    {
+      "id": "TutoSchemacraft_P13_D5",
+      "content": "不領取：不領取精英獎勵，直接繼續。"
+    },
+    {
+      "id": "TutoSchemacraft_P14_T1",
+      "content": "誘惑"
+    },
+    {
+      "id": "TutoSchemacraft_P14_D1",
+      "content": "在誘惑表象中會獲得人格與E.G.O的提議，選擇的人格會加入編隊，或與現有人格替換。"
+    },
+    {
+      "id": "TutoSchemacraft_P14_D2",
+      "content": "也可以選擇「不領取」，維持目前的戰鬥編隊。"
+    },
+    {
+      "id": "TutoSchemacraft_P14_D3",
+      "content": "依提議內容，可能會扣除骰子擲骰次數。剩餘次數不足時仍可選擇，但不足的部分會累積為圖式扭曲。"
+    },
+    {
+      "id": "TutoSchemacraft_P15_T1",
+      "content": "事件"
+    },
+    {
+      "id": "TutoSchemacraft_P15_D1",
+      "content": "在事件表象中會依情況提供選項，選擇其中一個即可獲得該效果。"
+    },
+    {
+      "id": "TutoSchemacraft_P15_D2",
+      "content": "也可以不選擇任何選項直接離開，這時不會獲得效果，也不會受到苦難。"
+    },
+    {
+      "id": "TutoSchemacraft_P15_T2",
+      "content": "苦難"
+    },
+    {
+      "id": "TutoSchemacraft_P15_D3",
+      "content": "選項的苦難會增加敵人的體力或敵人造成的傷害量，並持續累積到圖式構築結束為止。"
+    },
+    {
+      "id": "TutoSchemacraft_P16_T1",
+      "content": "休息"
+    },
+    {
+      "id": "TutoSchemacraft_P16_D1",
+      "content": "在休息表象中，可以從刷新機會、提升同步階段、增加骰子擲骰次數等效果中選擇一個獲得。"
+    },
+    {
+      "id": "TutoSchemacraft_P16_T2",
+      "content": "使用通用碎片"
+    },
+    {
+      "id": "TutoSchemacraft_P16_D2",
+      "content": "可以使用通用碎片，提升想要的人格的同步階段。可提升的階段會隨著圖式的進行而提高。"
+    },
+    {
+      "id": "TutoSchemacraft_P17_T1",
+      "content": "最終戰鬥結果"
+    },
+    {
+      "id": "TutoSchemacraft_P17_D1",
+      "content": "圖式構築結束後，可以確認圖式進度、戰鬥次數、參戰人格的傷害紀錄與獎勵紀錄。"
+    },
+    {
+      "id": "TutoSchemacraft_P18_T1",
+      "content": "圖式構築通行證"
+    },
+    {
+      "id": "TutoSchemacraft_P18_D1",
+      "content": "前進到越深的圖式，就能獲得越多通行證經驗值。"
+    },
+    {
+      "id": "TutoSchemacraft_P18_D2",
+      "content": "通行證獎勵只能在規定的期限內領取。"
+    },
+    {
+      "id": "TutoSchemacraft_P18_D3",
+      "content": "每週可獲得的通行證經驗值有上限。"
+    },
+    {
+      "id": "TutoSchemacraft_P18_D4",
+      "content": "每週重置時，進行中的圖式構築將會結束，敬請留意。"
+    },
+    {
+      "id": "TutoSchemacraft_P18_D6",
+      "content": "達到目前開放的最高等級後，在下一個區段開放之前，無法透過遊玩獲得通行證經驗值。"
+    },
+    {
+      "id": "TutoSchemacraft_P18_T2",
+      "content": "成就"
+    },
+    {
+      "id": "TutoSchemacraft_P18_D5",
+      "content": "成就預計將於之後的更新中追加。"
     }
   ]
 }

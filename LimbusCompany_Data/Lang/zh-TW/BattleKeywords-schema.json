@@ -1,0 +1,50 @@
+{
+  "dataList": [
+    {
+      "id": "BlackCloudBladeEnemy",
+      "name": "黑雲刀",
+      "desc": "- 最大值：1\n- 斬擊威力提升1\n- 使用斬擊技能攻擊命中時，施加1級流血強度",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "EngageToBattleEnemy",
+      "name": "刀戎接刃",
+      "desc": "- 最大值：1\n- 透過自身的技能、硬幣效果施加流血強度、回數時，施加的數值+1\n- 本場戰鬥期間，獲得1層斬擊威力提升、3層斬擊傷害強化",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "SharpSensibility",
+      "name": "揮刀的樂趣",
+      "desc": "- 最大值：100\n- 行動槽裝備「拔刀姿勢」時，自身的技能硬幣命中時，獲得10層(每個技能最多1次)\n- 由特定技能消耗",
+      "summary": "",
+      "flavor": "「專注於刀上，拔刀出鞘，有人倒下。像這樣生與死交錯的刀劍遊戲，才是最有趣的。」",
+      "undefined": "-"
+    },
+    {
+      "id": "InkwashShadow_LowMorale",
+      "name": "目中無人",
+      "desc": "- 士氣低落\n- 回合開始時，獲得1層傷害強化、1層脆弱",
+      "summary": ""
+    },
+    {
+      "id": "InkwashShadow_Panic",
+      "name": "目中無人",
+      "desc": "- 陷入恐慌\n- 回合開始時，獲得2層傷害強化、2層脆弱",
+      "summary": ""
+    },
+    {
+      "id": "ElectricPolePower",
+      "name": "高壓放電",
+      "desc": "- 最大值：10\n- 受到震顫引爆時，減少5層(每個技能最多1次)\n- 受到怠惰屬性技能攻擊時，減少1層(每個技能最多1次)\n- 受到非怠惰屬性技能造成的傷害-100%\n- 不會陷入混亂狀態",
+      "summary": ""
+    },
+    {
+      "id": "SweeperSchema",
+      "name": "打掃時間",
+      "desc": "{0}回合後打掃結束",
+      "summary": ""
+    }
+  ]
+}

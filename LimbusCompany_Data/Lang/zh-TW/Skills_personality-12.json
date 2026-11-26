@@ -3300,6 +3300,317 @@
           ]
         }
       ]
+    },
+    {
+      "id": 1121701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "脈動的線",
+          "desc": "[StartBattle] 使持有 [RougeGregLink] 的友方單位恢復其體力上限10%的體力(每回合最多1次)\n[WhenUse] 自身的 [ChargeRougeAlly] 回數低於5時，消耗體力上限2 x (5 - 當前 [ChargeRougeAlly] 回數)%的體力，使 [ChargeRougeAlly] 回數增加至5",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRougeAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRougeAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "脈動的線",
+          "desc": "[StartBattle] 使持有 [RougeGregLink] 的友方單位恢復其體力上限10%的體力(每回合最多1次)\n[WhenUse] 自身的 [ChargeRougeAlly] 回數低於5時，消耗體力上限2 x (5 - 當前 [ChargeRougeAlly] 回數)%的體力，使 [ChargeRougeAlly] 回數增加至5\n<style=\"highlight\">[WhenUse] 目標的 [Laceration] 強度不低於6時，硬幣威力+1</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRougeAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRougeAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "脈動的線",
+          "desc": "[StartBattle] 使持有 [RougeGregLink] 的友方單位恢復其體力上限10%的體力(每回合最多1次)\n[WhenUse] 自身的 [ChargeRougeAlly] 回數低於5時，消耗體力上限2 x (5 - 當前 [ChargeRougeAlly] 回數)%的體力，使 [ChargeRougeAlly] 回數增加至5\n<style=\"highlight\">[WhenUse] 自身每有2級 [ChargeRougeAlly] 強度，最終威力+1(最多2)</style>\n[WhenUse] 目標的 [Laceration] 強度不低於6時，硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRougeAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRougeAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1121702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "將願望與欲望撚成一縷",
+          "desc": "[StartBattle] 使持有 [RougeGregLink] 的友方單位的 [Charge] 回數增加4(每回合最多1次)\n[StartBattle] 對包含自身在內，所有屬於丹紅派或裝備色慾技能的友方人格施加1層 [AttackUp] (每回合最多1次)\n\n[WhenUse] 消耗自身4回 [ChargeRougeAlly]，最終威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的 [ChargeRougeAlly] 回數增加3"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的 [ChargeRougeAlly] 回數增加3"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "將願望與欲望撚成一縷",
+          "desc": "[StartBattle] 使持有 [RougeGregLink] 的友方單位的 [Charge] 回數增加4(每回合最多1次)\n[StartBattle] 對包含自身在內，所有屬於丹紅派或裝備色慾技能的友方人格施加1層 [AttackUp] (每回合最多1次)\n\n<style=\"highlight\">[WhenUse] 目標每有6級 [Laceration] 強度，硬幣威力+1(最多2)</style>\n[WhenUse] 消耗自身4回 [ChargeRougeAlly]，最終威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的 [ChargeRougeAlly] 回數增加3"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的 [ChargeRougeAlly] 回數增加3"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "將願望與欲望撚成一縷",
+          "desc": "[StartBattle] 使持有 [RougeGregLink] 的友方單位的 [Charge] 回數增加4(每回合最多1次)\n[StartBattle] 對包含自身在內，所有屬於丹紅派或裝備色慾技能的友方人格施加1層 [AttackUp] (每回合最多1次)\n\n<style=\"highlight\">[WhenUse] 自身每有2級 [ChargeRougeAlly] 強度，最終威力+1(最多2)</style>\n[WhenUse] 目標每有6級 [Laceration] 強度，硬幣威力+1(最多2)\n[WhenUse] 消耗自身4回 [ChargeRougeAlly]，最終威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的 [ChargeRougeAlly] 回數增加3"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的 [ChargeRougeAlly] 回數增加3"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1121703,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "燦爛交纏的線",
+          "desc": "[StartBattle] 對自身與持有 [RougeGregLink] 的友方單位施加2層 [AttackUp]\n[StartBattle] 對持有 [RougeGregLink] 的友方單位施加2層 [Enhancement]、3層 [RougeGregAutoHeal] (每回合最多2次)\n- 若該友方單位屬於丹紅派，額外施加2層 [AttackDmgUp]\n\n[WhenUse] 自身的 [ChargeRougeAlly] 強度不低於2時，最終威力+1\n[WhenUse] 目標的 [Laceration] 強度不低於6時，硬幣威力+1\n[WhenUse] 自身每有1層 [RougeGregWarmUp]，造成的傷害+30%\n\n[EndSkill] 消耗自身最多15回 [ChargeRougeAlly]，使持有 [RougeGregLink] 的友方單位增加與消耗的回數等量的 [Charge] 回數\n- 若此效果使目標的 [Charge] 回數超過上限，目標恢復其體力上限(超出數值)%的體力",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的 [ChargeRougeAlly] 回數增加8"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "燦爛交纏的線",
+          "desc": "[StartBattle] 對自身與持有 [RougeGregLink] 的友方單位施加2層 [AttackUp]\n[StartBattle] 對持有 [RougeGregLink] 的友方單位施加2層 [Enhancement]、3層 [RougeGregAutoHeal] (每回合最多2次)\n- 若該友方單位屬於丹紅派，額外施加2層 [AttackDmgUp]\n\n[WhenUse] 自身每有2級 [ChargeRougeAlly] 強度，最終威力+1(最多3)\n[WhenUse] 目標每有6級 [Laceration] 強度，硬幣威力+1(最多2)\n[WhenUse] 自身每有1層 [RougeGregWarmUp]，造成的傷害+30%\n\n[EndSkill] 消耗自身最多15回 [ChargeRougeAlly]，使持有 [RougeGregLink] 的友方單位增加與消耗的回數等量的 [Charge] 回數\n- 若此效果使目標的 [Charge] 回數超過上限，目標恢復其體力上限(超出數值)%的體力",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的 [ChargeRougeAlly] 回數增加8"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1121704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撚線",
+          "desc": "[CanDuelGuard]\n[SupportAlly]\n指定友方單位時，本技能變為 [CantDuel]\n\n[StartBattle] 獲得2層 [RougeGregAutoHeal] (每回合最多1次)\n[StartBattle] 使自身的 [ChargeRougeAlly] 回數增加4(每回合最多2次)\n[StartBattle] 指定友方單位時，對該友方單位使用「打結」(每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "撚線",
+          "desc": "[CanDuelGuard]\n[SupportAlly]\n指定友方單位時，本技能變為 [CantDuel]\n\n[StartBattle] 獲得2層 [RougeGregAutoHeal] (每回合最多1次)\n<style=\"highlight\">[StartBattle] 使包含自身在內，所有裝備色慾技能的友方人格的 [Charge] 回數增加2(每回合最多1次)</style>\n[StartBattle] 使自身的 [ChargeRougeAlly] 回數增加4(每回合最多2次)\n[StartBattle] 指定友方單位時，對該友方單位使用「打結」(每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1121705,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "打結",
+          "desc": "[CantIdentify]\n[CantDuel]\n本技能適用以下效果\n- 不會觸發守備技能\n- 不會因外部效果而重複使用\n- 該攻擊不會命中目標\n\n[BeforeUse] 目標為友方單位時，變更自身的「線」\n- [RougeGregRed] -> [RougeGregYellow]\n- [RougeGregYellow] -> [RougeGregBlue]\n- [RougeGregBlue] -> [RougeGregRed]\n\n[WhenUse] 自身未持有任何線時，獲得 [RougeGregRed]\n\n[EndSkill] 目標為友方單位時，施加 [RougeGregLink]，並依自身目前持有的效果觸發以下效果\n- [RougeGregRed]：使目標的 [Charge] 回數增加6\n- [RougeGregYellow]：施加1層 [Enhancement]、1層 [AttackDmgUp]\n- [RougeGregBlue]：自身與目標各恢復體力上限15%的體力",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1121706,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "紡出絲線",
+          "desc": "[CantDuel]\n\n本技能命中時，恢復自身體力上限8%的體力(每枚硬幣最多1次)\n\n[WhenUse] 使自身的 [ChargeRougeAlly] 回數增加3",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 消耗自身5回 [ChargeRougeAlly]，重複使用本硬幣(每個技能最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

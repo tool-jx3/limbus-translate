@@ -1,0 +1,256 @@
+{
+  "dataList": [
+    {
+      "id": "schemacraft_choice_1_title",
+      "content": "當舖"
+    },
+    {
+      "id": "schemacraft_choice_1_text",
+      "content": "不上不下的悲劇和貧窮，可不會讓人走進當舖。默默忍受了雜亂又寒酸的生活噪音，卻連寄託在未來的那點模糊期待都消失的時候。人們才終於聚集到這裡，放下最珍貴的過去。架上陳列著飾有浮雕的右臂義肢、不知會駛向何處的火車票、生了鏽卻似乎還值點錢的鋼筆等等。你尷尬地猶豫不前，老闆卻像是早已見過無數這樣的人，連頭也不抬地問道。「要當什麼？」翻找著口袋的你……"
+    },
+    {
+      "id": "schemacraft_choice_1_option_a",
+      "content": "把身上所有東西都擺了上去。"
+    },
+    {
+      "id": "schemacraft_choice_1_option_b",
+      "content": "只拿出最微不足道的一樣東西。"
+    },
+    {
+      "id": "schemacraft_choice_1_skip",
+      "content": "避開打量的視線逃走。"
+    },
+    {
+      "id": "schemacraft_choice_2_title",
+      "content": "代考"
+    },
+    {
+      "id": "schemacraft_choice_2_text",
+      "content": "聚在巷子裡的人們走了過來。「你們也知道，明天的術科考試……不會仔細核對長相。」你們很快就明白了這些人為什麼要說這些話。「而且我們家的孩子還太小了，經驗也不夠。」旁邊的人緊接著說道。「可是聽說這個月之內要把證照全部考到，下個月的入職面試才能加分……」他們沒說是什麼考試。不過，換作是你們，或許能稍微幫上一點忙，讓這些人為移居巢鋪好墊腳石。"
+    },
+    {
+      "id": "schemacraft_choice_2_option_a",
+      "content": "只派一名罪人去。雖然對方一臉不情願，但也沒辦法。"
+    },
+    {
+      "id": "schemacraft_choice_2_option_b",
+      "content": "派出抽籤抽中的兩人，好讓合格的人盡可能多一些。"
+    },
+    {
+      "id": "schemacraft_choice_2_skip",
+      "content": "不插手。移居巢可不是這麼容易的事。"
+    },
+    {
+      "id": "schemacraft_choice_3_title",
+      "content": "沒有位子的遊樂場"
+    },
+    {
+      "id": "schemacraft_choice_3_text",
+      "content": "一輛載著搬家行李的卡車，正擠進狹窄的巷子。遊樂場的孩子們一齊轉過頭，卻沒有一張臉露出歡迎的神情。「可是這座遊樂場已經滿了。紅色鞦韆八個，綠色鞦韆五個，溜滑梯十個，樓梯四個半，翹翹板十個。」看起來像孩子王的孩子一字一句地說。「那麼，新來的孩子要放在哪裡？」"
+    },
+    {
+      "id": "schemacraft_choice_3_option_a",
+      "content": "沙地。晚來的孩子只能待在那裡。"
+    },
+    {
+      "id": "schemacraft_choice_3_option_b",
+      "content": "紅色鞦韆。再擠一擠的話，說不定塞得進去？"
+    },
+    {
+      "id": "schemacraft_choice_3_skip",
+      "content": "決定不算進人數裡。背對孩子們走開。"
+    },
+    {
+      "id": "schemacraft_choice_4_title",
+      "content": "偽造名片"
+    },
+    {
+      "id": "schemacraft_choice_4_text",
+      "content": "「想當什麼都行。連做夢都沒想過的一切。」老闆大概應付過不少有故事的人，熟練地推銷著。和那番誇張的說詞不同，他手上拿著的只有幾張名片。「至少在這張紙上，你是K公司的組長。也能當上5級收尾人事務所的負責人。不過要是取締小組來了，這裡就會變成水果攤，而現在的你買走的就只是一顆熟透的蘋果。」只要有一張這傢伙巧妙做出來的名片，你就能成為任何人。"
+    },
+    {
+      "id": "schemacraft_choice_4_option_a",
+      "content": "隨便當個什麼人。只要不是現在的我，是誰都無所謂。"
+    },
+    {
+      "id": "schemacraft_choice_4_option_b",
+      "content": "當個翼的新進員工。這樣就會受到許多人羨慕。"
+    },
+    {
+      "id": "schemacraft_choice_4_skip",
+      "content": "滿足於現在的我。就這樣也是不錯的人生。"
+    },
+    {
+      "id": "schemacraft_choice_5_title",
+      "content": "破布山丘"
+    },
+    {
+      "id": "schemacraft_choice_5_text",
+      "content": "在擁擠的市場攤販之間，可以看見一座山丘。仔細一看，那是由無數衣服堆疊而成的層層衣堆。說不定是這裡所有人的待洗衣物吧。皺巴巴、滿是摺痕、又髒又臭的經歷。或許可以為了日後帶走一件。總有一天，我們的衣服也會流轉再流轉，堆積在這座山丘底下……"
+    },
+    {
+      "id": "schemacraft_choice_5_option_a",
+      "content": "帶走一套西裝。再洗一洗、燙一燙的話，說不定看起來還挺像樣的。"
+    },
+    {
+      "id": "schemacraft_choice_5_option_b",
+      "content": "帶走一張不知是什麼東西的皮。在這裡四處走動，有時候可能會碰上不能看起來像個人類的時刻。"
+    },
+    {
+      "id": "schemacraft_choice_5_skip",
+      "content": "什麼都不帶走。現在穿的就夠了。"
+    },
+    {
+      "id": "schemacraft_choice_6_title",
+      "content": "空無一人的公車站"
+    },
+    {
+      "id": "schemacraft_choice_6_text",
+      "content": "人跡斷絕的公車站。一輛不知開往何處、也不知從何而來的巴士停在你面前。彷彿在回報你一路等待的時間，巴士連一聲喇叭都沒按，靜靜地等著你。但這份等待不會太久。因為就算入夜之後，後巷還會再迎來一次夜晚……得趕快決定回去的路才行。"
+    },
+    {
+      "id": "schemacraft_choice_6_option_a",
+      "content": "搭上巴士。"
+    },
+    {
+      "id": "schemacraft_choice_6_option_b",
+      "content": "朝記憶中的方向走去。"
+    },
+    {
+      "id": "schemacraft_choice_6_skip",
+      "content": "目送巴士離開，留在公車站。下一班車真的會來嗎？"
+    },
+    {
+      "id": "schemacraft_choice_7_title",
+      "content": "白夜"
+    },
+    {
+      "id": "schemacraft_choice_7_text",
+      "content": "從密密麻麻的建築物縫隙之間，明亮的光芒正沖天而起。彷彿「夜晚」這種東西從世上消失了一般，整個世界都亮了起來。後巷的人們一個接一個抬起頭，望向天空。在那溫暖的光芒之下，你……"
+    },
+    {
+      "id": "schemacraft_choice_7_option_a",
+      "content": "和人們一起仰望天空。"
+    },
+    {
+      "id": "schemacraft_choice_7_option_b",
+      "content": "低頭看著道路上漫射的光。"
+    },
+    {
+      "id": "schemacraft_choice_7_skip",
+      "content": "只是緊緊閉上眼睛。"
+    },
+    {
+      "id": "schemacraft_choice_8_title",
+      "content": "貼滿傳聞的牆"
+    },
+    {
+      "id": "schemacraft_choice_8_text",
+      "content": "從瑣碎的跑腿到探索與受託殺人。找收尾人的委託似乎永遠不會間斷。委託的報酬至少表面上看來都很合理。要接下什麼、無視什麼，全看你自己的選擇。"
+    },
+    {
+      "id": "schemacraft_choice_8_option_a",
+      "content": "都市怪談。接下一如往常的委託。"
+    },
+    {
+      "id": "schemacraft_choice_8_option_b",
+      "content": "追查可能有賺頭的流言。"
+    },
+    {
+      "id": "schemacraft_choice_8_option_c",
+      "content": "都市傳說。接下懸有巨額報酬的委託。"
+    },
+    {
+      "id": "schemacraft_choice_8_skip",
+      "content": "不接受委託。"
+    },
+    {
+      "id": "schemacraft_choice_201_title",
+      "content": "熟悉又陌生的巷子"
+    },
+    {
+      "id": "schemacraft_choice_201_text",
+      "content": "迷宮般的巷子不斷延伸。這條後巷和記憶中任何一處的巷子都很像，同時又很陌生。在走了又走、仍看不到盡頭的巷子裡，你忽然察覺到是什麼吸引了你的注意。那是……"
+    },
+    {
+      "id": "schemacraft_choice_201_option_a",
+      "content": "周圍已經暗了下來。拿出終端機看看時間吧。"
+    },
+    {
+      "id": "schemacraft_choice_201_option_a_desc",
+      "content": "3點13分。後巷入夜後，他們就會到來。為了在太陽升起時不留下任何痕跡。"
+    },
+    {
+      "id": "schemacraft_choice_201_option_b",
+      "content": "是從某處傳來的音樂聲。輕快的節奏。"
+    },
+    {
+      "id": "schemacraft_choice_201_option_b_desc",
+      "content": "鏗鏘作響的鎖鏈聲。炫耀般的笑聲。沒錯。中指從不遺忘。既然跟他們結了仇，就只能一輩子當個逃亡者。因為終究會在某條巷口跟他們撞個正著。"
+    },
+    {
+      "id": "schemacraft_choice_201_option_c",
+      "content": "是某種東西在吠叫的聲音。"
+    },
+    {
+      "id": "schemacraft_choice_201_option_c_desc",
+      "content": "一隻開始吠叫後，整條巷子很快就充滿了跟著吠叫的聲音。長著四隻腳的東西在巷子裡爬來爬去，連自己在守護什麼都不知道就嚎叫著。"
+    },
+    {
+      "id": "schemacraft_choice_201_option_d",
+      "content": "提不起什麼興趣。繼續往前走。"
+    },
+    {
+      "id": "schemacraft_choice_201_option_d_desc",
+      "content": "決定繼續往前走。我在等待的東西，或許不在這條巷子裡。"
+    },
+    {
+      "id": "schemacraft_choice_201_option_e",
+      "content": "是毫無意義的東西。我已經什麼都不想在意了。"
+    },
+    {
+      "id": "schemacraft_choice_201_option_e_desc",
+      "content": "不管是什麼，我都不怎麼好奇。動靜很快就會平息。然後又會被新的動靜填滿吧。"
+    },
+    {
+      "id": "schemacraft_choice_202_title",
+      "content": "黑雲"
+    },
+    {
+      "id": "schemacraft_choice_202_text",
+      "content": "在迷宮般的巷子盡頭，你踏進了一片空蕩蕩的空地。這條後巷和記憶中任何一處的巷子都不同，既陌生，同時又漠不關心。正因如此，就算把記憶當作紙張，在上面隨心所欲地描繪後巷的生活也無妨吧。不分真偽，不辨虛實……就在街道的漠不關心化為不受歡迎的關注的那一刻。從思緒中綻放的黑雲，沿著巷子長長地垂落。"
+    },
+    {
+      "id": "schemacraft_choice_202_option_a",
+      "content": "斬開雲。"
+    },
+    {
+      "id": "schemacraft_choice_202_option_a_desc",
+      "content": "東部十劍。劍鬼。修羅。正因為打開地獄之門、慘烈地親身經歷過，我銘記著那些曾擁有這些名號的人。這裡有……"
+    },
+    {
+      "id": "schemacraft_choice_202_option_c",
+      "content": "避開雲逃走。"
+    },
+    {
+      "id": "schemacraft_choice_202_option_c_desc",
+      "content": "沒有必要非得踏進構築出來的世界。"
+    },
+    {
+      "id": "schemacraft_choice_203_title",
+      "content": ""
+    },
+    {
+      "id": "schemacraft_choice_203_text",
+      "content": ""
+    },
+    {
+      "id": "schemacraft_choice_203_option_a",
+      "content": ""
+    },
+    {
+      "id": "schemacraft_choice_203_option_a_desc",
+      "content": ""
+    }
+  ]
+}

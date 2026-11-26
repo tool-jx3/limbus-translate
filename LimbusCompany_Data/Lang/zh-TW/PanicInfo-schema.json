@@ -1,0 +1,10 @@
+{
+  "dataList": [
+    {
+      "id": 1126,
+      "panicName": "目中無人",
+      "lowMoraleDescription": "回合開始時，獲得1層 [AttackDmgUp]、1層 [Vulnerable]",
+      "panicDescription": "回合開始時，獲得2層 [AttackDmgUp]、2層 [Vulnerable]"
+    }
+  ]
+}

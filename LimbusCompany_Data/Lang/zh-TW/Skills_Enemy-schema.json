@@ -1,0 +1,483 @@
+{
+  "dataList": [
+    {
+      "id": 600201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撥雲",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [AttackDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度(每個技能最多1次)"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 重複使用本硬幣(每個技能最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 600202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "暗雲",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [Paralysis]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration] (每個技能最多1次)"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 重複使用本硬幣(每個技能最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 600203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "拔刀姿勢",
+          "desc": "[WhenUse] 恢復自身5點理智值\n- 體力不高於50%時，改為恢復10點",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [SlashTakeDamageUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [DefenseDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 600204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "雲斬",
+          "desc": "優先以 [Laceration] 強度最高的目標為攻擊對象\n[WhenUse]\n- 每有50層 [SharpSensibility]，攻擊容量+1，硬幣威力+1\n- 造成的傷害+([SharpSensibility] 層數)%\n[WhenUse] 造成的傷害+(主要目標的 [Laceration] 強度)%(最多50%)\n[DefeatDuel] 獲得3層 [Paralysis]，造成的傷害-75%，本技能造成的傷害不會使目標陷入混亂\n[EndSkillAll] 消耗全部 [SharpSensibility]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 目標的 [Laceration] 回數不低於5時，觸發2次 [Laceration]。使目標的 [Laceration] 回數減少2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 600205,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "雨斬",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加3層 [AttackDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 目標的 [Laceration] 回數不低於10時，觸發1次 [Laceration]。使目標的 [Laceration] 回數減少1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 600206,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "黑雲斬",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加2層 [Paralysis]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 目標的 [Laceration] 回數不低於10時，觸發1次 [Laceration]。使目標的 [Laceration] 回數減少1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 600207,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "空間斬[黑雲]",
+          "desc": "優先以 [Laceration] 強度最高的目標為攻擊對象\n[WhenUse]\n- 每有25層 [SharpSensibility]，攻擊容量+1\n- 每有50層 [SharpSensibility]，硬幣威力+1\n- 造成的傷害+([SharpSensibility] 層數)%\n[WhenUse] 造成的傷害+(主要目標的 [Laceration] 強度與回數之和)%(最多100%)\n[DefeatDuel] 獲得4層 [Paralysis]，造成的傷害-75%，本技能造成的傷害不會使目標陷入混亂\n[EndSkillAll] 消耗全部 [SharpSensibility]",
+          "flavor": "由黑雲會第2組長所創的劍術。即便是不完全的斬擊，也能在一瞬間斬開空間。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 目標的 [Laceration] 回數不低於5時，觸發2次 [Laceration]。使目標的 [Laceration] 回數減少2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 601101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "恆壓追擊",
+          "desc": "[WhenUse] 自身每有1層 [DogThunder]，硬幣威力+1(最多3)\n[WhenUse] 目標的 [Laceration] 與 [Burst] 之和每有5，造成的傷害+15%(最多60%)\n[WhenUse] 目標的 [ElectricShock] 不低於3時，本技能的所有硬幣變為 [SuperCoin]\n[DefeatDuel] 造成的傷害減少50%，本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加5級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加4回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 601102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "落雷牽引",
+          "desc": "[WhenUse] 自身每有1層 [DogThunder]，硬幣威力+1(最多3)\n[WhenUse] 目標的 [Laceration] 與 [Burst] 之和每有5，造成的傷害+20%(最多80%)\n[WhenUse] 目標的 [ElectricShock] 不低於3時，本技能的所有硬幣變為 [SuperCoin]\n[DefeatDuel] 造成的傷害減少50%，本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加5級 [Burst] 強度與2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 601103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤色閃電",
+          "desc": "[WhenUse] 自身每有2層 [ElectricPolePower]，攻擊容量+1(最多5)\n[WhenUse] 自身每有1層 [ElectricPolePower]，最終威力+1，造成的傷害+10%(最多10、100%)\n[WhenUse] 主要目標的 [Laceration] 與 [Burst] 之和每有5，造成的傷害+15%(最多60%)\n[DefeatDuel] 造成的傷害減少50%，本技能造成的傷害不會使目標陷入混亂\n[EndSkill] [ElectricPolePower] 消失",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加10級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 600703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "垃圾處理",
+          "desc": "目標的 [Laceration] 不低於4時，硬幣威力+1\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                },
+                {
+                  "desc": "本硬幣命中時，使自身恢復本硬幣造成傷害量30%的體力"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 重複使用本硬幣(每個技能最多3次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 600704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "333..1973",
+          "desc": "[StartBattle] 獲得4層 [Persistent]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身的混亂閾值後移5"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回流血 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 600706,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "後巷深宵",
+          "desc": "目標的 [Laceration] 不低於2時，硬幣威力+1\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復8點體力"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復8點體力"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身的混亂閾值後移8"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標的 [Laceration] 1次(使目標的 [Laceration] 回數減少1回)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

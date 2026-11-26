@@ -5,6 +5,10 @@
       "content": "基礎設定"
     },
     {
+      "id": "mainui_settings_ego_fast_forward_speed",
+      "content": "E.G.O快轉播放倍速"
+    },
+    {
       "id": "mainui_settings_graphic",
       "content": "圖像"
     },

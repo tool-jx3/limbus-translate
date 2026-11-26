@@ -3554,6 +3554,51 @@
       "name": "配合步調",
       "desc": "回合結束時，下回合使速度值最慢的1名友方人格獲得1層 [Agility] (優先給予收尾人)\n- 若該友方人格為收尾人，則改為下回合使其獲得1層 [Agility] 與1層 [AttackUp]",
       "summary": "下回合使速度值最慢的友方單位獲得 [Agility]\n若該友方單位為收尾人，則改為下回合獲得 [Agility] 與 [AttackUp]"
+    },
+    {
+      "id": 1011701,
+      "name": "贖罪浮雕",
+      "desc": "自身的 [ChargeNoirAlly] 強度不低於3時，使用基礎攻擊技能時，最後一枚硬幣變為 [SuperCoin]\n\n透過 [MoreJoesu] 每獲得1層 [BulletJoesu]，恢復自身體力上限2%的體力(每回合最多10%)\n- 若此效果恢復的體力超過上限，下回合獲得與超出數值等量的護盾"
+    },
+    {
+      "id": 1011702,
+      "name": "原罪式原皮供應",
+      "desc": "常駐：持有6層 [BulletJoesu]\n\n回合結束時，若 [BulletJoesu] 低於6層，觸發 [MoreJoesu]\n\n消耗 [BulletJoesu] 的硬幣開始時，若 [BulletJoesu] 不足，受到自身體力上限(不足數值x3)%的體力傷害(包含護盾傷害)，並獲得與不足數值等量的 [BulletJoesu]\n- 此效果不會使自身陷入混亂狀態，也不會使體力降至低於1\n\n戰鬥中每累計消耗10回自身的 [ChargeNoirAlly]，獲得1級 [ChargeNoirAlly] 強度"
+    },
+    {
+      "id": 1011703,
+      "name": "製革規範",
+      "desc": "回合開始時，若沒有 [RuleViolation] 為3的敵人，對1名裝備攻擊技能的敵人隨機施加以下規則之一(集中遭遇戰時，施加於隨機部位)\n- [RuleDontA]\n- [RuleDontB]\n- [RuleDontC]\n\n規則優先施加給自身最近一次攻擊的主要目標敵人；若該敵人不存在或已死亡，則優先施加給本體體力上限最高的敵人(無法指定目標的敵人除外)\n\n滿足以下任一條件時，獲得1層 [RuleSanction]，並使自身的 [ChargeNoirAlly] 回數增加4\n- 目標違反自身施加的規則時\n- 回合開始時，存在 [RuleViolation] 為3的敵人時\n\n自身的 [RuleSanction] 不低於3時，自身的基礎攻擊技能結束時，以「拋光、塗漆、精密加工」對戰場上 [RuleViolation] 最多的目標進行單方面攻擊(每回合最多1次。集中遭遇戰時，以部位判定)"
+    },
+    {
+      "id": 1011711,
+      "name": "贖罪浮雕",
+      "desc": "自身的 [ChargeNoirAlly] 強度不低於3時，使用基礎攻擊技能時，最後一枚硬幣變為 [SuperCoin]\n\n透過 [MoreJoesu] 每獲得1層 [BulletJoesu]，恢復自身體力上限<style=\"highlight\">4%</style>的體力(每回合最多<style=\"highlight\">20%</style>)\n- 若此效果恢復的體力超過上限，下回合獲得與超出數值等量的護盾"
+    },
+    {
+      "id": 1011721,
+      "name": "規則與法則的差異",
+      "desc": "戰鬥結束時，使 [Charge] 回數最少的1名友方 [PersonalityCharge] 的 [Charge] 回數增加1(若該友方人格屬於薛西弗斯，則改為使 [Charge] 回數增加2)\n- 強度固定的特殊 [Charge] 不在此效果的目標範圍內"
+    },
+    {
+      "id": 1121701,
+      "name": "就幫你轉轉紡車吧",
+      "desc": "戰鬥開始時，獲得1層 [RougeGregAutoHeal]\n戰鬥開始時，使自身的 [ChargeRougeAlly] 回數增加色慾共鳴數(最多7)"
+    },
+    {
+      "id": 1121702,
+      "name": "新傳來的赤紅之聲",
+      "desc": "戰鬥中每累計消耗10回自身的 [ChargeRougeAlly]，獲得1級 [ChargeRougeAlly] 強度\n\n戰鬥中有高級訂製服::丹紅派 丹紅之神 辛克萊時，施加1層 [GoldBuffet]\n\n回合開始時，若自身的 [RougeGregWarmUp] 達到最大值，在友方高級訂製服::丹紅派 丹紅之神 辛克萊人格持有 [TransformSinclair] 期間，獲得以下效果(每場戰鬥最多1次)\n\n- 獲得1層 [RougeFamilySinclair]\n- [ChargeRougeAlly] 回數上限+5\n- 使用技能「貪求（la voracité）」、「閹割（la castration）」前，獲得5回 [ChargeRougeAlly]"
+    },
+    {
+      "id": 1121703,
+      "name": "紛亂交纏的線團",
+      "desc": "自身基礎技能的體力減少效果不會使自身陷入混亂，也不會使體力降至低於1(體力為1時，仍可適用基礎技能效果中因消耗體力而觸發的效果)\n\n持有 [RougeGregLink] 的友方單位對敵人使用的色慾屬性技能攻擊結束時，對該次攻擊的主要目標使用技能「紡出絲線」(每回合最多1次)\n- 若主要目標已死亡，則對隨機敵人使用\n- 透過此效果使用技能「紡出絲線」時，獲得1層 [RougeGregWarmUp]"
+    },
+    {
+      "id": 1121721,
+      "name": "疊縫",
+      "desc": "戰鬥開始時，對當前體力比例最低的1名友方單位施加1層 [RougeGregAutoHeal]"
     }
   ]
 }

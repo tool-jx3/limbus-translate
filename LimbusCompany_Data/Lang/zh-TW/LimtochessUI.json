@@ -1,0 +1,4104 @@
+{
+  "dataList": [
+    {
+      "id": "limtochess_entrance_continue",
+      "content": "繼續遊戲"
+    },
+    {
+      "id": "limtochess_entrance_new_game",
+      "content": "重新開始"
+    },
+    {
+      "id": "limtochess_entrance_pass",
+      "content": "圖式構築通行證"
+    },
+    {
+      "id": "limtochess_entrance_overwrite_title",
+      "content": "重新開始"
+    },
+    {
+      "id": "limtochess_entrance_overwrite_desc",
+      "content": "要結束進行中的圖式構築並重新開始嗎？\n選擇確認後，將依目前為止的進度領取獎勵，再重新開始。"
+    },
+    {
+      "id": "limtochess_mode_name",
+      "content": "圖式構築"
+    },
+    {
+      "id": "limtochess_mode_title",
+      "content": "圖式構築（測試版）"
+    },
+    {
+      "id": "limtochess_entrance_enter",
+      "content": "進入"
+    },
+    {
+      "id": "limtochess_entrance_auto_select_bonus",
+      "content": "本次遊玩的自動編成刷新次數+{0}"
+    },
+    {
+      "id": "limtochess_entrance_locked",
+      "content": "{0}後可進入。"
+    },
+    {
+      "id": "limtochess_room_type_start",
+      "content": "起始房間"
+    },
+    {
+      "id": "limtochess_room_type_empty",
+      "content": "空房間"
+    },
+    {
+      "id": "limtochess_room_type_normal",
+      "content": "一般"
+    },
+    {
+      "id": "limtochess_room_type_elite",
+      "content": "精英"
+    },
+    {
+      "id": "limtochess_room_type_rest",
+      "content": "休息"
+    },
+    {
+      "id": "limtochess_room_type_temptation",
+      "content": "誘惑"
+    },
+    {
+      "id": "limtochess_room_type_event",
+      "content": "事件"
+    },
+    {
+      "id": "limtochess_room_type_segment_boss",
+      "content": "BOSS"
+    },
+    {
+      "id": "limtochess_room_type_final_boss",
+      "content": "最終BOSS"
+    },
+    {
+      "id": "limtochess_roominfo_title_room",
+      "content": "第{0}圖式 {1} #{2}"
+    },
+    {
+      "id": "limtochess_roominfo_bonus_none",
+      "content": "-"
+    },
+    {
+      "id": "limtochess_roominfo_bonus_mp_recover",
+      "content": "理智值恢復+{0}（進入房間時適用）"
+    },
+    {
+      "id": "limtochess_roominfo_bonus_mp_risk",
+      "content": "理智值損失風險-{0}（進入房間時適用）"
+    },
+    {
+      "id": "limtochess_roominfo_list_effect",
+      "content": "效果"
+    },
+    {
+      "id": "limtochess_roominfo_list_penalty",
+      "content": "懲罰"
+    },
+    {
+      "id": "limtochess_roominfo_list_event_boss",
+      "content": "描繪在本次圖式構築盡頭將要面對之物"
+    },
+    {
+      "id": "limtochess_roominfo_list_event_skip",
+      "content": "不做選擇直接離開的話，效果與苦難都不會獲得"
+    },
+    {
+      "id": "limtochess_roominfo_list_tempt_offer",
+      "content": "進入時，可選擇並獲得人格或E.G.O。（也可以不選擇。）"
+    },
+    {
+      "id": "limtochess_roominfo_list_tempt_mp",
+      "content": "依提議，編成人格全員理智值{0}"
+    },
+    {
+      "id": "limtochess_roominfo_list_rest_pick",
+      "content": "進入後，從以下休息效果中選擇一項"
+    },
+    {
+      "id": "limtochess_roominfo_list_rest_mp",
+      "content": "理智值恢復"
+    },
+    {
+      "id": "limtochess_roominfo_list_rest_reroll",
+      "content": "刷新次數"
+    },
+    {
+      "id": "limtochess_roominfo_list_rest_syncup",
+      "content": "1名編成人格同步+1階段"
+    },
+    {
+      "id": "limtochess_roominfo_list_rest_freeroll_carry",
+      "content": "額外擲骰（未使用的額外擲骰會延續到下一個圖式）"
+    },
+    {
+      "id": "limtochess_roominfo_list_event_pool",
+      "content": "進入後會出現以下事件之一，選擇一個選項即可獲得效果"
+    },
+    {
+      "id": "limtochess_roominfo_to_formation",
+      "content": "開始編成"
+    },
+    {
+      "id": "limtochess_roominfo_move",
+      "content": "進入表象"
+    },
+    {
+      "id": "limtochess_roominfo_cannot_move",
+      "content": "無法前往"
+    },
+    {
+      "id": "limtochess_battleprep_step_formation",
+      "content": "編成"
+    },
+    {
+      "id": "limtochess_battleprep_step_defense",
+      "content": "防禦方針"
+    },
+    {
+      "id": "limtochess_battleprep_step_briefing",
+      "content": "簡報"
+    },
+    {
+      "id": "limtochess_battleprep_back",
+      "content": "返回"
+    },
+    {
+      "id": "limtochess_packpreview_grade",
+      "content": "{0}級"
+    },
+    {
+      "id": "limtochess_packpreview_label_random",
+      "content": "隨機"
+    },
+    {
+      "id": "limtochess_pack_mix_identity",
+      "content": "從{0}個人格中獲得{1}個"
+    },
+    {
+      "id": "limtochess_pack_mix_ego",
+      "content": "從{0}個E.G.O中獲得{1}個"
+    },
+    {
+      "id": "limtochess_pack_keep_identity",
+      "content": "人格{0}名"
+    },
+    {
+      "id": "limtochess_pack_keep_ego",
+      "content": "E.G.O {0}個"
+    },
+    {
+      "id": "limtochess_pack_keep_suffix",
+      "content": "可獲得"
+    },
+    {
+      "id": "limtochess_pack_mix_identity_none",
+      "content": "沒有人格"
+    },
+    {
+      "id": "limtochess_pack_mix_ego_none",
+      "content": "沒有E.G.O"
+    },
+    {
+      "id": "limtochess_pack_cost",
+      "content": "COST {0}"
+    },
+    {
+      "id": "limtochess_packpreview_tier_line",
+      "content": "{0} / {1}名"
+    },
+    {
+      "id": "limtochess_personality_name",
+      "content": "{0} {1}"
+    },
+    {
+      "id": "limtochess_level",
+      "content": "Lv {0}"
+    },
+    {
+      "id": "limtochess_battleprep_start",
+      "content": "開始戰鬥"
+    },
+    {
+      "id": "limtochess_defense_option_placeholder",
+      "content": "N"
+    },
+    {
+      "id": "limtochess_defense_option_queue",
+      "content": "{0}個"
+    },
+    {
+      "id": "limtochess_defense_type_guard",
+      "content": "防禦"
+    },
+    {
+      "id": "limtochess_defense_type_evade",
+      "content": "閃避"
+    },
+    {
+      "id": "limtochess_defense_type_counter",
+      "content": "反擊"
+    },
+    {
+      "id": "limtochess_defense_preset_name_0",
+      "content": "不使用"
+    },
+    {
+      "id": "limtochess_defense_preset_name_4",
+      "content": "受到攻擊時"
+    },
+    {
+      "id": "limtochess_defense_preset_name_6",
+      "content": "死亡危機"
+    },
+    {
+      "id": "limtochess_defense_preset_name_7",
+      "content": "受到強力攻擊時"
+    },
+    {
+      "id": "limtochess_defense_preset_name_11",
+      "content": "待命技能中有不少於{0}個相同屬性"
+    },
+    {
+      "id": "limtochess_defense_preset_name_12",
+      "content": "固有條件"
+    },
+    {
+      "id": "limtochess_defense_preset_desc_0",
+      "content": "不使用守備技能"
+    },
+    {
+      "id": "limtochess_defense_preset_desc_4",
+      "content": "有敵人將對自身使用攻擊技能時"
+    },
+    {
+      "id": "limtochess_defense_preset_desc_6",
+      "content": "似乎將受到致死的傷害時"
+    },
+    {
+      "id": "limtochess_defense_preset_desc_7",
+      "content": "有敵人將對自身使用技能3或強化技能3時"
+    },
+    {
+      "id": "limtochess_defense_preset_desc_11",
+      "content": "待命中的技能有不少於{0}個相同屬性時"
+    },
+    {
+      "id": "limtochess_defense_preset_desc_12",
+      "content": "滿足此人格的固有條件時"
+    },
+    {
+      "id": "limtochess_defense_default",
+      "content": "預設"
+    },
+    {
+      "id": "limtochess_defense_all_default",
+      "content": "全員恢復預設"
+    },
+    {
+      "id": "limtochess_defense_all_selected",
+      "content": "將所選人格的設定套用至全員"
+    },
+    {
+      "id": "limtochess_defense_all_none",
+      "content": "全員不使用"
+    },
+    {
+      "id": "limtochess_briefing_average_level",
+      "content": "平均等級"
+    },
+    {
+      "id": "limtochess_briefing_enemy_status",
+      "content": "敵人狀態"
+    },
+    {
+      "id": "limtochess_briefing_speed",
+      "content": "速度值"
+    },
+    {
+      "id": "limtochess_briefing_ally",
+      "content": "友方"
+    },
+    {
+      "id": "limtochess_briefing_enemy",
+      "content": "敵方"
+    },
+    {
+      "id": "limtochess_briefing_headcount",
+      "content": "人數"
+    },
+    {
+      "id": "limtochess_briefing_threat_0",
+      "content": "從容"
+    },
+    {
+      "id": "limtochess_briefing_threat_1",
+      "content": "普通"
+    },
+    {
+      "id": "limtochess_briefing_threat_2",
+      "content": "危險"
+    },
+    {
+      "id": "limtochess_briefing_threat_3",
+      "content": "絕望"
+    },
+    {
+      "id": "limtochess_briefing_script_0",
+      "content": "一般"
+    },
+    {
+      "id": "limtochess_briefing_script_1",
+      "content": "精英"
+    },
+    {
+      "id": "limtochess_briefing_script_2",
+      "content": "BOSS"
+    },
+    {
+      "id": "limtochess_briefing_wave_tag",
+      "content": "波次 ×{0}"
+    },
+    {
+      "id": "limtochess_briefing_enemy_count",
+      "content": "×{0}"
+    },
+    {
+      "id": "limtochess_briefing_refill",
+      "content": "戰鬥中將額外出現{0}名敵人。"
+    },
+    {
+      "id": "limtochess_briefing_no_refill",
+      "content": "沒有額外出現的敵人。"
+    },
+    {
+      "id": "limtochess_briefing_speed_faster",
+      "content": "友方大多會先行動。"
+    },
+    {
+      "id": "limtochess_briefing_speed_slower",
+      "content": "敵方大多會先行動。"
+    },
+    {
+      "id": "limtochess_briefing_speed_similar",
+      "content": "友方與敵方的速度值相近。"
+    },
+    {
+      "id": "limtochess_briefing_multi_action_tag",
+      "content": "連續行動 ×{0}"
+    },
+    {
+      "id": "limtochess_briefing_multi_action_grow_tag",
+      "content": "連續行動 ×{0}→×{1}"
+    },
+    {
+      "id": "limtochess_packselect_my_deck",
+      "content": "確認編成"
+    },
+    {
+      "id": "limtochess_packselect_deck_tag",
+      "content": "{0} {1}"
+    },
+    {
+      "id": "limtochess_packselect_reroll",
+      "content": "刷新次數"
+    },
+    {
+      "id": "limtochess_packselect_deck_count",
+      "content": "戰鬥編成中{0}名"
+    },
+    {
+      "id": "limtochess_packselect_swap",
+      "content": "刷新卡包"
+    },
+    {
+      "id": "limtochess_packselect_swap_cost",
+      "content": "更換卡包．消耗{0}次機會"
+    },
+    {
+      "id": "limtochess_packselect_swap_done",
+      "content": "刷新完成"
+    },
+    {
+      "id": "limtochess_packselect_card_reroll",
+      "content": "更換"
+    },
+    {
+      "id": "limtochess_packselect_rest_title",
+      "content": "此房間的卡包列表"
+    },
+    {
+      "id": "limtochess_packselect_rest_desc",
+      "content": "更換卡包時，會變為以下卡包之一"
+    },
+    {
+      "id": "limtochess_packselect_open_pack",
+      "content": "開啟卡包"
+    },
+    {
+      "id": "limtochess_packselect_open_pack_mix",
+      "content": "開啟卡包．人格 {0}．E.G.O {1}"
+    },
+    {
+      "id": "limtochess_packselect_open_pack_step",
+      "content": "{0} ({1}/{2})"
+    },
+    {
+      "id": "limtochess_packselect_odds_cost",
+      "content": "人格費用"
+    },
+    {
+      "id": "limtochess_packselect_odds_ego",
+      "content": "E.G.O等級"
+    },
+    {
+      "id": "limtochess_packselect_odds_sync",
+      "content": "卡片同步"
+    },
+    {
+      "id": "limtochess_packselect_odds_item_cost",
+      "content": "COST {0} {1}%"
+    },
+    {
+      "id": "limtochess_packselect_odds_item_sync",
+      "content": "同步{0}階段 {1}%"
+    },
+    {
+      "id": "limtochess_packselect_odds_item",
+      "content": "{0} {1}%"
+    },
+    {
+      "id": "limtochess_packselect_pack_title",
+      "content": "[ {0} ] 卡包"
+    },
+    {
+      "id": "limtochess_packselect_confirm",
+      "content": "確定"
+    },
+    {
+      "id": "limtochess_packselect_confirm_count",
+      "content": "{0}/{1}"
+    },
+    {
+      "id": "limtochess_packselect_confirm_preview",
+      "content": "已選項目"
+    },
+    {
+      "id": "limtochess_packselect_toggle_recruit",
+      "content": "編成"
+    },
+    {
+      "id": "limtochess_packselect_toggle_replace",
+      "content": "更換"
+    },
+    {
+      "id": "limtochess_packselect_toggle_fragment",
+      "content": "碎片"
+    },
+    {
+      "id": "limtochess_packselect_toggle_syncup",
+      "content": "同步"
+    },
+    {
+      "id": "limtochess_packselect_desc_recruit",
+      "content": "將加入編成。\n從同步{0}階段開始"
+    },
+    {
+      "id": "limtochess_packselect_desc_replace",
+      "content": "選擇後，將與目前的人格\n[{0}]交換。"
+    },
+    {
+      "id": "limtochess_packselect_desc_ego_equip",
+      "content": "選擇後，將裝備於空的{0}欄位。"
+    },
+    {
+      "id": "limtochess_packselect_ego_tier",
+      "content": "異想解析{0}階段"
+    },
+    {
+      "id": "limtochess_packselect_sync_change",
+      "content": "同步{0}階段 → 同步{1}階段"
+    },
+    {
+      "id": "limtochess_packselect_summary_recruit",
+      "content": "編成{0}"
+    },
+    {
+      "id": "limtochess_packselect_summary_replace",
+      "content": "交換{0}的人格"
+    },
+    {
+      "id": "limtochess_packselect_summary_syncup",
+      "content": "{0} 同步{1}階段"
+    },
+    {
+      "id": "limtochess_packselect_summary_fragment",
+      "content": "獲得{0}的碎片（同步所需的{2}個碎片中的{1}個）"
+    },
+    {
+      "id": "limtochess_packselect_summary_fragment_keep",
+      "content": "保管{1}個{0}的碎片"
+    },
+    {
+      "id": "limtochess_packselect_summary_fragment_generic",
+      "content": "{0} 通用碎片+{1}"
+    },
+    {
+      "id": "limtochess_packselect_summary_none",
+      "content": "沒有選擇的人格、E.G.O。\n※ 人格同步所需碎片（同步1/2/3階段）：2/3/3個"
+    },
+    {
+      "id": "limtochess_packselect_summary_ego_equip",
+      "content": "裝備{0}的E.G.O"
+    },
+    {
+      "id": "limtochess_packselect_summary_ego_replace",
+      "content": "交換{0}的E.G.O"
+    },
+    {
+      "id": "limtochess_packselect_discard",
+      "content": ""
+    },
+    {
+      "id": "limtochess_packselect_full",
+      "content": "最多可選擇{0}張卡片。點擊已選的卡片即可取消選擇。"
+    },
+    {
+      "id": "limtochess_packselect_full_identity",
+      "content": "人格最多可選擇{0}張。點擊已選的卡片即可取消選擇。"
+    },
+    {
+      "id": "limtochess_packselect_full_ego",
+      "content": "E.G.O最多可選擇{0}張。點擊已選的卡片即可取消選擇。"
+    },
+    {
+      "id": "limtochess_packselect_count_identity",
+      "content": "人格 {0}/{1}"
+    },
+    {
+      "id": "limtochess_packselect_count_ego",
+      "content": "E.G.O {0}/{1}"
+    },
+    {
+      "id": "limtochess_packselect_need_identity",
+      "content": "還需選擇{0}張人格才能確定。"
+    },
+    {
+      "id": "limtochess_packselect_need_ego",
+      "content": "還需選擇{0}張E.G.O才能確定。"
+    },
+    {
+      "id": "limtochess_packselect_need_both",
+      "content": "還需選擇{0}張人格、{1}張E.G.O才能確定。"
+    },
+    {
+      "id": "limtochess_roster_count",
+      "content": "編成 {0}/{1}"
+    },
+    {
+      "id": "limtochess_roster_replace_note",
+      "content": "已達到目前圖式的編成人數上限（{0}名），需要移除{1}名。"
+    },
+    {
+      "id": "limtochess_confirm_unclaimed_title",
+      "content": "有尚未領取的獎勵"
+    },
+    {
+      "id": "limtochess_confirm_unclaimed_desc",
+      "content": "{0}\n要直接繼續進行嗎？"
+    },
+    {
+      "id": "limtochess_confirm_overwrite_title",
+      "content": "重新開局"
+    },
+    {
+      "id": "limtochess_packselect_reroll_bonus_title",
+      "content": "刷新次數獎勵"
+    },
+    {
+      "id": "limtochess_packselect_reroll_count",
+      "content": "{0}/{1}"
+    },
+    {
+      "id": "limtochess_elite_swap_title",
+      "content": "交換人格：{0}"
+    },
+    {
+      "id": "limtochess_elite_swap_head",
+      "content": "交換對象"
+    },
+    {
+      "id": "limtochess_elite_personality_sync",
+      "content": "{0} 同步{1}階段"
+    },
+    {
+      "id": "limtochess_elite_recruit_title",
+      "content": "編成：{0}"
+    },
+    {
+      "id": "limtochess_elite_replace_title",
+      "content": "交換：{0}"
+    },
+    {
+      "id": "limtochess_elite_keyword_head",
+      "content": "同步{0}階段的人格"
+    },
+    {
+      "id": "limtochess_elite_base_ego",
+      "content": "罪人的基本E.G.O"
+    },
+    {
+      "id": "limtochess_elite_growth_title",
+      "content": "成長：碎片+{0}個"
+    },
+    {
+      "id": "limtochess_elite_growth_head",
+      "content": "給予戰鬥編成內的1名罪人碎片"
+    },
+    {
+      "id": "limtochess_elite_growth_desc",
+      "content": "用於人格同步。"
+    },
+    {
+      "id": "limtochess_elite_skip_title",
+      "content": "不領取"
+    },
+    {
+      "id": "limtochess_elite_skip_head",
+      "content": "維持目前的戰鬥編成"
+    },
+    {
+      "id": "limtochess_elite_sync",
+      "content": "同步{0}階"
+    },
+    {
+      "id": "limtochess_elite_fragments_label",
+      "content": "持有{0}個碎片"
+    },
+    {
+      "id": "limtochess_elite_back",
+      "content": "返回"
+    },
+    {
+      "id": "limtochess_elite_confirm",
+      "content": "確認"
+    },
+    {
+      "id": "limtochess_confirm_pack_none",
+      "content": "尚未選擇任何人格卡。最多可以領取{0}張。"
+    },
+    {
+      "id": "limtochess_confirm_pack_left",
+      "content": "還可以再領取{0}張人格卡（已選{1}/{2}張）。"
+    },
+    {
+      "id": "limtochess_confirm_pack_none_ego",
+      "content": "尚未選擇任何E.G.O卡。最多可以領取{0}張。"
+    },
+    {
+      "id": "limtochess_confirm_pack_none_both",
+      "content": "尚未選擇任何卡片。最多可以領取{0}張人格、{1}張E.G.O。"
+    },
+    {
+      "id": "limtochess_confirm_pack_left_ego",
+      "content": "還可以再領取{0}張E.G.O卡（已選{1}/{2}張）。"
+    },
+    {
+      "id": "limtochess_confirm_pack_left_both",
+      "content": "還可以再領取{0}張人格卡、{1}張E.G.O卡（已選{2}/{3}張）。"
+    },
+    {
+      "id": "limtochess_confirm_reward_skip",
+      "content": "可領取的{0}個獎勵一個都不領取，直接繼續。"
+    },
+    {
+      "id": "limtochess_confirm_reward_rest_generic",
+      "content": "這次休息還可以使用{0}個通用碎片（最多{1}次）。\n領取休息獎勵後休息就會結束，這次將無法再使用。"
+    },
+    {
+      "id": "limtochess_confirm_ego_replace_title",
+      "content": "替換E.G.O"
+    },
+    {
+      "id": "limtochess_confirm_ego_replace_desc",
+      "content": "{0}的{1}欄位已經有「{2}」（{3}階）。\n要以「{4}」（{5}階）覆蓋嗎？\n取消的話，將捨棄新的E.G.O。"
+    },
+    {
+      "id": "limtochess_elite_disabled_swap",
+      "content": "沒有可以替換的人格。"
+    },
+    {
+      "id": "limtochess_elite_disabled_keyword",
+      "content": "沒有可以選擇的人格。"
+    },
+    {
+      "id": "limtochess_elite_disabled_growth",
+      "content": "沒有可以接收碎片的罪人。"
+    },
+    {
+      "id": "limtochess_elite_head_swap",
+      "content": "替換人格"
+    },
+    {
+      "id": "limtochess_elite_head_recruit",
+      "content": "編入人格"
+    },
+    {
+      "id": "limtochess_elite_head_growth",
+      "content": "成長"
+    },
+    {
+      "id": "limtochess_elite_growth_target",
+      "content": "給予戰鬥編隊中的1名罪人{0}個碎片"
+    },
+    {
+      "id": "limtochess_elite_base_ego_equipped",
+      "content": "罪人裝備著基本E.G.O"
+    },
+    {
+      "id": "limtochess_elite_roster_full_head",
+      "content": "編隊人數已滿"
+    },
+    {
+      "id": "limtochess_elite_roster_full_desc",
+      "content": "選擇後將移除{0}名現有人格"
+    },
+    {
+      "id": "limtochess_elite_skip_desc",
+      "content": "不領取精英獎勵，\n直接繼續。"
+    },
+    {
+      "id": "limtochess_start_title_direct",
+      "content": "初始編隊"
+    },
+    {
+      "id": "limtochess_start_title_auto",
+      "content": "初始編隊"
+    },
+    {
+      "id": "limtochess_start_toggle_direct",
+      "content": "手動編隊"
+    },
+    {
+      "id": "limtochess_start_toggle_auto",
+      "content": "自動編隊"
+    },
+    {
+      "id": "limtochess_start_count",
+      "content": "{0}/{1}"
+    },
+    {
+      "id": "limtochess_start_remaining_cost",
+      "content": "剩餘費用"
+    },
+    {
+      "id": "limtochess_start_clear_all",
+      "content": "全部取消編隊"
+    },
+    {
+      "id": "limtochess_start_empty_slot",
+      "content": "可編入"
+    },
+    {
+      "id": "limtochess_start_empty",
+      "content": "取消編隊"
+    },
+    {
+      "id": "limtochess_start_locked_band",
+      "content": "無法編入"
+    },
+    {
+      "id": "limtochess_start_locked_list",
+      "content": "※ 自動編隊中無法修改清單。"
+    },
+    {
+      "id": "limtochess_start_block_budget",
+      "content": "費用不足"
+    },
+    {
+      "id": "limtochess_start_block_topcost",
+      "content": "{0}費用限制"
+    },
+    {
+      "id": "limtochess_start_block_full",
+      "content": "人數超過上限"
+    },
+    {
+      "id": "limtochess_start_block_auto",
+      "content": "自動編隊中"
+    },
+    {
+      "id": "limtochess_start_desc_auto",
+      "content": "※自動編隊時額外獲得通行證經驗值"
+    },
+    {
+      "id": "limtochess_start_desc_topcost",
+      "content": ""
+    },
+    {
+      "id": "limtochess_start_start",
+      "content": "開始"
+    },
+    {
+      "id": "limtochess_start_saved_deck",
+      "content": "自動編隊清單"
+    },
+    {
+      "id": "limtochess_start_reroll",
+      "content": "刷新自動編隊"
+    },
+    {
+      "id": "limtochess_start_rolls_left",
+      "content": "剩餘擲骰次數"
+    },
+    {
+      "id": "limtochess_start_rolls_bonus",
+      "content": "． 上一局的進度獎勵使自動編隊刷新機會 +{0}"
+    },
+    {
+      "id": "limtochess_start_reroll_help",
+      "content": "（佔位）重新擲骰自動編隊。\n\n． 每天提供<color=#5f77fa>{0}次</color>，日期變更後會重新補滿。\n． 每一局結束時（無論通關、失敗或放棄），會依擊敗的圖式BOSS數量，獲得下一局可用的<color=#f8c200>刷新獎勵</color>。獎勵不會累加到先前的獎勵上，而是重新決定。\n{1}\n． 獎勵會比每日次數優先使用，日期變更後也不會消失。\n． 每日剩餘次數與獎勵合計，最多可以使用{2}次。\n\n目前獎勵：<color=#f8c200>{3}</color>"
+    },
+    {
+      "id": "limtochess_start_reroll_help_tier",
+      "content": "    - 擊敗圖式BOSS {0}：<color=#f8c200>+{1}</color>"
+    },
+    {
+      "id": "limtochess_start_reroll_help_single",
+      "content": "{0}次"
+    },
+    {
+      "id": "limtochess_start_reroll_help_range",
+      "content": "{0}～{1}次"
+    },
+    {
+      "id": "limtochess_start_reroll_help_open",
+      "content": "不低於{0}次"
+    },
+    {
+      "id": "limtochess_packselect_deck_tag_more",
+      "content": "……"
+    },
+    {
+      "id": "limtochess_confirm_underfilled_desc",
+      "content": "選擇的人數少於可編隊人數。（{0}/{1}名）"
+    },
+    {
+      "id": "limtochess_confirm_underfilled_proceed",
+      "content": "要就這樣繼續嗎？"
+    },
+    {
+      "id": "limtochess_map_roster_standby",
+      "content": "待機"
+    },
+    {
+      "id": "limtochess_map_extra_move_steps",
+      "content": "額外擲骰"
+    },
+    {
+      "id": "limtochess_map_extra_roll_warning",
+      "content": "超額擲骰時，圖式扭曲"
+    },
+    {
+      "id": "limtochess_map_elite_conversion_warning",
+      "content": "（※ 從第3次超額擲骰起，本圖式剩餘的常規遭遇戰將全部變為菁英遭遇戰。）"
+    },
+    {
+      "id": "limtochess_map_unreachable_room",
+      "content": "目前無法前往這個表象。"
+    },
+    {
+      "id": "limtochess_map_legend_title",
+      "content": "圖例"
+    },
+    {
+      "id": "limtochess_map_legend_normal",
+      "content": "常規遭遇戰"
+    },
+    {
+      "id": "limtochess_map_legend_elite",
+      "content": "菁英遭遇戰"
+    },
+    {
+      "id": "limtochess_map_legend_boss",
+      "content": "BOSS遭遇戰"
+    },
+    {
+      "id": "limtochess_map_legend_rest",
+      "content": "休息"
+    },
+    {
+      "id": "limtochess_map_legend_temptation",
+      "content": "誘惑"
+    },
+    {
+      "id": "limtochess_map_section",
+      "content": "第{0}圖式"
+    },
+    {
+      "id": "limtochess_roll_penalty_title",
+      "content": "圖式扭曲"
+    },
+    {
+      "id": "limtochess_roll_penalty_count",
+      "content": "圖式扭曲{0}個"
+    },
+    {
+      "id": "limtochess_roll_penalty_next",
+      "content": "隨機扭曲1個（候選：{0}）"
+    },
+    {
+      "id": "limtochess_roll_penalty_next_short",
+      "content": "+1"
+    },
+    {
+      "id": "limtochess_roll_penalty_level",
+      "content": "敵人等級 +{0}"
+    },
+    {
+      "id": "limtochess_roll_penalty_clash_power",
+      "content": "拚點威力 +{0}"
+    },
+    {
+      "id": "limtochess_roll_penalty_final_power",
+      "content": "最終威力 +{0}"
+    },
+    {
+      "id": "limtochess_roll_penalty_damage",
+      "content": "造成的傷害量 +{0}%"
+    },
+    {
+      "id": "limtochess_roll_penalty_max_hp",
+      "content": "最大體力 +{0}%"
+    },
+    {
+      "id": "limtochess_roll_penalty_boss_max_hp",
+      "content": "BOSS戰最大體力 +{0}%"
+    },
+    {
+      "id": "limtochess_roll_penalty_level_name",
+      "content": "敵人等級"
+    },
+    {
+      "id": "limtochess_roll_penalty_clash_power_name",
+      "content": "拚點威力"
+    },
+    {
+      "id": "limtochess_roll_penalty_final_power_name",
+      "content": "最終威力"
+    },
+    {
+      "id": "limtochess_roll_penalty_damage_name",
+      "content": "造成的傷害量"
+    },
+    {
+      "id": "limtochess_roll_penalty_max_hp_name",
+      "content": "最大體力"
+    },
+    {
+      "id": "limtochess_roll_penalty_boss_max_hp_name",
+      "content": "BOSS戰最大體力"
+    },
+    {
+      "id": "limtochess_map_setting_title",
+      "content": "設定"
+    },
+    {
+      "id": "limtochess_map_setting_leave",
+      "content": "暫時離開"
+    },
+    {
+      "id": "limtochess_map_setting_abandon",
+      "content": "放棄圖式構築"
+    },
+    {
+      "id": "limtochess_map_setting_close",
+      "content": "關閉"
+    },
+    {
+      "id": "limtochess_map_setting_wait",
+      "content": "現在無法離開。請稍後再試。"
+    },
+    {
+      "id": "limtochess_confirm_leave_title",
+      "content": "暫時離開"
+    },
+    {
+      "id": "limtochess_confirm_leave_desc",
+      "content": "要保留進行中的圖式構築，回到大廳嗎？\n可以從入場畫面的「繼續」回來。"
+    },
+    {
+      "id": "limtochess_confirm_abandon_title",
+      "content": "放棄圖式構築"
+    },
+    {
+      "id": "limtochess_confirm_abandon_desc",
+      "content": "要放棄這次的圖式構築嗎？\n將依目前為止的進度領取獎勵並結束。"
+    },
+    {
+      "id": "limtochess_report_title",
+      "content": "戰鬥報告"
+    },
+    {
+      "id": "limtochess_report_tab_hp",
+      "content": "各陣營體力"
+    },
+    {
+      "id": "limtochess_report_ally",
+      "content": "友方"
+    },
+    {
+      "id": "limtochess_report_enemy",
+      "content": "敵方"
+    },
+    {
+      "id": "limtochess_report_legend_death",
+      "content": "死亡"
+    },
+    {
+      "id": "limtochess_report_legend_ego",
+      "content": "使用E.G.O"
+    },
+    {
+      "id": "limtochess_report_detail_ally_death",
+      "content": "我方死亡"
+    },
+    {
+      "id": "limtochess_report_detail_ego",
+      "content": "使用E.G.O"
+    },
+    {
+      "id": "limtochess_report_retry_title",
+      "content": "重新戰鬥"
+    },
+    {
+      "id": "limtochess_report_retry_desc",
+      "content": "要立刻重新開始同一場戰鬥嗎？\n取消的話會回到圖式，之後仍可再次進入這場戰鬥。"
+    },
+    {
+      "id": "limtochess_report_retry_button",
+      "content": "再次挑戰（剩餘次數<color=#6F87FF>{2}</color>）"
+    },
+    {
+      "id": "limtochess_report_retry_button_unlimited",
+      "content": "再次挑戰 <color=#6F87FF>{0}</color>"
+    },
+    {
+      "id": "limtochess_final_clear",
+      "content": "CLEAR"
+    },
+    {
+      "id": "limtochess_final_fail",
+      "content": "FAIL"
+    },
+    {
+      "id": "limtochess_report_defeat_title",
+      "content": "構築失敗"
+    },
+    {
+      "id": "limtochess_report_defeat_title_alt",
+      "content": "構築失敗"
+    },
+    {
+      "id": "limtochess_report_p0_line",
+      "content": "共同週期 {0} ． 拚點 {1}勝{2}負 ． 單方面攻擊 我方 {3}/敵方 {4} ． 理智值 {5}→{6} ． 死亡 {7} ． 防守 發動 {8}/達成條件 {9}/佇列不足 {10}"
+    },
+    {
+      "id": "limtochess_report_p0_death",
+      "content": "{0} ← {1}「{2}」"
+    },
+    {
+      "id": "limtochess_report_p0_death_more",
+      "content": "{0}與其他{1}名"
+    },
+    {
+      "id": "limtochess_report_p0_death_noskill",
+      "content": "{0} ← {1}"
+    },
+    {
+      "id": "limtochess_final_stage",
+      "content": "{0}/{1}"
+    },
+    {
+      "id": "limtochess_final_time",
+      "content": "總耗時 {0}"
+    },
+    {
+      "id": "limtochess_final_count",
+      "content": "{0}<color=#a16a3b>/{1}</color>"
+    },
+    {
+      "id": "limtochess_final_complete",
+      "content": "完成"
+    },
+    {
+      "id": "limtochess_final_incomplete",
+      "content": "未完成"
+    },
+    {
+      "id": "limtochess_final_gift_enhance",
+      "content": "{0} +{1}"
+    },
+    {
+      "id": "limtochess_final_empty",
+      "content": "-"
+    },
+    {
+      "id": "limtochess_final_completion",
+      "content": "完成判定"
+    },
+    {
+      "id": "limtochess_final_ego",
+      "content": "E.G.O"
+    },
+    {
+      "id": "limtochess_rest_mp_title",
+      "content": "理智值 +{0}"
+    },
+    {
+      "id": "limtochess_rest_mp_desc",
+      "content": "目前平均 {0} → {1}"
+    },
+    {
+      "id": "limtochess_rest_reroll_title",
+      "content": "刷新機會 +{0}"
+    },
+    {
+      "id": "limtochess_rest_reroll_desc",
+      "content": "可用於替換卡包、人格、E.G.O。"
+    },
+    {
+      "id": "limtochess_rest_syncup_title",
+      "content": "1名人格同步 +{0}階"
+    },
+    {
+      "id": "limtochess_rest_syncup_desc",
+      "content": "從戰鬥編隊中選擇1名同步階段不高於{0}階的人格。"
+    },
+    {
+      "id": "limtochess_rest_syncup_disabled",
+      "content": "沒有可以提升同步階段的人格。"
+    },
+    {
+      "id": "limtochess_rest_syncup_unowned_cap",
+      "content": "帳號中未持有的人格，最大同步階段限制為{0}階。"
+    },
+    {
+      "id": "limtochess_rest_freeroll_title",
+      "content": "額外擲骰 +{0}"
+    },
+    {
+      "id": "limtochess_rest_freeroll_carry",
+      "content": "未使用的額外擲骰會保留到下一個圖式。"
+    },
+    {
+      "id": "limtochess_rest_generic_label",
+      "content": "通用碎片"
+    },
+    {
+      "id": "limtochess_rest_generic_use",
+      "content": "使用通用碎片"
+    },
+    {
+      "id": "limtochess_rest_generic_desc",
+      "content": "可以用通用碎片，為同步階段不高於{1}階的人格提升同步。\n※ 所需通用碎片（同步1/2/3階）：4/6/6個\n※ 每持有1個人格碎片，所需通用碎片減少2個。"
+    },
+    {
+      "id": "limtochess_rest_generic_none",
+      "content": "沒有可以用通用碎片同步的人格。（僅限同步階段不高於{0}階的人格）"
+    },
+    {
+      "id": "limtochess_rest_generic_confirm",
+      "content": "要使用通用碎片嗎？"
+    },
+    {
+      "id": "limtochess_rest_growth_title",
+      "content": "休息：成長"
+    },
+    {
+      "id": "limtochess_rest_generic_title",
+      "content": "使用通用碎片"
+    },
+    {
+      "id": "limtochess_rest_empty",
+      "content": "空"
+    },
+    {
+      "id": "limtochess_bossreward_empty_slot",
+      "content": "空"
+    },
+    {
+      "id": "limtochess_rest_sync_change",
+      "content": "同步{0}階段 → 同步{1}階段"
+    },
+    {
+      "id": "limtochess_rest_sync_cap",
+      "content": "同步上限：{0}階"
+    },
+    {
+      "id": "limtochess_rest_generic_need",
+      "content": "需要{0}個通用碎片"
+    },
+    {
+      "id": "limtochess_rest_not_target",
+      "content": "非對象"
+    },
+    {
+      "id": "limtochess_rest_select",
+      "content": "選擇"
+    },
+    {
+      "id": "limtochess_current_deck",
+      "content": "確認編成"
+    },
+    {
+      "id": "limtochess_current_deck_sync",
+      "content": "同步{0}階"
+    },
+    {
+      "id": "limtochess_giftstatus_title",
+      "content": "E.G.O飾品持有狀況"
+    },
+    {
+      "id": "limtochess_tempt_title_original",
+      "content": "誘惑"
+    },
+    {
+      "id": "limtochess_tempt_original_title",
+      "content": "同步{0}階人格 + E.G.O"
+    },
+    {
+      "id": "limtochess_tempt_recruit",
+      "content": "編成{0}"
+    },
+    {
+      "id": "limtochess_tempt_replace",
+      "content": "替換{0}"
+    },
+    {
+      "id": "limtochess_tempt_replace_before",
+      "content": "現有人格 {0} 同步{1}階"
+    },
+    {
+      "id": "limtochess_tempt_ego_equip",
+      "content": "裝備{0} {1}（{2}階）"
+    },
+    {
+      "id": "limtochess_tempt_ego_no_slot",
+      "content": "沒有可以裝備的空E.G.O欄位，因此無法獲得E.G.O。"
+    },
+    {
+      "id": "limtochess_tempt_ego_none",
+      "content": "沒有可以獲得的E.G.O，因此無法獲得E.G.O。"
+    },
+    {
+      "id": "limtochess_tempt_skip_title",
+      "content": "不領取"
+    },
+    {
+      "id": "limtochess_tempt_skip_desc",
+      "content": "維持目前的戰鬥編隊。"
+    },
+    {
+      "id": "limtochess_tempt_roll_cost",
+      "content": "扣除{1}次骰子擲骰"
+    },
+    {
+      "id": "limtochess_tempt_roll_free",
+      "content": "不扣除骰子擲骰次數"
+    },
+    {
+      "id": "limtochess_tempt_roll_penalty",
+      "content": "剩餘擲骰次數不足，圖式扭曲 +{0}"
+    },
+    {
+      "id": "limtochess_tempt_before_label",
+      "content": "現有人格"
+    },
+    {
+      "id": "limtochess_tempt_before_sync",
+      "content": "同步"
+    },
+    {
+      "id": "limtochess_battleprep_level_label",
+      "content": "目前人格等級"
+    },
+    {
+      "id": "limtochess_briefing_threat_title",
+      "content": "威脅等級"
+    },
+    {
+      "id": "limtochess_briefing_threat_reason",
+      "content": "等級差 {0}"
+    },
+    {
+      "id": "limtochess_briefing_threat_reason_script",
+      "content": "等級差 {0} ． {2}"
+    },
+    {
+      "id": "limtochess_briefing_threat_script_1",
+      "content": "菁英 +1"
+    },
+    {
+      "id": "limtochess_briefing_threat_script_2",
+      "content": "BOSS +2"
+    },
+    {
+      "id": "limtochess_briefing_weak_label",
+      "content": "弱點"
+    },
+    {
+      "id": "limtochess_briefing_weak_none",
+      "content": "沒有弱點"
+    },
+    {
+      "id": "limtochess_briefing_egores_title",
+      "content": "獲得資源"
+    },
+    {
+      "id": "limtochess_briefing_egores_demand",
+      "content": "所需資源"
+    },
+    {
+      "id": "limtochess_briefing_appear",
+      "content": "名出現"
+    },
+    {
+      "id": "limtochess_briefing_reinforce",
+      "content": "戰鬥中額外出現{0}名敵人"
+    },
+    {
+      "id": "limtochess_briefing_refill_card",
+      "content": "增援{0}名"
+    },
+    {
+      "id": "limtochess_packselect_screen_title",
+      "content": "戰鬥獎勵：選擇卡包"
+    },
+    {
+      "id": "limtochess_elite_screen_title",
+      "content": "精英獎勵：選擇"
+    },
+    {
+      "id": "limtochess_bossreward_screen_title",
+      "content": "圖式通關獎勵"
+    },
+    {
+      "id": "limtochess_bossreward_gift_rule",
+      "content": "一格來自戰鬥編隊的關鍵字，其餘三格為隨機。"
+    },
+    {
+      "id": "limtochess_bossreward_gift_rule_pair",
+      "content": "戰鬥編隊關鍵字1格 ． 與持有飾品成對的飾品1格 ． 隨機2格"
+    },
+    {
+      "id": "limtochess_bossreward_gift_skip_full",
+      "content": "持有{0}個飾品"
+    },
+    {
+      "id": "limtochess_bossreward_gift_skip_none",
+      "content": "沒有可以選擇的飾品"
+    },
+    {
+      "id": "limtochess_bossreward_progress",
+      "content": "完成：同步4階 {0}/{1}名 ． E.G.O條件 {2}/{1}名"
+    },
+    {
+      "id": "limtochess_bossreward_gift_enhance_title",
+      "content": "飾品強化 +1"
+    },
+    {
+      "id": "limtochess_bossreward_gift_enhance_desc",
+      "content": "選擇後，將強化目前持有的飾品中的1個。"
+    },
+    {
+      "id": "limtochess_bossreward_gift_enhance_twice_title",
+      "content": "飾品強化 +1（{0}次）"
+    },
+    {
+      "id": "limtochess_bossreward_gift_enhance_twice_desc",
+      "content": "選擇後，從目前持有的飾品中挑選並強化{0}次。"
+    },
+    {
+      "id": "limtochess_bossreward_gift_enhance_disabled",
+      "content": "沒有可以強化的飾品。"
+    },
+    {
+      "id": "limtochess_bossreward_reroll_title",
+      "content": "刷新機會 +{0}"
+    },
+    {
+      "id": "limtochess_bossreward_reroll_desc",
+      "content": "獲得{0}次刷新機會。"
+    },
+    {
+      "id": "limtochess_bossreward_sync_under_title",
+      "content": "同步階段不高於{0}階的1名人格同步階段 +{1}"
+    },
+    {
+      "id": "limtochess_bossreward_sync_plus_title",
+      "content": "同步階段不高於{0}階的1名人格同步階段 +{1}"
+    },
+    {
+      "id": "limtochess_bossreward_sync_desc",
+      "content": "從符合條件的{0}名人格中選擇1名。"
+    },
+    {
+      "id": "limtochess_bossreward_sync_disabled",
+      "content": "沒有可以提升同步階段的人格。"
+    },
+    {
+      "id": "limtochess_bossreward_generic_title",
+      "content": "通用碎片 +{0}"
+    },
+    {
+      "id": "limtochess_bossreward_generic_desc",
+      "content": "通用碎片 +{0}。在休息時用於提升其他人格的同步階段。"
+    },
+    {
+      "id": "limtochess_bossreward_gift_pick",
+      "content": "圖式通關獎勵：飾品強化"
+    },
+    {
+      "id": "limtochess_bossreward_gift_pick_count",
+      "content": "圖式通關獎勵：飾品強化（{0}/{1}）"
+    },
+    {
+      "id": "limtochess_bossreward_enhance_change",
+      "content": "強化 {0} → {1}"
+    },
+    {
+      "id": "limtochess_bossreward_enhance_max",
+      "content": "已強化至上限"
+    },
+    {
+      "id": "limtochess_bossreward_sync_pick",
+      "content": "圖式通關獎勵：成長"
+    },
+    {
+      "id": "limtochess_bossreward_enhance_none",
+      "content": "無法強化"
+    },
+    {
+      "id": "limtochess_bossreward_pack_random",
+      "content": "+ 隨機卡包1個（{0}級）"
+    },
+    {
+      "id": "limtochess_bossreward_pack_sinner",
+      "content": "+ 所選罪人的卡包1個（{0}級）"
+    },
+    {
+      "id": "limtochess_bossreward_pack_sinner_pick",
+      "content": "圖式通關獎勵：罪人卡包"
+    },
+    {
+      "id": "limtochess_bossreward_pack_sinner_change",
+      "content": "罪人卡包 {0}級"
+    },
+    {
+      "id": "limtochess_bossreward_pack_sinner_not_joined",
+      "content": "未編入——以人格卡招募"
+    },
+    {
+      "id": "limtochess_gauge_cycle",
+      "content": "TURN {0}"
+    },
+    {
+      "id": "limtochess_unitstatus_break",
+      "content": "混亂"
+    },
+    {
+      "id": "limtochess_unitstatus_panic",
+      "content": "恐慌"
+    },
+    {
+      "id": "limtochess_unitstatus_erode",
+      "content": "侵蝕"
+    },
+    {
+      "id": "limtochess_skillart_awaken",
+      "content": "覺醒"
+    },
+    {
+      "id": "limtochess_skillart_erosion",
+      "content": "侵蝕"
+    },
+    {
+      "id": "limtochess_unitstatus_lowmorale",
+      "content": "動搖"
+    },
+    {
+      "id": "limtochess_egobar_auto_target",
+      "content": "自動鎖定目標"
+    },
+    {
+      "id": "limtochess_egobar_waiting",
+      "content": "等待發動"
+    },
+    {
+      "id": "limtochess_egobar_waiting_target",
+      "content": "等待發動 → {0}"
+    },
+    {
+      "id": "limtochess_egobar_lethal",
+      "content": "瀕臨死亡"
+    },
+    {
+      "id": "limtochess_egobar_aimed",
+      "content": "被鎖定 {0}"
+    },
+    {
+      "id": "limtochess_egobar_retreat",
+      "content": "撤退中"
+    },
+    {
+      "id": "limtochess_egobar_block_defect",
+      "content": "缺陷"
+    },
+    {
+      "id": "limtochess_egobar_block_inactionable",
+      "content": "無法行動"
+    },
+    {
+      "id": "limtochess_egobar_block_resource",
+      "content": "資源不足"
+    },
+    {
+      "id": "limtochess_egobar_block_unusable",
+      "content": "無法使用"
+    },
+    {
+      "id": "limtochess_egobar_onesided",
+      "content": "單方面攻擊"
+    },
+    {
+      "id": "limtochess_egobar_resonance",
+      "content": "共鳴"
+    },
+    {
+      "id": "limtochess_egobar_notice_lack",
+      "content": "資源不足——還需要{0}"
+    },
+    {
+      "id": "limtochess_egobar_notice_no_overclock",
+      "content": "無法超頻——沒有侵蝕技能"
+    },
+    {
+      "id": "limtochess_roominfo_pack_label",
+      "content": "{0}級 {1}"
+    },
+    {
+      "id": "limtochess_battle_pause",
+      "content": "暫停"
+    },
+    {
+      "id": "limtochess_battle_resume",
+      "content": "繼續"
+    },
+    {
+      "id": "limtochess_battle_speed",
+      "content": "{0}x"
+    },
+    {
+      "id": "limtochess_battle_resume_hint",
+      "content": "按下[繼續]以繼續"
+    },
+    {
+      "id": "limtochess_battle_resume_hint_key",
+      "content": "按下[繼續]以繼續"
+    },
+    {
+      "id": "limtochess_battle_tail_speed",
+      "content": "後半倍速 {0}x"
+    },
+    {
+      "id": "limtochess_battle_toggle_damage",
+      "content": "傷害數字"
+    },
+    {
+      "id": "limtochess_battle_toggle_hitfx",
+      "content": "打擊感"
+    },
+    {
+      "id": "limtochess_battle_toggle_ally_cards",
+      "content": "我方卡片"
+    },
+    {
+      "id": "limtochess_battle_toggle_enemy_cards",
+      "content": "敵方卡片"
+    },
+    {
+      "id": "limtochess_battle_stage",
+      "content": "第{0}圖式 第{1}關"
+    },
+    {
+      "id": "limtochess_battle_turn",
+      "content": "共同回合 {0}"
+    },
+    {
+      "id": "limtochess_report_seconds",
+      "content": "{0}秒"
+    },
+    {
+      "id": "limtochess_report_time",
+      "content": "耗時"
+    },
+    {
+      "id": "limtochess_roominfo_enemy_avg_level",
+      "content": "敵人平均等級"
+    },
+    {
+      "id": "limtochess_gauge_skill_tier",
+      "content": "技能{0}"
+    },
+    {
+      "id": "limtochess_gauge_clash",
+      "content": "拚點進行中"
+    },
+    {
+      "id": "limtochess_gauge_onesided",
+      "content": "單方面攻擊"
+    },
+    {
+      "id": "limtochess_battle_retry_used_up",
+      "content": "這是最後一次再次挑戰——失敗的話，圖式構築將會結束"
+    },
+    {
+      "id": "limtochess_battle_retry_count",
+      "content": "已使用再次挑戰{0}次（剩餘次數{2}）"
+    },
+    {
+      "id": "limtochess_battle_retry_count_unlimited",
+      "content": "已使用再次挑戰{0}次（無限制）"
+    },
+    {
+      "id": "limtochess_battle_retry_confirm_title",
+      "content": "再次挑戰戰鬥"
+    },
+    {
+      "id": "limtochess_battle_retry_confirm_desc",
+      "content": "重新開始將使用1次再次挑戰機會（剩餘次數{2}）。\n要重新開始嗎？"
+    },
+    {
+      "id": "limtochess_battle_giveup_confirm_title",
+      "content": "放棄戰鬥"
+    },
+    {
+      "id": "limtochess_battle_giveup_confirm_desc",
+      "content": "放棄將使用1次再次挑戰機會（剩餘次數{2}）。\n將回到圖式，之後仍可再次進入這場戰鬥。要放棄嗎？"
+    },
+    {
+      "id": "limtochess_battle_giveup_confirm_desc_last",
+      "content": "再次挑戰次數已全部用完。\n放棄的話，這次的圖式構築將會結束。要放棄嗎？"
+    },
+    {
+      "id": "limtochess_room_info_elite_fx",
+      "content": "菁英效果"
+    },
+    {
+      "id": "limtochess_elite_fx_brawler",
+      "content": "打架好手"
+    },
+    {
+      "id": "limtochess_elite_fx_brawler_desc",
+      "content": "所有敵人的拚點威力 +{0}"
+    },
+    {
+      "id": "limtochess_elite_fx_footwork",
+      "content": "步法"
+    },
+    {
+      "id": "limtochess_elite_fx_footwork_desc",
+      "content": "所有敵人的速度值最小值、最大值 +{0}"
+    },
+    {
+      "id": "limtochess_elite_fx_weapon",
+      "content": "傢伙"
+    },
+    {
+      "id": "limtochess_elite_fx_weapon_desc",
+      "content": "所有敵人造成的傷害量 +{0}%"
+    },
+    {
+      "id": "limtochess_elite_fx_firststrike",
+      "content": "先發制人"
+    },
+    {
+      "id": "limtochess_elite_fx_firststrike_desc",
+      "content": "登場於戰場的敵人{0}回合內造成的傷害量 +{1}%"
+    },
+    {
+      "id": "limtochess_elite_fx_tough",
+      "content": "耐打"
+    },
+    {
+      "id": "limtochess_elite_fx_tough_desc",
+      "content": "所有敵人的最大體力 +{0}%"
+    },
+    {
+      "id": "limtochess_elite_fx_struggle",
+      "content": "垂死掙扎"
+    },
+    {
+      "id": "limtochess_elite_fx_struggle_desc",
+      "content": "回合開始時，體力不高於50%的敵人獲得{0}層傷害強化、{1}層迅捷"
+    },
+    {
+      "id": "limtochess_elite_fx_boss",
+      "content": "大頭目"
+    },
+    {
+      "id": "limtochess_elite_fx_boss_desc",
+      "content": "關卡開始時，最大體力最高的1名敵人最大體力 +{0}%，造成的傷害量 +{1}%"
+    },
+    {
+      "id": "limtochess_elite_fx_brawl",
+      "content": "混戰"
+    },
+    {
+      "id": "limtochess_elite_fx_brawl_desc",
+      "content": "敵人造成的傷害量 +{0}%，敵人受到的傷害量 +{1}%"
+    },
+    {
+      "id": "limtochess_elite_fx_loyalty",
+      "content": "義氣"
+    },
+    {
+      "id": "limtochess_elite_fx_loyalty_desc",
+      "content": "敵人死亡時，戰場上其他所有敵人下回合攻擊等級 +{0}"
+    },
+    {
+      "id": "limtochess_elite_fx_interest",
+      "content": "利息"
+    },
+    {
+      "id": "limtochess_elite_fx_interest_desc",
+      "content": "所有敵人的攻擊等級 +{0}，每經過一回合再 +{1}（合計最多 +{2}）"
+    },
+    {
+      "id": "limtochess_elite_fx_companion",
+      "content": "同歸於盡"
+    },
+    {
+      "id": "limtochess_elite_fx_companion_desc",
+      "content": "敵人受到的技能傷害 +{0}%，但會將受到的最終傷害量的{1}%反彈給發動攻擊的罪人"
+    },
+    {
+      "id": "limtochess_elite_fx_intimidate",
+      "content": "威壓"
+    },
+    {
+      "id": "limtochess_elite_fx_intimidate_desc",
+      "content": "罪人拚點失敗或其他罪人死亡時，失去的理智值變為{0}倍"
+    },
+    {
+      "id": "limtochess_elite_fx_backer",
+      "content": "靠山"
+    },
+    {
+      "id": "limtochess_elite_fx_backer_desc",
+      "content": "每當待機中的敵人登上戰場時，所有擁有理智值的敵人理智值 +{0}，並於下回合獲得{1}層迅捷、{2}層加算硬幣強化"
+    },
+    {
+      "id": "limtochess_event_deck_title",
+      "content": "選項 {0}"
+    },
+    {
+      "id": "limtochess_event_deck_text",
+      "content": "這是調整牌組的機會。所選格子的代價，會在這一局結束前施加於所有敵人。"
+    },
+    {
+      "id": "limtochess_event_boss_title",
+      "content": "BOSS選項 {0}"
+    },
+    {
+      "id": "limtochess_event_boss_text",
+      "content": "決定這一局的最終BOSS。沒有代價。"
+    },
+    {
+      "id": "limtochess_event_effect_none",
+      "content": "沒有效果"
+    },
+    {
+      "id": "limtochess_event_effect_reroll_segment",
+      "content": "本圖式刷新機會 +{0}"
+    },
+    {
+      "id": "limtochess_event_effect_reroll_carry",
+      "content": "刷新機會 +{0}（保留到下一個圖式）"
+    },
+    {
+      "id": "limtochess_event_effect_sync_pick",
+      "content": "所選的{0}名人格同步 +1階"
+    },
+    {
+      "id": "limtochess_event_effect_sync_pick_set",
+      "content": "所選的{0}名人格同步變為{1}階"
+    },
+    {
+      "id": "limtochess_event_effect_sync_random",
+      "content": "隨機{0}名人格同步 +1階"
+    },
+    {
+      "id": "limtochess_event_effect_recruit_pick",
+      "content": "招募1名不在編隊中的罪人\n同步{1}階"
+    },
+    {
+      "id": "limtochess_event_effect_pack_random",
+      "content": "獲得隨機卡包"
+    },
+    {
+      "id": "limtochess_event_effect_pack_keyword",
+      "content": "獲得所選關鍵字的卡包"
+    },
+    {
+      "id": "limtochess_event_effect_pack_random_grade",
+      "content": "獲得隨機{0}級卡包"
+    },
+    {
+      "id": "limtochess_event_effect_pack_keyword_grade",
+      "content": "獲得所選關鍵字的{0}級卡包"
+    },
+    {
+      "id": "limtochess_event_effect_ego_pick",
+      "content": "為編隊中的罪人裝備1個E.G.O"
+    },
+    {
+      "id": "limtochess_event_effect_ego_keyword",
+      "content": "裝備1個所選關鍵字的E.G.O"
+    },
+    {
+      "id": "limtochess_event_effect_reroll_to_generic",
+      "content": "每{0}次剩餘刷新機會兌換1個通用碎片"
+    },
+    {
+      "id": "limtochess_event_effect_swap_affiliation_random",
+      "content": "將隨機{0}名罪人替換為同一所屬的人格"
+    },
+    {
+      "id": "limtochess_event_effect_swap_affiliation_pick",
+      "content": "將1名罪人替換為同一所屬的人格"
+    },
+    {
+      "id": "limtochess_event_effect_cost_up_tail",
+      "content": "\n{0}%機率經費 +1"
+    },
+    {
+      "id": "limtochess_event_effect_swap_pick",
+      "content": "將編隊中的1名罪人替換為其他人格\n維持同步階段"
+    },
+    {
+      "id": "limtochess_event_effect_swap_all_cost_up",
+      "content": "將編隊全員替換為隨機人格\n維持同步階段 ． {0}%機率經費 +1"
+    },
+    {
+      "id": "limtochess_event_effect_swap_one_random",
+      "content": "將隨機1名罪人替換為隨機人格\n同步階段隨機"
+    },
+    {
+      "id": "limtochess_event_effect_swap_one_cost_up",
+      "content": "將隨機1名罪人替換為隨機人格\n維持同步階段 ． {0}%機率經費 +1"
+    },
+    {
+      "id": "limtochess_event_effect_pack_grade_open",
+      "content": "消耗{0}次刷新機會 ． 獲得隨機{1}級卡包"
+    },
+    {
+      "id": "limtochess_event_effect_pack_sync_tail",
+      "content": "\n人格同步{0}階"
+    },
+    {
+      "id": "limtochess_event_reroll_left",
+      "content": "剩餘刷新機會 {0}"
+    },
+    {
+      "id": "limtochess_event_effect_swap_cost_up_pick",
+      "content": "將所選的1名罪人替換為經費 +1的人格\n維持同步階段"
+    },
+    {
+      "id": "limtochess_event_effect_swap_cost_up_pick_multi",
+      "content": "將所選的{0}名罪人替換為經費 +1的人格\n維持同步階段"
+    },
+    {
+      "id": "limtochess_event_effect_swap_one_pick",
+      "content": "將所選的1名罪人替換為隨機人格\n維持同步階段 ． 經費 {0}"
+    },
+    {
+      "id": "limtochess_event_effect_final_boss",
+      "content": "最終BOSS → {0}"
+    },
+    {
+      "id": "limtochess_event_effect_segment_boss",
+      "content": "第{0}圖式BOSS → {1}"
+    },
+    {
+      "id": "limtochess_event_effect_segment_pool",
+      "content": "第{0}圖式的戰鬥變為{1}的敵人"
+    },
+    {
+      "id": "limtochess_event_effect_stage_unlock",
+      "content": "BOSS不變 ． 可能出現BOSS選項{0}"
+    },
+    {
+      "id": "limtochess_event_effect_decline",
+      "content": "BOSS不變"
+    },
+    {
+      "id": "limtochess_event_locked",
+      "content": "未解鎖——需要擊敗{0}"
+    },
+    {
+      "id": "limtochess_event_hardship_hp",
+      "content": "所有敵人的體力 +{0}%"
+    },
+    {
+      "id": "limtochess_event_hardship_dmg",
+      "content": "所有敵人造成的傷害量 +{0}%"
+    },
+    {
+      "id": "limtochess_event_hardship_none",
+      "content": "沒有苦難"
+    },
+    {
+      "id": "limtochess_event_pick_cost_up_sinner",
+      "content": "請選擇要替換為經費 +1人格的罪人。"
+    },
+    {
+      "id": "limtochess_event_pick_swap_one_sinner",
+      "content": "請選擇要替換為隨機人格的罪人。"
+    },
+    {
+      "id": "limtochess_event_pick_sinner",
+      "content": "請選擇要提升同步階段的人格。"
+    },
+    {
+      "id": "limtochess_event_pick_personality",
+      "content": "請選擇要招募的人格。"
+    },
+    {
+      "id": "limtochess_event_pick_ego",
+      "content": "請選擇要裝備的E.G.O。"
+    },
+    {
+      "id": "limtochess_event_pick_keyword",
+      "content": "請選擇要領取的卡包關鍵字。"
+    },
+    {
+      "id": "limtochess_event_boss_name_jun",
+      "content": "黑雲會 副會長 俊"
+    },
+    {
+      "id": "limtochess_event_boss_name_ricardo",
+      "content": "里卡多"
+    },
+    {
+      "id": "limtochess_event_boss_name_cleaners",
+      "content": "都市的清道夫"
+    },
+    {
+      "id": "limtochess_event_boss_name_alley",
+      "content": "後巷看門犬．四腳"
+    },
+    {
+      "id": "limtochess_event_boss_name_blackcloud",
+      "content": "黑雲會"
+    },
+    {
+      "id": "limtochess_event_skip_text",
+      "content": "隨機懲罰1個（理智值、碎片、體力、攻擊等級、拚點威力降低）"
+    },
+    {
+      "id": "limtochess_event_skip_short",
+      "content": "不領取"
+    },
+    {
+      "id": "limtochess_event_skip_text_reserve_roll",
+      "content": "隨機懲罰1個（理智值、碎片、體力、攻擊等級、拚點威力降低）"
+    },
+    {
+      "id": "limtochess_event_skip_short_reserve_roll",
+      "content": "不領取 ． 額外擲骰 +{0}"
+    },
+    {
+      "id": "limtochess_event_penalty_none",
+      "content": "沒有懲罰"
+    },
+    {
+      "id": "limtochess_event_penalty_mentalall",
+      "content": "編隊中所有罪人理智值 −{0}"
+    },
+    {
+      "id": "limtochess_event_penalty_mentalrandom",
+      "content": "隨機{0}名罪人理智值 −{1}"
+    },
+    {
+      "id": "limtochess_event_penalty_fragmentsinner",
+      "content": "罪人{0}的同步碎片歸零"
+    },
+    {
+      "id": "limtochess_event_penalty_fragmentgeneric",
+      "content": "失去{0}個通用碎片"
+    },
+    {
+      "id": "limtochess_event_penalty_fragment_random",
+      "content": "隨機1名"
+    },
+    {
+      "id": "limtochess_event_penalty_hpall",
+      "content": "關卡開始時，所有出擊的我方單位減少相當於最大體力{0}%的體力"
+    },
+    {
+      "id": "limtochess_event_penalty_hprandom",
+      "content": "關卡開始時，隨機{0}名出擊的我方單位減少相當於最大體力{1}%的體力"
+    },
+    {
+      "id": "limtochess_event_penalty_attackdownall",
+      "content": "關卡開始時，所有出擊的我方單位獲得{0}層攻擊等級降低"
+    },
+    {
+      "id": "limtochess_event_penalty_attackdownrandom",
+      "content": "關卡開始時，隨機{0}名出擊的我方單位獲得{1}層攻擊等級降低"
+    },
+    {
+      "id": "limtochess_event_penalty_clashdownall",
+      "content": "關卡開始時，所有出擊的我方單位獲得{0}層拚點威力降低"
+    },
+    {
+      "id": "limtochess_event_penalty_clashdownrandom",
+      "content": "關卡開始時，隨機{0}名出擊的我方單位獲得{1}層拚點威力降低"
+    },
+    {
+      "id": "limtochess_event_penalty_pending",
+      "content": "下一場戰鬥懲罰{0}個"
+    },
+    {
+      "id": "limtochess_event_penalty_nextbattle",
+      "content": "僅限下一場戰鬥——{0}"
+    },
+    {
+      "id": "limtochess_event_penalty_immediate",
+      "content": "立即——{0}"
+    },
+    {
+      "id": "limtochess_event_penalty_fragment_now",
+      "content": "（目前{0}個）"
+    },
+    {
+      "id": "limtochess_event_penalty_label",
+      "content": "懲罰"
+    },
+    {
+      "id": "limtochess_hud_hardship",
+      "content": "苦難：{0}"
+    },
+    {
+      "id": "limtochess_hud_segment_penalty",
+      "content": "圖式扭曲：{0}"
+    },
+    {
+      "id": "limtochess_hud_none",
+      "content": "無"
+    },
+    {
+      "id": "limtochess_hud_hardship_hp",
+      "content": "敵人體力 {0}%"
+    },
+    {
+      "id": "limtochess_hud_hardship_dmg",
+      "content": "敵人傷害量 {0}%"
+    },
+    {
+      "id": "limtochess_hud_hardship_atk",
+      "content": "攻擊等級 {0}"
+    },
+    {
+      "id": "limtochess_hud_hardship_def",
+      "content": "防禦等級 {0}"
+    },
+    {
+      "id": "limtochess_hud_hardship_order",
+      "content": "選擇的苦難：{0}"
+    },
+    {
+      "id": "limtochess_hud_penalty_order",
+      "content": "套用順序：{0}"
+    },
+    {
+      "id": "limtochess_hud_penalty_target_all",
+      "content": "圖式扭曲會套用於本圖式的所有戰鬥。"
+    },
+    {
+      "id": "limtochess_hud_penalty_target_boss",
+      "content": "圖式扭曲會套用於本圖式的BOSS戰。"
+    },
+    {
+      "id": "limtochess_event_pick_swap",
+      "content": "請選擇要換入的人格。（維持同步階段）"
+    },
+    {
+      "id": "limtochess_synergy_line",
+      "content": "協同：{0}"
+    },
+    {
+      "id": "limtochess_synergy_item",
+      "content": "{0}（牌組{1}名）"
+    },
+    {
+      "id": "limtochess_synergy_item_strength",
+      "content": "{0} {1}（牌組{2}名）"
+    },
+    {
+      "id": "limtochess_synergy_more",
+      "content": "+{0}"
+    },
+    {
+      "id": "limtochess_synergy_tag",
+      "content": "{0} {1}名"
+    },
+    {
+      "id": "limtochess_synergy_strength_1",
+      "content": "弱"
+    },
+    {
+      "id": "limtochess_synergy_strength_2",
+      "content": "中"
+    },
+    {
+      "id": "limtochess_synergy_strength_3",
+      "content": "強"
+    },
+    {
+      "id": "limtochess_synergy_set_full_stop_office",
+      "content": "句點事務所"
+    },
+    {
+      "id": "limtochess_synergy_set_black_beast_hongyuan_lord",
+      "content": "黑獸 + 鴻園君主 鴻璐"
+    },
+    {
+      "id": "limtochess_synergy_set_black_beast_horse_family_ga",
+      "content": "黑獸-午 筆頭 李箱 + 家主候選人 以實瑪利"
+    },
+    {
+      "id": "limtochess_synergy_set_blade_lineage",
+      "content": "劍契組"
+    },
+    {
+      "id": "limtochess_synergy_set_blade_lineage_chakyeong_hwido",
+      "content": "劍契組 + 著影揮刀"
+    },
+    {
+      "id": "limtochess_synergy_set_black_cloud",
+      "content": "黑雲會"
+    },
+    {
+      "id": "limtochess_synergy_set_wedge_office",
+      "content": "楔事務所"
+    },
+    {
+      "id": "limtochess_synergy_set_wedge_dawn_office",
+      "content": "楔事務所 + 黎明事務所"
+    },
+    {
+      "id": "limtochess_synergy_set_dawn_office",
+      "content": "黎明事務所"
+    },
+    {
+      "id": "limtochess_synergy_set_spider_house",
+      "content": "蜘蛛巢"
+    },
+    {
+      "id": "limtochess_synergy_set_spider_house_thumb",
+      "content": "蜘蛛巢 拇指"
+    },
+    {
+      "id": "limtochess_synergy_set_spider_house_middle",
+      "content": "蜘蛛巢 中指"
+    },
+    {
+      "id": "limtochess_synergy_set_spider_house_ring",
+      "content": "蜘蛛巢 無名指"
+    },
+    {
+      "id": "limtochess_synergy_set_ring_finger",
+      "content": "無名指"
+    },
+    {
+      "id": "limtochess_synergy_set_ring_finger_fauvism",
+      "content": "無名指 野獸派"
+    },
+    {
+      "id": "limtochess_synergy_set_index_finger",
+      "content": "食指"
+    },
+    {
+      "id": "limtochess_synergy_set_thumb_finger",
+      "content": "拇指"
+    },
+    {
+      "id": "limtochess_synergy_set_middle_finger",
+      "content": "中指"
+    },
+    {
+      "id": "limtochess_synergy_set_middle_finger_spider_house",
+      "content": "中指．蜘蛛巢"
+    },
+    {
+      "id": "limtochess_synergy_set_le_rouge",
+      "content": "丹紅派"
+    },
+    {
+      "id": "limtochess_synergy_set_le_noir",
+      "content": "漆黑派"
+    },
+    {
+      "id": "limtochess_synergy_set_la_mancha_land",
+      "content": "拉．曼查領"
+    },
+    {
+      "id": "limtochess_synergy_set_la_mancha_land_mircalla",
+      "content": "拉．曼查領 + 渴望-蜜卡拉"
+    },
+    {
+      "id": "limtochess_synergy_set_n_corp_ego",
+      "content": "N公司E.G.O"
+    },
+    {
+      "id": "limtochess_synergy_set_n_corp_fanatic",
+      "content": "N公司狂信徒"
+    },
+    {
+      "id": "limtochess_synergy_set_ego_solemn_lament",
+      "content": "莊嚴哀悼"
+    },
+    {
+      "id": "limtochess_synergy_set_ego_hyungtan",
+      "content": "凶彈"
+    },
+    {
+      "id": "limtochess_synergy_set_ego_gyeongmyeol_gyeongoe",
+      "content": "輕蔑，敬畏"
+    },
+    {
+      "id": "limtochess_synergy_set_ego_hongyeomsal",
+      "content": "紅艷煞"
+    },
+    {
+      "id": "limtochess_synergy_set_ego_aedd",
+      "content": "AEDD"
+    },
+    {
+      "id": "limtochess_synergy_set_ego_matan",
+      "content": "魔彈"
+    },
+    {
+      "id": "limtochess_synergy_set_ego_love_and_hate",
+      "content": "以愛與憎惡之名"
+    },
+    {
+      "id": "limtochess_synergy_set_ego_ohyeol_eupru",
+      "content": "汙血泣淚"
+    },
+    {
+      "id": "limtochess_synergy_set_ego_samcheon_daesegye",
+      "content": "三千大千世界"
+    },
+    {
+      "id": "limtochess_synergy_set_wuthering_heights",
+      "content": "咆哮山莊"
+    },
+    {
+      "id": "limtochess_synergy_set_t_corp",
+      "content": "T公司"
+    },
+    {
+      "id": "limtochess_synergy_set_dieci",
+      "content": "Dieci協會"
+    },
+    {
+      "id": "limtochess_synergy_set_pequod",
+      "content": "裴廓德號"
+    },
+    {
+      "id": "limtochess_synergy_set_seven",
+      "content": "Seven協會"
+    },
+    {
+      "id": "limtochess_synergy_set_cinq",
+      "content": "Cinq協會"
+    },
+    {
+      "id": "limtochess_synergy_set_zwei",
+      "content": "Zwei協會"
+    },
+    {
+      "id": "limtochess_synergy_set_liu",
+      "content": "六協會"
+    },
+    {
+      "id": "limtochess_synergy_set_w_corp",
+      "content": "W公司"
+    },
+    {
+      "id": "limtochess_synergy_set_ego_equipment",
+      "content": "E.G.O裝備"
+    },
+    {
+      "id": "limtochess_synergy_set_fixer",
+      "content": "收尾人"
+    },
+    {
+      "id": "limtochess_synergy_set_backstreet_cook",
+      "content": "R.B."
+    },
+    {
+      "id": "limtochess_sync_change",
+      "content": "同步{0}階段 → 同步{1}階段"
+    },
+    {
+      "id": "limtochess_event_cost_up_sinner",
+      "content": "{0} ． {1} ． 經費 {2} → {3}"
+    },
+    {
+      "id": "limtochess_event_swap_one_sinner",
+      "content": "{0} ． {1} ． 經費 {2}"
+    },
+    {
+      "id": "limtochess_sync_target",
+      "content": "{0} ． {1} 同步{2}階 → 同步{3}階"
+    },
+    {
+      "id": "limtochess_sync_level",
+      "content": "同步{0}階"
+    },
+    {
+      "id": "limtochess_sync_of_cap",
+      "content": "同步{0}/{1}階"
+    },
+    {
+      "id": "limtochess_sync_keep",
+      "content": " ． 維持同步{0}階"
+    },
+    {
+      "id": "limtochess_sync_card_name",
+      "content": "{0} 同步{1}階段"
+    },
+    {
+      "id": "limtochess_sync_after_replace",
+      "content": "替換後同步{0}階"
+    },
+    {
+      "id": "limtochess_sync_cap_unowned",
+      "content": "（未持有，同步上限3階）"
+    },
+    {
+      "id": "limtochess_sync_cap_unowned_sub",
+      "content": " ． 未持有，同步上限3階"
+    },
+    {
+      "id": "limtochess_sync_generic_cost",
+      "content": " ． 通用碎片{0}個"
+    },
+    {
+      "id": "limtochess_pack_outcome_fill",
+      "content": "未編入 → 以同步{0}階招募"
+    },
+    {
+      "id": "limtochess_pack_outcome_replace",
+      "content": "同步{0}階 → 替換為同步{1}階"
+    },
+    {
+      "id": "limtochess_pack_outcome_syncup",
+      "content": "相同人格 同步{0}階 → 同步{1}階"
+    },
+    {
+      "id": "limtochess_pack_outcome_fragment_up",
+      "content": "碎片 +{0} {1}/{2} → 同步{3}階 → 同步{4}階"
+    },
+    {
+      "id": "limtochess_reward_fragment_up",
+      "content": "碎片 +{0} → 同步{1}階 → 同步{2}階"
+    },
+    {
+      "id": "limtochess_cost_label",
+      "content": "經費 {0}"
+    },
+    {
+      "id": "limtochess_affiliation_tail",
+      "content": " ． 所屬 {0}"
+    },
+    {
+      "id": "limtochess_start_topcost_block_hint",
+      "content": " ． 經費{0}的人格最多{1}名"
+    },
+    {
+      "id": "limtochess_start_topcost_hint",
+      "content": " ． 手動編隊時，經費{0}的人格最多{1}名（自動編隊沒有限制）"
+    },
+    {
+      "id": "limtochess_sync_cap_unowned_tail",
+      "content": " ． 未持有（同步上限{0}階）"
+    },
+    {
+      "id": "limtochess_pack_hover_replace",
+      "content": "目前 {0} 同步{1}階\n→ 此卡片 同步{2}階"
+    },
+    {
+      "id": "limtochess_pack_hover_syncup",
+      "content": "目前相同人格 同步{0}階\n→ 同步{1}階"
+    },
+    {
+      "id": "limtochess_reward_no_target_sync",
+      "content": "沒有對象（※ 全員同步不低於{0}階或不在編隊中時）"
+    },
+    {
+      "id": "limtochess_reward_face_sync_plus",
+      "content": "同步 +{0}階"
+    },
+    {
+      "id": "limtochess_reward_why_capped",
+      "content": "同步{0}階 ． 上限"
+    },
+    {
+      "id": "limtochess_reward_why_generic_cost",
+      "content": "同步{0}階 ． 需要{1}個通用碎片"
+    },
+    {
+      "id": "limtochess_reward_why_generic_max",
+      "content": "同步{0}階 ． 通用碎片最多提升至同步{1}階"
+    },
+    {
+      "id": "limtochess_reward_why_not_target",
+      "content": "同步{0}階 ． 非對象"
+    },
+    {
+      "id": "limtochess_reward_title_sync_up_small",
+      "content": "持有人格1名同步（最多{0}階）"
+    },
+    {
+      "id": "limtochess_reward_face_sync_personality",
+      "content": "同步{0}階段的人格"
+    },
+    {
+      "id": "limtochess_reward_title_sync_under",
+      "content": "同步低於{0}階的人格1名"
+    },
+    {
+      "id": "limtochess_reward_label_sync_up_small",
+      "content": "持有人格1名同步 +{0}階（最多{1}階）"
+    },
+    {
+      "id": "limtochess_sync_cap_unowned_short",
+      "content": "未持有（同步上限{0}階）"
+    },
+    {
+      "id": "limtochess_generic_rule_tail",
+      "content": "同步最多至{0}階 +1"
+    },
+    {
+      "id": "limtochess_completion_sync4",
+      "content": "同步4階 {0}/{1}名（第1階段條件{2}名）"
+    },
+    {
+      "id": "limtochess_completion_stage2",
+      "content": "第2階段：全員同步4階 + 每名人格裝備{0}個4階E.G.O（{1}/{2}名）"
+    },
+    {
+      "id": "limtochess_completion_record",
+      "content": "達成紀錄——{0}人格{1}名同步4階"
+    },
+    {
+      "id": "limtochess_roominfo_name_battle",
+      "content": "{0}戰鬥"
+    },
+    {
+      "id": "limtochess_roominfo_name_room",
+      "content": "{0}"
+    },
+    {
+      "id": "limtochess_roominfo_name_hidden",
+      "content": "未揭曉的房間"
+    },
+    {
+      "id": "limtochess_roominfo_name_visited",
+      "content": "{0} ． 已造訪的房間"
+    },
+    {
+      "id": "limtochess_roominfo_name_current",
+      "content": "{0} ． 目前位置"
+    },
+    {
+      "id": "limtochess_roominfo_pack_count",
+      "content": "{0}/{1}"
+    },
+    {
+      "id": "limtochess_packtip_cost_low",
+      "content": "COST 0～1"
+    },
+    {
+      "id": "limtochess_packtip_chance_line",
+      "content": "{0}  {1}"
+    },
+    {
+      "id": "limtochess_packtip_percent",
+      "content": "{0}%"
+    },
+    {
+      "id": "limtochess_packtip_percent_under_min",
+      "content": "低於0.01%"
+    },
+    {
+      "id": "limtochess_part_focus_header",
+      "content": "WARNING"
+    },
+    {
+      "id": "limtochess_part_focus_6011_pole",
+      "content": "優先攻擊電線桿"
+    },
+    {
+      "id": "limtochess_entrance_pass_locked_title",
+      "content": "未開放"
+    },
+    {
+      "id": "limtochess_final_title_cleared",
+      "content": "構築成功"
+    },
+    {
+      "id": "limtochess_final_title_defeated",
+      "content": "構築失敗"
+    },
+    {
+      "id": "limtochess_final_title_abandoned",
+      "content": "放棄構築"
+    },
+    {
+      "id": "limtochess_final_mode_auto",
+      "content": "自動編隊"
+    },
+    {
+      "id": "limtochess_final_mode_manual",
+      "content": "手動編隊"
+    },
+    {
+      "id": "limtochess_final_summary_line",
+      "content": "{0} ． 圖式進度 {1}/{2} ． 編隊人格 {3}名 ． 人格等級 {4}"
+    },
+    {
+      "id": "limtochess_final_auto_bonus",
+      "content": "※ 自動編隊獎勵：圖式構築通行證經驗值 +40%"
+    },
+    {
+      "id": "limtochess_final_measure_line",
+      "content": "總耗時：{0} ． 骰子擲骰次數：{1}次"
+    },
+    {
+      "id": "limtochess_duration_hours",
+      "content": "{0}小時{1}分"
+    },
+    {
+      "id": "limtochess_duration_minutes",
+      "content": "{0}分{1}秒"
+    },
+    {
+      "id": "limtochess_final_defeat_where",
+      "content": "失敗關卡 - {0}"
+    },
+    {
+      "id": "limtochess_final_completion_none",
+      "content": "最終編隊"
+    },
+    {
+      "id": "limtochess_final_not_in_roster",
+      "content": "移出編隊"
+    },
+    {
+      "id": "limtochess_final_damage_head",
+      "content": "傷害紀錄 [常規遭遇戰{0}次、菁英遭遇戰{1}次、BOSS遭遇戰{2}次合計]"
+    },
+    {
+      "id": "limtochess_final_damage_row",
+      "content": "造成傷害 {0}（{1}%） ． 受到傷害 {2} ． 擊殺 {3} ． 出戰 {4}次"
+    },
+    {
+      "id": "limtochess_final_damage_row_deaths",
+      "content": " ． 死亡 {0}"
+    },
+    {
+      "id": "limtochess_final_damage_total",
+      "content": "合計——造成傷害 {0} ． 受到傷害 {1} ． 擊殺 {2}"
+    },
+    {
+      "id": "limtochess_final_battle_log_head",
+      "content": "戰鬥紀錄"
+    },
+    {
+      "id": "limtochess_final_battle_log_line",
+      "content": "{0}——{1}（進行{2}回合） ． 耗時：{3} ． 死亡人格數：{4}名"
+    },
+    {
+      "id": "limtochess_battle_result_win",
+      "content": "勝利"
+    },
+    {
+      "id": "limtochess_room_title",
+      "content": "第{0}圖式 {1}"
+    },
+    {
+      "id": "limtochess_room_label_final_boss",
+      "content": "最終BOSS戰"
+    },
+    {
+      "id": "limtochess_report_subline",
+      "content": "{0} ． {1}回合"
+    },
+    {
+      "id": "limtochess_report_round",
+      "content": "{0}回合"
+    },
+    {
+      "id": "limtochess_report_retry_left",
+      "content": "重新戰鬥（剩餘次數{0}）"
+    },
+    {
+      "id": "limtochess_report_continue",
+      "content": "繼續"
+    },
+    {
+      "id": "limtochess_event_hardship_stacked",
+      "content": "受到的苦難{0}個——{1}"
+    },
+    {
+      "id": "limtochess_event_boss_current",
+      "content": "目前的最終BOSS：{0}"
+    },
+    {
+      "id": "limtochess_event_pick_guide",
+      "content": "追加的苦難會累積套用於之後所有戰鬥的敵人。"
+    },
+    {
+      "id": "limtochess_event_card_selected",
+      "content": "已選擇"
+    },
+    {
+      "id": "limtochess_event_card_select",
+      "content": "選擇"
+    },
+    {
+      "id": "limtochess_event_choice_confirm",
+      "content": "確認"
+    },
+    {
+      "id": "limtochess_event_keyword_picked",
+      "content": "選擇的關鍵字：{0}"
+    },
+    {
+      "id": "limtochess_event_roster_note",
+      "content": "編隊{0}/{1}名——招募後會與編隊中的1名人格替換"
+    },
+    {
+      "id": "limtochess_event_none",
+      "content": "沒有可以進行的事件。"
+    },
+    {
+      "id": "limtochess_event_back_to_map",
+      "content": "返回地圖"
+    },
+    {
+      "id": "limtochess_event_empty_slot",
+      "content": "空的編隊欄位"
+    },
+    {
+      "id": "limtochess_event_unknown_personality",
+      "content": "未知的人格"
+    },
+    {
+      "id": "limtochess_event_unknown_ego",
+      "content": "未知的E.G.O"
+    },
+    {
+      "id": "limtochess_notice_battle_quit",
+      "content": "已中斷戰鬥。將回到進入戰鬥前的狀態。"
+    },
+    {
+      "id": "limtochess_notice_server_wait",
+      "content": "正在讀取伺服器資訊。請稍後再試。"
+    },
+    {
+      "id": "limtochess_notice_deck_unavailable",
+      "content": "目前無法使用此編隊。"
+    },
+    {
+      "id": "limtochess_notice_rolls_used_up",
+      "content": "編隊刷新次數已全部消耗完畢。"
+    },
+    {
+      "id": "limtochess_notice_auto_rolls_used_up",
+      "content": "自動編隊刷新次數已全部消耗完畢。"
+    },
+    {
+      "id": "limtochess_notice_pick_one",
+      "content": "請選擇至少1名人格。"
+    },
+    {
+      "id": "limtochess_notice_roll_first",
+      "content": "請先進行編隊刷新。"
+    },
+    {
+      "id": "limtochess_notice_cost_over",
+      "content": "經費不足。"
+    },
+    {
+      "id": "limtochess_notice_max_picks",
+      "content": "最多可以編入{0}名。"
+    },
+    {
+      "id": "limtochess_notice_run_in_progress",
+      "content": "偵測到進行中的資料。請從「繼續」進行。"
+    },
+    {
+      "id": "limtochess_notice_already_picked",
+      "content": "已經選擇過這個對象。"
+    },
+    {
+      "id": "limtochess_notice_no_target",
+      "content": "沒有可以選擇的對象。"
+    },
+    {
+      "id": "limtochess_confirm_ego_swap_desc",
+      "content": "要替換{0}的E.G.O嗎？"
+    },
+    {
+      "id": "limtochess_notice_reroll_charged",
+      "content": "已補充{0}次刷新機會。"
+    },
+    {
+      "id": "limtochess_notice_reroll_short",
+      "content": "刷新機會不足。"
+    },
+    {
+      "id": "limtochess_notice_identity_joined",
+      "content": "已編入人格。"
+    },
+    {
+      "id": "limtochess_notice_identity_replaced",
+      "content": "已替換人格。"
+    },
+    {
+      "id": "limtochess_notice_sync_up",
+      "content": "{0}人格的同步階段從{1}階提升至{2}階。"
+    },
+    {
+      "id": "limtochess_notice_level_catch_up",
+      "content": "人格等級已提升 {0} → {1}。"
+    },
+    {
+      "id": "limtochess_formation_cost",
+      "content": "{0} Cost"
+    },
+    {
+      "id": "limtochess_notice_server_error",
+      "content": "發生伺服器錯誤。請稍後再試。"
+    },
+    {
+      "id": "limtochess_notice_battle_enter_failed",
+      "content": "無法進入戰鬥。請稍後再試。"
+    },
+    {
+      "id": "limtochess_roster_replace_title",
+      "content": "編隊人數超過上限 - 請選擇{0}名要移除的人格"
+    },
+    {
+      "id": "limtochess_roster_replace_desc",
+      "content": "本圖式的編隊上限為{0}名，招募後編隊人格合計將為{1}名。\n被移除的人格會失去裝備的E.G.O，並依同步階段保留該人格的部分碎片。再次招募時，將套用保留的碎片。"
+    },
+    {
+      "id": "limtochess_roster_replace_confirm",
+      "content": "移除後領取"
+    },
+    {
+      "id": "limtochess_roster_replace_count",
+      "content": "已選{0}/{1}名"
+    },
+    {
+      "id": "limtochess_roster_replace_head",
+      "content": "編隊人數超過上限"
+    },
+    {
+      "id": "limtochess_roster_replace_sub",
+      "content": "請選擇{0}名要移除的人格"
+    },
+    {
+      "id": "limtochess_roster_replace_card_power",
+      "content": "構築力 {0}"
+    },
+    {
+      "id": "limtochess_roster_replace_card_refund",
+      "content": "移除時，保留{0}個碎片"
+    },
+    {
+      "id": "limtochess_roster_replace_exclude",
+      "content": "移除"
+    },
+    {
+      "id": "limtochess_roster_replace_cancel",
+      "content": "取消"
+    },
+    {
+      "id": "limtochess_roster_replace_limit",
+      "content": "最多替換{0}名——請點選已選的罪人取消後再選擇"
+    },
+    {
+      "id": "limtochess_formation_all_join",
+      "content": "所有人格都必須參戰才能繼續。"
+    },
+    {
+      "id": "limtochess_weekly_reset_end_title",
+      "content": "構築結束"
+    },
+    {
+      "id": "limtochess_weekly_reset_end_desc",
+      "content": "因每週重置，進行中的構築已結束。"
+    },
+    {
+      "id": "limtochess_final_claim_reward",
+      "content": "領取獎勵"
+    },
+    {
+      "id": "limtochess_final_exit",
+      "content": "離開"
+    },
+    {
+      "id": "limtochess_report_duel_win",
+      "content": "我方拚點勝利數"
+    },
+    {
+      "id": "limtochess_report_mp_avg",
+      "content": "我方平均理智值"
+    },
+    {
+      "id": "limtochess_report_table_title",
+      "content": "戰鬥紀錄"
+    },
+    {
+      "id": "limtochess_report_dealt",
+      "content": "造成傷害"
+    },
+    {
+      "id": "limtochess_report_taken",
+      "content": "受到傷害"
+    },
+    {
+      "id": "limtochess_report_ego_damage",
+      "content": "E.G.O傷害"
+    },
+    {
+      "id": "limtochess_report_kill",
+      "content": "擊殺"
+    },
+    {
+      "id": "limtochess_report_duel",
+      "content": "拚點勝利"
+    },
+    {
+      "id": "limtochess_report_dealt_count",
+      "content": "造成傷害（次數）"
+    },
+    {
+      "id": "limtochess_report_taken_count",
+      "content": "受到傷害（次數）"
+    },
+    {
+      "id": "limtochess_report_damage_count",
+      "content": "{0} ({1})"
+    },
+    {
+      "id": "limtochess_report_duel_rate",
+      "content": "拚點勝率"
+    },
+    {
+      "id": "limtochess_report_one_sided",
+      "content": "單方面攻擊比例"
+    },
+    {
+      "id": "limtochess_report_weak_resist",
+      "content": "命中<color=#FF6B5E>弱點</color>、<color=#6FB2FF>抗性</color>"
+    },
+    {
+      "id": "limtochess_report_dot",
+      "content": "持續損傷"
+    },
+    {
+      "id": "limtochess_report_tab_attack",
+      "content": "攻擊"
+    },
+    {
+      "id": "limtochess_report_tab_hit",
+      "content": "受擊"
+    },
+    {
+      "id": "limtochess_report_total_ally",
+      "content": "全體友方單位"
+    },
+    {
+      "id": "limtochess_report_total_enemy",
+      "content": "全體敵方單位"
+    },
+    {
+      "id": "limtochess_sweeper_banner_start_time",
+      "content": "凌晨3點13分"
+    },
+    {
+      "id": "limtochess_sweeper_banner_elapsed",
+      "content": "經過{0}分鐘"
+    },
+    {
+      "id": "limtochess_sweeper_banner_night_start",
+      "content": "後巷深宵開始了。"
+    },
+    {
+      "id": "limtochess_sweeper_banner_rush",
+      "content": "更多清道夫蜂擁而至。"
+    },
+    {
+      "id": "limtochess_sweeper_banner_night_end",
+      "content": "後巷深宵即將結束。"
+    },
+    {
+      "id": "limtochess_battle_hardship_label",
+      "content": "苦難"
+    },
+    {
+      "id": "limtochess_final_result_title",
+      "content": "最終戰鬥結果"
+    },
+    {
+      "id": "limtochess_final_pass_exp",
+      "content": "圖式構築通行證經驗值 +{0}"
+    },
+    {
+      "id": "limtochess_final_segment_progress",
+      "content": "圖式進度"
+    },
+    {
+      "id": "limtochess_final_battle_progress",
+      "content": "戰鬥次數"
+    },
+    {
+      "id": "limtochess_final_participants",
+      "content": "參戰人格"
+    },
+    {
+      "id": "limtochess_final_identity_level",
+      "content": "人格等級"
+    },
+    {
+      "id": "limtochess_final_level_value",
+      "content": "LV {0}"
+    },
+    {
+      "id": "limtochess_final_damage_title",
+      "content": "傷害紀錄"
+    },
+    {
+      "id": "limtochess_final_battle_detail_bracket",
+      "content": "[ 常規遭遇戰{0}次、菁英遭遇戰{1}次、BOSS遭遇戰{2}次 ]"
+    },
+    {
+      "id": "limtochess_final_clash_value",
+      "content": "{0}/{1}"
+    },
+    {
+      "id": "limtochess_final_reward_title",
+      "content": "獎勵紀錄"
+    },
+    {
+      "id": "limtochess_final_pack_picked",
+      "content": "選擇"
+    },
+    {
+      "id": "limtochess_final_reroll_used",
+      "content": "刷新機會使用次數"
+    },
+    {
+      "id": "limtochess_final_generic_shards",
+      "content": "通用碎片數量"
+    },
+    {
+      "id": "limtochess_final_acquired_identity",
+      "content": "獲得的人格數量"
+    },
+    {
+      "id": "limtochess_final_acquired_ego",
+      "content": "獲得的E.G.O數量"
+    },
+    {
+      "id": "limtochess_final_history_title",
+      "content": "歷史紀錄"
+    },
+    {
+      "id": "limtochess_final_history_change",
+      "content": "{0} → {1}"
+    },
+    {
+      "id": "limtochess_final_history_ego",
+      "content": "[{0}] {1}"
+    },
+    {
+      "id": "limtochess_battle_buildpower_label",
+      "content": "構築力"
+    },
+    {
+      "id": "limtochess_battle_distortion_row",
+      "content": "圖式扭曲"
+    },
+    {
+      "id": "limtochess_roominfo_line",
+      "content": "• {0}"
+    },
+    {
+      "id": "limtochess_roominfo_effect_hardship",
+      "content": "{0}或{1}"
+    },
+    {
+      "id": "limtochess_roominfo_section_packs",
+      "content": "出現卡包清單"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_reroll_segment",
+      "content": "刷新次數"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_sync_pick",
+      "content": "選擇提升同步"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_sync_random",
+      "content": "隨機提升同步"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_recruit_pick",
+      "content": "招募人格"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_pack_random",
+      "content": "獲得隨機卡包"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_pack_keyword",
+      "content": "獲得關鍵字卡包"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_ego_pick",
+      "content": "裝備E.G.O"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_ego_keyword",
+      "content": "裝備關鍵字E.G.O"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_reroll_to_generic",
+      "content": "換算為通用碎片"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_swap_affiliation_random",
+      "content": "同一所屬隨機替換"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_swap_affiliation_pick",
+      "content": "同一所屬選擇替換"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_swap_pick",
+      "content": "替換招募人格"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_swap_all",
+      "content": "變更編隊全員"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_swap_one",
+      "content": "變更1名人格"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_pack_grade_open",
+      "content": "開啟等級卡包"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_swap_cost_up_pick",
+      "content": "經費 +1替換"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_swap_one_pick",
+      "content": "變更所選的1名人格"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_final_boss",
+      "content": "變更最終BOSS"
+    },
+    {
+      "id": "limtochess_roominfo_effect_name_stage_unlock",
+      "content": "解鎖BOSS選項"
+    },
+    {
+      "id": "limtochess_packtip_deck_match",
+      "content": "目前編隊中的{1}人格{0}名"
+    },
+    {
+      "id": "limtochess_packtip_guarantee_head",
+      "content": "保證至少{0}張{1}卡片"
+    },
+    {
+      "id": "limtochess_packtip_chance_head",
+      "content": "機率"
+    },
+    {
+      "id": "limtochess_packtip_identity",
+      "content": "人格"
+    },
+    {
+      "id": "limtochess_packtip_ego",
+      "content": "E.G.O"
+    },
+    {
+      "id": "limtochess_packtip_keep",
+      "content": "可\n選擇"
+    },
+    {
+      "id": "limtochess_gauge_cycle_state_extended",
+      "content": "共同週期延長中"
+    },
+    {
+      "id": "limtochess_option_retry_left",
+      "content": "剩餘次數{0}"
+    },
+    {
+      "id": "limtochess_roominfo_list_merit",
+      "content": "勝利獎勵"
+    },
+    {
+      "id": "limtochess_roominfo_merit_pack",
+      "content": "從{0}個卡包中開啟1個"
+    },
+    {
+      "id": "limtochess_roominfo_merit_reroll",
+      "content": "刷新機會 +{0}"
+    },
+    {
+      "id": "limtochess_roominfo_merit_elite",
+      "content": "選擇1個精英獎勵（人格及E.G.O的替換、編入、同步）"
+    },
+    {
+      "id": "limtochess_roominfo_merit_level",
+      "content": "人格等級 +{0}"
+    },
+    {
+      "id": "limtochess_ego_choice_title",
+      "content": "選擇{0} {1} E.G.O"
+    },
+    {
+      "id": "limtochess_ego_choice_desc",
+      "content": "{0}的{1}欄位只能裝備1個E.G.O。請選擇要裝備的E.G.O。"
+    },
+    {
+      "id": "limtochess_ego_choice_warning",
+      "content": "未選擇的E.G.O將會消失。"
+    },
+    {
+      "id": "limtochess_ego_choice_current",
+      "content": "現有E.G.O ． {0}階"
+    },
+    {
+      "id": "limtochess_ego_choice_new",
+      "content": "新E.G.O ． {0}階"
+    },
+    {
+      "id": "limtochess_ego_choice_confirm",
+      "content": "裝備"
+    },
+    {
+      "id": "limtochess_ego_choice_back",
+      "content": "返回"
+    },
+    {
+      "id": "limtochess_packselect_summary_ego_keep",
+      "content": "保管{0} E.G.O"
+    },
+    {
+      "id": "limtochess_packselect_ego_same_grade",
+      "content": "已為{0}選擇{2}張{1} E.G.O。確定時只會裝備1張。"
+    },
+    {
+      "id": "limtochess_band_ready_buff_turn",
+      "content": "從TURN {0}起"
+    },
+    {
+      "id": "limtochess_roominfo_choice_1",
+      "content": "選項1"
+    },
+    {
+      "id": "limtochess_roominfo_choice_2",
+      "content": "選項2"
+    },
+    {
+      "id": "limtochess_roominfo_choice_3",
+      "content": "選項3"
+    },
+    {
+      "id": "limtochess_roominfo_choice_4",
+      "content": "選項4"
+    },
+    {
+      "id": "limtochess_roominfo_choice_5",
+      "content": "選項5"
+    },
+    {
+      "id": "limtochess_roominfo_choice_6",
+      "content": "選項6"
+    },
+    {
+      "id": "limtochess_roominfo_choice_7",
+      "content": "選項7"
+    },
+    {
+      "id": "limtochess_roominfo_choice_8",
+      "content": "選項8"
+    },
+    {
+      "id": "limtochess_roominfo_choice_option",
+      "content": "{0} · {1}"
+    },
+    {
+      "id": "limtochess_briefing_skill",
+      "content": "技能"
+    },
+    {
+      "id": "limtochess_ink_lobby_run_title",
+      "content": "進行中的圖式構築"
+    },
+    {
+      "id": "limtochess_ink_lobby_ticker",
+      "content": "※ BETA——測試期間，圖式構築的進行方式與畫面可能會有所變動"
+    },
+    {
+      "id": "limtochess_ink_start_ego_resource",
+      "content": "初始罪孽碎片"
+    },
+    {
+      "id": "limtochess_ink_start_primary",
+      "content": "開始構築"
+    },
+    {
+      "id": "limtochess_ink_start_reroll_info",
+      "content": "． 自動編隊刷新機會最多可持有{1}次。\n． 自動編隊刷新機會每天補充{0}次。\n． 完成圖式構築後，可依進度獲得最多{1}次自動編隊刷新機會。"
+    },
+    {
+      "id": "limtochess_ink_map_formation",
+      "content": "編成"
+    },
+    {
+      "id": "limtochess_ink_start_deck_empty",
+      "content": "． 自動編隊刷新所出現的編隊會儲存在畫面下方，可以選擇想要的編隊入場。"
+    },
+    {
+      "id": "limtochess_ink_event_pick_skip",
+      "content": "不領取"
+    },
+    {
+      "id": "limtochess_ink_pass_tab_reward",
+      "content": "獎勵"
+    },
+    {
+      "id": "limtochess_ink_pass_tab_mission_progress",
+      "content": "成就 {0}%"
+    },
+    {
+      "id": "limtochess_ink_pass_max",
+      "content": "最高等級"
+    },
+    {
+      "id": "limtochess_ink_pass_featured",
+      "content": "Lv {0} 獎勵"
+    },
+    {
+      "id": "limtochess_ink_pass_featured_receivable",
+      "content": "現在可以領取"
+    },
+    {
+      "id": "limtochess_ink_pass_featured_need",
+      "content": "還需要{0}通行證經驗值"
+    },
+    {
+      "id": "limtochess_ink_pass_featured_received",
+      "content": "已領取的獎勵"
+    },
+    {
+      "id": "limtochess_ink_pass_count",
+      "content": "×{0}"
+    },
+    {
+      "id": "limtochess_ink_pass_coming",
+      "content": "準備中"
+    },
+    {
+      "id": "limtochess_ink_result_mvp_tag",
+      "content": "MVP"
+    },
+    {
+      "id": "limtochess_ink_prep_ego_owned_demand",
+      "content": "持有 / 需求"
+    },
+    {
+      "id": "limtochess_ink_pass_featured_item",
+      "content": "{0} × {1}"
+    },
+    {
+      "id": "limtochess_ink_pass_mission_empty",
+      "content": "沒有登錄的成就"
+    },
+    {
+      "id": "limtochess_ink_pass_mission_progress",
+      "content": "{0}/{1}"
+    },
+    {
+      "id": "limtochess_ink_pass_mission_receivable",
+      "content": "領取"
+    },
+    {
+      "id": "limtochess_ink_pass_mission_received",
+      "content": "已領取"
+    },
+    {
+      "id": "limtochess_battleprep_sortie_label",
+      "content": "可戰鬥人數"
+    },
+    {
+      "id": "limtochess_ink_pass_exp",
+      "content": "{0}/{1}"
+    },
+    {
+      "id": "limtochess_ink_pass_beta_notice",
+      "content": "． 透過遊玩圖式構築獲得的通行證經驗值，每週最多可以獲得1,000。\n． 達到目前開放的最高等級後，遊玩圖式構築獲得的經驗值將不再累積。\n． 但之後新增的成就所獲得的超出部分經驗值，會在通行證等級擴充時自動反映。"
+    },
+    {
+      "id": "limtochess_ink_start_drawer_open",
+      "content": "選擇出戰人格"
+    },
+    {
+      "id": "limtochess_ink_gauge_cycle",
+      "content": "TURN {0}"
+    },
+    {
+      "id": "limtochess_ink_band_ready_buff_turn",
+      "content": "從TURN {0}起\n套用效果"
+    },
+    {
+      "id": "limtochess_ego_guide_aim_click",
+      "content": "請選擇目標敵人"
+    },
+    {
+      "id": "limtochess_ego_guide_aim_cancel",
+      "content": "（右鍵 = 取消）"
+    },
+    {
+      "id": "limtochess_ego_guide_drop_fire",
+      "content": "放到敵人身上即可發動"
+    },
+    {
+      "id": "limtochess_ego_guide_drop_reserve",
+      "content": "放到敵人身上即可預約使用"
+    },
+    {
+      "id": "limtochess_ego_guide_drop_cancel",
+      "content": "（放到空白處即可取消）"
+    },
+    {
+      "id": "limtochess_ego_badge_duel",
+      "content": "拚點"
+    },
+    {
+      "id": "limtochess_ego_badge_oneside",
+      "content": "單方面"
+    },
+    {
+      "id": "limtochess_ego_badge_impossible",
+      "content": "不可"
+    },
+    {
+      "id": "limtochess_ego_badge_target",
+      "content": "E.G.O目標"
+    },
+    {
+      "id": "limtochess_ego_badge_resonance",
+      "content": "{0} {1}共鳴"
+    },
+    {
+      "id": "limtochess_ego_badge_absolute",
+      "content": "絕對 {0}"
+    },
+    {
+      "id": "limtochess_egoaim_guide",
+      "content": "拖曳到敵人身上"
+    },
+    {
+      "id": "limtochess_egoaim_resonance",
+      "content": "{0}共鳴"
+    },
+    {
+      "id": "limtochess_egoaim_absolute",
+      "content": "{0}完全共鳴"
+    },
+    {
+      "id": "limtochess_egoaim_target",
+      "content": "{0} ({1})"
+    },
+    {
+      "id": "limtochess_packpreview_detail",
+      "content": "查看詳情"
+    },
+    {
+      "id": "limtochess_ink_start_exp_up",
+      "content": "圖式構築通行證經驗值 +40%"
+    },
+    {
+      "id": "limtochess_cost_tag",
+      "content": "COST"
+    },
+    {
+      "id": "limtochess_elite_replace_target_label",
+      "content": "要替換的人格"
+    },
+    {
+      "id": "limtochess_result_dmg_label",
+      "content": "DMG"
+    },
+    {
+      "id": "limtochess_buildpower_help",
+      "content": "構築力是顯示目前編隊完善程度的數值。\n\n人格的經費、同步階段、等級越高，構築力就越高。此外，集結相同關鍵字、所屬的人格，或是裝備等級較高的E.G.O，也會提升構築力。出擊人格對構築力的影響比待機人格更大。\n\n※ 但構築力只是衡量編隊強度的參考指標，不會直接影響戰鬥。"
+    },
+    {
+      "id": "limtochess_event_block_no_boss_set",
+      "content": "沒有BOSS敵人組合"
+    },
+    {
+      "id": "limtochess_event_block_same_boss",
+      "content": "與目前的最終BOSS相同"
+    },
+    {
+      "id": "limtochess_event_block_cleared_boss",
+      "content": "已擊敗的BOSS"
+    },
+    {
+      "id": "limtochess_event_block_no_target",
+      "content": "沒有目標"
+    },
+    {
+      "id": "limtochess_event_block_not_enough_reroll",
+      "content": "刷新機會不足"
+    },
+    {
+      "id": "limtochess_event_block_skip_off",
+      "content": "「不選擇」已關閉"
+    },
+    {
+      "id": "limtochess_packselect_roster_cap_short",
+      "content": "編隊上限{0}名——可替換的罪人不足。請減少選擇的卡片"
+    },
+    {
+      "id": "limtochess_ink_start_auto_cost_info",
+      "content": "． 選擇自動編隊時，會在{0}經費內隨機選擇人格。"
+    },
+    {
+      "id": "limtochess_notice_roster_cap_up",
+      "content": "可編入的人格數已從{0}名增加為{1}名。"
+    },
+    {
+      "id": "limtochess_level_bonus",
+      "content": "Lv {0}+{1}"
+    },
+    {
+      "id": "limtochess_ink_gauge_cycle_extended",
+      "content": "TURN {0} - 延長中"
+    },
+    {
+      "id": "limtochess_battle_effect_level",
+      "content": "敵人等級 {0}"
+    },
+    {
+      "id": "limtochess_roster_replace_power_now",
+      "content": "目前構築力"
+    },
+    {
+      "id": "limtochess_buildpower_recommended_label",
+      "content": "建議構築力"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10910",
+      "content": "物流箱-羅佳不低於15且可以撤退時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11011",
+      "content": "物流箱-辛克萊不低於15且可以撤退時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10812",
+      "content": "始不低於3且可以撤退時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10613",
+      "content": "有待機、歸隊人員，且有可撤退的黑獸時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10710",
+      "content": "準備杜拉罕時，或受到攻擊時已有杜拉罕且理智值不低於15、可以強化反擊時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10415",
+      "content": "有要準備天殺的蜘蛛巢友方時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10416",
+      "content": "在漆黑派 華達呢布料長大衣與衣料甦醒之間切換時，或受到攻擊時可以使用強化攻擊，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10216",
+      "content": "受到攻擊時，若炎蝶之棺不低於30且沒有過熱之棺，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11216",
+      "content": "受到攻擊時，若曉光之火不低於30，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10110",
+      "content": "生蝶與亡蝶的合計不高於最大值的25%，且再次裝填後理智值高於-40時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10115",
+      "content": "可以準備解放 - Ⅱ時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10213",
+      "content": "可以準備狙擊架式或切換為閃弓時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10309",
+      "content": "可以開始時間租賃時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10314",
+      "content": "可以提升解放階段時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10315",
+      "content": "漆黑之神的加護不低於100、可以使用強化攻擊時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10412",
+      "content": "可以進入視線的輕蔑狀態時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10514",
+      "content": "孢子彈[基本]與孢子彈[霰彈]的合計不高於最大值的25%，且再次裝填後理智值高於-40時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10611",
+      "content": "沒有子彈且可以再次裝填時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10713",
+      "content": "充能次數低於15且可以準備過度充能時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10813",
+      "content": "下一個技能累積了不低於2個技能1而要切換組牌時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10816",
+      "content": "體力不高於10%而進入更衣室時，或在更衣室中體力低於最大體力而回復時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10902",
+      "content": "受到攻擊時，若呼吸法不低於5、可以透過黑雲刀被動使用強化反擊，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10909",
+      "content": "可以開始時間租賃時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10913",
+      "content": "淚鋒低於3，且消耗理智值後理智值高於-40時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10915",
+      "content": "自身沒有反思，且發動攻擊的敵人有不低於3個負面效果、可以使用批評時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10916",
+      "content": "加速彈低於5、可以補充時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11113",
+      "content": "可以開始時間租賃時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11213",
+      "content": "有體力不高於40%的敵人，且可以準備慈悲追加攻擊時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10111",
+      "content": "精靈誘餌低於3時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10113",
+      "content": "有可以反擊的對象，且撕裂的回憶低於2時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10114",
+      "content": "沒有腳力【午】且下回合也不會獲得時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10207",
+      "content": "受到攻擊時，若震顫次數低於6，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10210",
+      "content": "受到攻擊時，若充能次數低於5，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10211",
+      "content": "受到攻擊時，若自身燒傷不低於10，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10212",
+      "content": "有可以反擊的對象，且沒有腳力【卯】時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10312",
+      "content": "受到攻擊時，若愛/憎惡次數低於4，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10313",
+      "content": "有可以反擊的對象，且沒有發角時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10411",
+      "content": "有可以反擊的對象，且沒有腳力【卯】時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10413",
+      "content": "沒有護衛架式時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10503",
+      "content": "充能次數低於5時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10506",
+      "content": "受到攻擊時，若充能次數低於5，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10612",
+      "content": "受到攻擊時，若充能次數低於10，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10709",
+      "content": "受到攻擊時，若充能次數低於5，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10714",
+      "content": "有可以反擊的對象，且沒有血炎時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10810",
+      "content": "沒有防禦姿態時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10905",
+      "content": "充能次數低於5時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10912",
+      "content": "沒有巳腕且下回合也不會獲得時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10914",
+      "content": "受到攻擊時，若充能次數低於5，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11010",
+      "content": "受到攻擊時，若震顫次數低於3，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11014",
+      "content": "有可以反擊的對象，且沒有血炎時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11015",
+      "content": "呼吸法低於25時，在輪到使用技能1時使用防守。呼吸法不低於25時，受到攻擊時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11110",
+      "content": "受到攻擊時，若充能次數低於15，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11112",
+      "content": "有可以反擊的對象，且沒有腳力【卯】時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11211",
+      "content": "12區燃料低於50時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11212",
+      "content": "沒有巳腕且下回合也不會獲得時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11215",
+      "content": "沒有高壓電外皮時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10105",
+      "content": "受到攻擊時，若待機技能中只剩下不低於2個技能1，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11105",
+      "content": "受到攻擊時，若待機技能中只剩下不低於2個技能1，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10108",
+      "content": "受到攻擊時，若待機技能中沒有技能3，且可以透過捨棄維持或提升所解真知，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10608",
+      "content": "受到攻擊時，若待機技能中沒有技能3，且可以透過捨棄維持或提升所解真知，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10510",
+      "content": "受到攻擊時，若能保留待機技能中的技能3，同時維持或提升所解真知，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10907",
+      "content": "受到攻擊時，若能保留待機技能中的技能3，同時維持或提升所解真知，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10116",
+      "content": "充能次數低於7，且支付體力代價後體力不低於60%時，在輪到使用技能1時使用防守。充能次數高於15、體力低於85%時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10310",
+      "content": "血餐不低於10、硬血低於10，且體力不低於60%時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10414",
+      "content": "受到攻擊時，若體力不低於80%、花瓣低於10且沒有脆弱，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10513",
+      "content": "受到攻擊時，若硬血鎧甲低於3，且目標友方支付流血代價後體力不低於60%，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10605",
+      "content": "受到攻擊時，若體力不高於50%且K公司的安瓿低於2，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10702",
+      "content": "受到攻擊時，若呼吸法次數不低於3，且消耗5點體力後體力不低於60%，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10705",
+      "content": "受到攻擊時，若體力不低於60%、理智值介於-20到0之間，且自身沉淪低於5，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11005",
+      "content": "理智值不高於-30時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11006",
+      "content": "受到攻擊時，若符咒為4，且之後有可傳遞的技能3，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11016",
+      "content": "不在暴走狀態、脈動次數低於15，且支付體力代價後體力不低於60%時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11107",
+      "content": "受到攻擊時，若魔彈低於6，且支付理智值代價後理智值不低於-20，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11210",
+      "content": "體力低於40%且有血餐時，使用防守。除此之外，若磨滅的心低於3，且支付流血代價後體力不低於60%，則在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11214",
+      "content": "燈低於8，且支付體力代價後體力不低於60%時，在輪到使用技能1時使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10215",
+      "content": "處於解除拘束 - 投入創作狀態時，若有體力不高於70%的友方且沒有掩護防禦，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10614",
+      "content": "有體力不高於70%的友方且沒有掩護防禦時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10615",
+      "content": "受到攻擊時，若呼吸法低於5，且沒有被施加捕縛 [鴻璐]的敵人，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10711",
+      "content": "受到攻擊時，若有可以掩護的句點 鴻璐，且沒有集中精神【狙擊】，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10808",
+      "content": "受到攻擊時，若兩側友方中有理智值不高於35的友方，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10811",
+      "content": "速度值最快的2名黑雲會友方中，有體力不高於70%且沒有忍耐的友方時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10815",
+      "content": "有體力不高於70%的友方且沒有掩護防禦時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10911",
+      "content": "受到攻擊時，若有流血不低於3的其他友方，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10917",
+      "content": "自身或體力比例最低的2名友方中，有體力不高於70%且沒有護盾的對象時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10410",
+      "content": "受到攻擊時，若透過反擊可獲得的赤眼或懺悔低於7，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11116",
+      "content": "有體力不高於70%的友方且沒有掩護防禦時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10316",
+      "content": "發動攻擊的敵人的楔 - 辛克萊不低於4時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11017",
+      "content": "發動攻擊的敵人的楔 - 唐吉訶德不低於4時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10617",
+      "content": "有傾聽時分時，受到攻擊時使用防守。除此之外，有體力不高於70%的友方且沒有掩護防禦時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10717",
+      "content": "受到攻擊時，若自身體力不低於50%，則使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_10117",
+      "content": "發動攻擊的敵人有「規則：禁止指定守備技能」時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_condition_11217",
+      "content": "沒有持有相連之線的友方時，使用防守"
+    },
+    {
+      "id": "limtochess_defense_identity_retreat_support",
+      "content": "可以透過以實瑪利的支援效果撤退時"
+    },
+    {
+      "id": "limtochess_defense_identity_fallback",
+      "content": "滿足此人格的固有條件時"
+    },
+    {
+      "id": "limtochess_event_choice_tag_gain",
+      "content": "獲得"
+    },
+    {
+      "id": "limtochess_event_choice_tag_cost",
+      "content": "代價"
+    },
+    {
+      "id": "limtochess_buildpower_band_low",
+      "content": "注意"
+    },
+    {
+      "id": "limtochess_buildpower_band_fit",
+      "content": "適當"
+    },
+    {
+      "id": "limtochess_buildpower_band_high",
+      "content": "從容"
+    },
+    {
+      "id": "limtochess_buildpower_penalty_hint",
+      "content": "查看懲罰詳情"
+    },
+    {
+      "id": "limtochess_buildpower_range",
+      "content": "{0}～{1}"
+    },
+    {
+      "id": "limtochess_packselect_cap_title",
+      "content": "編隊人數已滿"
+    },
+    {
+      "id": "limtochess_packselect_cap_desc",
+      "content": "選擇後將移除1名現有人格"
+    },
+    {
+      "id": "limtochess_egoreplace_sync_label",
+      "content": "異想解析"
+    },
+    {
+      "id": "limtochess_report_to_formation_retry",
+      "content": "變更編隊後再次挑戰"
+    },
+    {
+      "id": "limtochess_rest_generic_short",
+      "content": "通用碎片不足。"
+    },
+    {
+      "id": "limtochess_lobby_run_level",
+      "content": "人格等級 {0}"
+    },
+    {
+      "id": "limtochess_packselect_boss_reward",
+      "content": "BOSS通關獎勵"
+    },
+    {
+      "id": "limtochess_packselect_slot_reroll_identity",
+      "content": "刷新"
+    },
+    {
+      "id": "limtochess_packselect_slot_reroll_ego",
+      "content": "刷新"
+    },
+    {
+      "id": "limtochess_packselect_slot_reroll_used",
+      "content": "刷新完成"
+    },
+    {
+      "id": "limtochess_packselect_sync_keep",
+      "content": "維持同步{0}階"
+    },
+    {
+      "id": "limtochess_roominfo_list_event_skip_head",
+      "content": "未選擇時"
+    },
+    {
+      "id": "limtochess_packselect_title_event_reward",
+      "content": "事件獎勵"
+    },
+    {
+      "id": "limtochess_ink_start_reroll_caption",
+      "content": "剩餘次數"
+    },
+    {
+      "id": "limtochess_packselect_title_normal_reward",
+      "content": "常規遭遇戰通關獎勵"
+    },
+    {
+      "id": "limtochess_packselect_title_elite_reward",
+      "content": "菁英遭遇戰通關獎勵"
+    },
+    {
+      "id": "limtochess_part_focus_6011_pole_broken",
+      "content": "破壞電線桿"
+    },
+    {
+      "id": "limtochess_part_focus_6011_pole_failed",
+      "content": "破壞電線桿失敗"
+    },
+    {
+      "id": "limtochess_part_focus_6011_pole_imminent",
+      "content": "赤雷即將發動"
+    },
+    {
+      "id": "limtochess_report_axis_round",
+      "content": "T{0}"
+    },
+    {
+      "id": "limtochess_packselect_toggle_replace_identity",
+      "content": "替換人格"
+    },
+    {
+      "id": "limtochess_packselect_toggle_replace_ego",
+      "content": "替換E.G.O"
+    },
+    {
+      "id": "limtochess_ink_start_ego_resource_help",
+      "content": "罪孽碎片不會保留到下一場戰鬥，每次開始戰鬥時，都會依目前的編隊獲得罪孽碎片並進行戰鬥。\n\n罪孽碎片的獲得量，為編隊中所有人格（含待機）的技能依屬性計數後的一半（小數點以下捨去）。\n． 技能1、2、3分別計為3、2、1個。\n． 守備技能不計入。"
+    },
+    {
+      "id": "limtochess_pass_weekly_max_limit",
+      "content": "每週獲得上限"
+    },
+    {
+      "id": "limtochess_beta_desc_at_all",
+      "content": "※ BETA——測試期間，圖式構築的進行方式與畫面可能會有所變動"
+    },
+    {
+      "id": "limtochess_buildpower_line_change",
+      "content": "構築力 {0} → {1}（{2}）"
+    },
+    {
+      "id": "limtochess_buildpower_line_range",
+      "content": "構築力 {0} → {1}～{2}"
+    },
+    {
+      "id": "limtochess_buildpower_roster_drop",
+      "content": "移除時構築力 {0}"
+    },
+    {
+      "id": "limtochess_buildpower_roster_result_pending",
+      "content": "構築力 招募後 {0} → 移除後 ？"
+    },
+    {
+      "id": "limtochess_buildpower_roster_result",
+      "content": "構築力 招募後 {0} → 移除後 {1}（{2}）"
+    },
+    {
+      "id": "limtochess_buildpower_roster_now",
+      "content": "目前 {0}"
+    },
+    {
+      "id": "limtochess_event_effect_final_boss_weakness",
+      "content": "最終BOSS → {0} {1}"
+    },
+    {
+      "id": "limtochess_event_boss_hidden_name",
+      "content": "???"
+    },
+    {
+      "id": "limtochess_event_boss_weakness_jun",
+      "content": "[建議屬性：斬擊、暴食、傲慢]"
+    },
+    {
+      "id": "limtochess_event_boss_weakness_ricardo",
+      "content": "[建議屬性：打擊、怠惰、嫉妒]"
+    },
+    {
+      "id": "limtochess_event_boss_weakness_cleaners",
+      "content": "[建議屬性：突刺、色慾、傲慢]"
+    },
+    {
+      "id": "limtochess_event_boss_weakness_alley",
+      "content": "[建議屬性：打擊、怠惰、傲慢]"
+    },
+    {
+      "id": "limtochess_event_boss_weakness_blackcloud",
+      "content": "[建議屬性：斬擊、傲慢]"
+    },
+    {
+      "id": "limtochess_pass_level_up_popup_title",
+      "content": "通行證等級提升"
+    },
+    {
+      "id": "limtochess_pass_level_up_popup_name",
+      "content": "圖式構築通行證"
+    }
+  ]
+}

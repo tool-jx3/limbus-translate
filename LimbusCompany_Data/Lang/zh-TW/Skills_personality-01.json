@@ -3282,6 +3282,370 @@
           ]
         }
       ]
+    },
+    {
+      "id": 1011701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "剝皮",
+          "desc": "[WhenUse] 消耗自身3回 [ChargeNoirAlly]，最終威力+1\n[DefeatDuel] 獲得自身體力上限5%的護盾，並使自身的 [ChargeNoirAlly] 回數增加4(每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得6回 [ChargeNoirAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "剝皮",
+          "desc": "[WhenUse] 消耗自身3回 [ChargeNoirAlly]，最終威力+1\n<style=\"highlight\">[WhenUse] 自身的 [ChargeNoirAlly] 強度不低於3時，硬幣威力+1，造成的傷害+10%</style>\n[DefeatDuel] 獲得自身體力上限5%的護盾，並使自身的 [ChargeNoirAlly] 回數增加4(每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得6回 [ChargeNoirAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "剝皮",
+          "desc": "<style=\"highlight\">[WhenUse] 目標的 [Vibration] 強度與 [MoodooJoesu] 層數之和每有4，最終威力+1(最多3)</style>\n[WhenUse] 消耗自身3回 [ChargeNoirAlly]，最終威力+1\n[WhenUse] 自身的 [ChargeNoirAlly] 強度不低於3時，硬幣威力+1，造成的傷害+<style=\"highlight\">20%</style>\n[DefeatDuel] 獲得自身體力上限5%的護盾，並使自身的 [ChargeNoirAlly] 回數增加4(每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得6回 [ChargeNoirAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">3</style>級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1011702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "切割",
+          "desc": "[WhenUse] 消耗自身3回 [ChargeNoirAlly]，最終威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的 [ChargeNoirAlly] 回數增加8"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身的 [BulletJoesu] 不低於3層時，施加1層 [HitTakeDamageUp] (每回合最多1次)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "消耗3層 [BulletJoesu]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "切割",
+          "desc": "[WhenUse] 消耗自身3回 [ChargeNoirAlly]，最終威力+1\n<style=\"highlight\">[WhenUse] 自身的 [ChargeNoirAlly] 強度不低於3時，硬幣威力+1，造成的傷害+10%</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的 [ChargeNoirAlly] 回數增加8"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身的 [BulletJoesu] 不低於3層時，施加1層 [HitTakeDamageUp] (每回合最多1次)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "消耗3層 [BulletJoesu]"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 使目標增加1回 [Vibration]</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "切割",
+          "desc": "<style=\"highlight\">[WhenUse] 目標的 [Vibration] 強度與 [MoodooJoesu] 層數之和不低於6時，硬幣威力+1</style>\n[WhenUse] 消耗自身3回 [ChargeNoirAlly]，最終威力+1\n[WhenUse] 自身的 [ChargeNoirAlly] 強度不低於3時，硬幣威力+1，造成的傷害+<style=\"highlight\">20%</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的 [ChargeNoirAlly] 回數增加8"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身的 [BulletJoesu] 不低於3層時，施加1層 [HitTakeDamageUp] (每回合最多1次)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "消耗3層 [BulletJoesu]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1011703,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "原罪腦脂滾磨處理",
+          "desc": "[BeforeUse] [BulletJoesu] 為6層時，[WideAreaRampage]，攻擊容量+2(每回合最多1次)\n\n[WhenUse] 主要目標的 [Vibration] 強度與 [MoodooJoesu] 層數之和不低於6時，硬幣威力+1\n[WhenUse] 消耗自身5回 [ChargeNoirAlly]，最終威力+2\n[WhenUse] 自身的 [ChargeNoirAlly] 強度不低於3時，硬幣威力+1，造成的傷害+10%\n[WhenUse] 攻擊目標數量每比本技能的攻擊容量少1，造成的傷害+20%(集中遭遇戰時，以部位判定)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4回 [ChargeNoirAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "消耗6層 [BulletJoesu]"
+                },
+                {
+                  "desc": "本硬幣會命中全體攻擊目標"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "原罪腦脂滾磨處理",
+          "desc": "[BeforeUse] [BulletJoesu] 為6層時，[WideAreaRampage]，攻擊容量+2(每回合最多1次)\n\n<style=\"highlight\">[WhenUse] 主要目標的 [Vibration] 強度與 [MoodooJoesu] 層數之和每有6，硬幣威力+1(最多2)</style>\n[WhenUse] 消耗自身5回 [ChargeNoirAlly]，最終威力+2\n[WhenUse] 自身的 [ChargeNoirAlly] 強度不低於3時，硬幣威力+1，造成的傷害+<style=\"highlight\">20%</style>\n[WhenUse] 攻擊目標數量每比本技能的攻擊容量少1，造成的傷害+<style=\"highlight\">30%</style>(集中遭遇戰時，以部位判定)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4回 [ChargeNoirAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "消耗6層 [BulletJoesu]"
+                },
+                {
+                  "desc": "本硬幣會命中全體攻擊目標"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1011704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "為管控而管控",
+          "desc": "[CanDuelGuard]\n\n[StartBattle] 使自身的 [ChargeNoirAlly] 回數增加4(每回合最多1次)\n\n[WhenUse] 目標每有2層 [MoodooJoesu]，硬幣威力+1(最多3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "為管控而管控",
+          "desc": "[CanDuelGuard]\n\n[StartBattle] 使自身的 [ChargeNoirAlly] 回數增加4(每回合最多1次)\n\n[WhenUse] 目標每有2層 [MoodooJoesu]，硬幣威力+1(最多3)\n\n<style=\"highlight\">[StartDuel] 獲得1層 [RuleSanction] (每回合最多1次)</style>\n<style=\"highlight\">[WinDuel] 對目標施加1層 [RuleViolation] (每回合最多1次)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "為管控而管控",
+          "desc": "[CanDuelGuard]\n\n[StartBattle] 使自身的 [ChargeNoirAlly] 回數增加4(每回合最多1次)\n\n<style=\"highlight\">[WhenUse] 自身的 [ChargeNoirAlly] 強度不低於3時，最終威力+1</style>\n[WhenUse] 目標每有2層 [MoodooJoesu]，硬幣威力+1(最多3)\n\n[StartDuel] 獲得1層 [RuleSanction] (每回合最多1次)\n[WinDuel] 對目標施加1層 [RuleViolation] (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1011705,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "拋光、塗漆、精密加工",
+          "desc": "[CantDuel]\n[WhenUse] 目標的 [Vibration] 強度與 [MoodooJoesu] 層數之和每有4，最終威力+1(最多2)\n[WhenUse] 消耗自身3回 [ChargeNoirAlly]，最終威力+2，造成的傷害+20%\n[WhenUse] 自身的 [ChargeNoirAlly] 強度不低於3時，最終威力+1，造成的傷害+30%\n\n[EndSkill] [RuleSanction] 減少3層",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "造成的傷害+100%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4回 [ChargeNoirAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 造成本硬幣最終傷害的([MoodooJoesu] x 4)%的打擊傷害(最多16%，無條件捨去)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "拋光、塗漆、精密加工",
+          "desc": "[CantDuel]\n[WhenUse] 目標的 [Vibration] 強度與 [MoodooJoesu] 層數之和每有4，最終威力+1(最多<style=\"highlight\">3</style>)\n[WhenUse] 消耗自身3回 [ChargeNoirAlly]，最終威力+2，造成的傷害+<style=\"highlight\">40%</style>\n[WhenUse] 自身的 [ChargeNoirAlly] 強度不低於3時，最終威力+<style=\"highlight\">2</style>，造成的傷害+<style=\"highlight\">60%</style>\n\n[EndSkill] [RuleSanction] 減少3層",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "造成的傷害+<style=\"highlight\">120%</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4回 [ChargeNoirAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">4</style>級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 造成本硬幣最終傷害的([MoodooJoesu] x <style=\"highlight\">5</style>)%的打擊傷害(最多<style=\"highlight\">20%</style>，無條件捨去)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

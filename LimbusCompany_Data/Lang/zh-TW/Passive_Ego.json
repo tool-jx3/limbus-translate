@@ -655,6 +655,18 @@
       "name": "魔法阿爾卡那",
       "desc": "(3) 使所有友方單位的減算硬幣技能造成的傷害+10%\n以「淚鋒之劍」E.G.O技能對作為主要目標的敵方單位攻擊結束時，對其施加1層 [DespairKnightEGOAlly] (每回合最多1次)",
       "summary": "(3) 所有友方單位的減算硬幣技能造成的傷害+10%，「淚鋒之劍」攻擊結束時，施加1層 [DespairKnightEGOAlly]"
+    },
+    {
+      "id": 50003,
+      "name": "第四根火柴",
+      "desc": "[SynergyActivationConditions]\n依滿足以下 [SynergyActivationConditions_ForthMatchFlame] 的第四根火柴 E.G.O\n編成數量，觸發以下效果(包含未參與戰鬥的人格)\n\n[SynergyActivationEffect]\n(2) 編成畫面中編成的 [PersonalityCombustion] 不低於3/5/7/10名時，\n第四根火柴 E.G.O造成的傷害提升20/40/60/80%\n- 包含未參與戰鬥的人格\n- 目標數量每比該E.G.O技能的攻擊容量少1，造成的傷害+20%",
+      "summary": "(2) 第四根火柴 E.G.O技能造成的傷害提升[TabExplain]"
+    },
+    {
+      "id": 50004,
+      "name": "第四根火柴",
+      "desc": "(3) 第四根火柴 E.G.O技能攻擊結束時，使命中的所有目標的 [BurningMatch] 回數增加1，並將25級 [BurningMatch] 強度隨機分配施加給命中的目標(每個E.G.O每回合最多1次)",
+      "summary": "(3) 第四根火柴 E.G.O技能攻擊結束時，對命中的目標施加 [BurningMatch]"
     }
   ]
 }

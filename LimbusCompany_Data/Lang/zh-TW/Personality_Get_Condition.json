@@ -1463,6 +1463,22 @@
     {
       "id": "11017_getCondition_gacksung",
       "content": "楔事務所 收尾人 辛克萊 人格同步階段3 完成"
+    },
+    {
+      "id": "10117_getCondition_normal",
+      "content": "獲得高級訂製服::漆黑派 B3F 乾燥室 李箱時"
+    },
+    {
+      "id": "10117_getCondition_gacksung",
+      "content": "高級訂製服::漆黑派 B3F 乾燥室 李箱 人格同步階段3 完成"
+    },
+    {
+      "id": "11217_getCondition_normal",
+      "content": "獲得高級訂製服::丹紅派 B2F 線團巢 格里高爾時"
+    },
+    {
+      "id": "11217_getCondition_gacksung",
+      "content": "高級訂製服::丹紅派 B2F 線團巢 格里高爾 人格同步階段3 完成"
     }
   ]
 }

@@ -2187,6 +2187,22 @@
     {
       "id": "introduce_sentence_274",
       "content": "以未能遵守的{0}磨利的這把劍……"
+    },
+    {
+      "id": "introduce_word_275",
+      "content": "欲望"
+    },
+    {
+      "id": "introduce_sentence_275",
+      "content": "我正沉浸於{0}之中。"
+    },
+    {
+      "id": "introduce_word_276",
+      "content": "線"
+    },
+    {
+      "id": "introduce_sentence_276",
+      "content": "怎麼，想紡{0}嗎？"
     }
   ]
 }

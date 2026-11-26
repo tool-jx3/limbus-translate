@@ -1,0 +1,132 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_cheer_60_1",
+      "dlg": "要做出好皮革，就必須遵照程序、依照管控進行。用那塊皮革做成衣服穿上的話，說不定還能上樓站上伸展台呢。尚堪入目的姿態。"
+    },
+    {
+      "id": "announcer_cheer_60_2",
+      "dlg": "顧客死後留下皮，人台模特兒死後也會留下皮呢。遺留物品回收。"
+    },
+    {
+      "id": "announcer_specialcheer_60_1",
+      "dlg": "皮磨損得很嚴重呢。原料損傷。"
+    },
+    {
+      "id": "announcer_specialcheer_60_2",
+      "dlg": "這副模樣跟破布根本沒兩樣嘛。很快就能做出一件拼布了。新款版型企劃。"
+    },
+    {
+      "id": "announcer_enemy_break_60_1",
+      "dlg": "嘶——……！您也看見了嗎？那張即將落入我懷中的原皮！期待感增幅。"
+    },
+    {
+      "id": "announcer_ally_break_60_1",
+      "dlg": "嗯，脫離管控了呢。重新收監審議。"
+    },
+    {
+      "id": "announcer_killenemy_60_1",
+      "dlg": "豐收時間。一張原皮、一顆眼球都不要漏，請全部蒐集起來。所有權轉移。"
+    },
+    {
+      "id": "announcer_ally_dead_60_1",
+      "dlg": "下一位罪犯請準備～人力補充。"
+    },
+    {
+      "id": "announcer_enemy_adv_60_1",
+      "dlg": "表面的傷痕雖然可惜，不過……沒關係。我也很擅長做麂皮喔。表皮削切。"
+    },
+    {
+      "id": "announcer_ally_adv_60_1",
+      "dlg": "一切照程序進行呢。程序有效性驗證完畢。"
+    },
+    {
+      "id": "announcer_ally_advex_60_1",
+      "dlg": "偶爾也有人會下特別訂單，要用刻滿各種苦難與逆境、因此變得堅韌的皮革做成的東西。嗯……現在正合適呢。理想的包漿。"
+    },
+    {
+      "id": "announcer_danger_60_1",
+      "dlg": "現在只剩拋光了，都到這一步才搞砸的話，很可惜吧？刺激挑戰欲。"
+    },
+    {
+      "id": "announcer_enemy_specialskill_60_1",
+      "dlg": "嗚……我感覺到了……被夾在撐皮架上痛苦掙扎的皮革的聲音……觀測到破裂前兆。"
+    },
+    {
+      "id": "announcer_enemy_specialgimmick_60_1",
+      "dlg": "觀察中……嗯，這看來是例外情況呢。請求例外處理。"
+    },
+    {
+      "id": "announcer_advatk_physical_60_1",
+      "dlg": "去肉處理得真乾淨呢。手藝卓越。"
+    },
+    {
+      "id": "announcer_disadvatk_physical_60_1",
+      "dlg": "有查過裁斷規定嗎？生性怠惰。"
+    },
+    {
+      "id": "announcer_advatk_attr_60_1",
+      "dlg": "很標準的鉻鞣呢。正適合上染料。工序合理。"
+    },
+    {
+      "id": "announcer_disadvatk_attr_60_1",
+      "dlg": "真是令人臉紅的判斷呢。替人尷尬。"
+    },
+    {
+      "id": "announcer_enemy_specialbuff_60_1",
+      "dlg": "有昂貴藥劑的味道呢。到底用了什麼？掌握競爭商品。"
+    },
+    {
+      "id": "announcer_enemy_specialdebuff_60_1",
+      "dlg": "請從長了蛆蟲的部分開始切除。需要積極修整。"
+    },
+    {
+      "id": "announcer_ally_specialbuff_60_1",
+      "dlg": "喔……拿到了什麼呢？各位罪犯身上散發著貴氣呢。歡迎服務。"
+    },
+    {
+      "id": "announcer_ally_specialdebuff_60_1",
+      "dlg": "哎呀！油鞣皮竟然會乾成那樣。我應該說過要注意刷理吧。怠忽職守。"
+    },
+    {
+      "id": "announcer_enemy_destroy_60_1",
+      "dlg": "剛削薄的部位正適合做薄外套呢。表露欲望。"
+    },
+    {
+      "id": "announcer_enemy_destroy_60_2",
+      "dlg": "啊，掉落的肉塊請送到前處理場。也別忘了壓印上我的標誌。確保剩餘庫存。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_60_1",
+      "dlg": "真不合常理呢。懷疑對象的智力。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_60_2",
+      "dlg": "眼洞是因為面皮不夠才挖開的嗎？產生疑問。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_60_1",
+      "dlg": "啊……讚嘆與稱讚。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_60_2",
+      "dlg": "很好。就這樣，再專注一點吧。從脖子劃一直線剝下來，就能毫無損傷地取得原皮了。野外處理。"
+    },
+    {
+      "id": "announcer_multikillenemy_60_1",
+      "dlg": "竟然把那麼多傢伙的手腳都俐落地砍了下來！看來不必吝於稱讚了。表彰功績。"
+    },
+    {
+      "id": "announcer_battle_win_60_1",
+      "dlg": "作業失敗……當然不會有那種事吧。畢竟我的工序很完美。完美無缺。"
+    },
+    {
+      "id": "announcer_battle_defeat_60_1",
+      "dlg": "規定……未遵守。程序……未履行。成品……連再生皮都不如呢……全體罪犯集合。預告追加鞣製。"
+    },
+    {
+      "id": "announcer_equip_60_1",
+      "dlg": "工作時間到了～罪犯配置。一如既往，在我的管控下進行優雅的製革吧。開始作業。"
+    }
+  ]
+}
