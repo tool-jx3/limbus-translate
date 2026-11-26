@@ -1,5 +1,5 @@
 {
-  "raw_tag": "raw-20261119",
+  "raw_tag": "raw-20261126",
   "texts": {
     "(800101, FAILURE), (800102, FAILURE), (800104, FAILURE), (800105, FAILURE)": [
       {
@@ -2307,6 +2307,7 @@
           "PersonalityVoiceDlg/Voice_Gregor_Blackwater_11212.json|/dataList/22/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Bloodfiend_11210.json|/dataList/22/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Capitano_11213.json|/dataList/22/desc",
+          "PersonalityVoiceDlg/Voice_Gregor_Contem_11217.json|/dataList/22/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Dawn_11216.json|/dataList/22/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Firepunch_11211.json|/dataList/22/desc",
           "PersonalityVoiceDlg/Voice_Gregor_GCorp_11203.json|/dataList/22/desc",
@@ -2506,6 +2507,7 @@
         "speaker": "yisang",
         "keys": [
           "PersonalityVoiceDlg/Voice_Yisang_Blackwater_10114.json|/dataList/22/desc",
+          "PersonalityVoiceDlg/Voice_Yisang_Contem_10117.json|/dataList/22/desc",
           "PersonalityVoiceDlg/Voice_Yisang_Dieci_10108.json|/dataList/22/desc",
           "PersonalityVoiceDlg/Voice_Yisang_Funeral_10110.json|/dataList/22/desc",
           "PersonalityVoiceDlg/Voice_Yisang_KumoIndex_10115.json|/dataList/22/desc",
@@ -5107,7 +5109,8 @@
           "Skills_Enemy-a1c6p1.json|/dataList/51/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_Enemy-a1c6p1.json|/dataList/51/levelList/0/coinlist/1/coindescs/1/desc",
           "Skills_Enemy-mowe.json|/dataList/30/levelList/0/coinlist/1/coindescs/2/desc",
-          "Skills_Enemy-mowe.json|/dataList/33/levelList/0/coinlist/2/coindescs/2/desc"
+          "Skills_Enemy-mowe.json|/dataList/33/levelList/0/coinlist/2/coindescs/2/desc",
+          "Skills_Enemy-schema.json|/dataList/0/levelList/0/coinlist/0/coindescs/1/desc"
         ]
       }
     ],
@@ -6212,6 +6215,31 @@
         ]
       }
     ],
+    "[OnSucceedAttack] [DefenseDown] 1 부여": [
+      {
+        "group": "ally|desc|",
+        "keys": [
+          "Skills_personality-12.json|/dataList/51/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_personality-12.json|/dataList/51/levelList/1/coinlist/1/coindescs/0/desc"
+        ]
+      },
+      {
+        "group": "enemy|desc|",
+        "keys": [
+          "Skills_Abnormality-a1c6p3.json|/dataList/8/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality-a1c6p3.json|/dataList/8/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality-a1c6p3.json|/dataList/8/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Abnormality-a1c6p3.json|/dataList/9/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Abnormality-a1c6p3.json|/dataList/9/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality-a1c6p3.json|/dataList/9/levelList/0/coinlist/2/coindescs/0/desc",
+          "Skills_Enemy-a1c6p1.json|/dataList/7/levelList/0/coinlist/0/coindescs/0/desc",
+          "Skills_Enemy-a1c6p1.json|/dataList/7/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy-a1c7p1.json|/dataList/18/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy-a1c7p1.json|/dataList/22/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy-a1c7p1.json|/dataList/27/levelList/0/coinlist/1/coindescs/0/desc"
+        ]
+      }
+    ],
     "[OnSucceedAttack] [DefenseDown] 2 부여": [
       {
         "group": "ally|desc|",
@@ -6232,7 +6260,8 @@
           "Skills_Enemy-a1c6p2.json|/dataList/23/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy-a1c6p2.json|/dataList/27/levelList/0/coinlist/1/coindescs/1/desc",
           "Skills_Enemy-a1c6p2.json|/dataList/27/levelList/0/coinlist/2/coindescs/1/desc",
-          "Skills_Enemy-a1c6p2.json|/dataList/27/levelList/0/coinlist/3/coindescs/1/desc"
+          "Skills_Enemy-a1c6p2.json|/dataList/27/levelList/0/coinlist/3/coindescs/1/desc",
+          "Skills_Enemy-schema.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc"
         ]
       }
     ],
@@ -6896,7 +6925,8 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills_Enemy-a1c7p1.json|/dataList/26/levelList/0/coinlist/1/coindescs/0/desc"
+          "Skills_Enemy-a1c7p1.json|/dataList/26/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Enemy-schema.json|/dataList/1/levelList/0/coinlist/0/coindescs/1/desc"
         ]
       }
     ],
@@ -7594,6 +7624,7 @@
           "Skills_Ego_Personality-08.json|/dataList/11/levelList/2/coinlist/2/coindescs/0/desc",
           "Skills_Ego_Personality-12.json|/dataList/9/levelList/0/coinlist/0/coindescs/3/desc",
           "Skills_personality-01.json|/dataList/36/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_personality-01.json|/dataList/51/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_personality-02.json|/dataList/50/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_personality-02.json|/dataList/51/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_personality-03.json|/dataList/13/levelList/0/coinlist/1/coindescs/0/desc",
@@ -7604,8 +7635,7 @@
           "Skills_personality-04.json|/dataList/30/levelList/1/coinlist/0/coindescs/0/desc",
           "Skills_personality-04.json|/dataList/31/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_personality-05.json|/dataList/21/levelList/0/coinlist/1/coindescs/1/desc",
-          "Skills_personality-05.json|/dataList/22/levelList/0/coinlist/1/coindescs/1/desc",
-          "Skills_personality-06.json|/dataList/58/levelList/0/coinlist/0/coindescs/0/desc"
+          "Skills_personality-05.json|/dataList/22/levelList/0/coinlist/1/coindescs/1/desc"
         ]
       },
       {
@@ -7649,6 +7679,10 @@
           "Skills_personality-01.json|/dataList/37/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_personality-01.json|/dataList/38/levelList/0/coinlist/0/coindescs/1/desc",
           "Skills_personality-01.json|/dataList/38/levelList/1/coinlist/0/coindescs/1/desc",
+          "Skills_personality-01.json|/dataList/52/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_personality-01.json|/dataList/52/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills_personality-01.json|/dataList/52/levelList/2/coinlist/1/coindescs/0/desc",
+          "Skills_personality-01.json|/dataList/55/levelList/0/coinlist/0/coindescs/2/desc",
           "Skills_personality-02.json|/dataList/52/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_personality-03.json|/dataList/14/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_personality-03.json|/dataList/15/levelList/0/coinlist/1/coindescs/0/desc",
@@ -7660,11 +7694,7 @@
           "Skills_personality-04.json|/dataList/18/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_personality-04.json|/dataList/30/levelList/2/coinlist/0/coindescs/0/desc",
           "Skills_personality-04.json|/dataList/31/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/39/levelList/0/coinlist/1/coindescs/1/desc",
-          "Skills_personality-04.json|/dataList/39/levelList/1/coinlist/1/coindescs/1/desc",
-          "Skills_personality-04.json|/dataList/41/levelList/0/coinlist/2/coindescs/1/desc",
-          "Skills_personality-04.json|/dataList/41/levelList/1/coinlist/2/coindescs/1/desc",
-          "Skills_personality-04.json|/dataList/43/levelList/0/coinlist/1/coindescs/0/desc"
+          "Skills_personality-04.json|/dataList/39/levelList/0/coinlist/1/coindescs/1/desc"
         ]
       },
       {
@@ -7821,7 +7851,9 @@
           "Skills_Ego_Personality-11.json|/dataList/2/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Ego_Personality-11.json|/dataList/3/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_personality-01.json|/dataList/40/levelList/0/coinlist/0/coindescs/2/desc",
-          "Skills_personality-01.json|/dataList/40/levelList/1/coinlist/0/coindescs/2/desc"
+          "Skills_personality-01.json|/dataList/40/levelList/1/coinlist/0/coindescs/2/desc",
+          "Skills_personality-01.json|/dataList/53/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_personality-01.json|/dataList/53/levelList/1/coinlist/1/coindescs/0/desc"
         ]
       },
       {
@@ -7938,12 +7970,12 @@
           "Skills_Ego_Personality-09.json|/dataList/13/levelList/2/coinlist/0/coindescs/2/desc",
           "Skills_Ego_Personality-09.json|/dataList/13/levelList/2/coinlist/1/coindescs/1/desc",
           "Skills_personality-01.json|/dataList/38/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_personality-01.json|/dataList/53/levelList/0/coinlist/2/coindescs/2/desc",
           "Skills_personality-04.json|/dataList/16/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_personality-04.json|/dataList/16/levelList/1/coinlist/1/coindescs/0/desc",
           "Skills_personality-04.json|/dataList/17/levelList/2/coinlist/1/coindescs/0/desc",
           "Skills_personality-04.json|/dataList/29/levelList/1/coinlist/0/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/29/levelList/2/coinlist/0/coindescs/0/desc",
-          "Skills_personality-04.json|/dataList/30/levelList/1/coinlist/1/coindescs/1/desc"
+          "Skills_personality-04.json|/dataList/29/levelList/2/coinlist/0/coindescs/0/desc"
         ]
       },
       {
@@ -10058,6 +10090,7 @@
           "Skills_Enemy-a1c5p1.json|/dataList/9/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy-a1c5p2.json|/dataList/21/levelList/0/coinlist/1/coindescs/0/desc",
           "Skills_Enemy-a1c9116.json|/dataList/11/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Enemy-schema.json|/dataList/11/levelList/0/coinlist/1/coindescs/1/desc",
           "Skills_Enemy-walpu2.json|/dataList/13/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Enemy-walpu2.json|/dataList/9/levelList/0/coinlist/0/coindescs/0/desc"
         ]
@@ -10685,7 +10718,8 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills_Enemy-a1c9116.json|/dataList/11/levelList/0/coinlist/0/coindescs/1/desc"
+          "Skills_Enemy-a1c9116.json|/dataList/11/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy-schema.json|/dataList/11/levelList/0/coinlist/0/coindescs/1/desc"
         ]
       }
     ],
@@ -10699,7 +10733,8 @@
       {
         "group": "enemy|desc|",
         "keys": [
-          "Skills_Enemy-a1c9116.json|/dataList/13/levelList/0/coinlist/1/coindescs/2/desc"
+          "Skills_Enemy-a1c9116.json|/dataList/13/levelList/0/coinlist/1/coindescs/2/desc",
+          "Skills_Enemy-schema.json|/dataList/12/levelList/0/coinlist/1/coindescs/2/desc"
         ]
       }
     ],
@@ -10903,7 +10938,9 @@
           "Skills_Abnormality-a1c10p3.json|/dataList/62/levelList/0/coinlist/1/coindescs/2/desc",
           "Skills_Abnormality-a1c10p3.json|/dataList/68/levelList/0/coinlist/0/coindescs/0/desc",
           "Skills_Abnormality-twth.json|/dataList/4/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_Abnormality_Refraction5.json|/dataList/16/levelList/0/coinlist/0/coindescs/2/desc"
+          "Skills_Abnormality_Refraction5.json|/dataList/16/levelList/0/coinlist/0/coindescs/2/desc",
+          "Skills_Enemy-schema.json|/dataList/4/levelList/0/coinlist/1/coindescs/1/desc",
+          "Skills_Enemy-schema.json|/dataList/6/levelList/0/coinlist/0/coindescs/1/desc"
         ]
       }
     ],
@@ -13846,7 +13883,7 @@
         "group": "identity|dlg|outis",
         "speaker": "outis",
         "keys": [
-          "BattleSpeechBubbleDlg.json|/dataList/853/dlg"
+          "BattleSpeechBubbleDlg.json|/dataList/858/dlg"
         ]
       }
     ],
@@ -15831,6 +15868,7 @@
           "PersonalityVoiceDlg/Voice_Gregor_Blackwater_11212.json|/dataList/7/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Bloodfiend_11210.json|/dataList/7/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Capitano_11213.json|/dataList/7/desc",
+          "PersonalityVoiceDlg/Voice_Gregor_Contem_11217.json|/dataList/7/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Dawn_11216.json|/dataList/7/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Firepunch_11211.json|/dataList/7/desc",
           "PersonalityVoiceDlg/Voice_Gregor_GCorp_11203.json|/dataList/7/desc",
@@ -16021,6 +16059,7 @@
         "speaker": "yisang",
         "keys": [
           "PersonalityVoiceDlg/Voice_Yisang_Blackwater_10114.json|/dataList/7/desc",
+          "PersonalityVoiceDlg/Voice_Yisang_Contem_10117.json|/dataList/7/desc",
           "PersonalityVoiceDlg/Voice_Yisang_Dieci_10108.json|/dataList/7/desc",
           "PersonalityVoiceDlg/Voice_Yisang_Funeral_10110.json|/dataList/7/desc",
           "PersonalityVoiceDlg/Voice_Yisang_KumoIndex_10115.json|/dataList/7/desc",
@@ -16095,6 +16134,7 @@
           "PersonalityVoiceDlg/Voice_Gregor_Blackwater_11212.json|/dataList/8/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Bloodfiend_11210.json|/dataList/8/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Capitano_11213.json|/dataList/8/desc",
+          "PersonalityVoiceDlg/Voice_Gregor_Contem_11217.json|/dataList/8/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Dawn_11216.json|/dataList/8/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Firepunch_11211.json|/dataList/8/desc",
           "PersonalityVoiceDlg/Voice_Gregor_GCorp_11203.json|/dataList/8/desc",
@@ -16285,6 +16325,7 @@
         "speaker": "yisang",
         "keys": [
           "PersonalityVoiceDlg/Voice_Yisang_Blackwater_10114.json|/dataList/8/desc",
+          "PersonalityVoiceDlg/Voice_Yisang_Contem_10117.json|/dataList/8/desc",
           "PersonalityVoiceDlg/Voice_Yisang_Dieci_10108.json|/dataList/8/desc",
           "PersonalityVoiceDlg/Voice_Yisang_Funeral_10110.json|/dataList/8/desc",
           "PersonalityVoiceDlg/Voice_Yisang_KumoIndex_10115.json|/dataList/8/desc",
@@ -19191,6 +19232,20 @@
         ]
       }
     ],
+    "사랑과 증오의 이름으로": [
+      {
+        "group": "ally|name|",
+        "keys": [
+          "Egos.json|/dataList/95/name"
+        ]
+      },
+      {
+        "group": "ui|content|",
+        "keys": [
+          "LimtochessUI.json|/dataList/574/content"
+        ]
+      }
+    ],
     "사망 시, E.G.O 자원 획득": [
       {
         "group": "ally|summary|",
@@ -20171,7 +20226,7 @@
         "group": "identity|dlg|donquixote",
         "speaker": "donquixote",
         "keys": [
-          "BattleSpeechBubbleDlg.json|/dataList/769/dlg"
+          "BattleSpeechBubbleDlg.json|/dataList/774/dlg"
         ]
       }
     ],
@@ -22121,6 +22176,21 @@
         ]
       }
     ],
+    "원죄적 뇌유 텀블링": [
+      {
+        "group": "ally|name|",
+        "keys": [
+          "Skills_personality-01.json|/dataList/53/levelList/0/name",
+          "Skills_personality-01.json|/dataList/53/levelList/1/name"
+        ]
+      },
+      {
+        "group": "enemy|name|",
+        "keys": [
+          "Skills_Abnormality-a1c10p2.json|/dataList/54/levelList/0/name"
+        ]
+      }
+    ],
     "위로 올라갈수록… 가까워진다는 것이오?": [
       {
         "group": "rpg|text|yisang",
@@ -22465,6 +22535,8 @@
       {
         "group": "ally|desc|",
         "keys": [
+          "Skills_personality-01.json|/dataList/53/levelList/0/coinlist/2/coindescs/1/desc",
+          "Skills_personality-01.json|/dataList/53/levelList/1/coinlist/2/coindescs/1/desc",
           "Skills_personality-09.json|/dataList/42/levelList/0/coinlist/3/coindescs/1/desc",
           "Skills_personality-09.json|/dataList/42/levelList/1/coinlist/3/coindescs/1/desc"
         ]
@@ -23305,6 +23377,7 @@
           "PersonalityVoiceDlg/Voice_Gregor_Blackwater_11212.json|/dataList/15/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Bloodfiend_11210.json|/dataList/15/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Capitano_11213.json|/dataList/15/desc",
+          "PersonalityVoiceDlg/Voice_Gregor_Contem_11217.json|/dataList/15/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Dawn_11216.json|/dataList/15/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Firepunch_11211.json|/dataList/15/desc",
           "PersonalityVoiceDlg/Voice_Gregor_GCorp_11203.json|/dataList/15/desc",
@@ -23503,6 +23576,7 @@
         "speaker": "yisang",
         "keys": [
           "PersonalityVoiceDlg/Voice_Yisang_Blackwater_10114.json|/dataList/15/desc",
+          "PersonalityVoiceDlg/Voice_Yisang_Contem_10117.json|/dataList/15/desc",
           "PersonalityVoiceDlg/Voice_Yisang_Dieci_10108.json|/dataList/15/desc",
           "PersonalityVoiceDlg/Voice_Yisang_Funeral_10110.json|/dataList/15/desc",
           "PersonalityVoiceDlg/Voice_Yisang_KumoIndex_10115.json|/dataList/15/desc",
@@ -23653,6 +23727,7 @@
           "PersonalityVoiceDlg/Voice_Gregor_Blackwater_11212.json|/dataList/13/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Bloodfiend_11210.json|/dataList/13/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Capitano_11213.json|/dataList/13/desc",
+          "PersonalityVoiceDlg/Voice_Gregor_Contem_11217.json|/dataList/13/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Dawn_11216.json|/dataList/13/desc",
           "PersonalityVoiceDlg/Voice_Gregor_Firepunch_11211.json|/dataList/13/desc",
           "PersonalityVoiceDlg/Voice_Gregor_GCorp_11203.json|/dataList/13/desc",
@@ -23849,6 +23924,7 @@
         "speaker": "yisang",
         "keys": [
           "PersonalityVoiceDlg/Voice_Yisang_Blackwater_10114.json|/dataList/13/desc",
+          "PersonalityVoiceDlg/Voice_Yisang_Contem_10117.json|/dataList/13/desc",
           "PersonalityVoiceDlg/Voice_Yisang_Dieci_10108.json|/dataList/13/desc",
           "PersonalityVoiceDlg/Voice_Yisang_Funeral_10110.json|/dataList/13/desc",
           "PersonalityVoiceDlg/Voice_Yisang_KumoIndex_10115.json|/dataList/13/desc",
@@ -25116,7 +25192,7 @@
         "group": "identity|dlg|outis",
         "speaker": "outis",
         "keys": [
-          "BattleSpeechBubbleDlg.json|/dataList/827/dlg"
+          "BattleSpeechBubbleDlg.json|/dataList/832/dlg"
         ]
       }
     ],
@@ -25473,6 +25549,21 @@
         "group": "railway|title|",
         "keys": [
           "RailwayDungeonNode1002.json|/dataList/4/title"
+        ]
+      }
+    ],
+    "최종 위력 +{0}": [
+      {
+        "group": "keywords|summary|",
+        "keys": [
+          "Bufs.json|/dataList/114/summary",
+          "Bufs.json|/dataList/153/summary"
+        ]
+      },
+      {
+        "group": "ui|content|",
+        "keys": [
+          "LimtochessUI.json|/dataList/241/content"
         ]
       }
     ],
@@ -26318,6 +26409,21 @@
         "speaker": "donquixote",
         "keys": [
           "StoryData/E626B.json|/dataList/108/content"
+        ]
+      }
+    ],
+    "퍼니싱 버니싱 피니싱": [
+      {
+        "group": "ally|name|",
+        "keys": [
+          "Skills_personality-01.json|/dataList/55/levelList/0/name",
+          "Skills_personality-01.json|/dataList/55/levelList/1/name"
+        ]
+      },
+      {
+        "group": "enemy|name|",
+        "keys": [
+          "Skills_Abnormality-a1c10p2.json|/dataList/55/levelList/0/name"
         ]
       }
     ],

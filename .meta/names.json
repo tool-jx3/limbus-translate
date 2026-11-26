@@ -1,10 +1,11 @@
 {
-  "raw_tag": "raw-20261119",
+  "raw_tag": "raw-20261126",
   "fields": [
     "name",
     "abName",
     "displayName",
-    "nickName"
+    "nickName",
+    "chaptertitle"
   ],
   "names": [
     {
@@ -197,7 +198,8 @@
           "renderings": [
             {
               "zh": "……全員，準備交鋒。",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -884,11 +886,12 @@
           "renderings": [
             {
               "zh": "20區的奇蹟",
-              "units": 2
+              "units": 3
             }
           ],
           "examples": [
             "MirrorDungeonTheme-1.json|/dataList/19/name",
+            "StageChapterText.json|/dataList/8/chaptertitle",
             "UserBanner.json|/dataList/22/name"
           ]
         }
@@ -1460,7 +1463,8 @@
           "renderings": [
             {
               "zh": "3F 物件1",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -1479,7 +1483,8 @@
           "renderings": [
             {
               "zh": "3F 物件2",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -1498,7 +1503,8 @@
           "renderings": [
             {
               "zh": "3F 物件3",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -1517,7 +1523,8 @@
           "renderings": [
             {
               "zh": "3F 物件4",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -1536,7 +1543,8 @@
           "renderings": [
             {
               "zh": "3F 物件5",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -1555,7 +1563,8 @@
           "renderings": [
             {
               "zh": "3F 物件6",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -1607,7 +1616,8 @@
           "renderings": [
             {
               "zh": "3F 樓層經理的黃金皮革",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -1758,7 +1768,8 @@
           "renderings": [
             {
               "zh": "4區流氓1",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -1775,7 +1786,8 @@
           "renderings": [
             {
               "zh": "4區流氓2",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -1792,7 +1804,8 @@
           "renderings": [
             {
               "zh": "4區流氓3",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -1868,7 +1881,7 @@
           "renderings": [
             {
               "zh": "第四根火柴",
-              "units": 27
+              "units": 29
             }
           ],
           "examples": [
@@ -3283,7 +3296,8 @@
           "renderings": [
             {
               "zh": "G公司員工",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -3781,13 +3795,13 @@
           "renderings": [
             {
               "zh": "LCB定期體檢",
-              "units": 5
+              "units": 6
             }
           ],
           "examples": [
             "MirrorDungeonTheme-1.json|/dataList/75/name",
-            "UserBanner.json|/dataList/44/name",
-            "UserTicket-EGOBg.json|/dataList/39/name"
+            "StageChapterText.json|/dataList/17/chaptertitle",
+            "UserBanner.json|/dataList/44/name"
           ]
         }
       ]
@@ -4064,7 +4078,8 @@
           "renderings": [
             {
               "zh": "L公司分部 控制部部長",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -4281,7 +4296,8 @@
           "renderings": [
             {
               "zh": "N公司審問官3",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -5560,7 +5576,8 @@
           "renderings": [
             {
               "zh": "[戰鬥結束時]",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -6193,7 +6210,8 @@
           "renderings": [
             {
               "zh": "「依照保存的規律」",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -6411,7 +6429,8 @@
           "renderings": [
             {
               "zh": "……不可能！",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -7155,7 +7174,8 @@
           "renderings": [
             {
               "zh": "加速騎槍",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -8009,7 +8029,8 @@
           "renderings": [
             {
               "zh": "縫皮用的釘子",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -8463,7 +8484,8 @@
           "renderings": [
             {
               "zh": "正在覺醒的東朗",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -9223,7 +9245,8 @@
           "renderings": [
             {
               "zh": "情感等級0",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -9242,7 +9265,8 @@
           "renderings": [
             {
               "zh": "情感等級1",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -9261,7 +9285,8 @@
           "renderings": [
             {
               "zh": "情感等級2",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -9280,7 +9305,8 @@
           "renderings": [
             {
               "zh": "情感等級3",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -10605,7 +10631,8 @@
           "renderings": [
             {
               "zh": "狗洞",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -12293,7 +12320,8 @@
           "renderings": [
             {
               "zh": "結成黑團的線",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -12365,7 +12393,8 @@
           "renderings": [
             {
               "zh": "劍契組成員1",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -12704,7 +12733,8 @@
           "renderings": [
             {
               "zh": "黑水窪",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -12970,7 +13000,8 @@
           "renderings": [
             {
               "zh": "黑色三角帽",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -13448,7 +13479,8 @@
           "renderings": [
             {
               "zh": "Gebura",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -13617,7 +13649,8 @@
           "renderings": [
             {
               "zh": "交鋒",
-              "units": 8
+              "units": 8,
+              "own": true
             }
           ],
           "examples": [
@@ -13711,7 +13744,8 @@
           "renderings": [
             {
               "zh": "激情",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -15039,13 +15073,13 @@
           "renderings": [
             {
               "zh": "經歷記憶",
-              "units": 5
+              "units": 6
             }
           ],
           "examples": [
             "MirrorDungeonTheme-1.json|/dataList/116/name",
-            "UserBanner.json|/dataList/85/name",
-            "UserTicket-EGOBg.json|/dataList/73/name"
+            "StageChapterText.json|/dataList/28/chaptertitle",
+            "UserBanner.json|/dataList/85/name"
           ]
         }
       ]
@@ -16697,7 +16731,8 @@
           "renderings": [
             {
               "zh": "高階漆黑派2",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -25317,7 +25352,8 @@
           "renderings": [
             {
               "zh": "規範：禁止攻擊性態度",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -25336,7 +25372,8 @@
           "renderings": [
             {
               "zh": "規範：禁止催促鞣製",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -25355,7 +25392,8 @@
           "renderings": [
             {
               "zh": "規範：禁止防禦性態度",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -25374,7 +25412,8 @@
           "renderings": [
             {
               "zh": "規範：禁止損傷原皮",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -25393,7 +25432,8 @@
           "renderings": [
             {
               "zh": "規則的崩壞",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -25798,7 +25838,7 @@
           "renderings": [
             {
               "zh": "格里高爾",
-              "units": 35
+              "units": 36
             }
           ],
           "examples": [
@@ -25848,7 +25888,8 @@
           "renderings": [
             {
               "zh": "格里高爾-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -25996,7 +26037,8 @@
           "renderings": [
             {
               "zh": "在那位身旁不曾冷卻的脈動",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -26464,7 +26506,8 @@
           "renderings": [
             {
               "zh": "亮光媒劑",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -26594,7 +26637,8 @@
           "renderings": [
             {
               "zh": "金色標記[楔]",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -27843,7 +27887,8 @@
           "renderings": [
             {
               "zh": "騎士的驕傲",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -27918,7 +27963,8 @@
           "renderings": [
             {
               "zh": "騎士的守護",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -29319,7 +29365,8 @@
           "renderings": [
             {
               "zh": "羽毛盾牌",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -31179,11 +31226,12 @@
           "renderings": [
             {
               "zh": "夢之終焉",
-              "units": 1
+              "units": 2
             }
           ],
           "examples": [
-            "MirrorDungeonTheme-1.json|/dataList/79/name"
+            "MirrorDungeonTheme-1.json|/dataList/79/name",
+            "StageChapterText-a1c7p1.json|/dataList/0/chaptertitle"
           ]
         }
       ]
@@ -31363,7 +31411,8 @@
           "renderings": [
             {
               "zh": "貫穿",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -32196,11 +32245,13 @@
           "renderings": [
             {
               "zh": "無法斬絕",
-              "units": 1
+              "units": 3
             }
           ],
           "examples": [
-            "MirrorDungeonTheme-1.json|/dataList/100/name"
+            "MirrorDungeonTheme-1.json|/dataList/100/name",
+            "StageChapterText.json|/dataList/23/chaptertitle",
+            "StageChapterText.json|/dataList/24/chaptertitle"
           ]
         }
       ]
@@ -32270,7 +32321,8 @@
           "renderings": [
             {
               "zh": "斷不了的剪裁",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -37412,7 +37464,8 @@
           "renderings": [
             {
               "zh": "釘縫",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -37449,7 +37502,8 @@
           "renderings": [
             {
               "zh": "Netzach",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -37636,7 +37690,8 @@
           "renderings": [
             {
               "zh": "歌唱機飾品第2次選項 - 獲得自動演奏的貝斯時",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -37654,7 +37709,8 @@
           "renderings": [
             {
               "zh": "歌唱機飾品第2次選項 - 獲得和聲吉他時",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -37672,7 +37728,8 @@
           "renderings": [
             {
               "zh": "歌唱機飾品選項",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -39038,7 +39095,8 @@
           "renderings": [
             {
               "zh": "寒酸的克羅默的姊姊",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -39225,7 +39283,8 @@
           "renderings": [
             {
               "zh": "淚鋒之劍",
-              "units": 7
+              "units": 7,
+              "own": true
             }
           ],
           "examples": [
@@ -39319,7 +39378,8 @@
           "renderings": [
             {
               "zh": "淚水浸濕布料",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -39337,7 +39397,8 @@
           "renderings": [
             {
               "zh": "淚水浸濕布料，布料勒緊咽喉",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -39355,7 +39416,8 @@
           "renderings": [
             {
               "zh": "淚水浸濕布料，布料勒緊咽喉……連詞都想不起來了。",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -39692,7 +39754,8 @@
           "renderings": [
             {
               "zh": "瞄準遲緩頸項的鐮刀",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -40508,7 +40571,8 @@
           "renderings": [
             {
               "zh": "再度活過來的肉體",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -41393,7 +41457,8 @@
           "renderings": [
             {
               "zh": "但丁 SD",
-              "units": 10
+              "units": 10,
+              "own": true
             }
           ],
           "examples": [
@@ -41413,7 +41478,8 @@
           "renderings": [
             {
               "zh": "但丁的複製體",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -41952,7 +42018,8 @@
             },
             {
               "zh": "磨損的矜持",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -42067,7 +42134,8 @@
           "renderings": [
             {
               "zh": "該給出答案之時",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -43807,7 +43875,8 @@
           "renderings": [
             {
               "zh": "死兔幫2",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -44244,7 +44313,8 @@
           "renderings": [
             {
               "zh": "圖書館的書頁 - 懷念的往日擁抱",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -44263,7 +44333,8 @@
           "renderings": [
             {
               "zh": "圖書館的書頁 - 貪食",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -44282,7 +44353,8 @@
           "renderings": [
             {
               "zh": "圖書館的書頁 - 灰燼",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -44319,7 +44391,8 @@
           "renderings": [
             {
               "zh": "都市的獵人",
-              "units": 6
+              "units": 6,
+              "own": true
             }
           ],
           "examples": [
@@ -44471,7 +44544,7 @@
             }
           ],
           "examples": [
-            "Items.json|/dataList/106/name"
+            "Items.json|/dataList/107/name"
           ]
         }
       ]
@@ -44539,7 +44612,8 @@
           "renderings": [
             {
               "zh": "援助之手",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -44721,7 +44795,8 @@
           "renderings": [
             {
               "zh": "獨白",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -44899,7 +44974,8 @@
           "renderings": [
             {
               "zh": "唐吉訶德小姐……請專心一點。",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -44973,7 +45049,8 @@
           "renderings": [
             {
               "zh": "唐吉訶德-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -45009,7 +45086,8 @@
           "renderings": [
             {
               "zh": "唐吉訶德、辛克萊",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -46999,7 +47077,8 @@
           "renderings": [
             {
               "zh": "杜布瓦",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -47328,7 +47407,8 @@
           "renderings": [
             {
               "zh": "扭曲的客人1",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -48382,7 +48462,8 @@
           "renderings": [
             {
               "zh": "灼熱照射的陽光",
-              "units": 5
+              "units": 5,
+              "own": true
             }
           ],
           "examples": [
@@ -48402,7 +48483,8 @@
           "renderings": [
             {
               "zh": "灼熱照射的陽光[3F 樓層經理]",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -48421,7 +48503,8 @@
           "renderings": [
             {
               "zh": "灼熱照射的陽光[裁縫之王]",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -48440,7 +48523,8 @@
           "renderings": [
             {
               "zh": "灼熱照射的陽光[副廚]",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -48646,7 +48730,8 @@
           "renderings": [
             {
               "zh": "調整針數調節器",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -48682,7 +48767,8 @@
           "renderings": [
             {
               "zh": "黏在地面上的肉片",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -49427,7 +49513,8 @@
           "renderings": [
             {
               "zh": "被扯落的黑線頭",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -50818,7 +50905,8 @@
           "renderings": [
             {
               "zh": "羅佳 SD",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -50838,7 +50926,8 @@
           "renderings": [
             {
               "zh": "羅佳-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -50854,7 +50943,8 @@
           "renderings": [
             {
               "zh": "羅佳",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -50891,7 +50981,8 @@
           "renderings": [
             {
               "zh": "榜樣",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -50943,7 +51034,8 @@
           "renderings": [
             {
               "zh": "良秀 SD",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -50961,7 +51053,8 @@
           "renderings": [
             {
               "zh": "良秀-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -51680,7 +51773,8 @@
           "renderings": [
             {
               "zh": "漆黑派 品牌大禮帽",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -52023,7 +52117,8 @@
           "renderings": [
             {
               "zh": "漆黑派 時尚開襟衫",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -52113,7 +52208,8 @@
           "renderings": [
             {
               "zh": "丹紅派",
-              "units": 11
+              "units": 11,
+              "own": true
             }
           ],
           "examples": [
@@ -52133,7 +52229,8 @@
           "renderings": [
             {
               "zh": "丹紅派 手提包展廳 設計師",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -52221,7 +52318,8 @@
           "renderings": [
             {
               "zh": "丹紅派 高層",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -52723,7 +52821,8 @@
           "renderings": [
             {
               "zh": "丹紅派 時尚手套",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -52759,7 +52858,8 @@
           "renderings": [
             {
               "zh": "丹紅派 時尚鴨舌帽",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -53596,7 +53696,8 @@
           "renderings": [
             {
               "zh": "魔法少女",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -54217,11 +54318,12 @@
           "renderings": [
             {
               "zh": "心意相悖",
-              "units": 1
+              "units": 2
             }
           ],
           "examples": [
-            "MirrorDungeonTheme-1.json|/dataList/65/name"
+            "MirrorDungeonTheme-1.json|/dataList/65/name",
+            "StageChapterText.json|/dataList/11/chaptertitle"
           ]
         }
       ]
@@ -54289,11 +54391,12 @@
           "renderings": [
             {
               "zh": "懼而迴避",
-              "units": 1
+              "units": 2
             }
           ],
           "examples": [
-            "MirrorDungeonTheme-1.json|/dataList/7/name"
+            "MirrorDungeonTheme-1.json|/dataList/7/name",
+            "StageChapterText.json|/dataList/3/chaptertitle"
           ]
         }
       ]
@@ -55460,7 +55563,8 @@
           "renderings": [
             {
               "zh": "Malkuth",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -56182,18 +56286,19 @@
           "en": "Magical Arcana",
           "renderings": [
             {
-              "zh": "魔法阿爾卡那",
+              "zh": "魔法．阿爾卡那",
               "units": 2
             },
             {
-              "zh": "魔法．阿爾卡那",
-              "units": 2
+              "zh": "魔法阿爾卡那",
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
-            "Passive_Ego.json|/dataList/124/name",
-            "Passive_Ego.json|/dataList/125/name",
-            "BattleKeywords-walpu6.json|/dataList/16/name"
+            "BattleKeywords-walpu6.json|/dataList/16/name",
+            "Bufs-walpu6.json|/dataList/16/name",
+            "Passive_Ego.json|/dataList/124/name"
           ]
         }
       ]
@@ -56486,7 +56591,8 @@
           "renderings": [
             {
               "zh": "脈動的本性",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -57651,7 +57757,8 @@
           "renderings": [
             {
               "zh": "止不住的哭聲",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -58117,7 +58224,8 @@
           "renderings": [
             {
               "zh": "奢侈品館 守門人",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -59787,7 +59895,8 @@
           "renderings": [
             {
               "zh": "釘 [Breakpoint]",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -59806,7 +59915,8 @@
           "renderings": [
             {
               "zh": "釘 [Console]",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -59825,7 +59935,8 @@
           "renderings": [
             {
               "zh": "釘 [Exception]",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -60036,7 +60147,8 @@
           "renderings": [
             {
               "zh": "莫梭 SD",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -60054,7 +60166,8 @@
           "renderings": [
             {
               "zh": "莫梭-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -61944,7 +62057,8 @@
           "renderings": [
             {
               "zh": "退下吧",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -62600,7 +62714,8 @@
           "renderings": [
             {
               "zh": "含羞草",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -62954,8 +63069,9 @@
           "en": "Waxen Pinion",
           "renderings": [
             {
-              "zh": "蜜蠟之翼",
-              "units": 4
+              "zh": "蠟翼",
+              "units": 4,
+              "own": true
             }
           ],
           "examples": [
@@ -63032,7 +63148,8 @@
           "renderings": [
             {
               "zh": "既無法推開，也無法握住的手",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -63145,7 +63262,8 @@
           "renderings": [
             {
               "zh": "外側中央物件",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -63456,6 +63574,25 @@
       ]
     },
     {
+      "kr": "바라보아지는",
+      "variants": [
+        {
+          "jp": "見つめられてしまう",
+          "en": "The Gaze Bearing",
+          "renderings": [
+            {
+              "zh": "備受注視",
+              "units": 2
+            }
+          ],
+          "examples": [
+            "StageChapterText.json|/dataList/29/chaptertitle",
+            "StageChapterText.json|/dataList/30/chaptertitle"
+          ]
+        }
+      ]
+    },
+    {
       "kr": "바라볼 수밖에 없는",
       "variants": [
         {
@@ -63464,11 +63601,12 @@
           "renderings": [
             {
               "zh": "不思觀望",
-              "units": 1
+              "units": 2
             }
           ],
           "examples": [
-            "MirrorDungeonTheme-1.json|/dataList/81/name"
+            "MirrorDungeonTheme-1.json|/dataList/81/name",
+            "StageChapterText.json|/dataList/19/chaptertitle"
           ]
         }
       ]
@@ -64037,7 +64175,8 @@
           "renderings": [
             {
               "zh": "嵌入的槍刃",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -64860,7 +64999,8 @@
           "renderings": [
             {
               "zh": "腳步聲 Fixed 範例（參考用 — 未配置生成）",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -67525,11 +67665,12 @@
           "renderings": [
             {
               "zh": "無所改變",
-              "units": 1
+              "units": 2
             }
           ],
           "examples": [
-            "MirrorDungeonTheme-1.json|/dataList/11/name"
+            "MirrorDungeonTheme-1.json|/dataList/11/name",
+            "StageChapterText.json|/dataList/5/chaptertitle"
           ]
         }
       ]
@@ -68074,7 +68215,8 @@
           "renderings": [
             {
               "zh": "配合步調",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -68127,7 +68269,8 @@
           "renderings": [
             {
               "zh": "保存抵銷",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -68238,7 +68381,8 @@
           "renderings": [
             {
               "zh": "依循保存的規律",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -69116,7 +69260,8 @@
           "renderings": [
             {
               "zh": "效法的姿態",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -69241,17 +69386,18 @@
           "en": "Hollow Pride",
           "renderings": [
             {
-              "zh": "微不足道的驕傲",
+              "zh": "慘不忍睹的自尊",
               "units": 1
             },
             {
-              "zh": "慘不忍睹的自尊",
-              "units": 1
+              "zh": "微不足道的驕傲",
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
-            "EGOgift_walpu10.json|/dataList/2/name",
-            "Passives_Abnormality-walpu6.json|/dataList/2/name"
+            "Passives_Abnormality-walpu6.json|/dataList/2/name",
+            "EGOgift_walpu10.json|/dataList/2/name"
           ]
         }
       ]
@@ -69612,7 +69758,8 @@
           "renderings": [
             {
               "zh": "折斷的槍刃",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -70795,7 +70942,8 @@
           "renderings": [
             {
               "zh": "靴子自助餐-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -72004,7 +72152,8 @@
           "renderings": [
             {
               "zh": "不屈",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -72562,7 +72711,8 @@
           "renderings": [
             {
               "zh": "不穩定綻放E.G.O::蠟翼",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -73181,7 +73331,8 @@
           "renderings": [
             {
               "zh": "不確定的悲傷情緒",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -74032,7 +74183,8 @@
           "renderings": [
             {
               "zh": "自助餐-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -74383,7 +74535,8 @@
           "renderings": [
             {
               "zh": "Binah",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -74660,7 +74813,8 @@
           "renderings": [
             {
               "zh": "越是清空，越將被填滿",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -74812,7 +74966,8 @@
             },
             {
               "zh": "凝聚悲痛的劍",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -74941,11 +75096,13 @@
           "renderings": [
             {
               "zh": "看準破綻",
-              "units": 3
+              "units": 3,
+              "own": true
             },
             {
               "zh": "趁隙出擊",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -74983,7 +75140,8 @@
           "renderings": [
             {
               "zh": "滴水不漏，確實貫穿汝",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -74997,7 +75155,8 @@
           "renderings": [
             {
               "zh": "就讓我滴水不漏地確實貫穿你",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -75512,11 +75671,13 @@
           "renderings": [
             {
               "zh": "迅速確實地貫穿你",
-              "units": 2
+              "units": 2,
+              "own": true
             },
             {
               "zh": "就讓我迅速而確實地貫穿你",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -77570,11 +77731,12 @@
           "renderings": [
             {
               "zh": "心無慈悲",
-              "units": 1
+              "units": 2
             }
           ],
           "examples": [
-            "MirrorDungeonTheme-1.json|/dataList/4/name"
+            "MirrorDungeonTheme-1.json|/dataList/4/name",
+            "StageChapterText.json|/dataList/2/chaptertitle"
           ]
         }
       ]
@@ -78438,7 +78600,8 @@
           "renderings": [
             {
               "zh": "事前偵察",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -78587,7 +78750,8 @@
           "renderings": [
             {
               "zh": "紛射-正午",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -79247,7 +79411,8 @@
           "renderings": [
             {
               "zh": "薩爾瓦多",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -79412,7 +79577,8 @@
           "renderings": [
             {
               "zh": "降於肉體的恩寵",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -80786,7 +80952,8 @@
           "renderings": [
             {
               "zh": "黎明之後貫穿而來的楔",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -80825,7 +80992,8 @@
           "renderings": [
             {
               "zh": "黎明事務所 - 前輩",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -80843,7 +81011,8 @@
           "renderings": [
             {
               "zh": "黎明事務所 - 守護者",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -80861,7 +81030,8 @@
           "renderings": [
             {
               "zh": "黎明事務所 - 新人",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -80880,7 +81050,8 @@
           "renderings": [
             {
               "zh": "黎明之楔",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -80991,7 +81162,8 @@
           "renderings": [
             {
               "zh": "於黎明中背靠著背",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -81067,7 +81239,8 @@
           "renderings": [
             {
               "zh": "黎明的羈絆",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -82048,7 +82221,8 @@
           "renderings": [
             {
               "zh": "哀傷的晚霞",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -82102,7 +82276,8 @@
           "renderings": [
             {
               "zh": "霜之溫度",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -82371,7 +82546,8 @@
           "renderings": [
             {
               "zh": "於欣羨之中漂泊的邁爾斯 第二個選項",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -82389,7 +82565,8 @@
           "renderings": [
             {
               "zh": "於欣羨之中漂泊的邁爾斯 第一個選項",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -82680,13 +82857,13 @@
           "renderings": [
             {
               "zh": "善意的巡禮",
-              "units": 5
+              "units": 6
             }
           ],
           "examples": [
             "MirrorDungeonTheme-1.json|/dataList/92/name",
-            "UserBanner.json|/dataList/68/name",
-            "UserTicket-EGOBg.json|/dataList/60/name"
+            "StageChapterText.json|/dataList/22/chaptertitle",
+            "UserBanner.json|/dataList/68/name"
           ]
         }
       ]
@@ -83297,7 +83474,8 @@
           "renderings": [
             {
               "zh": "閃光之槍",
-              "units": 4
+              "units": 4,
+              "own": true
             }
           ],
           "examples": [
@@ -84194,7 +84372,8 @@
           "renderings": [
             {
               "zh": "鐵捲門",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -85214,11 +85393,12 @@
           "renderings": [
             {
               "zh": "身無所屬",
-              "units": 1
+              "units": 2
             }
           ],
           "examples": [
-            "MirrorDungeonTheme-1.json|/dataList/1/name"
+            "MirrorDungeonTheme-1.json|/dataList/1/name",
+            "StageChapterText.json|/dataList/1/chaptertitle"
           ]
         }
       ]
@@ -85936,7 +86116,8 @@
           "renderings": [
             {
               "zh": "副廚交談代理",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -85954,7 +86135,8 @@
           "renderings": [
             {
               "zh": "副廚的手臂交易",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -86719,7 +86901,8 @@
           "renderings": [
             {
               "zh": "調整呼吸",
-              "units": 8
+              "units": 8,
+              "own": true
             }
           ],
           "examples": [
@@ -87328,7 +87511,8 @@
           "renderings": [
             {
               "zh": "烙印工坊武器",
-              "units": 4
+              "units": 4,
+              "own": true
             }
           ],
           "examples": [
@@ -87666,7 +87850,8 @@
           "renderings": [
             {
               "zh": "能與悲傷一同站起的道路",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -87764,7 +87949,8 @@
           "renderings": [
             {
               "zh": "其中一名乘客在販賣物品",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -87800,7 +87986,8 @@
           "renderings": [
             {
               "zh": "勝機",
-              "units": 4
+              "units": 4,
+              "own": true
             }
           ],
           "examples": [
@@ -88317,13 +88504,13 @@
           "renderings": [
             {
               "zh": "時間殺人時間",
-              "units": 5
+              "units": 6
             }
           ],
           "examples": [
             "MirrorDungeonTheme-1.json|/dataList/62/name",
-            "UserBanner.json|/dataList/36/name",
-            "UserTicket-EGOBg.json|/dataList/31/name"
+            "StageChapterText.json|/dataList/13/chaptertitle",
+            "UserBanner.json|/dataList/36/name"
           ]
         }
       ]
@@ -89483,7 +89670,8 @@
           "renderings": [
             {
               "zh": "第4賽季同步、異想解析專用碎片（共通）",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -89951,7 +90139,8 @@
           "renderings": [
             {
               "zh": "第5賽季同步、異想解析專用碎片（共通）",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -90365,7 +90554,8 @@
           "renderings": [
             {
               "zh": "第6賽季同步、異想解析專用碎片（共通）",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -90815,7 +91005,8 @@
           "renderings": [
             {
               "zh": "第7賽季同步、異想解析專用碎片（共通）",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -91265,7 +91456,8 @@
           "renderings": [
             {
               "zh": "第8賽季同步、異想解析專用碎片（共通）",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -91409,7 +91601,8 @@
           "renderings": [
             {
               "zh": "第8賽季 薛西弗斯之鏡 特別紀念橫幅",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -91427,7 +91620,8 @@
           "renderings": [
             {
               "zh": "第8賽季 薛西弗斯之鏡 特別成就橫幅",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -92545,7 +92739,8 @@
           "renderings": [
             {
               "zh": "薛西弗斯之鏡",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -92565,7 +92760,8 @@
           "renderings": [
             {
               "zh": "薛西弗斯之鏡 - 特別車票",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -94032,7 +94228,8 @@
           "renderings": [
             {
               "zh": "身體適應用裝置",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -94442,13 +94639,13 @@
           "renderings": [
             {
               "zh": "深夜清掃",
-              "units": 5
+              "units": 6
             }
           ],
           "examples": [
             "MirrorDungeonTheme-1.json|/dataList/77/name",
-            "UserBanner.json|/dataList/52/name",
-            "UserTicket-EGOBg.json|/dataList/47/name"
+            "StageChapterText.json|/dataList/18/chaptertitle",
+            "UserBanner.json|/dataList/52/name"
           ]
         }
       ]
@@ -95095,7 +95292,8 @@
           "renderings": [
             {
               "zh": "辛克萊 SD",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -95114,7 +95312,8 @@
           "renderings": [
             {
               "zh": "辛克萊！配合吾的動作吧！！",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -95132,7 +95331,8 @@
           "renderings": [
             {
               "zh": "辛克萊-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -95410,7 +95610,8 @@
           "renderings": [
             {
               "zh": "雙鉤海盜團成員5",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -95543,7 +95744,8 @@
           "renderings": [
             {
               "zh": "層層堆疊之物（演出用替身）",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -95860,7 +96062,8 @@
           "renderings": [
             {
               "zh": "楔 - 唐吉訶德",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -95879,7 +96082,8 @@
           "renderings": [
             {
               "zh": "楔 - 辛克萊",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -95898,7 +96102,8 @@
           "renderings": [
             {
               "zh": "楔形陣展開",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -95917,7 +96122,8 @@
           "renderings": [
             {
               "zh": "打入楔子",
-              "units": 4
+              "units": 4,
+              "own": true
             }
           ],
           "examples": [
@@ -95937,7 +96143,8 @@
           "renderings": [
             {
               "zh": "楔事務所",
-              "units": 19
+              "units": 19,
+              "own": true
             }
           ],
           "examples": [
@@ -95957,7 +96164,8 @@
           "renderings": [
             {
               "zh": "楔之援護",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -95976,7 +96184,8 @@
           "renderings": [
             {
               "zh": "楔式槍術",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -97283,7 +97492,8 @@
           "renderings": [
             {
               "zh": "尚未乾涸的水氣",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -97620,11 +97830,12 @@
           "renderings": [
             {
               "zh": "定義為惡",
-              "units": 1
+              "units": 2
             }
           ],
           "examples": [
-            "MirrorDungeonTheme-1.json|/dataList/14/name"
+            "MirrorDungeonTheme-1.json|/dataList/14/name",
+            "StageChapterText.json|/dataList/7/chaptertitle"
           ]
         }
       ]
@@ -97962,7 +98173,8 @@
           "renderings": [
             {
               "zh": "愛娜溫選項（第1次）",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -97980,7 +98192,8 @@
           "renderings": [
             {
               "zh": "愛娜溫選項（第2次）",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -97998,7 +98211,8 @@
           "renderings": [
             {
               "zh": "愛娜溫選項（第3次）",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -98702,7 +98916,8 @@
           "renderings": [
             {
               "zh": "介入",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -98722,7 +98937,8 @@
           "renderings": [
             {
               "zh": "介入（engagement）",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -99255,7 +99471,8 @@
           "renderings": [
             {
               "zh": "收尾部隊上司",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -100384,7 +100601,8 @@
           "renderings": [
             {
               "zh": "回收環指作品的LCE組員們",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -101134,6 +101352,24 @@
       ]
     },
     {
+      "kr": "어두운 숲",
+      "variants": [
+        {
+          "jp": "暗い森",
+          "en": "Selva Oscura",
+          "renderings": [
+            {
+              "zh": "幽暗的森林",
+              "units": 1
+            }
+          ],
+          "examples": [
+            "StageChapterText.json|/dataList/0/chaptertitle"
+          ]
+        }
+      ]
+    },
+    {
       "kr": "어두운 잔영",
       "variants": [
         {
@@ -101307,7 +101543,8 @@
           "renderings": [
             {
               "zh": "困難難度",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -101419,7 +101656,8 @@
           "renderings": [
             {
               "zh": "年幼的丹紅之神",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -102977,7 +103215,8 @@
           "renderings": [
             {
               "zh": "糾結的黑線",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -103284,7 +103523,8 @@
           "renderings": [
             {
               "zh": "自為存在（être-pour-soi）",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -103706,11 +103946,13 @@
           "renderings": [
             {
               "zh": "乘勢追擊",
-              "units": 3
+              "units": 3,
+              "own": true
             },
             {
               "zh": "乘勝追擊",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -106278,7 +106520,8 @@
           "renderings": [
             {
               "zh": "Yesod",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -106651,7 +106894,8 @@
           "renderings": [
             {
               "zh": "回到古老之海",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -106705,7 +106949,8 @@
           "renderings": [
             {
               "zh": "古老捕食者的本能",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -107544,7 +107789,8 @@
           "renderings": [
             {
               "zh": "奧斯卡",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -107675,7 +107921,8 @@
           "renderings": [
             {
               "zh": "奧提斯 SD",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -107695,7 +107942,8 @@
           "renderings": [
             {
               "zh": "奧提斯-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -108654,7 +108902,8 @@
           "renderings": [
             {
               "zh": "華爾滋的經驗。還記得嗎？",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -108672,7 +108921,8 @@
           "renderings": [
             {
               "zh": "華爾滋的節拍，還記得嗎？",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -109743,11 +109993,12 @@
           "renderings": [
             {
               "zh": "去．海．邊",
-              "units": 1
+              "units": 2
             }
           ],
           "examples": [
-            "MirrorDungeonTheme-1.json|/dataList/18/name"
+            "MirrorDungeonTheme-1.json|/dataList/18/name",
+            "StageChapterText.json|/dataList/6/chaptertitle"
           ]
         }
       ]
@@ -109815,7 +110066,8 @@
           "renderings": [
             {
               "zh": "雷鳴",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -111204,6 +111456,19 @@
             "UserBanner.json|/dataList/40/name",
             "UserTicket-EGOBg.json|/dataList/35/name"
           ]
+        },
+        {
+          "jp": "ワープ特急殺人事件",
+          "en": "Murder on the\nWARP Express",
+          "renderings": [
+            {
+              "zh": "WARP列車謀殺案",
+              "units": 1
+            }
+          ],
+          "examples": [
+            "StageChapterText.json|/dataList/14/chaptertitle"
+          ]
         }
       ]
     },
@@ -111366,7 +111631,8 @@
           "renderings": [
             {
               "zh": "布料密度差距",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -111398,7 +111664,8 @@
           "renderings": [
             {
               "zh": "單腳",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -111583,7 +111850,8 @@
           "renderings": [
             {
               "zh": "原罪皮革製革廠全力運轉",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -111619,7 +111887,8 @@
           "renderings": [
             {
               "zh": "原罪式原皮供應",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -112974,7 +113243,8 @@
           "renderings": [
             {
               "zh": "尤娜",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -113539,6 +113809,19 @@
             "MirrorDungeonTheme-1.json|/dataList/20/name",
             "Passives_Assist-exme.json|/dataList/8/name",
             "UserBanner.json|/dataList/27/name"
+          ]
+        },
+        {
+          "jp": "肉斬骨断",
+          "en": "Yield My Flesh\nto Claim Their Bones",
+          "renderings": [
+            {
+              "zh": "肉斬骨斷",
+              "units": 1
+            }
+          ],
+          "examples": [
+            "StageChapterText.json|/dataList/10/chaptertitle"
           ]
         }
       ]
@@ -114542,7 +114825,8 @@
           "renderings": [
             {
               "zh": "銀色標記[楔]",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -115091,7 +115375,8 @@
           "renderings": [
             {
               "zh": "處理委託",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -115854,7 +116139,8 @@
           "renderings": [
             {
               "zh": "熾熱之劍",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -116541,7 +116827,7 @@
           "renderings": [
             {
               "zh": "李箱",
-              "units": 32
+              "units": 33
             }
           ],
           "examples": [
@@ -116605,7 +116891,8 @@
           "renderings": [
             {
               "zh": "李箱的複製體",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -116623,7 +116910,8 @@
           "renderings": [
             {
               "zh": "李箱-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -116660,7 +116948,8 @@
           "renderings": [
             {
               "zh": "沒有異常(李箱)",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -116768,7 +117057,8 @@
           "renderings": [
             {
               "zh": "以實瑪利 SD",
-              "units": 3
+              "units": 3,
+              "own": true
             }
           ],
           "examples": [
@@ -116788,7 +117078,8 @@
           "renderings": [
             {
               "zh": "以實瑪利的複製體",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -116806,7 +117097,8 @@
           "renderings": [
             {
               "zh": "以實瑪利-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -117421,7 +117713,7 @@
           "renderings": [
             {
               "zh": "人格養成組合包",
-              "units": 48
+              "units": 49
             }
           ],
           "examples": [
@@ -118972,7 +119264,8 @@
             },
             {
               "zh": "被遺忘的騎士之劍",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -122277,7 +122570,8 @@
           "renderings": [
             {
               "zh": "裁剪",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -122385,7 +122679,8 @@
           "renderings": [
             {
               "zh": "已被裁剪",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -122404,7 +122699,8 @@
           "renderings": [
             {
               "zh": "裁剪好的布料",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -122643,7 +122939,8 @@
           "renderings": [
             {
               "zh": "再鞣製準備",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -123064,7 +123361,8 @@
           "renderings": [
             {
               "zh": "別催我",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -125223,7 +125521,8 @@
           "renderings": [
             {
               "zh": "掌握戰場",
-              "units": 4
+              "units": 4,
+              "own": true
             }
           ],
           "examples": [
@@ -125414,7 +125713,8 @@
           "renderings": [
             {
               "zh": "發現正在戰鬥的W公司清掃人員與血袋",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -125768,7 +126068,8 @@
           "renderings": [
             {
               "zh": "絕望之中",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -125786,7 +126087,8 @@
           "renderings": [
             {
               "zh": "超越絕望之人",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -125899,7 +126201,8 @@
           "renderings": [
             {
               "zh": "絕望的試煉",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -126239,13 +126542,13 @@
           "renderings": [
             {
               "zh": "切磋琢春",
-              "units": 5
+              "units": 6
             }
           ],
           "examples": [
             "MirrorDungeonTheme-1.json|/dataList/84/name",
-            "UserBanner.json|/dataList/66/name",
-            "UserTicket-EGOBg.json|/dataList/58/name"
+            "StageChapterText.json|/dataList/21/chaptertitle",
+            "UserBanner.json|/dataList/66/name"
           ]
         }
       ]
@@ -127045,7 +127348,8 @@
           "renderings": [
             {
               "zh": "用心分享的藥材",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -127752,7 +128056,8 @@
           "renderings": [
             {
               "zh": "既定的結局",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -127837,6 +128142,24 @@
       ]
     },
     {
+      "kr": "제 2 회 발푸르기스의 밤",
+      "variants": [
+        {
+          "jp": "第2回 ヴァルプルギスの夜",
+          "en": "The 2nd Walpurgis Night",
+          "renderings": [
+            {
+              "zh": "第2次 瓦爾普吉斯之夜",
+              "units": 1
+            }
+          ],
+          "examples": [
+            "StageChapterText.json|/dataList/9/chaptertitle"
+          ]
+        }
+      ]
+    },
+    {
       "kr": "제 2차 연기전쟁의",
       "variants": [
         {
@@ -127876,6 +128199,24 @@
       ]
     },
     {
+      "kr": "제 3 회 발푸르기스의 밤",
+      "variants": [
+        {
+          "jp": "第3回 ヴァルプルギスの夜",
+          "en": "The 3rd Walpurgis Night",
+          "renderings": [
+            {
+              "zh": "第3次 瓦爾普吉斯之夜",
+              "units": 1
+            }
+          ],
+          "examples": [
+            "StageChapterText.json|/dataList/12/chaptertitle"
+          ]
+        }
+      ]
+    },
+    {
       "kr": "제 3파",
       "variants": [
         {
@@ -127895,6 +128236,42 @@
       ]
     },
     {
+      "kr": "제 4 회 발푸르기스의 밤",
+      "variants": [
+        {
+          "jp": "第4回 ヴァルプルギスの夜",
+          "en": "The 4th Walpurgis Night",
+          "renderings": [
+            {
+              "zh": "第4次 瓦爾普吉斯之夜",
+              "units": 1
+            }
+          ],
+          "examples": [
+            "StageChapterText.json|/dataList/15/chaptertitle"
+          ]
+        }
+      ]
+    },
+    {
+      "kr": "제 5 회 발푸르기스의 밤",
+      "variants": [
+        {
+          "jp": "第5回 ヴァルプルギスの夜",
+          "en": "The 5th Walpurgis Night",
+          "renderings": [
+            {
+              "zh": "第5次 瓦爾普吉斯之夜",
+              "units": 1
+            }
+          ],
+          "examples": [
+            "StageChapterText.json|/dataList/16/chaptertitle"
+          ]
+        }
+      ]
+    },
+    {
       "kr": "제 5종 영구기관",
       "variants": [
         {
@@ -127908,6 +128285,24 @@
           ],
           "examples": [
             "EGOgift_MirrorDungeon_2.json|/dataList/19/name"
+          ]
+        }
+      ]
+    },
+    {
+      "kr": "제 6 회 발푸르기스의 밤",
+      "variants": [
+        {
+          "jp": "第6回 ヴァルプルギスの夜",
+          "en": "The 6th Walpurgis Night",
+          "renderings": [
+            {
+              "zh": "第6次 瓦爾普吉斯之夜",
+              "units": 1
+            }
+          ],
+          "examples": [
+            "StageChapterText.json|/dataList/20/chaptertitle"
           ]
         }
       ]
@@ -128283,7 +128678,8 @@
           "renderings": [
             {
               "zh": "該死，你們是怎麼找到那種漏洞的。",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -128933,7 +129329,8 @@
           "renderings": [
             {
               "zh": "寂靜的中指長廊",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -129958,7 +130355,8 @@
           "renderings": [
             {
               "zh": "沒有皺褶的皮革",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -130394,7 +130792,8 @@
           "renderings": [
             {
               "zh": "無法自制的身體",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -132961,7 +133360,8 @@
           "renderings": [
             {
               "zh": "指定司書 [歷史層]",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -133000,7 +133400,8 @@
           "renderings": [
             {
               "zh": "指定司書 Malkuth[歷史層]",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -133862,7 +134263,7 @@
       "variants": [
         {
           "jp": "振動人格",
-          "en": "Tremor Identity",
+          "en": "Tremor ID",
           "renderings": [
             {
               "zh": "震顫人格",
@@ -134422,7 +134823,8 @@
           "renderings": [
             {
               "zh": "陣型崩潰",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -134499,7 +134901,8 @@
           "renderings": [
             {
               "zh": "奔馳的駑騂難得",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -138019,7 +138422,8 @@
           "renderings": [
             {
               "zh": "懺悔-告解",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -138094,7 +138498,8 @@
           "renderings": [
             {
               "zh": "長槍橫掃",
-              "units": 6
+              "units": 6,
+              "own": true
             }
           ],
           "examples": [
@@ -139514,7 +139919,8 @@
           "renderings": [
             {
               "zh": "清道夫B",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -139636,7 +140042,7 @@
       "variants": [
         {
           "jp": "体力増進",
-          "en": "Max HP +",
+          "en": "Max HP+",
           "renderings": [
             {
               "zh": "體力上限提升",
@@ -139791,7 +140197,8 @@
           "renderings": [
             {
               "zh": "超高速SPM",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -140607,7 +141014,7 @@
       "kr": "최대 체력 증강 Ⅰ",
       "variants": [
         {
-          "jp": "最大体力増強I",
+          "jp": "体力最大値増強I",
           "en": "Max HP Boost I",
           "renderings": [
             {
@@ -140626,7 +141033,7 @@
       "kr": "최대 체력 증강 Ⅱ",
       "variants": [
         {
-          "jp": "最大体力増強II",
+          "jp": "体力最大値増強II",
           "en": "Max HP Boost II",
           "renderings": [
             {
@@ -142100,7 +142507,7 @@
       "variants": [
         {
           "jp": "出血人格",
-          "en": "Bleed Identity",
+          "en": "Bleed ID",
           "renderings": [
             {
               "zh": "流血人格",
@@ -142884,7 +143291,7 @@
       "variants": [
         {
           "jp": "充電人格",
-          "en": "Charge Identity",
+          "en": "Charge ID",
           "renderings": [
             {
               "zh": "充能人格",
@@ -143767,7 +144174,8 @@
           "renderings": [
             {
               "zh": "被侵蝕的員工2",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -143950,7 +144358,7 @@
       "variants": [
         {
           "jp": "沈潜人格",
-          "en": "Sinking Identity",
+          "en": "Sinking ID",
           "renderings": [
             {
               "zh": "沉淪人格",
@@ -144206,7 +144614,8 @@
           "renderings": [
             {
               "zh": "Carmen",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -144817,7 +145226,8 @@
           "renderings": [
             {
               "zh": "時尚展廳 員工",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -144836,7 +145246,8 @@
           "renderings": [
             {
               "zh": "彩色縫線",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -145482,11 +145893,13 @@
           "renderings": [
             {
               "zh": "快速突刺",
-              "units": 3
+              "units": 3,
+              "own": true
             },
             {
               "zh": "疾速刺擊",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -145795,7 +146208,8 @@
           "renderings": [
             {
               "zh": "克羅默的姊姊",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -146582,13 +146996,13 @@
           "renderings": [
             {
               "zh": "搓揉撚合",
-              "units": 5
+              "units": 7
             }
           ],
           "examples": [
             "MirrorDungeonTheme-1.json|/dataList/104/name",
-            "UserBanner.json|/dataList/81/name",
-            "UserTicket-EGOBg.json|/dataList/69/name"
+            "StageChapterText.json|/dataList/26/chaptertitle",
+            "StageChapterText.json|/dataList/27/chaptertitle"
           ]
         }
       ]
@@ -146774,7 +147188,8 @@
           "renderings": [
             {
               "zh": "爆炎一擊準備",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -148768,7 +149183,7 @@
           "renderings": [
             {
               "zh": "特別提取組合包",
-              "units": 46
+              "units": 47
             }
           ],
           "examples": [
@@ -148974,7 +149389,8 @@
           "renderings": [
             {
               "zh": "Tiphereth",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -149723,7 +150139,8 @@
           "renderings": [
             {
               "zh": "帕梅拉",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -149742,7 +150159,8 @@
           "renderings": [
             {
               "zh": "帕梅莉",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -150164,7 +150582,7 @@
       "variants": [
         {
           "jp": "破裂人格",
-          "en": "Rupture Identity",
+          "en": "Rupture ID",
           "renderings": [
             {
               "zh": "破裂人格",
@@ -150279,7 +150697,8 @@
           "renderings": [
             {
               "zh": "浮士德的複製體",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -150298,7 +150717,8 @@
           "renderings": [
             {
               "zh": "浮士德-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -151773,7 +152193,8 @@
           "renderings": [
             {
               "zh": "閉幕 - 裝置藝術1號「你們四處散落的骨與肉將化作客席」",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -151792,7 +152213,8 @@
           "renderings": [
             {
               "zh": "閉幕 - 裝置藝術1號「各位四處散落的骨與肉將化作客席」",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -152815,7 +153237,8 @@
           "renderings": [
             {
               "zh": "暴風肆虐的山丘",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -154382,7 +154805,8 @@
           "renderings": [
             {
               "zh": "升騰的罪惡",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -154718,7 +155142,8 @@
           "renderings": [
             {
               "zh": "在變成血袋的W公司清掃人員身上發現有用的物品",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -154731,7 +155156,8 @@
           "renderings": [
             {
               "zh": "在變成血袋的W公司清掃人員身上發現有用的物品",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -155021,7 +155447,8 @@
           "renderings": [
             {
               "zh": "菲利普",
-              "units": 5
+              "units": 5,
+              "own": true
             }
           ],
           "examples": [
@@ -155784,7 +156211,8 @@
           "renderings": [
             {
               "zh": "白色領巾",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -155839,7 +156267,8 @@
           "renderings": [
             {
               "zh": "國內精品館 員工",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -157085,7 +157514,8 @@
           "renderings": [
             {
               "zh": "收尾人的典範",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -157685,7 +158115,8 @@
           "renderings": [
             {
               "zh": "幸福衣櫥",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -158423,7 +158854,8 @@
           "renderings": [
             {
               "zh": "Chesed",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -158553,10 +158985,11 @@
           "renderings": [
             {
               "zh": "地獄雞",
-              "units": 1
+              "units": 2
             }
           ],
           "examples": [
+            "StageChapterText.json|/dataList/4/chaptertitle",
             "UserBanner.json|/dataList/7/name"
           ]
         }
@@ -159741,7 +160174,8 @@
           "renderings": [
             {
               "zh": "刑罰性的拘束",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -159907,7 +160341,8 @@
           "renderings": [
             {
               "zh": "Hod",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -160073,7 +160508,8 @@
           "renderings": [
             {
               "zh": "Hokma",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -160178,7 +160614,7 @@
       "variants": [
         {
           "jp": "呼吸人格",
-          "en": "Poise Identity",
+          "en": "Poise ID",
           "renderings": [
             {
               "zh": "呼吸法人格",
@@ -160491,7 +160927,8 @@
           "renderings": [
             {
               "zh": "鴻璐-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -160938,7 +161375,7 @@
       "variants": [
         {
           "jp": "火傷人格",
-          "en": "Burn Identity",
+          "en": "Burn ID",
           "renderings": [
             {
               "zh": "燒傷人格",
@@ -161622,7 +162059,8 @@
           "renderings": [
             {
               "zh": "黃金自助餐-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -161843,7 +162281,8 @@
           "renderings": [
             {
               "zh": "黃金皮革閃光",
-              "units": 5
+              "units": 5,
+              "own": true
             }
           ],
           "examples": [
@@ -161863,7 +162302,8 @@
           "renderings": [
             {
               "zh": "黃金皮革閃光（品牌總監）",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -161881,7 +162321,8 @@
           "renderings": [
             {
               "zh": "黃金皮革閃光（屍堆）",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -163217,7 +163658,8 @@
             },
             {
               "zh": "後悔",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -163755,7 +164197,8 @@
           "renderings": [
             {
               "zh": "在休息時發現硬血式武器",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -163886,7 +164329,8 @@
           "renderings": [
             {
               "zh": "正在盛放的冬柏",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -164784,7 +165228,8 @@
           "renderings": [
             {
               "zh": "黑雲會成員1",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -165238,7 +165683,8 @@
           "renderings": [
             {
               "zh": "以土捏成的人偶",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -165256,7 +165702,8 @@
           "renderings": [
             {
               "zh": "自土而來",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
@@ -165976,7 +166423,8 @@
           "renderings": [
             {
               "zh": "希斯克利夫的複製體",
-              "units": 2
+              "units": 2,
+              "own": true
             }
           ],
           "examples": [
@@ -165995,7 +166443,8 @@
           "renderings": [
             {
               "zh": "希斯克利夫-廁所",
-              "units": 1
+              "units": 1,
+              "own": true
             }
           ],
           "examples": [
