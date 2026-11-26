@@ -950,3 +950,42 @@
 - id: "name/피해량 증가"
   reason: '審核 #20：這句的「피해량 증가」指上面列的「造成的傷害 +(30/硬幣數)%」效果，是一般敘述，不是名為「傷害強化」的狀態；既有譯文敘述用法寫「傷害增加」（17 處）、指該狀態才寫「傷害強化」（24 處）'
   date: 2026-11-19
+- id: "name/거예요"
+  reason: '審核 #30：新單位的「거예요」是句尾語尾（-거예요），不是道具名「就是這樣喔」（JP なんですよ、EN "You Hear?"）'
+  date: 2026-11-26
+- id: "name/체력 소모"
+  reason: '審核 #30：Passives 說明的「체력 소모로 발동되는 효과」是一般敘述（因消耗體力而觸發的效果），不是異想體被動名「體力耗盡」（EN Exhausting Endeavor）'
+  date: 2026-11-26
+- id: "name/트리밍"
+  reason: '審核 #30：製革監工台詞「적극적 트리밍 필요」指修皮（需要積極修整），不是裁縫技能名「鑲邊」（EN Trimming）'
+  date: 2026-11-26
+- id: "name/황금빛"
+  reason: '審核 #30：劇情「황금빛 실」是金黃色的線（EN pure gold），不是狀態名「光輝」（EN Golden Sheen）'
+  date: 2026-11-26
+- id: "inconsistent/identity/content/f098bf05"
+  reason: '審核 #30：連接詞「그리고…」依前後文譯法不同；新譯「然後……」與既有 5 個中的 4 個相同，新單位的 EN（And amidst it all stood...）也與舊譯不同'
+  date: 2026-11-26
+- id: "inconsistent/ui/content/96b68d6b"
+  reason: '審核 #30：新單位是地圖圖例（JP 凡例、EN Legend），寫「圖例」；舊譯「類型」的 JP 是カテゴリ，語境不同'
+  date: 2026-11-26
+- id: "inconsistent/ui/content/9d52d064"
+  reason: '審核 #30：新單位是防守設定的預設選項（EN Default，下一行「全員恢復預設」），舊譯「基礎設定」是設定分頁（EN General），語境不同'
+  date: 2026-11-26
+- id: "inconsistent/ui/content/780cdaac"
+  reason: '審核 #30：新單位是戰報圖例（EN Death，同檔「我方死亡」），舊譯「陣亡」是戰鬥狀態標籤（EN DEAD），語境不同'
+  date: 2026-11-26
+- id: "inconsistent/ui/content/3622ad89"
+  reason: '審核 #30：新單位是事件卡的狀態標籤「已選擇」（JP 選択済み，旁邊的按鈕是「選擇」），舊譯的 JP 是選択，語境不同'
+  date: 2026-11-26
+- id: "inconsistent/ui/content/a04d1b51"
+  reason: '審核 #30：新單位 EN 是 Retry，LimtochessUI 另外 5 處都寫「再次挑戰」；舊譯「再試一次」的 EN 是 Try Again，語境不同'
+  date: 2026-11-26
+- id: "inconsistent/ui/content/7a39039c"
+  reason: '審核 #30：新單位是戰鬥的暫停鍵（JP 一時停止、EN Pause，旁邊是「繼續」），舊譯「停下」是自我介紹用詞（EN Cease），語境不同'
+  date: 2026-11-26
+- id: "inconsistent/ui/content/2d00d14f"
+  reason: '審核 #30：新單位是事件選項的標籤「獲得」（EN Acquire，旁邊是「代價」），舊譯「已擁有」是持有狀態（EN Owned），語境不同'
+  date: 2026-11-26
+- id: "inconsistent/ui/content/e9d43a5a"
+  reason: '審核 #30：KR、JP、EN 雖與舊譯相同，但新單位是以 E.G.O「凶彈」命名的組合（其他 30 多個單位都寫凶彈）；舊譯「彈丸」在自我介紹句「讓這凶惡的{0}貫穿他們」裡，為避免重複才這樣寫'
+  date: 2026-11-26
