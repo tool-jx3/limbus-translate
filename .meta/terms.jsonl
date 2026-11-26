@@ -44,3 +44,13 @@
 {"kr":"아메기리","zh":"雨斬","key":"Skills_Enemy-schema.json|/dataList/4/levelList/0/name","batch":"20261126T062243-36de3d30","raw_tag":"raw-20261126","time":"2026-11-26T06:24:08Z"}
 {"kr":"쿠로쿠모기리","zh":"黑雲斬","key":"Skills_Enemy-schema.json|/dataList/5/levelList/0/name","batch":"20261126T062243-36de3d30","raw_tag":"raw-20261126","time":"2026-11-26T06:24:08Z"}
 {"kr":"도상구축","zh":"圖式構築","key":"LimtochessUI.json|/dataList/2/content","batch":"20261126T062505-477ac441","raw_tag":"raw-20261126","time":"2026-11-26T06:25:45Z"}
+{"kr":"조각","zh":"碎片","key":"LimtochessUI.json|/dataList/169/content","batch":"20261126T062732-22f22110","raw_tag":"raw-20261126","time":"2026-11-26T06:28:13Z"}
+{"kr":"범용 조각","zh":"通用碎片","key":"LimtochessUI.json|/dataList/179/content","batch":"20261126T062732-22f22110","raw_tag":"raw-20261126","time":"2026-11-26T06:28:13Z"}
+{"kr":"정예 보상","zh":"精英獎勵","key":"LimtochessUI.json|/dataList/192/content","batch":"20261126T062732-22f22110","raw_tag":"raw-20261126","time":"2026-11-26T06:28:13Z"}
+{"kr":"자동 편성","zh":"自動編隊","key":"LimtochessUI.json|/dataList/196/content","batch":"20261126T062732-22f22110","raw_tag":"raw-20261126","time":"2026-11-26T06:28:13Z"}
+{"kr":"코스트","zh":"費用","key":"LimtochessUI.json|/dataList/198/content","batch":"20261126T062732-22f22110","raw_tag":"raw-20261126","time":"2026-11-26T06:28:13Z","old":{"units":148,"with":0}}
+{"kr":"굴림","zh":"擲骰","key":"LimtochessUI.json|/dataList/213/content","batch":"20261126T062819-6e96ba10","raw_tag":"raw-20261126","time":"2026-11-26T06:28:50Z"}
+{"kr":"도상 왜곡","zh":"圖式扭曲","key":"LimtochessUI.json|/dataList/225/content","batch":"20261126T062819-6e96ba10","raw_tag":"raw-20261126","time":"2026-11-26T06:28:50Z"}
+{"kr":"표상","zh":"表象","key":"LimtochessUI.json|/dataList/227/content","batch":"20261126T062819-6e96ba10","raw_tag":"raw-20261126","time":"2026-11-26T06:28:50Z"}
+{"kr":"고난","zh":"苦難","key":"LimtochessUI.json|/dataList/490/content","batch":"20261126T063104-2063f211","raw_tag":"raw-20261126","time":"2026-11-26T06:31:26Z"}
+{"kr":"구축력","zh":"構築力","key":"LimtochessUI.json|/dataList/708/content","batch":"20261126T063309-27de907a","raw_tag":"raw-20261126","time":"2026-11-26T06:33:25Z"}
