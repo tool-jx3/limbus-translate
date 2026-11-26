@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261119",
   "prev_raw_tag": "raw-20261112",
-  "rules_commit": "0298974f46cd57cc9a71d469b102991c4f124537",
+  "rules_commit": "a09c206408aeee12a3c09828f18f5dba16cce959",
   "changes": {
     "unchanged": 275816,
     "moved": 139,
@@ -39,12 +39,7 @@
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [
-    {
-      "id": "2026-11-25-rs-g764-teller-clock-factory",
-      "units": 1
-    }
-  ],
+  "rewrite_applied": [],
   "frozen_changed": [],
   "new_speakers": [],
   "field_changes": [],
