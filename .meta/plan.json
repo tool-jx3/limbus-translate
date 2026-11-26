@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261126",
   "prev_raw_tag": "raw-20261119",
-  "rules_commit": "a09c206408aeee12a3c09828f18f5dba16cce959",
+  "rules_commit": "e8a849b415626d791765e2a0a82207b8267d6f86",
   "changes": {
     "unchanged": 275860,
     "moved": 496,
@@ -60,26 +60,71 @@
       "kr_settings-ui-donttranslate.json"
     ]
   },
-  "copy": 1636,
-  "reused": 116,
+  "copy": 0,
+  "reused": 0,
   "number_patched": 0,
   "adjustments": {
-    "applied": 414,
+    "applied": 422,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [],
+  "rewrite_applied": [
+    {
+      "id": "2026-11-26-review30-assist-unit",
+      "units": 6
+    },
+    {
+      "id": "2026-11-26-review30-cost",
+      "units": 4
+    },
+    {
+      "id": "2026-11-26-review30-engage",
+      "units": 2
+    },
+    {
+      "id": "2026-11-26-review30-enter",
+      "units": 1
+    },
+    {
+      "id": "2026-11-26-review30-formation",
+      "units": 3
+    },
+    {
+      "id": "2026-11-26-review30-max-hp",
+      "units": 1
+    },
+    {
+      "id": "2026-11-26-review30-regular",
+      "units": 2
+    },
+    {
+      "id": "2026-11-26-review30-ring",
+      "units": 1
+    },
+    {
+      "id": "2026-11-26-review30-skein-nest",
+      "units": 10
+    },
+    {
+      "id": "2026-11-26-review30-stagger",
+      "units": 1
+    },
+    {
+      "id": "2026-11-26-review30-trichiliocosm",
+      "units": 1
+    }
+  ],
   "frozen_changed": [],
   "new_speakers": [],
   "field_changes": [],
   "new_files_default_family": [
     "SchemaCraftChoice.json"
   ],
-  "pending": 1949,
+  "pending": 0,
   "name_table": {
     "raw_tag": "raw-20261126",
-    "built": true,
+    "built": false,
     "names": 8729,
     "same_texts": 1250
   }

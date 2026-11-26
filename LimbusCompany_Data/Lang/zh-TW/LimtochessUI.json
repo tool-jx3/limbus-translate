@@ -50,7 +50,7 @@
     },
     {
       "id": "limtochess_room_type_normal",
-      "content": "一般"
+      "content": "常規"
     },
     {
       "id": "limtochess_room_type_elite",
@@ -154,7 +154,7 @@
     },
     {
       "id": "limtochess_battleprep_step_formation",
-      "content": "編成"
+      "content": "編隊"
     },
     {
       "id": "limtochess_battleprep_step_defense",
@@ -350,7 +350,7 @@
     },
     {
       "id": "limtochess_briefing_script_0",
-      "content": "一般"
+      "content": "常規"
     },
     {
       "id": "limtochess_briefing_script_1",
@@ -450,7 +450,7 @@
     },
     {
       "id": "limtochess_packselect_odds_cost",
-      "content": "人格費用"
+      "content": "人格經費"
     },
     {
       "id": "limtochess_packselect_odds_ego",
@@ -490,7 +490,7 @@
     },
     {
       "id": "limtochess_packselect_toggle_recruit",
-      "content": "編成"
+      "content": "編隊"
     },
     {
       "id": "limtochess_packselect_toggle_replace",
@@ -794,7 +794,7 @@
     },
     {
       "id": "limtochess_start_remaining_cost",
-      "content": "剩餘費用"
+      "content": "剩餘經費"
     },
     {
       "id": "limtochess_start_clear_all",
@@ -818,11 +818,11 @@
     },
     {
       "id": "limtochess_start_block_budget",
-      "content": "費用不足"
+      "content": "經費不足"
     },
     {
       "id": "limtochess_start_block_topcost",
-      "content": "{0}費用限制"
+      "content": "{0}經費限制"
     },
     {
       "id": "limtochess_start_block_full",
@@ -998,7 +998,7 @@
     },
     {
       "id": "limtochess_roll_penalty_max_hp_name",
-      "content": "最大體力"
+      "content": "體力上限"
     },
     {
       "id": "limtochess_roll_penalty_boss_max_hp_name",
@@ -1510,7 +1510,7 @@
     },
     {
       "id": "limtochess_unitstatus_break",
-      "content": "混亂"
+      "content": "陷入混亂"
     },
     {
       "id": "limtochess_unitstatus_panic",
@@ -2226,7 +2226,7 @@
     },
     {
       "id": "limtochess_synergy_set_ring_finger",
-      "content": "無名指"
+      "content": "環指"
     },
     {
       "id": "limtochess_synergy_set_ring_finger_fauvism",
@@ -2306,7 +2306,7 @@
     },
     {
       "id": "limtochess_synergy_set_ego_samcheon_daesegye",
-      "content": "三千大千世界"
+      "content": "三千大世界"
     },
     {
       "id": "limtochess_synergy_set_wuthering_heights",
@@ -3298,7 +3298,7 @@
     },
     {
       "id": "limtochess_ink_map_formation",
-      "content": "編成"
+      "content": "編隊"
     },
     {
       "id": "limtochess_ink_start_deck_empty",

@@ -1,0 +1,840 @@
+{
+  "tag": "zh-TW-20261126.2",
+  "prev_tag": "zh-TW-20261126.1",
+  "released_at": "2026-11-26T12:04:56Z",
+  "prev_released_at": "2026-11-26T06:38:43Z",
+  "raw_tag": "raw-20261126",
+  "prev_raw_tag": "raw-20261126",
+  "rules_commit": "e8a849b415626d791765e2a0a82207b8267d6f86",
+  "prev_rules_commit": "a09c206408aeee12a3c09828f18f5dba16cce959",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 40
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "BattleKeywords-schema.json",
+      "field": "name",
+      "ptr": "/dataList/1/name",
+      "kind": "zh-changed",
+      "new_kr": "임전",
+      "old_zh": "刀戎接刃",
+      "new_zh": "未雨綢繆",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-engage"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords.json",
+      "field": "desc",
+      "ptr": "/dataList/608/desc",
+      "kind": "zh-changed",
+      "new_kr": "자신을 제외한 르루주 소속 아군이 조건 만족 시 다음 효과 발동\n- 해당 캐릭터가 사망한 상태여도 효과 유지\n\n오트쿠튀르::르루주 부티크 이스마엘\n- 해당 캐릭터가 새단장 상태이면, 자신의 최대 체력 10% 증가. 기본 공격 적중 시 자신의 최대 체력의 5%만큼 체력 회복 (소수점 올림, 턴당 5회)\n\n오트쿠튀르::르루주 바느질의 왕 히스클리프\n- '라 드망드(la demande)'스킬 코인 적중 시 맥동 횟수를 1 얻고, 자신의 최대 체력의 5%만큼 회복\n\n오트쿠튀르::르루주 B2F 타래둥지 그레고르\n- 맥동 횟수 최대치 +5\n‘라 보라시테’, ‘라 카스트라시옹’ 스킬 사용 전 맥동 횟수 5 얻음",
+      "old_zh": "除自身以外屬於丹紅派的友方單位滿足條件時，觸發以下效果\n- 即使該友方單位處於死亡狀態，效果仍維持生效\n\n高級訂製服::丹紅派 精品專櫃 以實瑪利\n- 若該友方單位處於改頭換面模式時，使自身的體力上限提升10%。基礎攻擊命中時，使自身恢復體力上限5%的體力(無條件進位，每回合最多5次)\n\n高級訂製服::丹紅派 裁縫之王 希斯克利夫\n- 技能「要求（la demande）」的硬幣命中時，使自身獲得1回脈動並恢復體力上限5%的體力\n\n高級訂製服::丹紅派 B2F 線團巢 格里高爾\n- 脈動回數上限+5\n使用技能「La Voracité」、「La Castration」前，獲得5回脈動",
+      "new_zh": "除自身以外屬於丹紅派的友方單位滿足條件時，觸發以下效果\n- 即使該友方單位處於死亡狀態，效果仍維持生效\n\n高級訂製服::丹紅派 精品專櫃 以實瑪利\n- 若該友方單位處於改頭換面模式時，使自身的體力上限提升10%。基礎攻擊命中時，使自身恢復體力上限5%的體力(無條件進位，每回合最多5次)\n\n高級訂製服::丹紅派 裁縫之王 希斯克利夫\n- 技能「要求（la demande）」的硬幣命中時，使自身獲得1回脈動並恢復體力上限5%的體力\n\n高級訂製服::丹紅派 B2F 線團之巢 格里高爾\n- 脈動回數上限+5\n使用技能「La Voracité」、「La Castration」前，獲得5回脈動",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-skein-nest"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords.json",
+      "field": "desc",
+      "ptr": "/dataList/633/desc",
+      "kind": "zh-changed",
+      "new_kr": "- <color=#ff0000>전투 시작 시</color> 자신의 스킬 슬롯에서 가장 왼쪽의 <color=#ff0000>공격 스킬로 지정한 적이 르누아르 소속</color>이면, 아래 효과 발동 (메인 타겟 기준, 조력자 포함)\n· 태너리 규칙 위반 1 얻음\n· 이 효과 소멸\n- 턴 종료 시 이 효과 소멸",
+      "old_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人屬於漆黑派</color>，觸發以下效果(以主要目標為準，包含援助者)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "new_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人屬於漆黑派</color>，觸發以下效果(以主要目標為準，包含支援單位)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-assist-unit"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords.json",
+      "field": "desc",
+      "ptr": "/dataList/634/desc",
+      "kind": "zh-changed",
+      "new_kr": "- <color=#ff0000>전투 시작 시</color> 자신의 스킬 슬롯에서 가장 왼쪽의 <color=#ff0000>공격 스킬로 지정한 적의 스킬이 공격 스킬</color>이면, 아래 효과 발동 (메인 타겟 기준, 조력자 포함)\n· 태너리 규칙 위반 1 얻음\n· 이 효과 소멸\n- 턴 종료 시 이 효과 소멸",
+      "old_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人的技能為攻擊技能</color>，觸發以下效果(以主要目標為準，包含援助者)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "new_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人的技能為攻擊技能</color>，觸發以下效果(以主要目標為準，包含支援單位)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-assist-unit"
+        }
+      ]
+    },
+    {
+      "file": "BattleKeywords.json",
+      "field": "desc",
+      "ptr": "/dataList/635/desc",
+      "kind": "zh-changed",
+      "new_kr": "- <color=#ff0000>전투 시작 시</color> 자신의 스킬 슬롯에서 가장 왼쪽의 <color=#ff0000>공격 스킬로 지정한 적의 스킬이 수비 스킬</color>이면, 아래 효과 발동 (메인 타겟 기준, 조력자 포함)\n· 태너리 규칙 위반 1 얻음\n· 이 효과 소멸\n- 턴 종료 시 이 효과 소멸",
+      "old_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人的技能為守備技能</color>，觸發以下效果(以主要目標為準，包含援助者)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "new_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人的技能為守備技能</color>，觸發以下效果(以主要目標為準，包含支援單位)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-assist-unit"
+        }
+      ]
+    },
+    {
+      "file": "BuffAbilities.json",
+      "field": "desc",
+      "ptr": "/dataList/128/desc",
+      "kind": "zh-changed",
+      "new_kr": "오트쿠튀르::르루주 B2F 타래둥지 그레고르\n- 맥동 횟수 최대치 +5\n‘라 보라시테’, ‘라 카스트라시옹’ 스킬 사용 전 맥동 횟수 5 얻음",
+      "old_zh": "高級訂製服::丹紅派 B2F 線團巢 格里高爾\n- 脈動回數上限+5\n使用技能「貪求」、「閹割」前，獲得5回脈動",
+      "new_zh": "高級訂製服::丹紅派 B2F 線團之巢 格里高爾\n- 脈動回數上限+5\n使用技能「貪求」、「閹割」前，獲得5回脈動",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-skein-nest"
+        }
+      ]
+    },
+    {
+      "file": "Bufs-schema.json",
+      "field": "name",
+      "ptr": "/dataList/1/name",
+      "kind": "zh-changed",
+      "new_kr": "임전",
+      "old_zh": "刀戎接刃",
+      "new_zh": "未雨綢繆",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-engage"
+        }
+      ]
+    },
+    {
+      "file": "Bufs.json",
+      "field": "desc",
+      "ptr": "/dataList/717/desc",
+      "kind": "zh-changed",
+      "new_kr": "- <color=#ff0000>전투 시작 시</color> 자신의 스킬 슬롯에서 가장 왼쪽의 <color=#ff0000>공격 스킬로 지정한 적이 르누아르 소속</color>이면, 아래 효과 발동 (메인 타겟 기준, 조력자 포함)\n· 태너리 규칙 위반 1 얻음\n· 이 효과 소멸\n- 턴 종료 시 이 효과 소멸",
+      "old_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人屬於漆黑派</color>，觸發以下效果(以主要目標為準，包含援助者)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "new_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人屬於漆黑派</color>，觸發以下效果(以主要目標為準，包含支援單位)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-assist-unit"
+        }
+      ]
+    },
+    {
+      "file": "Bufs.json",
+      "field": "desc",
+      "ptr": "/dataList/718/desc",
+      "kind": "zh-changed",
+      "new_kr": "- <color=#ff0000>전투 시작 시</color> 자신의 스킬 슬롯에서 가장 왼쪽의 <color=#ff0000>공격 스킬로 지정한 적의 스킬이 공격 스킬</color>이면, 아래 효과 발동 (메인 타겟 기준, 조력자 포함)\n· 태너리 규칙 위반 1 얻음\n· 이 효과 소멸\n- 턴 종료 시 이 효과 소멸",
+      "old_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人的技能為攻擊技能</color>，觸發以下效果(以主要目標為準，包含援助者)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "new_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人的技能為攻擊技能</color>，觸發以下效果(以主要目標為準，包含支援單位)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-assist-unit"
+        }
+      ]
+    },
+    {
+      "file": "Bufs.json",
+      "field": "desc",
+      "ptr": "/dataList/719/desc",
+      "kind": "zh-changed",
+      "new_kr": "- <color=#ff0000>전투 시작 시</color> 자신의 스킬 슬롯에서 가장 왼쪽의 <color=#ff0000>공격 스킬로 지정한 적의 스킬이 수비 스킬</color>이면, 아래 효과 발동 (메인 타겟 기준, 조력자 포함)\n· 태너리 규칙 위반 1 얻음\n· 이 효과 소멸\n- 턴 종료 시 이 효과 소멸",
+      "old_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人的技能為守備技能</color>，觸發以下效果(以主要目標為準，包含援助者)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "new_zh": "- <color=#ff0000>戰鬥開始時</color>，若自身行動槽中最左側的<color=#ff0000>攻擊技能所指定的敵人的技能為守備技能</color>，觸發以下效果(以主要目標為準，包含支援單位)\n．獲得1層違反製革規範\n．本效果消失\n- 回合結束時，本效果消失",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-assist-unit"
+        }
+      ]
+    },
+    {
+      "file": "GachaTitle.json",
+      "field": "content",
+      "ptr": "/dataList/220/content",
+      "kind": "zh-changed",
+      "new_kr": "신규 인격 특정 추출 오트쿠튀르::르루주 B2F 타래둥지 그레고르 · 오트쿠튀르::르누아르 B3F 건조장 이상",
+      "old_zh": "新人格特定提取 高級訂製服::丹紅派 B2F 線團巢 格里高爾、高級訂製服::漆黑派 B3F 乾燥室 李箱",
+      "new_zh": "新人格特定提取 高級訂製服::丹紅派 B2F 線團之巢 格里高爾、高級訂製服::漆黑派 B3F 乾燥室 李箱",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-skein-nest"
+        }
+      ]
+    },
+    {
+      "file": "IAPProduct-a1c10.json",
+      "field": "desc",
+      "ptr": "/dataList/20/desc",
+      "kind": "zh-changed",
+      "new_kr": "「신규 인격 특정 추출 오트쿠튀르::르루주 B2F 타래둥지 그레고르 · 오트쿠튀르::르누아르 B3F 건조장 이상」 출시 기념 상품으로, 다음 구성품을 획득할 수 있습니다.\n\n· 추출 10회 티켓 x 4",
+      "old_zh": "「新人格特定提取 高級訂製服::丹紅派 B2F 線團巢 格里高爾、高級訂製服::漆黑派 B3F 乾燥室 李箱」上市紀念商品，可獲得以下內容物。\n\n．十連提取券 × 4",
+      "new_zh": "「新人格特定提取 高級訂製服::丹紅派 B2F 線團之巢 格里高爾、高級訂製服::漆黑派 B3F 乾燥室 李箱」上市紀念商品，可獲得以下內容物。\n\n．十連提取券 × 4",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-skein-nest"
+        }
+      ]
+    },
+    {
+      "file": "IAPProduct-a1c10.json",
+      "field": "desc",
+      "ptr": "/dataList/21/desc",
+      "kind": "zh-changed",
+      "new_kr": "「신규 인격 특정 추출 오트쿠튀르::르루주 B2F 타래둥지 그레고르 · 오트쿠튀르::르누아르 B3F 건조장 이상」 출시 기념 상품으로, 다음 구성품을 획득할 수 있습니다.\n\n· 도약 모듈 - 인격 동기화 x 1\n· 인격 학습 티켓 IV x 90\n· 인격 학습 티켓 III x 40",
+      "old_zh": "「新人格特定提取 高級訂製服::丹紅派 B2F 線團巢 格里高爾、高級訂製服::漆黑派 B3F 乾燥室 李箱」上市紀念商品，可獲得以下內容物。\n\n．跳躍成長模組 - 人格同步 × 1\n．人格訓練券IV × 90\n．人格訓練券III × 40",
+      "new_zh": "「新人格特定提取 高級訂製服::丹紅派 B2F 線團之巢 格里高爾、高級訂製服::漆黑派 B3F 乾燥室 李箱」上市紀念商品，可獲得以下內容物。\n\n．跳躍成長模組 - 人格同步 × 1\n．人格訓練券IV × 90\n．人格訓練券III × 40",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-skein-nest"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/12/content",
+      "kind": "zh-changed",
+      "new_kr": "일반",
+      "old_zh": "一般",
+      "new_zh": "常規",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-regular"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/38/content",
+      "kind": "zh-changed",
+      "new_kr": "편성",
+      "old_zh": "編成",
+      "new_zh": "編隊",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-formation"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/87/content",
+      "kind": "zh-changed",
+      "new_kr": "일반",
+      "old_zh": "一般",
+      "new_zh": "常規",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-regular"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/112/content",
+      "kind": "zh-changed",
+      "new_kr": "인격 코스트",
+      "old_zh": "人格費用",
+      "new_zh": "人格經費",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-cost"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/122/content",
+      "kind": "zh-changed",
+      "new_kr": "편성",
+      "old_zh": "編成",
+      "new_zh": "編隊",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-formation"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/198/content",
+      "kind": "zh-changed",
+      "new_kr": "남은 코스트",
+      "old_zh": "剩餘費用",
+      "new_zh": "剩餘經費",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-cost"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/204/content",
+      "kind": "zh-changed",
+      "new_kr": "코스트 부족",
+      "old_zh": "費用不足",
+      "new_zh": "經費不足",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-cost"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/205/content",
+      "kind": "zh-changed",
+      "new_kr": "{0}코스트 제한",
+      "old_zh": "{0}費用限制",
+      "new_zh": "{0}經費限制",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-cost"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/249/content",
+      "kind": "zh-changed",
+      "new_kr": "최대 체력",
+      "old_zh": "最大體力",
+      "new_zh": "體力上限",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-max-hp"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/377/content",
+      "kind": "zh-changed",
+      "new_kr": "흐트러짐",
+      "old_zh": "混亂",
+      "new_zh": "陷入混亂",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-stagger"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/556/content",
+      "kind": "zh-changed",
+      "new_kr": "약지",
+      "old_zh": "無名指",
+      "new_zh": "環指",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-ring"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/576/content",
+      "kind": "zh-changed",
+      "new_kr": "삼천대세계",
+      "old_zh": "三千大千世界",
+      "new_zh": "三千大世界",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-trichiliocosm"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/824/content",
+      "kind": "zh-changed",
+      "new_kr": "편성",
+      "old_zh": "編成",
+      "new_zh": "編隊",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-formation"
+        }
+      ]
+    },
+    {
+      "file": "Personalities.json",
+      "field": "title",
+      "ptr": "/dataList/198/title",
+      "kind": "zh-changed",
+      "new_kr": "오트쿠튀르::\n르루주 B2F 타래둥지",
+      "old_zh": "高級訂製服::\n丹紅派 B2F 線團巢",
+      "new_zh": "高級訂製服::\n丹紅派 B2F 線團之巢",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-skein-nest"
+        }
+      ]
+    },
+    {
+      "file": "Personality_Get_Condition.json",
+      "field": "content",
+      "ptr": "/dataList/368/content",
+      "kind": "zh-changed",
+      "new_kr": "오트쿠튀르::르루주 B2F 타래둥지 그레고르 획득 시",
+      "old_zh": "獲得高級訂製服::丹紅派 B2F 線團巢 格里高爾時",
+      "new_zh": "獲得高級訂製服::丹紅派 B2F 線團之巢 格里高爾時",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-skein-nest"
+        }
+      ]
+    },
+    {
+      "file": "Personality_Get_Condition.json",
+      "field": "content",
+      "ptr": "/dataList/369/content",
+      "kind": "zh-changed",
+      "new_kr": "오트쿠튀르::르루주 B2F 타래둥지 그레고르 동기화 3단계 달성",
+      "old_zh": "高級訂製服::丹紅派 B2F 線團巢 格里高爾 人格同步階段3 完成",
+      "new_zh": "高級訂製服::丹紅派 B2F 線團之巢 格里高爾 人格同步階段3 完成",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-skein-nest"
+        }
+      ]
+    },
+    {
+      "file": "SchemaCraftChoice.json",
+      "field": "content",
+      "ptr": "/dataList/6/content",
+      "kind": "zh-changed",
+      "new_kr": "골목에 모여 있던 사람들이 다가왔어. '알다시피 내일 있는 실기 시험은… 얼굴을 꼼꼼하게 확인하지 않아요' 당신들은 이들이 왜 이런 말을 늘어놓는지 이내 깨달았지. '그리고 우리 아이들은 아직 너무 어려요. 경험도 부족하죠' 곧이어 옆의 사람이 이어 말했어. '하지만 이번 달까지 자격증을 전부 따야 다음 달에 있는 입사 면접에서 가산점을 딸 수 있다던데…' 어떤 시험인지는 말해주지 않아. 하지만 당신들이라면 이들이 둥지 이주에 대한 발판을 마련하는 데 조금의 도움을 줄 수 있을지도 모르지.",
+      "old_zh": "聚在巷子裡的人們走了過來。「你們也知道，明天的術科考試……不會仔細核對長相。」你們很快就明白了這些人為什麼要說這些話。「而且我們家的孩子還太小了，經驗也不夠。」旁邊的人緊接著說道。「可是聽說這個月之內要把證照全部考到，下個月的入職面試才能加分……」他們沒說是什麼考試。不過，換作是你們，或許能稍微幫上一點忙，讓這些人為移居巢鋪好墊腳石。",
+      "new_zh": "聚在巷子裡的人們走了過來。「你們也知道，明天的術科考試……不會仔細核對長相。」你們很快就明白了這些人為什麼要說這些話。「而且我們家的孩子還太小了，經驗也不夠。」旁邊的人緊接著說道。「可是聽說這個月之內要把證照全部考到，下個月的求職面試才能加分……」他們沒說是什麼考試。不過，換作是你們，或許能稍微幫上一點忙，替這些人鋪好移居巢的墊腳石。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-26-review30.yaml",
+          "reason": "審核 #30 的 SchemaCraftChoice（新檔）：「入職面試」是中國大陸用語，改「求職面試」；「為移居巢鋪好墊腳石」改「替這些人鋪好移居巢的墊腳石」（語句指引）。使用者同意 2026-11-26"
+        }
+      ]
+    },
+    {
+      "file": "SchemaCraftChoice.json",
+      "field": "content",
+      "ptr": "/dataList/16/content",
+      "kind": "zh-changed",
+      "new_kr": "‘무엇이든 될 수 있지. 꿈도 못 꿔본 것들 전부’ 사연 있는 사람들을 수차례 상대해 보았는지 주인은 익숙하게 영업을 해. 거창한 말과는 달리 그자의 손에 들린 것은 몇 장의 명함들 뿐. ‘이 종이에서만큼은, 당신은 K사의 팀장이지. 5급 해결사 사무소의 대표도 될 수 있고. 단 단속반이 온다면, 이곳은 과일 가게가 되는 거고 지금의 당신이 사간 건 잘 익은 사과뿐이 될 테지만.’ 이 자가 교묘하게 만들어준 명함 한 장이면 당신은 누구든 될 수 있어.",
+      "old_zh": "「想當什麼都行。連做夢都沒想過的一切。」老闆大概應付過不少有故事的人，熟練地推銷著。和那番誇張的說詞不同，他手上拿著的只有幾張名片。「至少在這張紙上，你是K公司的組長。也能當上5級收尾人事務所的負責人。不過要是取締小組來了，這裡就會變成水果攤，而現在的你買走的就只是一顆熟透的蘋果。」只要有一張這傢伙巧妙做出來的名片，你就能成為任何人。",
+      "new_zh": "「想當什麼都行。連做夢都沒想過的一切。」老闆大概應付過不少有故事的人，熟練地推銷著。說詞誇張，他手上拿著的卻只有幾張名片。「至少在這張紙上，你是K公司的組長。也能當上5級收尾人事務所的負責人。不過要是取締小組來了，這裡就會變成水果攤，而現在的你買走的就只是一顆熟透的蘋果。」只要有一張這傢伙巧妙做出來的名片，你就能成為任何人。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-26-review30.yaml",
+          "reason": "審核 #30 的 SchemaCraftChoice（新檔）：「-와는 달리」不照字面寫「和……不同」（語句指引）。使用者同意 2026-11-26"
+        }
+      ]
+    },
+    {
+      "file": "SchemaCraftChoice.json",
+      "field": "content",
+      "ptr": "/dataList/21/content",
+      "kind": "zh-changed",
+      "new_kr": "혼잡스러운 시장 가판대 사이로 언덕 하나가 보여. 살펴보니 그것은 수많은 옷으로 쌓인 층들이야. 이곳의 모든 이들의 세탁물일지도 모르지. 구겨지고 주름지고 더럽고 냄새나는 경험들. 어쩌면 후일을 위해 한 벌 정도는 가져가 봐도 될지 몰라. 언젠가 우리들의 옷도 흐르고 흘러 이 언덕 아래에 쌓일 테니…",
+      "old_zh": "在擁擠的市場攤販之間，可以看見一座山丘。仔細一看，那是由無數衣服堆疊而成的層層衣堆。說不定是這裡所有人的待洗衣物吧。皺巴巴、滿是摺痕、又髒又臭的經歷。或許可以為了日後帶走一件。總有一天，我們的衣服也會流轉再流轉，堆積在這座山丘底下……",
+      "new_zh": "在擁擠的市場攤販之間，可以看見一座山丘。仔細一看，那是無數衣服一層層堆起來的。說不定是這裡所有人的待洗衣物吧。皺巴巴、滿是摺痕、又髒又臭的經歷。或許可以為了日後帶走一件。總有一天，我們的衣服也會流轉再流轉，堆積在這座山丘底下……",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-26-review30.yaml",
+          "reason": "審核 #30 的 SchemaCraftChoice（新檔）：「由無數衣服堆疊而成的層層衣堆」的「堆」重複（語句指引）。使用者同意 2026-11-26"
+        }
+      ]
+    },
+    {
+      "file": "SchemaCraftChoice.json",
+      "field": "content",
+      "ptr": "/dataList/36/content",
+      "kind": "zh-changed",
+      "new_kr": "자질구레한 심부름부터 탐사와 청부살인까지. 해결사를 찾는 의뢰는 언제나 끊이질 않나봐. 의뢰의 대가는 표면적으로나마 모두 합당해 보여. 무엇을 맡고, 무엇을 외면할지는 스스로의 선택에 달려있을 거야",
+      "old_zh": "從瑣碎的跑腿到探索與受託殺人。找收尾人的委託似乎永遠不會間斷。委託的報酬至少表面上看來都很合理。要接下什麼、無視什麼，全看你自己的選擇。",
+      "new_zh": "從瑣碎的跑腿到探索與受雇殺人。找收尾人的委託似乎永遠不會間斷。委託的報酬至少表面上看來都很合理。要接下什麼、無視什麼，全看你自己的選擇。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-26-review30.yaml",
+          "reason": "審核 #30 的 SchemaCraftChoice（新檔）：「청부살인」寫「受雇殺人」：「受託殺人」在臺灣是受被害人請託殺人的罪名，與 KR 不同。使用者同意 2026-11-26"
+        }
+      ]
+    },
+    {
+      "file": "SchemaCraftChoice.json",
+      "field": "content",
+      "ptr": "/dataList/38/content",
+      "kind": "zh-changed",
+      "new_kr": "돈이 될만한 뜬소문을 쫓는다.",
+      "old_zh": "追查可能有賺頭的流言。",
+      "new_zh": "追查可能有賺頭的傳聞。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-26-review30.yaml",
+          "reason": "審核 #30 的 SchemaCraftChoice（新檔）：「뜬소문」是都市威脅等級（EN Canard，同組選項是都市怪談、都市傳說），既有譯名「傳聞」。使用者同意 2026-11-26"
+        }
+      ]
+    },
+    {
+      "file": "SchemaCraftChoice.json",
+      "field": "content",
+      "ptr": "/dataList/43/content",
+      "kind": "zh-changed",
+      "new_kr": "어두워진 주변이다. 단말기를 꺼내 시간을 살펴보자.",
+      "old_zh": "周圍已經暗了下來。拿出終端機看看時間吧。",
+      "new_zh": "是變暗的四周。拿出終端看看時間吧。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-26-review30.yaml",
+          "reason": "審核 #30 的 SchemaCraftChoice（新檔）：回答題目「吸引你注意的是……」，與選項 b、c、e 一樣寫「是……」；「단말기」既有譯文多寫「終端」（82 對 2）。使用者同意 2026-11-26"
+        }
+      ]
+    },
+    {
+      "file": "SchemaCraftChoice.json",
+      "field": "content",
+      "ptr": "/dataList/44/content",
+      "kind": "zh-changed",
+      "new_kr": "3시 13분. 뒷골목에 밤이 내리면 그들이 찾아온다. 해가 오르면 그 어떠한 흔적도 남지 않도록.",
+      "old_zh": "3點13分。後巷入夜後，他們就會到來。為了在太陽升起時不留下任何痕跡。",
+      "new_zh": "3點13分。後巷深宵降臨時，他們就會到來。為了在太陽升起時不留下任何痕跡。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-26-review30.yaml",
+          "reason": "審核 #30 的 SchemaCraftChoice（新檔）：EN 給 \"Night\" 加了引號，指既有譯名「後巷深宵」（뒷골목의 밤）。使用者同意 2026-11-26"
+        }
+      ]
+    },
+    {
+      "file": "SchemaCraftChoice.json",
+      "field": "content",
+      "ptr": "/dataList/54/content",
+      "kind": "zh-changed",
+      "new_kr": "미로 같은 골목의 끝에서, 텅빈 공터에 발을 들였어. 이 뒷골목은 기억하고 있는 그 어떤 곳의 골목과도 달라 낯설고, 동시에 무관심하지. 그렇기에 기억을 종이 삼아, 그 위로 뒷골목의 삶을 마음대로 그려 봐도 될 거야. 진위도 가리지 않고, 허실도 구분하지 않고… 그렇게 거리의 무관심이 달갑지 않은 관심으로 변하는 순간. 생각에서 피어난 검은 구름이 골목을 따라 길게 드리웠어",
+      "old_zh": "在迷宮般的巷子盡頭，你踏進了一片空蕩蕩的空地。這條後巷和記憶中任何一處的巷子都不同，既陌生，同時又漠不關心。正因如此，就算把記憶當作紙張，在上面隨心所欲地描繪後巷的生活也無妨吧。不分真偽，不辨虛實……就在街道的漠不關心化為不受歡迎的關注的那一刻。從思緒中綻放的黑雲，沿著巷子長長地垂落。",
+      "new_zh": "在迷宮般的巷子盡頭，你踏進了一片空蕩蕩的空地。這條後巷和記憶中任何一處的巷子都不同，既陌生，同時又漠不關心。正因如此，就算把記憶當作紙張，在上面隨心所欲地描繪後巷的生活也無妨吧。不分真偽，不辨虛實……就在街道的漠不關心化為不受歡迎的關注的那一刻。從思緒中湧起的黑雲，沿著巷子長長地垂落。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-26-review30.yaml",
+          "reason": "審核 #30 的 SchemaCraftChoice（新檔）：雲的「피어난」寫「湧起」，「綻放」是花的用詞。使用者同意 2026-11-26"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P11217.json",
+      "field": "content",
+      "ptr": "/dataList/6/content",
+      "kind": "zh-changed",
+      "new_kr": "그렇다면 당신이 그걸 만든 사람이라는 건데… 어, 분명히 타래둥지에서는 실만 자아낸다고 들은걸요.",
+      "old_zh": "這麼說，您就是做出那件衣服的人了……呃，可是我聽說線團巢只紡線而已啊。",
+      "new_zh": "這麼說，您就是做出那件衣服的人了……呃，可是我聽說線團之巢只紡線而已啊。",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-skein-nest"
+        }
+      ]
+    },
+    {
+      "file": "StoryTheaterMirrorWorldStoryTitle.json",
+      "field": "content",
+      "ptr": "/dataList/184/content",
+      "kind": "zh-changed",
+      "new_kr": "오트쿠튀르::르루주 B2F 타래둥지, 그레고르 이야기",
+      "old_zh": "高級訂製服::丹紅派 B2F 線團巢，格里高爾的故事",
+      "new_zh": "高級訂製服::丹紅派 B2F 線團之巢，格里高爾的故事",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-skein-nest"
+        }
+      ]
+    },
+    {
+      "file": "TutorialMainUIText.json",
+      "field": "content",
+      "ptr": "/dataList/1359/content",
+      "kind": "zh-changed",
+      "new_kr": "입장하기",
+      "old_zh": "入場",
+      "new_zh": "進入",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-26-review30-enter"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-26-review30.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-26-review30.yaml",
+      "path": "rules/adjustments/2026-11-26-review30.yaml",
+      "title": "2026-11-26-review30.yaml",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    },
+    "rewrite:2026-11-26-review30-assist-unit": {
+      "kind": "rewrite",
+      "id": "2026-11-26-review30-assist-unit",
+      "path": "rules/rewrite/2026-11-26-review30-assist-unit.yaml",
+      "title": "「조력자」改用既有譯法「支援單位」（審核 #30）",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    },
+    "rewrite:2026-11-26-review30-cost": {
+      "kind": "rewrite",
+      "id": "2026-11-26-review30-cost",
+      "path": "rules/rewrite/2026-11-26-review30-cost.yaml",
+      "title": "「코스트」改用既有譯法「經費」（審核 #30）",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    },
+    "rewrite:2026-11-26-review30-engage": {
+      "kind": "rewrite",
+      "id": "2026-11-26-review30-engage",
+      "path": "rules/rewrite/2026-11-26-review30-engage.yaml",
+      "title": "「임전」改用既有譯法「未雨綢繆」（審核 #30）",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    },
+    "rewrite:2026-11-26-review30-enter": {
+      "kind": "rewrite",
+      "id": "2026-11-26-review30-enter",
+      "path": "rules/rewrite/2026-11-26-review30-enter.yaml",
+      "title": "「입장하기」改用既有譯法「進入」（審核 #30）",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    },
+    "rewrite:2026-11-26-review30-formation": {
+      "kind": "rewrite",
+      "id": "2026-11-26-review30-formation",
+      "path": "rules/rewrite/2026-11-26-review30-formation.yaml",
+      "title": "「편성」改用既有譯法「編隊」（審核 #30）",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    },
+    "rewrite:2026-11-26-review30-max-hp": {
+      "kind": "rewrite",
+      "id": "2026-11-26-review30-max-hp",
+      "path": "rules/rewrite/2026-11-26-review30-max-hp.yaml",
+      "title": "「최대 체력」改用既有譯法「體力上限」（審核 #30）",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    },
+    "rewrite:2026-11-26-review30-regular": {
+      "kind": "rewrite",
+      "id": "2026-11-26-review30-regular",
+      "path": "rules/rewrite/2026-11-26-review30-regular.yaml",
+      "title": "「일반」改用既有譯法「常規」（審核 #30）",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    },
+    "rewrite:2026-11-26-review30-ring": {
+      "kind": "rewrite",
+      "id": "2026-11-26-review30-ring",
+      "path": "rules/rewrite/2026-11-26-review30-ring.yaml",
+      "title": "「약지」改用既有譯法「環指」（審核 #30）",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    },
+    "rewrite:2026-11-26-review30-skein-nest": {
+      "kind": "rewrite",
+      "id": "2026-11-26-review30-skein-nest",
+      "path": "rules/rewrite/2026-11-26-review30-skein-nest.yaml",
+      "title": "「타래둥지」改用既有譯法「線團之巢」（審核 #30）",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    },
+    "rewrite:2026-11-26-review30-stagger": {
+      "kind": "rewrite",
+      "id": "2026-11-26-review30-stagger",
+      "path": "rules/rewrite/2026-11-26-review30-stagger.yaml",
+      "title": "「흐트러짐」改用既有譯法「陷入混亂」（審核 #30）",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    },
+    "rewrite:2026-11-26-review30-trichiliocosm": {
+      "kind": "rewrite",
+      "id": "2026-11-26-review30-trichiliocosm",
+      "path": "rules/rewrite/2026-11-26-review30-trichiliocosm.yaml",
+      "title": "「삼천대세계」寫 E.G.O 名「三千大世界」（審核 #30）",
+      "commit": "e8a849b415626d791765e2a0a82207b8267d6f86"
+    }
+  }
+}

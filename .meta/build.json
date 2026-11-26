@@ -1,26 +1,23 @@
 {
   "raw_tag": "raw-20261126",
   "raw_token": "l20261126_CyAvkL3PNEtM8xcoews6",
-  "rules_commit": "a09c206408aeee12a3c09828f18f5dba16cce959",
-  "built_at": "2026-11-26T06:07:41Z",
+  "rules_commit": "e8a849b415626d791765e2a0a82207b8267d6f86",
+  "built_at": "2026-11-26T12:04:09Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
     "paratranz": "user-unknown-0711/ParatranzUploader@1793285016"
   },
-  "model": "claude-opus-5-5",
-  "cost_usd": 19.897471800000005,
-  "stopped": "done",
   "notes_seen": 1149,
   "zips": {
-    "zh-TW_complete_raw-20261126.zip": "41ec74e286d4fff884989cf18a907aa80097b3c515ec78f32b1029be09642a45",
-    "zh-TW_text_raw-20261126.zip": "e1a969c3eb4ae21d2dd908a767367ca7c40e9e8b9be6bd69807e0ecae352b392"
+    "zh-TW_complete_raw-20261126.zip": "58088b012bbb333705e0d7a8ee8c220adf789f296c541b98ee3e960efac4b893",
+    "zh-TW_text_raw-20261126.zip": "bf331092c384528d3b7bc841748aaaa5c87c8c83c9dde19a37a5eb142ba32a0f"
   },
   "report": {
     "origins": {
-      "claude": 21788,
+      "claude": 21780,
       "copy": 93572,
-      "human": 414,
+      "human": 422,
       "paratranz": 163787
     },
     "pending": 0,
@@ -44,7 +41,7 @@
       "newline-space": 9,
       "page-count": 5,
       "shared-line": 10,
-      "term-missing": 796
+      "term-missing": 798
     },
     "missing_glyphs": [],
     "copied": [
@@ -356,30 +353,6 @@
         "units": 12
       },
       {
-        "family": "ui",
-        "field": "content",
-        "kr": "편성",
-        "zh": [
-          "編成",
-          "編隊"
-        ],
-        "keys": [
-          "LimtochessUI.json|/dataList/38/content",
-          "MainUIText.json|/dataList/122/content"
-        ],
-        "counts": [
-          3,
-          9
-        ],
-        "units": 12,
-        "new": 3,
-        "new_keys": [
-          "LimtochessUI.json|/dataList/122/content",
-          "LimtochessUI.json|/dataList/38/content",
-          "LimtochessUI.json|/dataList/824/content"
-        ]
-      },
-      {
         "family": "ally",
         "field": "desc",
         "kr": "[OnSucceedAttack] [Laceration] 횟수 <style=\"highlight\">2</style> 증가",
@@ -573,596 +546,32 @@
           8
         ],
         "units": 10
+      },
+      {
+        "family": "abnormality",
+        "field": "story",
+        "kr": "그 컨테이너에서 이상한 놈들이 나왔어요.\n깡통 같은 걸 머리에 쓰고, 몸통도 플라스틱 같은 재질에…\n설명하기 어렵네요. 마치 장난감 조각들을 어디서 찾아와서 제멋대로 이어 붙인 것 같이 생겼어요.\n색도 뒤죽박죽에, 심지어 어떤 건 외장도 없어서, 구동부가 전부 보이더라고요.\n그렇다고 그냥 기계들인가 하면, 그것도 아니에요.\n이어 붙인 부위 중간 중간에 보이는 살점 끼인 자국, 말라 붙은 피…\n대체 그 컨테이너에서는 무슨 일이 일어나는 걸까요?\n→ 어… 아마, 자동 의체 시술 장치가 아닐까요? 제 아버지가 인수하시길 고려했던 회사가… 아, 아니다. 그냥 잊으세요.\n→ 환상체는 실존하는 장치가 아니에요. 실재하는 것과 결부 지으려 하지 않는 걸 추천해요.",
+        "zh": [
+          "一群穿著怪異的人從那收容箱中走了出來。\n它們頭上戴著錫製的罐頭，而軀體則是由某種塑膠製成的……\n這很難說，就好似某人隨意堆積起來的玩具一樣。\n在那些不和諧的色調之上，是直接暴露在外的機械結構。\n它們也並不是僅由機器組成，\n在組成部位之間，我看到了一些早已乾枯的血肉……\n那收容箱裡到底發生了什麼？\n→嗯……也許那是某種自動化義體手術裝置？就像我父親要收購的那家公司一樣……算、算了。忘了我剛剛說的吧。\n→異想體從來都不是什麼普通設備一樣的東西。我十分反對與那些跑出來的東西進行接觸。",
+          "一群穿著怪異的人從那收容箱中走了出來。\n它們頭上戴著錫製的罐頭，而軀體則是由某種塑膠製成的……\n這很難說，就好是某人隨意堆積起來的玩具一樣。\n在那些不和諧的色調之上，是直接暴露在外的機械結構。\n它們也並不是僅由機器組成，\n在組成部位之間，我看到了一些早已乾枯的血肉……\n那收容箱裡到底發生了什麼？\n→嗯……也許那是某種自動化義體手術裝置？就像我父親要收購的那家公司一樣……算、算了。忘了我剛剛說的吧。\n→異想體從來都不是什麼普通設備一樣的東西。我十分反對與那些跑出來的東西進行接觸。"
+        ],
+        "keys": [
+          "AbnormalityGuides.json|/dataList/12/storyList/0/story",
+          "AbnormalityGuides.json|/dataList/14/storyList/0/story"
+        ],
+        "counts": [
+          8,
+          1
+        ],
+        "units": 9
       }
     ],
-    "notes": [
-      {
-        "key": "BattleKeywords-schema.json|/dataList/2/desc",
-        "batch": "20261126T061137-aee7e7af",
-        "kr_sha": "098c5d2f5a9675cdd33e3c9b33dbf4c71bafdce3f797fa451d2bdd8a4a439443",
-        "model": "claude-opus-5-5",
-        "note": "발도 자세：技能名，暫譯「拔刀姿勢」，無法查既有譯名"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/608/desc",
-        "batch": "20261126T061137-aee7e7af",
-        "kr_sha": "2cca8c41be511dc80b06cbd3b2e94491b81efb9082ed209119ffd0cc6837f5c1",
-        "model": "claude-opus-5-5",
-        "note": "KR 只新增格里高爾一段，其餘照 prev_zh。타래둥지：暫譯「線團巢」（JP 糸玉の巣）。라 보라시테／라 카스트라시옹：KR 未附原文，查不到既有譯名，暫寫原文 La Voracité／La Castration，請確認技能譯名"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/631/name",
-        "batch": "20261126T061137-aee7e7af",
-        "kr_sha": "c9d0a8e5fdb80926d08cc092199ada3707a8f42d313ce5df4d6025afa752603d",
-        "model": "claude-opus-5-5",
-        "note": "탄환 - 죄수：暫譯「子彈 - 罪犯」，죄수 依 names「被鞣製的罪犯」寫「罪犯」"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/633/desc",
-        "batch": "20261126T061137-aee7e7af",
-        "kr_sha": "6e631e0a6136c68abb39f9bab293419e7cf2073011d5cfdcac7f27889392e2b6",
-        "model": "claude-opus-5-5",
-        "note": "조력자：暫譯「援助者」"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/636/desc",
-        "batch": "20261126T061137-aee7e7af",
-        "kr_sha": "80b26213763bd470a2eb0f2e7871c7416a31bfb70acff18fde853dbdf3b6eacb",
-        "model": "claude-opus-5-5",
-        "note": "이상：此處是人格名稱中的李箱，非「不低於」。건조장：暫譯「乾燥室」（JP 乾燥場）。대상 지정：依 names 用「指定目標」"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/637/name",
-        "batch": "20261126T061137-aee7e7af",
-        "kr_sha": "ff6693177221d93085d8f93c90e090c040afdd355cf98f47258ed38e33e80694",
-        "model": "claude-opus-5-5",
-        "note": "KR 刻意不加空格、仿古（JP 規則違反ニ依ル罰則），譯文用文言的「之」表現"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/638/name",
-        "batch": "20261126T061137-aee7e7af",
-        "kr_sha": "d973ce758a3edcde9efba033302b297bf1eeb2d36144889e88779195e53c1425",
-        "model": "claude-opus-5-5",
-        "note": "인력 충원：暫譯「人力補充」"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/638/desc",
-        "batch": "20261126T061137-aee7e7af",
-        "kr_sha": "97ede8d4fdcfc5e68bf8566fc4bcd9f129d05cf49f97ba6678dc33b85c660988",
-        "model": "claude-opus-5-5",
-        "note": "보존 횟수：暫譯「保存回數」，無法查既有譯名"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/639/desc",
-        "batch": "20261126T061137-aee7e7af",
-        "kr_sha": "aed5fb7a009c28e46883c9acf3629afd188b3f822aae5dc167e5e0262d360071",
-        "model": "claude-opus-5-5",
-        "note": "이어진 실：暫譯「相連之線」；충전 횟수 寫「充能回數」"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/640/name",
-        "batch": "20261126T061137-aee7e7af",
-        "kr_sha": "f7063248ec02ff6d309f15f35ea99f77cda21e546f10f22a3e3d19a2a25570a4",
-        "model": "claude-opus-5-5",
-        "note": "원망：依 JP 願望、EN Yearning 譯「願望」，非「怨望」"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/642/name",
-        "batch": "20261126T061325-314f6424",
-        "kr_sha": "0457abb1ee39c442ad0bf908fc01a3651d363386fc05395fbc931c70d5511868",
-        "model": "claude-opus-5-5",
-        "note": "붉은 결속：暫譯「赤紅羈絆」"
-      },
-      {
-        "key": "BattleKeywords.json|/dataList/644/name",
-        "batch": "20261126T061325-314f6424",
-        "kr_sha": "1c892d5aa92357a5abbce7f575e907a3c2df3418371de12acffe0f396d9736fa",
-        "model": "claude-opus-5-5",
-        "note": "스티치：暫譯「縫線」（EN Stitched）"
-      },
-      {
-        "key": "BattleKeywords_Synergy.json|/dataList/0/name",
-        "batch": "20261126T061325-314f6424",
-        "kr_sha": "93b23209d1c3b1e6453df8c3c9017785ad03fe01dc160b0b1678c299715d3304",
-        "model": "claude-opus-5-5",
-        "note": "시너지：暫譯「協同效果」"
-      },
-      {
-        "key": "BattleKeywords_Synergy.json|/dataList/0/desc",
-        "batch": "20261126T061325-314f6424",
-        "kr_sha": "296db84761e9236faf8d0b8c9d8e26e430d0189d6c4868312fbff5b3a9fa6ddc",
-        "model": "claude-opus-5-5",
-        "note": "方括號裡是 E.G.O 名稱（韓文），依 korean-brackets 譯成中文並保留方括號"
-      },
-      {
-        "key": "BattleAnnouncerDlg/Announcer_Overseer_60.json|/dataList/1/dlg",
-        "batch": "20261126T061348-602285cb",
-        "kr_sha": "50c5a66dec830d184272f1eded62868c83300b40f48bfe8201bc991c5a9921fa",
-        "model": "claude-opus-5-5",
-        "note": "KR 套用俗諺「호랑이는 죽어서 가죽을 남기고」（豹死留皮），照字面譯「死後留下皮」"
-      },
-      {
-        "key": "BattleAnnouncerDlg/Announcer_Overseer_60.json|/dataList/12/dlg",
-        "batch": "20261126T061348-602285cb",
-        "kr_sha": "6a5e7a14a4704c7f0c4108c2bce5dd0713136e248486b375509b7b3fb8930139",
-        "model": "claude-opus-5-5",
-        "note": "제골기：照 EN stretcher、JP ストレッチャー 譯「撐皮架」"
-      },
-      {
-        "key": "BattleAnnouncerDlg/Announcer_Overseer_60.json|/dataList/19/dlg",
-        "batch": "20261126T061348-602285cb",
-        "kr_sha": "7d9e51c1e20fe21ab2adeb7548eae744b8b0544290a0aefa9c5757286ff85910",
-        "model": "claude-opus-5-5",
-        "note": "트리밍：此處是製革的切除修整，不是名稱「鑲邊」，譯「修整」"
-      },
-      {
-        "key": "BattleAnnouncerDlg/Announcer_Overseer_60.json|/dataList/27/dlg",
-        "batch": "20261126T061348-602285cb",
-        "kr_sha": "fb979423070de4804f02bd911f92c9c6e8931663308a4cec2574b461185d7237",
-        "model": "claude-opus-5-5",
-        "note": "거예요：此處是語尾，不是名稱「就是這樣喔」"
-      },
-      {
-        "key": "BattleSpeechBubbleDlg.json|/dataList/731/dlg",
-        "batch": "20261126T061442-b92b37a7",
-        "kr_sha": "851fbee6f9a3744a343e9aa2aa81b8f90cc6c941c466497bdb91887438e152a1",
-        "model": "claude-opus-5-5",
-        "note": "이상：KR 以「이상」（李箱／異常／理想）做雙關，第一句用注音標出李箱"
-      },
-      {
-        "key": "BattleSpeechBubbleDlg.json|/dataList/734/dlg",
-        "batch": "20261126T061442-b92b37a7",
-        "kr_sha": "b24b63e1e47adfcb9a081d35714dc52cc652bdfd65523fdf7f6bebdc0d4dba22",
-        "model": "claude-opus-5-5",
-        "note": "KR 刻意不加空格（仿古公文體，JP 重ナル出勤反復），譯文也不斷句"
-      },
-      {
-        "key": "BattleSpeechBubbleDlg.json|/dataList/863/dlg",
-        "batch": "20261126T061442-b92b37a7",
-        "kr_sha": "aaa82d520ec945e72d964f9e769778f10dc2ebe1d30ff781cb1a5ca24d8d77de",
-        "model": "claude-opus-5-5",
-        "note": "원망：依 JP 願望、EN yearning 譯「願望」"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_Yisang_Contem_10117.json|/dataList/0/dlg",
-        "batch": "20261126T061543-ef5da392",
-        "kr_sha": "101593dafd7b41772441dc472ca5487d9bae12ff9bf02911385027bc2fb856ef",
-        "model": "claude-opus-5-5",
-        "note": "KR 不加空格的片語（외로된노릇의자제요망 等）是這個人格的公文式口癖，譯成不斷句的「之」字片語"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_Yisang_Contem_10117.json|/dataList/1/dlg",
-        "batch": "20261126T061543-ef5da392",
-        "kr_sha": "d638a76b59f6de5e08f9860acd8ed68b41ca8483d069ecc923ac3e7655e87535",
-        "model": "claude-opus-5-5",
-        "note": "이상：KR 以 이상（異常／理想／李箱）做雙關，「理想」加注音李箱"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_Yisang_Contem_10117.json|/dataList/7/dlg",
-        "batch": "20261126T061543-ef5da392",
-        "kr_sha": "420891000f35b7e068a4a75fbf16da5c93b8a0a9af6d19426502735a4fce2a8c",
-        "model": "claude-opus-5-5",
-        "note": "그대는…아시오：依角色指引「그대」譯「你」。사각：暫譯「方格」（JP 四角、EN square）"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_Yisang_Contem_10117.json|/dataList/8/dlg",
-        "batch": "20261126T061543-ef5da392",
-        "kr_sha": "193ca28dad2db0a87b8b97cb42b7f3eba4d46dc5a21683e420a15c7edae56482",
-        "model": "claude-opus-5-5",
-        "note": "KR 第二行開頭的半形空格是原文多出的，譯文不保留"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_Yisang_Contem_10117.json|/dataList/17/dlg",
-        "batch": "20261126T061643-5fe231b4",
-        "kr_sha": "868dacb091cea847ff2e29cfa99b5096623b72a3f8c06f1de244a0e2926dfca6",
-        "model": "claude-opus-5-5",
-        "note": "사유：KR 雙關 私有（JP 私有）／思惟（EN contemplation），以注音呈現"
-      },
-      {
-        "key": "PersonalityVoiceDlg/Voice_Yisang_Contem_10117.json|/dataList/19/dlg",
-        "batch": "20261126T061643-5fe231b4",
-        "kr_sha": "e9c710c4a2703c0a2cdd039cdcc3dfe282c60fd2da0965a901749692aa87415e",
-        "model": "claude-opus-5-5",
-        "note": "이상：KR 以 이상（異常／理想／李箱）做雙關，「異常」加注音李箱"
-      },
-      {
-        "key": "StoryData/P10117.json|/dataList/8/content",
-        "batch": "20261126T061712-75c0d2b6",
-        "kr_sha": "ce5191a7daf873f153674f341e140821b47448d8ee518b75ff6e9b34cc92e606",
-        "model": "claude-opus-5-5",
-        "note": "거예요：此處是語尾，不是名稱「就是這樣喔」"
-      },
-      {
-        "key": "StoryData/P10117.json|/dataList/14/content",
-        "batch": "20261126T061712-75c0d2b6",
-        "kr_sha": "67c81c3b291b3863a9ff7f989522f0ac0f672bde866fbb703346cd581a2bfee1",
-        "model": "claude-opus-5-5",
-        "note": "이상적인이상함：KR 以 이상（理想／異常／李箱）做雙關，照 JP 的 ruby 寫法加注音李箱"
-      },
-      {
-        "key": "StoryData/P11217.json|/dataList/18/content",
-        "batch": "20261126T061858-5d746bda",
-        "kr_sha": "8e0bf5a35ca1292c5199b6c84c2e825a645ac5d8d8a9c2d74736f212eff7ffa6",
-        "model": "claude-opus-5-5",
-        "note": "원망(願望)：KR 已附漢字，譯「願望」，不另加括號"
-      },
-      {
-        "key": "StoryData/P11217.json|/dataList/52/content",
-        "batch": "20261126T061858-5d746bda",
-        "kr_sha": "aef14c97446ae7c800c3d3ee0b42470ce2662b4cf9ed357fc461a867e40f7797",
-        "model": "claude-opus-5-5",
-        "note": "황금빛：此處是一般的顏色描述，不是名稱「光輝」，譯「金黃色」"
-      },
-      {
-        "key": "Passives.json|/dataList/658/desc",
-        "batch": "20261126T061956-1b6e82f7",
-        "kr_sha": "28eacbf0751b773cf274ff39dfc4e6b6f8d731cfdad685a977abf9b6fc79ffb4",
-        "model": "claude-opus-5-5",
-        "note": "人格名「르루주 붉은 신 싱클레어」暫寫「丹紅派 丹紅之神 辛克萊」，無法查既有人格譯名"
-      },
-      {
-        "key": "Passives.json|/dataList/659/desc",
-        "batch": "20261126T061956-1b6e82f7",
-        "kr_sha": "1910129bea015acf9ef2ffcd08a5134c3b6bf0a4dc9e679aa0a130f5004e95df",
-        "model": "claude-opus-5-5",
-        "note": "체력 소모：此處是一般的「消耗體力」，不是名稱「體力耗盡」。자아내기：技能名，暫譯「紡出絲線」"
-      },
-      {
-        "key": "Skills_personality-01.json|/dataList/54/levelList/0/name",
-        "batch": "20261126T062121-43dd3b72",
-        "kr_sha": "1d442c289ee8cbb1109713417444bea2e33862e179b598f0852ad92a00a2ac54",
-        "model": "claude-opus-5-5",
-        "note": "KR 刻意不加空格（JP 統制ノ為ノ統制），譯文也不斷開"
-      },
-      {
-        "key": "Skills_personality-12.json|/dataList/52/levelList/0/desc",
-        "batch": "20261126T062121-43dd3b72",
-        "kr_sha": "ef8b9bf1f5dbbacd5e157855ed580bc8cd9d2ab81cbc655da53fa173c1dfb0c4",
-        "model": "claude-opus-5-5",
-        "note": "매듭 짓기：技能名，暫譯「打結」"
-      },
-      {
-        "key": "Enemies-schema.json|/dataList/0/name",
-        "batch": "20261126T062243-36de3d30",
-        "kr_sha": "38b465966961c039e1afaabccd341a790545db9b9e4e146defc61494339e64a1",
-        "model": "claude-opus-5-5",
-        "note": "미네：人名暫譯「美音」（JP ミネ），查不到既有譯名；조장 依 names「黑雲會 副會長 俊」的格式寫「組長」"
-      },
-      {
-        "key": "Passives_Enemy-schema.json|/dataList/1/desc",
-        "batch": "20261126T062243-36de3d30",
-        "kr_sha": "6a8cbdc762d6056609abc5b1f5ee19a19a0b3930766079ca8a3821f144035e94",
-        "model": "claude-opus-5-5",
-        "note": "쿠모기리／공간참：技能名暫譯「雲斬」「空間斬」（JP 雲斬り、空間斬）"
-      },
-      {
-        "key": "BuffAbilities.json|/dataList/128/desc",
-        "batch": "20261126T062432-aa226913",
-        "kr_sha": "04991c1a802193cc2ad7b39c12c3305aa152ac94403cc517c3ff1ff907d4249b",
-        "model": "claude-opus-5-5",
-        "note": "라 보라시테／라 카스트라시옹：KR 未附原文，依 names「貪求（la voracité）」「閹割（la castration）」只寫中文名。另：先前批次 20261126T061137-aee7e7af 的 BattleKeywords.json|/dataList/608/desc 同一段暫寫成原文 La Voracité／La Castration，應改成這裡的譯名"
-      },
-      {
-        "key": "EGOgift_walpu10.json|/dataList/4/desc",
-        "batch": "20261126T062447-8c9217c8",
-        "kr_sha": "14bcdab3b3051cfa6839b4c7be2cbfc781781d22cb4a0c75e183cb655730d9a8",
-        "model": "claude-opus-5-5",
-        "note": "KR 只改羅佳專用效果：[Charge] 改為 [BlackTearsAlly]，並刪去「(특수 [Charge] 포함)」，其餘照 prev_zh"
-      },
-      {
-        "key": "Items.json|/dataList/106/name",
-        "batch": "20261126T062505-477ac441",
-        "kr_sha": "392014c8922b8e915c3bb3630a57201b7946fc1a7ce4cf22273156d2233cb2e8",
-        "model": "claude-opus-5-5",
-        "note": "이상 교환：暫譯「李箱交換」（JP 寫作イサン[理想]交換，有雙關），請確認抽卡畫面既有譯名"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/169/content",
-        "batch": "20261126T062732-22f22110",
-        "kr_sha": "92d560923c66d43728d8637e873805a446457bd9c40351de464a10e0a8b93fea",
-        "model": "claude-opus-5-5",
-        "note": "조각（Sliver）：詞彙表沒有，譯「碎片」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/179/content",
-        "batch": "20261126T062732-22f22110",
-        "kr_sha": "ea29c1e84dcd7483e52186ec98634293e762e1c55af16ab145140d47d5f22b09",
-        "model": "claude-opus-5-5",
-        "note": "범용 조각（Universal Sliver）：詞彙表沒有，譯「通用碎片」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/192/content",
-        "batch": "20261126T062732-22f22110",
-        "kr_sha": "426ba408c24312f630c25d996a87f90b2b3628f0d2c5efb4c2649ba13e9408f6",
-        "model": "claude-opus-5-5",
-        "note": "정예 보상（Elite Reward）：詞彙表沒有，譯「精英獎勵」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/196/content",
-        "batch": "20261126T062732-22f22110",
-        "kr_sha": "92dad11d2860081650a70b7ce8bea437e5b2c363a4f358787c3e89b40e884f33",
-        "model": "claude-opus-5-5",
-        "note": "자동 편성：EN 作 Randomize Team，依 KR 譯「自動編隊」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/198/content",
-        "batch": "20261126T062732-22f22110",
-        "kr_sha": "ae4ebe2b45607caaf39c83d0c2c775395e312856fdb485c92acc97139b9a66bc",
-        "model": "claude-opus-5-5",
-        "note": "코스트（Cost）：詞彙表沒有，譯「費用」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/213/content",
-        "batch": "20261126T062819-6e96ba10",
-        "kr_sha": "60acaa15d544b64a04175f37f5dbb07afaa82d75d555a231048f041f4a0cfdd2",
-        "model": "claude-opus-5-5",
-        "note": "굴림（Roll）：詞彙表沒有，譯「擲骰」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/215/content",
-        "batch": "20261126T062819-6e96ba10",
-        "kr_sha": "9e40a2ffa8254938888402bae3fba74282badcfc50b1a151c892b5877cb3bffb",
-        "model": "claude-opus-5-5",
-        "note": "KR 開頭的「(더미)」是佔位標記，照譯為「（佔位）」；새로고침 보너스 譯「刷新獎勵」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/225/content",
-        "batch": "20261126T062819-6e96ba10",
-        "kr_sha": "f90ae586cc3ab3e297b9f461dcbba0f8e2d3814429a2df05048c567ded23cd4e",
-        "model": "claude-opus-5-5",
-        "note": "도상 왜곡（Schema Deformation）：詞彙表沒有，譯「圖式扭曲」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/227/content",
-        "batch": "20261126T062819-6e96ba10",
-        "kr_sha": "3bbca926c4128a5cfd4cc666ad8c22e7ef1794c4805bf630dcac1f87ec719526",
-        "model": "claude-opus-5-5",
-        "note": "표상（Representation）：詞彙表沒有，譯「表象」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/276/content",
-        "batch": "20261126T062856-a0e49007",
-        "kr_sha": "1f211615002ac8b05c81b1c48c5cf9d207211385fd1f53a05a845965eb2eae2e",
-        "model": "claude-opus-5-5",
-        "note": "KR 以「·」分隔各項統計，非並列詞語，寫「．」保留分隔；합 依「합 위력」譯「拚點」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/292/content",
-        "batch": "20261126T062856-a0e49007",
-        "kr_sha": "1be255f029c0a5c3618393e61dbdfbe258f441a318bf13b3c59874cd211e7387",
-        "model": "claude-opus-5-5",
-        "note": "팩（Pack）：譯「卡包」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/310/content",
-        "batch": "20261126T062928-7632b8eb",
-        "kr_sha": "a75a8be7660e69b55fe58dd91b765784d1c35d85e243cf297a21d4d775acb74e",
-        "model": "claude-opus-5-5",
-        "note": "KR「범용」為「범용 조각」的省略，依 JP、EN 補為「通用碎片」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/335/content",
-        "batch": "20261126T062928-7632b8eb",
-        "kr_sha": "6f439b3700a994c1243e21323f9f5b9dd32c1777e5d2ded05808767ec54c6e2f",
-        "model": "claude-opus-5-5",
-        "note": "정예：依詞彙表「정예 전투」（菁英遭遇戰）寫「菁英」；先前暫定詞「정예 보상」登記為「精英獎勵」，兩者用字不一，建議統一為「菁英」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/341/content",
-        "batch": "20261126T062928-7632b8eb",
-        "kr_sha": "68f33fea5dd20e2d468e7832f36dbd816c72ae11b446d0bffbb9c5ef34263359",
-        "model": "claude-opus-5-5",
-        "note": "KR「명 출현」接在數字之後顯示，照 KR 與 JP 寫成後綴"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/345/content",
-        "batch": "20261126T062928-7632b8eb",
-        "kr_sha": "ff12aca444c39dece420e0501352ca8306635ca29fec71abcbf633dfa1165695",
-        "model": "claude-opus-5-5",
-        "note": "정예 보상：照暫定詞寫「精英獎勵」；但詞彙表「정예 전투」為「菁英遭遇戰」，建議統一用字"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/396/content",
-        "batch": "20261126T062953-df0c712f",
-        "kr_sha": "ef26ea6fbba5c4ed3e813fa5b64135c6cdfa43ac6e1c3fd49450a919390e9a93",
-        "model": "claude-opus-5-5",
-        "note": "오버클록（Overclock）：譯「超頻」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/471/content",
-        "batch": "20261126T063036-53e5a9bb",
-        "kr_sha": "3b5b0b2d0dc32fa20ce50e1acac225a5dd22dc6d09c66456cb2e5f82ec66785a",
-        "model": "claude-opus-5-5",
-        "note": "코스트：先前批次登記的暫定詞「費用」與舊譯「經費」不同（terms_differ），本批起依舊譯寫「經費」；LimtochessUI 前幾批已用「費用」（剩餘費用、費用不足、{0}費用限制），需人工統一"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/490/content",
-        "batch": "20261126T063104-2063f211",
-        "kr_sha": "b8fa19c7ebe563b7934715f21a6810780b55ce53a12615e2eab9e5fff2b361a9",
-        "model": "claude-opus-5-5",
-        "note": "고난（Obstacle）：譯「苦難」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/500/content",
-        "batch": "20261126T063104-2063f211",
-        "kr_sha": "29b40ca69a64ec117aa7d2d0247cdce3e730cc9399afc78cefffaf6d35af53b4",
-        "model": "claude-opus-5-5",
-        "note": "골목 파수견：沒有既有譯名，譯「後巷看門犬」；並列的專有名詞依 base.md 用「．」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/544/content",
-        "batch": "20261126T063131-7616dfad",
-        "kr_sha": "0cd6afbcbcc3e174c5132dcc5690bdd21be62bb1b34b9600de0d3485ca48ff63",
-        "model": "claude-opus-5-5",
-        "note": "홍원 군주 홍루：人格名稱，批次未提供既有譯名，譯「鴻園君主 鴻璐」，請對照人格表"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/545/content",
-        "batch": "20261126T063131-7616dfad",
-        "kr_sha": "2f1ba141d77ffb102d39a71e6df9364b403ec7c50da6914e7cf2c5eb76d2ba2c",
-        "model": "claude-opus-5-5",
-        "note": "흑수 - 오 필두 이상：人格名稱，批次未提供既有譯名，譯「黑獸-午 筆頭 李箱」，請對照人格表"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/547/content",
-        "batch": "20261126T063131-7616dfad",
-        "kr_sha": "b30d312e04c2c19a23c293253d980f3408d89b538e8ec6de6e32b9529a253cc7",
-        "model": "claude-opus-5-5",
-        "note": "착영휘도：E.G.O 名稱，批次未提供既有譯名，依 JP「着影揮刀」譯「著影揮刀」，請對照 E.G.O 表"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/550/content",
-        "batch": "20261126T063131-7616dfad",
-        "kr_sha": "2aebf717fc81c5ad89bf667b9b0f799a3eca4fc46cdd3f31cc39f42e3abc0610",
-        "model": "claude-opus-5-5",
-        "note": "KR「쐐기 + 새벽 사무소」的「사무소」為兩者共用，依 JP 兩者都寫出「事務所」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/576/content",
-        "batch": "20261126T063154-0341747a",
-        "kr_sha": "27db8f339535f3947c8e3ad16c8973ac0f66d618c6768898fd8b3893a8229c76",
-        "model": "claude-opus-5-5",
-        "note": "삼천대세계：佛教用語「三千大千世界」，批次未提供既有譯名"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/588/content",
-        "batch": "20261126T063154-0341747a",
-        "kr_sha": "a3fcc89ebcf3b67f58942c06c666b34df547f354b036824a7a8407ea1ddcb25d",
-        "model": "claude-opus-5-5",
-        "note": "료.고.파（JP「りょ・ミ・パ」、EN「R.B.」，縮寫名稱）：批次未提供既有譯名，暫依 EN 寫「R.B.」，請對照既有人格名稱統一"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/600/content",
-        "batch": "20261126T063154-0341747a",
-        "kr_sha": "b6e5283e4f0396a8e334baf2bf58b0a2992a4b1ef4cc9fc7f6b0ad6ad60a3250",
-        "model": "claude-opus-5-5",
-        "note": "KR「범용」為「범용 조각」的省略，依 JP 寫「通用碎片」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/616/content",
-        "batch": "20261126T063224-8095fd50",
-        "kr_sha": "105c28d3afa0a85d962cc6e6a1879635b8f1af82978168ec2816455051407530",
-        "model": "claude-opus-5-5",
-        "note": "KR「범용」為「범용 조각」的省略，依 JP、EN 寫「通用碎片」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/708/content",
-        "batch": "20261126T063309-27de907a",
-        "kr_sha": "8990d1a6047da1f0548ce23b9eac403dae287e12901a7e6bb2c1e643da0b38b7",
-        "model": "claude-opus-5-5",
-        "note": "구축력（Craftpower）：譯「構築力」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/797/content",
-        "batch": "20261126T063349-651a80cc",
-        "kr_sha": "b429385517e1a601efdac276dc81f268335d0b393efecdf0fdb53036bd277b31",
-        "model": "claude-opus-5-5",
-        "note": "정예 보상：照暫定詞寫「精英獎勵」；詞彙表「정예 전투」為「菁英遭遇戰」，建議統一用字"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/886/content",
-        "batch": "20261126T063410-2c0eb3dc",
-        "kr_sha": "39972b5225622e49d1139c5ef67eafe8376366b684e261aa2c861cc0b12a2c62",
-        "model": "claude-opus-5-5",
-        "note": "시[始]：依 names 寫「始」，KR 的 [始] 不是 [ID]"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/889/content",
-        "batch": "20261126T063410-2c0eb3dc",
-        "kr_sha": "80752365147aafdd9ca4db6448e95c21c3f54f6a71c2b014ae570f89deeeaa28",
-        "model": "claude-opus-5-5",
-        "note": "천살：技能名稱，批次未提供既有譯名，依 JP「天殺」寫「天殺」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/895/content",
-        "batch": "20261126T063436-fe86545c",
-        "kr_sha": "609c857a6fdc916bd5f90a22a66991370a294b9a63477afe60b5758bee89e66c",
-        "model": "claude-opus-5-5",
-        "note": "섬궁：技能名稱，批次未提供既有譯名，依 JP「閃弓」寫「閃弓」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/903/content",
-        "batch": "20261126T063436-fe86545c",
-        "kr_sha": "2047a538ebece01b3aaaa6975edc2d849e41609b9694345287598612aab647c2",
-        "model": "claude-opus-5-5",
-        "note": "짝패（Suits）：譯「組牌」，批次未提供既有譯名"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/927/content",
-        "batch": "20261126T063436-fe86545c",
-        "kr_sha": "51cefeebe51426340beafcc103d77788a4687bd56499dbc46b5a1faceba0507f",
-        "model": "claude-opus-5-5",
-        "note": "혈염[血炎]：依「발각[發角]」→「發角」的既有寫法，寫「血炎」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/930/content",
-        "batch": "20261126T063436-fe86545c",
-        "kr_sha": "81a5e520dd3b4bcea4b9b4d404a0a52434639ced8a1bf8362c3241e8d2648501",
-        "model": "claude-opus-5-5",
-        "note": "사완：狀態名稱，批次未提供既有譯名，依 JP「巳腕」寫「巳腕」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/952/content",
-        "batch": "20261126T063503-1a6e2fc4",
-        "kr_sha": "a1d8837d918426c7970f4b2b8b289940721319ba43fda2a778d6585490107ccf",
-        "model": "claude-opus-5-5",
-        "note": "EN 寫「60% or less」，與 KR「60% 이상」相反，依 KR 譯「不低於60%」"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/974/content",
-        "batch": "20261126T063503-1a6e2fc4",
-        "kr_sha": "9d7e5fa184fb1580f2b7df2e936e6593c548835f2f129c3f71a53f6e8bcc04c7",
-        "model": "claude-opus-5-5",
-        "note": "本檔「수비 사용」一律譯「使用防守」；詞彙表「수비 스킬」為「守備技能」，「수비」單用時是否也應寫「守備」，請人工確認"
-      },
-      {
-        "key": "LimtochessUI.json|/dataList/1003/content",
-        "batch": "20261126T063534-07119005",
-        "kr_sha": "3028296c1748b51f0b6eaa6e2aaa14d0d2ddb6faa549483181378b057369142a",
-        "model": "claude-opus-5-5",
-        "note": "적뢰（Red Bolts）：批次未提供既有譯名，依 JP「赤雷」寫「赤雷」"
-      },
-      {
-        "key": "TutorialMainUIText.json|/dataList/1412/content",
-        "batch": "20261126T063625-df4b32d0",
-        "kr_sha": "069718c830e479010a119f0884b6471194f9ef041fde2bb2ed591786ab07dc78",
-        "model": "claude-opus-5-5",
-        "note": "KR 單寫「자원」，指 E.G.O 자원，依詞彙表寫「罪孽碎片」"
-      },
-      {
-        "key": "TutorialMainUIText.json|/dataList/1446/content",
-        "batch": "20261126T063625-df4b32d0",
-        "kr_sha": "ca692703556e4c0799b5085a183f84ccecdaf516d2c9293eab63a62c6f60e4f1",
-        "model": "claude-opus-5-5",
-        "note": "정예 보상：照暫定詞寫「精英獎勵」，與同句「菁英遭遇戰」用字不一，建議統一"
-      },
-      {
-        "key": "SchemaCraftChoice.json|/dataList/3/content",
-        "batch": "20261126T063711-0cb2b8c6",
-        "kr_sha": "e771d167149c4babdb056c17a4beec44f7cab4211d6dd810e87fda88d0464007",
-        "model": "claude-opus-5-5",
-        "note": "하찮은 것：names 的「微不足道」為其他欄位的名稱，此處依語境寫「最微不足道的一樣東西」"
-      },
-      {
-        "key": "SchemaCraftChoice.json|/dataList/26/content",
-        "batch": "20261126T063711-0cb2b8c6",
-        "kr_sha": "74efdea42a29093c510d2b0c9229d0265aaeca14f0cbfdba1c2febaee12e1c84",
-        "model": "claude-opus-5-5",
-        "note": "기다림：names 的「等待」為其他欄位的名稱，此處是敘述中的一般用語"
-      },
-      {
-        "key": "SchemaCraftChoice.json|/dataList/38/content",
-        "batch": "20261126T063711-0cb2b8c6",
-        "kr_sha": "9e64fa9e4b917ed305cf6b99c451d84da68d40db46689bb7fb08389cb42de648",
-        "model": "claude-opus-5-5",
-        "note": "뜬소문（Canard）：都市威脅等級名稱，譯「流言」，請對照既有譯名"
-      }
-    ],
-    "new_translated": 1950,
+    "notes": [],
+    "new_translated": 1942,
     "shown": {
-      "claude": 21788,
+      "claude": 21780,
       "copy": 93572,
-      "human": 414,
+      "human": 422,
       "paratranz": 163787
     },
     "misaligned": [
@@ -1268,179 +677,8 @@
       }
     ],
     "misaligned_files": 22,
-    "name_diffs": [
-      {
-        "kr": "거예요",
-        "existing": [
-          {
-            "zh": "就是這樣喔",
-            "units": 1
-          }
-        ],
-        "units": [
-          {
-            "key": "BattleAnnouncerDlg/Announcer_Overseer_60.json|/dataList/27/dlg",
-            "zh": "很好。就這樣，再專注一點吧。從脖子劃一直線剝下來，就能毫無損傷地取得原皮了。野外處理。",
-            "note": "거예요：此處是語尾，不是名稱「就是這樣喔」",
-            "kind": "mention"
-          },
-          {
-            "key": "StoryData/P10117.json|/dataList/8/content",
-            "zh": "唔……為、為什麼要靠這麼近？",
-            "note": "거예요：此處是語尾，不是名稱「就是這樣喔」",
-            "kind": "mention"
-          }
-        ]
-      },
-      {
-        "kr": "체력 소모",
-        "existing": [
-          {
-            "zh": "體力耗盡",
-            "units": 1
-          }
-        ],
-        "units": [
-          {
-            "key": "Passives.json|/dataList/659/desc",
-            "zh": "自身基礎技能的體力減少效果不會使自身陷入混亂，也不會使體力降至低於1(體力為1時，仍可適用基礎技能效果中因消耗體力而觸發的效果)\n\n持有 [RougeGregLink] 的友方單位對敵人使用的色慾屬性技能攻擊結束時，對該次攻擊的主要目標使用技能「紡出絲線」(每回合最多1次)\n- 若主要目標已死亡，則對隨機敵人使用\n- 透過此效果使用技能「紡出絲線」時，獲得1層 [RougeGregWarmUp]",
-            "note": "체력 소모：此處是一般的「消耗體力」，不是名稱「體力耗盡」。자아내기：技能名，暫譯「紡出絲線」",
-            "kind": "mention"
-          }
-        ]
-      },
-      {
-        "kr": "트리밍",
-        "existing": [
-          {
-            "zh": "鑲邊",
-            "units": 3
-          }
-        ],
-        "units": [
-          {
-            "key": "BattleAnnouncerDlg/Announcer_Overseer_60.json|/dataList/19/dlg",
-            "zh": "請從長了蛆蟲的部分開始切除。需要積極修整。",
-            "note": "트리밍：此處是製革的切除修整，不是名稱「鑲邊」，譯「修整」",
-            "kind": "mention"
-          }
-        ]
-      },
-      {
-        "kr": "황금빛",
-        "existing": [
-          {
-            "zh": "光輝",
-            "units": 2
-          }
-        ],
-        "units": [
-          {
-            "key": "StoryData/P11217.json|/dataList/52/content",
-            "zh": "用那位大人的願望，紡出了非常出色的線。燦爛的……金黃色的線。",
-            "note": "황금빛：此處是一般的顏色描述，不是名稱「光輝」，譯「金黃色」",
-            "kind": "mention"
-          }
-        ]
-      }
-    ],
-    "term_diffs": [
-      {
-        "kr": "조력자",
-        "zh": "援助者",
-        "old_units": 41,
-        "old_with": 0,
-        "examples": [
-          {
-            "key": "ActionEvents-pilgrimage.json|/dataList/4/desc",
-            "kr": "심상 던전 내부, 메이어스의 과거로 보이던 풍경 몇 가지가 파도에 휩쓸려 사라진다.\n\n마치... 메이어스와 심상 던전이, 아니 바다가 하나로 융화되는 듯한 모습이다.\n\n\"저희가 만난 대부분의 뒤틀림은 '생명체'의 형태를 하고 있었습니다만.\"\n\n\"뒤틀림의 형태는 개인의 욕망에 따라 얼마든지 다른 형태를 가질 수 있습니다.\"\n\n\"여기서 더 뒤틀림이 깊어진다면... 이 공간 자체를 침식할지도 모르겠군요.\"\n\n잠깐 숨을 돌리는 사이, 흔들리는 심상 중 한 곳에서 바퀴가 달린 특이한 기계 몇 개가 굴러떨어졌다.\n\n엿보았던 기억 속, 메이어스의 집에서 바닥을 돌아다니던 정체불명의 기계로 보였다.\n\n파도에 휩쓸리며 고장이라도 난 건지, 기계들은 계속해서 윙윙거리는 소리가 났고…\n\n기계 측면의 소켓에는 저마다 다른 기구가 꽂혀 있었다.\n\n\"제법 값이 나가 보이는 머신임에도... 수가 꽤 많구료.\"\n\n\"거 왜, 해결사 중에도 공방에서 신상 무기 나왔다고 하면 냅다 사는 사람들 있잖아.\"\n\n\"기계 밑에 조력자... 라고 적혀있는데요.\"\n\n\"재판관이 가져온 성도의 손이라는 것과... 구조가 비슷하군.\"\n\n\"허억! 그럼 이 신비하고 멋진 기계가 앞으로의 싸움에 도움이 된다는 것인 겐가?!\"\n\n수많은 시테러를 틀어막고 있는 로도스 아일랜드의 상황은 언뜻 보기에도 여유가 없어 보인다.\n\n하나 정도만 가져가고, 나머지 기계는 로도스 아일랜드가 사용하는 게 좋지 않을까.\n\n수감자들의 동의를 구하고, 기계 중 하나만 가져가기로 했다.",
-            "zh": "心像迷宮的內部，像是邁爾斯過去與回憶的光景正隨著浪濤流逝。\n\n簡直像是……邁爾斯與心像迷宮、不，與大海本身融合為一體。\n\n「我們遭遇過扭曲大部分都是『生命體』的形狀。」\n\n「扭曲的形狀會根據個人慾望而改變。」\n\n「如果此處扭曲加深……這個空間本身可能都會受到侵蝕。」\n\n稍微休息一會兒後，從搖曳心像的一角滾落出幾個帶有車輪的奇特機械。\n\n從窺見的記憶裡，曾看見過邁爾斯家地板上來歷不明的機械。\n\n不知道是不是被浪潮衝擊而故障了，這些機械不停發出嗡嗡的低鳴聲……\n\n側面的插槽裡，分別插著各種不同的裝置。\n\n「看似昂貴的機械……但數量驚人。」\n\n「你看，收尾人之中，也會有每次工坊推出新武器就搶著買的人吧。」\n\n「機械底部寫著……小幫手呢。」\n\n「跟審判官帶來的聖徒之手……構造很相似啊。」\n\n「嚯哦！那麼這個不可思議的酷炫機械，可以在之後的戰鬥幫上忙嗎？！」\n\n正在抵擋無數恐魚的羅德島其情況，一看就知道沒什麼餘裕。\n\n只帶走一台，剩下的機械交給羅德島使用比較好吧。\n\n取得罪人們的同意後，決定帶走其中一台機械。"
-          },
-          {
-            "key": "ActionEvents-pilgrimage.json|/dataList/4/options/0/message",
-            "kr": "야외 생존 유닛이 장착된 조력자를 가져간다.",
-            "zh": "帶走搭載野外維生單元的小幫手。"
-          },
-          {
-            "key": "ActionEvents-pilgrimage.json|/dataList/4/options/1/message",
-            "kr": "가사 보조 모듈이 장착된 조력자를 가져간다.",
-            "zh": "帶走搭載家政輔助模組的小幫手。"
-          }
-        ],
-        "keys": [
-          "BattleKeywords.json|/dataList/633/desc",
-          "BattleKeywords.json|/dataList/634/desc",
-          "BattleKeywords.json|/dataList/635/desc",
-          "Bufs.json|/dataList/717/desc",
-          "Bufs.json|/dataList/718/desc",
-          "Bufs.json|/dataList/719/desc"
-        ]
-      },
-      {
-        "kr": "코스트",
-        "zh": "費用",
-        "old_units": 148,
-        "old_with": 0,
-        "examples": [
-          {
-            "key": "ActionEvents-walpu4.json|/dataList/4/name",
-            "kr": "체력 회복, 정신력 회복 혹은 코스트 지급",
-            "zh": "恢復體力、恢復理智值或獲得經費"
-          },
-          {
-            "key": "ActionEvents_Mirror6.json|/dataList/8/options/0/messageDesc",
-            "kr": "색욕 · 나태 유리 판정 성공 시, 코스트 획득",
-            "zh": "色慾、怠惰優勢判定 成功後，獲得經費"
-          },
-          {
-            "key": "ActionEvents_Mirror7.json|/dataList/3/options/0/messageDesc",
-            "kr": "선택 시, 코스트를 얻거나 잃음",
-            "zh": "選擇時，獲得或失去經費。"
-          }
-        ],
-        "keys": [
-          "LimtochessUI.json|/dataList/112/content",
-          "LimtochessUI.json|/dataList/198/content",
-          "LimtochessUI.json|/dataList/204/content",
-          "LimtochessUI.json|/dataList/205/content"
-        ]
-      },
-      {
-        "kr": "타래둥지",
-        "zh": "線團巢",
-        "old_units": 25,
-        "old_with": 0,
-        "examples": [
-          {
-            "key": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/13/texts/0/text",
-            "kr": "플로어 매니저는… 타래둥지로 가면 만날 수 있어.",
-            "zh": "樓層經理……去線團之巢就能見到了。"
-          },
-          {
-            "key": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/41/texts/30/text",
-            "kr": "플로어 매니저는… 타래둥지로 가면 만날 수 있어.",
-            "zh": "樓層經理……去線團之巢就能見到了。"
-          },
-          {
-            "key": "RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/17/texts/3/text",
-            "kr": "여기가 르누아르의 유명 브랜드에게만 실을 납품하는 타래둥지가 있는 곳이거든.",
-            "zh": "這裡可是線團之巢的所在地，專門只為漆黑派的知名品牌供應絲線呢。"
-          }
-        ],
-        "keys": [
-          "BattleKeywords.json|/dataList/608/desc",
-          "BuffAbilities.json|/dataList/128/desc",
-          "GachaTitle.json|/dataList/220/content",
-          "IAPProduct-a1c10.json|/dataList/20/desc",
-          "IAPProduct-a1c10.json|/dataList/21/desc",
-          "Personalities.json|/dataList/198/title",
-          "Personality_Get_Condition.json|/dataList/368/content",
-          "Personality_Get_Condition.json|/dataList/369/content",
-          "StoryData/P11217.json|/dataList/6/content",
-          "StoryTheaterMirrorWorldStoryTitle.json|/dataList/184/content"
-        ]
-      }
-    ],
+    "name_diffs": [],
+    "term_diffs": [],
     "kept_rewrites": [],
     "retranslated": [
       {
@@ -1461,7 +699,7 @@
             "old_kr": "",
             "new_kr": "\n오트쿠튀르::르루주 B2F 타래둥지 그레고르\n- 맥동 횟수 최대치 +5\n‘라 보라시테’, ‘라 카스트라시옹’ 스킬 사용 전 맥동 횟수 5 얻음",
             "old_zh": "",
-            "new_zh": "\n高級訂製服::丹紅派 B2F 線團巢 格里高爾\n- 脈動回數上限+5\n使用技能「La Voracité」、「La Castration」前，獲得5回脈動"
+            "new_zh": "\n高級訂製服::丹紅派 B2F 線團之巢 格里高爾\n- 脈動回數上限+5\n使用技能「La Voracité」、「La Castration」前，獲得5回脈動"
           }
         ]
       },
@@ -1640,30 +878,6 @@
         1
       ],
       "units": 12
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "편성",
-      "zh": [
-        "編成",
-        "編隊"
-      ],
-      "keys": [
-        "LimtochessUI.json|/dataList/38/content",
-        "MainUIText.json|/dataList/122/content"
-      ],
-      "counts": [
-        3,
-        9
-      ],
-      "units": 12,
-      "new": 3,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/122/content",
-        "LimtochessUI.json|/dataList/38/content",
-        "LimtochessUI.json|/dataList/824/content"
-      ]
     },
     {
       "family": "ally",
@@ -2978,28 +2192,6 @@
         5
       ],
       "units": 6
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "그리고…",
-      "zh": [
-        "然後……",
-        "以及……"
-      ],
-      "keys": [
-        "StoryData/P10117.json|/dataList/3/content",
-        "StoryData/P10407.json|/dataList/15/content"
-      ],
-      "counts": [
-        5,
-        1
-      ],
-      "units": 6,
-      "new": 1,
-      "new_keys": [
-        "StoryData/P10117.json|/dataList/3/content"
-      ]
     },
     {
       "family": "identity",
@@ -4401,29 +3593,6 @@
     },
     {
       "family": "keywords",
-      "field": "name",
-      "kr": "임전",
-      "zh": [
-        "刀戎接刃",
-        "未雨綢繆"
-      ],
-      "keys": [
-        "BattleKeywords-schema.json|/dataList/1/name",
-        "BattleKeywords.json|/dataList/340/name"
-      ],
-      "counts": [
-        2,
-        2
-      ],
-      "units": 4,
-      "new": 2,
-      "new_keys": [
-        "BattleKeywords-schema.json|/dataList/1/name",
-        "Bufs-schema.json|/dataList/1/name"
-      ]
-    },
-    {
-      "family": "keywords",
       "field": "panicDescription",
       "kr": "한 턴 동안 행동하지 않음",
       "zh": [
@@ -4640,29 +3809,6 @@
         1
       ],
       "units": 4
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "일반",
-      "zh": [
-        "常規",
-        "一般"
-      ],
-      "keys": [
-        "BattlePass.json|/dataList/6/content",
-        "LimtochessUI.json|/dataList/12/content"
-      ],
-      "counts": [
-        2,
-        2
-      ],
-      "units": 4,
-      "new": 2,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/12/content",
-        "LimtochessUI.json|/dataList/87/content"
-      ]
     },
     {
       "family": "ui",
@@ -6005,28 +5151,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "범례",
-      "zh": [
-        "圖例",
-        "類型"
-      ],
-      "keys": [
-        "BattleUIText.json|/dataList/66/content",
-        "MainUIText.json|/dataList/62/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3,
-      "new": 1,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/228/content"
-      ]
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "변경",
       "zh": [
         "更換",
@@ -6098,29 +5222,6 @@
         1
       ],
       "units": 3
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "입장하기",
-      "zh": [
-        "進入",
-        "入場"
-      ],
-      "keys": [
-        "LimtochessUI.json|/dataList/7/content",
-        "TutorialMainUIText.json|/dataList/1359/content"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3,
-      "new": 2,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/7/content",
-        "TutorialMainUIText.json|/dataList/1359/content"
-      ]
     },
     {
       "family": "ui",
@@ -11705,28 +10806,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "기본 설정",
-      "zh": [
-        "預設",
-        "基礎設定"
-      ],
-      "keys": [
-        "LimtochessUI.json|/dataList/73/content",
-        "kr_settings-ui-donttranslate.json|/dataList/0/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2,
-      "new": 1,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/73/content"
-      ]
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "보유 중",
       "zh": [
         "已擁有",
@@ -11759,50 +10838,6 @@
         1
       ],
       "units": 2
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "사망",
-      "zh": [
-        "陣亡",
-        "死亡"
-      ],
-      "keys": [
-        "BattleUIText.json|/dataList/41/content",
-        "LimtochessUI.json|/dataList/264/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2,
-      "new": 1,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/264/content"
-      ]
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "삼천대세계",
-      "zh": [
-        "三千大世界",
-        "三千大千世界"
-      ],
-      "keys": [
-        "IntroductionPreset.json|/dataList/459/content",
-        "LimtochessUI.json|/dataList/576/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2,
-      "new": 1,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/576/content"
-      ]
     },
     {
       "family": "ui",
@@ -11857,28 +10892,6 @@
         1
       ],
       "units": 2
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "선택됨",
-      "zh": [
-        "已選擇",
-        "選擇"
-      ],
-      "keys": [
-        "LimtochessUI.json|/dataList/670/content",
-        "SelectLoadingCgUi.json|/dataList/3/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2,
-      "new": 1,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/670/content"
-      ]
     },
     {
       "family": "ui",
@@ -12027,28 +11040,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "약지",
-      "zh": [
-        "環指",
-        "無名指"
-      ],
-      "keys": [
-        "FormationNameEtcFilter.json|/dataList/27/content",
-        "LimtochessUI.json|/dataList/556/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2,
-      "new": 1,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/556/content"
-      ]
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "역을 선택하여 입장합니다.",
       "zh": [
         "選擇站點並進入戰鬥。",
@@ -12193,28 +11184,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "재도전",
-      "zh": [
-        "再試一次",
-        "再次挑戰"
-      ],
-      "keys": [
-        "MainUIText-a1c10p1.json|/dataList/2/content",
-        "TutorialMainUIText.json|/dataList/1424/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2,
-      "new": 1,
-      "new_keys": [
-        "TutorialMainUIText.json|/dataList/1424/content"
-      ]
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "전투 이후 남은 E.G.O 자원은 다음 역에서 사용할 수 있습니다.",
       "zh": [
         "通關本場戰鬥後剩餘的罪孽碎片在下一站依舊能夠使用。",
@@ -12287,28 +11256,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "정지",
-      "zh": [
-        "停下",
-        "暫停"
-      ],
-      "keys": [
-        "IntroductionPreset.json|/dataList/277/content",
-        "LimtochessUI.json|/dataList/398/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2,
-      "new": 1,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/398/content"
-      ]
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "최근 접속일",
       "zh": [
         "最後登入：",
@@ -12323,28 +11270,6 @@
         1
       ],
       "units": 2
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "최대 체력",
-      "zh": [
-        "最大體力",
-        "體力上限"
-      ],
-      "keys": [
-        "LimtochessUI.json|/dataList/249/content",
-        "TooltipUIText.json|/dataList/0/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2,
-      "new": 1,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/249/content"
-      ]
     },
     {
       "family": "ui",
@@ -12457,28 +11382,6 @@
     {
       "family": "ui",
       "field": "content",
-      "kr": "획득",
-      "zh": [
-        "獲得",
-        "已擁有"
-      ],
-      "keys": [
-        "LimtochessUI.json|/dataList/978/content",
-        "MainUIText.json|/dataList/200/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2,
-      "new": 1,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/978/content"
-      ]
-    },
-    {
-      "family": "ui",
-      "field": "content",
       "kr": "획득 조건이 어려울수록 더욱 특별한 배너를 얻게 됩니다.",
       "zh": [
         "獲取條件越為苛刻，所能獲得的裝飾橫幅越為特別。",
@@ -12493,50 +11396,6 @@
         1
       ],
       "units": 2
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "흉탄",
-      "zh": [
-        "彈丸",
-        "凶彈"
-      ],
-      "keys": [
-        "IntroductionPreset.json|/dataList/335/content",
-        "LimtochessUI.json|/dataList/569/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2,
-      "new": 1,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/569/content"
-      ]
-    },
-    {
-      "family": "ui",
-      "field": "content",
-      "kr": "흐트러짐",
-      "zh": [
-        "陷入混亂",
-        "混亂"
-      ],
-      "keys": [
-        "BattleUIText.json|/dataList/31/content",
-        "LimtochessUI.json|/dataList/377/content"
-      ],
-      "counts": [
-        1,
-        1
-      ],
-      "units": 2,
-      "new": 1,
-      "new_keys": [
-        "LimtochessUI.json|/dataList/377/content"
-      ]
     }
   ]
 }
