@@ -1,0 +1,48 @@
+- key: SchemaCraftChoice.json|/dataList/36/content
+  raw: raw-20261126
+  kr_sha: 59e0b6dc9fa52d0baeb9a654aaa7039ab157bbd26707f721fb9ae37da6caeaca
+  zh: 從瑣碎的跑腿到探索與受雇殺人。找收尾人的委託似乎永遠不會間斷。委託的報酬至少表面上看來都很合理。要接下什麼、無視什麼，全看你自己的選擇。
+  reason: '審核 #30 的 SchemaCraftChoice（新檔）：「청부살인」寫「受雇殺人」：「受託殺人」在臺灣是受被害人請託殺人的罪名，與 KR 不同。使用者同意 2026-11-26'
+  rule: one-off
+- key: SchemaCraftChoice.json|/dataList/38/content
+  raw: raw-20261126
+  kr_sha: 9e64fa9e4b917ed305cf6b99c451d84da68d40db46689bb7fb08389cb42de648
+  zh: 追查可能有賺頭的傳聞。
+  reason: '審核 #30 的 SchemaCraftChoice（新檔）：「뜬소문」是都市威脅等級（EN Canard，同組選項是都市怪談、都市傳說），既有譯名「傳聞」。使用者同意 2026-11-26'
+  rule: one-off
+- key: SchemaCraftChoice.json|/dataList/44/content
+  raw: raw-20261126
+  kr_sha: 9da81e8d5de4c960c1a18c7c10b34e3aa0bfc7f98227a57d4dfcf9b23a6d0182
+  zh: 3點13分。後巷深宵降臨時，他們就會到來。為了在太陽升起時不留下任何痕跡。
+  reason: '審核 #30 的 SchemaCraftChoice（新檔）：EN 給 "Night" 加了引號，指既有譯名「後巷深宵」（뒷골목의 밤）。使用者同意 2026-11-26'
+  rule: one-off
+- key: SchemaCraftChoice.json|/dataList/43/content
+  raw: raw-20261126
+  kr_sha: 38783b6239508b7e5807252970a921a3fc0426aa612de869e6628010457bf353
+  zh: 是變暗的四周。拿出終端看看時間吧。
+  reason: '審核 #30 的 SchemaCraftChoice（新檔）：回答題目「吸引你注意的是……」，與選項 b、c、e 一樣寫「是……」；「단말기」既有譯文多寫「終端」（82 對 2）。使用者同意 2026-11-26'
+  rule: one-off
+- key: SchemaCraftChoice.json|/dataList/6/content
+  raw: raw-20261126
+  kr_sha: 62afa07727407d1aa4ee0c9f54ff94687bcc545a1b166618799eec172a6e7d2a
+  zh: 聚在巷子裡的人們走了過來。「你們也知道，明天的術科考試……不會仔細核對長相。」你們很快就明白了這些人為什麼要說這些話。「而且我們家的孩子還太小了，經驗也不夠。」旁邊的人緊接著說道。「可是聽說這個月之內要把證照全部考到，下個月的求職面試才能加分……」他們沒說是什麼考試。不過，換作是你們，或許能稍微幫上一點忙，替這些人鋪好移居巢的墊腳石。
+  reason: '審核 #30 的 SchemaCraftChoice（新檔）：「入職面試」是中國大陸用語，改「求職面試」；「為移居巢鋪好墊腳石」改「替這些人鋪好移居巢的墊腳石」（語句指引）。使用者同意 2026-11-26'
+  rule: one-off
+- key: SchemaCraftChoice.json|/dataList/21/content
+  raw: raw-20261126
+  kr_sha: 15d526b6b54d40ffee245d611182a926a62637b7424df375251d0aff0b2ca995
+  zh: 在擁擠的市場攤販之間，可以看見一座山丘。仔細一看，那是無數衣服一層層堆起來的。說不定是這裡所有人的待洗衣物吧。皺巴巴、滿是摺痕、又髒又臭的經歷。或許可以為了日後帶走一件。總有一天，我們的衣服也會流轉再流轉，堆積在這座山丘底下……
+  reason: '審核 #30 的 SchemaCraftChoice（新檔）：「由無數衣服堆疊而成的層層衣堆」的「堆」重複（語句指引）。使用者同意 2026-11-26'
+  rule: one-off
+- key: SchemaCraftChoice.json|/dataList/16/content
+  raw: raw-20261126
+  kr_sha: 7bdb3cba26c2e4d0dd4a3ca0cb1f2aeb014e848b477c0cd8d90ced49aff8a560
+  zh: 「想當什麼都行。連做夢都沒想過的一切。」老闆大概應付過不少有故事的人，熟練地推銷著。說詞誇張，他手上拿著的卻只有幾張名片。「至少在這張紙上，你是K公司的組長。也能當上5級收尾人事務所的負責人。不過要是取締小組來了，這裡就會變成水果攤，而現在的你買走的就只是一顆熟透的蘋果。」只要有一張這傢伙巧妙做出來的名片，你就能成為任何人。
+  reason: '審核 #30 的 SchemaCraftChoice（新檔）：「-와는 달리」不照字面寫「和……不同」（語句指引）。使用者同意 2026-11-26'
+  rule: one-off
+- key: SchemaCraftChoice.json|/dataList/54/content
+  raw: raw-20261126
+  kr_sha: d8fd8696b2a9a30df1077229baaf7027c0b0cc2dfba19849f43a09f2682c7fa0
+  zh: 在迷宮般的巷子盡頭，你踏進了一片空蕩蕩的空地。這條後巷和記憶中任何一處的巷子都不同，既陌生，同時又漠不關心。正因如此，就算把記憶當作紙張，在上面隨心所欲地描繪後巷的生活也無妨吧。不分真偽，不辨虛實……就在街道的漠不關心化為不受歡迎的關注的那一刻。從思緒中湧起的黑雲，沿著巷子長長地垂落。
+  reason: '審核 #30 的 SchemaCraftChoice（新檔）：雲的「피어난」寫「湧起」，「綻放」是花的用詞。使用者同意 2026-11-26'
+  rule: one-off

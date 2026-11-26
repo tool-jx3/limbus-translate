@@ -97,7 +97,7 @@ families:
     guide: guides/families/abnormality.md
     include: [guides/shared/phrasing.md]
   - id: mirror
-    nodes: ["MirrorDungeon*", "EGOgift", "EGOgift_*", "EgoGiftCategory", "ActionEvents", "ActionEvents_*", "DungeonStartBuffs", "TutorialMirrorDungeon", "StoryTheaterMirrorWorld*"]
+    nodes: ["MirrorDungeon*", "EGOgift", "EGOgift_*", "EgoGiftCategory", "ActionEvents", "ActionEvents_*", "DungeonStartBuffs", "TutorialMirrorDungeon", "StoryTheaterMirrorWorld*", "SchemaCraftChoice"]
     guide: guides/families/mirror.md
     include: [guides/shared/battle-text.md, guides/shared/skill-text.md, guides/shared/korean-brackets.md]
   - id: railway

@@ -1,0 +1,8 @@
+# 審核 #30（2026-11-26 更新）的 term-new/코스트：既有 147／148 個單位寫「經費」（JP コスト、EN Cost），這次新譯的 LimtochessUI 有 4 個單位用了暫定詞「費用」，同檔另外 16 個新譯單位寫「經費」（詞彙表）。
+# 使用者決定 2026-11-26：KR、JP、EN 與舊譯相同的新譯改用舊譯。
+reason: '「코스트」改用既有譯法「經費」（審核 #30）'
+files: ['LimtochessUI.json']
+origins: [claude]
+pattern: '費用'
+replace: '經費'
+kr_pattern: '코스트'

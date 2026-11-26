@@ -1,0 +1,8 @@
+# 審核 #30（2026-11-26 更新）的 term-new/조력자：既有 20 個單位在 JP「助力者」、EN「Assist Units」時寫「支援單位」，這次新譯的 6 個單位 JP、EN 相同，卻用了暫定詞「援助者」（詞彙表）。
+# 使用者決定 2026-11-26：KR、JP、EN 與舊譯相同的新譯改用舊譯。
+reason: '「조력자」改用既有譯法「支援單位」（審核 #30）'
+files: ['BattleKeywords.json', 'Bufs.json']
+origins: [claude]
+pattern: '援助者'
+replace: '支援單位'
+kr_pattern: '조력자'

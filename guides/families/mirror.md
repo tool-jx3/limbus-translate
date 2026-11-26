@@ -4,6 +4,7 @@
 
 - E.G.O 飾品 `EGOgift*`：名稱 `name`、說明 `desc`、簡述 `simpleDesc`；分類 `EgoGiftCategory`
 - 事件 `ActionEvents*`：事件敘述 `desc`、選項 `message`、選項效果 `messageDesc`、結果 `result`
+- 圖式構築的選擇事件 `SchemaCraftChoice`：標題 `…_title`、敘述 `…_text`、選項 `…_option_*`（選項後的結果 `…_desc`）、略過 `…_skip`，全在 `content`
 - 鏡牢介面 `MirrorDungeon*`、起始增益 `DungeonStartBuffs*`、`TutorialMirrorDungeon`、`StoryTheaterMirrorWorld*`
 
 ## 格式慣例

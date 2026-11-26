@@ -1,0 +1,8 @@
+# 審核 #30（2026-11-26 更新）的 inconsistent/ui/content/11e412e7：既有 TooltipUIText.json 寫「體力上限」，KR、JP（体力最大値）、EN（Max HP）與這次新譯的 LimtochessUI 相同。
+# 使用者決定 2026-11-26：KR、JP、EN 與舊譯相同的新譯改用舊譯。
+reason: '「최대 체력」改用既有譯法「體力上限」（審核 #30）'
+files: ['LimtochessUI.json']
+origins: [claude]
+pattern: '^最大體力$'
+replace: '體力上限'
+kr_pattern: '^최대 체력$'

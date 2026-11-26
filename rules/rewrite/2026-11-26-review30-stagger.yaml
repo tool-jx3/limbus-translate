@@ -1,0 +1,8 @@
+# 審核 #30（2026-11-26 更新）的 inconsistent/ui/content/e399af01：既有 BattleUIText.json 的狀態標籤寫「陷入混亂」，KR、JP（混乱）、EN（STAGGER）與這次新譯的 LimtochessUI 狀態標籤相同。
+# 使用者決定 2026-11-26：KR、JP、EN 與舊譯相同的新譯改用舊譯。
+reason: '「흐트러짐」改用既有譯法「陷入混亂」（審核 #30）'
+files: ['LimtochessUI.json']
+origins: [claude]
+pattern: '^混亂$'
+replace: '陷入混亂'
+kr_pattern: '^흐트러짐$'

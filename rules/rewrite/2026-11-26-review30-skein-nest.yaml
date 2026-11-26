@@ -1,0 +1,8 @@
+# 審核 #30（2026-11-26 更新）的 term-new/타래둥지：既有 25 個單位寫「線團之巢」（JP 糸玉の巣、EN Skein Nest），這次新譯的 10 個單位 JP、EN 相同，卻用了暫定詞「線團巢」（詞彙表）。
+# 使用者決定 2026-11-26：KR、JP、EN 與舊譯相同的新譯改用舊譯。
+reason: '「타래둥지」改用既有譯法「線團之巢」（審核 #30）'
+files: ['BattleKeywords.json', 'BuffAbilities.json', 'GachaTitle.json', 'IAPProduct-a1c10.json', 'Personalities.json', 'Personality_Get_Condition.json', 'StoryData/P11217.json', 'StoryTheaterMirrorWorldStoryTitle.json']
+origins: [claude]
+pattern: '線團巢'
+replace: '線團之巢'
+kr_pattern: '타래둥지'

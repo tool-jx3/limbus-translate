@@ -1,0 +1,8 @@
+# 審核 #30（2026-11-26 更新）的 inconsistent/keywords/name/a2c9fb78：既有的關鍵字 EngageToBattle（BattleKeywords.json、Bufs.json）寫「未雨綢繆」，KR、JP（臨戦）、EN（Battle Ready）與這次新譯的 schema 版相同。
+# 使用者決定 2026-11-26：KR、JP、EN 與舊譯相同的新譯改用舊譯。
+reason: '「임전」改用既有譯法「未雨綢繆」（審核 #30）'
+files: ['BattleKeywords-schema.json', 'Bufs-schema.json']
+origins: [claude]
+pattern: '^刀戎接刃$'
+replace: '未雨綢繆'
+kr_pattern: '^임전$'

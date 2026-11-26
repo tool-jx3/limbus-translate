@@ -1,0 +1,8 @@
+# 審核 #30（2026-11-26 更新）的 inconsistent/ui/content/51298979：既有 BattlePass.json 寫「常規」，KR、JP（一般）、EN（Regular）與這次新譯的 LimtochessUI 2 個房間類型相同；同檔的「일반 전투」也寫「常規遭遇戰」。
+# 使用者決定 2026-11-26：KR、JP、EN 與舊譯相同的新譯改用舊譯。
+reason: '「일반」改用既有譯法「常規」（審核 #30）'
+files: ['LimtochessUI.json']
+origins: [claude]
+pattern: '^一般$'
+replace: '常規'
+kr_pattern: '^일반$'

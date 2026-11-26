@@ -1,0 +1,8 @@
+# 審核 #30（2026-11-26 更新）的 inconsistent/ui/content/ea9d343f：既有 9 個單位（MainUIText、TutorialMainUIText）寫「編隊」，KR、JP（編成）、EN（Team）與這次新譯的 LimtochessUI 3 個單位相同。
+# 使用者決定 2026-11-26：KR、JP、EN 與舊譯相同的新譯改用舊譯。
+reason: '「편성」改用既有譯法「編隊」（審核 #30）'
+files: ['LimtochessUI.json']
+origins: [claude]
+pattern: '^編成$'
+replace: '編隊'
+kr_pattern: '^편성$'

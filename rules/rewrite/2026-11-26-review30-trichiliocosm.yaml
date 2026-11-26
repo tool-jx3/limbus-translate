@@ -1,0 +1,9 @@
+# 審核 #30（2026-11-26 更新）的 inconsistent/ui/content/27db8f33：「삼천대세계」是 E.G.O 名，
+# Egos、技能名與 E.G.O 語音 20 多處都寫「三千大世界」（KR 原文附「[三千大世界]」）；這次新譯的 LimtochessUI 組合名
+# 寫成「三千大千世界」。使用者決定 2026-11-26 統一成 E.G.O 名。
+reason: '「삼천대세계」寫 E.G.O 名「三千大世界」（審核 #30）'
+files: ['LimtochessUI.json']
+origins: [claude]
+pattern: '^三千大千世界$'
+replace: '三千大世界'
+kr_pattern: '^삼천대세계$'
