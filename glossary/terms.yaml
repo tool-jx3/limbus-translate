@@ -5991,3 +5991,37 @@
   status: approved
   category: [ego]
   notes: 2026-11-19 既有 25/25 個單位寫「不穩定E.G.O」（Paratranz 23、新譯 2）。另有名稱是「불안정」的被動（Passive_Ego，譯「動搖」）與恐慌類型（譯「失控」），都不是這個詞；審核 #20 的「name/불안정」就是把這個詞裡的「불안정」當成那個被動
+
+- kr: 조력자
+  jp: 助力者
+  en: Assist Unit
+  zh: 支援單位
+  not_files: ["*pilgrimage*", "StoryData/**"]
+  status: approved
+  category: [system, combat]
+  notes: 2026-11-26 戰鬥中協助罪人的單位（JP 助力者、EN Assist Units）：既有 20 個單位寫「支援單位」；審核 #30 新譯 6 個單位用了暫定詞「援助者」，改回「支援單位」（rules/rewrite/2026-11-26-review30-assist-unit.yaml）。巡禮活動（*pilgrimage*）的機械叫「小幫手」（JP リトル・ハンディ、EN Little Handy），見下一條；劇情裡的一般用法（幫手、助手、協助者）不適用
+
+- kr: 조력자
+  jp: リトル・ハンディ
+  en: Little Handy
+  zh: 小幫手
+  files: ["*pilgrimage*"]
+  status: approved
+  category: [system]
+  notes: 2026-11-26 巡禮活動的機械名稱：既有 16 個單位寫「小幫手」。其他檔見上一條（支援單位）
+
+- kr: 코스트
+  jp: コスト
+  en: Cost
+  zh: 經費
+  status: approved
+  category: [system]
+  notes: 2026-11-26 鏡像迷宮等模式的貨幣：既有 147／148 個單位寫「經費」（另 1 個是 MainUIText 的「罪孽碎片消耗」，EN 也是 Cost，指消耗量）；審核 #30 新譯 LimtochessUI 有 4 個單位用了暫定詞「費用」，改回「經費」（rules/rewrite/2026-11-26-review30-cost.yaml），同檔另外 16 個新譯單位本來就寫「經費」
+
+- kr: 타래둥지
+  jp: 糸玉の巣
+  en: Skein Nest
+  zh: 線團之巢
+  status: approved
+  category: [city]
+  notes: 2026-11-26 既有 25／25 個單位（RPG 地下 2 樓）寫「線團之巢」；審核 #30 新譯 10 個單位（格里高爾人格「高級訂製服::丹紅派 B2F 線團之巢」等）用了暫定詞「線團巢」，改回「線團之巢」（rules/rewrite/2026-11-26-review30-skein-nest.yaml）

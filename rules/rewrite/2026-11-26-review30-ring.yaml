@@ -1,0 +1,8 @@
+# 審核 #30（2026-11-26 更新）的 inconsistent/ui/content/d6048d1f：既有 FormationNameEtcFilter.json 寫「環指」（協會名），KR、JP（薬指）、EN（The Ring）與這次新譯的 LimtochessUI 相同。
+# 使用者決定 2026-11-26：KR、JP、EN 與舊譯相同的新譯改用舊譯。
+reason: '「약지」改用既有譯法「環指」（審核 #30）'
+files: ['LimtochessUI.json']
+origins: [claude]
+pattern: '^無名指$'
+replace: '環指'
+kr_pattern: '^약지$'
