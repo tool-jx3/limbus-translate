@@ -21,7 +21,10 @@ func TestLoadDefaults(t *testing.T) {
 	if len(cfg.Frozen) != 0 {
 		t.Errorf("Frozen = %v, want none", cfg.Frozen)
 	}
-	if want := "https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip"; cfg.CDNTemplate != want {
+	// The packs moved from Assets/LocalizePatch/ to Assets/Resources_moved/Localize/
+	// with the update of 2026-11-26 (l20261126_…); the versions before it are
+	// at the old place only.
+	if want := "https://downloadcommon.limbuscompanycdn.org/{token}/Assets/Resources_moved/Localize/localize_{lang}.zip"; cfg.CDNTemplate != want {
 		t.Errorf("CDNTemplate = %q, want %q", cfg.CDNTemplate, want)
 	}
 	if cfg.Worktrees.Raw != ".work/raw" || cfg.Worktrees.TW != ".work/tw" {

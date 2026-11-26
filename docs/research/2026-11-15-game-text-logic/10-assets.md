@@ -43,11 +43,18 @@ Addressables 目錄也印證這一點：裡面沒有官方文字檔。
 | 官方檔案清單 | `<base>/Assets/Resources_moved/Localize/RemoteLocalizeFileList.json` |
 | 語音表 | `<base>/Assets/Resources_moved/Localize/etc/VoiceTable.json` |
 | RPG 檔案清單 | `<base>/Assets/Resources_moved/Localize/rpg-loc-file-list-a1c10p3.json` |
-| 各語言的壓縮檔（`lct fetch` 用的） | `<base>/Assets/LocalizePatch/localize_<kr|en|jp>.zip` |
+| 各語言的壓縮檔（`lct fetch` 用的） | `<base>/Assets/Resources_moved/Localize/localize_<kr|en|jp>.zip`（2026-11-26 起；之前是 `<base>/Assets/LocalizePatch/localize_<kr|en|jp>.zip`，見下面的補記） |
 
 - `LocalizePatchInfo.json` 列了 7,318 個檔：KR 2,449、EN 2,406、JP 2,460，加上上面三個不分語言的檔。KR 的數量和 `raw-20261112` 相同。
 - RPG 檔案清單的檔名帶有章節代號（`a1c10p3`），之後的版本可能改名；清冊裡找得到實際的名稱。
 - 清冊裡還有一組加密金鑰，是給加密的靜態資料用的，和文字檔無關；這份報告與腳本都不記錄它。
+
+> **2026-11-26 補記：語言包換了位置**。這天的更新（`l20261126_CyAvkL3PNEtM8xcoews6`）起，`<base>/Assets/LocalizePatch/localize_<lang>.zip` 回 404，三個語言的壓縮檔改在 `<base>/Assets/Resources_moved/Localize/localize_<lang>.zip`（實際下載確認）。之前的版本（如 `l20261119_…`）只在舊位置。
+> - 清冊、官方檔案清單、語音表的網址都沒變；清冊本身仍在 `Assets/LocalizePatch/`。
+> - 壓縮檔的內容格式沒變：頂層一樣是 `LocalizeTemp_<lang>/`，檔數與檔名和清冊完全一致（KR 2,464、EN 2,421、JP 2,481），每個檔的大小也和清冊相同。
+> - 新位置正好是 `TextAssetPatchConfig` 的 `_localizeDataPath`（`Assets/Resources_moved/Localize`），舊位置是 `_localizePatchInfoFilePath` 所在的資料夾；舊版程式（2026-11-12）用字串常值 `/localize_{0}.zip` 接在其中一個後面。推定新版程式改成接在 `_localizeDataPath` 後面，沒有讀新版程式確認。
+> - 這次的官方文字檔換行從 CRLF 改成 LF：KR 有 2,108 個檔只差換行與縮排位置、內容相同，真正改了內容的是 27 個。`raw` 的快照照原樣保存，所以位元組層級幾乎每個檔都不同；以內容比較的 `lct rawdiff` 與建置不受影響。
+> - 清冊的 `Hash` 不一定是檔案的 MD5：同名的檔在兩版之間大小變了、`Hash` 卻沒變，這一版 KR 有 47 個檔的 `Hash` 和內容的 MD5 不同。比對檔案要用大小或下載後自己算。
 
 ## 2. 檔案清單
 

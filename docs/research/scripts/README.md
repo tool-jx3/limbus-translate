@@ -15,7 +15,7 @@ DATA/
   tw/ltm/                   # LimbusTraditionalMandarin/storyline release 的 Hant.zip
 ```
 
-下載網址：`https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{kr,en,jp}.zip`
+下載網址：`https://downloadcommon.limbuscompanycdn.org/{token}/Assets/Resources_moved/Localize/localize_{kr,en,jp}.zip`（2026-11-26 的更新起；之前的版本在 `Assets/LocalizePatch/localize_{kr,en,jp}.zip`）
 
 ## 執行順序
 

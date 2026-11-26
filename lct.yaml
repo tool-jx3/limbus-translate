@@ -1,6 +1,8 @@
 lang_dir: zh-TW
 frozen: []
-cdn_template: https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip
+# 語言包的網址。2026-11-26 的更新（l20261126_…）起從 Assets/LocalizePatch/ 搬到 Assets/Resources_moved/Localize/；
+# 之前的版本只在舊位置（docs/research/2026-11-15-game-text-logic/10-assets.md 第 1 節）
+cdn_template: https://downloadcommon.limbuscompanycdn.org/{token}/Assets/Resources_moved/Localize/localize_{lang}.zip
 # 單一檔案的網址；lct fetch 用它抓不分語言的檔（官方檔案清單、語音表、RPG 檔案清單）放進 common/
 cdn_file_template: https://downloadcommon.limbuscompanycdn.org/{token}/{path}
 worktrees: { raw: .work/raw, tw: .work/tw }
