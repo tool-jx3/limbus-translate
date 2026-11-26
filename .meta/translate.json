@@ -1,10 +1,10 @@
 {
   "model": "claude-opus-5-5",
-  "runs": 1,
-  "cost_usd": 1.430453,
+  "runs": 3,
+  "cost_usd": 19.897471800000005,
   "stopped": "done",
-  "pending_before": 43,
+  "pending_before": 1949,
   "pending_after": 0,
-  "raw_tag": "raw-20261119",
-  "rules_commit": "2e8e1f50eddc115e70c3e80a19a73188cd7c6fb4"
+  "raw_tag": "raw-20261126",
+  "rules_commit": "a09c206408aeee12a3c09828f18f5dba16cce959"
 }
