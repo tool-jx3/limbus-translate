@@ -105,7 +105,7 @@ fork 或搬到別的 repo 時，要設定下面的 secrets 與 variables，並�
 | `LCT_MODEL` | Variable | 翻譯用的模型，傳給 `lct translate`；`rules-proposal.yml` 也用它作 action 的 `--model` | 要翻譯、要自動開規則 PR 時必填；沒有時與沒有 API key 一樣，不翻譯，審核 Issue 會列出「翻譯沒有執行」 | 無 | 填 Claude 的模型 ID，可用的 ID 見 Claude Console 或官方文件 |
 | `RULES_REVIEW_IN_CI` | Variable | 設成 `true` 時，`rules-proposal.yml` 在 CI 以 action 審查建議並開規則 PR | 選填；不是 `true` 時 CI 只數出待處理的建議，留給人在本機執行 `/rules-review`，維持成功 | 無（在本機審查） | 填 `true`。action 用的是 GitHub Actions 的用量，只適用 Agent SDK、API 等的促銷額度不能用 |
 | `LCT_MAX_USD` | Variable | 每次建置翻譯花費的上限（美元），到了就停止翻譯 | 否 | 30 | 自行決定；手動執行時可用 `max_usd` 輸入蓋過 |
-| `LIMBUS_CDN_TEMPLATE` | Variable | 下載官方語言包的 CDN 網址範本，含 `{token}` 與 `{lang}` | 否 | 同 `lct.yaml` 的 `cdn_template`：`https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip` | CDN 換了位置才需要設定 |
+| `LIMBUS_CDN_TEMPLATE` | Variable | 下載官方語言包的 CDN 網址範本，含 `{token}` 與 `{lang}` | 否 | 同 `lct.yaml` 的 `cdn_template`：`https://downloadcommon.limbuscompanycdn.org/{token}/Assets/Resources_moved/Localize/localize_{lang}.zip`（2026-11-26 起；之前的版本在 `Assets/LocalizePatch/`） | CDN 換了位置才需要設定 |
 | `LIMBUS_CDN_FILE_TEMPLATE` | Variable | 下載單一檔案的 CDN 網址範本，含 `{token}` 與 `{path}`；`lct fetch` 用它抓不分語言的檔（官方檔案清單、語音表、RPG 檔案清單） | 否 | 同 `lct.yaml` 的 `cdn_file_template`：`https://downloadcommon.limbuscompanycdn.org/{token}/{path}` | CDN 換了位置才需要設定，要和上一列的語言包網址範本一起設：只設了語言包的那一個時，`lct.yaml` 的 `cdn_file_template` 不會被採用（那是另一個 CDN 的），該次快照就沒有 `common/` |
 
 ### Workflow permissions
