@@ -157,7 +157,9 @@
         "MainUIText-a1c10p1",
         "UnitKeyword-a1c10p3",
         "MirrorDungeonUI_8_Achievement",
-        "EventVerificationUIText"
+        "EventVerificationUIText",
+        "LimtochessUI",
+        "SchemaCraftChoice"
     ],
     "character": [
         "Characters"
@@ -223,7 +225,8 @@
         "Enemies-a1c10p2",
         "Enemies-a1c10p3",
         "Assist-a1c10p2",
-        "Enemies-walpu10"
+        "Enemies-walpu10",
+        "Enemies-schema"
     ],
     "ego": [
         "Egos",
@@ -358,7 +361,8 @@
         "Skills_Abnormality-a1c10p2",
         "Skills_Abnormality-a1c10p3",
         "Skills_Assist-a1c10p2",
-        "Skills_Abnormality-walpu10"
+        "Skills_Abnormality-walpu10",
+        "Skills_Enemy-schema"
     ],
     "passive": [
         "Passives",
@@ -459,7 +463,8 @@
         "Passives_Abnormality-a1c10p2",
         "Passives_Abnormality-a1c10p3",
         "Passives_Assist-a1c10p2",
-        "Passives_Abnormality-walpu10"
+        "Passives_Abnormality-walpu10",
+        "Passives_Enemy-schema"
     ],
     "buf": [
         "Bufs",
@@ -514,7 +519,9 @@
         "Bufs-a1c10p2",
         "Bufs-a1c10p3",
         "Bufs_Mirror8",
-        "Bufs-walpu10"
+        "Bufs-walpu10",
+        "Bufs-schema",
+        "Bufs_Synergy"
     ],
     "buffAbilities": [
         "BuffAbilities"
@@ -583,7 +590,9 @@
         "BattleKeywords-a1c10p2",
         "BattleKeywords-a1c10p3",
         "BattleKeywords_Mirror8",
-        "BattleKeywords-walpu10"
+        "BattleKeywords-walpu10",
+        "BattleKeywords-schema",
+        "BattleKeywords_Synergy"
     ],
     "skillTag": [
         "SkillTag"
@@ -1085,7 +1094,9 @@
         "Voice_Honglu_Contem_10617",
         "Voice_Outis_Wedge_11116",
         "Voice_DonQuixote_Wedge_10316",
-        "Voice_Sinclair_Wedge_11017"
+        "Voice_Sinclair_Wedge_11017",
+        "Voice_Yisang_Contem_10117",
+        "Voice_Gregor_Contem_11217"
     ],
     "announcerVoice": [
         "Announcer_Dante_1",
@@ -1154,7 +1165,8 @@
         "Announcer_Meursault_57",
         "Announcer_Pwei_58",
         "Announcer_Walpu10_90008",
-        "Announcer_Hokma_59"
+        "Announcer_Hokma_59",
+        "Announcer_Overseer_60"
     ],
     "egoVoice": [
         "Voice_EGO_YiSang_1",
@@ -1352,7 +1364,8 @@
         "PanicInfo-a1c10p1",
         "PanicInfo-a1c10p2",
         "PanicInfo-a1c10p3",
-        "PanicInfo-walpu10"
+        "PanicInfo-walpu10",
+        "PanicInfo-schema"
     ],
     "dungeonStartBuffs": [
         "DungeonStartBuffs_MD7"
