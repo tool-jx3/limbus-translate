@@ -146,7 +146,8 @@ var rulesReviewTools = []string{
 // reviewTools are the tools of the review skill: it reads what needs a person
 // (lct review), looks units up, and writes what the person decides on: an
 // adjustment, a request file, the tidied adjustments, the learned field rules,
-// and the guides, the glossary, the rules and the frozen list of lct.yaml. It
+// a provisional term that is not taken (lct accept), and the guides, the
+// glossary, the rules and the frozen list of lct.yaml. It
 // runs requeue only in the form that writes a request file, which touches no
 // state, and nothing that pushes or publishes.
 var reviewTools = []string{
@@ -157,6 +158,11 @@ var reviewTools = []string{
 	"Bash(bin/lct requeue --to-file *)",
 	"Bash(bin/lct fields learn*)",
 	"Bash(bin/lct rules lint*)",
+	// A provisional term of term_new that is not taken goes to
+	// rules/declined.yaml by lct accept, checked first with --dry-run, as
+	// term-decision does.
+	"Bash(bin/lct accept --json --dry-run *)",
+	"Bash(bin/lct accept --json --reason *)",
 	"Bash(go build -o bin/lct ./cmd/lct)",
 	"Read(./**)",
 	"Edit(./guides/**)",

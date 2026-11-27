@@ -772,8 +772,19 @@ func ProvisionalKRs(all []store.ProvisionalTerm, r *rules.Rules) map[string]bool
 // declined. A term that differs is stored but not in force. The terms hit only
 // where their KR stands as a word.
 func ActiveProvisional(all []store.ProvisionalTerm, r *rules.Rules, declined map[string]bool) []rules.Term {
-	listed := ProvisionalKRs(all, r)
 	var out []rules.Term
+	for _, p := range ActiveProvisionalRecords(all, r, declined) {
+		out = append(out, rules.Term{KR: p.KR, ZH: p.ZH, Status: rules.StatusApproved, Match: rules.MatchWord, Provisional: true})
+	}
+	return out
+}
+
+// ActiveProvisionalRecords returns the record that decides each provisional
+// term in force, the terms of ActiveProvisional in the same order: its unit,
+// batch and raw tag say where the term was registered.
+func ActiveProvisionalRecords(all []store.ProvisionalTerm, r *rules.Rules, declined map[string]bool) []store.ProvisionalTerm {
+	listed := ProvisionalKRs(all, r)
+	var out []store.ProvisionalTerm
 	seen := map[string]bool{}
 	for _, p := range all {
 		if p.Conflict || seen[p.KR] || !listed[p.KR] {
@@ -783,7 +794,7 @@ func ActiveProvisional(all []store.ProvisionalTerm, r *rules.Rules, declined map
 		if p.Old != nil || declined["term-new/"+p.KR] {
 			continue
 		}
-		out = append(out, rules.Term{KR: p.KR, ZH: p.ZH, Status: rules.StatusApproved, Match: rules.MatchWord, Provisional: true})
+		out = append(out, p)
 	}
 	return out
 }

@@ -131,7 +131,8 @@ const (
 	maxMisaligned = 20
 	// maxNameRenderings is how many existing renderings a NameDiff lists.
 	maxNameRenderings = 5
-	// maxTermKeys is how many units of this update a TermDiff lists.
+	// maxTermKeys is how many units of this update a TermDiff lists, and how
+	// many units without its rendering a ProvisionalUse lists.
 	maxTermKeys = 20
 )
 
@@ -222,6 +223,14 @@ type Report struct {
 	// (see Options.Names).
 	NameDiffs []NameDiff `json:"name_diffs"`
 	TermDiffs []TermDiff `json:"term_diffs"`
+	// ProvisionalTerms lists, by KR, the provisional terms in force
+	// (batch.ActiveProvisional): those a translator registered that are in no
+	// glossary entry, not declined and do not differ from the existing names.
+	// Each says how many units hold its KR as a word and how many of those use
+	// its rendering, so that a person can tell whether it holds everywhere
+	// before it goes into the glossary. Never nil, though a build.json of an
+	// older lct has none.
+	ProvisionalTerms []ProvisionalUse `json:"provisional_terms"`
 	// KeptRewrites are the units translated again for this raw tag because
 	// their KR changed, in which lines whose KR is the same were rewritten
 	// (see keptLines), by key; never nil.
@@ -277,6 +286,22 @@ type TermDiff struct {
 	OldWith  int                   `json:"old_with"`
 	Examples []existing.OldExample `json:"examples"`
 	Keys     []string              `json:"keys"`
+}
+
+// ProvisionalUse is a provisional term in force, KR -> ZH, registered at Key
+// (a unit) for RawTag, and how the translations use it: Units counts the
+// units whose KR holds the term as a word, With those of them whose text holds
+// ZH, and Without lists the others, by key, at most maxTermKeys. A unit that
+// shows a stand-in (a record of origin fallback, or no record) is not counted:
+// it has no translation yet.
+type ProvisionalUse struct {
+	KR      string   `json:"kr"`
+	ZH      string   `json:"zh"`
+	Key     string   `json:"key"`
+	RawTag  string   `json:"raw_tag"`
+	Units   int      `json:"units"`
+	With    int      `json:"with"`
+	Without []string `json:"without"`
 }
 
 // FileMisaligned says how many units of the KR file have no EN, and no JP,
@@ -349,6 +374,9 @@ type builder struct {
 	retranslated []Retranslated
 	termDiffs    []*termDiff
 	tally        *existing.OldTally
+	// provUses are the entries of Report.ProvisionalTerms while the units are
+	// met, in the order of batch.ActiveProvisionalRecords.
+	provUses []*provUse
 	// game is the information of the whole KR pack that the keyword-link,
 	// level-diff, shared-line and cross-group checks need, with the
 	// translations the build uses.
@@ -362,6 +390,16 @@ type termDiff struct {
 	p    store.ProvisionalTerm
 	term rules.Term
 	keys []string
+}
+
+// provUse is a ProvisionalUse while the units are met: its record, the term to
+// look for (its KR as a word) and the counts so far.
+type provUse struct {
+	p       store.ProvisionalTerm
+	term    rules.Term
+	units   int
+	with    int
+	without []string
 }
 
 // Run builds the language pack for src (the raw KR, EN and JP packs) from the
@@ -487,7 +525,7 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 		rep: &Report{
 			Origins: map[string]int{}, Warnings: map[string]int{}, FrozenFallback: []string{}, MissingGlyphs: []rune{},
 			WarningSamples: map[string][]string{}, NewWarnings: map[string]int{}, Inconsistent: []Inconsistency{}, Notes: notes,
-			Shown: map[string]int{}, Misaligned: []FileMisaligned{}, NameDiffs: []NameDiff{}, TermDiffs: []TermDiff{}, KeptRewrites: []KeptRewrite{}, Retranslated: []Retranslated{},
+			Shown: map[string]int{}, Misaligned: []FileMisaligned{}, NameDiffs: []NameDiff{}, TermDiffs: []TermDiff{}, ProvisionalTerms: []ProvisionalUse{}, KeptRewrites: []KeptRewrite{}, Retranslated: []Retranslated{},
 		},
 		warnKeys:  map[string][]string{},
 		renders:   map[renderKey]*rendering{},
@@ -510,6 +548,9 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 			return nil, err
 		}
 		b.provisional = batch.ActiveProvisional(all, opt.Rules, opt.Declined)
+		for _, p := range batch.ActiveProvisionalRecords(all, opt.Rules, opt.Declined) {
+			b.provUses = append(b.provUses, &provUse{p: p, term: rules.Term{KR: p.KR, ZH: p.ZH, Match: rules.MatchWord}})
+		}
 		if b.comparing() {
 			b.termDiffs = differingTerms(all, opt.Rules, opt.RawTag, opt.Declined)
 			terms := make([]rules.Term, len(b.termDiffs))
@@ -739,6 +780,7 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 		}
 	}
 	b.compareWithExisting(u, key, rec)
+	b.tallyProvisional(key, u.KR, rec)
 	if !validate.HasHard(issues) {
 		b.countUsed(rec, true)
 		if rec.Origin == store.OriginFallback {
@@ -883,6 +925,30 @@ func (b *builder) compareWithExisting(u units.Unit, key string, rec store.Record
 			if d.term.OccursIn(plain) && strings.Contains(text, d.term.ZH) {
 				d.keys = append(d.keys, key)
 			}
+		}
+	}
+}
+
+// tallyProvisional counts rec, the record of the unit at key whose KR text is
+// kr and not a copy, in each provisional term in force whose KR it holds as a
+// word: with the term when its text holds the rendering, without it
+// otherwise. A record of origin fallback is a stand-in and counts in none.
+// Whether the record keeps the structure of KR does not matter: a record that
+// breaks it is queued again with its text as the draft.
+func (b *builder) tallyProvisional(key, kr string, rec store.Record) {
+	if len(b.provUses) == 0 || rec.Origin == store.OriginFallback {
+		return
+	}
+	plain, text := validate.MatchText(kr), validate.MatchText(rec.ZH)
+	for _, d := range b.provUses {
+		if !d.term.OccursIn(plain) {
+			continue
+		}
+		d.units++
+		if strings.Contains(text, d.term.ZH) {
+			d.with++
+		} else {
+			d.without = append(d.without, key)
 		}
 	}
 }
@@ -1105,6 +1171,14 @@ func (b *builder) finish() {
 	slices.SortFunc(b.rep.KeptRewrites, func(x, y KeptRewrite) int { return cmp.Compare(x.Key, y.Key) })
 	b.rep.Retranslated = append(b.rep.Retranslated, b.retranslated...)
 	slices.SortFunc(b.rep.Retranslated, func(x, y Retranslated) int { return cmp.Compare(x.Key, y.Key) })
+	for _, d := range b.provUses {
+		without := slices.Sorted(slices.Values(d.without))
+		b.rep.ProvisionalTerms = append(b.rep.ProvisionalTerms, ProvisionalUse{
+			KR: d.p.KR, ZH: d.p.ZH, Key: d.p.Key, RawTag: d.p.RawTag, Units: d.units, With: d.with,
+			Without: append([]string{}, without[:min(len(without), maxTermKeys)]...),
+		})
+	}
+	slices.SortFunc(b.rep.ProvisionalTerms, func(x, y ProvisionalUse) int { return cmp.Compare(x.KR, y.KR) })
 	for _, d := range b.termDiffs {
 		use, examples, _ := b.tally.Use(b.opt.Names, d.p.KR, d.p.ZH)
 		if use.Existing == "" {

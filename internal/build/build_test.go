@@ -3186,3 +3186,52 @@ func TestRunRejectsBadCopies(t *testing.T) {
 		})
 	}
 }
+
+// The report counts, for each provisional term in force, the units whose KR
+// holds it as a word and those of them that use its rendering, whatever their
+// origin and update; a stand-in counts in none. A conflict, a declined term, a
+// term in the glossary and one that differs from the old translations are no
+// term in force.
+func TestBuildCountsProvisionalUse(t *testing.T) {
+	var entries []string
+	var recs []store.Record
+	add := func(kr, zh string, r func(store.Record) store.Record) {
+		i := strconv.Itoa(len(entries))
+		entries = append(entries, `{"id":`+i+`,"desc":"`+kr+`"}`)
+		rc := rec("Bufs.json", "/dataList/"+i+"/desc", kr, zh)
+		if r != nil {
+			rc = r(rc)
+		}
+		recs = append(recs, rc)
+	}
+	add("조각 1개 획득", "獲得1個碎片", written)
+	add("조각을 얻는다", "獲得碎片", nil)                                                                               // an old translation counts too
+	add("돌 조각이 떨어졌다", "掉下了一塊石頭", nil)                                                                         // the word, without the rendering
+	add("조각상", "雕像", nil)                                                                                     // 조각 is no word of its own here
+	add("조각 2개", "Shard x2", func(r store.Record) store.Record { r.Origin = store.OriginFallback; return r }) // a stand-in
+	add("건조장으로", "前往乾燥室", written)
+	add("방어치 증가", "防禦值增加", written)
+
+	e := newEnv(t, map[string]string{"Bufs.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}, nil)
+	e.opt.Rules = routingRules()
+	e.opt.Declined = map[string]bool{"term-new/회피치": true}
+	e.save(recs...)
+	old := &store.OldUse{Existing: "格擋值", Units: 9}
+	if _, err := store.Open(e.opt.TWRoot).AppendTerms([]store.ProvisionalTerm{
+		{KR: "조각", ZH: "碎片", Key: recs[0].Key, Batch: "b1", RawTag: testTag},
+		{KR: "조각", ZH: "片段", Key: recs[1].Key, Batch: "b2", RawTag: testTag, Conflict: true},
+		{KR: "건조장", ZH: "乾燥室", Key: recs[5].Key, Batch: "b0", RawTag: "raw-20261001"},    // of an earlier update, still in force
+		{KR: "방어치", ZH: "格擋值", Key: recs[6].Key, Batch: "b1", RawTag: testTag, Old: old}, // differs: not in force
+		{KR: "회피치", ZH: "迴避值", Key: recs[6].Key, Batch: "b1", RawTag: testTag},           // declined
+	}); err != nil {
+		t.Fatal(err)
+	}
+	rep := e.run()
+	want := []ProvisionalUse{
+		{KR: "건조장", ZH: "乾燥室", Key: recs[5].Key, RawTag: "raw-20261001", Units: 1, With: 1, Without: []string{}},
+		{KR: "조각", ZH: "碎片", Key: recs[0].Key, RawTag: testTag, Units: 3, With: 2, Without: []string{recs[2].Key}},
+	}
+	if !reflect.DeepEqual(rep.ProvisionalTerms, want) {
+		t.Errorf("ProvisionalTerms = %+v, want %+v", rep.ProvisionalTerms, want)
+	}
+}

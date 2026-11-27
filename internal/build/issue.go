@@ -57,6 +57,9 @@ const (
 	// KindInconsistentNew is the groups of one KR text with different
 	// renderings that hold units translated in this update.
 	KindInconsistentNew = "inconsistent_new"
+	// KindTermNew is the provisional terms in force: what translators
+	// registered that no person decided yet.
+	KindTermNew = "term_new"
 	// KindLoopError is the translation loop that stopped on an error.
 	KindLoopError = "loop_error"
 	// KindNotTranslated is the translation that was not run, with units
@@ -70,7 +73,7 @@ const (
 var ReviewKinds = []string{
 	KindNeedsReview, KindAdjustmentExpired, KindFrozenChanged, KindFrozenFallback,
 	KindNewSpeaker, KindFieldChange, KindNewFamily, KindNameDiffers, KindKeptRewritten, KindInconsistentNew,
-	KindLoopError, KindNotTranslated,
+	KindTermNew, KindLoopError, KindNotTranslated,
 }
 
 // ReviewSection is one kind of thing that needs a person: a heading, what to
@@ -150,6 +153,9 @@ func ReviewItems(info Info, sum *plan.Summary, pending []store.PendingItem) []Re
 	add(KindInconsistentNew, "同一 KR 不同譯法（含這次新譯）",
 		"同一段 KR 在同族群、同欄位有不同譯法，其中有這次新翻的單位。要統一：照 `rules-review` 的 `inconsistent` 處理（詞彙或指引，加重翻要求檔或改寫檔）；依 JP/EN 或語境本來就該不同：把項目開頭的 ID 寫進 `rules/declined.yaml`。",
 		inconsistentNewItems(info))
+	add(KindTermNew, "暫定詞（還沒有人決定）",
+		"翻譯者登記、已在批次裡生效、還不在詞彙表的名稱；每一項是 KR 單獨成詞的單位數與其中用了暫定譯法的數量。全都用了、譯法也對：在 `glossary/terms.yaml` 加條目（`status: approved`）；有沒用的：看那些單位的上下文，同一個意思就加條目並用改寫檔或人工調整改那幾個，是一般用法就用條目的 `files`、`not_files` 限定範圍；不採用：把項目開頭的 ID 寫進 `rules/declined.yaml`（審核頁或 `lct accept`）。",
+		termNewItems(info.Report))
 	if info.Stopped == translate.StopError {
 		add(KindLoopError, "翻譯迴圈因錯誤中斷",
 			"看 Actions 的執行紀錄；修正後重跑，還沒翻的單位仍在待譯清單裡。",
@@ -235,6 +241,33 @@ func nameDiffItems(rep Report) []string {
 		if len(d.Keys) > 0 {
 			item += "；這次用了暫定譯法：" + strings.Join(codes(d.Keys[:min(len(d.Keys), maxItemUnits)]), "、")
 			if len(d.Keys) > maxItemUnits {
+				item += "…等"
+			}
+		}
+		items = append(items, item)
+	}
+	return items
+}
+
+// termNewItems is the item of each provisional term in force, except one whose
+// KR is an existing name listed in name_differs: lct suggest folds such a term
+// into the suggestion of the name.
+func termNewItems(rep Report) []string {
+	named := map[string]bool{}
+	for _, d := range rep.NameDiffs {
+		named[strings.TrimSpace(d.KR)] = true
+	}
+	var items []string
+	for _, p := range rep.ProvisionalTerms {
+		if named[strings.TrimSpace(p.KR)] {
+			continue
+		}
+		item := fmt.Sprintf("%s：暫定詞 → %s（%s 登記於 %s）；KR 單獨成詞的 %d 個單位，", code("term-new/"+p.KR), code(p.ZH), code(p.RawTag), code(p.Key), p.Units)
+		if p.With == p.Units {
+			item += "全都用了暫定譯法"
+		} else {
+			item += fmt.Sprintf("%d 個用了暫定譯法；沒用的：%s", p.With, strings.Join(codes(p.Without[:min(len(p.Without), maxItemUnits)]), "、"))
+			if p.Units-p.With > maxItemUnits {
 				item += "…等"
 			}
 		}
