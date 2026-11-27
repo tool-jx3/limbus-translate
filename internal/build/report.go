@@ -274,6 +274,7 @@ func markdown(opt Options, info Info, sum *plan.Summary, pending []store.Pending
 	infoMisaligned(&b, info.Report)
 	infoWarnings(&b, info.Report)
 	infoNameDiffs(&b, info.Report)
+	infoProvisional(&b, info.Report)
 	infoKeptRewrites(&b, info.Report)
 	infoRetranslated(&b, info.Report)
 	infoInconsistent(&b, info)
@@ -483,6 +484,27 @@ func infoWarnings(b *strings.Builder, rep Report) {
 		fmt.Fprintf(b, "\n%s 的前 %d 筆：\n\n", k, len(samples))
 		for _, key := range samples {
 			fmt.Fprintf(b, "- %s\n", code(key))
+		}
+	}
+}
+
+// infoProvisional lists the provisional terms in force, each with the units
+// that hold its KR as a word and do not use its rendering.
+func infoProvisional(b *strings.Builder, rep Report) {
+	b.WriteString("\n### 暫定詞\n\n")
+	if len(rep.ProvisionalTerms) == 0 {
+		b.WriteString("None.\n")
+		return
+	}
+	for _, p := range rep.ProvisionalTerms {
+		fmt.Fprintf(b, "- %s → %s（%s，%s 登記於 %s）：KR 單獨成詞的 %d 個單位，%d 個用了暫定譯法\n",
+			code(p.KR), code(p.ZH), code("term-new/"+p.KR), code(p.RawTag), code(p.Key), p.Units, p.With)
+		if len(p.Without) > 0 {
+			fmt.Fprintf(b, "  - 沒用的：%s", strings.Join(codes(p.Without), "、"))
+			if p.Units-p.With > len(p.Without) {
+				b.WriteString("…等")
+			}
+			b.WriteString("\n")
 		}
 	}
 }

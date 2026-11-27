@@ -1,0 +1,8 @@
+# 暫定詞 term-new/정예 보상 改譯法時一起改（2026-11-27）：LimtochessUI 的房間類型「정예」寫「精英」
+# （/dataList/13、/dataList/88），同檔的「정예 전투」是「菁英遭遇戰」。使用者決定統一成「菁英」。
+reason: '房間類型「정예」寫「菁英」，與「菁英遭遇戰」一致'
+files: ['LimtochessUI.json']
+origins: [claude]
+pattern: '^精英$'
+replace: '菁英'
+kr_pattern: '^정예$'

@@ -318,9 +318,10 @@ func TestReviewItemsMatchTheIssue(t *testing.T) {
 		}
 	}
 	// ReviewKinds, which the contract of the review skill reads, lists every
-	// kind in this order, name_differs, kept_rewritten and inconsistent_new
-	// (which this build has none of) before loop_error, not_translated last.
-	if want := append(slices.Clone(wantKinds[:7]), "name_differs", "kept_rewritten", "inconsistent_new", "loop_error", "not_translated"); !slices.Equal(ReviewKinds, want) {
+	// kind in this order, name_differs, kept_rewritten, inconsistent_new and
+	// term_new (which this build has none of) before loop_error,
+	// not_translated last.
+	if want := append(slices.Clone(wantKinds[:7]), "name_differs", "kept_rewritten", "inconsistent_new", "term_new", "loop_error", "not_translated"); !slices.Equal(ReviewKinds, want) {
 		t.Errorf("ReviewKinds = %q, want %q", ReviewKinds, want)
 	}
 
@@ -604,7 +605,7 @@ func sectionOfKind(secs []ReviewSection, kind string) *ReviewSection {
 
 func TestReviewKindsOrder(t *testing.T) {
 	want := []string{"needs_review", "adjustment_expired", "frozen_changed", "frozen_fallback", "new_speaker",
-		"field_change", "new_family", "name_differs", "kept_rewritten", "inconsistent_new", "loop_error", "not_translated"}
+		"field_change", "new_family", "name_differs", "kept_rewritten", "inconsistent_new", "term_new", "loop_error", "not_translated"}
 	if !slices.Equal(ReviewKinds, want) {
 		t.Errorf("ReviewKinds = %v, want %v", ReviewKinds, want)
 	}
@@ -759,5 +760,48 @@ func TestRenderingsOfKeepsOwn(t *testing.T) {
 	want := []existing.Rendering{{ZH: "丙", Units: 2}, {ZH: "甲", Units: 1}, {ZH: "乙", Units: 7, Own: true}}
 	if got := renderingsOf(n); !reflect.DeepEqual(got, want) {
 		t.Errorf("renderingsOf = %+v, want %+v", got, want)
+	}
+}
+
+// The provisional terms in force are a section of their own: how many units
+// hold the KR as a word, how many use the rendering, and the first of those
+// that do not. A term whose KR is a name listed in name_differs is left to
+// that section, as lct suggest folds it into the name.
+func TestReviewIssueTermNew(t *testing.T) {
+	info := issueInfo()
+	info.Report.ProvisionalTerms = []ProvisionalUse{
+		{KR: "건조장", ZH: "乾燥室", Key: "A.json|/dataList/0/name", RawTag: "raw-20261126", Units: 12, With: 12, Without: []string{}},
+		{KR: "조각", ZH: "碎片", Key: "B.json|/dataList/1/content", RawTag: "raw-20261126", Units: 9, With: 2,
+			Without: []string{"C.json|/dataList/0/content", "C.json|/dataList/1/content", "C.json|/dataList/2/content", "C.json|/dataList/3/content", "C.json|/dataList/4/content", "C.json|/dataList/5/content", "C.json|/dataList/6/content"}},
+		{KR: "공간", ZH: "空間", Key: "D.json|/dataList/0/name", RawTag: "raw-20261126", Units: 1, With: 0, Without: []string{"D.json|/dataList/0/name"}},
+	}
+	info.Report.NameDiffs = []NameDiff{{KR: "공간", Existing: []existing.Rendering{{ZH: "空域", Units: 3}}, Units: []NameDiffUnit{{Key: "D.json|/dataList/0/name", ZH: "空間", Kind: NameDiffField}}}}
+	var got *ReviewSection
+	for _, s := range ReviewItems(info, nil, nil) {
+		if s.Kind == KindTermNew {
+			got = &s
+		}
+	}
+	if got == nil {
+		t.Fatal("no term_new section")
+	}
+	want := []string{
+		"`term-new/건조장`：暫定詞 → `乾燥室`（`raw-20261126` 登記於 `A.json|/dataList/0/name`）；KR 單獨成詞的 12 個單位，全都用了暫定譯法",
+		"`term-new/조각`：暫定詞 → `碎片`（`raw-20261126` 登記於 `B.json|/dataList/1/content`）；KR 單獨成詞的 9 個單位，2 個用了暫定譯法；沒用的：" +
+			"`C.json|/dataList/0/content`、`C.json|/dataList/1/content`、`C.json|/dataList/2/content`、`C.json|/dataList/3/content`、`C.json|/dataList/4/content`…等",
+	}
+	if !slices.Equal(got.Items, want) {
+		t.Errorf("items = %q, want %q", got.Items, want)
+	}
+	if !strings.Contains(got.Hint, "glossary/terms.yaml") || !strings.Contains(got.Hint, "rules/declined.yaml") {
+		t.Errorf("hint %q does not say where a decision goes", got.Hint)
+	}
+
+	// None in force, none listed.
+	info.Report.ProvisionalTerms = []ProvisionalUse{}
+	for _, s := range ReviewItems(info, nil, nil) {
+		if s.Kind == KindTermNew {
+			t.Errorf("a term_new section with no provisional term: %+v", s)
+		}
 	}
 }

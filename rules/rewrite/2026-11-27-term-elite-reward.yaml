@@ -1,0 +1,8 @@
+# 暫定詞 term-new/정예 보상（精英獎勵）改譯法（2026-11-27）：遊戲其他地方的「정예」有 33 處寫「菁英」，
+# 同檔就有「菁英遭遇戰」，TutorialMainUIText 一句裡同時出現「菁英遭遇戰」與「精英獎勵」。使用者決定寫「菁英獎勵」。
+reason: '「정예 보상」寫「菁英獎勵」（詞彙表）'
+files: ['LimtochessUI.json', 'TutorialMainUIText.json']
+origins: [claude]
+pattern: '精英獎勵'
+replace: '菁英獎勵'
+kr_pattern: '정예 보상'

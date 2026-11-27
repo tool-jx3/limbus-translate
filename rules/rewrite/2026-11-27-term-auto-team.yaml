@@ -1,0 +1,8 @@
+# 暫定詞 term-new/자동 편성 定案（2026-11-27）：21 個單位有 20 個寫「自動編隊」，
+# LimtochessUI 的 /dataList/8/content 寫「自動編成刷新次數」。使用者決定統一成「自動編隊」。
+reason: '「자동 편성」寫「自動編隊」（詞彙表）'
+files: ['LimtochessUI.json']
+origins: [claude]
+pattern: '自動編成'
+replace: '自動編隊'
+kr_pattern: '자동 편성'
