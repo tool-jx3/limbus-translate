@@ -1,0 +1,6 @@
+- key: BattleSpeechBubbleDlg-a1c10p2.json|/dataList/18/dlg
+  raw: raw-20261126
+  kr_sha: 3e7eae780db17a66a858f5575092f1fb7cf1990ea4105079395dd736fd9a6d7b
+  zh: 大家都出來吧。人力補充。
+  reason: 暫定詞 term-new/인력 충원 定案：這句是喊出狀態名（EN PERSONNEL REPLENISHMENT），與狀態名「人力補充」一致。使用者同意 2026-11-27
+  rule: glossary/terms.yaml

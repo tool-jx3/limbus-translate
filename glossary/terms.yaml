@@ -6195,3 +6195,63 @@
   status: approved
   category: [combat]
   notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/흑운회 제3조장 미네）：既有 3/3 個單位寫「黑雲會 第3組長 美音」（全是 2026-11-26 的新譯）。圖式構築的敵人名
+
+- kr: 고난
+  jp: 苦難
+  en: Obstacle
+  zh: 苦難
+  files: ["LimtochessUI.json", "TutorialMainUIText.json", "*-schema.json", "SchemaCraftChoice.json"]
+  status: approved
+  category: [system]
+  notes: 2026-11-27 暫定詞定案：圖式構築模式的「苦難」機制，這些檔 16/16 個單位寫「苦難」。其他檔多是一般用法（劇情的「難關、困難」、고난도／고난이도 的「高難度」），所以只限這些檔；BossRaid（Tribulation）、鏡牢（Trials）的同名詞也寫「苦難」。TutorialMainUIText 的「고난이도」會被當成「고난＋이」命中，那一條警告可以確認掉
+
+- kr: 조각
+  jp: 欠片
+  en: Sliver
+  zh: 碎片
+  files: ["LimtochessUI.json", "TutorialMainUIText.json", "*-schema.json", "SchemaCraftChoice.json"]
+  status: approved
+  category: [system]
+  notes: 2026-11-27 暫定詞定案：圖式構築模式的人格碎片（同步用），這些檔 40/40 個單位寫「碎片」。其他檔是一般用法（片、塊、雕刻、碎塊……，411 個單位有 195 個不寫碎片），所以只限這些檔。見 범용 조각
+
+- kr: 스티치
+  jp: ステッチ
+  en: Stitched
+  zh: 縫線
+  files: ["BattleKeywords*", "Bufs*"]
+  status: approved
+  category: [buff]
+  notes: 2026-11-27 暫定詞定案：狀態名，BattleKeywords、Bufs 3/3 個單位寫「縫線」。其他檔是技能名（네일드 스티치 釘縫）與縫紉術語台詞（針腳、車縫），意思不同，所以只限這兩組檔
+
+- kr: 이어진 실
+  jp: 繋がった糸
+  en: Thread Tether
+  zh: 相連之線
+  not_files: ["BattleSpeechBubbleDlg*"]
+  status: approved
+  category: [buff]
+  notes: 2026-11-27 暫定詞定案：狀態名，9/9 個單位寫「相連之線」。戰鬥台詞（BattleSpeechBubbleDlg）的「멋대로 이어진 실들」是一般用法（擅自與我相連的無數絲線），不適用
+
+- kr: 인력 충원
+  jp: 人員補充
+  en: Replenish Personnel
+  zh: 人力補充
+  status: approved
+  category: [buff]
+  notes: 2026-11-27 暫定詞定案：狀態名，5/6 個單位寫「人力補充」；另 1 個是喊出狀態名的戰鬥台詞（EN PERSONNEL REPLENISHMENT），以人工調整改成「人力補充」（rules/adjustments/2026-11-27-term-new.yaml）
+
+- kr: 자동 편성
+  jp: 自動編成
+  en: Randomize Team
+  zh: 自動編隊
+  status: approved
+  category: [system]
+  notes: 2026-11-27 暫定詞定案：20/21 個單位寫「自動編隊」，另 1 個寫「自動編成」的由 rules/rewrite/2026-11-27-term-auto-team.yaml 改寫；與審核 #30 的「편성 → 編隊」一致
+
+- kr: 정예 보상
+  jp: 精鋭報酬
+  en: Elite Reward
+  zh: 菁英獎勵
+  status: approved
+  category: [system]
+  notes: 2026-11-27 暫定詞「精英獎勵」改譯法：遊戲其他地方的「정예」有 33 處寫「菁英」（同檔就有「菁英遭遇戰」），圖式構築的新譯 5 個「精英獎勵」與 2 個房間類型「精英」由 rules/rewrite/2026-11-27-term-elite-*.yaml 改成「菁英」
