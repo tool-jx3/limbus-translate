@@ -6059,3 +6059,139 @@
   status: approved
   category: [system]
   notes: 2026-11-26 圖式構築模式地圖上的格子（EN Representation）：這些檔既有 17／17 個單位寫「表象」。其他檔的「표상」依語境也有寫「意象」的（BattleKeywords-a1c9p3 的風味文字），所以只限這些檔。見 도상구축
+
+- kr: 건조장
+  jp: 乾燥場
+  en: Drying Room
+  zh: 乾燥室
+  status: approved
+  category: [city]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/건조장）：既有 12/12 個單位寫「乾燥室」（Paratranz 3、新譯 9）。漆黑派 B3F 的地點，李箱人格「高級訂製服::漆黑派 B3F 乾燥室」等
+
+- kr: 공간참
+  jp: 空間斬
+  en: Rend Space
+  zh: 空間斬
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/공간참）：既有 13/13 個單位寫「空間斬」（Paratranz 11、新譯 2）。技能名（KR 附「[空間斬]」）
+
+- kr: 구축력
+  jp: 構築力
+  en: Craftpower
+  zh: 構築力
+  status: approved
+  category: [system]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/구축력）：既有 12/12 個單位寫「構築力」（全是 2026-11-26 的新譯）。圖式構築模式的數值
+
+- kr: 굴림
+  jp: ロール
+  en: Roll
+  zh: 擲骰
+  status: approved
+  category: [system]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/굴림）：既有 15/15 個單位寫「擲骰」（全是 2026-11-26 的新譯）。圖式構築模式的擲骰（追加ロール → 額外擲骰、超額擲骰）
+
+- kr: 덧바느질
+  jp: 重ね縫い
+  en: Darning
+  zh: 疊縫
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/덧바느질）：既有 1/1 個單位寫「疊縫」（全是 2026-11-26 的新譯）。被動名
+
+- kr: 매듭 짓기
+  jp: 結び目を作る
+  en: Tying Up Loose Ends
+  zh: 打結
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/매듭 짓기）：既有 3/3 個單位寫「打結」（全是 2026-11-26 的新譯）。技能名
+
+- kr: 발도 자세
+  jp: 抜刀姿勢
+  en: Battō Shisei
+  zh: 拔刀姿勢
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/발도 자세）：既有 5/5 個單位寫「拔刀姿勢」（全是 2026-11-26 的新譯）。黑雲會敵人的狀態
+
+- kr: 범용 조각
+  jp: 汎用欠片
+  en: Universal Sliver
+  zh: 通用碎片
+  status: approved
+  category: [system]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/범용 조각）：既有 19/19 個單位寫「通用碎片」（全是 2026-11-26 的新譯）。圖式構築模式的通用碎片
+
+- kr: 보존 횟수
+  jp: 保存回数
+  en: Preservation Count
+  zh: 保存回數
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/보존 횟수）：既有 11/11 個單位寫「保存回數」（Paratranz 5、新譯 6）。狀態的回數
+
+- kr: 붉은 결속
+  jp: 赤き結束
+  en: Bound in Crimson
+  zh: 赤紅羈絆
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/붉은 결속）：既有 2/2 個單位寫「赤紅羈絆」（全是 2026-11-26 的新譯）。狀態名
+
+- kr: 시너지 발동 조건
+  jp: シナジー発動条件
+  en: Synergy Activation Condition
+  zh: 協同效果觸發條件
+  status: approved
+  category: [system]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/시너지 발동 조건）：既有 2/2 個單位寫「協同效果觸發條件」（全是 2026-11-26 的新譯）。協同效果的觸發條件（BattleKeywords_Synergy、Bufs_Synergy）
+
+- kr: 아메기리
+  jp: 雨斬り
+  en: Amegiri
+  zh: 雨斬
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/아메기리）：既有 1/1 個單位寫「雨斬」（全是 2026-11-26 的新譯）。黑雲會敵人的技能名
+
+- kr: 자아내기
+  jp: 紡ぎ出す
+  en: Draw Forth the Thread
+  zh: 紡出絲線
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/자아내기）：既有 2/2 個單位寫「紡出絲線」（全是 2026-11-26 的新譯）。技能名，Passives 說明裡也以「紡出絲線」提及
+
+- kr: 쿠로쿠모기리
+  jp: 黒雲斬り
+  en: Kurokumogiri
+  zh: 黑雲斬
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/쿠로쿠모기리）：既有 1/1 個單位寫「黑雲斬」（全是 2026-11-26 的新譯）。黑雲會敵人的技能名
+
+- kr: 쿠모기리
+  jp: 雲斬り
+  en: Kumogiri
+  zh: 雲斬
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/쿠모기리）：既有 3/3 個單位寫「雲斬」（全是 2026-11-26 的新譯）。黑雲會敵人的技能名
+
+- kr: 탄환 - 죄수
+  jp: 弾丸 - 罪人
+  en: Ammo - Prisoner
+  zh: 子彈 - 罪犯
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/탄환 - 죄수）：既有 4/4 個單位寫「子彈 - 罪犯」（全是 2026-11-26 的新譯）。狀態名；「죄수」寫「罪犯」，與罪人（수감자）區分
+
+- kr: 흑운회 제3조장 미네
+  jp: 黒雲会第3組長 ミネ
+  en: 'Mine, Patriarch of the Kurokumo Clan''s Third Family'
+  zh: 黑雲會 第3組長 美音
+  status: approved
+  category: [combat]
+  notes: 2026-11-27 暫定詞定案（審核 #30 之後的規則建議 term-new/흑운회 제3조장 미네）：既有 3/3 個單位寫「黑雲會 第3組長 美音」（全是 2026-11-26 的新譯）。圖式構築的敵人名
