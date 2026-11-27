@@ -4,7 +4,7 @@ import { DataError, loadReview } from '../data'
 import { reviewHref, type Route } from '../route'
 import type { Settings } from '../settings'
 import type { Index, Meta, NoteItem, ReviewData, ReviewTab, ScopeReport, SuggestionItem, WarningItem } from '../types'
-import { filterNotes, filterSuggestions, filterWarnings, jpenCounts, sortSuggestions, type ReviewFilter } from './filter'
+import { batchDate, filterNotes, filterSuggestions, filterWarnings, jpenCounts, noteDates, sortNotes, sortSuggestions, type ReviewFilter } from './filter'
 import { warningInfo } from './names'
 import { NoteCard } from './NoteCard'
 import { ShownText } from './parts'
@@ -140,7 +140,8 @@ interface ToolsProps {
   families: string[]
   kinds?: Option[]
   kindLabel?: string
-  sort?: { value: 'units' | 'variants'; onChange: (v: 'units' | 'variants') => void }
+  /** The order of the list: the value chosen and the choices, the first being the default. */
+  sort?: { value: string; options: Option[]; onChange: (v: string) => void }
   quick?: boolean
   placeholder?: string
   /** The 只看 KR／連同 JP/EN switch, and in the JP/EN view the class filter with its counts. */
@@ -179,9 +180,12 @@ function Tools({ route, count, confirmed, families, kinds, kindLabel, sort, quic
       {sort && (
         <label>
           排序
-          <select name="sort" value={sort.value} onChange={(e) => sort.onChange(e.currentTarget.value === 'variants' ? 'variants' : 'units')}>
-            <option value="units">與 lct suggest 相同</option>
-            <option value="variants">譯法多的在前</option>
+          <select name="sort" value={sort.value} onChange={(e) => sort.onChange(e.currentTarget.value)}>
+            {sort.options.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
           </select>
         </label>
       )}
@@ -230,7 +234,14 @@ function Suggestions({ route, items }: { route: ReviewRoute; items: SuggestionIt
         families={unique(items.flatMap((s) => (s.family ? [s.family] : [])))}
         kinds={kinds}
         kindLabel="種類"
-        sort={{ value: sort, onChange: setSort }}
+        sort={{
+          value: sort,
+          options: [
+            { value: 'units', label: '與 lct suggest 相同' },
+            { value: 'variants', label: '譯法多的在前' },
+          ],
+          onChange: (v) => setSort(v === 'variants' ? 'variants' : 'units'),
+        }}
         jpen={counts}
       />
       <div class="rv-body">
@@ -283,14 +294,58 @@ function Warnings({ route, items }: { route: ReviewRoute; items: WarningItem[] }
   )
 }
 
+/** The heading of the notes of one batch date, when the newest batch comes first. */
+function DateSection({ date, count }: { date: string; count: number }) {
+  return (
+    <div class="rv-section">
+      <h2>
+        {date} 的批次 <span class="rv-n">{count} 項</span>
+      </h2>
+    </div>
+  )
+}
+
 function Notes({ route, items }: { route: ReviewRoute; items: NoteItem[] }) {
-  const shown = useMemo(() => filterNotes(items, route, route.id), [items, route.family, route.q, route.all, route.id])
+  const [sort, setSort] = useState<'place' | 'batch'>('place')
+  const shown = useMemo(() => sortNotes(filterNotes(items, route, route.id), sort), [items, route.family, route.sub, route.q, route.all, route.id, sort])
+  const dateCounts = new Map<string, number>()
+  for (const n of shown) dateCounts.set(batchDate(n.batch), (dateCounts.get(batchDate(n.batch)) ?? 0) + 1)
+  const dates = noteDates(items).map(({ date, count }) => ({ value: date, label: `${date}（${count}）` }))
   return (
     <>
-      <Tools route={route} count={shown.length} confirmed={items.filter((n) => n.declined).length} families={unique(items.map((n) => n.family))} quick />
+      <Tools
+        route={route}
+        count={shown.length}
+        confirmed={items.filter((n) => n.declined).length}
+        families={unique(items.map((n) => n.family))}
+        kinds={dates}
+        kindLabel="批次日期"
+        sort={{
+          value: sort,
+          options: [
+            { value: 'place', label: '依檔案與位置' },
+            { value: 'batch', label: '批次新的在前' },
+          ],
+          onChange: (v) => setSort(v === 'batch' ? 'batch' : 'place'),
+        }}
+        quick
+      />
       <div class="rv-body">
         {route.id !== undefined && !shown.some((n) => n.id === route.id) && <Missing id={route.id} />}
-        <ItemList key={`${route.family}|${route.q}|${route.all}`} items={shown} id={route.id} idOf={(n) => n.id} render={(n, target) => <NoteCard key={n.id} item={n} target={target} />} />
+        <ItemList
+          key={`${route.family}|${route.sub}|${route.q}|${route.all}|${sort}`}
+          items={shown}
+          id={route.id}
+          idOf={(n) => n.id}
+          render={(n, target, previous) => (
+            <>
+              {sort === 'batch' && (previous === undefined || batchDate(previous.batch) !== batchDate(n.batch)) && (
+                <DateSection key={`h-${batchDate(n.batch)}`} date={batchDate(n.batch)} count={dateCounts.get(batchDate(n.batch)) ?? 0} />
+              )}
+              <NoteCard key={n.id} item={n} target={target} />
+            </>
+          )}
+        />
       </div>
     </>
   )

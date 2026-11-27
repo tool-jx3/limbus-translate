@@ -3,7 +3,7 @@ import type { NoteItem, SuggestionItem, WarningItem } from '../types'
 /** What the address says of the filters of a page of the review. */
 export interface ReviewFilter {
   family: string
-  /** The kind of a suggestion, the code of a warning. */
+  /** The kind of a suggestion, the code of a warning, the batch date (YYYY-MM-DD) of a translator note. */
   sub: string
   q: string
   /** Show the confirmed items too. */
@@ -65,14 +65,37 @@ export function filterWarnings(items: WarningItem[], f: ReviewFilter, target?: s
   )
 }
 
+/** The date of a batch id such as 20261101T045817-cf5f93d5, as YYYY-MM-DD; the id itself when it is not one. */
+export function batchDate(batch: string): string {
+  const m = /^(\d{4})(\d{2})(\d{2})/.exec(batch)
+  return m ? `${m[1]}-${m[2]}-${m[3]}` : batch
+}
+
 export function filterNotes(items: NoteItem[], f: ReviewFilter, target?: string): NoteItem[] {
   const needle = f.q.trim().toLowerCase()
   return items.filter(
     (n) =>
       !hidden(n.declined, f, n.id, target) &&
       (f.family === '' || n.family === f.family) &&
+      (f.sub === '' || batchDate(n.batch) === f.sub) &&
       has(needle, [n.id, n.key, n.note, n.kr, n.zh]),
   )
+}
+
+/** The batch dates of the notes, the newest first, each with how many notes it has. */
+export function noteDates(items: NoteItem[]): { date: string; count: number }[] {
+  const counts = new Map<string, number>()
+  for (const n of items) {
+    const d = batchDate(n.batch)
+    counts.set(d, (counts.get(d) ?? 0) + 1)
+  }
+  return [...counts].sort(([a], [b]) => (a < b ? 1 : a > b ? -1 : 0)).map(([date, count]) => ({ date, count }))
+}
+
+/** The order of the notes: as the data has them, by file and unit (place), or the newest batch first and by place within a batch (batch; a stable sort). */
+export function sortNotes(items: NoteItem[], by: 'place' | 'batch'): NoteItem[] {
+  if (by === 'place') return items
+  return [...items].sort((a, b) => (a.batch < b.batch ? 1 : a.batch > b.batch ? -1 : 0))
 }
 
 /** The units of a suggestion: those of its translations, or its rows of evidence. */

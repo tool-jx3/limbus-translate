@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { fixture } from '../testdata'
 import type { NoteItem, SuggestionItem, WarningItem } from '../types'
-import { filterNotes, filterSuggestions, filterWarnings, jpenCounts, sortSuggestions } from './filter'
+import { batchDate, filterNotes, filterSuggestions, filterWarnings, jpenCounts, noteDates, sortNotes, sortSuggestions } from './filter'
 
 const suggestions = fixture<{ items: SuggestionItem[] }>('review/suggestions.json').items
 const warnings = fixture<{ items: WarningItem[] }>('review/warnings.json').items
@@ -110,5 +110,42 @@ describe('the JP/EN class filter', () => {
   it('jpen filter counts follow show-confirmed', () => {
     expect(jpenCounts(items, none)).toEqual({ explained: 1, partial: 1, same: 1 })
     expect(jpenCounts(items, { ...none, all: true })).toEqual({ explained: 1, partial: 1, same: 2 })
+  })
+})
+
+describe('the batch dates of the translator notes', () => {
+  const base = notes[0]!
+  const note = (id: string, batch: string): NoteItem => ({ ...base, id, batch, declined: undefined })
+  const items = [
+    note('a', '20261101T045817-cf5f93d5'),
+    note('b', '20261126T061137-aee7e7af'),
+    note('c', '20261105T010101-00000000'),
+    note('d', '20261126T062551-edafab4d'),
+  ]
+
+  it('reads the date of a batch id', () => {
+    expect(batchDate('20261126T061137-aee7e7af')).toBe('2026-11-26')
+    expect(batchDate('manual')).toBe('manual')
+  })
+
+  it('filters by the date of the batch', () => {
+    expect(ids(filterNotes(items, { ...none, sub: '2026-11-26' }))).toEqual(['b', 'd'])
+    expect(ids(filterNotes(items, { ...none, sub: '2026-11-02' }))).toEqual([])
+    expect(ids(filterNotes(items, none))).toEqual(['a', 'b', 'c', 'd'])
+  })
+
+  it('lists the dates, the newest first, with their counts', () => {
+    expect(noteDates(items)).toEqual([
+      { date: '2026-11-26', count: 2 },
+      { date: '2026-11-05', count: 1 },
+      { date: '2026-11-01', count: 1 },
+    ])
+  })
+
+  it('sorts the newest batch first, keeping the order of the data within a batch', () => {
+    expect(ids(sortNotes(items, 'place'))).toEqual(['a', 'b', 'c', 'd'])
+    expect(ids(sortNotes(items, 'batch'))).toEqual(['d', 'b', 'c', 'a'])
+    const same = [note('x', '20261126T061137-aee7e7af'), note('y', '20261126T061137-aee7e7af')]
+    expect(ids(sortNotes(same, 'batch'))).toEqual(['x', 'y'])
   })
 })

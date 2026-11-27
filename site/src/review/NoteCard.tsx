@@ -1,12 +1,7 @@
 import { OriginBadge } from '../view/OriginBadge'
 import type { NoteItem, Origin } from '../types'
+import { batchDate } from './filter'
 import { ConfirmedLine, IdCopy, Pending, Row, UnitLinks } from './parts'
-
-/** The date of a batch id such as 20261101T045817-cf5f93d5. */
-function batchDate(batch: string): string {
-  const m = /^(\d{4})(\d{2})(\d{2})/.exec(batch)
-  return m ? `${m[1]}-${m[2]}-${m[3]}` : batch
-}
 
 export function NoteCard({ item, target }: { item: NoteItem; target: boolean }) {
   const cls = ['rv-card', item.declined ? 'is-confirmed' : '', target ? 'is-target' : ''].filter(Boolean).join(' ')

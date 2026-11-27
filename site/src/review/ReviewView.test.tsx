@@ -225,6 +225,51 @@ describe('ReviewView', () => {
     expect(el.querySelector('.rv-missing')?.textContent).toContain('inconsistent/nothing/1')
   })
 
+  describe('the batch dates of the translator notes', () => {
+    function datedNotes(): NoteItem[] {
+      const base = fixture<{ items: NoteItem[] }>('review/notes.json').items[0]!
+      return [
+        { ...base, id: 'note/A.json|/dataList/0/content/00000001', key: 'A.json|/dataList/0/content', batch: '20261101T045817-cf5f93d5' },
+        { ...base, id: 'note/B.json|/dataList/0/content/00000002', key: 'B.json|/dataList/0/content', batch: '20261126T061137-aee7e7af' },
+        { ...base, id: 'note/C.json|/dataList/0/content/00000003', key: 'C.json|/dataList/0/content', batch: '20261126T062551-edafab4d' },
+      ]
+    }
+
+    it('filters by a batch date, the newest first in the list with their counts', async () => {
+      vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/notes.json': { items: datedNotes() } })))
+      clearDataCache()
+      let el = await mount(route('notes'))
+      const select = el.querySelector<HTMLSelectElement>('select[name="sub"]')!
+      expect(select.closest('label')?.textContent).toContain('批次日期')
+      expect([...select.options].map((o) => o.textContent)).toEqual(['全部', '2026-11-26（2）', '2026-11-01（1）'])
+      act(() => {
+        select.value = '2026-11-26'
+        select.dispatchEvent(new Event('change'))
+      })
+      expect(location.hash).toBe(reviewHref('notes', { sub: '2026-11-26' }))
+      el = await mount(route('notes', { sub: '2026-11-26' }))
+      expect([...cards(el)].map((c) => c.getAttribute('data-id'))).toEqual(['note/B.json|/dataList/0/content/00000002', 'note/C.json|/dataList/0/content/00000003'])
+    })
+
+    it('puts the newest batch first, under a heading for each date', async () => {
+      vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/notes.json': { items: datedNotes() } })))
+      clearDataCache()
+      const el = await mount(route('notes'))
+      expect(el.querySelector('.rv-section')).toBeNull()
+      const sort = el.querySelector<HTMLSelectElement>('select[name="sort"]')!
+      act(() => {
+        sort.value = 'batch'
+        sort.dispatchEvent(new Event('change'))
+      })
+      expect([...cards(el)].map((c) => c.getAttribute('data-id'))).toEqual([
+        'note/C.json|/dataList/0/content/00000003',
+        'note/B.json|/dataList/0/content/00000002',
+        'note/A.json|/dataList/0/content/00000001',
+      ])
+      expect([...el.querySelectorAll('.rv-section h2')].map((h) => h.textContent)).toEqual(['2026-11-26 的批次 2 項', '2026-11-01 的批次 1 項'])
+    })
+  })
+
   describe('long lists', () => {
     function manyNotes(n: number): NoteItem[] {
       const base = fixture<{ items: NoteItem[] }>('review/notes.json').items[0]!
