@@ -34,7 +34,7 @@
     },
     {
       "id": "limtochess_entrance_auto_select_bonus",
-      "content": "本次遊玩的自動編成刷新次數+{0}"
+      "content": "本次遊玩的自動編隊刷新次數+{0}"
     },
     {
       "id": "limtochess_entrance_locked",
@@ -54,7 +54,7 @@
     },
     {
       "id": "limtochess_room_type_elite",
-      "content": "精英"
+      "content": "菁英"
     },
     {
       "id": "limtochess_room_type_rest",
@@ -354,7 +354,7 @@
     },
     {
       "id": "limtochess_briefing_script_1",
-      "content": "精英"
+      "content": "菁英"
     },
     {
       "id": "limtochess_briefing_script_2",
@@ -770,7 +770,7 @@
     },
     {
       "id": "limtochess_elite_skip_desc",
-      "content": "不領取精英獎勵，\n直接繼續。"
+      "content": "不領取菁英獎勵，\n直接繼續。"
     },
     {
       "id": "limtochess_start_title_direct",
@@ -1382,7 +1382,7 @@
     },
     {
       "id": "limtochess_elite_screen_title",
-      "content": "精英獎勵：選擇"
+      "content": "菁英獎勵：選擇"
     },
     {
       "id": "limtochess_bossreward_screen_title",
@@ -3190,7 +3190,7 @@
     },
     {
       "id": "limtochess_roominfo_merit_elite",
-      "content": "選擇1個精英獎勵（人格及E.G.O的替換、編入、同步）"
+      "content": "選擇1個菁英獎勵（人格及E.G.O的替換、編入、同步）"
     },
     {
       "id": "limtochess_roominfo_merit_level",

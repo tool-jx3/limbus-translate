@@ -1,0 +1,219 @@
+{
+  "tag": "zh-TW-20261126.3",
+  "prev_tag": "zh-TW-20261126.2",
+  "released_at": "2026-11-27T08:24:14Z",
+  "prev_released_at": "2026-11-26T12:04:57Z",
+  "raw_tag": "raw-20261126",
+  "prev_raw_tag": "raw-20261126",
+  "rules_commit": "89d320c43bc8bde14543c165ad660f56f6b872e2",
+  "prev_rules_commit": "e8a849b415626d791765e2a0a82207b8267d6f86",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 9
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "BattleSpeechBubbleDlg-a1c10p2.json",
+      "field": "dlg",
+      "ptr": "/dataList/18/dlg",
+      "kind": "zh-changed",
+      "new_kr": "모두 나오세요. 인력 충원.",
+      "old_zh": "大家都出來吧。補充人力。",
+      "new_zh": "大家都出來吧。人力補充。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-27-term-new.yaml",
+          "reason": "暫定詞 term-new/인력 충원 定案：這句是喊出狀態名（EN PERSONNEL REPLENISHMENT），與狀態名「人力補充」一致。使用者同意 2026-11-27"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/8/content",
+      "kind": "zh-changed",
+      "new_kr": "이번 플레이 시 자동 편성 새로고침 기회 +{0}",
+      "old_zh": "本次遊玩的自動編成刷新次數+{0}",
+      "new_zh": "本次遊玩的自動編隊刷新次數+{0}",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-27-term-auto-team"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/13/content",
+      "kind": "zh-changed",
+      "new_kr": "정예",
+      "old_zh": "精英",
+      "new_zh": "菁英",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-27-term-elite-room"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/88/content",
+      "kind": "zh-changed",
+      "new_kr": "정예",
+      "old_zh": "精英",
+      "new_zh": "菁英",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-27-term-elite-room"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/192/content",
+      "kind": "zh-changed",
+      "new_kr": "정예 보상을 받지 않고\n진행합니다.",
+      "old_zh": "不領取精英獎勵，\n直接繼續。",
+      "new_zh": "不領取菁英獎勵，\n直接繼續。",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-27-term-elite-reward"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/345/content",
+      "kind": "zh-changed",
+      "new_kr": "정예 보상 : 선택",
+      "old_zh": "精英獎勵：選擇",
+      "new_zh": "菁英獎勵：選擇",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-27-term-elite-reward"
+        }
+      ]
+    },
+    {
+      "file": "LimtochessUI.json",
+      "field": "content",
+      "ptr": "/dataList/797/content",
+      "kind": "zh-changed",
+      "new_kr": "정예 보상 1개 선택 (인격 및 E.G.O 교체·편성·동기화)",
+      "old_zh": "選擇1個精英獎勵（人格及E.G.O的替換、編入、同步）",
+      "new_zh": "選擇1個菁英獎勵（人格及E.G.O的替換、編入、同步）",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-27-term-elite-reward"
+        }
+      ]
+    },
+    {
+      "file": "TutorialMainUIText.json",
+      "field": "content",
+      "ptr": "/dataList/1446/content",
+      "kind": "zh-changed",
+      "new_kr": "정예 전투에서 승리하면 팩 보상과 함께 정예 보상 중 하나를 선택하여 획득할 수 있습니다.",
+      "old_zh": "在菁英遭遇戰中勝利後，除了卡包獎勵，還可以從精英獎勵中選擇一個獲得。",
+      "new_zh": "在菁英遭遇戰中勝利後，除了卡包獎勵，還可以從菁英獎勵中選擇一個獲得。",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-27-term-elite-reward"
+        }
+      ]
+    },
+    {
+      "file": "TutorialMainUIText.json",
+      "field": "content",
+      "ptr": "/dataList/1450/content",
+      "kind": "zh-changed",
+      "new_kr": "받지 않기 : 정예 보상을 받지 않고 진행합니다.",
+      "old_zh": "不領取：不領取精英獎勵，直接繼續。",
+      "new_zh": "不領取：不領取菁英獎勵，直接繼續。",
+      "old_origin": "claude",
+      "new_origin": "claude",
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-27-term-elite-reward"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-27-term-new.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-27-term-new.yaml",
+      "path": "rules/adjustments/2026-11-27-term-new.yaml",
+      "title": "2026-11-27-term-new.yaml",
+      "commit": "89d320c43bc8bde14543c165ad660f56f6b872e2"
+    },
+    "rewrite:2026-11-27-term-auto-team": {
+      "kind": "rewrite",
+      "id": "2026-11-27-term-auto-team",
+      "path": "rules/rewrite/2026-11-27-term-auto-team.yaml",
+      "title": "「자동 편성」寫「自動編隊」（詞彙表）",
+      "commit": "89d320c43bc8bde14543c165ad660f56f6b872e2"
+    },
+    "rewrite:2026-11-27-term-elite-reward": {
+      "kind": "rewrite",
+      "id": "2026-11-27-term-elite-reward",
+      "path": "rules/rewrite/2026-11-27-term-elite-reward.yaml",
+      "title": "「정예 보상」寫「菁英獎勵」（詞彙表）",
+      "commit": "89d320c43bc8bde14543c165ad660f56f6b872e2"
+    },
+    "rewrite:2026-11-27-term-elite-room": {
+      "kind": "rewrite",
+      "id": "2026-11-27-term-elite-room",
+      "path": "rules/rewrite/2026-11-27-term-elite-room.yaml",
+      "title": "房間類型「정예」寫「菁英」，與「菁英遭遇戰」一致",
+      "commit": "89d320c43bc8bde14543c165ad660f56f6b872e2"
+    }
+  }
+}

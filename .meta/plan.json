@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261126",
   "prev_raw_tag": "raw-20261119",
-  "rules_commit": "e8a849b415626d791765e2a0a82207b8267d6f86",
+  "rules_commit": "89d320c43bc8bde14543c165ad660f56f6b872e2",
   "changes": {
     "unchanged": 275860,
     "moved": 496,
@@ -64,55 +64,23 @@
   "reused": 0,
   "number_patched": 0,
   "adjustments": {
-    "applied": 422,
+    "applied": 423,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
   "rewrite_applied": [
     {
-      "id": "2026-11-26-review30-assist-unit",
-      "units": 6
+      "id": "2026-11-27-term-auto-team",
+      "units": 1
     },
     {
-      "id": "2026-11-26-review30-cost",
-      "units": 4
+      "id": "2026-11-27-term-elite-reward",
+      "units": 5
     },
     {
-      "id": "2026-11-26-review30-engage",
+      "id": "2026-11-27-term-elite-room",
       "units": 2
-    },
-    {
-      "id": "2026-11-26-review30-enter",
-      "units": 1
-    },
-    {
-      "id": "2026-11-26-review30-formation",
-      "units": 3
-    },
-    {
-      "id": "2026-11-26-review30-max-hp",
-      "units": 1
-    },
-    {
-      "id": "2026-11-26-review30-regular",
-      "units": 2
-    },
-    {
-      "id": "2026-11-26-review30-ring",
-      "units": 1
-    },
-    {
-      "id": "2026-11-26-review30-skein-nest",
-      "units": 10
-    },
-    {
-      "id": "2026-11-26-review30-stagger",
-      "units": 1
-    },
-    {
-      "id": "2026-11-26-review30-trichiliocosm",
-      "units": 1
     }
   ],
   "frozen_changed": [],

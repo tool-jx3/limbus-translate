@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261126",
   "raw_token": "l20261126_CyAvkL3PNEtM8xcoews6",
-  "rules_commit": "e8a849b415626d791765e2a0a82207b8267d6f86",
-  "built_at": "2026-11-26T12:04:09Z",
+  "rules_commit": "89d320c43bc8bde14543c165ad660f56f6b872e2",
+  "built_at": "2026-11-27T08:23:30Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",

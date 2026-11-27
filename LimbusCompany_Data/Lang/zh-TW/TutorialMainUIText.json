@@ -5786,7 +5786,7 @@
     },
     {
       "id": "TutoSchemacraft_P13_D1",
-      "content": "在菁英遭遇戰中勝利後，除了卡包獎勵，還可以從精英獎勵中選擇一個獲得。"
+      "content": "在菁英遭遇戰中勝利後，除了卡包獎勵，還可以從菁英獎勵中選擇一個獲得。"
     },
     {
       "id": "TutoSchemacraft_P13_D2",
@@ -5802,7 +5802,7 @@
     },
     {
       "id": "TutoSchemacraft_P13_D5",
-      "content": "不領取：不領取精英獎勵，直接繼續。"
+      "content": "不領取：不領取菁英獎勵，直接繼續。"
     },
     {
       "id": "TutoSchemacraft_P14_T1",

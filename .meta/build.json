@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261126",
   "raw_token": "l20261126_CyAvkL3PNEtM8xcoews6",
-  "rules_commit": "e8a849b415626d791765e2a0a82207b8267d6f86",
-  "built_at": "2026-11-26T12:04:09Z",
+  "rules_commit": "89d320c43bc8bde14543c165ad660f56f6b872e2",
+  "built_at": "2026-11-27T08:23:30Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,14 +10,14 @@
   },
   "notes_seen": 1149,
   "zips": {
-    "zh-TW_complete_raw-20261126.zip": "58088b012bbb333705e0d7a8ee8c220adf789f296c541b98ee3e960efac4b893",
-    "zh-TW_text_raw-20261126.zip": "bf331092c384528d3b7bc841748aaaa5c87c8c83c9dde19a37a5eb142ba32a0f"
+    "zh-TW_complete_raw-20261126.zip": "c84f3f814187ced3a6e10b0c0339376b294d011573384c38b7d57ec5af25ea08",
+    "zh-TW_text_raw-20261126.zip": "0c3370b5bd5da43e376ce8e6c1169747cf981bae4e8e463c55206d2b9d20cfdb"
   },
   "report": {
     "origins": {
-      "claude": 21780,
+      "claude": 21779,
       "copy": 93572,
-      "human": 422,
+      "human": 423,
       "paratranz": 163787
     },
     "pending": 0,
@@ -41,7 +41,7 @@
       "newline-space": 9,
       "page-count": 5,
       "shared-line": 10,
-      "term-missing": 798
+      "term-missing": 799
     },
     "missing_glyphs": [],
     "copied": [
@@ -569,9 +569,9 @@
     "notes": [],
     "new_translated": 1942,
     "shown": {
-      "claude": 21780,
+      "claude": 21779,
       "copy": 93572,
-      "human": 422,
+      "human": 423,
       "paratranz": 163787
     },
     "misaligned": [
@@ -679,6 +679,7 @@
     "misaligned_files": 22,
     "name_diffs": [],
     "term_diffs": [],
+    "provisional_terms": [],
     "kept_rewrites": [],
     "retranslated": [
       {
